@@ -16,7 +16,8 @@ const LogIn = () =>{
                     <div id="divLogin" className="login_section">
                         <div className="formdemo ">
                                <div className="clslogo mb-3">
-                                <a href="https://thestaffport.com/"> <img src="thestaffport_logo.png" className="img-fluid" alt="Logo"/></a>
+                                <a href="https://thestaffport.com/">   
+                                <img src="thestaffport_logo.png" className="img-fluid" alt="Logo"/></a>
                             </div>
                             <h1 className="display-7 fw-bold mb-0"><span id="displayempname" className="ddnone"></span> Log in</h1>
 
