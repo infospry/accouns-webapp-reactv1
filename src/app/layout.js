@@ -19,7 +19,7 @@ export default function RootLayout({ children }) {
               <script src="js/jquery-2.1.4.min.js" defer></script>
               <script src="js/bootstrap.min.js" defer ></script>
               <script src="js/libscripts.bundle.js" defer ></script>
-              <script src="js/select2.min.js"></script>
+              <script src="js/select2.min.js"defer></script>
               <script src="js/vendorscripts.bundle.js" defer ></script>
               <script src="js/mainscripts.bundle.js" defer ></script>
               <script src="js/custom.js" defer></script>

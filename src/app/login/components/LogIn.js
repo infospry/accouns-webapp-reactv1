@@ -2,6 +2,8 @@
 import Link from "next/link";
 import '../../css/bootstrap.min.css';
 import '../../css/login.css'
+import Image from 'next/image'
+import thestaffport_logo from '@/app/images/thestaffport_logo.png'
 
 const LogIn = () =>{
     return (
@@ -16,8 +18,9 @@ const LogIn = () =>{
                     <div id="divLogin" className="login_section">
                         <div className="formdemo ">
                                <div className="clslogo mb-3">
-                                <a href="https://thestaffport.com/">   
-                                <img src="thestaffport_logo.png" className="img-fluid" alt="Logo"/></a>
+                                <Link href="https://thestaffport.com/">   
+                                <Image src={thestaffport_logo} alt="The StaffPort" className="img-fluid" />
+                                </Link>
                             </div>
                             <h1 className="display-7 fw-bold mb-0"><span id="displayempname" className="ddnone"></span> Log in</h1>
 
@@ -53,7 +56,7 @@ const LogIn = () =>{
                 <div className="authenticate_div ddnone"id="authenticate_div">
                     <div className="formdemo">
                         <h1 className="display-7 fw-bold mb-0">
-                            <img id="imgAuth" src="padlock.png" className="img-fluid" width="64"/>
+                            <Image id="imgAuth" src="padlock.png" className="img-fluid" width="64" alt="logo"/>
                             <br/><span id="spanOTPVerificationTitle">Two Factor Authentication</span>
                         </h1>
                         <div id="divAuthenticateMsg" className="mt-3 mb-3 text-left"></div>
@@ -77,11 +80,11 @@ const LogIn = () =>{
                 </div>
 
 
-                <div className="login_bybackup_verification_div ddnone" >
+                <div className="login_bybackup_verification_div ddnone">
                     <div className="formdemo">
                         <h1 className="display-7 fw-bold mb-0">
                             <a className="clickmode text-danger mt-5 col-blue cls-emp-authenticate" data-action="back_to_having_truble_login_in">
-                                <i className="fa fa-arrow-left mr-1"></i> Can't access your device?
+                                <i className="fa fa-arrow-left mr-1"></i> Can not access your device
                             </a>
                         </h1>
                         <div>

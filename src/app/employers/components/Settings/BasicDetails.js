@@ -24,7 +24,7 @@ export default function BasicDetails() {
                                             </h4>
                                             <p class="mb-3 profileView">
                                                 <span id="spanProName" class="col-black font-16 font-600">
-                                                    IST Pvt Ltd4"</span>
+                                                    IST Pvt Ltd4</span>
                                             </p> <div class="tools">
                                                 <h4>Profile completion(%)
                                                 </h4>

@@ -1,5 +1,12 @@
 
 import React from 'react'
+import Image from 'next/image'
+import authentication from '@/app/images/authentication.png'
+import pass from '@/app/images/pass.png'
+import mail from '@/app/images/mail.png'
+import security from "@/app/images/security.png"
+import onlinePayment from "@/app/images/online-payment.png"
+
 const TwoFactorAuthentication = () => {
     const togglePasswordVisibility = (inputId) => {
       const input = document.getElementById(inputId);
@@ -14,12 +21,12 @@ const TwoFactorAuthentication = () => {
         </h4>
         <div id="TwoFA_placeholder" className="p-3 pr-4 pl-4 bdr1 h4show">
           <div className="text-center mt-3 mb-3 tdivdemo partFst">
-            <img src="/authentication.png" className="opacity_6 mb-2" alt="Authentication" /><br />
+            <Image src={authentication} className="opacity_6 mb-2" alt="Authentication" /><br />
             <p><b>Set Two Factor Authentication</b><br />Use two-factor authentication to add an extra layer of security to your account</p>
             <a className="btn btn-primary cls2factor clickmode" data-action="change" data-hide=".tdivdemo" data-show=".teditableDiv">Activate Two Factor Authentication</a>
           </div>
           <div className="text-center p-2 mt-3 mb-3 divBackupcode">
-            <img src="/pass.png" className="opacity_6 mb-2" alt="Backup code" /><br />
+            <Image src={pass} className="opacity_6 mb-2" alt="Backup code" /><br />
             <p><b>Backup verification code</b><br />These codes can be used to access your TheStaffPort account if you have trouble signing in</p>
             <a className="btn btn-primary cls2factor" data-action="generate_backup_code" data-toggle="modal" data-target="#modalVerification">Generate Backup Codes</a>
           </div>
@@ -30,7 +37,7 @@ const TwoFactorAuthentication = () => {
                   <label htmlFor="rdo_sms_delivery" className="plan basic-plan col-md-6 col-lg-4">
                     <input id="rdo_sms_delivery" className="cls_rdo2fa" type="radio" name="rdo2fa" value="sms" />
                     <div className="plan-content align-items-center">
-                      <img src="/mail.png" alt="Mail" className="opacity_6" />
+                      <Image src={mail} alt="Mail" className="opacity_6" />
                       <div className="plan-details">
                         <span>SMS Delivery</span>
                         <p>A text message will be sent to you for verification every time you log in.</p>
@@ -41,7 +48,7 @@ const TwoFactorAuthentication = () => {
                   <label htmlFor="rdo_security_key" className="plan complete-plan col-md-6 col-lg-4">
                     <input id="rdo_security_key" className="cls_rdo2fa" type="radio" name="rdo2fa" value="security_key" />
                     <div className="plan-content align-items-center">
-                      <img src="/security.png" className="opacity_6" alt="Security" />
+                      <Image src={security} className="opacity_6" alt="Security" />
                       <div className="plan-details">
                         <span>Security Pin</span>
                         <p>An extra layer of security to enter a minimum of 6-digit PIN every time you log in</p>
@@ -52,7 +59,7 @@ const TwoFactorAuthentication = () => {
                   <label htmlFor="rdo_authenticator_app" className="plan Authenticator-plan col-md-6 col-lg-4">
                     <input id="rdo_authenticator_app" className="cls_rdo2fa" type="radio" name="rdo2fa" value="authenticator_app" />
                     <div className="plan-content align-items-center">
-                      <img src="/online-payment.png" alt="Authenticator App" className="opacity_6" />
+                      <Image src={onlinePayment} alt="Authenticator App" className="opacity_6" />
                       <div className="plan-details">
                         <span>Authenticator App</span>
                         <p>For growing businesses who want to create a rewarding place to work.</p>

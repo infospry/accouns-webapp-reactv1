@@ -1,4 +1,6 @@
 import React from 'react'
+import Image from 'next/image'
+import nodata from '@/app/images/nodata.png'
 
 function Compliance() {
   return (
@@ -217,7 +219,7 @@ function Compliance() {
                                     <div className="blank_doc_list">
                                         <div className="nodata">
                                             <div className="nodata__content">
-                                                <div className="nodata__icon"><img src=" /nodata.png" alt=""/></div>
+                                                <div className="nodata__icon"><Image src={nodata} alt="no data"/></div>
                                                 <div className="nodata__message mb-1"><b>No document list found.</b></div>
                                                 <div className="nodata__help mb-2 text-center mb-2"> Your compliance document list 
                                                     by simpley clicking on 

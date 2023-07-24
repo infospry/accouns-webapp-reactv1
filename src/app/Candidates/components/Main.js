@@ -9,6 +9,10 @@ import Activity from './viewProfile/Activity';
 import PasswordSetting from './viewProfile/PasswordSetting';
 import Availability from './viewProfile/Availability';
 import Terms from './viewProfile/Terms';
+
+import Image from 'next/image'
+import profile from '@/app/images/profile.jpg'
+
 export default function main() {
     return (
         <>
@@ -432,13 +436,9 @@ export default function main() {
                                                         <div className="select2-drop select2-display-none select2-with-searchbox">
                                                             <div className="select2-search"> <label for="s2id_autogen1_search"
                                                                 className="select2-offscreen"></label> <input type="text"
-                                                                    autocomplete="off" autocorrect="off" autocapitalize="none"
-                                                                    spellcheck="false" className="select2-input" role="combobox"
-                                                                    aria-expanded="true" aria-autocomplete="list"
-                                                                    aria-owns="select2-results-1" id="s2id_autogen1_search"
+                                                                 className="select2-input" id="s2id_autogen1_search"
                                                                     placeholder="" /> </div>
-                                                            <ul className="select2-results" role="listbox" id="select2-results-1">
-                                                            </ul>
+                                                          
                                                         </div>
                                                     </div><select id="ddlCndLocation" className="form-control show-tick ms select2"
                                                         data-placeholder="Select" tabindex="-1" title="" style={{ display: "none" }}>
@@ -741,7 +741,7 @@ export default function main() {
                             <div className="">
                                 <h4 className="modal-title hide-head profile-header" data-val="107"> <b>General Practitioner</b>
                                 </h4>
-                                <div className="show-head smd_none"> <img src="/profile.jpg" alt=""
+                                <div className="show-head smd_none"> <Image src={profile} alt="img"
                                     className="img-responsive rounded-circle img" />
                                     <div className="about">
                                         <div className="name"> <b>Dr Doctor5 Agnecy</b> [<small className="col-green"><b>General
@@ -772,10 +772,10 @@ export default function main() {
                                                         <input className="btn" type="file" name="myfile" id="fileInput" /> <label
                                                             for="fileInput"
                                                             title="Double click to change profile Picture"></label> </a>
-                                                        <div className="avatar-preview profile_avtar cropme" id="landscape"> <img
+                                                        <div className="avatar-preview profile_avtar cropme" id="landscape"> <Image
                                                             id="CndProfileImgBig"
                                                             className="profileImgBig img-responsive rounded-circle FullprofileImgBig img pict mr-2"
-                                                            src="/profile.jpg" alt="No image" /> </div>
+                                                            src={profile} alt="No image" /> </div>
                                                     </div>
                                                     <div className="profileinfo">
                                                         <div className="row">

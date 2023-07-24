@@ -1,6 +1,8 @@
 import React from 'react'
 import LeftSidebar from '../../components/LeftSidebar';
 import TwoFactorAuthentication from './TwoFactorAuthentication';
+import Image from 'next/image'
+import padlock from '@/app/images/padlock.png'
 
 
 function Main() {
@@ -26,7 +28,7 @@ function Main() {
       </h4>
       <div className="p-3 pr-4 pl-4 bdr1 h4show">
         <div className="text-center mt-3 mb-3 divdemo">
-          <img src="/padlock.png" className="opacity_6 mb-2" alt="Padlock" /><br />
+          <Image src={padlock} className="opacity_6 mb-2" alt="Padlock" /><br />
           <p>Change your account password</p>
           <a className="btn btn-primary clickmode" data-hide=".divdemo" data-show=".editableDiv">Change Password</a>
         </div>

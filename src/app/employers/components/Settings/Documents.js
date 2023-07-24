@@ -1,5 +1,8 @@
 import React from 'react'
 
+import Image from 'next/image'
+import nodata from '@/app/images/nodata.png'
+
 export default function Documents() {
     return (
         <>
@@ -1314,8 +1317,8 @@ export default function Documents() {
                                     <div className='text-center' style={{ width: "100%" }}>
                                         <div class="nodata">
                                             <div class="nodata__content">
-                                                <div class="nodata__icon"><img src="nodata.png"
-                                                    alt="" /></div>
+                                            <div class="nodata__icon"><Image src={nodata}
+                                                    alt="no data" /></div>
                                                 <div class="nodata__message mb-2">No document
                                                     categories found.</div>
                                                 <div class="nodata__help mb-2"> Add a category

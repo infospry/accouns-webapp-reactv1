@@ -317,7 +317,7 @@ const Terms = () => {
           </div>
         </div>
         <div className="form-group row">
-          <label htmlFor="" className="col-sm-4 col-lg-3 col-form-label col-form-label-lg">Company's full-time annual leave entitlement</label>
+          <label htmlFor="" className="col-sm-4 col-lg-3 col-form-label col-form-label-lg">Company full-time annual leave entitlement</label>
           <div className="col-sm-8 col-lg-5">
             <div className="input-group input-group-lg">
               <input

@@ -5,6 +5,8 @@ import ShiftTimes from './Settings/ShiftTimes'
 import Documents from './Settings/Documents'
 import NotificationSetting from './Settings/NotificationSetting'
 import Location from './Settings/Location'
+import Image from 'next/image'
+import profile from '@/app/images/profile.jpg'
 
 const Settings = () => {
     return (
@@ -16,10 +18,10 @@ const Settings = () => {
                         <div className="col-md-12 col-lg-11 col-xl-11">
                             <div className="firstinfo">
                                 <div className="avatar-upload">
-                                    <div className="avatar-preview profile_avtar cropme" id="landscape"> <img
+                                    <div className="avatar-preview profile_avtar cropme" id="landscape"> <Image
                                         id="CndProfileImgBig"
                                         className="profileImgBig img-responsive rounded-circle FullprofileImgBig img pict mr-2"
-                                        src="profile.jpg" alt="No image" />
+                                    src={profile} alt="No image" />
                                     </div>
                                 </div>
                                 <div className="profileinfo">

@@ -3,6 +3,8 @@ import LeftSidebar from '../../components/LeftSidebar';
 import GeneralInfo from './GeneralInfo';
 import BankAccounts from './BankAccounts';
 import Invoice from './Invoice';
+import Image from 'next/image'
+import profile from '@/app/images/profile.jpg'
 
 function Main() {
     return (
@@ -29,10 +31,10 @@ function Main() {
                                                                     <div className="firstinfo">
                                                                         <div className="avatar-upload">
                                                                             <div className="avatar-preview profile_avtar cropme" id="landscape">
-                                                                                <img
+                                                                                <Image
                                                                                     id="CndProfileImgBig"
                                                                                     className="profileImgBig img-responsive rounded-circle FullprofileImgBig img pict mr-2"
-                                                                                    src="/profile.jpg"
+                                                                                    src={profile}
                                                                                     alt="No image"
                                                                                 />
                                                                             </div>

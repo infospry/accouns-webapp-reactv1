@@ -1,5 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
+import notification from '@/app/images/notification.png'
+import logo from '@/app/images/logo.png'
 
 
 const HeaderNav = () => {
@@ -14,7 +16,7 @@ const HeaderNav = () => {
                     <i className="zmdi zmdi-menu"></i>
                 </button>
                 <Link href="/">
-                    <img src="logo.png" alt="W e l c o m e"/>
+                    <Image src={logo} alt="W e l c o m e"/>
                 </Link>
             </div>
             <ul className="navbar-nav mr-4 pr-3 bdrr float-left ">
@@ -45,7 +47,7 @@ const HeaderNav = () => {
                             <div>Critical Activities</div>
                             <div>
                                 <span className="str-grey cls-vw-log-top" data-action="readall">
-                                    <img src="images/notification.png"/>
+                                    <Image src={notification} alt="notification"/>
                                 </span>
                             </div>
                         </li>
@@ -89,7 +91,7 @@ const HeaderNav = () => {
                             <div>NOTIFICATIONS</div>
                             <div>
                                 <span className="str-grey cls-vw-msg-top" data-action="readall">
-                                    <img src="images/notification.png"/>
+                                <Image src={notification} alt="notification"/>
                                 </span>
                             </div>
                         </li>
