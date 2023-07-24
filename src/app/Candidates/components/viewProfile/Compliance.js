@@ -7,7 +7,7 @@ function Compliance() {
                                 <div className="col-3 pl-0">
 
                                     <div className="border p-2">
-                                        <h2 className="font-16 ml-2"> <b>Documents vault</b> <a id="btn-cls-doc-search" className="float-right cls-doc-search"><i className="ti ti-filter"></i></a> </h2>
+                                        <h2 className="font-16 ml-2"> <b>Documents Vault</b> <a id="btn-cls-doc-search" className="float-right cls-doc-search"><i className="ti ti-filter"></i></a> </h2>
                                         <div id="divdocsearch" className="ml-2 dnnone mt-1">
                                             <input id="txtsearchDocs" type="text" placeholder="Type here to search" onkeyup="SeachRolesfromList()" className="form-control"/>
                                         </div>
@@ -22,6 +22,18 @@ function Compliance() {
                                                     <span className="col-grey">New passport2.jpg</span>
                                                 </div>
                                             </div>
+                                            <ul className="header-dropdown d-flex">
+                                            <li>
+                                            <a  data-toggle="modal"  data-target="#uploadPreview"><i class="zmdi zmdi-search"></i></a>
+                                            </li>
+                                                <li className="dropdown"> <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i className="zmdi zmdi-more-vert"></i>
+                                                    </a>
+                                                    <ul className="dropdown-menu dropdown-menu-right">
+                                                        <li><a className="cls-document-setting"data-toggle="modal"  data-target="#addEdit"><i className="zmdi zmdi-edit"></i> Edit</a></li>
+                                                        <li><a className="cls-document-setting"><i className="zmdi zmdi-delete"></i> Delete</a></li>        
+                                                    </ul>
+                                                </li>
+                                            </ul>
                                         </li>
                                         <li className="list-group-item file_folder"> 
                                             <div className="icon mr-0"> <i className="zmdi zmdi-collection-image"></i></div>
@@ -31,6 +43,18 @@ function Compliance() {
                                                    <span className="col-grey">New Resume.jpg</span>
                                                 </div>
                                             </div>
+                                            <ul className="header-dropdown d-flex">
+                                            <li>
+                                            <a  data-toggle="modal"  data-target="#uploadPreview"><i class="zmdi zmdi-search"></i></a>
+                                            </li>
+                                                <li className="dropdown"> <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i className="zmdi zmdi-more-vert"></i>
+                                                    </a>
+                                                    <ul className="dropdown-menu dropdown-menu-right">
+                                                        <li><a className="cls-document-setting"data-toggle="modal"  data-target="#addEdit"><i className="zmdi zmdi-edit"></i> Edit</a></li>
+                                                        <li><a className="cls-document-setting"><i className="zmdi zmdi-delete"></i> Delete</a></li>        
+                                                    </ul>
+                                                </li>
+                                            </ul>
                                         </li>
                                         <li className="list-group-item file_folder"> 
                                             <div className="icon mr-0"> <i className="zmdi zmdi-collection-image"></i></div>
@@ -40,12 +64,15 @@ function Compliance() {
                                                     <span className="col-grey"> dbs -1.jpg</span>
                                                 </div>
                                             </div>
-                                            <ul className="header-dropdown">
+                                            <ul className="header-dropdown d-flex">
+                                            <li>
+                                            <a  data-toggle="modal"  data-target="#uploadPreview"><i class="zmdi zmdi-search"></i></a>
+                                            </li>
                                                 <li className="dropdown"> <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i className="zmdi zmdi-more-vert"></i>
                                                     </a>
                                                     <ul className="dropdown-menu dropdown-menu-right">
-                                                        <li><a className="cls-document-setting"><i className="zmdi zmdi-edit"></i>
-                                                                Edit</a></li>
+                                                        <li><a className="cls-document-setting"data-toggle="modal"  data-target="#addEdit"><i className="zmdi zmdi-edit"></i> Edit</a></li>
+                                                        <li><a className="cls-document-setting"><i className="zmdi zmdi-delete"></i> Delete</a></li>        
                                                     </ul>
                                                 </li>
                                             </ul>
@@ -58,12 +85,15 @@ function Compliance() {
                                                    <span className="col-grey"> Proof of Address -1.jpg</span>
                                                 </div>
                                             </div>
-                                            <ul className="header-dropdown">
+                                            <ul className="header-dropdown d-flex">
+                                            <li>
+                                            <a  data-toggle="modal"  data-target="#uploadPreview"><i class="zmdi zmdi-search"></i></a>
+                                            </li>
                                                 <li className="dropdown"> <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i className="zmdi zmdi-more-vert"></i>
                                                     </a>
                                                     <ul className="dropdown-menu dropdown-menu-right">
-                                                        <li><a className="cls-document-setting"><i className="zmdi zmdi-edit"></i>
-                                                                Edit</a></li>
+                                                        <li><a className="cls-document-setting"data-toggle="modal"  data-target="#addEdit"><i className="zmdi zmdi-edit"></i> Edit</a></li>
+                                                        <li><a className="cls-document-setting"><i className="zmdi zmdi-delete"></i> Delete</a></li>        
                                                     </ul>
                                                 </li>
                                             </ul>
@@ -76,12 +106,15 @@ function Compliance() {
                                                     <span className="col-grey">New passport2.jpg</span>
                                                 </div>
                                             </div>
-                                            <ul className="header-dropdown">
+                                            <ul className="header-dropdown d-flex">
+                                            <li>
+                                            <a  data-toggle="modal"  data-target="#uploadPreview"><i class="zmdi zmdi-search"></i></a>
+                                            </li>
                                                 <li className="dropdown"> <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i className="zmdi zmdi-more-vert"></i>
                                                     </a>
                                                     <ul className="dropdown-menu dropdown-menu-right">
-                                                        <li><a className="cls-document-setting"><i className="zmdi zmdi-edit"></i>
-                                                                Edit</a></li>
+                                                        <li><a className="cls-document-setting"data-toggle="modal"  data-target="#addEdit"><i className="zmdi zmdi-edit"></i> Edit</a></li>
+                                                        <li><a className="cls-document-setting"><i className="zmdi zmdi-delete"></i> Delete</a></li>        
                                                     </ul>
                                                 </li>
                                             </ul>
@@ -95,12 +128,15 @@ function Compliance() {
                                                 </div>
                                             </div>
                                             
-                                            <ul className="header-dropdown">
+                                            <ul className="header-dropdown d-flex">
+                                            <li>
+                                            <a  data-toggle="modal"  data-target="#uploadPreview"><i class="zmdi zmdi-search"></i></a>
+                                            </li>
                                                 <li className="dropdown"> <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i className="zmdi zmdi-more-vert"></i>
                                                     </a>
                                                     <ul className="dropdown-menu dropdown-menu-right">
-                                                        <li><a className="cls-document-setting"><i className="zmdi zmdi-edit"></i>
-                                                                Edit</a></li>
+                                                        <li><a className="cls-document-setting"data-toggle="modal"  data-target="#addEdit"><i className="zmdi zmdi-edit"></i> Edit</a></li>
+                                                        <li><a className="cls-document-setting"><i className="zmdi zmdi-delete"></i> Delete</a></li>        
                                                     </ul>
                                                 </li>
                                             </ul>
@@ -113,6 +149,18 @@ function Compliance() {
                                                     <span className="col-grey"> dbs -1.jpg</span>
                                                 </div>
                                             </div>
+                                            <ul className="header-dropdown d-flex">
+                                            <li>
+                                            <a  data-toggle="modal"  data-target="#uploadPreview"><i class="zmdi zmdi-search"></i></a>
+                                            </li>
+                                                <li className="dropdown"> <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i className="zmdi zmdi-more-vert"></i>
+                                                    </a>
+                                                    <ul className="dropdown-menu dropdown-menu-right">
+                                                        <li><a className="cls-document-setting"data-toggle="modal"  data-target="#addEdit"><i className="zmdi zmdi-edit"></i> Edit</a></li>
+                                                        <li><a className="cls-document-setting"><i className="zmdi zmdi-delete"></i> Delete</a></li>        
+                                                    </ul>
+                                                </li>
+                                            </ul>
                                         </li>
                                         <li className="list-group-item file_folder"> 
                                             <div className="icon mr-0"> <i className="zmdi zmdi-collection-image"></i></div>
@@ -122,6 +170,18 @@ function Compliance() {
                                                    <span className="col-grey"> Proof of Address -1.jpg</span>
                                                 </div>
                                             </div>
+                                            <ul className="header-dropdown d-flex">
+                                            <li>
+                                            <a  data-toggle="modal"  data-target="#uploadPreview"><i class="zmdi zmdi-search"></i></a>
+                                            </li>
+                                                <li className="dropdown"> <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i className="zmdi zmdi-more-vert"></i>
+                                                    </a>
+                                                    <ul className="dropdown-menu dropdown-menu-right">
+                                                        <li><a className="cls-document-setting"data-toggle="modal"  data-target="#addEdit"><i className="zmdi zmdi-edit"></i> Edit</a></li>
+                                                        <li><a className="cls-document-setting"><i className="zmdi zmdi-delete"></i> Delete</a></li>        
+                                                    </ul>
+                                                </li>
+                                            </ul>
                                         </li>
                                         <li className="list-group-item file_folder"> 
                                             <div className="icon mr-0"> <i className="zmdi zmdi-collection-image"></i></div>
@@ -131,39 +191,25 @@ function Compliance() {
                                                     <span className="col-grey">New passport2.jpg</span>
                                                 </div>
                                             </div>
+                                            <ul className="header-dropdown d-flex">
+                                            <li>
+                                            <a  data-toggle="modal"  data-target="#uploadPreview"><i class="zmdi zmdi-search"></i></a>
+                                            </li>
+                                                <li className="dropdown"> <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i className="zmdi zmdi-more-vert"></i>
+                                                    </a>
+                                                    <ul className="dropdown-menu dropdown-menu-right">
+                                                        <li><a className="cls-document-setting"data-toggle="modal"  data-target="#addEdit"><i className="zmdi zmdi-edit"></i> Edit</a></li>
+                                                        <li><a className="cls-document-setting"><i className="zmdi zmdi-delete"></i> Delete</a></li>        
+                                                    </ul>
+                                                </li>
+                                            </ul>
                                         </li>
-                                        <li className="list-group-item file_folder"> 
-                                            <div className="icon mr-0"> <i className="zmdi zmdi-collection-image"></i></div>
-                                            <div className="file-name">
-                                                <p className="mb-0 text-muted"> <b>CV</b> </p>
-                                                <div> 
-                                                   <span className="col-grey">New Resume.jpg</span>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li className="list-group-item file_folder"> 
-                                            <div className="icon mr-0"> <i className="zmdi zmdi-collection-image"></i></div>
-                                            <div className="file-name">
-                                                <p className="mb-0 text-muted"> <b>DBS</b> </p>
-                                                <div> 
-                                                    <span className="col-grey"> dbs -1.jpg</span>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li className="list-group-item file_folder"> 
-                                            <div className="icon mr-0"> <i className="zmdi zmdi-collection-image"></i></div>
-                                            <div className="file-name">
-                                                <p className="mb-0 text-muted"> <b> Proof of Address -1</b> </p>
-                                                <div> 
-                                                   <span className="col-grey"> Proof of Address -1.jpg</span>
-                                                </div>
-                                            </div>
-                                        </li>
+                                        
                                         
                                     </ul>
 
                                     <div className="border p-2 text-center">
-                                        <a className="btn btn-outline-primary"><b> + Add More</b> </a>
+                                        <a className="btn btn-outline-primary"data-toggle="modal"  data-target="#addEdit"><b> + Add More</b> </a>
                                     </div>
                                 </div>
                                 <div className="col-9 pl-0">

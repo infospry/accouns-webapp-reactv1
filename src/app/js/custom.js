@@ -27,6 +27,10 @@ function showhide() {
         $(evt_show).show();
     }
 });
+function valueChanged() {
+    if ($(".chkDocMasterDocIssue").is(":checked")) $(".divDocumentIssueDate").show();
+    else $(".divDocumentIssueDate").hide();
+  }
 
 
 $(document).ready(function () {

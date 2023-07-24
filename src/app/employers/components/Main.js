@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Settings from "./Settings";
+
 function Main() {
 
     return (
@@ -462,7 +463,7 @@ function Main() {
                                     defaultValue="#04BE5B"
                                   />
                                   <div className="mt-3">
-                                    {/* Render the checkboxes here */}
+                                    
                                   </div>
                                 </div>
                 <div className="form-group mt-3">
