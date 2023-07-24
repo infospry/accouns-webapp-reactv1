@@ -972,116 +972,206 @@ export default function main() {
 
 
 
-            <div id="addEdit" class="modal md-one right-quater" tabindex="-1" role="dialog" aria-labelledby="addEdit" aria-hidden="true">
-                <div class="modal-dialog ui-draggable" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header ui-draggable-handle">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <div id="addEdit" className="modal md-one right-quater" tabindex="-1" role="dialog" aria-labelledby="addEdit" aria-hidden="true">
+                <div className="modal-dialog ui-draggable" role="document">
+                    <div className="modal-content">
+                        <div className="modal-header ui-draggable-handle">
+                            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">×</span>
                             </button>
-                            <h4 class="modal-title" id="myModalLabel2">
+                            <h4 className="modal-title" id="myModalLabel2">
                                 <b id="lblDocMasterTitle">Add Edit Document</b>
                             </h4>
                         </div>
-                        <div class="modal-body">
-                            <div class="row m-0">
-                                <div class="col-12 mt-2">
-                                    <div class="form-group">
-                                        <label class="col-form-label col-form-label-lg">
+                        <div className="modal-body">
+                            <div className="row m-0">
+                                <div className="col-12 mt-2">
+                                    <div className="form-group">
+                                        <label className="col-form-label col-form-label-lg">
                                             Document name<span>*</span>
                                         </label>
-                                        <input id="txtDocMasterDocName" type="text" class="form-control form-control-lg docClear" 
+                                        <input id="txtDocMasterDocName" type="text" className="form-control form-control-lg docClear" 
                                         placeholder="Enter document name"/>
                                     </div>
                                 </div>
-                                <div class="col-12 mt-2">
-                                    <div class="form-group">
-                                        <label class="col-form-label col-form-label-lg">
+                                <div className="col-12 mt-2">
+                                    <div className="form-group">
+                                        <label className="col-form-label col-form-label-lg">
                                             Document No.<span>*</span>
                                         </label>
-                                        <input id="" type="text" class="form-control form-control-lg " 
+                                        <input id="" type="text" className="form-control form-control-lg " 
                                         placeholder="Enter document no."/>
                                     </div>
-                                </div>
-                            
+                                </div>                           
 
-                                
+                             
 
-                                <div class="row col-12 mb-0">
-                                    <label class="col-8 col-form-label col-form-label-lg">Document Issue </label>
-                                    <span class="col-4 switch  pt-1">
-                                        <input id="chkDocMasterDocIssue" type="checkbox" class="switch clsswichDoc"onchange="valueChanged()"/>
+                                <div className="row col-12 mb-0">
+                                    <label className="col-8 col-form-label col-form-label-lg">Document Issue </label>
+                                    <span className="col-4 switch  pt-1">
+                                        <input id="chkDocMasterDocIssue" type="checkbox" className="switch clsswichDoc"/>
                                             <label for="chkDocMasterDocIssue"></label>
                                     </span>
                                 </div>
                               
-                                <div id="divDocumentIssueDate" class="col-12 mb-1 dd_none">
-                                    <div class="form-group">
-                                    <label class="col-form-label col-form-label-lg">
+                                <div id="divDocumentIssueDate" className="col-12 mb-1">
+                                    <div className="form-group">
+                                    <label className="col-form-label col-form-label-lg">
                                             Document Issue date
                                         </label>
                                         <input type="text" id=""  data-countryid="0" 
-                                        class="form-control" placeholder="DD/MM/YYYY" />
+                                        className="form-control" placeholder="DD/MM/YYYY" />
                                     </div>
                                 </div>
 
-                                <div class="row col-12 mb-0">
-                                    <label class="col-8 col-form-label col-form-label-lg">Document Expiry </label>
-                                    <span class="col-4 switch  pt-1">
-                                        <input id="chkDocMasterDocExpiry" type="checkbox" class="switch clsswichDoc"/>
+                                <div className="row col-12 mb-0">
+                                    <label className="col-8 col-form-label col-form-label-lg">Document Expiry </label>
+                                    <span className="col-4 switch  pt-1">
+                                        <input id="chkDocMasterDocExpiry" type="checkbox" className="switch clsswichDoc"/>
                                             <label for="chkDocMasterDocExpiry"></label>
                                     </span>
                                 </div>
-                                <div id="divDocumentExpiryDate"  class="col-12 mb-1"style={{display:"none"}}>
-                                    <div class="form-group">
-                                    <label class="col-form-label col-form-label-lg">
+                                <div id="divDocumentExpiryDate"  className="col-12 mb-1">
+                                    <div className="form-group">
+                                    <label className="col-form-label col-form-label-lg">
                                             Document Expiry date
                                         </label>
                                         <input type="text" id=""  data-countryid="0" 
-                                        class="form-control" placeholder="DD/MM/YYYY" />
+                                        className="form-control" placeholder="DD/MM/YYYY" />
                                     </div>
                                 </div>
                                 
                               
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <label class="col-form-label col-form-label-lg">
+                                <div className="col-12">
+                                    <div className="form-group">
+                                        <label className="col-form-label col-form-label-lg">
                                             Document description
                                             <span></span>
                                         </label>
-                                        <textarea id="txtDocMasterDescription" rows="1" class="form-control form-control-lg no-resize docClear" placeholder="Enter description"></textarea>
+                                        <textarea id="txtDocMasterDescription" rows="1" className="form-control form-control-lg no-resize docClear" placeholder="Enter description"></textarea>
                                     </div>
                                 </div>
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <label class="col-form-label col-form-label-lg">
+                                <div className="col-12">
+                                    <div className="form-group">
+                                        <label className="col-form-label col-form-label-lg">
                                             Instructions / Help text
                                             <span></span>
                                         </label>
-                                        <textarea id="txtDocMasterInstrections" rows="1" class="form-control form-control-lg no-resize docClear" placeholder="Instructions / Help text"></textarea>
+                                        <textarea id="txtDocMasterInstrections" rows="1" className="form-control form-control-lg no-resize docClear" placeholder="Instructions / Help text"></textarea>
                                     </div>
                                 </div>
-                                <div class="col-md-12 mb-5">
-                                    <div class="d-flex justify-content-start">
+
+                                <div className="col-lg-12 upld">
+      <div className="file_folder"></div>
+      <div id="divFileAttachfile" className="card pb-0 mb-5" style={{ display: 'none' }}>
+        <div id="divAttchFiles">
+          <div id="attachedFileRow1" className="row">
+            <div style={{ paddingTop: '33px' }}>
+              <label></label>
+              <label id="lblTaskFile">1</label>
+            </div>
+            <div className="col-md-7" id="divFileUploader1" style={{ border: '0.5px solid red' }}>
+              <div>
+                <label>
+                  Choose file<span>*</span>
+                </label>
+                <div className="input-group" style={{ marginBottom: '5px' }}>
+                  <div className="input-group-prepend">
+                    <span id="fileUploaderAddOn" className="input-group-text clearTextFile">
+                      Upload
+                    </span>
+                  </div>
+                  <div className="custom-file">
+                    <input
+                      id="fileUploader1"
+                      accept="image/*,application/pdf,application/msword/,application/xlxs/,application/xlx,.txt,.docx,.doc,.zip,.rar,.mp4,.wav,.3gp"
+                      type="file"
+                      row-hidden="true"
+                      data-val="1"
+                      className="custom-file-input file-uploader clearTextFile"
+                      aria-describedby="fileUploaderAddOn"
+                    />
+                    <label className="custom-file-label" htmlFor="fileUploader">
+                      Choose file
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="col-md-4">
+              <div>
+                <label>
+                  File Name<span></span>
+                </label>
+                <input
+                  id="txtFileDescription1"
+                  type="text"
+                  row-hidden="false"
+                  data-val="1"
+                  className="form-control clearTextFile"
+                  autoComplete="off"
+                  placeholder="Enter File description"
+                />
+              </div>
+            </div>
+            <div className="col-md-1">
+              <div className="mt-4"></div>
+            </div>
+          </div>
+        </div>
+        <div id="divAttachFileContainer" style={{ marginLeft: '8px', marginTop: '5px' }}>
+          <a id="btnAddMoreFiles" className="btn btn-info clearTextFile  modal-taskfile-btn" style={{ marginRight: '5px' }} task-action="addMoreFiles">
+            <i className="zmdi zmdi-plus col-white"></i> <b className="col-white">Add More Files</b>
+          </a>
+          <a id="btnAttachFiles" className="btn btn-success clearTextFile modal-taskfile-btn" action-from="taskAdd" task-action="attachFiles">
+            <i className="zmdi zmdi-plus-circle-o-duplicate col-white"></i> <b className="col-white">Attach Files</b>
+          </a>
+          <a className="btn btn-outline-danger clearTextFile  cls-doc-file-action" style={{ marginRight: '5px' }} data-action="cancel">
+            Cancel
+          </a>
+        </div>
+      </div>
+      <div id="divAttachedFiles" className="card pb-0 mb-5">
+        <table className="table table-hover table-bordered divAttachedFiles" style={{ display: 'none' }}>
+          <thead>
+            <tr>
+              <th style={{ width: '40px' }}>SN.</th>
+              <th style={{ width: '270px' }}>File Name</th>
+              <th style={{ width: '70px' }}>Size</th>
+              <th>File</th>
+            </tr>
+          </thead>
+          <tbody id="tblBodyAttachedFiles"></tbody>
+        </table>
+        <div>
+          <a className="btn btn-primary btn-sm  cls-doc-file-action" data-action="add">
+            <i className="zmdi zmdi-plus-circle-o-duplicate col-white"></i> <b className="col-white">Browse to upload file....</b>
+          </a>
+        </div>
+      </div>
+    </div>
+
+                                <div className="col-md-12 mb-5">
+                                    <div className="d-flex justify-content-start">
                                         <label>Status:</label>
-                                        <div class="ml-4">
-                                            <label class="">Inactive</label>
-                                            <span class="switch ml-1">
-                                                <input type="checkbox" class="switch clsswichDoc" id="chkDocMasterStatus"/>
+                                        <div className="ml-4">
+                                            <label className="">Inactive</label>
+                                            <span className="switch ml-1">
+                                                <input type="checkbox" className="switch clsswichDoc" id="chkDocMasterStatus"/>
                                                     <label for="chkDocMasterStatus"></label>
                                             </span>
-                                            <label class="">Active</label>
+                                            <label className="">Active</label>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="modal-footer">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="text-center">
-                                        <a id="btnDocMasterSave" class="btn btn-primary btn-lg cls-document-setting" data-action="updatedocument" data-uid="208A89B4-33DE-4D2F-8F15-84BD71F6A235">Update</a>
-                                        <a id="btnDocMasterSaveCancel" class="btn btn-outline-danger btn-lg cls-document-setting" data-dismiss="modal"><i class="zmdi zmdi-close"></i> Close</a>
+                        <div className="modal-footer">
+                            <div className="row">
+                                <div className="col-md-12">
+                                    <div className="text-center">
+                                        <a id="btnDocMasterSave" className="btn btn-primary btn-lg cls-document-setting" data-action="updatedocument" data-uid="208A89B4-33DE-4D2F-8F15-84BD71F6A235">Update</a>
+                                        <a id="btnDocMasterSaveCancel" className="btn btn-outline-danger btn-lg cls-document-setting" data-dismiss="modal"><i className="zmdi zmdi-close"></i> Close</a>
                                     </div>
                                 </div>
                             </div>
@@ -1089,6 +1179,138 @@ export default function main() {
                     </div>
                 </div>
             </div>
+
+            <div id="uploadPreview" className="modal right-full" tabIndex="-1" role="dialog" aria-labelledby="myModalLabel2" style={{ display: 'none' }} aria-hidden="true">
+      <div className="modal-dialog ui-draggable" role="document">
+        <div className="modal-content">
+          <div className="modal-header ui-draggable-handle">
+            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+            <div className="row">
+              <div className="col-md-12">
+                <h4 className="modal-title" id="myModalLabel2">
+                  <button className="btn btn-info btn-sm reveal-click float-left mr-2" style={{ position: 'relative', margin: 0, top: 0, left: '-6px' }}>
+                    <i className="zmdi zmdi-menu"></i>
+                  </button>
+                  <b>Preview file(s) in <span id="docFilename">CV</span></b>
+                </h4>
+              </div>
+            </div>
+          </div>
+          <div className="modal-body">
+            <div id="divPreviewBodyContent_placeholder" className="d-flex">
+              {/* Documents List */}
+              <div className="inbox left pr-0 mr-0 lftfxd pt-3" id="email-nav">
+                <div className="file_folder">
+                  {/* File 1 */}
+                  <a id="file-ff4493563cf642ffbc0f05c18be531a7.png" href="javascript:void(0);" className="cls-docs-action" data-action="viewfile" data-extension=".png" data-url="https://thestaffport23.s3.eu-west-2.amazonaws.com/compliance/ff4493563cf642ffbc0f05c18be531a7.png?X-Amz-Expires=600&amp;X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=AKIA3NHQF7DCXRKNIZWF/20230724/eu-west-2/s3/aws4_request&amp;X-Amz-Date=20230724T132539Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=3e86e0827a460e0211e088ab993cc297cf67d29774f4e8a67735df2274d23d8b" data-hide=".one" data-show=".two">
+                    <button id="" className="btn btn-danger btnhover cls-docs-action" data-action="deletefile" data-path="ff4493563cf642ffbc0f05c18be531a7.png" data-uid="62ED78FA-3063-424C-BD73-6476952CC53F" title="Remove File">
+                      <i className="zmdi zmdi-close-circle"></i>
+                    </button>
+                    <div className="icon mr-0">
+                      <i className="zmdi zmdi-collection-image text-info"></i>
+                    </div>
+                    <div className="file-name" style={{ padding: '8px' }}>
+                      <p className="mb-0 text-muted">cnt.png</p>
+                      <div style={{ fontSize: '11px', lineHeight: 0 }}>
+                        <b style={{ color: 'forestgreen' }}>
+                          <span className="col-grey">
+                            <i className="fa fa-external-link-square">&nbsp;NEW</i>
+                          </span>
+                        </b>
+                      </div>
+                      <p></p>
+                    </div>
+                  </a>
+                  {/* File 2 */}
+                  <a id="file-74bd2b17b6c648a7b0aac2f391e8558d.png" href="javascript:void(0);" className="cls-docs-action" data-action="viewfile" data-extension=".png" data-url="https://thestaffport23.s3.eu-west-2.amazonaws.com/compliance/74bd2b17b6c648a7b0aac2f391e8558d.png?X-Amz-Expires=600&amp;X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=AKIA3NHQF7DCXRKNIZWF/20230724/eu-west-2/s3/aws4_request&amp;X-Amz-Date=20230724T132539Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=1115ddf4884d90b3d786f953087b2056ff13d567e8414f9688e923ac1d6505e1" data-hide=".one" data-show=".two">
+                    <button id="" className="btn btn-danger btnhover cls-docs-action" data-action="deletefile" data-path="74bd2b17b6c648a7b0aac2f391e8558d.png" data-uid="62ED78FA-3063-424C-BD73-6476952CC53F" title="Remove File">
+                      <i className="zmdi zmdi-close-circle"></i>
+                    </button>
+                    <div className="icon mr-0">
+                      <i className="zmdi zmdi-collection-image text-info"></i>
+                    </div>
+                    <div className="file-name" style={{ padding: '8px' }}>
+                      <p className="mb-0 text-muted">border.png</p>
+                      <div style={{ fontSize: '11px', lineHeight: 0 }}>
+                        <b style={{ color: 'forestgreen' }}>
+                          <span className="col-grey">
+                            <i className="fa fa-external-link-square">&nbsp;NEW</i>
+                          </span>
+                        </b>
+                      </div>
+                      <p></p>
+                    </div>
+                  </a>
+                </div>
+              </div>
+              {/* Preview & Action Block */}
+              <div className="inbox right rgtinbox">
+                {/* Document Preview */}
+                <div className="pl-3 pr-3 mt-3">
+                  <iframe id="iframedocfile" src="https://thestaffport23.s3.eu-west-2.amazonaws.com/compliance/ff4493563cf642ffbc0f05c18be531a7.png?X-Amz-Expires=600&amp;X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=AKIA3NHQF7DCXRKNIZWF/20230724/eu-west-2/s3/aws4_request&amp;X-Amz-Date=20230724T132539Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=3e86e0827a460e0211e088ab993cc297cf67d29774f4e8a67735df2274d23d8b" style={{ height: '400px' }} className="one" data-download-url="https://thestaffport23.s3.eu-west-2.amazonaws.com/compliance/ff4493563cf642ffbc0f05c18be531a7.png?X-Amz-Expires=600&amp;X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=AKIA3NHQF7DCXRKNIZWF/20230724/eu-west-2/s3/aws4_request&amp;X-Amz-Date=20230724T132539Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=3e86e0827a460e0211e088ab993cc297cf67d29774f4e8a67735df2274d23d8b"></iframe>
+                </div>
+                <div className="row p-3">
+                  {/* Update Status */}
+                  <div className="col-md-12 mb-4">
+                    <div className="row mt-0">
+                      <hr />
+                      
+                      <div className="col-lg-6">
+                        <p className="mb-3">
+                          <span className="wd-180px">Download File</span>
+                          <span>:</span>
+                          <span className="col-black font-16 font-bold ml-1"><a id="link_download_file" className="cls-docs-action" data-action="download_file" data-url="" style={{ color: 'blue' }}>
+                                <i className="fa fa-download">&nbsp;</i>Download
+                              </a></span>
+                        </p>
+                      </div>
+                      <div className="col-lg-6">
+                        <p className="mb-3">
+                          <span className="wd-180px">Document Name</span>
+                          <span>:</span>
+                          <span className="col-black font-16 font-bold ml-1">CV</span>
+                        </p>
+                      </div>
+                      <div className="col-lg-6">
+                        <p className="mb-3">
+                          <span className="wd-180px">Document No.</span>
+                          <span>:</span>
+                          <span className="col-black font-16 font-bold ml-1"></span>
+                        </p>
+                      </div>
+                      <div className="col-lg-6">
+                        <p className="mb-3">
+                          <span className="wd-180px">Issue Date</span>
+                          <span>:</span>
+                          <span className="col-black font-16 font-bold ml-1"></span>
+                        </p>
+                      </div>
+                      <div className="col-lg-6">
+                        <p className="mb-3">
+                          <span className="wd-180px">Expiry Date</span>
+                          <span>:</span>
+                          <span className="col-black font-16 font-bold ml-1"></span>
+                        </p>
+                      </div>
+                      <div className="col-lg-6">
+                        <p className="mb-3">
+                          <span className="wd-180px">Description</span>
+                          <span>:</span>
+                          <span className="col-black font-16 font-bold ml-1">Not available</span>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  {/* History */}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
 
         </>

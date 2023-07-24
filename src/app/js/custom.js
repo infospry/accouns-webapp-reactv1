@@ -4,6 +4,7 @@ window.onload = function() {
     document.getElementById('bdy').className = 'ls-toggle-menu';
   };
 
+ 
 function showhide() {
     if (document.getElementById('divLogin').style.display == 'none') {
       document.getElementById('divLogin').style.display = 'block';
@@ -27,10 +28,6 @@ function showhide() {
         $(evt_show).show();
     }
 });
-function valueChanged() {
-    if ($(".chkDocMasterDocIssue").is(":checked")) $(".divDocumentIssueDate").show();
-    else $(".divDocumentIssueDate").hide();
-  }
 
 
 $(document).ready(function () {
