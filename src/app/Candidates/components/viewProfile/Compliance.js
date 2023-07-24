@@ -7,7 +7,7 @@ function Compliance() {
                                 <div className="col-3 pl-0">
 
                                     <div className="border p-2">
-                                        <h2 className="font-16 ml-2"> <b>Existing Documents</b> <a id="btn-cls-doc-search" className="float-right cls-doc-search"><i className="ti ti-filter"></i></a> </h2>
+                                        <h2 className="font-16 ml-2"> <b>Documents vault</b> <a id="btn-cls-doc-search" className="float-right cls-doc-search"><i className="ti ti-filter"></i></a> </h2>
                                         <div id="divdocsearch" className="ml-2 dnnone mt-1">
                                             <input id="txtsearchDocs" type="text" placeholder="Type here to search" onkeyup="SeachRolesfromList()" className="form-control"/>
                                         </div>

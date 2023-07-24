@@ -9,7 +9,7 @@ function LeftSidebar() {
                         href="settings/myProfile"><i className="fa fa-user"></i> My Profile</Link> </li>
 
                     <li id="liprofile" className="pl-4 ClsSettingNav" title="Users"> <Link
-                        href="/Users"><i className="fa fa-users"></i> Users</Link> </li>
+                        href="settings/users"><i className="fa fa-users"></i> Users</Link> </li>
 
 
                     <li id="liprofile" className="pl-4 ClsSettingNav"
