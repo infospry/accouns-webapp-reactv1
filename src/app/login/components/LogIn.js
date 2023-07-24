@@ -4,6 +4,7 @@ import '../../css/bootstrap.min.css';
 import '../../css/login.css'
 import Image from 'next/image'
 import thestaffport_logo from '@/app/images/thestaffport_logo.png'
+import padlock from '@/app/images/padlock.png'
 
 const LogIn = () =>{
     return (
@@ -56,7 +57,7 @@ const LogIn = () =>{
                 <div className="authenticate_div ddnone"id="authenticate_div">
                     <div className="formdemo">
                         <h1 className="display-7 fw-bold mb-0">
-                            <Image id="imgAuth" src="padlock.png" className="img-fluid" width="64" alt="logo"/>
+                            <Image id="imgAuth" src={padlock} className="img-fluid" width="64"height="64" alt="logo"/>
                             <br/><span id="spanOTPVerificationTitle">Two Factor Authentication</span>
                         </h1>
                         <div id="divAuthenticateMsg" className="mt-3 mb-3 text-left"></div>

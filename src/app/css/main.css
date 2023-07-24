@@ -7991,7 +7991,7 @@ section.content {
 }
 
 .navbar-brand img {
-    width: 130px;
+    width: 130px!important;height:30px!important
 }
 
 .ls-toggle-menu .navbar-brand a {
@@ -15861,3 +15861,4 @@ display: block;}
         color: #888;
         font-size: 14px;
       }
+      img{width:100%!important; height:auto!important}

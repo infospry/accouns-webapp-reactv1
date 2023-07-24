@@ -67,8 +67,9 @@ body {
     font-size:18px;
 
     }
-  .clslogo img {
-        width:235px;
+    .formdemo img{max-width:64px;max-height:64px;}
+.clslogo img {
+        width:235px!important; max-width:235px;
     }
         #progressbar {
     margin-bottom: 30px;
