@@ -2,7 +2,7 @@ import React from 'react'
 
 const UserTable = () => {
     return (
-     
+     <>
         <div className="body bdr-0 pt-0 pl-0 pr-0 pb-2">
           <div className="i_action d-flex justify-content-between align-items-center p-2 mb-0">
             <button type="button" className="btn btn-primary dr-breakout-btn">
@@ -68,12 +68,12 @@ const UserTable = () => {
                   <td> Admin </td>
                   <td>08/06/2023 12:31PM</td>
                   <td>
-                    <a id="invite-12" onClick={() => confirm('Are you sure you want to send an invitation to the user?')} className="btn btn-outline-primary btn-sm cls-user-settings" data-cnd_id="12" data-name="Healthcare Demo " data-email="demo.healthcare@thestaffport.com" data-mobile="" data-action="invite" title="Send Invitation">
+                    <a id="invite-12"  className="btn btn-outline-primary btn-sm cls-user-settings" data-cnd_id="12" data-name="Healthcare Demo " data-email="demo.healthcare@thestaffport.com" data-mobile="" data-action="invite" title="Send Invitation">
                       Send
                     </a>
                   </td>
                   <td className="text-center col-green">
-                    <a onClick={() => confirm('Are you sure you want to change the user account status?')}>ACTIVE</a>
+                    <a >ACTIVE</a>
                   </td>
                   <td className="text-center">
                     <a id="viewpermission-12" className="btn btn-outline-primary btn-sm disabled" data-user_id="12" data-name="Healthcare Demo " data-email="demo.healthcare@thestaffport.com" data-mobile="" data-role_id="3" data-action="viewpermission" title="Permission">
@@ -104,7 +104,7 @@ const UserTable = () => {
             </a>
           </div>
         </div>
-     
+     </>
     );
   };
   

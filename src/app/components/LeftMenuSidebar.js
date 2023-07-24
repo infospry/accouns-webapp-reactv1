@@ -33,7 +33,7 @@ function LeftMenuSidebar() {
                         <span>Reports</span> </Link>
 
                 </li>
-                    <li title="Settings"> <Link href="/settings" data-count="15"> <i
+                    <li title="Settings"> <Link href="/settings/myProfile" data-count="15"> <i
                                 className="fa fa-cog"></i> <span>Settings</span> </Link> </li>
                     <li title="Messages"> <Link href="MessageCenter"
                             data-count="0"> <i className="fa fa-envelope"></i> <span>Messages</span> </Link> </li>

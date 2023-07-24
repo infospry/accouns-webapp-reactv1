@@ -25,7 +25,7 @@ const Settings = () => {
                                 <div className="profileinfo">
                                     <div className="row">
                                         <div className="col-12">
-                                            <h3 className="col-med"> Dr Doctor5 Agnecy </h3>
+                                            <h3 className="col-med"> Healthcare Reload Agnecy </h3>
                                         </div>
                                         <div className="col-md-6 col-lg-4">
                                             <p className="mt-1 col-med">Industry : <span className="mb-1 col-black">
