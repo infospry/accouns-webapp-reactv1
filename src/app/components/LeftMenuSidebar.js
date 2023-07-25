@@ -19,8 +19,8 @@ function LeftMenuSidebar() {
                                     <span>Manage Jobs</span> </Link>
                                 <ul className="ml-menu">
                                     <li><Link className="clsCallPage"
-                                            href="booked">Booked Jobs</Link></li>
-                                    <li><Link className="clsCallPage" href="openJobs">Open  Jobs</Link></li>
+                                            href="/Jobs/bookedJobs">Booked Jobs</Link></li>
+                                    <li><Link className="clsCallPage" href="/Jobs/openJobs">Open  Jobs</Link></li>
                                 </ul>
                             </li>
                     <li title="Finance"> <Link href="javascript:void(0);"
