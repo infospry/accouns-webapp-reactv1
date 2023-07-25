@@ -109,9 +109,3 @@ $(document).ready(function () {
     });
 });
 
-
-function Test()
-{
- return "test";
-
-}
