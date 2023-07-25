@@ -982,7 +982,7 @@ export default function main() {
                             <h4 className="modal-title" id="myModalLabel2">
                                 <b id="lblDocMasterTitle">Add Edit Document</b>
                             </h4>
-                        </div>
+                        </div> 
                         <div className="modal-body">
                             <div className="row m-0">
                                 <div className="col-12 mt-2">
