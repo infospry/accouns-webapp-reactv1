@@ -112,6 +112,6 @@ $(document).ready(function () {
 
 function Test()
 {
- return "";
+ return "test";
 
 }
