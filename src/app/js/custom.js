@@ -108,3 +108,10 @@ $(document).ready(function () {
         $('.left').toggleClass('small_width');
     });
 });
+
+
+function Test()
+{
+ return "";
+
+}
