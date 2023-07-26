@@ -9,8 +9,6 @@ import { endpoint_employer } from '@/app/services/ApiEndPoints';
 
 
 export default function main() {
-
-  
     const [employer,setEmployer]=useState([])
     useEffect(async()=>{
      let data = await asyncGet(endpoint_employer);

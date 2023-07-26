@@ -1,3 +1,4 @@
+"use client"
 import React from 'react'
 import Link from "next/link";
 import Dashboard from './viewProfile/Dashboard';
@@ -9,13 +10,24 @@ import Activity from './viewProfile/Activity';
 import PasswordSetting from './viewProfile/PasswordSetting';
 import Availability from './viewProfile/Availability';
 import Terms from './viewProfile/Terms';
-import Image from 'next/image'
-import profile from '@/app/images/profile.jpg'
+import Image from 'next/image';
+import profile from '@/app/images/profile.jpg';
 
 
-export default function main() {
-   
-     
+import { useState,useEffect } from 'react';
+import { asyncGet } from '@/app/services/HttpServices';
+import { endpoint_candidate } from '@/app/services/ApiEndPoints';
+
+
+
+function Main() {
+  
+    const [candidate,setCandidates]=useState([])
+    useEffect(async()=>{
+     let data = await asyncGet(endpoint_candidate);     
+     setCandidates(data.Response[0].Candidates);
+    },[])  
+
     return (
         <>
             <section className="content">
@@ -225,9 +237,10 @@ export default function main() {
                                                                     <th>Action</th>
                                                                 </tr>
                                                             </thead>
-                                                            <tbody id="CndProfiles_Placeholder">
+                                                            <tbody>
+                                                            { candidate.map((item) => ( 
                                                                 <tr>
-                                                                    <td scope="row"> 101 </td>
+                                                                    <td scope="row">{item.cnd_id}</td>
                                                                     <td>
                                                                         <div className="d-flex">
                                                                             <div className="float-left mt-2 col-black"> <a
@@ -236,34 +249,30 @@ export default function main() {
                                                                                 data-target="#viewprofile"
                                                                                 data-sub-type="Internal"><i
                                                                                     className="fa fa-user font-14">&nbsp;</i><b>
-                                                                                    Mr
-                                                                                    Dr Doctor5 Agnecy</b></a><br />
+                                                                                   {item.cnd_full_name}</b></a>
                                                                                 <div></div>
                                                                             </div>
                                                                         </div>
                                                                     </td>
                                                                     <td className="col-blue"><i
-                                                                        className="zmdi zmdi-email">&nbsp;</i>Iu2@demo.com</td>
-                                                                    <td> Internal <div> <span style={{ color: "#04BE5B" }}>
-                                                                        Support Worker </span> </div>
+                                                                        className="zmdi zmdi-email">&nbsp;</i> {item.cnd_email}</td>
+                                                                    <td> {item.cnd_sub_type_name} <div> <span style={{ color: "#1cbfd0" }}>
+                                                                    {item.emp_role}  </span> </div>
                                                                     </td>
                                                                     <td className="text-center"> <b className="col-blue"><span
-                                                                        style={{ color: "#CEC6CE" }}>Not set</span></b> </td>
-                                                                    <td className="text-center"><span style={{ color: "#CEC6CE" }}>Not
-                                                                        set</span></td>
+                                                                        style={{ color: "#CEC6CE" }}>{item.cnd_wage_or_salary}</span></b> </td>
+                                                                    <td className="text-center"><span style={{ color: "#CEC6CE" }}>{item.cnd_contract_type}</span></td>
                                                                     <td className="text-center">
                                                                         <div className="tital-text"> <i className="zmdi zmdi-pin"></i>
                                                                             <a href="#" data-toggle="modal"
                                                                                 data-target="#location_preview" data-id="153"
                                                                                 className="badge badge-info cnd-location-counter"><b>
-                                                                                    1</b></a>
+                                                                                    {item.cnd_locations_total}</b></a>
                                                                             <div className="tital-text__tooltip">
-                                                                                <p className="mb-1"> </p>
-                                                                                <p className="wd-16pxl bold"><i
-                                                                                    className="zmdi zmdi-pin"></i> LOCATIONS</p>
+                                                                                <p className="mb-1">{item.cnd_locations} </p>
+                                                                                <p className="wd-16pxl bold"><i className="zmdi zmdi-pin"></i> LOCATIONS</p>
                                                                                 <br />
-                                                                                <p>(<b>1.</b>) Birmingham</p>
-                                                                                <p></p>
+                                                                                <p>{item.emp_location_name}</p>
                                                                             </div>
                                                                         </div>
                                                                     </td>
@@ -273,9 +282,9 @@ export default function main() {
                                                                         data-cnd_id="153" data-name="Mr Internal User2"
                                                                         data-email="Iu2@demo.com" data-mobile=""
                                                                         data-action="invite" title="Send Invitation"> Resend
-                                                                        <b>1</b> </a> </td>
+                                                                        <b>{item.invitation_status}</b> </a> </td>
 
-                                                                    <td> <a className="badge badge-warning cursor"> INACTIVE </a>
+                                                                    <td> <a className="badge badge-warning cursor"> {item.account_status_label} </a>
                                                                     </td>
                                                                     <td> <a className="btn btn-outline-primary btn-sm btn-cnd-profiles-view"
                                                                         data-toggle="modal" data-val="153"
@@ -285,7 +294,7 @@ export default function main() {
 
                                                                     </td>
                                                                 </tr>
-
+                                                            ))}
                                                             </tbody>
                                                         </table>
                                                     </div>
@@ -1299,4 +1308,7 @@ export default function main() {
             </div>
         </>
     )
+  
 }
+
+export default Main

@@ -11,8 +11,10 @@ function Main() {
         const [employer,setEmployer]=useState([])
     useEffect(async()=>{
      let data = await asyncGet(endpoint_employer);     
-     setEmployer(data.Response[0].employer_details);
-    },[])
+     setEmployer(data.Response[0].employer);
+    },[]);   
+
+
     
     return (
         <>
