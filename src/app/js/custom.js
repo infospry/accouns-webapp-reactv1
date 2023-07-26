@@ -16,16 +16,6 @@ function showhide() {
     }
 };
 
-$(function () {
-    $("#chkPassport").click(function () {
-        if ($(this).is(":checked")) {
-            $("#dvPassport").show();
-        } else {
-            $("#dvPassport").hide();
-        }
-    });
-});
-    
   $('.clickmode').click(function() {
     var evt_hide = $(this).data('hide');
     var evt_show = $(this).data('show');

@@ -9,11 +9,13 @@ import Activity from './viewProfile/Activity';
 import PasswordSetting from './viewProfile/PasswordSetting';
 import Availability from './viewProfile/Availability';
 import Terms from './viewProfile/Terms';
-
 import Image from 'next/image'
 import profile from '@/app/images/profile.jpg'
 
+
 export default function main() {
+   
+     
     return (
         <>
             <section className="content">
@@ -969,9 +971,6 @@ export default function main() {
                     </div>
                 </div>
             </div>
-
-
-
             <div id="addEdit" className="modal md-one right-quater" tabindex="-1" role="dialog" aria-labelledby="addEdit" aria-hidden="true">
                 <div className="modal-dialog ui-draggable" role="document">
                     <div className="modal-content">
@@ -1168,138 +1167,136 @@ export default function main() {
             </div>
 
             <div id="uploadPreview" className="modal right-full" tabIndex="-1" role="dialog" aria-hidden="true">
-      <div className="modal-dialog ui-draggable" role="document">
-        <div className="modal-content">
-          <div className="modal-header ui-draggable-handle">
-            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">×</span>
-            </button>
-            <div className="row">
-              <div className="col-md-12">
-                <h4 className="modal-title" id="myModalLabel2">
-                  <button className="btn btn-info btn-sm reveal-click float-left mr-2" style={{ position: 'relative', margin: 0, top: 0, left: '-6px' }}>
-                    <i className="zmdi zmdi-menu"></i>
-                  </button>
-                  <b>Preview file(s) in <span id="docFilename">CV</span></b>
-                </h4>
-              </div>
+                <div className="modal-dialog ui-draggable" role="document">
+                    <div className="modal-content">
+                    <div className="modal-header ui-draggable-handle">
+                        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                        </button>
+                        <div className="row">
+                        <div className="col-md-12">
+                            <h4 className="modal-title" id="myModalLabel2">
+                            <button className="btn btn-info btn-sm reveal-click float-left mr-2" style={{ position: 'relative', margin: 0, top: 0, left: '-6px' }}>
+                                <i className="zmdi zmdi-menu"></i>
+                            </button>
+                            <b>Preview file(s) in <span id="docFilename">CV</span></b>
+                            </h4>
+                        </div>
+                        </div>
+                    </div>
+                    <div className="modal-body">
+                        <div id="divPreviewBodyContent_placeholder" className="d-flex">
+                        {/* Documents List */}
+                        <div className="inbox left pr-0 mr-0 lftfxd pt-3" id="email-nav">
+                            <div className="file_folder">
+                            {/* File 1 */}
+                            <a id="file-ff4493563cf642ffbc0f05c18be531a7.png" href="javascript:void(0);" className="cls-docs-action" data-action="viewfile" data-extension=".png" data-url="https://thestaffport23.s3.eu-west-2.amazonaws.com/compliance/ff4493563cf642ffbc0f05c18be531a7.png?X-Amz-Expires=600&amp;X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=AKIA3NHQF7DCXRKNIZWF/20230724/eu-west-2/s3/aws4_request&amp;X-Amz-Date=20230724T132539Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=3e86e0827a460e0211e088ab993cc297cf67d29774f4e8a67735df2274d23d8b" data-hide=".one" data-show=".two">
+                                <button id="" className="btn btn-danger btnhover cls-docs-action" data-action="deletefile" data-path="ff4493563cf642ffbc0f05c18be531a7.png" data-uid="62ED78FA-3063-424C-BD73-6476952CC53F" title="Remove File">
+                                <i className="zmdi zmdi-close-circle"></i>
+                                </button>
+                                <div className="icon mr-0">
+                                <i className="zmdi zmdi-collection-image text-info"></i>
+                                </div>
+                                <div className="file-name" style={{ padding: '8px' }}>
+                                <p className="mb-0 text-muted">cnt.png</p>
+                                <div style={{ fontSize: '11px', lineHeight: 0 }}>
+                                    <b style={{ color: 'forestgreen' }}>
+                                    <span className="col-grey">
+                                        <i className="fa fa-external-link-square">&nbsp;NEW</i>
+                                    </span>
+                                    </b>
+                                </div>
+                                <p></p>
+                                </div>
+                            </a>
+                            {/* File 2 */}
+                            <a id="file-74bd2b17b6c648a7b0aac2f391e8558d.png" href="javascript:void(0);" className="cls-docs-action" data-action="viewfile" data-extension=".png" data-url="https://thestaffport23.s3.eu-west-2.amazonaws.com/compliance/74bd2b17b6c648a7b0aac2f391e8558d.png?X-Amz-Expires=600&amp;X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=AKIA3NHQF7DCXRKNIZWF/20230724/eu-west-2/s3/aws4_request&amp;X-Amz-Date=20230724T132539Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=1115ddf4884d90b3d786f953087b2056ff13d567e8414f9688e923ac1d6505e1" data-hide=".one" data-show=".two">
+                                <button id="" className="btn btn-danger btnhover cls-docs-action" data-action="deletefile" data-path="74bd2b17b6c648a7b0aac2f391e8558d.png" data-uid="62ED78FA-3063-424C-BD73-6476952CC53F" title="Remove File">
+                                <i className="zmdi zmdi-close-circle"></i>
+                                </button>
+                                <div className="icon mr-0">
+                                <i className="zmdi zmdi-collection-image text-info"></i>
+                                </div>
+                                <div className="file-name" style={{ padding: '8px' }}>
+                                <p className="mb-0 text-muted">border.png</p>
+                                <div style={{ fontSize: '11px', lineHeight: 0 }}>
+                                    <b style={{ color: 'forestgreen' }}>
+                                    <span className="col-grey">
+                                        <i className="fa fa-external-link-square">&nbsp;NEW</i>
+                                    </span>
+                                    </b>
+                                </div>
+                                <p></p>
+                                </div>
+                            </a>
+                            </div>
+                        </div>
+                        {/* Preview & Action Block */}
+                        <div className="inbox right rgtinbox">
+                            {/* Document Preview */}
+                            <div className="pl-3 pr-3 mt-3">
+                            <iframe id="iframedocfile" src="https://thestaffport23.s3.eu-west-2.amazonaws.com/compliance/ff4493563cf642ffbc0f05c18be531a7.png?X-Amz-Expires=600&amp;X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=AKIA3NHQF7DCXRKNIZWF/20230724/eu-west-2/s3/aws4_request&amp;X-Amz-Date=20230724T132539Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=3e86e0827a460e0211e088ab993cc297cf67d29774f4e8a67735df2274d23d8b" style={{ height: '400px' }} className="one" data-download-url="https://thestaffport23.s3.eu-west-2.amazonaws.com/compliance/ff4493563cf642ffbc0f05c18be531a7.png?X-Amz-Expires=600&amp;X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=AKIA3NHQF7DCXRKNIZWF/20230724/eu-west-2/s3/aws4_request&amp;X-Amz-Date=20230724T132539Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=3e86e0827a460e0211e088ab993cc297cf67d29774f4e8a67735df2274d23d8b"></iframe>
+                            </div>
+                            <div className="row p-3">
+                            {/* Update Status */}
+                            <div className="col-md-12 mb-4">
+                                <div className="row mt-0">
+                                <hr />
+                                
+                                <div className="col-lg-6">
+                                    <p className="mb-3">
+                                    <span className="wd-180px">Download File</span>
+                                    <span>:</span>
+                                    <span className="col-black font-16 font-bold ml-1"><a id="link_download_file" className="cls-docs-action" data-action="download_file" data-url="" style={{ color: 'blue' }}>
+                                            <i className="fa fa-download">&nbsp;</i>Download
+                                        </a></span>
+                                    </p>
+                                </div>
+                                <div className="col-lg-6">
+                                    <p className="mb-3">
+                                    <span className="wd-180px">Document Name</span>
+                                    <span>:</span>
+                                    <span className="col-black font-16 font-bold ml-1">CV</span>
+                                    </p>
+                                </div>
+                                <div className="col-lg-6">
+                                    <p className="mb-3">
+                                    <span className="wd-180px">Document No.</span>
+                                    <span>:</span>
+                                    <span className="col-black font-16 font-bold ml-1"></span>
+                                    </p>
+                                </div>
+                                <div className="col-lg-6">
+                                    <p className="mb-3">
+                                    <span className="wd-180px">Issue Date</span>
+                                    <span>:</span>
+                                    <span className="col-black font-16 font-bold ml-1"></span>
+                                    </p>
+                                </div>
+                                <div className="col-lg-6">
+                                    <p className="mb-3">
+                                    <span className="wd-180px">Expiry Date</span>
+                                    <span>:</span>
+                                    <span className="col-black font-16 font-bold ml-1"></span>
+                                    </p>
+                                </div>
+                                <div className="col-lg-6">
+                                    <p className="mb-3">
+                                    <span className="wd-180px">Description</span>
+                                    <span>:</span>
+                                    <span className="col-black font-16 font-bold ml-1">Not available</span>
+                                    </p>
+                                </div>
+                                </div>
+                            </div>
+                            {/* History */}
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
             </div>
-          </div>
-          <div className="modal-body">
-            <div id="divPreviewBodyContent_placeholder" className="d-flex">
-              {/* Documents List */}
-              <div className="inbox left pr-0 mr-0 lftfxd pt-3" id="email-nav">
-                <div className="file_folder">
-                  {/* File 1 */}
-                  <a id="file-ff4493563cf642ffbc0f05c18be531a7.png" href="javascript:void(0);" className="cls-docs-action" data-action="viewfile" data-extension=".png" data-url="https://thestaffport23.s3.eu-west-2.amazonaws.com/compliance/ff4493563cf642ffbc0f05c18be531a7.png?X-Amz-Expires=600&amp;X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=AKIA3NHQF7DCXRKNIZWF/20230724/eu-west-2/s3/aws4_request&amp;X-Amz-Date=20230724T132539Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=3e86e0827a460e0211e088ab993cc297cf67d29774f4e8a67735df2274d23d8b" data-hide=".one" data-show=".two">
-                    <button id="" className="btn btn-danger btnhover cls-docs-action" data-action="deletefile" data-path="ff4493563cf642ffbc0f05c18be531a7.png" data-uid="62ED78FA-3063-424C-BD73-6476952CC53F" title="Remove File">
-                      <i className="zmdi zmdi-close-circle"></i>
-                    </button>
-                    <div className="icon mr-0">
-                      <i className="zmdi zmdi-collection-image text-info"></i>
-                    </div>
-                    <div className="file-name" style={{ padding: '8px' }}>
-                      <p className="mb-0 text-muted">cnt.png</p>
-                      <div style={{ fontSize: '11px', lineHeight: 0 }}>
-                        <b style={{ color: 'forestgreen' }}>
-                          <span className="col-grey">
-                            <i className="fa fa-external-link-square">&nbsp;NEW</i>
-                          </span>
-                        </b>
-                      </div>
-                      <p></p>
-                    </div>
-                  </a>
-                  {/* File 2 */}
-                  <a id="file-74bd2b17b6c648a7b0aac2f391e8558d.png" href="javascript:void(0);" className="cls-docs-action" data-action="viewfile" data-extension=".png" data-url="https://thestaffport23.s3.eu-west-2.amazonaws.com/compliance/74bd2b17b6c648a7b0aac2f391e8558d.png?X-Amz-Expires=600&amp;X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=AKIA3NHQF7DCXRKNIZWF/20230724/eu-west-2/s3/aws4_request&amp;X-Amz-Date=20230724T132539Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=1115ddf4884d90b3d786f953087b2056ff13d567e8414f9688e923ac1d6505e1" data-hide=".one" data-show=".two">
-                    <button id="" className="btn btn-danger btnhover cls-docs-action" data-action="deletefile" data-path="74bd2b17b6c648a7b0aac2f391e8558d.png" data-uid="62ED78FA-3063-424C-BD73-6476952CC53F" title="Remove File">
-                      <i className="zmdi zmdi-close-circle"></i>
-                    </button>
-                    <div className="icon mr-0">
-                      <i className="zmdi zmdi-collection-image text-info"></i>
-                    </div>
-                    <div className="file-name" style={{ padding: '8px' }}>
-                      <p className="mb-0 text-muted">border.png</p>
-                      <div style={{ fontSize: '11px', lineHeight: 0 }}>
-                        <b style={{ color: 'forestgreen' }}>
-                          <span className="col-grey">
-                            <i className="fa fa-external-link-square">&nbsp;NEW</i>
-                          </span>
-                        </b>
-                      </div>
-                      <p></p>
-                    </div>
-                  </a>
-                </div>
-              </div>
-              {/* Preview & Action Block */}
-              <div className="inbox right rgtinbox">
-                {/* Document Preview */}
-                <div className="pl-3 pr-3 mt-3">
-                  <iframe id="iframedocfile" src="https://thestaffport23.s3.eu-west-2.amazonaws.com/compliance/ff4493563cf642ffbc0f05c18be531a7.png?X-Amz-Expires=600&amp;X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=AKIA3NHQF7DCXRKNIZWF/20230724/eu-west-2/s3/aws4_request&amp;X-Amz-Date=20230724T132539Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=3e86e0827a460e0211e088ab993cc297cf67d29774f4e8a67735df2274d23d8b" style={{ height: '400px' }} className="one" data-download-url="https://thestaffport23.s3.eu-west-2.amazonaws.com/compliance/ff4493563cf642ffbc0f05c18be531a7.png?X-Amz-Expires=600&amp;X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=AKIA3NHQF7DCXRKNIZWF/20230724/eu-west-2/s3/aws4_request&amp;X-Amz-Date=20230724T132539Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=3e86e0827a460e0211e088ab993cc297cf67d29774f4e8a67735df2274d23d8b"></iframe>
-                </div>
-                <div className="row p-3">
-                  {/* Update Status */}
-                  <div className="col-md-12 mb-4">
-                    <div className="row mt-0">
-                      <hr />
-                      
-                      <div className="col-lg-6">
-                        <p className="mb-3">
-                          <span className="wd-180px">Download File</span>
-                          <span>:</span>
-                          <span className="col-black font-16 font-bold ml-1"><a id="link_download_file" className="cls-docs-action" data-action="download_file" data-url="" style={{ color: 'blue' }}>
-                                <i className="fa fa-download">&nbsp;</i>Download
-                              </a></span>
-                        </p>
-                      </div>
-                      <div className="col-lg-6">
-                        <p className="mb-3">
-                          <span className="wd-180px">Document Name</span>
-                          <span>:</span>
-                          <span className="col-black font-16 font-bold ml-1">CV</span>
-                        </p>
-                      </div>
-                      <div className="col-lg-6">
-                        <p className="mb-3">
-                          <span className="wd-180px">Document No.</span>
-                          <span>:</span>
-                          <span className="col-black font-16 font-bold ml-1"></span>
-                        </p>
-                      </div>
-                      <div className="col-lg-6">
-                        <p className="mb-3">
-                          <span className="wd-180px">Issue Date</span>
-                          <span>:</span>
-                          <span className="col-black font-16 font-bold ml-1"></span>
-                        </p>
-                      </div>
-                      <div className="col-lg-6">
-                        <p className="mb-3">
-                          <span className="wd-180px">Expiry Date</span>
-                          <span>:</span>
-                          <span className="col-black font-16 font-bold ml-1"></span>
-                        </p>
-                      </div>
-                      <div className="col-lg-6">
-                        <p className="mb-3">
-                          <span className="wd-180px">Description</span>
-                          <span>:</span>
-                          <span className="col-black font-16 font-bold ml-1">Not available</span>
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  {/* History */}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-
         </>
     )
 }
