@@ -1,14 +1,20 @@
-
+'use client'
 import Link from "next/link";
 import '../../css/bootstrap.min.css';
 import '../../css/login.css'
 import Image from 'next/image'
 import thestaffport_logo from '@/app/images/thestaffport_logo.png'
 import padlock from '@/app/images/padlock.png'
+import { useState } from "react";
 
 const LogIn = () =>{
-    return (
+ const [username,setUsername]=useState('');
+ const [password,setPassword]=useState('');
+ const login=()=>{
+    console.log(username, password);
+ }
 
+    return (
         <>
        <div className="text-center contact-demo">
         <div className="container">
@@ -26,22 +32,21 @@ const LogIn = () =>{
                             <h1 className="display-7 fw-bold mb-0"><span id="displayempname" className="ddnone"></span> Log in</h1>
 
                             <div className="form-floating mb-3 mt-3">
-                                <input id="txtusername" type="email" className="form-control" placeholder="Enter email Id"/>
+                                <input id="txtusername" type="email" className="form-control" placeholder="Enter email Id" onChange={(e)=>setUsername(e.target.value)}/>
                                 <label for="txtusername"><i className="fa fa-envelope-o"></i> Email address</label>
                             </div>
                             <div className="form-floating">
-                                <input type="password" id="txtpassword" className="form-control" placeholder="Password"/>
+                                <input type="password" id="txtpassword" className="form-control" placeholder="Password" onChange={(e)=>setPassword(e.target.value)} />
                                 <label for="txtpassword"><i className="fa fa-key"></i> Password</label>
                                 <span toggle="#txtpassword" className="zmdi field-icon toggle-password zmdi-eye"></span>
                                 
                             </div>
                             <div id="divlogmsg" className="text-start col-red  mb-3 p-2"></div>
-                            <div className="text-start mb-3">
-                                
+                            <div className="text-start mb-3">                                
                                 <a id="forgot-password"onclick="showhide();" className="clickmode" data-hide=".login_section" data-show=".lost_password_div" tabindex="4"> Forgot Password?</a>
 
                             </div>
-                            <a href="/dashboard" className="btn btn-primary mb-2 btn-block w-100">Log in →</a>
+                            <a id="btnlogin" onclick={login} className="btn btn-primary mb-2 btn-block w-100">Log in →</a>
 
                             {/* <!-- <div className="text-center">
                                 <p className="form-text col-grey"> Don't have an account? <a href="https://empapp.thestaffport.com/Account/Registration"> <b> Register Now</b></a></p>
