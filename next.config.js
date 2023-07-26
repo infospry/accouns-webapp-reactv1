@@ -2,7 +2,7 @@
 
 const nextConfig = {
     env: {
-        BaseUri:'http://localhost:55220/',// 'https://dummyjson.com/products/',
+        BaseUri:'https://staffport-apis.azurewebsites.net/',//'http://localhost:55220/',// 'https://dummyjson.com/products/',
       }
 }
 

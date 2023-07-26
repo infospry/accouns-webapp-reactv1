@@ -1,14 +1,14 @@
+"use client"
 import Link from "next/link";
 import Settings from "./Settings";
-import { useState,useEffect } from 'react';
+import { useState,useEffect } from "react";
 import { asyncGet } from '@/app/services/HttpServices';
 import { endpoint_employer } from "@/app/services/ApiEndPoints";
 
 function Main() {
     const [employer,setEmployer]=useState([])
     useEffect(async()=>{
-     let data = await asyncGet(endpoint_employer); 
-     console.log(data.Response[0].Employers)
+     let data = await asyncGet(endpoint_employer);     
      setEmployer(data.Response[0].Employers);
     },[])
     
@@ -123,40 +123,40 @@ function Main() {
                                                                 <tr>
                                                                     <th>EMP#</th>
                                                                     <th>Employer name</th>
+                                                                    <th>Email / Mobile</th>
+                                                                  
                                                                     <th>Sector</th>
-                                                                    <th>Total Employee(s)</th>
                                                                     <th>Category</th>
+                                                                    <th>Total Employee(s)</th>
                                                                     <th>Create Date</th>
                                                                     <th>Account Status</th>
                                                                     <th>Action</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody id="CndProfiles_Placeholder">
+                                                            { employer.map((item) => (  
                                                                 <tr>
-                                                                    <td scope="row"> 1 </td>
+                                                                    <td scope="row"> {item.emp_id} </td>
                                                                     <td>
                                                                         <div className="d-flex">
 
                                                                             <div className="float-left mt-2 col-black"> <Link href="/"
                                                                                 className="btn-cnd-profiles-view"
                                                                                 data-toggle="modal" data-val="107"
-                                                                                data-sub-type="Agency"><b>A to Z Health
-                                                                                    Center</b></Link> </div>
+                                                                                data-sub-type="Agency"><b>{item.company_name}</b></Link> </div>
                                                                         </div>
                                                                     </td>
-                                                                    <td>
-                                                                        Healthcare
+                                                                    <td>{item.emp_email}<br/>Mob:{item.emp_mobile}</td>
+                                                                   
+                                                                    <td>{item.industry}</td>
+                                                                     <td className="col-blue">{item.category}</td>
+                                                                    <td className="text-center">
+                                                                       {item.number_of_employees}
                                                                     </td>
                                                                     <td>
-                                                                        25
+                                                                       {item.create_date}
                                                                     </td>
-                                                                    <td className="col-blue">
-                                                                        General Practice
-                                                                    </td>
-                                                                    <td>
-                                                                        20/04/2023 10:50AM
-                                                                    </td>
-                                                                    <td> <Link href="/" className="badge badge-success cursor"> ACTIVE </Link>
+                                                                    <td> <span  className="badge badge-success cursor"> {item.account_status} </span>
                                                                     </td>
                                                                     <td>
                                                                         <button className="btn btn-outline-primary btn-sm"
@@ -165,7 +165,7 @@ function Main() {
 
                                                                     </td>
                                                                 </tr>
-
+                                                            ))}
                                                             </tbody>
                                                         </table>
                                                     </div>
