@@ -3,17 +3,17 @@ import React from 'react'
 import Link from "next/link";
 
 
-import { useState,useEffect } from 'react';
-import { asyncGet } from '@/app/services/HttpServices';
-import { endpoint_employer } from '@/app/services/ApiEndPoints';
+// import { useState,useEffect } from 'react';
+// import { asyncGet } from '@/app/services/HttpServices';
+// import { endpoint_employer } from '@/app/services/ApiEndPoints';
 
 
 export default function main() {
-    const [employer,setEmployer]=useState([])
-    useEffect(async()=>{
-     let data = await asyncGet(endpoint_employer);
-     setEmployer(data.Response[0].Employers);
-    },[])
+    // const [employer,setEmployer]=useState([])
+    // useEffect(async()=>{
+    //  let data = await asyncGet(endpoint_employer);
+    //  setEmployer(data.Response[0].Employers);
+    // },[])
 
   return (
     <>
@@ -44,7 +44,7 @@ export default function main() {
                     <th>create date</th>
                     <th>Status</th>
                     </tr></thead>       
-                    <tbody>  
+                    {/* <tbody>  
                       
                       { employer.map((item) => (  
                             <tr> 
@@ -61,7 +61,7 @@ export default function main() {
                         </tr>
                         ))}              
 
-                    </tbody>
+                    </tbody> */}
                   </table>
                   </div>
                 </div>
