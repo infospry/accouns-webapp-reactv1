@@ -982,7 +982,7 @@ export default function main() {
                             <h4 className="modal-title" id="myModalLabel2">
                                 <b id="lblDocMasterTitle">Add Edit Document</b>
                             </h4>
-                        </div>
+                        </div> 
                         <div className="modal-body">
                             <div className="row m-0">
                                 <div className="col-12 mt-2">
@@ -1002,44 +1002,117 @@ export default function main() {
                                         <input id="" type="text" className="form-control form-control-lg " 
                                         placeholder="Enter document no."/>
                                     </div>
-                                </div>                           
+                                </div> 
 
-                             
-
-                                <div className="row col-12 mb-0">
-                                    <label className="col-8 col-form-label col-form-label-lg">Document Issue </label>
-                                    <span className="col-4 switch  pt-1">
-                                        <input id="chkDocMasterDocIssue" type="checkbox" className="switch clsswichDoc"/>
-                                            <label for="chkDocMasterDocIssue"></label>
-                                    </span>
+                                <div className="col-lg-12 upld">
+                                    <div className="file_folder"></div>
+                                    <div id="divAttachedFiles" className="attachedFile card pb-0 ">
+                                        <table className="table table-hover table-bordered divAttachedFiles" style={{ display: 'none' }}>
+                                        <thead>
+                                            <tr>
+                                            <th style={{ width: '40px' }}>SN.</th>
+                                            <th style={{ width: '270px' }}>File Name</th>
+                                            <th style={{ width: '70px' }}>Size</th>
+                                            <th>File</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tblBodyAttachedFiles"></tbody>
+                                        </table>
+                                        <div>
+                                        <a className="btn btn-primary  cls-doc-file-action browes_btn clickmode m-2" data-show=".divFileAttachfile, .admorebtn" data-hide=".browes_btn,.attachedFile ">
+                                            <i className="zmdi zmdi-plus-circle-o-duplicate col-white"></i> <b className="col-white">Browse to upload file....</b>
+                                        </a>
+                                        </div>
+                                    </div>
+                                    <div id="divFileAttachfile" className="card pb-0 divFileAttachfile" style={{ display: 'none' }}>
+                                        <div id="divAttchFiles">
+                                            <div className="row g-0 mb-2 mt-2">
+                                                <div className='col-md-1 text-center pr-0'>
+                                                <div style={{ paddingTop: '33px' }}>
+                                                <label id="lblTaskFile">1</label>
+                                                </div>
+                                                </div>
+                                                <div className="col-md-6 pl-1 pr-0" id="divFileUploader1">
+                                                <div>
+                                                    <label>
+                                                    Choose file<span>*</span>
+                                                    </label>
+                                                    <div className="input-group" style={{ marginBottom: '5px' }}>                                                
+                                                    <div className="custom-file">
+                                                        <input
+                                                        id="fileUploader1"
+                                                        accept="image/*,application/pdf,application/msword/,application/xlxs/,application/xlx,.txt,.docx,.doc,.zip,.rar,.mp4,.wav,.3gp"
+                                                        type="file"
+                                                        row-hidden="true"
+                                                        data-val="1"
+                                                        className="custom-file-input file-uploader clearTextFile"
+                                                        aria-describedby="fileUploaderAddOn"
+                                                        />
+                                                        <label className="custom-file-label" htmlFor="fileUploader">
+                                                        Choose file
+                                                        </label>
+                                                    </div>
+                                                    </div>
+                                                </div>
+                                                </div>
+                                                <div className="col-md-4 pl-1 pr-0">
+                                                <div>
+                                                    <label>
+                                                    File Name<span></span>
+                                                    </label>
+                                                    <input
+                                                    id="txtFileDescription1"
+                                                    type="text"
+                                                    row-hidden="false"
+                                                    data-val="1"
+                                                    className="form-control clearTextFile"
+                                                    autoComplete="off"
+                                                    placeholder="Enter File description"
+                                                    />
+                                                </div>
+                                                </div>
+                                                <div className="col-md-1 pl-1 pr-0">
+                                                <div className="mt-4"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="divAttachFileContainer" className='admorebtn mb-3 text-center'>
+                                            <hr/>
+                                        <a id="btnAddMoreFiles" className="btn btn-info clearTextFile  modal-taskfile-btn" style={{ marginRight: '5px' }} task-action="addMoreFiles">
+                                            <i className="zmdi zmdi-plus col-white"></i> <b className="col-white">Add More Files</b>
+                                        </a>
+                                        <a id="btnAttachFiles" className="btn btn-success clearTextFile modal-taskfile-btn mr-1 clickmode"data-hide=".divFileAttachfile" data-show=".attachedFile,.divAttachedFiles, .browes_btn" action-from="taskAdd" task-action="attachFiles">
+                                            <i className="zmdi zmdi-plus-circle-o-duplicate col-white"></i> <b className="col-white">Attach Files</b>
+                                        </a>
+                                        <a className="btn btn-outline-danger clearTextFile  cls-doc-file-action"  data-action="cancel">
+                                            Cancel
+                                        </a>
+                                        </div>
+                                    </div>
+                                    
                                 </div>
-                              
-                                <div id="divDocumentIssueDate" className="col-12 mb-1">
-                                    <div className="form-group">
+
+                                <div  className="col-12 mb-1">
+                                    <div className='row g-0'>
+                                    <div className="form-group col-md-6">
                                     <label className="col-form-label col-form-label-lg">
-                                            Document Issue date
+                                            Document Issue date <input id="chkDocMasterDocIssue" type="checkbox" className="ml-2 clsswichDoc"/>
                                         </label>
-                                        <input type="text" id=""  data-countryid="0" 
+                                        <input type="text" id="divDocumentIssueDate"
                                         className="form-control" placeholder="DD/MM/YYYY" />
+                                    </div>
+                                    <div className="form-group col-md-6">
+                                    <label className="col-form-label col-form-label-lg">
+                                            Document Expiry date <input id="chkDocMasterDocExpiry" type="checkbox" className="ml-2 clsswichDoc"/>
+                                        </label>
+                                        <input type="text" id="divDocumentExpiryDate"  
+                                        className="form-control" placeholder="DD/MM/YYYY" />
+                                    </div>
                                     </div>
                                 </div>
 
-                                <div className="row col-12 mb-0">
-                                    <label className="col-8 col-form-label col-form-label-lg">Document Expiry </label>
-                                    <span className="col-4 switch  pt-1">
-                                        <input id="chkDocMasterDocExpiry" type="checkbox" className="switch clsswichDoc"/>
-                                            <label for="chkDocMasterDocExpiry"></label>
-                                    </span>
-                                </div>
-                                <div id="divDocumentExpiryDate"  className="col-12 mb-1">
-                                    <div className="form-group">
-                                    <label className="col-form-label col-form-label-lg">
-                                            Document Expiry date
-                                        </label>
-                                        <input type="text" id=""  data-countryid="0" 
-                                        className="form-control" placeholder="DD/MM/YYYY" />
-                                    </div>
-                                </div>
+                               
+                               
                                 
                               
                                 <div className="col-12">
@@ -1061,95 +1134,7 @@ export default function main() {
                                     </div>
                                 </div>
 
-                                <div className="col-lg-12 upld">
-      <div className="file_folder"></div>
-      <div id="divFileAttachfile" className="card pb-0 mb-5" style={{ display: 'none' }}>
-        <div id="divAttchFiles">
-          <div id="attachedFileRow1" className="row">
-            <div style={{ paddingTop: '33px' }}>
-              <label></label>
-              <label id="lblTaskFile">1</label>
-            </div>
-            <div className="col-md-7" id="divFileUploader1" style={{ border: '0.5px solid red' }}>
-              <div>
-                <label>
-                  Choose file<span>*</span>
-                </label>
-                <div className="input-group" style={{ marginBottom: '5px' }}>
-                  <div className="input-group-prepend">
-                    <span id="fileUploaderAddOn" className="input-group-text clearTextFile">
-                      Upload
-                    </span>
-                  </div>
-                  <div className="custom-file">
-                    <input
-                      id="fileUploader1"
-                      accept="image/*,application/pdf,application/msword/,application/xlxs/,application/xlx,.txt,.docx,.doc,.zip,.rar,.mp4,.wav,.3gp"
-                      type="file"
-                      row-hidden="true"
-                      data-val="1"
-                      className="custom-file-input file-uploader clearTextFile"
-                      aria-describedby="fileUploaderAddOn"
-                    />
-                    <label className="custom-file-label" htmlFor="fileUploader">
-                      Choose file
-                    </label>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-4">
-              <div>
-                <label>
-                  File Name<span></span>
-                </label>
-                <input
-                  id="txtFileDescription1"
-                  type="text"
-                  row-hidden="false"
-                  data-val="1"
-                  className="form-control clearTextFile"
-                  autoComplete="off"
-                  placeholder="Enter File description"
-                />
-              </div>
-            </div>
-            <div className="col-md-1">
-              <div className="mt-4"></div>
-            </div>
-          </div>
-        </div>
-        <div id="divAttachFileContainer" style={{ marginLeft: '8px', marginTop: '5px' }}>
-          <a id="btnAddMoreFiles" className="btn btn-info clearTextFile  modal-taskfile-btn" style={{ marginRight: '5px' }} task-action="addMoreFiles">
-            <i className="zmdi zmdi-plus col-white"></i> <b className="col-white">Add More Files</b>
-          </a>
-          <a id="btnAttachFiles" className="btn btn-success clearTextFile modal-taskfile-btn" action-from="taskAdd" task-action="attachFiles">
-            <i className="zmdi zmdi-plus-circle-o-duplicate col-white"></i> <b className="col-white">Attach Files</b>
-          </a>
-          <a className="btn btn-outline-danger clearTextFile  cls-doc-file-action" style={{ marginRight: '5px' }} data-action="cancel">
-            Cancel
-          </a>
-        </div>
-      </div>
-      <div id="divAttachedFiles" className="card pb-0 mb-5">
-        <table className="table table-hover table-bordered divAttachedFiles" style={{ display: 'none' }}>
-          <thead>
-            <tr>
-              <th style={{ width: '40px' }}>SN.</th>
-              <th style={{ width: '270px' }}>File Name</th>
-              <th style={{ width: '70px' }}>Size</th>
-              <th>File</th>
-            </tr>
-          </thead>
-          <tbody id="tblBodyAttachedFiles"></tbody>
-        </table>
-        <div>
-          <a className="btn btn-primary btn-sm  cls-doc-file-action" data-action="add">
-            <i className="zmdi zmdi-plus-circle-o-duplicate col-white"></i> <b className="col-white">Browse to upload file....</b>
-          </a>
-        </div>
-      </div>
-    </div>
+                             
 
                                 <div className="col-md-12 mb-5">
                                     <div className="d-flex justify-content-start">
@@ -1164,7 +1149,9 @@ export default function main() {
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+
+                                </div>
+                            
                         </div>
                         <div className="modal-footer">
                             <div className="row">
@@ -1180,7 +1167,7 @@ export default function main() {
                 </div>
             </div>
 
-            <div id="uploadPreview" className="modal right-full" tabIndex="-1" role="dialog" aria-labelledby="myModalLabel2" style={{ display: 'none' }} aria-hidden="true">
+            <div id="uploadPreview" className="modal right-full" tabIndex="-1" role="dialog" aria-hidden="true">
       <div className="modal-dialog ui-draggable" role="document">
         <div className="modal-content">
           <div className="modal-header ui-draggable-handle">
