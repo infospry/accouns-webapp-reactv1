@@ -6,13 +6,44 @@ import Image from 'next/image'
 import thestaffport_logo from '@/app/images/thestaffport_logo.png'
 import padlock from '@/app/images/padlock.png'
 import { useState } from "react";
+import { loginUser,twoFactor } from "@/app/services/Auth";
+
 
 const LogIn = () =>{
- const [username,setUsername]=useState('');
- const [password,setPassword]=useState('');
- const login=()=>{
+ const [username,setUsername]=useState("");
+ const [password,setPassword]=useState("");
+ const fn_login= async ()=>{
     console.log(username, password);
- }
+    try {
+        var serverResponse = await loginUser(username, password);
+        if (serverResponse.status == "200") {
+            if (serverResponse.data === 'Authenticate') {
+                setAuthentication_type(serverResponse.headers.authentication_type);
+                if (serverResponse.headers.authentication_type === "security_key") {
+                    //Toast("Please enter Security code", "success");
+                }
+                else {
+                    setRequest_token(serverResponse.headers.request_token)
+                    //Toast("Otp verification required", "success");
+                }
+                //js_util.hide_element(".login_div_main");
+                //js_util.show_element(".otp_div_login")
+            }
+            else {
+                console.log('login now')
+             //Code here
+            }
+        }
+        else
+        {
+            console.log(serverResponse.response.data.Error, "error");
+        }     
+     }
+    catch(ex)
+    {
+        console.log(ex, "error");
+    }     
+}
 
     return (
         <>
@@ -32,11 +63,11 @@ const LogIn = () =>{
                             <h1 className="display-7 fw-bold mb-0"><span id="displayempname" className="ddnone"></span> Log in</h1>
 
                             <div className="form-floating mb-3 mt-3">
-                                <input id="txtusername" type="email" className="form-control" placeholder="Enter email Id" onChange={(e)=>setUsername(e.target.value)}/>
+                                <input id="txtusername" onChange={(e)=>setUsername(e.target.value)} value={username} type="email" className="form-control" placeholder="Enter email Id"  />
                                 <label for="txtusername"><i className="fa fa-envelope-o"></i> Email address</label>
                             </div>
                             <div className="form-floating">
-                                <input type="password" id="txtpassword" className="form-control" placeholder="Password" onChange={(e)=>setPassword(e.target.value)} />
+                                <input id="txtpassword"  onChange={(e)=>setPassword(e.target.value)}  value={password} type="password" className="form-control" placeholder="Password"  />
                                 <label for="txtpassword"><i className="fa fa-key"></i> Password</label>
                                 <span toggle="#txtpassword" className="zmdi field-icon toggle-password zmdi-eye"></span>
                                 
@@ -46,7 +77,7 @@ const LogIn = () =>{
                                 <a id="forgot-password"onclick="showhide();" className="clickmode" data-hide=".login_section" data-show=".lost_password_div" tabindex="4"> Forgot Password?</a>
 
                             </div>
-                            <a id="btnlogin" onclick={login} className="btn btn-primary mb-2 btn-block w-100">Log in →</a>
+                            <a id="btnLogin" onclick={fn_login} className="btn btn-primary mb-2 btn-block w-100">Log in →</a>
 
                             {/* <!-- <div className="text-center">
                                 <p className="form-text col-grey"> Don't have an account? <a href="https://empapp.thestaffport.com/Account/Registration"> <b> Register Now</b></a></p>

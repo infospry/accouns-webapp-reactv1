@@ -5,5 +5,6 @@ module.exports = {
     endpoint_changePassword: 'api/agency/changepassword',
     endpoint_addressFinder:'/v1/address/find', 
     endpoint_employer:'api/v1/agency/employers',
-    endpoint_candidate:'api/v1/agency/candidates'   
+    endpoint_candidate:'api/v1/agency/candidates',
+    endpoint_employer_ddl :'api/v1/agency/employers/dropdown'  
 }
