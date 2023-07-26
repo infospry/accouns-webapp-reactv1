@@ -22,7 +22,7 @@ export default function RootLayout({ children }) {
               <script src="js/libscripts.bundle.js" defer ></script>
               <script src="js/select2.min.js"defer></script>
               <script src="js/vendorscripts.bundle.js" defer ></script>
-              <script src="js/mainscripts.bundle.js" defer ></script>
+              {/* <script src="js/mainscripts.bundle.js" defer ></script> */}
               <script src="js/custom.js" defer></script>
       </body>
       

@@ -22,12 +22,26 @@ import { endpoint_candidate } from '@/app/services/ApiEndPoints';
 
 function Main() {
   
-    const [candidate,setCandidates]=useState([])
-    useEffect(async()=>{
-     let data = await asyncGet(endpoint_candidate);     
-     setCandidates(data.Response[0].Candidates);
-    },[])  
-
+    // const [candidate,setCandidates]=useState([])
+    // useEffect(async()=>{
+    //  let data = await asyncGet(endpoint_candidate);     
+    //  setCandidates(data.Response[0].Candidates);
+    // },[])  
+    
+        const [candidate, setCandidates] = useState([]);
+      
+        useEffect(() => {
+          async function fetchData() {
+            try {
+              const response = await asyncGet(endpoint_candidate);
+              setCandidates(response.Response[0].Candidates);
+            } catch (error) {
+              console.error('Error fetching data:', error);
+            }
+          }
+      
+          fetchData();
+        }, []);
     return (
         <>
             <section className="content">
@@ -245,9 +259,7 @@ function Main() {
                                                                         <div className="d-flex">
                                                                             <div className="float-left mt-2 col-black"> <a
                                                                                 className="btn-cnd-profiles-view"
-                                                                                data-toggle="modal" data-val="153"
-                                                                                data-target="#viewprofile"
-                                                                                data-sub-type="Internal"><i
+                                                                                data-toggle="modal" data-target="#viewprofile"><i
                                                                                     className="fa fa-user font-14">&nbsp;</i><b>
                                                                                    {item.cnd_full_name}</b></a>
                                                                                 <div></div>
@@ -264,10 +276,10 @@ function Main() {
                                                                     <td className="text-center"><span style={{ color: "#CEC6CE" }}>{item.cnd_contract_type}</span></td>
                                                                     <td className="text-center">
                                                                         <div className="tital-text"> <i className="zmdi zmdi-pin"></i>
-                                                                            <a href="#" data-toggle="modal"
+                                                                            <Link href="/" data-toggle="modal"
                                                                                 data-target="#location_preview" data-id="153"
                                                                                 className="badge badge-info cnd-location-counter"><b>
-                                                                                    {item.cnd_locations_total}</b></a>
+                                                                                    {item.cnd_locations_total}</b></Link>
                                                                             <div className="tital-text__tooltip">
                                                                                 <p className="mb-1">{item.cnd_locations} </p>
                                                                                 <p className="wd-16pxl bold"><i className="zmdi zmdi-pin"></i> LOCATIONS</p>
@@ -276,20 +288,16 @@ function Main() {
                                                                             </div>
                                                                         </div>
                                                                     </td>
-                                                                    <td> <a id="invite-153"
-                                                                        onclick="return confirm('Are you sure you want to send invitation to employee?');"
+                                                                    <td> <a  onclick="return confirm('Are you sure you want to send invitation to employee?');"
                                                                         className="btn btn-outline-primary btn-sm btn-cnd-invite"
-                                                                        data-cnd_id="153" data-name="Mr Internal User2"
-                                                                        data-email="Iu2@demo.com" data-mobile=""
                                                                         data-action="invite" title="Send Invitation"> Resend
                                                                         <b>{item.invitation_status}</b> </a> </td>
 
                                                                     <td> <a className="badge badge-warning cursor"> {item.account_status_label} </a>
                                                                     </td>
                                                                     <td> <a className="btn btn-outline-primary btn-sm btn-cnd-profiles-view"
-                                                                        data-toggle="modal" data-val="153"
-                                                                        data-target="#viewprofile"
-                                                                        data-sub-type="Internal"><i
+                                                                        data-toggle="modal"
+                                                                        data-target="#viewprofile"><i
                                                                             className="zmdi zmdi-search"></i></a>
 
                                                                     </td>

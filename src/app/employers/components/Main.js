@@ -8,13 +8,20 @@ import { endpoint_employer } from "@/app/services/ApiEndPoints";
 
 
 function Main() {
-        const [employer,setEmployer]=useState([])
-    useEffect(async()=>{
-     let data = await asyncGet(endpoint_employer);     
-     setEmployer(data.Response[0].employer);
-    },[]);   
-
-
+    const [employer, setEmployer] = useState([]);
+    
+    useEffect(() => {
+      async function fetchData() {
+        try {
+          const response = await asyncGet(endpoint_employer);
+          setEmployer(response.Response[0].Employers);
+        } catch (error) {
+          console.error('Error fetching data:', error);
+        }
+      }
+  
+      fetchData();
+    }, []);
     
     return (
         <>
