@@ -1,14 +1,20 @@
 const _baseUrl=process.env.BaseUri;
 
-export const asyncGet = async (url, token) => {   
+export const asyncGet = async (url) => {   
     try {
-        const response = await fetch('https://dummyjson.com/products', {       
+       // console.log(_baseUrl);
+        const token = '4C64DBB582A54DC19514E8EB5F567050';//getCookie("token");
+        const Checksum ='vpMd6EG07gzmOvc0X4b7uy6fx8hRPRJB'; //getCookie("token");
+        const Source ='ORG';
+        const response = await fetch(_baseUrl+url, {       
             method: 'GET',
-           /* headers: {
-                'Authorization': token?`Bearer ${token}`:'',
+            headers: {
+                'UA-TOKEN': token?`${token}`:'',
+                'RequestChecksum': Checksum?`${Checksum}`:'',
+                'Source': token?`${Source}`:'',
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-            },*/
+            },
         })
         const data = response.json();       
              return data;       

@@ -2,7 +2,7 @@
 
 const nextConfig = {
     env: {
-        BaseUri: 'https://dummyjson.com/products/',
+        BaseUri:'http://localhost:55220/',// 'https://dummyjson.com/products/',
       }
 }
 

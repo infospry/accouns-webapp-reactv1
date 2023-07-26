@@ -1,8 +1,17 @@
 import Link from "next/link";
 import Settings from "./Settings";
+import { useState,useEffect } from 'react';
+import { asyncGet } from '@/app/services/HttpServices';
+import { endpoint_employer } from "@/app/services/ApiEndPoints";
 
 function Main() {
-
+    const [employer,setEmployer]=useState([])
+    useEffect(async()=>{
+     let data = await asyncGet(endpoint_employer); 
+     console.log(data.Response[0].Employers)
+     setEmployer(data.Response[0].Employers);
+    },[])
+    
     return (
         <>
             <section className="content">
@@ -88,8 +97,6 @@ function Main() {
                                                         </div>
                                                     </div>
                                                 </div>
-
-
                                             </div>
                                             <ul className="nav nav-tabs nav-justified p-0 bdr-tp-n nav-tabs-responsive">
                                                 <li id="tab_emp_all" className="nav-item cnd-navigation-tabs active" data-get="All">
