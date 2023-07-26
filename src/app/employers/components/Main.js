@@ -1,15 +1,17 @@
 "use client"
 import Link from "next/link";
 import Settings from "./Settings";
+
 import { useState,useEffect } from "react";
 import { asyncGet } from '@/app/services/HttpServices';
 import { endpoint_employer } from "@/app/services/ApiEndPoints";
 
+
 function Main() {
-    const [employer,setEmployer]=useState([])
+        const [employer,setEmployer]=useState([])
     useEffect(async()=>{
      let data = await asyncGet(endpoint_employer);     
-     setEmployer(data.Response[0].Employers);
+     setEmployer(data.Response[0].employer_details);
     },[])
     
     return (
