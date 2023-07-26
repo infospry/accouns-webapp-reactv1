@@ -2,19 +2,26 @@
 import Link from "next/link";
 import Settings from "./Settings";
 
-// import { useState,useEffect } from "react";
-// import { asyncGet } from '@/app/services/HttpServices';
-// import { endpoint_employer } from "@/app/services/ApiEndPoints";
+import { useState,useEffect } from "react";
+import { asyncGet } from '@/app/services/HttpServices';
+import { endpoint_employer } from "@/app/services/ApiEndPoints";
 
 
 function Main() {
-    //     const [employer,setEmployer]=useState([])
-    // useEffect(async()=>{
-    //  let data = await asyncGet(endpoint_employer);     
-    //  setEmployer(data.Response[0].employer);
-    // },[]);   
-
-
+    const [employer, setEmployer] = useState([]);
+    
+    useEffect(() => {
+      async function fetchData() {
+        try {
+          const response = await asyncGet(endpoint_employer);
+          setEmployer(response.Response[0].Employers);
+        } catch (error) {
+          console.error('Error fetching data:', error);
+        }
+      }
+  
+      fetchData();
+    }, []);
     
     return (
         <>
@@ -137,7 +144,7 @@ function Main() {
                                                                     <th>Action</th>
                                                                 </tr>
                                                             </thead>
-                                                            {/* <tbody id="CndProfiles_Placeholder">
+                                                            <tbody id="CndProfiles_Placeholder">
                                                             { employer.map((item) => (  
                                                                 <tr>
                                                                     <td scope="row"> {item.emp_id} </td>
@@ -170,7 +177,7 @@ function Main() {
                                                                     </td>
                                                                 </tr>
                                                             ))}
-                                                            </tbody> */}
+                                                            </tbody>
                                                         </table>
                                                     </div>
                                                 </div>
