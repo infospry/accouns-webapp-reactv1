@@ -576,7 +576,30 @@ function Main() {
                                         <label className="col-form-label col-form-label-lg">
                                         <i class="fa fa-industry"></i> Industry<span>*</span>
                                         </label>
-                                        <select id="ddl_industry" class="form-control form-control-lg" data-step="3" ><option value="" disabled="disabled" selected="selected">Select an industry</option><optgroup label="Healthcare"><option value="26" data-industry="1">Admin</option><option value="31" data-industry="1">Care Home</option><option value="20" data-industry="1">General Practice</option><option value="32" data-industry="1">Hospital</option><option value="43" data-industry="1">Other</option><option value="29" data-industry="1">Out of Hours Provider</option><option value="30" data-industry="1">Walk-in-Centre</option></optgroup>  <optgroup label="Hospitality"><option value="50" data-industry="2">Hotels &amp; Resorts</option></optgroup>  <optgroup label="IT &amp; communications"><option value="54" data-industry="10">Open Source</option><option value="52" data-industry="10">Programming Services</option><option value="53" data-industry="10">System Services</option></optgroup>    </select>
+                                        {/* Dropdown select with options */}
+                                        <select id="ddl_industry" class="form-control form-control-lg" data-step="3">
+                                        <option value="" disabled="disabled" selected="selected">Select an industry</option>
+                                        {/* Healthcare options */}
+                                        <optgroup label="Healthcare">
+                                            <option value="26" data-industry="1">Admin</option>
+                                            <option value="31" data-industry="1">Care Home</option>
+                                            <option value="20" data-industry="1">General Practice</option>
+                                            <option value="32" data-industry="1">Hospital</option>
+                                            <option value="43" data-industry="1">Other</option>
+                                            <option value="29" data-industry="1">Out of Hours Provider</option>
+                                            <option value="30" data-industry="1">Walk-in-Centre</option>
+                                        </optgroup>
+                                        {/* Hospitality options */}
+                                        <optgroup label="Hospitality">
+                                            <option value="50" data-industry="2">Hotels &amp; Resorts</option>
+                                        </optgroup>
+                                        {/* IT & communications options */}
+                                        <optgroup label="IT &amp; communications">
+                                            <option value="54" data-industry="10">Open Source</option>
+                                            <option value="52" data-industry="10">Programming Services</option>
+                                            <option value="53" data-industry="10">System Services</option>
+                                        </optgroup>
+                                        </select>
                                     </div>
                                 </div>
                                 <div className="col-12 mb-3">
