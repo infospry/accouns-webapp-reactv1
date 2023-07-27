@@ -25,6 +25,25 @@ export const asyncGet = async (url) => {
     }
 }
 
+
+export const asyncLogin = async (url,  payload,token) => {
+    try {
+        const response = await fetch(_baseUrl+ url, {
+            method: 'POST',
+            headers: {
+                'Authorization': token?`Bearer ${token}`:'',
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(payload)           
+        });
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        return error
+    }
+}
+
 export const asyncPost = async (url,  payload,token) => {
     try {
         const response = await fetch(_baseUrl+ url, {
