@@ -16,7 +16,7 @@ import profile from '@/app/images/profile.jpg';
 
 import { useState,useEffect } from 'react';
 import { asyncGet } from '@/app/services/HttpServices';
-import { endpoint_candidate } from '@/app/services/ApiEndPoints';
+import { endpoint_candidate, endpoint_employer_ddl } from '@/app/services/ApiEndPoints';
 
 
 
@@ -40,7 +40,20 @@ function Main() {
         }, []);
 
 
-
+        const [employerdropdown, setEmployers] = useState([]);
+      
+        useEffect(() => {
+          async function fetchData() {
+            try {
+              const response = await asyncGet(endpoint_employer_ddl);
+              setEmployers(response.Response[0].Employers);
+            } catch (error) {
+              console.error('Error fetching data:', error);
+            }
+          }
+      
+          fetchData();
+        }, []);
 
 
         
@@ -69,8 +82,14 @@ function Main() {
                                                     <div className="d-flex justify-content-between align-items-center">
                                                         <div className="input-group mr-1">
                                                             <select className="form-control" id="ddlEmployeeRoles">
-                                                                <option data-role-id="0" data-rate="0" value="0"
+                                                            <option data-role-id="0" data-rate="0" value="0"
                                                                     selected="selected">Select Employer</option>
+                                                            { employerdropdown.map((item) => (  
+                                                            <option>
+                                                                {item.emp_name}
+                                                            </option>
+                                                            ))} 
+                                                                
                                                             </select>
                                                         </div>
                                                         <div className="input-group mr-1">
