@@ -5,30 +5,69 @@ import '../../css/login.css'
 import Image from 'next/image'
 import thestaffport_logo from '@/app/images/thestaffport_logo.png'
 import padlock from '@/app/images/padlock.png'
-import { useState } from "react";
-import { loginUser,twoFactor } from "@/app/services/Auth";
-
-
+import { useState,useEffect} from "react";
+import { loginUser} from "@/app/services/Auth";
+import axios from "axios";
+import { setCookie, deleteCookie, getCookie } from 'cookies-next';
+import { useRouter } from 'next/navigation'
 const LogIn = () =>{
+
+const router = useRouter();
 const [isError, setIsError] = useState("");
- const [username,setUsername]=useState("");
- const [password,setPassword]=useState("");
+const data={username:"",password:""}
+const [inputData,setInputData]=useState(data);
 
-
-// using Promises
-/*useEffect(() => {
-    axios
-      .get("https://jsonplaceholder.typicode.com/posts")
-      .then((response) => setMyData(response.data))
-      .catch((error) => setIsError(error.message));
-  }, []);*/
-
-
-
- const fn_login= async ()=>{
-    console.log(username, password);
+/*
+  // using Async Await
+  const getData = async () => {
     try {
-        var serverResponse = await loginUser(username, password);
+      const res = await  axiosInstance.post(endpoint_login);
+      setData(res.data);
+
+    } catch (error) {
+      setIsError(error.message);
+    }
+  };
+
+  // NOTE:  calling the function
+  useEffect(() => {
+    getData();
+  }, []);
+
+  const getData = async () => {
+    try {
+        var serverResponse = await loginUser('ak@infospry.com', '123456');
+        setIsError(serverResponse);
+    } catch (error) {
+      setIsError(error.message);
+    }
+  };
+*/
+
+/*
+const handleSubmit= async (e)=>{
+    e.preventDefault();
+    try {
+        axios.post('https://staffport-apis.azurewebsites.net/api/v1/agency/login',inputData)
+        .then((ressponse)=>{
+            setIsError(ressponse);
+        });
+    }
+    catch(error)
+    {
+        setIsError(error.message);
+    }     
+}
+*/
+const handleData=(e)=>{   
+    setInputData({...inputData,[e.target.name]:e.target.value});
+    
+    }
+const loginNow= async (e)=>{
+    e.preventDefault();
+  console.log(inputData.username+'  password: '+inputData.password);
+    try {
+        var serverResponse = await loginUser(inputData.username, inputData.password);
         if (serverResponse.status == "200") {
             if (serverResponse.data === 'Authenticate') {
                 setAuthentication_type(serverResponse.headers.authentication_type);
@@ -39,22 +78,46 @@ const [isError, setIsError] = useState("");
                     setRequest_token(serverResponse.headers.request_token)
                     //Toast("Otp verification required", "success");
                 }
-                //js_util.hide_element(".login_div_main");
-                //js_util.show_element(".otp_div_login")
+                js_util.hide_element(".login_div_main");
+                js_util.show_element(".otp_div_login")
             }
-            else {
-                console.log('login now')
-             //Code here
-            }
+            else if (serverResponse.data == "Authorized") {   
+                setIsError("Login successful");               
+                router.push('/dashboard');
+                //checksum,token,tokenExpiry,role,name,email,org_name,logindatetime
+                               
+                 setCookie(js_util.loginToken, serverResponse.headers.token
+                     ,{
+                         path: "/",
+                         maxAge: serverResponse.headers.tokenexpiry, 
+                         sameSite: true,
+                     });
+                  setCookie(js_util.loginChecksum, serverResponse.headers.checksum
+                  ,{
+                            path: "/",
+                            maxAge: serverResponse.headers.tokenexpiry, 
+                            sameSite: true,
+                   });                 
+
+
+
+                //  if (rememberMe) {
+                //      setCookie(js_util.loginUsername, e.useremail, { path: "/", maxAge: 950400, sameSite: true, })
+                //  }
+             
+             }    
+             else{   
+                 setIsError(serverResponse.response.data.Error);   
+                 }   
         }
         else
         {
-            console.log(serverResponse.response.data.Error, "error");
+            setIsError(serverResponse.response.data.Error);         
         }     
      }
-    catch(ex)
+    catch(error)
     {
-        console.log(ex, "error");
+        setIsError(error.message);
     }     
 }
 
@@ -63,6 +126,8 @@ const [isError, setIsError] = useState("");
        <div className="text-center contact-demo">
         <div className="container">
             <div className="row">
+
+          
                 {/* <!--Login--> */}
                 <div className="col-lg-9 col-xxl-8 mx-auto">
                     {/* <!--Login --> */}
@@ -76,15 +141,17 @@ const [isError, setIsError] = useState("");
                             <h1 className="display-7 fw-bold mb-0"><span id="displayempname" className="ddnone"></span> Log in</h1>
 
                             <div className="form-floating mb-3 mt-3">
-                                <input id="txtusername" onChange={(e)=>setUsername(e.target.value)} value={username} type="email" className="form-control" placeholder="Enter email Id"  />
+                                <input name="username" onChange={handleData} value={inputData.username} type="email" className="form-control" placeholder="Enter email Id"  />
                                 <label for="txtusername"><i className="fa fa-envelope-o"></i> Email address</label>
                             </div>
+                            
                             <div className="form-floating">
-                                <input id="txtpassword"  onChange={(e)=>setPassword(e.target.value)}  value={password} type="password" className="form-control" placeholder="Password"  />
+                                <input name="password"  onChange={handleData}  value={inputData.password} type="password" className="form-control" placeholder="Password"  />
                                 <label for="txtpassword"><i className="fa fa-key"></i> Password</label>
                                 <span toggle="#txtpassword" className="zmdi field-icon toggle-password zmdi-eye"></span>
                                 
                             </div>
+
                             <div id="divlogmsg" className="text-start col-red  mb-3 p-2">
                             {isError !== "" && <div>{isError}</div>}
                             </div>
@@ -92,7 +159,8 @@ const [isError, setIsError] = useState("");
                                 <a id="forgot-password"onclick="showhide();" className="clickmode" data-hide=".login_section" data-show=".lost_password_div" tabindex="4"> Forgot Password?</a>
 
                             </div>
-                            <a id="btnLogin" onclick={fn_login} className="btn btn-primary mb-2 btn-block w-100">Log in →</a>
+
+                            <a id="btnLogin" onClick={loginNow}  className="btn btn-primary mb-2 btn-block w-100">Log in →</a>
 
                             {/* <!-- <div className="text-center">
                                 <p className="form-text col-grey"> Don't have an account? <a href="https://empapp.thestaffport.com/Account/Registration"> <b> Register Now</b></a></p>
