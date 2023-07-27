@@ -18,7 +18,7 @@ function Main() {
         } catch (error) {
           console.error('Error fetching data:', error);
         }
-      }
+      } 
   
       fetchData();
     }, []);

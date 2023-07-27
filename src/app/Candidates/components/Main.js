@@ -22,11 +22,7 @@ import { endpoint_candidate } from '@/app/services/ApiEndPoints';
 
 function Main() {
   
-    // const [candidate,setCandidates]=useState([])
-    // useEffect(async()=>{
-    //  let data = await asyncGet(endpoint_candidate);     
-    //  setCandidates(data.Response[0].Candidates);
-    // },[])  
+    
     
         const [candidate, setCandidates] = useState([]);
       
@@ -42,6 +38,12 @@ function Main() {
       
           fetchData();
         }, []);
+
+
+
+
+
+        
     return (
         <>
             <section className="content">
@@ -293,7 +295,7 @@ function Main() {
                                                                         data-action="invite" title="Send Invitation"> Resend
                                                                         <b>{item.invitation_status}</b> </a> </td>
 
-                                                                    <td> <a className="badge badge-warning cursor"> {item.account_status_label} </a>
+                                                                    <td> <a className="badge badge-success cursor"> {item.account_status_label} </a>
                                                                     </td>
                                                                     <td> <a className="btn btn-outline-primary btn-sm btn-cnd-profiles-view"
                                                                         data-toggle="modal"
