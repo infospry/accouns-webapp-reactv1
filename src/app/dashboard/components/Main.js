@@ -1,8 +1,6 @@
 "use client"
 import React from 'react'
 import Link from "next/link";
-
-
 import { useState,useEffect } from 'react';
 import { asyncGet } from '@/app/services/HttpServices';
 import { endpoint_employer } from '@/app/services/ApiEndPoints';
@@ -30,6 +28,9 @@ import { endpoint_employer } from '@/app/services/ApiEndPoints';
     
         fetchData();
       }, []);
+
+
+      
   return (
     <>
       <section className="content">

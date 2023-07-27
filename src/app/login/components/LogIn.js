@@ -10,8 +10,21 @@ import { loginUser,twoFactor } from "@/app/services/Auth";
 
 
 const LogIn = () =>{
+const [isError, setIsError] = useState("");
  const [username,setUsername]=useState("");
  const [password,setPassword]=useState("");
+
+
+// using Promises
+/*useEffect(() => {
+    axios
+      .get("https://jsonplaceholder.typicode.com/posts")
+      .then((response) => setMyData(response.data))
+      .catch((error) => setIsError(error.message));
+  }, []);*/
+
+
+
  const fn_login= async ()=>{
     console.log(username, password);
     try {
@@ -72,7 +85,9 @@ const LogIn = () =>{
                                 <span toggle="#txtpassword" className="zmdi field-icon toggle-password zmdi-eye"></span>
                                 
                             </div>
-                            <div id="divlogmsg" className="text-start col-red  mb-3 p-2"></div>
+                            <div id="divlogmsg" className="text-start col-red  mb-3 p-2">
+                            {isError !== "" && <div>{isError}</div>}
+                            </div>
                             <div className="text-start mb-3">                                
                                 <a id="forgot-password"onclick="showhide();" className="clickmode" data-hide=".login_section" data-show=".lost_password_div" tabindex="4"> Forgot Password?</a>
 
