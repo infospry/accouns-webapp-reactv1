@@ -2,27 +2,27 @@
 import Link from "next/link";
 import Settings from "./Settings";
 
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import { asyncGet } from '@/app/services/HttpServices';
 import { endpoint_employer } from "@/app/services/ApiEndPoints";
 
 
 function Main() {
     const [employer, setEmployer] = useState([]);
-    
+
     useEffect(() => {
-      async function fetchData() {
-        try {
-          const response = await asyncGet(endpoint_employer);
-          setEmployer(response.Response[0].Employers);
-        } catch (error) {
-          console.error('Error fetching data:', error);
+        async function fetchData() {
+            try {
+                const response = await asyncGet(endpoint_employer);
+                setEmployer(response.Response[0].Employers);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
         }
-      } 
-  
-      fetchData();
+
+        fetchData();
     }, []);
-    
+
     return (
         <>
             <section className="content">
@@ -108,6 +108,7 @@ function Main() {
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <button id="btnAddNewEmp" class="btn btn-success  btn-add  mr-1" data-toggle="modal" data-target="#add_new"><i class="ti ti-plus"></i> Add New</button>
                                             </div>
                                             <ul className="nav nav-tabs nav-justified p-0 bdr-tp-n nav-tabs-responsive">
                                                 <li id="tab_emp_all" className="nav-item cnd-navigation-tabs active" data-get="All">
@@ -135,7 +136,7 @@ function Main() {
                                                                     <th>EMP#</th>
                                                                     <th>Employer name</th>
                                                                     <th>Email / Mobile</th>
-                                                                  
+
                                                                     <th>Sector</th>
                                                                     <th>Category</th>
                                                                     <th>Total Employee(s)</th>
@@ -145,38 +146,38 @@ function Main() {
                                                                 </tr>
                                                             </thead>
                                                             <tbody id="CndProfiles_Placeholder">
-                                                            { employer.map((item) => (  
-                                                                <tr>
-                                                                    <td scope="row"> {item.emp_id} </td>
-                                                                    <td>
-                                                                        <div className="d-flex">
+                                                                {employer.map((item) => (
+                                                                    <tr>
+                                                                        <td scope="row"> {item.emp_id} </td>
+                                                                        <td>
+                                                                            <div className="d-flex">
 
-                                                                            <div className="float-left mt-2 col-black"> <Link href="/"
-                                                                                className="btn-cnd-profiles-view"
-                                                                                data-toggle="modal" data-val="107"
-                                                                                data-sub-type="Agency"><b>{item.company_name}</b></Link> </div>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td>{item.emp_email}<br/>Mob:{item.emp_mobile}</td>
-                                                                   
-                                                                    <td>{item.industry}</td>
-                                                                     <td className="col-blue">{item.category}</td>
-                                                                    <td className="text-center">
-                                                                       {item.number_of_employees}
-                                                                    </td>
-                                                                    <td>
-                                                                       {item.create_date}
-                                                                    </td>
-                                                                    <td> <span  className="badge badge-success cursor"> {item.account_status} </span>
-                                                                    </td>
-                                                                    <td>
-                                                                        <button className="btn btn-outline-primary btn-sm"
-                                                                            data-toggle="modal" data-target="#emp_settings"><i
-                                                                                className="zmdi zmdi-settings"></i></button>
+                                                                                <div className="float-left mt-2 col-black"> <Link href="/"
+                                                                                    className="btn-cnd-profiles-view"
+                                                                                    data-toggle="modal" data-val="107"
+                                                                                    data-sub-type="Agency"><b>{item.company_name}</b></Link> </div>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td>{item.emp_email}<br />Mob:{item.emp_mobile}</td>
 
-                                                                    </td>
-                                                                </tr>
-                                                            ))}
+                                                                        <td>{item.industry}</td>
+                                                                        <td className="col-blue">{item.category}</td>
+                                                                        <td className="text-center">
+                                                                            {item.number_of_employees}
+                                                                        </td>
+                                                                        <td>
+                                                                            {item.create_date}
+                                                                        </td>
+                                                                        <td> <span className="badge badge-success cursor"> {item.account_status} </span>
+                                                                        </td>
+                                                                        <td>
+                                                                            <button className="btn btn-outline-primary btn-sm"
+                                                                                data-toggle="modal" data-target="#emp_settings"><i
+                                                                                    className="zmdi zmdi-settings"></i></button>
+
+                                                                        </td>
+                                                                    </tr>
+                                                                ))}
                                                             </tbody>
                                                         </table>
                                                     </div>
@@ -219,7 +220,7 @@ function Main() {
                 </div>
             </div>
 
-{/* Role */}
+            {/* Role */}
             <div class="modal right-quater" id="ModalCustomRole" tabindex="-1" role="dialog" aria-labelledby="ModalRoleColor">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -383,122 +384,225 @@ function Main() {
                     </div>
                 </div>
             </div>
-{/* shift Timming */}
+            {/* shift Timming */}
             <div className="modal right-quater" id="ModalShiftTimming" tabIndex="-1" role="dialog" aria-labelledby="ModalShiftTimming" aria-hidden="true">
-      <div className="modal-dialog ui-draggable" role="document">
-        <div className="modal-content hightauto">
-          <div className="modal-header ui-draggable-handle">
-            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">×</span>
-            </button>
-            <h4 className="modal-title" id="myModalLabel9">
-              <b>Shift Time</b>
-            </h4>
-          </div>
-          <div className="modal-body">
-            <div className="row">
-              <div className="col-lg-12">
-                <div className="form-group mt-3">
-                  <span className="col-blue">Role<span className="col-red">*</span></span>
+                <div className="modal-dialog ui-draggable" role="document">
+                    <div className="modal-content hightauto">
+                        <div className="modal-header ui-draggable-handle">
+                            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                            <h4 className="modal-title" id="myModalLabel9">
+                                <b>Shift Time</b>
+                            </h4>
+                        </div>
+                        <div className="modal-body">
+                            <div className="row">
+                                <div className="col-lg-12">
+                                    <div className="form-group mt-3">
+                                        <span className="col-blue">Role<span className="col-red">*</span></span>
 
-                  <div className="input-group">
-                  <select id="ddlRoleCustom" className="form-control clsRoleList">
-      <option value="" selected>Select Role</option>
-      <option value="0">Default</option>
-      <option data-role-id="0" data-rate="50" value="111" title="Advance Nurse Practitioner">Advance Nurse Practitioner</option>
-      <option data-role-id="0" data-rate="60" value="114" title="Care Assistant">Care Assistant</option>
-      <option data-role-id="0" data-rate="70" value="115" title="Clinical Practitioner">Clinical Practitioner</option>
-      <option data-role-id="0" data-rate="48.25" value="116" title="Forensic Nurse">Forensic Nurse</option>
-      <option data-role-id="0" data-rate="100" value="117" title="General Practitioner">General Practitioner</option>
-      <option data-role-id="0" data-rate="60" value="118" title="HCA">HCA</option>
-      <option data-role-id="0" data-rate="30" value="119" title="Home Care">Home Care</option>
-      <option data-role-id="0" data-rate="80" value="120" title="Hospital Doctor">Hospital Doctor</option>
-      <option data-role-id="0" data-rate="80" value="122" title="Opthalmologist">Opthalmologist</option>
-      <option data-role-id="0" data-rate="70.75" value="123" title="Pharmacist">Pharmacist</option>
-      <option data-role-id="0" data-rate="45.5" value="127" title="Practice Nurse">Practice Nurse</option>
-      <option data-role-id="0" data-rate="45.25" value="130" title="Receptionist">Receptionist</option>
-      <option data-role-id="0" data-rate="50" value="131" title="Registered General Nurse">Registered General Nurse</option>
-      <option data-role-id="0" data-rate="40" value="133" title="Support Worker">Support Worker</option>
-    </select>
-                    <a href="https://empapp.thestaffport.com/Settings/JobRoles" className="btn btn-outline-primary cursor ml-1" data-tippy="" data-original-title="Add Role">
-                      <i className="ti ti-plus"></i>
-                    </a>
-                  </div>
-                </div>
-                
-                            
-                                <div className="form-group mt-3">
-                                  <span className="col-blue">Shift Time (from-to)<span className="col-red">*</span></span>
-                                  <div className="col-sm-12 row">
-                                    <div className="row col-sm-6">
-                                      <div className="input-group masked-input unset mb-1">
-                                        <div className="input-group-prepend">
-                                          <span className="input-group-text"><i className="zmdi zmdi-time"></i></span>
+                                        <div className="input-group">
+                                            <select id="ddlRoleCustom" className="form-control clsRoleList">
+                                                <option value="" selected>Select Role</option>
+                                                <option value="0">Default</option>
+                                                <option data-role-id="0" data-rate="50" value="111" title="Advance Nurse Practitioner">Advance Nurse Practitioner</option>
+                                                <option data-role-id="0" data-rate="60" value="114" title="Care Assistant">Care Assistant</option>
+                                                <option data-role-id="0" data-rate="70" value="115" title="Clinical Practitioner">Clinical Practitioner</option>
+                                                <option data-role-id="0" data-rate="48.25" value="116" title="Forensic Nurse">Forensic Nurse</option>
+                                                <option data-role-id="0" data-rate="100" value="117" title="General Practitioner">General Practitioner</option>
+                                                <option data-role-id="0" data-rate="60" value="118" title="HCA">HCA</option>
+                                                <option data-role-id="0" data-rate="30" value="119" title="Home Care">Home Care</option>
+                                                <option data-role-id="0" data-rate="80" value="120" title="Hospital Doctor">Hospital Doctor</option>
+                                                <option data-role-id="0" data-rate="80" value="122" title="Opthalmologist">Opthalmologist</option>
+                                                <option data-role-id="0" data-rate="70.75" value="123" title="Pharmacist">Pharmacist</option>
+                                                <option data-role-id="0" data-rate="45.5" value="127" title="Practice Nurse">Practice Nurse</option>
+                                                <option data-role-id="0" data-rate="45.25" value="130" title="Receptionist">Receptionist</option>
+                                                <option data-role-id="0" data-rate="50" value="131" title="Registered General Nurse">Registered General Nurse</option>
+                                                <option data-role-id="0" data-rate="40" value="133" title="Support Worker">Support Worker</option>
+                                            </select>
+                                            <a href="https://empapp.thestaffport.com/Settings/JobRoles" className="btn btn-outline-primary cursor ml-1" data-tippy="" data-original-title="Add Role">
+                                                <i className="ti ti-plus"></i>
+                                            </a>
                                         </div>
-                                        <input
-                                          type="text"
-                                          id="txtShiftTimeFrom"
-                                          className="form-control time24 w-90 TimeFrom"
-                                          placeholder="hh:mm"
-                                          defaultValue="09:00"
-                                        />
-                                      </div>
                                     </div>
-                                    <div className="col-sm-6">
-                                      <div className="input-group masked-input unset mb-1">
-                                        <div className="input-group-prepend">
-                                          <span className="input-group-text"><i className="zmdi zmdi-time"></i></span>
+
+
+                                    <div className="form-group mt-3">
+                                        <span className="col-blue">Shift Time (from-to)<span className="col-red">*</span></span>
+                                        <div className="col-sm-12 row">
+                                            <div className="row col-sm-6">
+                                                <div className="input-group masked-input unset mb-1">
+                                                    <div className="input-group-prepend">
+                                                        <span className="input-group-text"><i className="zmdi zmdi-time"></i></span>
+                                                    </div>
+                                                    <input
+                                                        type="text"
+                                                        id="txtShiftTimeFrom"
+                                                        className="form-control time24 w-90 TimeFrom"
+                                                        placeholder="hh:mm"
+                                                        defaultValue="09:00"
+                                                    />
+                                                </div>
+                                            </div>
+                                            <div className="col-sm-6">
+                                                <div className="input-group masked-input unset mb-1">
+                                                    <div className="input-group-prepend">
+                                                        <span className="input-group-text"><i className="zmdi zmdi-time"></i></span>
+                                                    </div>
+                                                    <input
+                                                        type="text"
+                                                        id="txtShiftTimeTo"
+                                                        className="form-control time24 w-90 TimeTo"
+                                                        placeholder="hh:mm"
+                                                        defaultValue="17:00"
+                                                    />
+                                                </div>
+                                            </div>
                                         </div>
-                                        <input
-                                          type="text"
-                                          id="txtShiftTimeTo"
-                                          className="form-control time24 w-90 TimeTo"
-                                          placeholder="hh:mm"
-                                          defaultValue="17:00"
-                                        />
-                                      </div>
                                     </div>
-                                  </div>
+                                    <div className="form-group mt-3 dd_none">
+                                        <span className="col-blue">Duration</span>
+                                        <input
+                                            id="txtDuration"
+                                            className="form-control txtDuration"
+                                            type="text"
+                                            disabled
+                                            placeholder="0.0"
+                                        />
+                                    </div>
+                                    <div className="form-group mt-3">
+                                        <span className="col-blue">Select Shift Color<span className="col-red">*</span></span>
+                                        <input
+                                            id="txtLabelColorCode"
+                                            className="form-control"
+                                            maxLength="7"
+                                            type="text"
+                                            placeholder="Select color"
+                                            defaultValue="#04BE5B"
+                                        />
+                                        <div className="mt-3">
+
+                                        </div>
+                                    </div>
+                                    <div className="form-group mt-3">
+                                        <span className="col-blue">Shift Timings Name<span className="col-red">*</span></span>
+                                        <input id="txtShiftTimmingName" className="form-control" type="text" placeholder="Enter shift timings name" value="All Day (Full Day)" />
+                                    </div>
+                                    {/* Add other form fields here */}
                                 </div>
-                                <div className="form-group mt-3 dd_none">
-                                  <span className="col-blue">Duration</span>
-                                  <input
-                                    id="txtDuration"
-                                    className="form-control txtDuration"
-                                    type="text"
-                                    disabled
-                                    placeholder="0.0"
-                                  />
-                                </div>
-                                <div className="form-group mt-3">
-                                  <span className="col-blue">Select Shift Color<span className="col-red">*</span></span>
-                                  <input
-                                    id="txtLabelColorCode"
-                                    className="form-control"
-                                    maxLength="7"
-                                    type="text"
-                                    placeholder="Select color"
-                                    defaultValue="#04BE5B"
-                                  />
-                                  <div className="mt-3">
-                                    
-                                  </div>
-                                </div>
-                <div className="form-group mt-3">
-                  <span className="col-blue">Shift Timings Name<span className="col-red">*</span></span>
-                  <input id="txtShiftTimmingName" className="form-control" type="text" placeholder="Enter shift timings name" value="All Day (Full Day)" />
+                            </div>
+                        </div>
+                        <div className="modal-footer position_relatie">
+                            <a className="btn btn-primary ClsRotaShiftTimming" id="btnRotaShiftTimming" data-id="40" data-action="insertupdate">Update</a>
+                            <a className="btn btn-outline-danger" data-dismiss="modal">Cancel</a>
+                        </div>
+                    </div>
                 </div>
-                {/* Add other form fields here */}
-              </div>
             </div>
-          </div>
-          <div className="modal-footer position_relatie">
-            <a className="btn btn-primary ClsRotaShiftTimming" id="btnRotaShiftTimming" data-id="40" data-action="insertupdate">Update</a>
-            <a className="btn btn-outline-danger" data-dismiss="modal">Cancel</a>
-          </div>
-        </div>
-      </div>
-    </div>
+            {/* Add New */}
+
+            <div id="add_new" className="modal md-one right-quater" tabindex="-1" role="dialog" aria-labelledby="add_new" aria-hidden="true">
+                <div className="modal-dialog ui-draggable" role="document">
+                    <div className="modal-content">
+                        <div className="modal-header ui-draggable-handle">
+                            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                            <h4 className="modal-title" id="myModalLabel2">
+                                <b id="lblDocMasterTitle">Add New Employer</b>
+                            </h4>
+                        </div>  
+                        <div className="modal-body">
+                            <div className="row m-0">
+                                <div className="col-12 col-md-6 mt-2">
+                                    <div className="form-group">
+                                        <label className="col-form-label col-form-label-lg">
+                                           <i class="fa fa-user"></i> First name<span>*</span>
+                                        </label>
+                                        <input id="" type="text" className="form-control form-control-lg" 
+                                        placeholder="Enter First name"/>
+                                    </div>
+                                </div>
+                                <div className="col-12 col-md-6">
+                                    <div className="form-group">
+                                        <label className="col-form-label col-form-label-lg">
+                                        <i class="fa fa-user"></i> Last name<span>*</span>
+                                        </label>
+                                        <input id="txtDocMasterDocName" type="text" className="form-control form-control-lg docClear" 
+                                        placeholder="Enter Last name"/>
+                                    </div>
+                                </div>
+                                <div className="col-12">
+                                    <div className="form-group">
+                                        <label className="col-form-label col-form-label-lg">
+                                        <i class="fa fa-envelope"></i> Email Id<span>*</span>
+                                        </label>
+                                        <input id="" type="email" className="form-control form-control-lg " 
+                                        placeholder="Enter Email Id"/>
+                                    </div>
+                                </div>
+                                <div className="col-12">
+                                    <div className="form-group">
+                                        <label className="col-form-label col-form-label-lg">
+                                        <i class="fa fa-phone"></i> Mobile Number<span>*</span>
+                                        </label>
+                                        <input id="" type="text" className="form-control form-control-lg " 
+                                        placeholder="Enter Mobile number"/>
+                                    </div>
+                                </div>  
+                                
+                                <div className="col-12">
+                                    <div className="form-group">
+                                        <label className="col-form-label col-form-label-lg">
+                                        <i class="fa fa-industry"></i>  Company / Organisation Name<span>*</span>
+                                        </label>
+                                        <input id="" type="text" className="form-control form-control-lg " 
+                                        placeholder="Enter  Company / Organisation Name"/>
+                                    </div>
+                                </div>  
+
+                                <div className="col-12">
+                                    <div className="form-group">
+                                        <label className="col-form-label col-form-label-lg">
+                                        <i class="fa fa-text-width" aria-hidden="true"></i> Registration Number<span>*</span>
+                                        </label>
+                                        <input id="" type="text" className="form-control form-control-lg " 
+                                        placeholder="Enter   Registration Number"/>
+                                    </div>
+                                </div>
+                                <div className="col-12">
+                                    <div className="form-group">
+                                        <label className="col-form-label col-form-label-lg">
+                                        <i class="fa fa-industry"></i> Industry<span>*</span>
+                                        </label>
+                                        <select id="ddl_industry" class="form-control form-control-lg" data-step="3" ><option value="" disabled="disabled" selected="selected">Select an industry</option><optgroup label="Healthcare"><option value="26" data-industry="1">Admin</option><option value="31" data-industry="1">Care Home</option><option value="20" data-industry="1">General Practice</option><option value="32" data-industry="1">Hospital</option><option value="43" data-industry="1">Other</option><option value="29" data-industry="1">Out of Hours Provider</option><option value="30" data-industry="1">Walk-in-Centre</option></optgroup>  <optgroup label="Hospitality"><option value="50" data-industry="2">Hotels &amp; Resorts</option></optgroup>  <optgroup label="IT &amp; communications"><option value="54" data-industry="10">Open Source</option><option value="52" data-industry="10">Programming Services</option><option value="53" data-industry="10">System Services</option></optgroup>    </select>
+                                    </div>
+                                </div>
+                                <div className="col-12 mb-3">
+                                    <div class="custom-control custom-checkbox checkbox-inline pl-4">
+                                        <input id="sentInvitations" type="checkbox" class="custom-control-input"/> 
+                                        <label for="sentInvitations" class="custom-control-label line24 pointer">Sent Invitations</label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div className="modal-footer">
+                            <div className="row">
+                                <div className="col-md-12">
+                                    <div className="text-center">
+                                        <a className="btn btn-primary btn-lg mr-1">Save</a>
+                                        <a className="btn btn-outline-danger btn-lg" data-dismiss="modal"><i className="zmdi zmdi-close"></i> Close</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
 
         </>
     )

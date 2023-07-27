@@ -85,7 +85,7 @@ function Main() {
                                                             <option data-role-id="0" data-rate="0" value="0"
                                                                     selected="selected">Select Employer</option>
                                                             { employerdropdown.map((item) => (  
-                                                            <option>
+                                                            <option value={item.emp_id}>
                                                                 {item.emp_name}
                                                             </option>
                                                             ))} 
