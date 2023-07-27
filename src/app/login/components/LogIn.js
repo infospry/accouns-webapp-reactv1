@@ -7,15 +7,18 @@ import thestaffport_logo from '@/app/images/thestaffport_logo.png'
 import padlock from '@/app/images/padlock.png'
 import { useState,useEffect} from "react";
 import { loginUser} from "@/app/services/Auth";
-import axios from "axios";
 import { setCookie, deleteCookie, getCookie } from 'cookies-next';
 import { useRouter } from 'next/navigation'
+import Toast from '../../toast'
+
+
 const LogIn = () =>{
 
 const router = useRouter();
 const [isError, setIsError] = useState("");
 const data={username:"",password:""}
 const [inputData,setInputData]=useState(data);
+
 
 /*
   // using Async Await
@@ -44,31 +47,27 @@ const [inputData,setInputData]=useState(data);
   };
 */
 
-/*
-const handleSubmit= async (e)=>{
-    e.preventDefault();
-    try {
-        axios.post('https://staffport-apis.azurewebsites.net/api/v1/agency/login',inputData)
-        .then((ressponse)=>{
-            setIsError(ressponse);
-        });
-    }
-    catch(error)
-    {
-        setIsError(error.message);
-    }     
-}
-*/
 const handleData=(e)=>{   
-    setInputData({...inputData,[e.target.name]:e.target.value});
-    
+    setInputData({...inputData,[e.target.name]:e.target.value});    
     }
 const loginNow= async (e)=>{
-    e.preventDefault();
-  console.log(inputData.username+'  password: '+inputData.password);
+  e.preventDefault();
     try {
+        if(inputData.username=='')
+        {           
+          Toast('Enter username','error');
+           setIsError('Enter username');             
+            return false;  
+        }
+        if(inputData.password=='')
+        {
+            setIsError('Enter password'); 
+            return false;  
+        }
         var serverResponse = await loginUser(inputData.username, inputData.password);
+       
         if (serverResponse.status == "200") {
+         
             if (serverResponse.data === 'Authenticate') {
                 setAuthentication_type(serverResponse.headers.authentication_type);
                 if (serverResponse.headers.authentication_type === "security_key") {
@@ -78,49 +77,46 @@ const loginNow= async (e)=>{
                     setRequest_token(serverResponse.headers.request_token)
                     //Toast("Otp verification required", "success");
                 }
-                js_util.hide_element(".login_div_main");
-                js_util.show_element(".otp_div_login")
+                //js_util.hide_element(".login_div_main");
+                //js_util.show_element(".otp_div_login")
             }
             else if (serverResponse.data == "Authorized") {   
                 setIsError("Login successful");               
-                router.push('/dashboard');
+               
                 //checksum,token,tokenExpiry,role,name,email,org_name,logindatetime
                                
-                 setCookie(js_util.loginToken, serverResponse.headers.token
+                 setCookie('token', serverResponse.headers.token
                      ,{
                          path: "/",
                          maxAge: serverResponse.headers.tokenexpiry, 
                          sameSite: true,
                      });
-                  setCookie(js_util.loginChecksum, serverResponse.headers.checksum
+                  setCookie('checksum', serverResponse.headers.checksum
                   ,{
                             path: "/",
                             maxAge: serverResponse.headers.tokenexpiry, 
                             sameSite: true,
-                   });                 
-
-
+                   });                   
 
                 //  if (rememberMe) {
                 //      setCookie(js_util.loginUsername, e.useremail, { path: "/", maxAge: 950400, sameSite: true, })
                 //  }
-             
+                router.push('/dashboard');
              }    
              else{   
-                 setIsError(serverResponse.response.data.Error);   
+                 setIsError(serverResponse.data.Message);   
                  }   
         }
         else
         {
-            setIsError(serverResponse.response.data.Error);         
+            setIsError(serverResponse.response.data.Message);         
         }     
      }
     catch(error)
     {
-        setIsError(error.message);
+        setIsError(error.message);    
     }     
 }
-
     return (
         <>
        <div className="text-center contact-demo">
@@ -141,7 +137,7 @@ const loginNow= async (e)=>{
                             <h1 className="display-7 fw-bold mb-0"><span id="displayempname" className="ddnone"></span> Log in</h1>
 
                             <div className="form-floating mb-3 mt-3">
-                                <input name="username" onChange={handleData} value={inputData.username} type="email" className="form-control" placeholder="Enter email Id"  />
+                                <input name="username" onChange={handleData} value={inputData.username} type="email" className="form-control" placeholder="Enter email Id"  autofocus />
                                 <label for="txtusername"><i className="fa fa-envelope-o"></i> Email address</label>
                             </div>
                             
