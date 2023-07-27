@@ -9,9 +9,8 @@ import { useState,useEffect} from "react";
 import { loginUser} from "@/app/services/Auth";
 import { setCookie, deleteCookie, getCookie } from 'cookies-next';
 import { useRouter } from 'next/navigation'
+
 import Toast from '../../toast'
-
-
 const LogIn = () =>{
 
 const router = useRouter();
@@ -67,7 +66,7 @@ const loginNow= async (e)=>{
         var serverResponse = await loginUser(inputData.username, inputData.password);
        
         if (serverResponse.status == "200") {
-         
+       
             if (serverResponse.data === 'Authenticate') {
                 setAuthentication_type(serverResponse.headers.authentication_type);
                 if (serverResponse.headers.authentication_type === "security_key") {
