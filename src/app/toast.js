@@ -1,6 +1,7 @@
 import { toast } from 'react-toastify';
 
-const Toast=(message,type)=>{  
+
+const Toast=(message,type)=>{     
     switch(type){
         case 'success':
             return toast.success(<div><p>{message}</p></div>);
