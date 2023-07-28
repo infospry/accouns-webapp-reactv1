@@ -33,7 +33,6 @@ const Settings = () => {
       
     return (
         <>
-
             <div className="profilesectioncontent">
                 <div className="card">
                     <div className="row  justify-content-center">
@@ -116,7 +115,6 @@ const Settings = () => {
                 </ul>
             </div>
 
-
             <div className="tab-content">
                 <div role="tabpanel" className="tab-pane fade in active show" id="BesicDetails">
                     <BasicDetails employerProfile={employerProfile}></BasicDetails>
@@ -138,7 +136,6 @@ const Settings = () => {
                     <Location />
                 </div>
             </div>
-
         </>
     )
 }

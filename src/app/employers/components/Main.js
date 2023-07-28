@@ -70,10 +70,10 @@ function Main() {
         // If there are no errors, proceed with form submission
         if (Object.keys(validationErrors).length === 0) {
           // Handle form submission here (e.g., send data to server)
+          AddNewEmployer([formData])
           console.log('Form submitted successfully:', formData);
         }
       };
-
 
 
     const [employer, setEmployer] = useState([]);
@@ -113,20 +113,9 @@ function Main() {
         FillDropdown();
       }, []);  
       
-      const AddNewEmployer = async () => {
-        try {    
-            let params =[{
-                "first_name":"Basudev"
-                ,"last_name":"Singh"
-                ,"email":"bs@infospry.com"
-                ,"mobile":"1009876543"  
-                ,"company_name":"Infos Pvt Ltd4"
-                ,"company_reg_no":"COM0000012345"
-                ,"industry":"10"
-                ,"category":"54" 
-                ,"invitation_status": 1
-        }]
-        
+      const AddNewEmployer = async (params) => {
+        try {   
+           
             const response = await asyncPost(endpoint_employer+'/registration',params);
             console.log(response);
                     
@@ -758,14 +747,13 @@ function Main() {
                                         <label for="sentInvitations" class="custom-control-label line24 pointer">Sent Invitations</label>
                                     </div>
                                 </div>
-                            </div>
-                            
+                            </div>                            
                         </div>
                         <div className="modal-footer">
                             <div className="row">
                                 <div className="col-md-12">
                                     <div className="text-center">
-                                        <button type="submit" onClick={AddNewEmployer} className="btn btn-primary btn-lg mr-1"> Save </button>
+                                        <button type="submit" className="btn btn-primary btn-lg mr-1"> Save </button>
                                         <a className="btn btn-outline-danger btn-lg" data-dismiss="modal"><i className="zmdi zmdi-close"></i> Close</a>
                                     </div>
                                 </div>
