@@ -1,7 +1,6 @@
 "use client"
 import Link from "next/link";
 import Settings from "./Settings";
-
 import { useState, useEffect } from "react";
 import { asyncGet } from '@/app/services/HttpServices';
 import { endpoint_category_ddl, endpoint_employer } from "@/app/services/ApiEndPoints";
@@ -9,35 +8,58 @@ import { endpoint_category_ddl, endpoint_employer } from "@/app/services/ApiEndP
 
 function Main() {
     const [employer, setEmployer] = useState([]);
-
-    useEffect(() => {
-        async function fetchData() {
-            try {
-                const response = await asyncGet(endpoint_employer);
-                setEmployer(response.Response[0].Employers);
-            } catch (error) {
-                console.error('Error fetching data:', error);
-            }
-        }
-
-        fetchData();
-    }, []);
-    
-
     const [category_ddl, setcategory_ddl] = useState([]);
 
-    useEffect(() => {
-        async function fetchData() {
-            try {
-                const response = await asyncGet(endpoint_category_ddl);
-                setcategory_ddl(response.Response[0].Industries);
-            } catch (error) {
-                console.error('Error fetching data:', error);
-            }
+    const getEmployers = async () => {
+        try {
+            const response = await asyncGet(endpoint_employer);
+            setEmployer(response.Response[0].Employers);
+        } catch (error) {
+            console.error('Error fetching data:', error);
         }
+      };
 
-        fetchData();
-    }, []);
+      const FillDropdown = async () => {
+        try {
+            const response = await asyncGet(endpoint_category_ddl);
+            setcategory_ddl(response.Response[0].Industries);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+      };
+
+      useEffect(() => {
+        getEmployers();
+        FillDropdown();
+
+      }, []);
+
+    // useEffect(() => {
+    //     async function fetchEmployers() {
+    //         try {
+    //             const response = await asyncGet(endpoint_employer);
+    //             setEmployer(response.Response[0].Employers);
+    //         } catch (error) {
+    //             console.error('Error fetching data:', error);
+    //         }
+    //     }
+
+    //     fetchEmployers();
+    // }, []);
+      
+
+    // useEffect(() => {
+    //     async function FillDropdown() {
+    //         try {
+    //             const response = await asyncGet(endpoint_category_ddl);
+    //             setcategory_ddl(response.Response[0].Industries);
+    //         } catch (error) {
+    //             console.error('Error fetching data:', error);
+    //         }
+    //     }
+
+    //     FillDropdown();
+    // }, []);
 
     return (
         <>

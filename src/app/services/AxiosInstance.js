@@ -1,6 +1,6 @@
 import axios from 'axios';
 const axiosInstance=axios.create({
-    baseURL:'https://staffport-apis.azurewebsites.net/',
+    baseURL:'https://staffport-apis.azurewebsites.net/',//'http://localhost:55220/',
     headers:{   
        'Content-Type':'application/json',
         'accept':'application/json'

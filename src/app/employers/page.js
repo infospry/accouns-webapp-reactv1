@@ -14,6 +14,7 @@ export default function Home() {
    <RightMenuSidebar></RightMenuSidebar>
    <LeftMenuSidebar/>
    <RightSidebar/>
+  
    <Suspense fallback={<Loading />}><Main/></Suspense>
    </>
   )
