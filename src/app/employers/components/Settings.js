@@ -8,7 +8,30 @@ import Location from './Settings/Location'
 import Image from 'next/image'
 import profile from '@/app/images/profile.jpg'
 
+import { useState, useEffect } from "react";
+import { asyncGet } from '@/app/services/HttpServices';
+import {  endpoint_employer } from "@/app/services/ApiEndPoints";
+
 const Settings = () => {
+   
+    const [employerProfile, setEmployerProfile] = useState([]);
+   
+
+      const viewEmployerProfile = async () => {
+        try {
+            const response = await asyncGet(endpoint_employer+'/'+14);
+            console.log(response.Response[0].employer_details);           
+            setEmployerProfile(response.Response[0].employer_details);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+      };
+
+      useEffect(() => {
+       
+        viewEmployerProfile();
+      }, []);  
+      
     return (
         <>
 
@@ -24,35 +47,35 @@ const Settings = () => {
                                     src={profile} alt="No image" />
                                     </div>
                                 </div>
+                                {employerProfile.map((item) => (
                                 <div className="profileinfo">
                                     <div className="row">
                                         <div className="col-12">
-                                            <h3 className="col-med"> Healthcare Reload Agnecy </h3>
+                                            <h3 className="col-med">{item.company_name}</h3>
                                         </div>
                                         <div className="col-md-6 col-lg-4">
                                             <p className="mt-1 col-med">Industry : <span className="mb-1 col-black">
-                                                Healthcare</span></p>
+                                            {item.category}</span></p>
                                             <p className="mt-1 col-med">Company Id : <span className="mb-1 col-black">
-                                                XY12345</span></p>
+                                            {item.company_reg_no}</span></p>
                                         </div>
                                         <div className="col-md-6 col-lg-4">
                                             <p className="mt-1 col-med">Created Date : <span
-                                                className="mb-1 col-black">12/07/2023</span>
+                                                className="mb-1 col-black">{item.create_date}</span>
                                             </p>
                                             <p className="mt-1 col-med">Financial Year :
-                                                <span className="mb-1 col-black"> 2023 -
-                                                    2024</span>
+                                                <span className="mb-1 col-black"> --</span>
                                             </p>
                                         </div>
                                         <div className="col-md-6 col-lg-4">
-                                            <p className="mt-1 col-med">Phone : <span className="mb-1 col-black">0122
-                                                345
-                                                6789</span></p>
+                                            <p className="mt-1 col-med">Phone : <span className="mb-1 col-black">
+                                            {item.emp_mobile}</span></p>
                                             <p className="mt-1 col-med">Email : <span className="mb-1 col-black">
-                                                drdoctor.gmail.com</span></p>
+                                            {item.emp_email}</span></p>
                                         </div>
                                     </div>
                                 </div>
+                                 ))}
                             </div>
                         </div>
                     </div>
