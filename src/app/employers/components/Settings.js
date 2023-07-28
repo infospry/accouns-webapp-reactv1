@@ -11,6 +11,7 @@ import { useState, useEffect } from "react";
 import { asyncGet } from '@/app/services/HttpServices';
 import { endpoint_employer } from "@/app/services/ApiEndPoints";
 
+<<<<<<< HEAD
 const Settings = () => { 
     const [employerProfile, setEmployerProfile] = useState([]);
     const viewEmployerProfile = async () => {
@@ -33,10 +34,14 @@ const Settings = () => {
 // import {  endpoint_employer } from "@/app/services/ApiEndPoints";
 
 // const Settings = () => {
+=======
+const Settings = () => {
+>>>>>>> 26a85ade4e5136cc6bfe857debb7db3583fdf8ea
    
 //     const [employerProfile, setEmployerProfile] = useState([]);
    
 
+<<<<<<< HEAD
 //       const viewEmployerProfile = async () => {
 //         try {
 //             const response = await asyncGet(endpoint_employer+'/'+14);
@@ -46,13 +51,27 @@ const Settings = () => {
 //             console.error('Error fetching data:', error);
 //         }
 //       };
+=======
+      const viewEmployerProfile = async () => {
+        try {
+            const response = await asyncGet(endpoint_employer+'/'+16);
+            console.log(response.Response[0].employer_details);           
+            setEmployerProfile(response.Response[0].employer_details);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+      };
+>>>>>>> 26a85ade4e5136cc6bfe857debb7db3583fdf8ea
 
 //       useEffect(() => {
        
 //         viewEmployerProfile();
 //       }, []);  
       
+<<<<<<< HEAD
 // >>>>>>> 9112856d66d81284a317cb999d0de86992e300ee
+=======
+>>>>>>> 26a85ade4e5136cc6bfe857debb7db3583fdf8ea
     return (
         <>
 
@@ -160,9 +179,6 @@ const Settings = () => {
                     <Location />
                 </div>
             </div>
-
-
-
 
         </>
     )
