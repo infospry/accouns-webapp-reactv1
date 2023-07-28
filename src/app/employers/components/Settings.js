@@ -26,33 +26,33 @@ const Settings = () => {
         viewEmployerProfile();      
       }, []);  
 
-<<<<<<< HEAD
-=======
-import { useState, useEffect } from "react";
-import { asyncGet } from '@/app/services/HttpServices';
-import {  endpoint_employer } from "@/app/services/ApiEndPoints";
+// <<<<<<< HEAD
+// =======
+// import { useState, useEffect } from "react";
+// import { asyncGet } from '@/app/services/HttpServices';
+// import {  endpoint_employer } from "@/app/services/ApiEndPoints";
 
-const Settings = () => {
+// const Settings = () => {
    
-    const [employerProfile, setEmployerProfile] = useState([]);
+//     const [employerProfile, setEmployerProfile] = useState([]);
    
 
-      const viewEmployerProfile = async () => {
-        try {
-            const response = await asyncGet(endpoint_employer+'/'+14);
-            console.log(response.Response[0].employer_details);           
-            setEmployerProfile(response.Response[0].employer_details);
-        } catch (error) {
-            console.error('Error fetching data:', error);
-        }
-      };
+//       const viewEmployerProfile = async () => {
+//         try {
+//             const response = await asyncGet(endpoint_employer+'/'+14);
+//             console.log(response.Response[0].employer_details);           
+//             setEmployerProfile(response.Response[0].employer_details);
+//         } catch (error) {
+//             console.error('Error fetching data:', error);
+//         }
+//       };
 
-      useEffect(() => {
+//       useEffect(() => {
        
-        viewEmployerProfile();
-      }, []);  
+//         viewEmployerProfile();
+//       }, []);  
       
->>>>>>> 9112856d66d81284a317cb999d0de86992e300ee
+// >>>>>>> 9112856d66d81284a317cb999d0de86992e300ee
     return (
         <>
 

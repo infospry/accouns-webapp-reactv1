@@ -3,14 +3,10 @@ import Link from "next/link";
 import Settings from "./Settings";
 
 import { useState, useEffect } from "react";
-import { asyncGet, asyncPost } from '@/app/services/HttpServices';
+import { asyncGet } from '@/app/services/HttpServices';
 import { endpoint_category_ddl, endpoint_employer } from "@/app/services/ApiEndPoints";
 
 function Main() {
-<<<<<<< HEAD
-    const [employer, setEmployer] = useState([]); 
-    const [category_ddl, setcategory_ddl] = useState([]);    
-=======
 
     const [formData, setFormData] = useState({
         firstName: '',
@@ -84,7 +80,6 @@ function Main() {
     const [employerProfile, setEmployerProfile] = useState([]);
     const [category_ddl, setcategory_ddl] = useState([]);
     
->>>>>>> 9112856d66d81284a317cb999d0de86992e300ee
     const getEmployers = async () => {
         try {
             const response = await asyncGet(endpoint_employer);
@@ -101,43 +96,26 @@ function Main() {
         } catch (error) {
             console.error('Error fetching data:', error);
         }
-      };   
+      };
+
+      const viewEmployerProfile = async () => {
+        try {
+            const response = await asyncGet(endpoint_employer+'/'+14);
+            console.log(response.Response[0].employer_details);           
+            setEmployerProfile(response.Response[0].employer_details);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+      };
 
       useEffect(() => {
         getEmployers();
         FillDropdown();
       }, []);  
       
-      const AddNewEmployer = async () => {
-        try {    
-            let params =[{
-                "first_name":"Basudev"
-                ,"last_name":"Singh"
-                ,"email":"bs@infospry.com"
-                ,"mobile":"1009876543"  
-                ,"company_name":"Infos Pvt Ltd4"
-                ,"company_reg_no":"COM0000012345"
-                ,"industry":"10"
-                ,"category":"54" 
-                ,"invitation_status": 1
-        }]
-        
-            const response = await asyncPost(endpoint_employer+'/registration',params);
-            console.log(response);
-                    
-            if (response.Status === "OK") {
-                getEmployers();
-             alert(response.Response);
-            
-            }
-            else {               
-                alert(response.Error);
-            }
-        } catch (error) {
-            console.error(error, error);
-        }
-      };     
-                
+      
+      
+
     return (
         <>
             <section className="content">
@@ -265,7 +243,7 @@ function Main() {
                                                                         <td> <span className="badge badge-success cursor"> {item.account_status} </span>
                                                                         </td>
                                                                         <td>
-                                                                            <button onClick={Settings(item.emp_id)} className="btn btn-outline-primary btn-sm"
+                                                                            <button onClick={viewEmployerProfile} className="btn btn-outline-primary btn-sm"
                                                                                 data-toggle="modal" data-target="#emp_settings"><i
                                                                                     className="zmdi zmdi-settings"></i></button>
 
@@ -597,6 +575,7 @@ function Main() {
             {/* Add New */}
 
             <div id="add_new" className="modal md-one right-quater" tabindex="-1" role="dialog" aria-labelledby="add_new" aria-hidden="true">
+            
                 <div className="modal-dialog ui-draggable" role="document">
                     <div className="modal-content">
                         <div className="modal-header ui-draggable-handle">
@@ -758,11 +737,7 @@ function Main() {
                             <div className="row">
                                 <div className="col-md-12">
                                     <div className="text-center">
-<<<<<<< HEAD
-                                        <a onClick={AddNewEmployer} className="btn btn-primary btn-lg mr-1">Save</a>
-=======
                                         <button type="submit" className="btn btn-primary btn-lg mr-1"> Save </button>
->>>>>>> 9112856d66d81284a317cb999d0de86992e300ee
                                         <a className="btn btn-outline-danger btn-lg" data-dismiss="modal"><i className="zmdi zmdi-close"></i> Close</a>
                                     </div>
                                 </div>
@@ -770,7 +745,7 @@ function Main() {
                         </div>
                         </form>
                     </div>
-                </div>
+                </div> 
             </div>
 
 
