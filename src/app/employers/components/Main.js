@@ -1,14 +1,90 @@
 "use client"
 import Link from "next/link";
 import Settings from "./Settings";
+
 import { useState, useEffect } from "react";
 import { asyncGet, asyncPost } from '@/app/services/HttpServices';
 import { endpoint_category_ddl, endpoint_employer } from "@/app/services/ApiEndPoints";
 
-
 function Main() {
+<<<<<<< HEAD
     const [employer, setEmployer] = useState([]); 
     const [category_ddl, setcategory_ddl] = useState([]);    
+=======
+
+    const [formData, setFormData] = useState({
+        firstName: '',
+        lastName: '',
+        email: '',
+        mobileNumber: '',
+        companyName: '',
+        registrationNumber: '',
+        industry: '',
+        sentInvitations: false,
+      });
+    
+      const [errors, setErrors] = useState({});
+    
+      const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData((prevFormData) => ({
+          ...prevFormData,
+          [name]: value,
+        }));
+      };
+    
+      const handleSubmit = (e) => {
+        e.preventDefault();
+        const validationErrors = {};
+        // Perform validation here
+        if (!formData.firstName.trim()) {
+          validationErrors.firstName = 'First name is required';
+        }
+    
+        if (!formData.lastName.trim()) {
+          validationErrors.lastName = 'Last name is required';
+        }
+    
+        if (!formData.email.trim()) {
+          validationErrors.email = 'Email is required';
+        }
+    
+       // Validate mobile number format using a regular expression
+    const mobileNumberRegex = /^[0-9]{10}$/; // Assuming a 10-digit mobile number format
+    if (!formData.mobileNumber.trim()) {
+      validationErrors.mobileNumber = 'Mobile number is required';
+    } else if (!mobileNumberRegex.test(formData.mobileNumber)) {
+      validationErrors.mobileNumber = 'Invalid mobile number format. Please enter a 10-digit number.';
+    }
+    
+        if (!formData.companyName.trim()) {
+          validationErrors.companyName = 'Company name is required';
+        }
+    
+        if (!formData.registrationNumber.trim()) {
+          validationErrors.registrationNumber = 'Registration number is required';
+        }
+    
+        if (!formData.industry.trim()) {
+          validationErrors.industry = 'Industry is required';
+        }
+    
+        setErrors(validationErrors);
+    
+        // If there are no errors, proceed with form submission
+        if (Object.keys(validationErrors).length === 0) {
+          // Handle form submission here (e.g., send data to server)
+          console.log('Form submitted successfully:', formData);
+        }
+      };
+
+
+
+    const [employer, setEmployer] = useState([]);
+    const [employerProfile, setEmployerProfile] = useState([]);
+    const [category_ddl, setcategory_ddl] = useState([]);
+    
+>>>>>>> 9112856d66d81284a317cb999d0de86992e300ee
     const getEmployers = async () => {
         try {
             const response = await asyncGet(endpoint_employer);
@@ -78,10 +154,9 @@ function Main() {
                                         </span>
                                     </div>
                                     <div className="tab-content bg-white border-top">
-
                                         <div role="tabpanel" className="tab-pane pt-0 pl-0 pr-0 pb-2 active show" id="list_view">
                                             <div className="i_action d-flex justify-content-between align-items-center p-2 mb-0">
-                                                <button type="button" className="btn btn-primary dr-breakout-btn">
+                                                <button type="button" className="btn btn-primary dr-breakout-btn dd_none">
                                                     <i className="zmdi zmdi-filter-list"></i> <span className="caret"></span>
                                                 </button>
                                                 <div className="dr-breakout displayblk">
@@ -92,8 +167,7 @@ function Main() {
                                                                     className="zmdi zmdi-account"></i></span>
                                                             </div>
                                                             <select className="form-control">
-                                                            <option value="" disabled="disabled"selected="selected">Select an industry
-                                                            </option>                                      
+                                                <option value="" disabled="disabled"selected="selected">Select an industry </option>                                      
                                         {category_ddl.map((item) => (                                       
                                         <optgroup label={item.industry_name}>
                                               {item.categories.map((categories) => {
@@ -533,6 +607,7 @@ function Main() {
                                 <b id="lblDocMasterTitle">Add New Employer</b>
                             </h4>
                         </div>  
+                        <form onSubmit={handleSubmit}>
                         <div className="modal-body">
                             <div className="row m-0">
                                 <div className="col-12 col-md-6 mt-2">
@@ -540,8 +615,15 @@ function Main() {
                                         <label className="col-form-label col-form-label-lg">
                                            <i class="fa fa-user"></i> First name<span>*</span>
                                         </label>
-                                        <input id="" type="text" className="form-control form-control-lg" 
-                                        placeholder="Enter First name"/>
+                                        <input
+              type="text"
+              name="firstName"
+              value={formData.firstName}
+              onChange={handleChange}
+              className="form-control form-control-lg"
+              placeholder="Enter First name"
+            />
+            {errors.firstName && <div className="error">{errors.firstName}</div>}
                                     </div>
                                 </div>
                                 <div className="col-12 col-md-6">
@@ -549,8 +631,15 @@ function Main() {
                                         <label className="col-form-label col-form-label-lg">
                                         <i class="fa fa-user"></i> Last name<span>*</span>
                                         </label>
-                                        <input id="txtDocMasterDocName" type="text" className="form-control form-control-lg docClear" 
-                                        placeholder="Enter Last name"/>
+                                        <input
+           type="text"
+           name="lastName"
+           value={formData.lastName}
+           onChange={handleChange}
+           className="form-control form-control-lg"
+           placeholder="Enter Last name"
+         />
+         {errors.lastName && <div className="error">{errors.lastName}</div>}
                                     </div>
                                 </div>
                                 <div className="col-12">
@@ -558,8 +647,15 @@ function Main() {
                                         <label className="col-form-label col-form-label-lg">
                                         <i class="fa fa-envelope"></i> Email Id<span>*</span>
                                         </label>
-                                        <input id="" type="email" className="form-control form-control-lg " 
-                                        placeholder="Enter Email Id"/>
+                                        <input 
+                                        type="email"
+           name="email"
+           value={formData.email}
+           onChange={handleChange}
+           className="form-control form-control-lg"
+           placeholder="Enter Email Id"
+         />
+         {errors.email && <div className="error">{errors.email}</div>}
                                     </div>
                                 </div>
                                 <div className="col-12">
@@ -567,8 +663,16 @@ function Main() {
                                         <label className="col-form-label col-form-label-lg">
                                         <i class="fa fa-phone"></i> Mobile Number<span>*</span>
                                         </label>
-                                        <input id="" type="text" className="form-control form-control-lg " 
-                                        placeholder="Enter Mobile number"/>
+                                      
+                                        <input
+              type="text"
+              name="mobileNumber"
+              value={formData.mobileNumber}
+              onChange={handleChange}
+              className="form-control form-control-lg"
+              placeholder="Enter Mobile number"
+            />
+            {errors.mobileNumber && <div className="error">{errors.mobileNumber}</div>}
                                     </div>
                                 </div>  
                                 
@@ -577,8 +681,16 @@ function Main() {
                                         <label className="col-form-label col-form-label-lg">
                                         <i class="fa fa-industry"></i>  Company / Organisation Name<span>*</span>
                                         </label>
-                                        <input id="" type="text" className="form-control form-control-lg " 
-                                        placeholder="Enter  Company / Organisation Name"/>
+                                     
+                                         <input 
+                                        type="text"
+           name="companyName"
+           value={formData.companyName}
+           onChange={handleChange}
+           className="form-control form-control-lg"
+           placeholder="Enter  Company / Organisation Name"
+         />
+         {errors.companyName && <div className="error">{errors.companyName}</div>}
                                     </div>
                                 </div>  
 
@@ -589,6 +701,7 @@ function Main() {
                                         </label>
                                         <input id="" type="text" className="form-control form-control-lg " 
                                         placeholder="Enter   Registration Number"/>
+                                        
                                     </div>
                                 </div>
                                 <div className="col-12">
@@ -626,12 +739,17 @@ function Main() {
                             <div className="row">
                                 <div className="col-md-12">
                                     <div className="text-center">
+<<<<<<< HEAD
                                         <a onClick={AddNewEmployer} className="btn btn-primary btn-lg mr-1">Save</a>
+=======
+                                        <button type="submit" className="btn btn-primary btn-lg mr-1"> Save </button>
+>>>>>>> 9112856d66d81284a317cb999d0de86992e300ee
                                         <a className="btn btn-outline-danger btn-lg" data-dismiss="modal"><i className="zmdi zmdi-close"></i> Close</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        </form>
                     </div>
                 </div>
             </div>

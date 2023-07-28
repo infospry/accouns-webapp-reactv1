@@ -14,7 +14,9 @@ export default function Candidates() {
    <RightMenuSidebar></RightMenuSidebar>
    <LeftMenuSidebar/>
    <RightSidebar/>
-   <Suspense fallback={<Loading />}><Main/></Suspense>
+   <Suspense fallback={<Loading />}>
+    <Main/>
+    </Suspense>
    </>
   )
 }
