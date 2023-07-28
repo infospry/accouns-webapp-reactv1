@@ -11,27 +11,6 @@ import { useState, useEffect } from "react";
 import { asyncGet } from '@/app/services/HttpServices';
 import { endpoint_employer } from "@/app/services/ApiEndPoints";
 
-const Settings = () => { 
-    const [employerProfile, setEmployerProfile] = useState([]);
-    const viewEmployerProfile = async () => {
-        try {          
-            const response = await asyncGet(endpoint_employer+'/14');
-            //console.log(response.Response[0].employer_details);           
-            setEmployerProfile(response.Response[0].employer_details);
-        } catch (error) {
-            console.error('Error fetching data:', error);
-        }
-      };
-      useEffect(() => {
-        viewEmployerProfile();      
-      }, []);  
-
-<<<<<<< HEAD
-=======
-import { useState, useEffect } from "react";
-import { asyncGet } from '@/app/services/HttpServices';
-import {  endpoint_employer } from "@/app/services/ApiEndPoints";
-
 const Settings = () => {
    
     const [employerProfile, setEmployerProfile] = useState([]);
@@ -39,7 +18,7 @@ const Settings = () => {
 
       const viewEmployerProfile = async () => {
         try {
-            const response = await asyncGet(endpoint_employer+'/'+14);
+            const response = await asyncGet(endpoint_employer+'/'+16);
             console.log(response.Response[0].employer_details);           
             setEmployerProfile(response.Response[0].employer_details);
         } catch (error) {
@@ -52,7 +31,6 @@ const Settings = () => {
         viewEmployerProfile();
       }, []);  
       
->>>>>>> 9112856d66d81284a317cb999d0de86992e300ee
     return (
         <>
 
@@ -160,9 +138,6 @@ const Settings = () => {
                     <Location />
                 </div>
             </div>
-
-
-
 
         </>
     )
