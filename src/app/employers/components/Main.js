@@ -4,7 +4,7 @@ import Settings from "./Settings";
 
 import { useState, useEffect } from "react";
 import { asyncGet } from '@/app/services/HttpServices';
-import { endpoint_employer } from "@/app/services/ApiEndPoints";
+import { endpoint_category_ddl, endpoint_employer } from "@/app/services/ApiEndPoints";
 
 
 function Main() {
@@ -15,6 +15,22 @@ function Main() {
             try {
                 const response = await asyncGet(endpoint_employer);
                 setEmployer(response.Response[0].Employers);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        }
+
+        fetchData();
+    }, []);
+    
+
+    const [category_ddl, setcategory_ddl] = useState([]);
+
+    useEffect(() => {
+        async function fetchData() {
+            try {
+                const response = await asyncGet(endpoint_category_ddl);
+                setcategory_ddl(response.Response[0].Industries);
             } catch (error) {
                 console.error('Error fetching data:', error);
             }
@@ -52,39 +68,20 @@ function Main() {
                                                                 <span className="input-group-text"> <i
                                                                     className="zmdi zmdi-account"></i></span>
                                                             </div>
-                                                            <select className="form-control" id="ddlEmployeeRoles">
-                                                                <option data-role-id="0" data-rate="0" value="0"
-                                                                    selected="selected">Select Sector</option>
-                                                                <option data-role-id="0" data-rate="50" value="111"
-                                                                    title="Advance Nurse Practitioner">Advance Nurse
-                                                                    Practitioner</option>
-                                                                <option data-role-id="0" data-rate="60" value="114"
-                                                                    title="Care Assistant">Care Assistant</option>
-                                                                <option data-role-id="0" data-rate="70" value="115"
-                                                                    title="Clinical Practitioner">Clinical Practitioner</option>
-                                                                <option data-role-id="0" data-rate="48.25" value="116"
-                                                                    title="Forensic Nurse">Forensic Nurse</option>
-                                                                <option data-role-id="0" data-rate="100" value="117"
-                                                                    title="General Practitioner">General Practitioner</option>
-                                                                <option data-role-id="0" data-rate="60" value="118" title="HCA">
-                                                                    HCA</option>
-                                                                <option data-role-id="0" data-rate="30" value="119"
-                                                                    title="Home Care">Home Care</option>
-                                                                <option data-role-id="0" data-rate="80" value="120"
-                                                                    title="Hospital Doctor">Hospital Doctor</option>
-                                                                <option data-role-id="0" data-rate="80" value="122"
-                                                                    title="Opthalmologist">Opthalmologist</option>
-                                                                <option data-role-id="0" data-rate="70.75" value="123"
-                                                                    title="Pharmacist">Pharmacist</option>
-                                                                <option data-role-id="0" data-rate="45.5" value="127"
-                                                                    title="Practice Nurse">Practice Nurse</option>
-                                                                <option data-role-id="0" data-rate="45.25" value="130"
-                                                                    title="Receptionist">Receptionist</option>
-                                                                <option data-role-id="0" data-rate="50" value="131"
-                                                                    title="Registered General Nurse">Registered General Nurse
-                                                                </option>
-                                                                <option data-role-id="0" data-rate="40" value="133"
-                                                                    title="Support Worker">Support Worker</option>
+                                                            <select className="form-control">
+                                                            <option value="" disabled="disabled"selected="selected">Select an industry
+                                                            </option>                                      
+                                        {category_ddl.map((item) => (                                       
+                                        <optgroup label={item.industry_name}>
+                                              {item.categories.map((categories) => {
+                                                return (
+                                                  <option data-industry={item.industry_id} value={categories.cat_id}>
+                                                    {categories.cat_name}
+                                                  </option>
+                                                );
+                                              })}
+                                            </optgroup>
+                                        ))} 
                                                             </select>
                                                         </div>
 
@@ -578,27 +575,18 @@ function Main() {
                                         </label>
                                         {/* Dropdown select with options */}
                                         <select id="ddl_industry" class="form-control form-control-lg" data-step="3">
-                                        <option value="" disabled="disabled" selected="selected">Select an industry</option>
-                                        {/* Healthcare options */}
-                                        <optgroup label="Healthcare">
-                                            <option value="26" data-industry="1">Admin</option>
-                                            <option value="31" data-industry="1">Care Home</option>
-                                            <option value="20" data-industry="1">General Practice</option>
-                                            <option value="32" data-industry="1">Hospital</option>
-                                            <option value="43" data-industry="1">Other</option>
-                                            <option value="29" data-industry="1">Out of Hours Provider</option>
-                                            <option value="30" data-industry="1">Walk-in-Centre</option>
-                                        </optgroup>
-                                        {/* Hospitality options */}
-                                        <optgroup label="Hospitality">
-                                            <option value="50" data-industry="2">Hotels &amp; Resorts</option>
-                                        </optgroup>
-                                        {/* IT & communications options */}
-                                        <optgroup label="IT &amp; communications">
-                                            <option value="54" data-industry="10">Open Source</option>
-                                            <option value="52" data-industry="10">Programming Services</option>
-                                            <option value="53" data-industry="10">System Services</option>
-                                        </optgroup>
+                                        <option value="" disabled="disabled" selected="selected">Select an industry</option>                                       
+                                        {category_ddl.map((item) => (                                       
+                                        <optgroup label={item.industry_name}>
+                                              {item.categories.map((categories) => {
+                                                return (
+                                                  <option data-industry={item.industry_id} value={categories.cat_id}>
+                                                    {categories.cat_name}
+                                                  </option>
+                                                );
+                                              })}
+                                            </optgroup>
+                                        ))}                                       
                                         </select>
                                     </div>
                                 </div>
