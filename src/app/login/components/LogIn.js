@@ -6,17 +6,20 @@ import Image from 'next/image'
 import thestaffport_logo from '@/app/images/thestaffport_logo.png'
 import padlock from '@/app/images/padlock.png'
 import { useState,useEffect} from "react";
-import { loginUser} from "@/app/services/Auth";
+import { loginUser, twoFactor} from "@/app/services/Auth";
 import { setCookie, deleteCookie, getCookie } from 'cookies-next';
 import { useRouter } from 'next/navigation'
-
-import Toast from '../../toast'
 const LogIn = () =>{
 
 const router = useRouter();
 const [isError, setIsError] = useState("");
 const data={username:"",password:""}
 const [inputData,setInputData]=useState(data);
+
+const dataAuth={securitycode:""}
+const [inputAuthData,setInputAuthData]=useState(dataAuth);
+const [request_token, setRequest_token] = useState();
+const [authentication_type, setAuthentication_type] = useState("");
 
 
 /*
@@ -31,11 +34,11 @@ const [inputData,setInputData]=useState(data);
     }
   };
 
-  // NOTE:  calling the function
-  useEffect(() => {
+useEffect(() => {
     getData();
   }, []);
-
+  // NOTE:  calling the function
+ 
   const getData = async () => {
     try {
         var serverResponse = await loginUser('ak@infospry.com', '123456');
@@ -45,38 +48,40 @@ const [inputData,setInputData]=useState(data);
     }
   };
 */
-
+//Login
 const handleData=(e)=>{   
     setInputData({...inputData,[e.target.name]:e.target.value});    
     }
+
 const loginNow= async (e)=>{
-  e.preventDefault();
+  e.preventDefault(); 
     try {
         if(inputData.username=='')
         {           
-          Toast('Enter username','error');
-           setIsError('Enter username');             
-            return false;  
+           setIsError('Enter username');                
+            return false;              
         }
         if(inputData.password=='')
         {
-            setIsError('Enter password'); 
+            setIsError('Enter password');         
             return false;  
         }
+        $("#btnLogin").html('Please wait...<i className="fa fa-spinner fa-pulse"></i>');
         var serverResponse = await loginUser(inputData.username, inputData.password);
        
-        if (serverResponse.status == "200") {
-       
+        if (serverResponse.status == "200") {    
             if (serverResponse.data === 'Authenticate') {
                 setAuthentication_type(serverResponse.headers.authentication_type);
                 if (serverResponse.headers.authentication_type === "security_key") {
+                    setRequest_token(inputData.username);
                     //Toast("Please enter Security code", "success");
                 }
-                else {
+                else {                    
                     setRequest_token(serverResponse.headers.request_token)
                     //Toast("Otp verification required", "success");
                 }
-                //js_util.hide_element(".login_div_main");
+                $('#divLogin').hide();
+                $('#authenticate_div').show();
                 //js_util.show_element(".otp_div_login")
             }
             else if (serverResponse.data == "Authorized") {   
@@ -113,9 +118,66 @@ const loginNow= async (e)=>{
      }
     catch(error)
     {
-        setIsError(error.message);    
-    }     
+        setIsError(error.message);       
+    }  
+    $("#btnLogin").html('Log in →'); 
+  
 }
+ 
+//Twofactor
+const handleAuthData=(e)=>{   
+    console.log([e.target.name]+' '+e.target.value);
+    setInputAuthData({...inputAuthData,[e.target.name]:e.target.value});    
+    }
+
+const TwofactorAuth= async (e)=>{     
+    var security_code=inputAuthData.securitycode;
+    try {
+        if(security_code=='')
+        {           
+             setIsError('Enter code');                
+              return false;              
+        }
+         
+    $("#btnsubmitcode_auth").html('Please wait...<i className="fa fa-spinner fa-pulse"></i>');
+    var serverResponse = await twoFactor(authentication_type ,security_code, request_token);
+         
+    if (serverResponse.status == "200") {    
+               if (serverResponse.data == "Authorized") {   
+                  setIsError("Authenticated successfully");                     
+                  //checksum,token,tokenExpiry,role,name,email,org_name,logindatetime
+                                 
+                   setCookie('token', serverResponse.headers.token
+                       ,{
+                           path: "/",
+                           maxAge: serverResponse.headers.tokenexpiry, 
+                           sameSite: true,
+                       });
+                    setCookie('checksum', serverResponse.headers.checksum
+                    ,{
+                              path: "/",
+                              maxAge: serverResponse.headers.tokenexpiry, 
+                              sameSite: true,
+                     });                
+                     router.push('/dashboard');
+               }    
+               else{   
+                   setIsError(serverResponse.data.Message);   
+                   }   
+          }
+          else
+          {
+              setIsError(serverResponse.response.data.Message);         
+          }     
+       }
+      catch(error)
+      {
+          setIsError(error.message);       
+      }  
+      $("#btnsubmitcode_auth").html('Submit');     
+  }
+
+
     return (
         <>
        <div className="text-center contact-demo">
@@ -174,9 +236,11 @@ const loginNow= async (e)=>{
                             <Image id="imgAuth" src={padlock} className="img-fluid" width="64"height="64" alt="logo"/>
                             <br/><span id="spanOTPVerificationTitle">Two Factor Authentication</span>
                         </h1>
-                        <div id="divAuthenticateMsg" className="mt-3 mb-3 text-left"></div>
+                        <div id="divAuthenticateMsg" className="mt-3 mb-3 text-left">
+                        {isError !== "" && <div>{isError}</div>}
+                        </div>
                         <div className="input-group justify-content-center">
-                            <input id="txt_authenticate_securitycode" type="password" className="form-control me-1" placeholder="Enter code" maxlength="20"/>
+                            <input id="txt_authenticate_securitycode" type="password" className="form-control me-1" placeholder="Enter code" maxlength="20" name="securitycode"  onChange={handleAuthData}  value={inputAuthData.securitycode} />
                         </div>
                         <div id="div_resend_authenticate_otp" className="row align-items-center ddnone">
                             <div className="col-12 text-end">
@@ -186,7 +250,7 @@ const loginNow= async (e)=>{
                             </div>
                             <span id="spanreq_authenticate_token" className="ddnone"></span>
                         </div>
-                        <a id="btnsubmitcode_auth" className="btn  btn-primary btn-block w-100  mb-2 mt-3 cls-emp-authenticate" data-action="submit_code" data-hide=".authenticate_div" data-show=""> Submit</a>
+                        <a id="btnsubmitcode_auth" onClick={TwofactorAuth} className="btn  btn-primary btn-block w-100  mb-2 mt-3 cls-emp-authenticate" data-action="submit_code" data-hide=".authenticate_div" data-show=""> Submit</a>
                         <div className="text-center">
                             <p className="form-text"> <a className="clickmode text-danger" data-hide=".authenticate_div" data-show=".login_section">Cancel</a></p>
                             <a id="btn_having_truble_login_in" className="clickmode text-danger mt-5 col-blue  cls-emp-authenticate" data-action="having_truble_login_in" data-username="">Trouble logging in?</a>
