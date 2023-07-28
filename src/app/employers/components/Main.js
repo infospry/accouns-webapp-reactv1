@@ -80,7 +80,7 @@ function Main() {
 
                                         <div role="tabpanel" className="tab-pane pt-0 pl-0 pr-0 pb-2 active show" id="list_view">
                                             <div className="i_action d-flex justify-content-between align-items-center p-2 mb-0">
-                                                <button type="button" className="btn btn-primary dr-breakout-btn">
+                                                <button type="button" className="btn btn-primary dr-breakout-btn dd_none">
                                                     <i className="zmdi zmdi-filter-list"></i> <span className="caret"></span>
                                                 </button>
                                                 <div className="dr-breakout displayblk">
@@ -91,8 +91,7 @@ function Main() {
                                                                     className="zmdi zmdi-account"></i></span>
                                                             </div>
                                                             <select className="form-control">
-                                                            <option value="" disabled="disabled"selected="selected">Select an industry
-                                                            </option>                                      
+                                                <option value="" disabled="disabled"selected="selected">Select an industry </option>                                      
                                         {category_ddl.map((item) => (                                       
                                         <optgroup label={item.industry_name}>
                                               {item.categories.map((categories) => {
