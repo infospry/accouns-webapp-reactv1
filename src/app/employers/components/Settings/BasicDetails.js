@@ -1,6 +1,7 @@
 import React from 'react'
 
-export default function BasicDetails() {
+export default function BasicDetails({ employerProfile }) { 
+    alert(employerProfile.company_name);
     return (
         <>
             <div class="panel-group">
@@ -13,9 +14,6 @@ export default function BasicDetails() {
                                         Information</b>
                                     </h3>
 
-
-
-
                                 </div>
                                 <div class="p-4 bdr_b1 View_General_info">
                                     <div class="row justify-content-start">
@@ -24,7 +22,7 @@ export default function BasicDetails() {
                                             </h4>
                                             <p class="mb-3 profileView">
                                                 <span id="spanProName" class="col-black font-16 font-600">
-                                                    IST Pvt Ltd4</span>
+                                                   {employerProfile.company_name}</span>
                                             </p> <div class="tools">
                                                 <h4>Profile completion(%)
                                                 </h4>
@@ -32,9 +30,9 @@ export default function BasicDetails() {
                                                 <div class="tools-progres">
 
                                                     <div class="progres pb-0 mb-3 mt-1">
-                                                        <p>95%</p>
+                                                        <p>{employerProfile.profile_completion_in_percent}%</p>
                                                         <div class="prog">
-                                                            <span class="bg-lnir" style={{ width: "95%" }}></span>
+                                                            <span class="bg-lnir" style={{ width: "{employerProfile.profile_completion_in_percent}%" }}></span>
                                                         </div>
                                                     </div>
 

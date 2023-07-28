@@ -7,8 +7,25 @@ import NotificationSetting from './Settings/NotificationSetting'
 import Location from './Settings/Location'
 import Image from 'next/image'
 import profile from '@/app/images/profile.jpg'
+import { useState, useEffect } from "react";
+import { asyncGet } from '@/app/services/HttpServices';
+import { endpoint_employer } from "@/app/services/ApiEndPoints";
 
-const Settings = () => {
+const Settings = () => { 
+    const [employerProfile, setEmployerProfile] = useState([]);
+    const viewEmployerProfile = async () => {
+        try {          
+            const response = await asyncGet(endpoint_employer+'/14');
+            //console.log(response.Response[0].employer_details);           
+            setEmployerProfile(response.Response[0].employer_details);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+      };
+      useEffect(() => {
+        viewEmployerProfile();      
+      }, []);  
+
     return (
         <>
 
@@ -97,7 +114,7 @@ const Settings = () => {
 
             <div className="tab-content">
                 <div role="tabpanel" className="tab-pane fade in active show" id="BesicDetails">
-                    <BasicDetails></BasicDetails>
+                    <BasicDetails employerProfile={employerProfile}></BasicDetails>
                 </div>
                 <div role="tabpanel" className="tab-pane fade" id="JobRoles">
                     <JobRole></JobRole>
