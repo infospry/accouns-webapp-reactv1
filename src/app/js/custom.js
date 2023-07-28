@@ -86,19 +86,12 @@ $('.nav-tabs > li a').click(function () {
     $('.nav-tabs').toggleClass('open');
 });
 
-// $('.modal-dialog').draggable({
-//     scroll: true,
-//     scrollSensitivity: 40,
-//     scrollSpeed: 40
-// });
-
 $(".dr-breakout-btn").click(function () {
     $('.dr-breakout').addClass('displayblk');
     $(".dr-breakout").toggle();
 });
 
 $(document).ready(function () {
-    
     $('.reveal-click').on('click', function () {
         $('.rgtinbox').toggleClass('full_width');
     });
