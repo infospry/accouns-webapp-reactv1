@@ -677,8 +677,15 @@ function Main() {
                                         <label className="col-form-label col-form-label-lg">
                                         <i class="fa fa-text-width" aria-hidden="true"></i> Registration Number<span>*</span>
                                         </label>
-                                        <input id="" type="text" className="form-control form-control-lg " 
-                                        placeholder="Enter   Registration Number"/>
+                                        <input 
+                                        type="text"
+           name="registrationNumber"
+           value={formData.registrationNumber}
+           onChange={handleChange}
+           className="form-control form-control-lg"
+           placeholder="Enter Registration Number"
+         />
+         {errors.registrationNumber && <div className="error">{errors.registrationNumber}</div>}
                                         
                                     </div>
                                 </div>
@@ -688,20 +695,32 @@ function Main() {
                                         <i class="fa fa-industry"></i> Industry<span>*</span>
                                         </label>
                                         {/* Dropdown select with options */}
-                                        <select id="ddl_industry" class="form-control form-control-lg" data-step="3">
-                                        <option value="" disabled="disabled" selected="selected">Select an industry</option>                                       
-                                        {category_ddl.map((item) => (                                       
-                                        <optgroup label={item.industry_name}>
-                                              {item.categories.map((categories) => {
-                                                return (
-                                                  <option data-industry={item.industry_id} value={categories.cat_id}>
-                                                    {categories.cat_name}
-                                                  </option>
-                                                );
-                                              })}
-                                            </optgroup>
-                                        ))}                                       
-                                        </select>
+                                        <select
+              id="ddl_industry"
+              className="form-control form-control-lg"
+              data-step="3"
+              name="industry"
+              value={formData.industry}
+              onChange={handleChange}
+            >
+              <option value="" disabled>
+                Select an industry
+              </option>
+              {category_ddl.map((item) => (
+                <optgroup label={item.industry_name} key={item.industry_id}>
+                  {item.categories.map((categories) => (
+                    <option
+                      key={categories.cat_id}
+                      data-industry={item.industry_id}
+                      value={categories.cat_id}
+                    >
+                      {categories.cat_name}
+                    </option>
+                  ))}
+                </optgroup>
+              ))}
+            </select>
+            {errors.industry && <div className="error">{errors.industry}</div>}
                                     </div>
                                 </div>
                                 <div className="col-12 mb-3">
