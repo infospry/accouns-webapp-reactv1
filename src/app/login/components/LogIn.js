@@ -177,7 +177,6 @@ const TwofactorAuth= async (e)=>{
       $("#btnsubmitcode_auth").html('Submit');     
   }
 
-
     return (
         <>
        <div className="text-center contact-demo">

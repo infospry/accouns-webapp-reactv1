@@ -26,7 +26,7 @@ export const asyncGet = async (url) => {
 }
 
 export const asyncPost = async (url,  payload) => {
-    try {
+    try {        
         const response = await fetch(_baseUrl+ url, {
             method: 'POST',
             headers: {
