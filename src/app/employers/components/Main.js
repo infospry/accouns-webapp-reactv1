@@ -8,8 +8,9 @@ import { endpoint_category_ddl, endpoint_employer } from "@/app/services/ApiEndP
 
 function Main() {
     const [employer, setEmployer] = useState([]);
+    const [employerProfile, setEmployerProfile] = useState([]);
     const [category_ddl, setcategory_ddl] = useState([]);
-
+    
     const getEmployers = async () => {
         try {
             const response = await asyncGet(endpoint_employer);
@@ -28,38 +29,23 @@ function Main() {
         }
       };
 
+      const viewEmployerProfile = async () => {
+        try {
+            const response = await asyncGet(endpoint_employer+'/'+14);
+            console.log(response.Response[0].employer_details);           
+            setEmployerProfile(response.Response[0].employer_details);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+      };
+
       useEffect(() => {
         getEmployers();
         FillDropdown();
-
-      }, []);
-
-    // useEffect(() => {
-    //     async function fetchEmployers() {
-    //         try {
-    //             const response = await asyncGet(endpoint_employer);
-    //             setEmployer(response.Response[0].Employers);
-    //         } catch (error) {
-    //             console.error('Error fetching data:', error);
-    //         }
-    //     }
-
-    //     fetchEmployers();
-    // }, []);
+      }, []);  
       
-
-    // useEffect(() => {
-    //     async function FillDropdown() {
-    //         try {
-    //             const response = await asyncGet(endpoint_category_ddl);
-    //             setcategory_ddl(response.Response[0].Industries);
-    //         } catch (error) {
-    //             console.error('Error fetching data:', error);
-    //         }
-    //     }
-
-    //     FillDropdown();
-    // }, []);
+      
+      
 
     return (
         <>
@@ -189,7 +175,7 @@ function Main() {
                                                                         <td> <span className="badge badge-success cursor"> {item.account_status} </span>
                                                                         </td>
                                                                         <td>
-                                                                            <button className="btn btn-outline-primary btn-sm"
+                                                                            <button onClick={viewEmployerProfile} className="btn btn-outline-primary btn-sm"
                                                                                 data-toggle="modal" data-target="#emp_settings"><i
                                                                                     className="zmdi zmdi-settings"></i></button>
 
