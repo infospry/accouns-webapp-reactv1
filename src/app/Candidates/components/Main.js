@@ -1129,22 +1129,20 @@ function Main() {
                                     
                                 </div>
 
-                                <div  className="col-12 mb-1">
+                                <div className="col-12 mb-1">
                                     <div className='row g-0'>
                                     <div className="form-group col-md-6">
-                                    <label className="col-form-label col-form-label-lg">
-                                            Document Issue date <input id="chkDocMasterDocIssue" type="checkbox" className="ml-2 clsswichDoc"/>
-                                        </label>
-                                        <input type="text" id="divDocumentIssueDate"
-                                        className="form-control" placeholder="DD/MM/YYYY" />
-                                    </div>
-                                    <div className="form-group col-md-6">
-                                    <label className="col-form-label col-form-label-lg">
-                                            Document Expiry date <input id="chkDocMasterDocExpiry" type="checkbox" className="ml-2 clsswichDoc"/>
-                                        </label>
-                                        <input type="text" id="divDocumentExpiryDate"  
-                                        className="form-control" placeholder="DD/MM/YYYY" />
-                                    </div>
+  <label className="col-form-label col-form-label-lg">
+    Document Issue date <input id="chkDocMasterDocIssue" type="checkbox" className="ml-2 clsswichDoc" />
+  </label>
+  <input type="text" id="divDocumentIssueDate" className="form-control" placeholder="DD/MM/YYYY" />
+</div>
+<div className="form-group col-md-6">
+  <label className="col-form-label col-form-label-lg">
+    Document Expiry date <input id="chkDocMasterDocExpiry" type="checkbox" className="ml-2 clsswichDoc" />
+  </label>
+  <input type="text" id="divDocumentExpiryDate" className="form-control" placeholder="DD/MM/YYYY" />
+</div>
                                     </div>
                                 </div>
 

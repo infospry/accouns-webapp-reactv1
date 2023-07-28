@@ -16,6 +16,9 @@ function showhide() {
     }
 };
 
+
+
+
   $('.clickmode').click(function() {
     var evt_hide = $(this).data('hide');
     var evt_show = $(this).data('show');
@@ -71,14 +74,6 @@ $('.table-responsive').mousedown(function (e) {
 }).mouseleave(function () {
     down = false;
 });
-
-// $('.modal-dialog,.popover').draggable({
-//     scroll: true,
-//     scrollSensitivity: 40,
-//     scrollSpeed: 40,
-//     handle: ".modal-header"
-// });
-
 
 $('.nav-tabs > li a').click(function () {
     $('.nav-tabs > li').removeClass('active');
