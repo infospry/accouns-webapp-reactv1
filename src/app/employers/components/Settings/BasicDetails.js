@@ -2,11 +2,7 @@ import React from 'react'
 
 export default function BasicDetails({employerProfile}) {  
     console.log('Basic Details');
-<<<<<<< HEAD
-    console.log(employerProfile);
-=======
     console.log(employerProfile); 
->>>>>>> 43e69638c31a752bd9720d0152d8f54882b21028
        return (
         <>
          {employerProfile.map((item) => (   

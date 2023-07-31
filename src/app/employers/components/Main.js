@@ -7,14 +7,7 @@ import { asyncGet } from '@/app/services/HttpServices';
 import { endpoint_category_ddl, endpoint_employer } from "@/app/services/ApiEndPoints";
 
 function Main() {
-<<<<<<< HEAD
-
     const [errors, setErrors] = useState({});
-    const [emp_id, setEmp_id] = useState(0);
-    
-=======
-    const [errors, setErrors] = useState({});
->>>>>>> 43e69638c31a752bd9720d0152d8f54882b21028
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
@@ -24,17 +17,11 @@ function Main() {
         registrationNumber: '',
         industry: '',
         sentInvitations: false,
-<<<<<<< HEAD
-      });   
-    
-      const handleChange = (e) => {
-=======
     });
 
 
 
     const handleChange = (e) => {
->>>>>>> 43e69638c31a752bd9720d0152d8f54882b21028
         const { name, value } = e.target;
         setFormData((prevFormData) => ({
             ...prevFormData,
@@ -82,14 +69,8 @@ function Main() {
 
         // If there are no errors, proceed with form submission
         if (Object.keys(validationErrors).length === 0) {
-<<<<<<< HEAD
-          // Handle form submission here (e.g., send data to server)
-          AddNewEmployer([formData])
-          console.log('Form submitted successfully:', formData);
-=======
             // Handle form submission here (e.g., send data to server)
             console.log('Form submitted successfully:', formData);
->>>>>>> 43e69638c31a752bd9720d0152d8f54882b21028
         }
     };
     // Add role::::
@@ -173,17 +154,6 @@ function Main() {
         }
     };
 
-<<<<<<< HEAD
-    //   const viewEmployerProfile = async (emp_id) => {
-    //     try {      
-    //         const response = await asyncGet(endpoint_employer+'/'+emp_id); 
-    //         setEmp_id(emp_id);              
-    //         setEmployerProfile(response.Response[0].employer_details);
-    //     } catch (error) {
-    //         console.error('Error fetching data:', error);
-    //     }
-    //   };
-=======
     const viewEmployerProfile = async () => {
         try {
             const response = await asyncGet(endpoint_employer + '/' + 14);
@@ -193,18 +163,10 @@ function Main() {
             console.error('Error fetching data:', error);
         }
     };
->>>>>>> 43e69638c31a752bd9720d0152d8f54882b21028
 
     useEffect(() => {
         getEmployers();
         FillDropdown();
-<<<<<<< HEAD
-      }, []);  
-      
-      const AddNewEmployer = async (params) => {
-        try {              
-            const response = await asyncPost(endpoint_employer+'/registration',params);
-=======
     }, []);
 
     const AddNewEmployer = async () => {
@@ -222,7 +184,6 @@ function Main() {
             }]
 
             const response = await asyncPost(endpoint_employer + '/registration', params);
->>>>>>> 43e69638c31a752bd9720d0152d8f54882b21028
             console.log(response);
 
             if (response.Status === "OK") {
@@ -236,13 +197,8 @@ function Main() {
         } catch (error) {
             console.error(error, error);
         }
-<<<<<<< HEAD
-      };  
-      
-=======
     };
 
->>>>>>> 43e69638c31a752bd9720d0152d8f54882b21028
 
     return (
         <>
@@ -900,21 +856,13 @@ function Main() {
                                         <label for="sentInvitations" class="custom-control-label line24 pointer">Sent Invitations</label>
                                     </div>
                                 </div>
-<<<<<<< HEAD
-                            </div>                            
-=======
                             </div>
->>>>>>> 43e69638c31a752bd9720d0152d8f54882b21028
                         </div>
                         <div className="modal-footer">
                             <div className="row">
                                 <div className="col-md-12">
                                     <div className="text-center">
-<<<<<<< HEAD
-                                        <button type="submit" className="btn btn-primary btn-lg mr-1"> Save </button>
-=======
                                         <button type="submit" onClick={AddNewEmployer} className="btn btn-primary btn-lg mr-1"> Save </button>
->>>>>>> 43e69638c31a752bd9720d0152d8f54882b21028
                                         <a className="btn btn-outline-danger btn-lg" data-dismiss="modal"><i className="zmdi zmdi-close"></i> Close</a>
                                     </div>
                                 </div>
@@ -924,9 +872,6 @@ function Main() {
                     </form>
                 </div>
             </div>
-
-
-
         </>
     )
 
