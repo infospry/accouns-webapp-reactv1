@@ -8,6 +8,8 @@ import { endpoint_category_ddl, endpoint_employer } from "@/app/services/ApiEndP
 
 function Main() {
     const [errors, setErrors] = useState({});
+    const [Emp_id, setEmp_id] = useState();
+    
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
@@ -86,6 +88,17 @@ function Main() {
         console.log(id);     
         setEmp_id(id);        
       };
+      var EmpID=0;
+      
+      
+      
+      function changeColor(color){
+alert('hello'+color);
+viewEmployerProfile(color);
+
+
+
+      }
 
     const handleChangeRole = (e) => {
         const { name, value } = e.target;
@@ -133,7 +146,7 @@ function Main() {
 
     // :::Add Role:::::::
     const [employer, setEmployer] = useState([]);
-    const [employerProfile, setEmployerProfile] = useState([]);
+    const [employerProfilep, setEmployerProfile] = useState([]);
     const [category_ddl, setcategory_ddl] = useState([]);
 
     const getEmployers = async () => {
@@ -154,9 +167,9 @@ function Main() {
         }
     };
 
-    const viewEmployerProfile = async () => {
+    const viewEmployerProfile = async (id) => {
         try {
-            const response = await asyncGet(endpoint_employer + '/' + 14);
+            const response = await asyncGet(endpoint_employer + '/' + id);
             console.log(response.Response[0].employer_details);
             setEmployerProfile(response.Response[0].employer_details);
         } catch (error) {
@@ -327,10 +340,10 @@ function Main() {
                                                                         <td> <span className="badge badge-success cursor"> {item.account_status} </span>
                                                                         </td>
                                                                         <td>
-                                                                            <button value={item.emp_id} onClick={()=>viewDetails(item.emp_id)}  className="btn btn-outline-primary btn-sm"
+                                                                            <button value={item.emp_id}  onClick={()=>viewDetails(item.emp_id)}  className="btn btn-outline-primary btn-sm"
                                                                                 data-toggle="modal" data-target="#emp_settings"><i
                                                                                     className="zmdi zmdi-settings"></i></button>
-
+        <button value={item.emp_id} onClick={e => changeColor(e.target.value)}  data-toggle="modal" data-target="#emp_settings">Color Change</button>
                                                                         </td>
                                                                     </tr>
                                                                 ))}
@@ -360,7 +373,7 @@ function Main() {
                             <h4 class="modal-title"><b>Employer Settings</b></h4>
                         </div>
                         <div class="modal-body pl-0 pr-0">
-                            <Settings ></Settings>
+                            <Settings employerProfile={employerProfilep} ></Settings>
                         </div>
                         <div class="modal-footer position_relatie">
                             <div class="row">

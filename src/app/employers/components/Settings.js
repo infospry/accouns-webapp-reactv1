@@ -11,24 +11,24 @@ import { useState, useEffect } from "react";
 import { asyncGet } from '@/app/services/HttpServices';
 import { endpoint_employer } from "@/app/services/ApiEndPoints";
 
-const Settings = (id) => {
+const Settings = ({employerProfile}) => {
    
-    const [employerProfile, setEmployerProfile] = useState([]);
+    // const [employerProfile, setEmployerProfile] = useState([]);
    
+//alert('hi'+id);
+    //   const viewEmployerProfile = async () => {
+    //     try {
+    //         const response = await asyncGet(endpoint_employer+'/'+id);
+    //         console.log(response.Response[0].employer_details);           
+    //         setEmployerProfile(response.Response[0].employer_details);
+    //     } catch (error) {
+    //         console.error('Error fetching data:', error);
+    //     }
+    //   };
 
-      const viewEmployerProfile = async () => {
-        try {
-            const response = await asyncGet(endpoint_employer+'/'+16);
-            console.log(response.Response[0].employer_details);           
-            setEmployerProfile(response.Response[0].employer_details);
-        } catch (error) {
-            console.error('Error fetching data:', error);
-        }
-      };
-
-      useEffect(() => {       
-        viewEmployerProfile();
-      }, []);  
+    //   useEffect(() => {       
+    //     viewEmployerProfile();
+    //   }, []);  
       
     return (
         <>
