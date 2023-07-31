@@ -54,7 +54,7 @@ const Settings = () => {
                                         </div>
                                         <div className="col-md-6 col-lg-4">
                                             <p className="mt-1 col-med">Industry : <span className="mb-1 col-black">
-                                            {item.category}</span></p>
+                                            {item.industry}</span></p>
                                             <p className="mt-1 col-med">Company Id : <span className="mb-1 col-black">
                                             {item.company_reg_no}</span></p>
                                         </div>

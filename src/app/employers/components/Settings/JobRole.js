@@ -1,7 +1,43 @@
 import React from 'react'
-import Link from "next/link";
+
+import { useState,useEffect } from 'react';
+import { asyncGet } from '@/app/services/HttpServices';
+import { endpoint_employer } from '@/app/services/ApiEndPoints';
+import { endpoint_employer_ddl } from '@/app/services/ApiEndPoints';
 
 export default function JobRole() {
+
+   
+    const [empjobRole, setEmployerRoles] = useState([]);
+    
+        useEffect(() => {
+          async function fetchData() {
+            try {
+                const response = await asyncGet(endpoint_employer + '/14/roles');
+              setEmployerRoles(response.Response[0].EmployerRoles);
+            } catch (error) {
+              console.error('Error fetching data:', error);
+            }
+          }
+      
+          fetchData();
+        }, []);
+
+
+        const [employerdropdown, setEmployers] = useState([]);
+      
+        useEffect(() => {
+          async function fetchData() {
+            try {
+              const response = await asyncGet(endpoint_employer_ddl);
+              setEmployers(response.Response[0].Employers);
+            } catch (error) {
+              console.error('Error fetching data:', error);
+            }
+          }
+      
+          fetchData();
+        }, []);
   return (
     <>
       <div class="i_action d-flex justify-content-between align-items-center p-2 mb-0">
@@ -14,10 +50,16 @@ export default function JobRole() {
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"> <i class="zmdi zmdi-account"></i></span>
                                         </div>
-                                        <select class="form-control" id="ddlEmployeeRoles">
-                                            <option data-role-id="0" data-rate="0" value="0" selected="selected">
-                                                Select Employer</option>
-                                        </select>
+                                        <select className="form-control" id="ddlEmployeeRoles">
+                                                            <option data-role-id="0" data-rate="0" value="0"
+                                                                    selected="selected">Select Employer</option>
+                                                            { employerdropdown.map((item) => (  
+                                                            <option value={item.emp_id}>
+                                                                {item.emp_name}
+                                                            </option>
+                                                            ))} 
+                                                                
+                                                            </select>
                                     </div>
                                     <div class="input-group mr-1">
                                         <div class="input-group-prepend">
@@ -43,7 +85,7 @@ export default function JobRole() {
                                         class="zmdi zmdi-refresh">&nbsp; </i></a>
                             </div>
                         </div>
-
+                       
                         <div class="table-responsive leave_management">
                             <table class="table mb-0 table-hover rwd-table btdr_none emptbl">
                                 <thead>
@@ -60,31 +102,29 @@ export default function JobRole() {
                                         <th>Action</th>
                                     </tr>
                                 </thead>
-                                <tbody id="tblCustomRole" class="tblCustomRole">
-                                    <tr id="tr-131">
-                                        <td class="nowrap"> <span class="colourSelectorItemtable"></span>
-                                            <b class="col-info">Registered General Nurse</b>
+                                <tbody class="tblCustomRole">
+                                {empjobRole.map((item) => (
+                                     
+                                    <tr>
+                                        <td class="nowrap"> <span class="colourSelectorItemtable"style={{color: item.cnd_custom_role_color}}></span>
+                                            <b class="col-info">{item.cnd_custom_role_name}</b>
                                         </td>
-                                        <td class="nowrap"> <span> <b>Registered General
-                                                    Nurse</b> </span> </td>
-                                        <td class="text-center"> <span class="font-bold">15
+                                        <td class="nowrap"> <span> <b>{item.cnd_custom_role_alias}</b> </span> </td>
+                                        <td class="text-center"> <span class="font-bold">{item.cnd_custom_break_min}
                                                 min(s)</span> </td>
-                                        <td class="text-center"> <span class="col-blue font-bold">£50</span> </td>
-                                        <td class="text-center">0</td>
-                                        <td class="text-center">0</td>
-                                        <td class="text-center"> <a id="Status-131"
-                                                class="btn btn-success btn-sm ClsCustomRole"
-                                                data-action="changestatus" data-status="1"
-                                                title="Click to make active or inactive">Active</a>
+                                        <td class="text-center"> <span class="col-blue font-bold">£{item.cnd_custom_role_rate}</span> </td>
+                                        <td class="text-center">{item.total_jobs}</td>
+                                        <td class="text-center">{item.total_shift}</td>
+                                        <td class="text-center"> <a class="btn btn-success btn-sm ClsCustomRole"
+                                                data-action="changestatus" title="Click to make active or inactive">{item.status}</a>
                                         </td>
                                         <td> 
-                                            <span class="table-row-btn"> <a id="Edit-131"
+                                            <span class="table-row-btn"> <a 
                                                     class="btn btn-outline-primary btn-sm ClsCustomRole"
                                                     data-action="edit" data-toggle="modal"
                                                     data-target="#ModalCustomRole"><i
                                                         class="zmdi zmdi-edit">&nbsp;</i></a>
-                                                <a id="del-131"
-                                                    class="ion btn btn-outline-danger btn-sm ClsCustomRole"
+                                                <a class="ion btn btn-outline-danger btn-sm ClsCustomRole"
                                                     data-total="0-0" data-action="delete">
                                                     <div class="lid"></div>
                                                     <div class="lidcap"></div>
@@ -92,6 +132,7 @@ export default function JobRole() {
                                                 </a> </span>
                                         </td>
                                     </tr>
+                                    ))}
                                 </tbody>
                             </table>
                         </div>
