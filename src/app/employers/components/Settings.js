@@ -11,14 +11,14 @@ import { useState, useEffect } from "react";
 import { asyncGet } from '@/app/services/HttpServices';
 import { endpoint_employer } from "@/app/services/ApiEndPoints";
 
-const Settings = ({id}) => { 
-    const [employerProfile, setEmployerProfile] = useState([]);  
-    const [empid, setEmpId] = useState(0);
+const Settings = () => {
+   
+    const [employerProfile, setEmployerProfile] = useState([]);
+   
 
-      const viewEmployerProfile = async (id) => {
-        try {          
-            const response = await asyncGet(endpoint_employer+'/'+id);
-            console.log('Function Call');   
+      const viewEmployerProfile = async () => {
+        try {
+            const response = await asyncGet(endpoint_employer+'/'+16);
             console.log(response.Response[0].employer_details);           
             setEmployerProfile(response.Response[0].employer_details);
         } catch (error) {
@@ -26,9 +26,9 @@ const Settings = ({id}) => {
         }
       };
 
-      useEffect(() => {   
-        setEmpId(id);           
-              viewEmployerProfile(empid);         
+      useEffect(() => {
+       
+        viewEmployerProfile();
       }, []);  
       
     return (
@@ -53,7 +53,7 @@ const Settings = ({id}) => {
                                         </div>
                                         <div className="col-md-6 col-lg-4">
                                             <p className="mt-1 col-med">Industry : <span className="mb-1 col-black">
-                                            {item.category}</span></p>
+                                            {item.industry}</span></p>
                                             <p className="mt-1 col-med">Company Id : <span className="mb-1 col-black">
                                             {item.company_reg_no}</span></p>
                                         </div>

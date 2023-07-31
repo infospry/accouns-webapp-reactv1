@@ -7,10 +7,14 @@ import { asyncGet } from '@/app/services/HttpServices';
 import { endpoint_category_ddl, endpoint_employer } from "@/app/services/ApiEndPoints";
 
 function Main() {
+<<<<<<< HEAD
 
     const [errors, setErrors] = useState({});
     const [emp_id, setEmp_id] = useState(0);
     
+=======
+    const [errors, setErrors] = useState({});
+>>>>>>> 43e69638c31a752bd9720d0152d8f54882b21028
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
@@ -20,71 +24,137 @@ function Main() {
         registrationNumber: '',
         industry: '',
         sentInvitations: false,
+<<<<<<< HEAD
       });   
     
       const handleChange = (e) => {
+=======
+    });
+
+
+
+    const handleChange = (e) => {
+>>>>>>> 43e69638c31a752bd9720d0152d8f54882b21028
         const { name, value } = e.target;
         setFormData((prevFormData) => ({
-          ...prevFormData,
-          [name]: value,
+            ...prevFormData,
+            [name]: value,
         }));
-      };
-    
-      const handleSubmit = (e) => {
+    };
+
+    const handleSubmit = (e) => {
         e.preventDefault();
         const validationErrors = {};
         // Perform validation here
         if (!formData.firstName.trim()) {
-          validationErrors.firstName = 'First name is required';
+            validationErrors.firstName = 'First name is required';
         }
-    
+
         if (!formData.lastName.trim()) {
-          validationErrors.lastName = 'Last name is required';
+            validationErrors.lastName = 'Last name is required';
         }
-    
+
         if (!formData.email.trim()) {
-          validationErrors.email = 'Email is required';
+            validationErrors.email = 'Email is required';
         }
-    
-       // Validate mobile number format using a regular expression
-    const mobileNumberRegex = /^[0-9]{10}$/; // Assuming a 10-digit mobile number format
-    if (!formData.mobileNumber.trim()) {
-      validationErrors.mobileNumber = 'Mobile number is required';
-    } else if (!mobileNumberRegex.test(formData.mobileNumber)) {
-      validationErrors.mobileNumber = 'Invalid mobile number format. Please enter a 10-digit number.';
-    }
-    
+
+        // Validate mobile number format using a regular expression
+        const mobileNumberRegex = /^[0-9]{10}$/; // Assuming a 10-digit mobile number format
+        if (!formData.mobileNumber.trim()) {
+            validationErrors.mobileNumber = 'Mobile number is required';
+        } else if (!mobileNumberRegex.test(formData.mobileNumber)) {
+            validationErrors.mobileNumber = 'Invalid mobile number format. Please enter a 10-digit number.';
+        }
+
         if (!formData.companyName.trim()) {
-          validationErrors.companyName = 'Company name is required';
+            validationErrors.companyName = 'Company name is required';
         }
-    
+
         if (!formData.registrationNumber.trim()) {
-          validationErrors.registrationNumber = 'Registration number is required';
+            validationErrors.registrationNumber = 'Registration number is required';
         }
-    
+
         if (!formData.industry.trim()) {
-          validationErrors.industry = 'Industry is required';
+            validationErrors.industry = 'Industry is required';
         }
-    
+
         setErrors(validationErrors);
-    
+
         // If there are no errors, proceed with form submission
         if (Object.keys(validationErrors).length === 0) {
+<<<<<<< HEAD
           // Handle form submission here (e.g., send data to server)
           AddNewEmployer([formData])
           console.log('Form submitted successfully:', formData);
+=======
+            // Handle form submission here (e.g., send data to server)
+            console.log('Form submitted successfully:', formData);
+>>>>>>> 43e69638c31a752bd9720d0152d8f54882b21028
         }
-      };
+    };
+    // Add role::::
+    const [formDataRole, setformDataRole] = useState({
+        roleName: '',
+        roleAlias: '',
+        defaultBreak: '',
+        defaultRate: '',
+        roleColor: '',
+    });
 
      function viewDetails(id) {  
         console.log(id);     
         setEmp_id(id);        
       };
 
+    const handleChangeRole = (e) => {
+        const { name, value } = e.target;
+        setformDataRole((prevformDataRole) => ({
+            ...prevformDataRole,
+            [name]: value,
+        }));
+    };
+
+    const handleSubmitRole = (e) => {
+        e.preventDefault();
+
+        const validationErrors = {};
+
+        // Validate required fields
+        if (!formDataRole.roleName.trim()) {
+            validationErrors.roleName = 'Role name is required';
+        }
+
+        if (!formDataRole.roleAlias.trim()) {
+            validationErrors.roleAlias = 'Role alias is required';
+        }
+        // if (!formDataRole.defaultBreak.trim()) {
+        //     validationErrors.defaultBreak = 'Role Default Break is required';
+        //   }
+
+        //   if (!formDataRole.defaultRate.trim()) {
+        //     validationErrors.defaultRate = 'Role defaultis required';
+        //   }
+
+
+        if (!formDataRole.roleColor.trim()) {
+            validationErrors.roleColor = 'Role color is required';
+        }
+
+        setErrors(validationErrors);
+
+        // If there are no errors, proceed with form submission
+        if (Object.keys(validationErrors).length === 0) {
+            // Handle form submission here (e.g., send data to server)
+            console.log('Form submitted successfully:', formDataRole);
+        }
+    };
+
+
+    // :::Add Role:::::::
     const [employer, setEmployer] = useState([]);
     const [employerProfile, setEmployerProfile] = useState([]);
     const [category_ddl, setcategory_ddl] = useState([]);
-    
+
     const getEmployers = async () => {
         try {
             const response = await asyncGet(endpoint_employer);
@@ -92,17 +162,18 @@ function Main() {
         } catch (error) {
             console.error('Error fetching data:', error);
         }
-      };
+    };
 
-      const FillDropdown = async () => {
+    const FillDropdown = async () => {
         try {
             const response = await asyncGet(endpoint_category_ddl);
             setcategory_ddl(response.Response[0].Industries);
         } catch (error) {
             console.error('Error fetching data:', error);
         }
-      };
+    };
 
+<<<<<<< HEAD
     //   const viewEmployerProfile = async (emp_id) => {
     //     try {      
     //         const response = await asyncGet(endpoint_employer+'/'+emp_id); 
@@ -112,30 +183,66 @@ function Main() {
     //         console.error('Error fetching data:', error);
     //     }
     //   };
+=======
+    const viewEmployerProfile = async () => {
+        try {
+            const response = await asyncGet(endpoint_employer + '/' + 14);
+            console.log(response.Response[0].employer_details);
+            setEmployerProfile(response.Response[0].employer_details);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    };
+>>>>>>> 43e69638c31a752bd9720d0152d8f54882b21028
 
-      useEffect(() => {
+    useEffect(() => {
         getEmployers();
         FillDropdown();
+<<<<<<< HEAD
       }, []);  
       
       const AddNewEmployer = async (params) => {
         try {              
             const response = await asyncPost(endpoint_employer+'/registration',params);
+=======
+    }, []);
+
+    const AddNewEmployer = async () => {
+        try {
+            let params = [{
+                "first_name": "Basudev"
+                , "last_name": "Singh"
+                , "email": "bs@infospry.com"
+                , "mobile": "1009876543"
+                , "company_name": "Infos Pvt Ltd4"
+                , "company_reg_no": "COM0000012345"
+                , "industry": "10"
+                , "category": "54"
+                , "invitation_status": 1
+            }]
+
+            const response = await asyncPost(endpoint_employer + '/registration', params);
+>>>>>>> 43e69638c31a752bd9720d0152d8f54882b21028
             console.log(response);
-                    
+
             if (response.Status === "OK") {
                 getEmployers();
-             alert(response.Response);
-            
+                alert(response.Response);
+
             }
-            else {               
+            else {
                 alert(response.Error);
             }
         } catch (error) {
             console.error(error, error);
         }
+<<<<<<< HEAD
       };  
       
+=======
+    };
+
+>>>>>>> 43e69638c31a752bd9720d0152d8f54882b21028
 
     return (
         <>
@@ -166,18 +273,18 @@ function Main() {
                                                                     className="zmdi zmdi-account"></i></span>
                                                             </div>
                                                             <select className="form-control">
-                                                <option value="" disabled="disabled"selected="selected">Select an industry </option>                                      
-                                        {category_ddl.map((item) => (                                       
-                                        <optgroup label={item.industry_name}>
-                                              {item.categories.map((categories) => {
-                                                return (
-                                                  <option data-industry={item.industry_id} value={categories.cat_id}>
-                                                    {categories.cat_name}
-                                                  </option>
-                                                );
-                                              })}
-                                            </optgroup>
-                                        ))} 
+                                                                <option value="" disabled="disabled" selected="selected">Select an industry </option>
+                                                                {category_ddl.map((item) => (
+                                                                    <optgroup label={item.industry_name}>
+                                                                        {item.categories.map((categories) => {
+                                                                            return (
+                                                                                <option data-industry={item.industry_id} value={categories.cat_id}>
+                                                                                    {categories.cat_name}
+                                                                                </option>
+                                                                            );
+                                                                        })}
+                                                                    </optgroup>
+                                                                ))}
                                                             </select>
                                                         </div>
 
@@ -316,7 +423,7 @@ function Main() {
             {/* Role */}
             <div class="modal right-quater" id="ModalCustomRole" tabindex="-1" role="dialog" aria-labelledby="ModalRoleColor">
                 <div class="modal-dialog" role="document">
-                    <div class="modal-content">
+                    <form onSubmit={handleSubmitRole} class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">×</span>
@@ -329,14 +436,31 @@ function Main() {
                             <div class="row">
                                 <div class="col-lg-12">
 
-                                    <div class="form-group mt-3">
-                                        <span class="col-blue">Role<span class="col-red">*</span></span>
-                                        <input id="txtRolename" class="form-control" type="text" placeholder="Enter role name" />
+                                    <div className="form-group mt-3">
+                                        <span className="col-blue">Role<span className="col-red">*</span></span>
+                                        <input
+                                            id="txtRolename"
+                                            className="form-control"
+                                            type="text"
+                                            placeholder="Enter role name"
+                                            name="roleName"
+                                            value={formDataRole.roleName}
+                                            onChange={handleChangeRole}
+                                        />
+                                        {errors.roleName && <div className="error">{errors.roleName}</div>}
                                     </div>
-                                    <div class="form-group mt-3">
-                                        <span class="col-blue">Role Alias<span class="col-red">*</span></span>
-                                        <input id="txtRoleAlias" class="form-control" type="text"
-                                            placeholder="Enter role alias" />
+                                    <div className="form-group mt-3">
+                                        <span className="col-blue">Role Alias<span className="col-red">*</span></span>
+                                        <input
+                                            id="txtRoleAlias"
+                                            className="form-control"
+                                            type="text"
+                                            placeholder="Enter role alias"
+                                            name="roleAlias"
+                                            value={formDataRole.roleAlias}
+                                            onChange={handleChangeRole}
+                                        />
+                                        {errors.roleAlias && <div className="error">{errors.roleAlias}</div>}
                                     </div>
                                     <div class="row">
                                         <div class="form-group mt-3 col-md-6">
@@ -344,26 +468,52 @@ function Main() {
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text" style={{ borderRadius: "0px" }}> <i
                                                     class="zmdi zmdi-time"></i></span>
+                                                <input
+                                                    id="txtDefaultBreak"
+                                                    className="form-control"
+                                                    type="text"
+                                                    placeholder="0" maxlength="3"
+                                                    name="defaultBreak" style={{ borderRadius: "0px" }}
+                                                    value={formDataRole.defaultBreak}
+                                                    onChange={handleChangeRole}
+                                                />
+                                                {errors.defaultBreak && <div className="error">{errors.defaultBreak}</div>}
 
-                                                <input id="txtDefaultBreak" class="form-control number"
-                                                    style={{ borderRadius: "0px" }} maxlength="3" type="text" placeholder="0" />
                                             </div>
                                         </div>
                                         <div class="form-group mt-3 col-md-6">
                                             <span class="col-blue">Default Rate (£)</span>
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text" style={{ borderRadius: "0px" }}> £</span>
+                                                <input
+                                                    id="txtDefaultRate"
+                                                    className="form-control decimal"
+                                                    type="text"
+                                                    placeholder="0" maxlength="10"
+                                                    name="defaultRate" style={{ borderRadius: "0px" }}
+                                                    value={formDataRole.defaultRate}
+                                                    onChange={handleChangeRole}
+                                                />
+                                                {errors.defaultRate && <div className="error">{errors.defaultRate}</div>}
 
-                                                <input id="txtDefaultRate" class="form-control decimal"
-                                                    style={{ borderRadius: "0px" }} maxlength="10" type="text" placeholder="0" />
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group mt-3">
-                                        <span class="col-blue">Role Color<span class="col-red">*</span>
-                                            <span class="col-grey">(eg:#009688)</span></span>
-                                        <input id="txtLabelColorCode" class="form-control" maxlength="7" type="text"
-                                            placeholder="Select color" />
+                                        <span className="col-blue">Role Color<span className="col-red">*</span>
+                                            <span className="col-grey">(eg:#009688)</span></span>
+                                        <input
+                                            id="txtLabelColorCode"
+                                            className="form-control"
+                                            maxLength="7"
+                                            type="text"
+                                            placeholder="Select color"
+                                            name="roleColor"
+                                            value={formDataRole.roleColor}
+                                            onChange={handleChangeRole}
+                                        />
+                                        {errors.roleColor && <div className="error">{errors.roleColor}</div>}
+
                                         <hr />
                                         <div class="mt-3">
                                             <span>
@@ -470,11 +620,10 @@ function Main() {
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <a class="btn btn-primary ClsCustomRole" id="btnCustomRole" data-id="0"
-                                data-action="insertupdate">Save</a>
+                            <button type="submit" class="btn btn-primary ClsCustomRole" id="btnCustomRole" >Save</button>
                             <a class="btn btn-outline-danger" data-dismiss="modal">Cancel</a>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
             {/* shift Timming */}
@@ -596,176 +745,184 @@ function Main() {
             {/* Add New */}
 
             <div id="add_new" className="modal md-one right-quater" tabindex="-1" role="dialog" aria-labelledby="add_new" aria-hidden="true">
-            
-                <div className="modal-dialog ui-draggable" role="document">
-                    <div className="modal-content">
-                        <div className="modal-header ui-draggable-handle">
+
+                <div className="modal-dialog" role="document">
+                    <form onSubmit={handleSubmit} className="modal-content hightauto">
+                        <div className="modal-header">
                             <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">×</span>
                             </button>
                             <h4 className="modal-title" id="myModalLabel2">
                                 <b id="lblDocMasterTitle">Add New Employer</b>
                             </h4>
-                        </div>  
-                        <form onSubmit={handleSubmit}>
+                        </div>
+
                         <div className="modal-body">
                             <div className="row m-0">
                                 <div className="col-12 col-md-6 mt-2">
                                     <div className="form-group">
                                         <label className="col-form-label col-form-label-lg">
-                                           <i class="fa fa-user"></i> First name<span>*</span>
+                                            <i class="fa fa-user"></i> First name<span>*</span>
                                         </label>
                                         <input
-              type="text"
-              name="firstName"
-              value={formData.firstName}
-              onChange={handleChange}
-              className="form-control form-control-lg"
-              placeholder="Enter First name"
-            />
-            {errors.firstName && <div className="error">{errors.firstName}</div>}
+                                            type="text"
+                                            name="firstName"
+                                            value={formData.firstName}
+                                            onChange={handleChange}
+                                            className="form-control form-control-lg"
+                                            placeholder="Enter First name"
+                                        />
+                                        {errors.firstName && <div className="error">{errors.firstName}</div>}
                                     </div>
                                 </div>
-                                <div className="col-12 col-md-6">
+                                <div className="col-12 col-md-6 mt-2">
                                     <div className="form-group">
                                         <label className="col-form-label col-form-label-lg">
-                                        <i class="fa fa-user"></i> Last name<span>*</span>
+                                            <i class="fa fa-user"></i> Last name<span>*</span>
                                         </label>
                                         <input
-           type="text"
-           name="lastName"
-           value={formData.lastName}
-           onChange={handleChange}
-           className="form-control form-control-lg"
-           placeholder="Enter Last name"
-         />
-         {errors.lastName && <div className="error">{errors.lastName}</div>}
-                                    </div>
-                                </div>
-                                <div className="col-12">
-                                    <div className="form-group">
-                                        <label className="col-form-label col-form-label-lg">
-                                        <i class="fa fa-envelope"></i> Email Id<span>*</span>
-                                        </label>
-                                        <input 
-                                        type="email"
-           name="email"
-           value={formData.email}
-           onChange={handleChange}
-           className="form-control form-control-lg"
-           placeholder="Enter Email Id"
-         />
-         {errors.email && <div className="error">{errors.email}</div>}
+                                            type="text"
+                                            name="lastName"
+                                            value={formData.lastName}
+                                            onChange={handleChange}
+                                            className="form-control form-control-lg"
+                                            placeholder="Enter Last name"
+                                        />
+                                        {errors.lastName && <div className="error">{errors.lastName}</div>}
                                     </div>
                                 </div>
                                 <div className="col-12">
                                     <div className="form-group">
                                         <label className="col-form-label col-form-label-lg">
-                                        <i class="fa fa-phone"></i> Mobile Number<span>*</span>
+                                            <i class="fa fa-envelope"></i> Email Id<span>*</span>
                                         </label>
-                                      
                                         <input
-              type="text"
-              name="mobileNumber"
-              value={formData.mobileNumber}
-              onChange={handleChange}
-              className="form-control form-control-lg"
-              placeholder="Enter Mobile number"
-            />
-            {errors.mobileNumber && <div className="error">{errors.mobileNumber}</div>}
+                                            type="email"
+                                            name="email"
+                                            value={formData.email}
+                                            onChange={handleChange}
+                                            className="form-control form-control-lg"
+                                            placeholder="Enter Email Id"
+                                        />
+                                        {errors.email && <div className="error">{errors.email}</div>}
                                     </div>
-                                </div>  
-                                
+                                </div>
                                 <div className="col-12">
                                     <div className="form-group">
                                         <label className="col-form-label col-form-label-lg">
-                                        <i class="fa fa-industry"></i>  Company / Organisation Name<span>*</span>
+                                            <i class="fa fa-phone"></i> Mobile Number<span>*</span>
                                         </label>
-                                     
-                                         <input 
-                                        type="text"
-           name="companyName"
-           value={formData.companyName}
-           onChange={handleChange}
-           className="form-control form-control-lg"
-           placeholder="Enter  Company / Organisation Name"
-         />
-         {errors.companyName && <div className="error">{errors.companyName}</div>}
+
+                                        <input
+                                            type="text"
+                                            name="mobileNumber"
+                                            value={formData.mobileNumber}
+                                            onChange={handleChange}
+                                            className="form-control form-control-lg"
+                                            placeholder="Enter Mobile number"
+                                        />
+                                        {errors.mobileNumber && <div className="error">{errors.mobileNumber}</div>}
                                     </div>
-                                </div>  
+                                </div>
 
                                 <div className="col-12">
                                     <div className="form-group">
                                         <label className="col-form-label col-form-label-lg">
-                                        <i class="fa fa-text-width" aria-hidden="true"></i> Registration Number<span>*</span>
+                                            <i class="fa fa-industry"></i>  Company / Organisation Name<span>*</span>
                                         </label>
-                                        <input 
-                                        type="text"
-           name="registrationNumber"
-           value={formData.registrationNumber}
-           onChange={handleChange}
-           className="form-control form-control-lg"
-           placeholder="Enter Registration Number"
-         />
-         {errors.registrationNumber && <div className="error">{errors.registrationNumber}</div>}
-                                        
+
+                                        <input
+                                            type="text"
+                                            name="companyName"
+                                            value={formData.companyName}
+                                            onChange={handleChange}
+                                            className="form-control form-control-lg"
+                                            placeholder="Enter  Company / Organisation Name"
+                                        />
+                                        {errors.companyName && <div className="error">{errors.companyName}</div>}
+                                    </div>
+                                </div>
+
+                                <div className="col-12">
+                                    <div className="form-group">
+                                        <label className="col-form-label col-form-label-lg">
+                                            <i class="fa fa-text-width" aria-hidden="true"></i> Registration Number<span>*</span>
+                                        </label>
+                                        <input
+                                            type="text"
+                                            name="registrationNumber"
+                                            value={formData.registrationNumber}
+                                            onChange={handleChange}
+                                            className="form-control form-control-lg"
+                                            placeholder="Enter Registration Number"
+                                        />
+                                        {errors.registrationNumber && <div className="error">{errors.registrationNumber}</div>}
+
                                     </div>
                                 </div>
                                 <div className="col-12">
                                     <div className="form-group">
                                         <label className="col-form-label col-form-label-lg">
-                                        <i class="fa fa-industry"></i> Industry<span>*</span>
+                                            <i class="fa fa-industry"></i> Industry<span>*</span>
                                         </label>
                                         {/* Dropdown select with options */}
                                         <select
-              id="ddl_industry"
-              className="form-control form-control-lg"
-              data-step="3"
-              name="industry"
-              value={formData.industry}
-              onChange={handleChange}
-            >
-              <option value="" disabled>
-                Select an industry
-              </option>
-              {category_ddl.map((item) => (
-                <optgroup label={item.industry_name} key={item.industry_id}>
-                  {item.categories.map((categories) => (
-                    <option
-                      key={categories.cat_id}
-                      data-industry={item.industry_id}
-                      value={categories.cat_id}
-                    >
-                      {categories.cat_name}
-                    </option>
-                  ))}
-                </optgroup>
-              ))}
-            </select>
-            {errors.industry && <div className="error">{errors.industry}</div>}
+                                            id="ddl_industry"
+                                            className="form-control form-control-lg"
+                                            data-step="3"
+                                            name="industry"
+                                            value={formData.industry}
+                                            onChange={handleChange}
+                                        >
+                                            <option value="" disabled>
+                                                Select an industry
+                                            </option>
+                                            {category_ddl.map((item) => (
+                                                <optgroup label={item.industry_name} key={item.industry_id}>
+                                                    {item.categories.map((categories) => (
+                                                        <option
+                                                            key={categories.cat_id}
+                                                            data-industry={item.industry_id}
+                                                            value={categories.cat_id}
+                                                        >
+                                                            {categories.cat_name}
+                                                        </option>
+                                                    ))}
+                                                </optgroup>
+                                            ))}
+                                        </select>
+                                        {errors.industry && <div className="error">{errors.industry}</div>}
                                     </div>
                                 </div>
                                 <div className="col-12 mb-3">
                                     <div class="custom-control custom-checkbox checkbox-inline pl-4">
-                                        <input id="sentInvitations" type="checkbox" class="custom-control-input"/> 
+                                        <input id="sentInvitations" type="checkbox" class="custom-control-input" />
                                         <label for="sentInvitations" class="custom-control-label line24 pointer">Sent Invitations</label>
                                     </div>
                                 </div>
+<<<<<<< HEAD
                             </div>                            
+=======
+                            </div>
+>>>>>>> 43e69638c31a752bd9720d0152d8f54882b21028
                         </div>
                         <div className="modal-footer">
                             <div className="row">
                                 <div className="col-md-12">
                                     <div className="text-center">
+<<<<<<< HEAD
                                         <button type="submit" className="btn btn-primary btn-lg mr-1"> Save </button>
+=======
+                                        <button type="submit" onClick={AddNewEmployer} className="btn btn-primary btn-lg mr-1"> Save </button>
+>>>>>>> 43e69638c31a752bd9720d0152d8f54882b21028
                                         <a className="btn btn-outline-danger btn-lg" data-dismiss="modal"><i className="zmdi zmdi-close"></i> Close</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        </form>
-                    </div>
-                </div> 
+
+                    </form>
+                </div>
             </div>
 
 
