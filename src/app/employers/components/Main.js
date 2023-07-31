@@ -8,6 +8,9 @@ import { endpoint_category_ddl, endpoint_employer } from "@/app/services/ApiEndP
 
 function Main() {
 
+    const [errors, setErrors] = useState({});
+    const [emp_id, setEmp_id] = useState(0);
+    
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
@@ -17,9 +20,7 @@ function Main() {
         registrationNumber: '',
         industry: '',
         sentInvitations: false,
-      });
-    
-      const [errors, setErrors] = useState({});
+      });   
     
       const handleChange = (e) => {
         const { name, value } = e.target;
@@ -75,6 +76,10 @@ function Main() {
         }
       };
 
+     function viewDetails(id) {  
+        console.log(id);     
+        setEmp_id(id);        
+      };
 
     const [employer, setEmployer] = useState([]);
     const [employerProfile, setEmployerProfile] = useState([]);
@@ -98,15 +103,15 @@ function Main() {
         }
       };
 
-      const viewEmployerProfile = async () => {
-        try {
-            const response = await asyncGet(endpoint_employer+'/'+14);
-            console.log(response.Response[0].employer_details);           
-            setEmployerProfile(response.Response[0].employer_details);
-        } catch (error) {
-            console.error('Error fetching data:', error);
-        }
-      };
+    //   const viewEmployerProfile = async (emp_id) => {
+    //     try {      
+    //         const response = await asyncGet(endpoint_employer+'/'+emp_id); 
+    //         setEmp_id(emp_id);              
+    //         setEmployerProfile(response.Response[0].employer_details);
+    //     } catch (error) {
+    //         console.error('Error fetching data:', error);
+    //     }
+    //   };
 
       useEffect(() => {
         getEmployers();
@@ -114,8 +119,7 @@ function Main() {
       }, []);  
       
       const AddNewEmployer = async (params) => {
-        try {   
-           
+        try {              
             const response = await asyncPost(endpoint_employer+'/registration',params);
             console.log(response);
                     
@@ -260,7 +264,7 @@ function Main() {
                                                                         <td> <span className="badge badge-success cursor"> {item.account_status} </span>
                                                                         </td>
                                                                         <td>
-                                                                            <button onClick={viewEmployerProfile} className="btn btn-outline-primary btn-sm"
+                                                                            <button value={item.emp_id} onClick={()=>viewDetails(item.emp_id)}  className="btn btn-outline-primary btn-sm"
                                                                                 data-toggle="modal" data-target="#emp_settings"><i
                                                                                     className="zmdi zmdi-settings"></i></button>
 
@@ -293,7 +297,7 @@ function Main() {
                             <h4 class="modal-title"><b>Employer Settings</b></h4>
                         </div>
                         <div class="modal-body pl-0 pr-0">
-                            <Settings></Settings>
+                            <Settings emp_id={emp_id}></Settings>
                         </div>
                         <div class="modal-footer position_relatie">
                             <div class="row">
