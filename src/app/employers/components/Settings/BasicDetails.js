@@ -123,15 +123,16 @@ export default function BasicDetails({employerProfile}) {
                                 </div>
                                 <div class="p-4 bdr_b1 View_General_info">
                                     <div class="row justify-content-start">
-                                    
+                                    {employerProfile.map((item) => (   
                                         <div class="col-12 col-lg-6">
                                             <div class="bxsaddow mb-2 p-2">
 
                                                 <div class="p-3 bdr1 h4show cls-location-part">
                                                     <p class="mb-1"> <span class="wd--16px">User role</span> <span>:</span> <span id="Span5">{item.user_role}</span> </p>
-                                                    <p class="mb-1"> <span class="wd--16px">Name</span> <span>:</span><span id="Span6">{item.name} </span>   </p>
-                                                    <p class="mb-1"> <span class="wd--16px">Contact No. </span><span>:</span> <span id="Span7">{item.sr_no}</span> </p>
-                                                    <p class="mb-1"> <span class="wd--16px">Email </span> <span>:</span><span id="Span8">{item.sr_no}</span> </p>
+                                                    <p class="mb-1"> <span class="wd--16px">Name</span> <span>:</span><span id="Span6">{item.sr_no} </span>
+                                                    </p>
+                                                    <p class="mb-1"> <span class="wd--16px">Contact No. </span><span>:</span> <span id="Span7">122 2345 678</span> </p>
+                                                    <p class="mb-1"> <span class="wd--16px">Email </span> <span>:</span><span id="Span8">amarendra@infospry.com</span> </p>
 
                                                 </div>
                                             </div>

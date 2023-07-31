@@ -7,10 +7,6 @@ import { endpoint_employer_ddl } from '@/app/services/ApiEndPoints';
 
 export default function JobRole() {
 
-<<<<<<< HEAD
-
-    
-=======
    
     const [empjobRole, setEmployerRoles] = useState([]);
     
@@ -42,7 +38,6 @@ export default function JobRole() {
       
           fetchData();
         }, []);
->>>>>>> 43e69638c31a752bd9720d0152d8f54882b21028
   return (
     <>
       <div class="i_action d-flex justify-content-between align-items-center p-2 mb-0">

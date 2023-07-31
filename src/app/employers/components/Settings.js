@@ -11,7 +11,7 @@ import { useState, useEffect } from "react";
 import { asyncGet } from '@/app/services/HttpServices';
 import { endpoint_employer } from "@/app/services/ApiEndPoints";
 
-const Settings = () => {
+const Settings = (id) => {
    
     const [employerProfile, setEmployerProfile] = useState([]);
    
@@ -26,8 +26,7 @@ const Settings = () => {
         }
       };
 
-      useEffect(() => {
-       
+      useEffect(() => {       
         viewEmployerProfile();
       }, []);  
       

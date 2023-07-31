@@ -360,7 +360,7 @@ function Main() {
                             <h4 class="modal-title"><b>Employer Settings</b></h4>
                         </div>
                         <div class="modal-body pl-0 pr-0">
-                            <Settings emp_id={emp_id}></Settings>
+                            <Settings ></Settings>
                         </div>
                         <div class="modal-footer position_relatie">
                             <div class="row">
