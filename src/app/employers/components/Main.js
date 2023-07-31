@@ -113,9 +113,6 @@ function Main() {
         FillDropdown();
       }, []);  
       
-<<<<<<< HEAD
-      
-=======
       const AddNewEmployer = async () => {
         try {    
             let params =[{
@@ -145,7 +142,6 @@ function Main() {
             console.error(error, error);
         }
       };  
->>>>>>> 26a85ade4e5136cc6bfe857debb7db3583fdf8ea
       
 
     return (
@@ -762,18 +758,13 @@ function Main() {
                                         <label for="sentInvitations" class="custom-control-label line24 pointer">Sent Invitations</label>
                                     </div>
                                 </div>
-                            </div>
-                            
+                            </div>                            
                         </div>
                         <div className="modal-footer">
                             <div className="row">
                                 <div className="col-md-12">
                                     <div className="text-center">
-<<<<<<< HEAD
-                                        <button type="submit" className="btn btn-primary btn-lg mr-1"> Save </button>
-=======
                                         <button type="submit" onClick={AddNewEmployer} className="btn btn-primary btn-lg mr-1"> Save </button>
->>>>>>> 26a85ade4e5136cc6bfe857debb7db3583fdf8ea
                                         <a className="btn btn-outline-danger btn-lg" data-dismiss="modal"><i className="zmdi zmdi-close"></i> Close</a>
                                     </div>
                                 </div>
