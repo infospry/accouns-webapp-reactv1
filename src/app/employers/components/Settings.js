@@ -11,67 +11,26 @@ import { useState, useEffect } from "react";
 import { asyncGet } from '@/app/services/HttpServices';
 import { endpoint_employer } from "@/app/services/ApiEndPoints";
 
-<<<<<<< HEAD
-const Settings = () => { 
-    const [employerProfile, setEmployerProfile] = useState([]);
-    const viewEmployerProfile = async () => {
+const Settings = ({id}) => { 
+    const [employerProfile, setEmployerProfile] = useState([]);  
+    const [empid, setEmpId] = useState(0);
+
+      const viewEmployerProfile = async (id) => {
         try {          
-            const response = await asyncGet(endpoint_employer+'/14');
-            //console.log(response.Response[0].employer_details);           
-            setEmployerProfile(response.Response[0].employer_details);
-        } catch (error) {
-            console.error('Error fetching data:', error);
-        }
-      };
-      useEffect(() => {
-        viewEmployerProfile();      
-      }, []);  
-
-// <<<<<<< HEAD
-// =======
-// import { useState, useEffect } from "react";
-// import { asyncGet } from '@/app/services/HttpServices';
-// import {  endpoint_employer } from "@/app/services/ApiEndPoints";
-
-// const Settings = () => {
-=======
-const Settings = () => {
->>>>>>> 26a85ade4e5136cc6bfe857debb7db3583fdf8ea
-   
-//     const [employerProfile, setEmployerProfile] = useState([]);
-   
-
-<<<<<<< HEAD
-//       const viewEmployerProfile = async () => {
-//         try {
-//             const response = await asyncGet(endpoint_employer+'/'+14);
-//             console.log(response.Response[0].employer_details);           
-//             setEmployerProfile(response.Response[0].employer_details);
-//         } catch (error) {
-//             console.error('Error fetching data:', error);
-//         }
-//       };
-=======
-      const viewEmployerProfile = async () => {
-        try {
-            const response = await asyncGet(endpoint_employer+'/'+16);
+            const response = await asyncGet(endpoint_employer+'/'+id);
+            console.log('Function Call');   
             console.log(response.Response[0].employer_details);           
             setEmployerProfile(response.Response[0].employer_details);
         } catch (error) {
             console.error('Error fetching data:', error);
         }
       };
->>>>>>> 26a85ade4e5136cc6bfe857debb7db3583fdf8ea
 
-//       useEffect(() => {
-       
-//         viewEmployerProfile();
-//       }, []);  
+      useEffect(() => {   
+        setEmpId(id);           
+              viewEmployerProfile(empid);         
+      }, []);  
       
-<<<<<<< HEAD
-// >>>>>>> 9112856d66d81284a317cb999d0de86992e300ee
-=======
->>>>>>> 26a85ade4e5136cc6bfe857debb7db3583fdf8ea
     return (
         <>
             <div className="profilesectioncontent">

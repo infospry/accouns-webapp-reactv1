@@ -2,6 +2,9 @@ import React from 'react'
 import Link from "next/link";
 
 export default function JobRole() {
+
+
+    
   return (
     <>
       <div class="i_action d-flex justify-content-between align-items-center p-2 mb-0">

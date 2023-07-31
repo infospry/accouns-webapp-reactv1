@@ -1,6 +1,8 @@
 import React from 'react'
 
-export default function BasicDetails() {  
+export default function BasicDetails({employerProfile}) {  
+    console.log('Basic Details');
+    console.log(employerProfile);
        return (
         <>
             <div class="panel-group">

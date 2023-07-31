@@ -8,4 +8,5 @@ module.exports = {
     endpoint_candidate:'api/v1/agency/candidates',
     endpoint_employer_ddl :'api/v1/agency/employers/dropdown',
     endpoint_category_ddl :'api/employers/?id=0&type=signup'  
+    
 }
