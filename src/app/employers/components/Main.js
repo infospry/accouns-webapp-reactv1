@@ -2,7 +2,7 @@
 import Link from "next/link";
 import Settings from "./Settings";
 import { useState, useEffect } from "react";
-import { asyncGet } from '@/app/services/HttpServices';
+import { asyncGet,asyncPost } from '@/app/services/HttpServices';
 import { endpoint_category_ddl, endpoint_employer } from "@/app/services/ApiEndPoints";
 
 function Main() {
@@ -11,7 +11,20 @@ function Main() {
     const [employerProfilep, setEmployerProfile] = useState([]);
     const [category_ddl, setcategory_ddl] = useState([]);
     const [Emp_id, setEmp_id] = useState();
-    const [emptype, setEmpType] = useState('');
+    const [empType, setEmpType] = useState('All');
+    const [accountStatus, setAccountStatus] = useState('');
+    const [isValid, setIsValid] = useState(false);
+    const [formData, setFormData] = useState({
+        first_name: '',
+        last_name: '',
+        email: '',
+        mobile: '',
+        company_name: '',
+        company_reg_no: '',
+        industry: '',
+        category: '',
+        invitation_status: 0,
+    });    
     
     useEffect(() => {
         getEmployers();
@@ -34,6 +47,7 @@ function Main() {
 
      const getEmployers = async () => {
           try {
+        //  alert('hi'+accountStatus);
               const response = await asyncGet(endpoint_employer);
               setEmployer(response.Response[0].Employers);
           } catch (error) {
@@ -52,29 +66,30 @@ function Main() {
   
       const AddNewEmployer = async () => {
           try {
-              let params = [{
-                  "first_name": "Basudev"
-                  , "last_name": "Singh"
-                  , "email": "bs@infospry.com"
-                  , "mobile": "1009876543"
-                  , "company_name": "Infos Pvt Ltd4"
-                  , "company_reg_no": "COM0000012345"
-                  , "industry": "10"
-                  , "category": "54"
-                  , "invitation_status": 1
-              }]
-  
-              const response = await asyncPost(endpoint_employer + '/registration', params);
+
+            if(formData!==null)
+            {
+               let payload=[formData];               
+              console.log(payload);
+           
+              const response = await asyncPost(endpoint_employer + '/registration', payload);
               console.log(response);
   
               if (response.Status === "OK") {
+
                   getEmployers();
                   alert(response.Response);
+                  reSetForm();
   
               }
-              else {
-                  alert(response.Error);
+              else {           
+                  console.error(response.Error, error);
               }
+            }
+            else
+            {
+                alert('Invalid Jason');
+            }
           } catch (error) {
               console.error(error, error);
           }
@@ -84,35 +99,51 @@ function Main() {
    
 //*******************************Validation************************************ */
 //Add New Employer
-const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    mobileNumber: '',
-    companyName: '',
-    registrationNumber: '',
-    industry: '',
-    sentInvitations: false,
-});
+
+function handleTabClick(tab_status){        
+    setAccountStatus(tab_status);
+    getEmployers();
+   } 
 
 const handleChange = (e) => {
-    const { name, value } = e.target;
+const { name, value} = e.target;    
+if(name=='sentInvitations')
+{ 
+    setFormData((prevFormData) => ({
+        ...prevFormData,
+        ['invitation_status']: e.target.checked?1:0,
+    }));
+}
+else if(name=='category')
+{
+    var country_select = document.querySelector("#ddl_category");
+    var industry_id = country_select.options[country_select.selectedIndex].getAttribute('industry');
+    setFormData((prevFormData) => ({
+        ...prevFormData,
+        [name]: value  ,
+        ['industry']: industry_id,
+    }));
+}
+else
+{
     setFormData((prevFormData) => ({
         ...prevFormData,
         [name]: value,
     }));
+}
+
 };
 
 const handleSubmit = (e) => {
     e.preventDefault();
     const validationErrors = {};
     // Perform validation here
-    if (!formData.firstName.trim()) {
-        validationErrors.firstName = 'First name is required';
+    if (!formData.first_name.trim()) {
+        validationErrors.first_name = 'First name is required';
     }
 
-    if (!formData.lastName.trim()) {
-        validationErrors.lastName = 'Last name is required';
+    if (!formData.last_name.trim()) {
+        validationErrors.last_name = 'Last name is required';
     }
 
     if (!formData.email.trim()) {
@@ -121,22 +152,22 @@ const handleSubmit = (e) => {
 
     // Validate mobile number format using a regular expression
     const mobileNumberRegex = /^[0-9]{10}$/; // Assuming a 10-digit mobile number format
-    if (!formData.mobileNumber.trim()) {
-        validationErrors.mobileNumber = 'Mobile number is required';
-    } else if (!mobileNumberRegex.test(formData.mobileNumber)) {
-        validationErrors.mobileNumber = 'Invalid mobile number format. Please enter a 10-digit number.';
+    if (!formData.mobile.trim()) {
+        validationErrors.mobile = 'Mobile number is required';
+    } else if (!mobileNumberRegex.test(formData.mobile)) {
+        validationErrors.mobile = 'Invalid mobile number format. Please enter a 10-digit number.';
     }
 
-    if (!formData.companyName.trim()) {
-        validationErrors.companyName = 'Company name is required';
+    if (!formData.company_name.trim()) {
+        validationErrors.company_name = 'Company name is required';
     }
 
-    if (!formData.registrationNumber.trim()) {
-        validationErrors.registrationNumber = 'Registration number is required';
+    if (!formData.company_reg_no.trim()) {
+        validationErrors.company_reg_no = 'Registration number is required';
     }
 
-    if (!formData.industry.trim()) {
-        validationErrors.industry = 'Industry is required';
+    if (!formData.category.trim()) {
+        validationErrors.category = 'Industry is required';
     }
 
     setErrors(validationErrors);
@@ -144,11 +175,25 @@ const handleSubmit = (e) => {
     // If there are no errors, proceed with form submission
     if (Object.keys(validationErrors).length === 0) {
         // Handle form submission here (e.g., send data to server)
-        console.log('Form submitted successfully:', formData);
+       //setIsValid(true);
+        // console.log('Form submitted successfully:', formData);
+        AddNewEmployer();
     }
 };
 
-
+const reSetForm=()=>{
+    setFormData({
+        first_name: '',
+        last_name: '',
+        email: '',
+        mobile: '',
+        company_name: '',
+        company_reg_no: '',
+        industry: '',
+        category: '',
+        invitation_status: 0,
+    })
+};
 // Add role::::
 const [formDataRole, setformDataRole] = useState({
     roleName: '',
@@ -362,7 +407,7 @@ const handleSubmitLocation = (e) => {
                                                                     <optgroup label={item.industry_name}>
                                                                         {item.categories.map((categories) => {
                                                                             return (
-                                                                                <option data-industry={item.industry_id} value={categories.cat_id}>
+                                                                                <option industry={item.industry_id} value={categories.cat_id}>
                                                                                     {categories.cat_name}
                                                                                 </option>
                                                                             );
@@ -385,8 +430,8 @@ const handleSubmitLocation = (e) => {
                                                             <Link id="btnSearchEmployees" href="/" className="btn btn-primary"
                                                                 data-action="save"><i
                                                                     className="zmdi zmdi-search">&nbsp;</i>Search</Link>
-                                                            <Link id="btnSearchEmployeesRefresh" href="/"
-                                                                className="btn btn-primary ml-1 font-16 btnSearchEmployeesRefresh"
+                                                            <Link id="btnSearchEmployeesRefresh" href=""
+                                                                className="btn btn-primary ml-1 font-16 btnSearchEmployeesRefresh" value="" onClick={e => handleTabClick('')} 
                                                                 data-action="cancel"><i className="zmdi zmdi-refresh">&nbsp;
                                                                 </i></Link>
                                                         </div>
@@ -395,18 +440,18 @@ const handleSubmitLocation = (e) => {
                                                 <button id="btnAddNewEmp" class="btn btn-success  btn-add  mr-1" data-toggle="modal" data-target="#add_new"><i class="ti ti-plus"></i> Add New</button>
                                             </div>
                                             <ul className="nav nav-tabs nav-justified p-0 bdr-tp-n nav-tabs-responsive">
-                                                <li id="tab_emp_all" className="nav-item cnd-navigation-tabs active" data-get="All">
-                                                    <Link className="nav-link  show active" href="/" data-toggle="tab">
+                                                <li id="tab_emp_all" className="nav-item cnd-navigation-tabs active"  value="" onClick={e => handleTabClick('')}  >
+                                                    <Link className="nav-link  show active" href="" data-toggle="tab">
                                                         <b>All</b>
                                                     </Link>
                                                 </li>
-                                                <li className="nav-item cnd-navigation-tabs" data-get="P">
-                                                    <Link href="/" className="nav-link show" data-toggle="tab">
+                                                <li className="nav-item cnd-navigation-tabs"  value="active" onClick={e => handleTabClick('active')} >
+                                                    <Link href="" className="nav-link show" data-toggle="tab">
                                                         <b>Active</b>
                                                     </Link>
                                                 </li>
-                                                <li className="nav-item cnd-navigation-tabs prev" data-get="S">
-                                                    <Link href="/" className="nav-link show" data-toggle="tab">
+                                                <li className="nav-item cnd-navigation-tabs prev"  value="inactive" onClick={e => handleTabClick('inactive')} >
+                                                    <Link href="" className="nav-link show" data-toggle="tab">
                                                         <b>Inactive</b>
                                                     </Link>
                                                 </li>
@@ -898,13 +943,13 @@ const handleSubmitLocation = (e) => {
                                         </label>
                                         <input
                                             type="text"
-                                            name="firstName"
-                                            value={formData.firstName}
+                                            name="first_name"
+                                            value={formData.first_name}
                                             onChange={handleChange}
                                             className="form-control form-control-lg"
-                                            placeholder="Enter First name"
+                                            placeholder="Enter first name"
                                         />
-                                        {errors.firstName && <div className="error">{errors.firstName}</div>}
+                                        {errors.first_name && <div className="error">{errors.first_name}</div>}
                                     </div>
                                 </div>
                                 <div className="col-12 col-md-6 mt-2">
@@ -914,13 +959,13 @@ const handleSubmitLocation = (e) => {
                                         </label>
                                         <input
                                             type="text"
-                                            name="lastName"
-                                            value={formData.lastName}
+                                            name="last_name"
+                                            value={formData.last_name}
                                             onChange={handleChange}
                                             className="form-control form-control-lg"
                                             placeholder="Enter Last name"
                                         />
-                                        {errors.lastName && <div className="error">{errors.lastName}</div>}
+                                        {errors.last_name && <div className="error">{errors.last_name}</div>}
                                     </div>
                                 </div>
                                 <div className="col-12">
@@ -947,13 +992,13 @@ const handleSubmitLocation = (e) => {
 
                                         <input
                                             type="text"
-                                            name="mobileNumber"
-                                            value={formData.mobileNumber}
+                                            name="mobile"
+                                            value={formData.mobile}
                                             onChange={handleChange}
                                             className="form-control form-control-lg"
                                             placeholder="Enter Mobile number"
                                         />
-                                        {errors.mobileNumber && <div className="error">{errors.mobileNumber}</div>}
+                                        {errors.mobile && <div className="error">{errors.mobile}</div>}
                                     </div>
                                 </div>
 
@@ -965,13 +1010,13 @@ const handleSubmitLocation = (e) => {
 
                                         <input
                                             type="text"
-                                            name="companyName"
-                                            value={formData.companyName}
+                                            name="company_name"
+                                            value={formData.company_name}
                                             onChange={handleChange}
                                             className="form-control form-control-lg"
                                             placeholder="Enter  Company / Organisation Name"
                                         />
-                                        {errors.companyName && <div className="error">{errors.companyName}</div>}
+                                        {errors.company_name && <div className="error">{errors.company_name}</div>}
                                     </div>
                                 </div>
 
@@ -982,13 +1027,13 @@ const handleSubmitLocation = (e) => {
                                         </label>
                                         <input
                                             type="text"
-                                            name="registrationNumber"
-                                            value={formData.registrationNumber}
+                                            name="company_reg_no"
+                                            value={formData.company_reg_no}
                                             onChange={handleChange}
                                             className="form-control form-control-lg"
                                             placeholder="Enter Registration Number"
                                         />
-                                        {errors.registrationNumber && <div className="error">{errors.registrationNumber}</div>}
+                                        {errors.company_reg_no && <div className="error">{errors.company_reg_no}</div>}
 
                                     </div>
                                 </div>
@@ -999,11 +1044,11 @@ const handleSubmitLocation = (e) => {
                                         </label>
                                         {/* Dropdown select with options */}
                                         <select
-                                            id="ddl_industry"
+                                            id="ddl_category"
                                             className="form-control form-control-lg"
                                             data-step="3"
-                                            name="industry"
-                                            value={formData.industry}
+                                            name="category"
+                                            value={formData.category}
                                             onChange={handleChange}
                                         >
                                             <option value="" disabled>
@@ -1014,7 +1059,7 @@ const handleSubmitLocation = (e) => {
                                                     {item.categories.map((categories) => (
                                                         <option
                                                             key={categories.cat_id}
-                                                            data-industry={item.industry_id}
+                                                            industry={item.industry_id}
                                                             value={categories.cat_id}
                                                         >
                                                             {categories.cat_name}
@@ -1023,12 +1068,12 @@ const handleSubmitLocation = (e) => {
                                                 </optgroup>
                                             ))}
                                         </select>
-                                        {errors.industry && <div className="error">{errors.industry}</div>}
+                                        {errors.category && <div className="error">{errors.category}</div>}
                                     </div>
                                 </div>
                                 <div className="col-12 mb-3">
                                     <div class="custom-control custom-checkbox checkbox-inline pl-4">
-                                        <input id="sentInvitations" type="checkbox" class="custom-control-input" />
+                                        <input id="sentInvitations" onChange={handleChange} name="sentInvitations" type="checkbox" class="custom-control-input" />
                                         <label for="sentInvitations" class="custom-control-label line24 pointer">Sent Invitations</label>
                                     </div>
                                 </div>
@@ -1038,8 +1083,8 @@ const handleSubmitLocation = (e) => {
                             <div className="row">
                                 <div className="col-md-12">
                                     <div className="text-center">
-                                        <button type="submit" onClick={AddNewEmployer} className="btn btn-primary btn-lg mr-1"> Save </button>
-                                        <a className="btn btn-outline-danger btn-lg" data-dismiss="modal"><i className="zmdi zmdi-close"></i> Close</a>
+                                        <button type="submit"  className="btn btn-primary btn-lg mr-1"> Save </button>
+                                        <a className="btn btn-outline-danger btn-lg" onClick={reSetForm} data-dismiss="modal"><i className="zmdi zmdi-close"></i> Close</a>
                                     </div>
                                 </div>
                             </div>
