@@ -11,6 +11,7 @@ function Main() {
     const [employerProfilep, setEmployerProfile] = useState([]);
     const [category_ddl, setcategory_ddl] = useState([]);
     const [Emp_id, setEmp_id] = useState();
+    const [emptype, setEmpType] = useState('');
     
     useEffect(() => {
         getEmployers();
