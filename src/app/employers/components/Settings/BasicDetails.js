@@ -1,8 +1,6 @@
 import React from 'react'
 
-export default function BasicDetails({employerProfile}) {  
-    console.log('Basic Details');
-    console.log(employerProfile); 
+export default function BasicDetails({employerProfile}) {     
        return (
         <>
          {employerProfile.map((item) => (   
@@ -28,7 +26,7 @@ export default function BasicDetails({employerProfile}) {
                                                     <div class="progres pb-0 mb-3 mt-1">
                                                         <p>{item.profile_completion_in_percent}</p>
                                                         <div class="prog">
-                                                            <span class="bg-lnir" style={{ width: "30%" }}></span>
+                                                            <span class="bg-lnir" style={{ width: item.profile_completion_in_percent }}></span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -123,22 +121,22 @@ export default function BasicDetails({employerProfile}) {
                                 </div>
                                 <div class="p-4 bdr_b1 View_General_info">
                                     <div class="row justify-content-start">
-                                    {employerProfile.map((item) => (   
-                                        <div class="col-12 col-lg-6">
-                                            <div class="bxsaddow mb-2 p-2">
+                                    {employerProfile.map((item) => ( 
+                    <div class="col-12 col-lg-6">
+                    <div class="bxsaddow mb-2 p-2">
 
-                                                <div class="p-3 bdr1 h4show cls-location-part">
-                                                    <p class="mb-1"> <span class="wd--16px">User role</span> <span>:</span> <span id="Span5">{item.user_role}</span> </p>
-                                                    <p class="mb-1"> <span class="wd--16px">Name</span> <span>:</span><span id="Span6">{item.sr_no} </span>
-                                                    </p>
-                                                    <p class="mb-1"> <span class="wd--16px">Contact No. </span><span>:</span> <span id="Span7">122 2345 678</span> </p>
-                                                    <p class="mb-1"> <span class="wd--16px">Email </span> <span>:</span><span id="Span8">amarendra@infospry.com</span> </p>
+                        <div class="p-3 bdr1 h4show cls-location-part">
+                            <p class="mb-1"> <span class="wd--16px">User role</span> <span>:</span> <span id="Span5">{item.users[0].user_role}</span> </p>
+                            <p class="mb-1"> <span class="wd--16px">Name</span> <span>:</span><span id="Span6">{item.users[0].name} </span>
+                            </p>
+                            <p class="mb-1"> <span class="wd--16px">Contact No. </span><span>:</span> <span id="Span7">{item.users[0].mobile}</span> </p>
+                            <p class="mb-1"> <span class="wd--16px">Email </span> <span>:</span><span id="Span8">{item.users[0].email}</span> </p>
 
-                                                </div>
-                                            </div>
-
-                                        </div>
-))}
+                        </div>
+                    </div>
+                </div>
+                
+                ))}
                                     </div>
                                 </div>
 

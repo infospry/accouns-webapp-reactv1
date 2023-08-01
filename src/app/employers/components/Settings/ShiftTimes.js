@@ -34,37 +34,7 @@ export default function ShiftTimes() {
                             </div>
                             <select id="ddlfilterrole" class="form-control">
                                 <option value="" selected="selected">Select Role</option>
-                                <option value="0">Default</option>
-                                <option data-role-id="0" data-rate="50" value="111"
-                                    title="Advance Nurse Practitioner">Advance Nurse
-                                    Practitioner</option>
-                                <option data-role-id="0" data-rate="60" value="114"
-                                    title="Care Assistant">Care Assistant</option>
-                                <option data-role-id="0" data-rate="70" value="115"
-                                    title="Clinical Practitioner">Clinical Practitioner</option>
-                                <option data-role-id="0" data-rate="48.25" value="116"
-                                    title="Forensic Nurse">Forensic Nurse</option>
-                                <option data-role-id="0" data-rate="100" value="117"
-                                    title="General Practitioner">General Practitioner</option>
-                                <option data-role-id="0" data-rate="60" value="118" title="HCA">
-                                    HCA</option>
-                                <option data-role-id="0" data-rate="30" value="119" title="Home Care">
-                                    Home Care</option>
-                                <option data-role-id="0" data-rate="80" value="120"
-                                    title="Hospital Doctor">Hospital Doctor</option>
-                                <option data-role-id="0" data-rate="80" value="122"
-                                    title="Opthalmologist">Opthalmologist</option>
-                                <option data-role-id="0" data-rate="70.75" value="123"
-                                    title="Pharmacist">Pharmacist</option>
-                                <option data-role-id="0" data-rate="45.5" value="127"
-                                    title="Practice Nurse">Practice Nurse</option>
-                                <option data-role-id="0" data-rate="45.25" value="130"
-                                    title="Receptionist">Receptionist</option>
-                                <option data-role-id="0" data-rate="50" value="131"
-                                    title="Registered General Nurse">Registered General Nurse
-                                </option>
-                                <option data-role-id="0" data-rate="40" value="133"
-                                    title="Support Worker">Support Worker</option>
+                               
                             </select>
                         </div>
                         <div class="input-group mr-1 ml-1">

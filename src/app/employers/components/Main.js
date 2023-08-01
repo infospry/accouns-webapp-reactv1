@@ -1,173 +1,27 @@
 "use client"
 import Link from "next/link";
 import Settings from "./Settings";
-
 import { useState, useEffect } from "react";
 import { asyncGet } from '@/app/services/HttpServices';
 import { endpoint_category_ddl, endpoint_employer } from "@/app/services/ApiEndPoints";
 
 function Main() {
     const [errors, setErrors] = useState({});
-    const [Emp_id, setEmp_id] = useState();
-    
-    const [formData, setFormData] = useState({
-        firstName: '',
-        lastName: '',
-        email: '',
-        mobileNumber: '',
-        companyName: '',
-        registrationNumber: '',
-        industry: '',
-        sentInvitations: false,
-    });
-
-
-
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData((prevFormData) => ({
-            ...prevFormData,
-            [name]: value,
-        }));
-    };
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        const validationErrors = {};
-        // Perform validation here
-        if (!formData.firstName.trim()) {
-            validationErrors.firstName = 'First name is required';
-        }
-
-        if (!formData.lastName.trim()) {
-            validationErrors.lastName = 'Last name is required';
-        }
-
-        if (!formData.email.trim()) {
-            validationErrors.email = 'Email is required';
-        }
-
-        // Validate mobile number format using a regular expression
-        const mobileNumberRegex = /^[0-9]{10}$/; // Assuming a 10-digit mobile number format
-        if (!formData.mobileNumber.trim()) {
-            validationErrors.mobileNumber = 'Mobile number is required';
-        } else if (!mobileNumberRegex.test(formData.mobileNumber)) {
-            validationErrors.mobileNumber = 'Invalid mobile number format. Please enter a 10-digit number.';
-        }
-
-        if (!formData.companyName.trim()) {
-            validationErrors.companyName = 'Company name is required';
-        }
-
-        if (!formData.registrationNumber.trim()) {
-            validationErrors.registrationNumber = 'Registration number is required';
-        }
-
-        if (!formData.industry.trim()) {
-            validationErrors.industry = 'Industry is required';
-        }
-
-        setErrors(validationErrors);
-
-        // If there are no errors, proceed with form submission
-        if (Object.keys(validationErrors).length === 0) {
-            // Handle form submission here (e.g., send data to server)
-            console.log('Form submitted successfully:', formData);
-        }
-    };
-    // Add role::::
-    const [formDataRole, setformDataRole] = useState({
-        roleName: '',
-        roleAlias: '',
-        defaultBreak: '',
-        defaultRate: '',
-        roleColor: '',
-    });
-
-     function viewDetails(id) {  
-        console.log(id);     
-        setEmp_id(id);        
-      };
-      var EmpID=0;
-      
-      
-      
-      function changeColor(color){
-alert('hello'+color);
-viewEmployerProfile(color);
-
-
-
-      }
-
-    const handleChangeRole = (e) => {
-        const { name, value } = e.target;
-        setformDataRole((prevformDataRole) => ({
-            ...prevformDataRole,
-            [name]: value,
-        }));
-    };
-
-    const handleSubmitRole = (e) => {
-        e.preventDefault();
-
-        const validationErrors = {};
-
-        // Validate required fields
-        if (!formDataRole.roleName.trim()) {
-            validationErrors.roleName = 'Role name is required';
-        }
-
-        if (!formDataRole.roleAlias.trim()) {
-            validationErrors.roleAlias = 'Role alias is required';
-        }
-        // if (!formDataRole.defaultBreak.trim()) {
-        //     validationErrors.defaultBreak = 'Role Default Break is required';
-        //   }
-
-        //   if (!formDataRole.defaultRate.trim()) {
-        //     validationErrors.defaultRate = 'Role defaultis required';
-        //   }
-
-
-        if (!formDataRole.roleColor.trim()) {
-            validationErrors.roleColor = 'Role color is required';
-        }
-
-        setErrors(validationErrors);
-
-        // If there are no errors, proceed with form submission
-        if (Object.keys(validationErrors).length === 0) {
-            // Handle form submission here (e.g., send data to server)
-            console.log('Form submitted successfully:', formDataRole);
-        }
-    };
-
-
-    // :::Add Role:::::::
     const [employer, setEmployer] = useState([]);
     const [employerProfilep, setEmployerProfile] = useState([]);
     const [category_ddl, setcategory_ddl] = useState([]);
+    const [Emp_id, setEmp_id] = useState();
+    
+    useEffect(() => {
+        getEmployers();
+        FillDropdown();
+    }, []);
 
-    const getEmployers = async () => {
-        try {
-            const response = await asyncGet(endpoint_employer);
-            setEmployer(response.Response[0].Employers);
-        } catch (error) {
-            console.error('Error fetching data:', error);
-        }
-    };
-
-    const FillDropdown = async () => {
-        try {
-            const response = await asyncGet(endpoint_category_ddl);
-            setcategory_ddl(response.Response[0].Industries);
-        } catch (error) {
-            console.error('Error fetching data:', error);
-        }
-    };
-
-    const viewEmployerProfile = async (id) => {
+    function viewDetails(id){
+       viewEmployerProfile(id);
+      }     
+  
+     const viewEmployerProfile = async (id) => {
         try {
             const response = await asyncGet(endpoint_employer + '/' + id);
             console.log(response.Response[0].employer_details);
@@ -175,43 +29,303 @@ viewEmployerProfile(color);
         } catch (error) {
             console.error('Error fetching data:', error);
         }
-    };
+      }; 
 
-    useEffect(() => {
-        getEmployers();
-        FillDropdown();
-    }, []);
+     const getEmployers = async () => {
+          try {
+              const response = await asyncGet(endpoint_employer);
+              setEmployer(response.Response[0].Employers);
+          } catch (error) {
+              console.error('Error fetching data:', error);
+          }
+      };
+  
+      const FillDropdown = async () => {
+          try {
+              const response = await asyncGet(endpoint_category_ddl);
+              setcategory_ddl(response.Response[0].Industries);
+          } catch (error) {
+              console.error('Error fetching data:', error);
+          }
+      };     
+  
+      const AddNewEmployer = async () => {
+          try {
+              let params = [{
+                  "first_name": "Basudev"
+                  , "last_name": "Singh"
+                  , "email": "bs@infospry.com"
+                  , "mobile": "1009876543"
+                  , "company_name": "Infos Pvt Ltd4"
+                  , "company_reg_no": "COM0000012345"
+                  , "industry": "10"
+                  , "category": "54"
+                  , "invitation_status": 1
+              }]
+  
+              const response = await asyncPost(endpoint_employer + '/registration', params);
+              console.log(response);
+  
+              if (response.Status === "OK") {
+                  getEmployers();
+                  alert(response.Response);
+  
+              }
+              else {
+                  alert(response.Error);
+              }
+          } catch (error) {
+              console.error(error, error);
+          }
+      };
 
-    const AddNewEmployer = async () => {
-        try {
-            let params = [{
-                "first_name": "Basudev"
-                , "last_name": "Singh"
-                , "email": "bs@infospry.com"
-                , "mobile": "1009876543"
-                , "company_name": "Infos Pvt Ltd4"
-                , "company_reg_no": "COM0000012345"
-                , "industry": "10"
-                , "category": "54"
-                , "invitation_status": 1
-            }]
 
-            const response = await asyncPost(endpoint_employer + '/registration', params);
-            console.log(response);
+   
+//*******************************Validation************************************ */
+//Add New Employer
+const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    mobileNumber: '',
+    companyName: '',
+    registrationNumber: '',
+    industry: '',
+    sentInvitations: false,
+});
 
-            if (response.Status === "OK") {
-                getEmployers();
-                alert(response.Response);
+const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevFormData) => ({
+        ...prevFormData,
+        [name]: value,
+    }));
+};
 
-            }
-            else {
-                alert(response.Error);
-            }
-        } catch (error) {
-            console.error(error, error);
-        }
-    };
+const handleSubmit = (e) => {
+    e.preventDefault();
+    const validationErrors = {};
+    // Perform validation here
+    if (!formData.firstName.trim()) {
+        validationErrors.firstName = 'First name is required';
+    }
 
+    if (!formData.lastName.trim()) {
+        validationErrors.lastName = 'Last name is required';
+    }
+
+    if (!formData.email.trim()) {
+        validationErrors.email = 'Email is required';
+    }
+
+    // Validate mobile number format using a regular expression
+    const mobileNumberRegex = /^[0-9]{10}$/; // Assuming a 10-digit mobile number format
+    if (!formData.mobileNumber.trim()) {
+        validationErrors.mobileNumber = 'Mobile number is required';
+    } else if (!mobileNumberRegex.test(formData.mobileNumber)) {
+        validationErrors.mobileNumber = 'Invalid mobile number format. Please enter a 10-digit number.';
+    }
+
+    if (!formData.companyName.trim()) {
+        validationErrors.companyName = 'Company name is required';
+    }
+
+    if (!formData.registrationNumber.trim()) {
+        validationErrors.registrationNumber = 'Registration number is required';
+    }
+
+    if (!formData.industry.trim()) {
+        validationErrors.industry = 'Industry is required';
+    }
+
+    setErrors(validationErrors);
+
+    // If there are no errors, proceed with form submission
+    if (Object.keys(validationErrors).length === 0) {
+        // Handle form submission here (e.g., send data to server)
+        console.log('Form submitted successfully:', formData);
+    }
+};
+
+
+// Add role::::
+const [formDataRole, setformDataRole] = useState({
+    roleName: '',
+    roleAlias: '',
+    defaultBreak: '',
+    defaultRate: '',
+    roleColor: '',
+});
+   
+const handleChangeRole = (e) => {
+    const { name, value } = e.target;
+    setformDataRole((prevformDataRole) => ({
+        ...prevformDataRole,
+        [name]: value,
+    }));
+};
+
+const handleSubmitRole = (e) => {
+    e.preventDefault();
+
+    const validationErrors = {};
+
+    // Validate required fields
+    if (!formDataRole.roleName.trim()) {
+        validationErrors.roleName = 'Role name is required';
+    }
+
+    if (!formDataRole.roleAlias.trim()) {
+        validationErrors.roleAlias = 'Role alias is required';
+    }
+    // if (!formDataRole.defaultBreak.trim()) {
+    //     validationErrors.defaultBreak = 'Role Default Break is required';
+    //   }
+
+    //   if (!formDataRole.defaultRate.trim()) {
+    //     validationErrors.defaultRate = 'Role defaultis required';
+    //   }
+
+
+    if (!formDataRole.roleColor.trim()) {
+        validationErrors.roleColor = 'Role color is required';
+    }
+
+    setErrors(validationErrors);
+
+    // If there are no errors, proceed with form submission
+    if (Object.keys(validationErrors).length === 0) {
+        // Handle form submission here (e.g., send data to server)
+        console.log('Form submitted successfully:', formDataRole);
+    }
+};
+
+
+// :::Add Shifttime:::::::
+const [formDataShiftTime, setFormDataShiftTime] = useState({
+    roleShiftTime: '0',
+    shiftTimeFrom: '',
+    shiftTimeTo: '',
+    duration: '0.0',
+    labelColorCode: '#04BE5B',
+    shiftTimingName: '',
+    // Add other form fields here
+});
+const handleInputShiftTime = (e) => {
+    const { id, value } = e.target;
+    setFormDataShiftTime((prevFormDataShiftTime) => ({
+        ...prevFormDataShiftTime,
+        [id]: value,
+    }));
+};
+
+const validateFormShiftTime = () => {
+    const newErrors = {};
+
+    // Perform form validation here
+
+    if (formDataShiftTime.roleShiftTime === '0') {
+        newErrors.roleShiftTime = 'Select Role is required';
+    }
+    if (!formDataShiftTime.shiftTimingName.trim()) {
+        newErrors.shiftTimingName = 'Shift Timing Name is required';
+    }
+    if (!formDataShiftTime.shiftTimeFrom.trim()) {
+        newErrors.shiftTimeFrom = 'Shift Time From is required';
+    }
+    if (!formDataShiftTime.shiftTimeTo.trim()) {
+        newErrors.shiftTimeTo = 'Shift Time To is required';
+    }
+    if (!formDataShiftTime.labelColorCode.trim()) {
+        newErrors.labelColorCode = 'Choose color is required';
+    }
+    // Add other validation rules for other fields
+
+    setErrors(newErrors);
+
+    // Return true if there are no errors
+    return Object.keys(newErrors).length === 0;
+};
+
+const handleSubmitShiftTime = (e) => {
+    e.preventDefault();
+    const isValid = validateFormShiftTime();
+
+    if (isValid) {
+        // Submit the form data to the server or process it as needed
+        console.log(formDataShiftTime);
+    }
+};
+
+
+ // :::Add Location:::::::
+ const [formDataLocation, setFormDataLocation] = useState({
+    locationName: '',
+    postCode: '',
+    location: '0', // Default value for the "Select Location" dropdown
+    postCode: '',
+    addressLine: '',
+    city: '',
+    county: '',
+    email: '',
+    mobile: '',
+    onsiteParking: '0',
+});
+
+const handleInputChangeLocation = (e) => {
+    const { id, value } = e.target;
+    setFormDataLocation((prevFormDataLocation) => ({
+        ...prevFormDataLocation,
+        [id]: value,
+    }));
+};
+
+const validateForm = () => {
+    const newErrors = {};
+
+    // Perform form validation here
+    if (!formDataLocation.locationName.trim()) {
+        newErrors.locationName = 'Location Name is required';
+    }
+    if (!formDataLocation.postCode.trim()) {
+        newErrors.postCode = 'PostCode is required';
+    }
+
+    if (formDataLocation.location === '0') {
+        newErrors.location = 'Please select a location';
+    }
+    if (!formDataLocation.postCode.trim()) {
+        newErrors.postCode = 'Post Code is required';
+    }
+    if (!formDataLocation.addressLine.trim()) {
+        newErrors.addressLine = 'Address line is required';
+    }
+    if (!formDataLocation.city.trim()) {
+        newErrors.city = 'City / Town is required';
+    }
+    if (!formDataLocation.county.trim()) {
+        newErrors.county = 'County is required';
+    }
+    // Add other validation rules for other fields
+
+    setErrors(newErrors);
+
+    // Return true if there are no errors
+    return Object.keys(newErrors).length === 0;
+};
+
+const handleSubmitLocation = (e) => {
+    e.preventDefault();
+    const isValid = validateForm();
+
+    if (isValid) {
+        // Submit the form data to the server or process it as needed
+        console.log(formDataLocation);
+    }
+};
+
+
+//********************End Validation ********************************** */
 
     return (
         <>
@@ -305,10 +419,10 @@ viewEmployerProfile(color);
                                                                     <th>EMP#</th>
                                                                     <th>Employer name</th>
                                                                     <th>Email / Mobile</th>
-
                                                                     <th>Sector</th>
                                                                     <th>Category</th>
                                                                     <th>Total Employee(s)</th>
+                                                                    <th>Profile completion(%)</th>
                                                                     <th>Create Date</th>
                                                                     <th>Account Status</th>
                                                                     <th>Action</th>
@@ -321,10 +435,7 @@ viewEmployerProfile(color);
                                                                         <td>
                                                                             <div className="d-flex">
 
-                                                                                <div className="float-left mt-2 col-black"> <Link href="/"
-                                                                                    className="btn-cnd-profiles-view"
-                                                                                    data-toggle="modal" data-val="107"
-                                                                                    data-sub-type="Agency"><b>{item.company_name}</b></Link> </div>
+                                                                                <div className="float-left mt-2 col-black"> <b>{item.company_name}</b> </div>
                                                                             </div>
                                                                         </td>
                                                                         <td>{item.emp_email}<br />Mob:{item.emp_mobile}</td>
@@ -334,16 +445,32 @@ viewEmployerProfile(color);
                                                                         <td className="text-center">
                                                                             {item.number_of_employees}
                                                                         </td>
+                                                                        <td className="cursor" style={{ width: "30%" }} title={item.profile_completion_in_percent} >
+                                                                        <div class="tools">
+                                                                        <div class="tools-progres">
+                                                    <div class="progres pb-0 mb-3 mt-1">
+                                                      
+                                                        <div class="prog">
+                                                            <span class="bg-lnir" style={{ width:item.profile_completion_in_percent }}></span>
+                                                        </div>
+                                                    </div>
+                                                </div>  </div>
+                                                                            
+                                                                        </td>
                                                                         <td>
                                                                             {item.create_date}
                                                                         </td>
-                                                                        <td> <span className="badge badge-success cursor"> {item.account_status} </span>
+                                                                        <td>                                                                        
+
+    {
+            item.account_status=='ACTIVE' ? <span className="cursor w-50 badge bg-success"> {item.account_status} </span> 
+            : <span className="badge  cursor w-50 badge-warning"> {item.account_status} </span>
+        } 
+                                                                      
                                                                         </td>
                                                                         <td>
-                                                                            <button value={item.emp_id}  onClick={()=>viewDetails(item.emp_id)}  className="btn btn-outline-primary btn-sm"
-                                                                                data-toggle="modal" data-target="#emp_settings"><i
-                                                                                    className="zmdi zmdi-settings"></i></button>
-        <button value={item.emp_id} onClick={e => changeColor(e.target.value)}  data-toggle="modal" data-target="#emp_settings">Color Change</button>
+                                                                          
+        <button value={item.emp_id} onClick={e => viewDetails(e.target.value)}  data-toggle="modal" data-target="#emp_settings" className="btn btn-outline-primary btn-sm"><i className="fa fa-eye"></i> View</button>
                                                                         </td>
                                                                     </tr>
                                                                 ))}
@@ -598,7 +725,7 @@ viewEmployerProfile(color);
             {/* shift Timming */}
             <div className="modal right-quater" id="ModalShiftTimming" tabIndex="-1" role="dialog" aria-labelledby="ModalShiftTimming" aria-hidden="true">
                 <div className="modal-dialog ui-draggable" role="document">
-                    <div className="modal-content hightauto">
+                    <form onSubmit={handleSubmitShiftTime} className="modal-content hightauto">
                         <div className="modal-header ui-draggable-handle">
                             <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">×</span>
@@ -612,16 +739,23 @@ viewEmployerProfile(color);
                                 <div className="col-lg-12">
                                     <div className="form-group mt-3">
                                         <span className="col-blue">Role<span className="col-red">*</span></span>
-
                                         <div className="input-group">
-                                            <select id="ddlRoleCustom" className="form-control clsRoleList">
-                                                <option value="" selected>Select Role</option>
+                                            <select
+                                                id="roleShiftTime"
+                                                className="form-control clsRoleList"
+                                                value={formDataShiftTime.roleShiftTime}
+                                                onChange={handleInputShiftTime}
+                                            >
+
                                                 <option value="0">Default</option>
-                                                <option data-role-id="0" data-rate="50" value="111" title="Advance Nurse Practitioner">Advance Nurse Practitioner</option>
+                                                <option data-role-id="0" data-rate="50" value="111" title="Advance Nurse Practitioner">Advance Nurse
+                                                    Practitioner</option>
                                                 <option data-role-id="0" data-rate="60" value="114" title="Care Assistant">Care Assistant</option>
-                                                <option data-role-id="0" data-rate="70" value="115" title="Clinical Practitioner">Clinical Practitioner</option>
+                                                <option data-role-id="0" data-rate="70" value="115" title="Clinical Practitioner">Clinical Practitioner
+                                                </option>
                                                 <option data-role-id="0" data-rate="48.25" value="116" title="Forensic Nurse">Forensic Nurse</option>
-                                                <option data-role-id="0" data-rate="100" value="117" title="General Practitioner">General Practitioner</option>
+                                                <option data-role-id="0" data-rate="100" value="117" title="General Practitioner">General Practitioner
+                                                </option>
                                                 <option data-role-id="0" data-rate="60" value="118" title="HCA">HCA</option>
                                                 <option data-role-id="0" data-rate="30" value="119" title="Home Care">Home Care</option>
                                                 <option data-role-id="0" data-rate="80" value="120" title="Hospital Doctor">Hospital Doctor</option>
@@ -629,32 +763,52 @@ viewEmployerProfile(color);
                                                 <option data-role-id="0" data-rate="70.75" value="123" title="Pharmacist">Pharmacist</option>
                                                 <option data-role-id="0" data-rate="45.5" value="127" title="Practice Nurse">Practice Nurse</option>
                                                 <option data-role-id="0" data-rate="45.25" value="130" title="Receptionist">Receptionist</option>
-                                                <option data-role-id="0" data-rate="50" value="131" title="Registered General Nurse">Registered General Nurse</option>
+                                                <option data-role-id="0" data-rate="50" value="131" title="Registered General Nurse">Registered General
+                                                    Nurse</option>
                                                 <option data-role-id="0" data-rate="40" value="133" title="Support Worker">Support Worker</option>
                                             </select>
                                             <a href="https://empapp.thestaffport.com/Settings/JobRoles" className="btn btn-outline-primary cursor ml-1" data-tippy="" data-original-title="Add Role">
                                                 <i className="ti ti-plus"></i>
                                             </a>
                                         </div>
+                                        {errors.roleShiftTime && <span className="error">{errors.roleShiftTime}</span>}
                                     </div>
 
+                                    <div className="form-group mt-3">
+                                        <span className="col-blue">Shift Timings Name<span className="col-red">*</span></span>
+
+                                        <input
+                                            id="shiftTimingName"
+                                            className="form-control"
+                                            type="text"
+                                            placeholder="Enter shift timings name"
+                                            value={formDataShiftTime.shiftTimingName}
+                                            onChange={handleInputShiftTime}
+                                        />
+                                        {errors.shiftTimingName && <span className="error">{errors.shiftTimingName}</span>}
+
+                                    </div>
 
                                     <div className="form-group mt-3">
                                         <span className="col-blue">Shift Time (from-to)<span className="col-red">*</span></span>
-                                        <div className="col-sm-12 row">
-                                            <div className="row col-sm-6">
+                                        <div className="row">
+                                            <div className="col-sm-6">
                                                 <div className="input-group masked-input unset mb-1">
                                                     <div className="input-group-prepend">
                                                         <span className="input-group-text"><i className="zmdi zmdi-time"></i></span>
                                                     </div>
+
                                                     <input
                                                         type="text"
-                                                        id="txtShiftTimeFrom"
+                                                        id="shiftTimeFrom"
                                                         className="form-control time24 w-90 TimeFrom"
                                                         placeholder="hh:mm"
-                                                        defaultValue="09:00"
+                                                        value={formDataShiftTime.shiftTimeFrom}
+                                                        onChange={handleInputShiftTime}
                                                     />
+
                                                 </div>
+                                                {errors.shiftTimeFrom && <span className="error">{errors.shiftTimeFrom}</span>}
                                             </div>
                                             <div className="col-sm-6">
                                                 <div className="input-group masked-input unset mb-1">
@@ -663,52 +817,60 @@ viewEmployerProfile(color);
                                                     </div>
                                                     <input
                                                         type="text"
-                                                        id="txtShiftTimeTo"
+                                                        id="shiftTimeTo"
                                                         className="form-control time24 w-90 TimeTo"
                                                         placeholder="hh:mm"
-                                                        defaultValue="17:00"
+                                                        value={formDataShiftTime.shiftTimeTo}
+                                                        onChange={handleInputShiftTime}
                                                     />
                                                 </div>
+                                                {errors.shiftTimeTo && <span className="error">{errors.shiftTimeTo}</span>}
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="form-group mt-3 dd_none">
+                                    <div className="form-group mt-3 dd_none" >
                                         <span className="col-blue">Duration</span>
+
                                         <input
                                             id="txtDuration"
                                             className="form-control txtDuration"
                                             type="text"
                                             disabled
                                             placeholder="0.0"
+                                            value={formDataShiftTime.duration}
+                                            onChange={handleInputShiftTime}
                                         />
                                     </div>
                                     <div className="form-group mt-3">
                                         <span className="col-blue">Select Shift Color<span className="col-red">*</span></span>
+
                                         <input
-                                            id="txtLabelColorCode"
+                                            id="labelColorCode"
                                             className="form-control"
                                             maxLength="7"
                                             type="text"
                                             placeholder="Select color"
-                                            defaultValue="#04BE5B"
+                                            value={formDataShiftTime.labelColorCode}
+                                            onChange={handleInputShiftTime}
                                         />
-                                        <div className="mt-3">
+                                        {errors.labelColorCode && <span className="error">{errors.labelColorCode}</span>}
 
+                                        
+                                        <div class="mt-3">
+                                          
                                         </div>
                                     </div>
-                                    <div className="form-group mt-3">
-                                        <span className="col-blue">Shift Timings Name<span className="col-red">*</span></span>
-                                        <input id="txtShiftTimmingName" className="form-control" type="text" placeholder="Enter shift timings name" value="All Day (Full Day)" />
-                                    </div>
-                                    {/* Add other form fields here */}
+
+
                                 </div>
                             </div>
                         </div>
                         <div className="modal-footer position_relatie">
-                            <a className="btn btn-primary ClsRotaShiftTimming" id="btnRotaShiftTimming" data-id="40" data-action="insertupdate">Update</a>
-                            <a className="btn btn-outline-danger" data-dismiss="modal">Cancel</a>
+                            <button type="submit" className="btn btn-primary ClsRotaShiftTimming" id="btnRotaShiftTimming" data-id="40" data-action="insertupdate">
+                                Update
+                            </button>                            <a className="btn btn-outline-danger" data-dismiss="modal">Cancel</a>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
             {/* Add New */}
@@ -885,6 +1047,158 @@ viewEmployerProfile(color);
                     </form>
                 </div>
             </div>
+            {/* Add New Location */}
+            <div className="modal right-quater" id="ModalProfileLocation" tabIndex="-1" role="dialog" aria-labelledby="myModalLabel2">
+                <div className="modal-dialog" role="document">
+                    <form onSubmit={handleSubmitLocation} className="modal-content">
+                        <div className="modal-header">
+                            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                            <div className="row">
+                                <h4 className="modal-title" id="myModalLabel2">
+                                    <b>LOCATION</b>
+                                </h4>
+                            </div>
+                        </div>
+                        <div className="modal-body pb-0 pl-0">
+
+                            <div className="row">
+                                <div className="col-md-12 col-sm-12 pr-0 formbg bdr-r h-100prnt">
+                                    <div className="col-md-12">
+                                        <div className="form-group mb-2">
+                                            <label htmlFor="txtEmpLocationName">Location Name<span>*</span></label>
+                                            <input
+                                                id="txtEmpLocationName"
+                                                type="text"
+                                                className="form-control"
+                                                placeholder="Enter Location Name"
+                                                value={formDataLocation.locationName}
+                                                onChange={handleInputChangeLocation}
+                                            />
+                                            {errors.locationName && <span className="error">{errors.locationName}</span>}
+                                        </div>
+                                    </div>
+                                    <div className="col-md-12">
+                                        <div className="form-group mb-1">
+                                            <label>Post Code<span>*</span></label>
+                                            <div className="input-group">
+
+                                                <input
+                                                    id="txtEmpprofilePostcode"
+                                                    type="text"
+                                                    className="form-control mr-1 txtPostcode"
+                                                    placeholder="Enter Postcode"
+                                                    value={formDataLocation.postCode}
+                                                    onChange={handleInputChangeLocation}
+                                                />
+
+                                                <a id="btnEmpProfileFindAddress" className="btn btn-outline-primary clk GetAddress2"><i className="zmdi zmdi-pin mr-1"></i>Find Address</a>
+                                                <span id="spannotfound2" className="spannotfound2"></span>
+                                            </div>
+                                            {errors.postCode && <span className="error">{errors.postCode}</span>}
+                                        </div>
+                                    </div>
+                                    <div className="col-md-12">
+                                        <div className="form-group mb-2 divselectAddres2">
+                                            <label>Select Location <span>*</span></label>
+                                            <select
+                                                className="form-control"
+                                                id="location"
+                                                value={formDataLocation.location}
+                                                onChange={handleInputChangeLocation}
+                                            >
+                                                <option value="0">Select Location</option><option value="7" title="85 Aston Street  ,  Birmingham,  West Midlands B4 7DA">Birmingham</option><option value="8" title="100 Kettlebrook Road  ,  Tamworth,  Staffordshire B771AE">Tamworth</option><option value="9" title="10 Measham Grove  ,  Birmingham,  West Midlands B261HU">Solihull</option><option value="12" title="3 Burcot Lane  ,  Bromsgrove,  Worcestershire B601AF">Bromsgrove</option><option value="14" title="Waterstones Booksellers Ltd  Hustlergate,  Bradford,  West Yorkshire BD1 1BL">Bradford</option><option value="16" title="Flat 102  Beckford House,  Bristol,  Gloucestershire BS1 3FD">Bristol</option><option value="10" title="Aberdeen City Council  Finance Department  Town House,  Aberdeen,  Aberdeenshire AB10 1AH">Aberdeen</option><option value="13" title="Mappleborough Green Village Hall  Birmingham Road,  Studley,  Warwickshire B807BT">Redditch</option><option value="15" title="Flat 105  The Pack Horse,  Bolton,  Lancashire BL11AS">Bolton</option><option value="11" title="1 Brodiach Cottages  ,  Aberdeen,  Aberdeenshire AB15 8QS">Westhill</option>
+
+                                                {/* Add other options based on your data */}
+                                            </select>
+                                            {errors.location && <span className="error">{errors.location}</span>}
+
+                                        </div>
+                                    </div>
+                                    <div className="col-md-12">
+                                        <div className="divaddress2">
+                                            <div className="form-group mb-2">
+                                                <label>Address line <span>*</span></label>
+                                                <input
+                                                    id="addressLine"
+                                                    type="text"
+                                                    className="form-control"
+                                                    placeholder="Enter Address"
+                                                    value={formDataLocation.addressLine}
+                                                    onChange={handleInputChangeLocation}
+                                                />
+                                                {errors.addressLine && <span className="error">{errors.addressLine}</span>}            </div>
+                                            <div className="form-group mb-2">
+                                                <label>City / Town <span>*</span></label>
+                                                <input
+                                                    id="city"
+                                                    type="text"
+                                                    className="form-control"
+                                                    placeholder="Enter City / Town"
+                                                    value={formDataLocation.city}
+                                                    onChange={handleInputChangeLocation}
+                                                />
+                                                {errors.city && <span className="error">{errors.city}</span>}
+                                            </div>
+                                            <div className="form-group mb-2">
+                                                <label>County <span>*</span></label>
+                                                <input
+                                                    id="county"
+                                                    type="text"
+                                                    className="form-control"
+                                                    placeholder="Enter County"
+                                                    value={formDataLocation.county}
+                                                    onChange={handleInputChangeLocation}
+                                                />
+                                                {errors.county && <span className="error">{errors.county}</span>}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="col-md-12">
+                                        <div className="form-group mb-2">
+                                            <label>Email</label>
+                                            <input id="txtEmpProfileEmail" type="text" className="form-control" placeholder="Enter Email Id" />
+                                        </div>
+                                    </div>
+                                    <div className="col-md-12">
+                                        <div className="form-group mb-2">
+                                            <label>Mobile No.</label>
+                                            <input id="txtEmpProfileMobile" type="text" className="form-control ChkMobile" maxLength="10" placeholder="Enter Mobile No." />
+                                        </div>
+                                    </div>
+                                    <div className="col-md-6">
+                                        <div className="form-group mb-2">
+                                            <label>Onsite Parking </label>
+                                            <div className="btn-group">
+                                                <a id="btnAvailable" className="btn btn-outline-primary btn-sm Clsbtn" data-action="Parking" data-type="available" data-status="1">Available</a>
+                                                <a id="btnNA" className="btn btn-primary btn-sm Clsbtn" data-action="Parking" data-type="not" data-status="0">Not Available</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div className="modal-footer">
+                            <div className="row">
+                                <div className="col-md-12">
+                                    <div className="text-center">
+                                        <button type="submit" className="btn btn-primary ClsEmpProfile" data-action="insertupdate">
+                                            Save
+                                        </button>
+                                        <a className="btn btn-outline-danger" data-dismiss="modal">
+                                            <i className="zmdi zmdi-close mr-1"></i>Close
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+
         </>
     )
 
