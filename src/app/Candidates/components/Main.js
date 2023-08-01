@@ -16,7 +16,7 @@ import profile from '@/app/images/profile.jpg';
 
 import { useState,useEffect } from 'react';
 import { asyncGet } from '@/app/services/HttpServices';
-import { endpoint_candidate, endpoint_employer_ddl } from '@/app/services/ApiEndPoints';
+import { endpoint_agency_role, endpoint_candidate, endpoint_employer, endpoint_employer_ddl } from '@/app/services/ApiEndPoints';
 
 
 
@@ -56,6 +56,37 @@ function Main() {
         }, []);
 
 
+        const [empAgencyRoles, setAgencyRoles] = useState([]);
+      
+        useEffect(() => {
+          async function fetchData() {
+            try {
+              const response = await asyncGet(endpoint_agency_role);
+              setAgencyRoles(response.Response[0].AgencyRoles);
+            } catch (error) {
+              console.error('Error fetching data:', error);
+            }
+          }
+      
+          fetchData();
+        }, []);
+
+        const [empLocations, setEmployerLocations] = useState([]);
+
+        useEffect(() => {
+            async function fetchData() {
+                try {
+                    const response = await asyncGet(endpoint_employer + '/14/location');
+                    setEmployerLocations(response.Response[0].EmployerLocations);
+                } catch (error) {
+                    console.error('Error fetching data:', error);
+                }
+            }
+    
+            fetchData();
+        }, []);
+
+        
         
     return (
         <>
@@ -99,36 +130,9 @@ function Main() {
                                                             </div>
                                                             <select className="form-control" id="ddlEmployeeLocations">
                                                                 <option value="0" selected="selected">All Locations</option>
-                                                                <option value="7"
-                                                                    title="85 Aston Street  ,  Birmingham,  West Midlands B4 7DA">
-                                                                    Birmingham</option>
-                                                                <option value="8"
-                                                                    title="100 Kettlebrook Road  ,  Tamworth,  Staffordshire B771AE">
-                                                                    Tamworth</option>
-                                                                <option value="9"
-                                                                    title="10 Measham Grove  ,  Birmingham,  West Midlands B261HU">
-                                                                    Solihull</option>
-                                                                <option value="12"
-                                                                    title="3 Burcot Lane  ,  Bromsgrove,  Worcestershire B601AF">
-                                                                    Bromsgrove</option>
-                                                                <option value="14"
-                                                                    title="Waterstones Booksellers Ltd  Hustlergate,  Bradford,  West Yorkshire BD1 1BL">
-                                                                    Bradford</option>
-                                                                <option value="16"
-                                                                    title="Flat 102  Beckford House,  Bristol,  Gloucestershire BS1 3FD">
-                                                                    Bristol</option>
-                                                                <option value="10"
-                                                                    title="Aberdeen City Council  Finance Department  Town House,  Aberdeen,  Aberdeenshire AB10 1AH">
-                                                                    Aberdeen</option>
-                                                                <option value="13"
-                                                                    title="Mappleborough Green Village Hall  Birmingham Road,  Studley,  Warwickshire B807BT">
-                                                                    Redditch</option>
-                                                                <option value="15"
-                                                                    title="Flat 105  The Pack Horse,  Bolton,  Lancashire BL11AS">
-                                                                    Bolton</option>
-                                                                <option value="11"
-                                                                    title="1 Brodiach Cottages  ,  Aberdeen,  Aberdeenshire AB15 8QS">
-                                                                    Westhill</option>
+                                                                {empLocations.map((item) => (
+                                                                <option value={item.emp_location_id}>{item.emp_location_name}</option>
+                                                                ))}
                                                             </select>
                                                         </div>
                                                         <div className="input-group mr-1">
@@ -136,36 +140,12 @@ function Main() {
                                                             <select className="form-control" id="ddlEmployeeRoles">
                                                                 <option data-role-id="0" data-rate="0" value="0"
                                                                     selected="selected">Select Role</option>
-                                                                <option data-role-id="0" data-rate="50" value="111"
-                                                                    title="Advance Nurse Practitioner">Advance Nurse
-                                                                    Practitioner</option>
-                                                                <option data-role-id="0" data-rate="60" value="114"
-                                                                    title="Care Assistant">Care Assistant</option>
-                                                                <option data-role-id="0" data-rate="70" value="115"
-                                                                    title="Clinical Practitioner">Clinical Practitioner</option>
-                                                                <option data-role-id="0" data-rate="48.25" value="116"
-                                                                    title="Forensic Nurse">Forensic Nurse</option>
-                                                                <option data-role-id="0" data-rate="100" value="117"
-                                                                    title="General Practitioner">General Practitioner</option>
-                                                                <option data-role-id="0" data-rate="60" value="118" title="HCA">
-                                                                    HCA</option>
-                                                                <option data-role-id="0" data-rate="30" value="119"
-                                                                    title="Home Care">Home Care</option>
-                                                                <option data-role-id="0" data-rate="80" value="120"
-                                                                    title="Hospital Doctor">Hospital Doctor</option>
-                                                                <option data-role-id="0" data-rate="80" value="122"
-                                                                    title="Opthalmologist">Opthalmologist</option>
-                                                                <option data-role-id="0" data-rate="70.75" value="123"
-                                                                    title="Pharmacist">Pharmacist</option>
-                                                                <option data-role-id="0" data-rate="45.5" value="127"
-                                                                    title="Practice Nurse">Practice Nurse</option>
-                                                                <option data-role-id="0" data-rate="45.25" value="130"
-                                                                    title="Receptionist">Receptionist</option>
-                                                                <option data-role-id="0" data-rate="50" value="131"
-                                                                    title="Registered General Nurse">Registered General Nurse
-                                                                </option>
-                                                                <option data-role-id="0" data-rate="40" value="133"
-                                                                    title="Support Worker">Support Worker</option>
+                                                                {empAgencyRoles.map((item) => (  
+                                                            <option value={item.id}>
+                                                                {item.name}
+                                                            </option>
+                                                            ))} 
+                                                                
                                                             </select>
                                                         </div>
 
@@ -350,26 +330,16 @@ function Main() {
                         <div className="modal-body">
 
                             {/* <!---***************************Internal Employee**************************--> */}
-                            <div id="divInternalEmployee" className="row">
+                            <div className="row">
                                 <div className="col-md-12 col-sm-12 p-3">
                                     <div className="row">
-                                        <div id="divEmployerAgency" className="col-md-12" style={{ display: "none" }}>
-                                            <div className="form-group">
-                                                <label>Agency<span>*</span></label>
-                                                <div className="input-group">
-                                                    <select id="ddlAgencies" name="ddlAgencies" className="form-control"></select>
-                                                    <a id="btnAddNewOrg" data-toggle="modal" data-target="#AddOrgModal"
-                                                        className="btn btn-outline-primary cursor ml-1" data-tippy=""
-                                                        data-original-title="Add Agency"><i className="ti ti-plus"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="form-group">
-                                            <div className="col-sm-12">
+                                        
+                                        
+                                            <div className="col-sm-12 form-group">
                                                 <div className="row">
                                                     <div className="col-sm-3">
                                                         <label>Title<span>*</span></label>
-                                                        <select id="ddlEmpTitle" className="form-control">
+                                                        <select id="ddlEmpTitle" className="form-control"style={{ minWidth: '78px' }}>
                                                             <option value="0">Title</option>
                                                             <option value="Dr">Dr.</option>
                                                             <option value="Mr">Mr.</option>
@@ -389,7 +359,7 @@ function Main() {
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        
                                         <div className="col-md-12">
                                             <div className="form-group">
                                                 <label>Email Id <span>*</span></label>
@@ -404,46 +374,21 @@ function Main() {
                                                     maxlength="11" placeholder="Mobile Number" />
                                             </div>
                                         </div>
-                                        <div className="col-md-12" style={{ display: "none" }}>
-                                            <div className="form-group">
-                                                <label>Weekly Hours / Salary<span>*</span></label>
-                                                <div className="input-group">
-                                                    <div className="input-group-prepend"><span className="input-group-text"><i
-                                                        className="zmdi zmdi-time"></i></span></div>
-                                                    <input id="txtCndWeeklyHours" name="txtweeklyhours0"
-                                                        placeholder="Weekly Hours" value="0"
-                                                        className="form-control numeric clearText mr-1" type="text" maxlength="11" />
-                                                    <div className="input-group-prepend"><span className="input-group-text"><i
-                                                        className="zmdi zmdi-pond">£</i></span></div>
-                                                    <input id="txtCndSalary" name="txtsalary0" placeholder="Salary" value="0"
-                                                        className="form-control numeric clearText txtsalary" type="text"
-                                                        maxlength="11" />
-                                                </div>
-                                            </div>
-                                        </div>
+                                       
                                         <div className="col-md-12">
                                             <div className="form-group">
                                                 <label>Role<span>*</span></label>
                                                 <div className="input-group">
-                                                    <select id="ddlCndJobRole" name="ddljobtitle0" className="form-control">
-                                                        <option value="0">Select Role</option>
-                                                        <option style={{ color: "#000" }} value="111">Advance Nurse Practitioner
-                                                        </option>
-                                                        <option style={{ color: "#000" }} value="114">Care Assistant</option>
-                                                        <option style={{ color: "#000" }} value="115">Clinical Practitioner</option>
-                                                        <option style={{ color: "#000" }} value="116">Forensic Nurse</option>
-                                                        <option style={{ color: "#000" }} value="117">General Practitioner</option>
-                                                        <option style={{ color: "#000" }} value="118">HCA</option>
-                                                        <option style={{ color: "#000" }} value="119">Home Care</option>
-                                                        <option style={{ color: "#000" }} value="120">Hospital Doctor</option>
-                                                        <option style={{ color: "#000" }} value="122">Opthalmologist</option>
-                                                        <option style={{ color: "#000" }} value="123">Pharmacist</option>
-                                                        <option style={{ color: "#000" }} value="127">Practice Nurse</option>
-                                                        <option style={{ color: "#000" }} value="130">Receptionist</option>
-                                                        <option style={{ color: "#000" }} value="131">Registered General Nurse
-                                                        </option>
-                                                        <option style={{ color: "#000" }} value="133">Support Worker</option>
-                                                    </select>
+                                                <select className="form-control" id="ddlEmployeeRoles">
+                                                                <option data-role-id="0" data-rate="0" value="0"
+                                                                    selected="selected">Select Role</option>
+                                                                {empAgencyRoles.map((item) => (  
+                                                            <option value={item.id}>
+                                                                {item.name}
+                                                            </option>
+                                                            ))} 
+                                                                
+                                                            </select>
                                                     <Link href="/Settings/JobRoles" className="btn btn-outline-primary cursor ml-1"
                                                         data-tippy="" data-original-title="Add Role"><i
                                                             className="ti ti-plus"></i></Link>
@@ -519,251 +464,7 @@ function Main() {
 
                             {/* <!---***************************Agency User**************************--> */}
 
-                            <div id="divAgencyEmployee" className="col-md-12 col-sm-12" style={{ display: "none" }}>
-
-                                <div className="form-group">
-                                    <div className="col-sm-12">
-                                        <div className="row">
-                                            <div className="col-sm-2">
-                                                <label>Title<span>*</span></label>
-                                                <select id="ddltitle_ss" className="form-control">
-                                                    <option value="0">Title</option>
-                                                    <option value="Dr">Dr.</option>
-                                                    <option value="Mr">Mr.</option>
-                                                    <option value="Mrs">Mrs.</option>
-                                                    <option value="Miss">Miss.</option>
-                                                </select>
-                                            </div>
-                                            <div className="col-sm-5">
-                                                <label>First Name<span>*</span></label>
-                                                <input id="txtFirstName" type="text" className="form-control height-40 w180"
-                                                    placeholder="Enter First Name" />
-                                            </div>
-                                            <div className="col-sm-5">
-                                                <label>Last Name<span></span></label>
-                                                <input id="txtLastName" type="text" className="form-control height-40"
-                                                    placeholder="Enter Last Name" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="form-group" style={{ display: "none" }}>
-                                    <div className="col-sm-12">
-                                        <div className="row">
-                                            <div className="col-sm-8">
-                                                <label>GMC/RGN/NMC</label>
-                                                <input id="txtGmcNumber" type="text" className="form-control height-40"
-                                                    placeholder="Enter GMC/RGN/NMC/RegNo" maxlength="9" />
-                                                <span id="msgPractice" style={{ color: "#ff0000" }} ></span>
-                                            </div>
-                                            <div className="col-sm-2">
-                                                <label></label>
-                                                <a id="verifynumber" className="btn btn-primary"><i
-                                                    className="zmdi zmdi-search">&nbsp;</i>Verify</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="form-group">
-                                    <div className="col-sm-12">
-                                        <label>Email<span>*</span></label>
-                                        <input id="txtCndEmail" type="email" className="form-control height-40"
-                                            placeholder="Enter Email" />
-                                    </div>
-                                </div>
-                                <div className="form-group">
-                                    <div className="col-sm-12">
-                                        <label>Mobile Number<span>*</span></label>
-                                        <input id="txtCndMobileNumber" type="text" className="form-control height-40"
-                                            oninput="InputNumber(event); return false;"
-                                            placeholder="Enter Mobile Number for verification purposes" maxlength="11" />
-                                    </div>
-                                </div>
-
-
-                                <div className="form-group">
-                                    <div className="col-sm-12">
-                                        <label>Role<span>*</span></label>
-                                        <select id="ddlRole" className="form-control"></select>
-
-                                    </div>
-                                </div>
-                                <div style={{ display: "none" }}>
-                                    <div className="form-group">
-                                        <div className="col-sm-12">
-                                            <div className="row">
-                                                <div className="col-sm-8">
-                                                    <label>Postcode<span>*</span></label>
-                                                    <input id="txtPostCode_ss" maxlength="12" name="postalcode" type="text"
-                                                        className="form-control height-40" placeholder="Enter Postcode" />
-                                                    <span id="spannotfound2_ss" style={{ color: "#ff0000" }}></span>
-                                                </div>
-                                                <div className="col-sm-2">
-                                                    <label></label>
-                                                    <a id="btnFindCndidatePostcode" className="btn btn-primary"><i
-                                                        className="zmdi zmdi-search">&nbsp;</i>Find Address</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="form-group divselectAddres2" style={{ display: "none" }}>
-                                        <div className="col-sm-12">
-                                            <select id="selectList2_ss" className="form-control height-40"></select>
-                                        </div>
-                                    </div>
-                                    <div className="divaddress2_ss" style={{ display: "none" }}>
-                                        <div className="form-group">
-                                            <div className="col-sm-12">
-                                                <input id="txtaddressline2_ss" type="text" className="form-control height-40"
-                                                    placeholder="Enter Address" />
-                                            </div>
-                                        </div>
-                                        <div className="form-group">
-                                            <div className="col-sm-12">
-                                                <input id="txtCndCity_ss" type="text" className="form-control height-40"
-                                                    placeholder="Enter Town" />
-                                            </div>
-                                        </div>
-                                        <div className="form-group">
-                                            <div className="col-sm-12">
-                                                <input id="tctCndCounty_ss" type="text" className="form-control height-40"
-                                                    placeholder="Enter County" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="form-group">
-                                        <div className="col-sm-12">
-                                            <div className="row">
-                                                <div className="col-sm-4">
-                                                    <label for="" className="f-12 control-label">GENDER</label>
-                                                </div>
-                                                <div className="col-sm-3 rdo">
-                                                    <input type="radio" id="male" name="Gender" value="M" checked="checked" />
-                                                    <label for="male" className="col-black">&nbsp;Male</label>
-                                                </div>
-                                                <div className="col-sm-3 rdo">
-                                                    <input type="radio" id="female" name="Gender" value="F" />
-                                                    <label for="female" className="col-black"><span></span>Female</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="form-group">
-                                        <div className="col-sm-12">
-                                            <div className="row col-sm-12">
-                                                <label for="" className="f-12 control-label">Send Notification to Candidate
-                                                    via</label>
-                                            </div>
-                                            <div className="col-sm-12 row">
-                                                <div className="checkbox inlineblock m-r-20">
-                                                    <input type="checkbox" id="ChkCndSignupEMAIL" className="with-gap" />
-                                                    <label for="ChkCndSignupEMAIL" className="col-black">Email</label>
-                                                </div>
-                                                <div className="checkbox inlineblock">
-                                                    <input type="checkbox" id="ChkCndSignupSMS" className="with-gap" />
-                                                    <label for="ChkCndSignupSMS" className="col-black">SMS</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="form-group">
-                                        <div className="col-sm-12">
-                                            <div className="row">
-                                                <div className="col-sm-12">
-                                                    <div className="row">
-                                                        <div className="col-sm-4 pr-0 font-bold">
-                                                            <label className="f-12 control-label">Referred user:</label>
-                                                        </div>
-                                                        <div className="col-sm-4 rdo">
-                                                            <input type="radio" id="ReferredByInternal" name="ReferredBy"
-                                                                className="clsReferredBy" value="I" checked="checked" />
-                                                            <label for="ReferredByInternal"
-                                                                className="col-black">&nbsp;Internal</label>
-                                                        </div>
-                                                        <div className="col-sm-4 rdo">
-                                                            <input type="radio" id="ReferredByExternal" name="ReferredBy"
-                                                                className="clsReferredBy" value="E" />
-                                                            <label for="ReferredByExternal"
-                                                                className="col-black"><span></span>External</label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div id="divInternalRefUser" className="col-sm-12 pt-2 pb-4">
-                                                    <label className="f-12 control-label">Search Internal reference</label>
-                                                    <div className="input-group" data-toggle="tooltip" title=""
-                                                        data-original-title="Referred By Candidate">
-                                                        <input id="txtreferredby"
-                                                            className="form-control ui-autocomplete-input txtreferredby" type="text"
-                                                            placeholder="Enter referred candidate name" data-candidateid="0" />
-                                                        <input id="hfcndid" type="hidden" value="0" />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="form-group">
-                                        <div id="divExternalRefUser" style={{ display: "none" }} className="col-sm-12 pt-2 pb-4">
-                                            <label className="f-12 control-label">Search external reference</label>
-                                            <div className="input-group" data-toggle="tooltip" title=""
-                                                data-original-title="Referred By Candidate">
-                                                <input id="txtreferredbyExt"
-                                                    className="form-control ui-autocomplete-input txtreferredbyExt" type="text"
-                                                    placeholder="Enter referred name" data-candidateid="0" />
-                                                <input id="hfcndidExt" type="hidden" value="0" />
-                                            </div>
-                                            <div className="pt-2" style={{ fontSize: "12px" }}>If external reference is not found, then
-                                                click to <a id="btnaddReference" className="btn btn-xs col-blue">add a new
-                                                    reference</a></div>
-                                        </div>
-                                        <div id="divAddExternalRefUser" style={{ display: "none" }}>
-                                            <div className="col-sm-12">
-                                                <div className="row">
-                                                    <div className="col-sm-2">
-                                                        <label>Title<span>*</span></label>
-                                                        <select id="ddltitleRef" className="form-control">
-                                                            <option value="0">Title</option>
-                                                            <option value="Dr">Dr.</option>
-                                                            <option value="Mr">Mr.</option>
-                                                            <option value="Mrs">Mrs.</option>
-                                                            <option value="Miss">Miss.</option>
-                                                        </select>
-                                                    </div>
-                                                    <div className="col-sm-5">
-                                                        <label>First Name<span>*</span></label>
-                                                        <input id="txtFirstNameRef" type="text"
-                                                            className="form-control height-40 w180" placeholder="Enter First Name" />
-                                                    </div>
-                                                    <div className="col-sm-5">
-                                                        <label>Last Name</label>
-                                                        <input id="txtLastNameRef" type="text" className="form-control height-40"
-                                                            placeholder="Enter Last Name" />
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div className="col-sm-12 pt-2">
-                                                <label>Ref Email</label>
-                                                <input id="txtEmailRef" type="email" className="form-control height-40"
-                                                    placeholder="Enter Ref Email" />
-                                            </div>
-
-                                            <div className="col-sm-12 pt-2">
-                                                <label>Ref Mobile Number</label>
-                                                <input id="txtCndMobileNumberRef" type="text" className="form-control height-40"
-                                                    oninput="InputNumber(event); return false;"
-                                                    placeholder="Enter ref mobile number" maxlength="11" />
-                                            </div>
-                                            <div className="col-sm-12"><a id="btnCancelReference"
-                                                className="btn btn-xs col-blue">Cancel</a></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="modal-footer mail-footer text-center" >
-                                    <a id="BtnCandidateRegistration" className="btn btn-primary BtnCandidateRegistration">Register
-                                        Now</a>
-                                    <a data-dismiss="modal" className="btn btn-outline-danger">Cancel</a>
-                                </div>
-                            </div>
+                           
                         </div>
                         <div className="modal-footer mail-footer text-center" >
                             <a id="btnNewEmpSubmit" className="btn btn-primary">Register Now</a>
