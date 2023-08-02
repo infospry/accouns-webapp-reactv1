@@ -1,9 +1,13 @@
 
 
-window.onload = function() {
-    document.getElementById('bdy').className = 'ls-toggle-menu';
-  };
+// window.onload = function() {
+//     document.getElementById('bdy').className = 'ls-toggle-menu';
+//   };
+// document.addEventListener('DOMContentLoaded', function() {
+//     document.body.classList.add('ls-toggle-menu');
+//   });
 
+  
 function showhide() {
     if (document.getElementById('divLogin').style.display == 'none') {
       document.getElementById('divLogin').style.display = 'block';
