@@ -27,7 +27,7 @@ function Main() {
     });    
     
     useEffect(() => {
-        getEmployers();
+        getEmployers('');
         FillDropdown();
     }, []);
 
@@ -45,10 +45,10 @@ function Main() {
         }
       }; 
 
-     const getEmployers = async () => {
+     const getEmployers = async (Status) => {
           try {
-        //  alert('hi'+accountStatus);
-              const response = await asyncGet(endpoint_employer);
+        console.log(Status);
+              const response = await asyncGet(endpoint_employer+'?status='+Status+'&serachkey=&offset=0&next=10');
               setEmployer(response.Response[0].Employers);
           } catch (error) {
               console.error('Error fetching data:', error);
@@ -77,7 +77,7 @@ function Main() {
   
               if (response.Status === "OK") {
 
-                  getEmployers();
+                  getEmployers('');
                   alert(response.Response);
                   reSetForm();
   
@@ -100,9 +100,10 @@ function Main() {
 //*******************************Validation************************************ */
 //Add New Employer
 
-function handleTabClick(tab_status){        
-    setAccountStatus(tab_status);
-    getEmployers();
+function handleTabClick(tab_status){   
+    // alert(tab_status);     
+    // setAccountStatus(tab_status);
+    getEmployers(tab_status);
    } 
 
 const handleChange = (e) => {
