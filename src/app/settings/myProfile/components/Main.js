@@ -1,3 +1,4 @@
+"use client"
 import React from 'react'
 import LeftSidebar from '../../components/LeftSidebar';
 import GeneralInfo from './GeneralInfo';
@@ -6,7 +7,27 @@ import Invoice from './Invoice';
 import Image from 'next/image'
 import profile from '@/app/images/profile.jpg'
 
+import { useState, useEffect } from 'react';
+import { asyncGet } from '@/app/services/HttpServices';
+import { endpoint_account } from '@/app/services/ApiEndPoints';
+
 function Main() {
+    const [InfoAccountDetails, setAccountDetails] = useState([]);
+
+    useEffect(() => {
+
+        async function fetchAccountDetailsData() {
+            try {
+                const response = await asyncGet(endpoint_account);
+                setAccountDetails(response.Response[0].AccountDetails);
+            } catch (error) {
+                console.error('Error fetching AccountDetails data:', error);
+            }
+        }
+
+          fetchAccountDetailsData();
+      }, []);
+
     return (
         <>
             <section className="content">
@@ -27,6 +48,7 @@ function Main() {
                                                     <div className="profilesectioncontent">
                                                         <div className="card">
                                                             <div className="row justify-content-center">
+                                                            {InfoAccountDetails.map((item) => (
                                                                 <div className="col-md-12 col-lg-11 col-xl-11">
                                                                     <div className="firstinfo">
                                                                         <div className="avatar-upload">
@@ -42,36 +64,39 @@ function Main() {
                                                                         <div className="profileinfo">
                                                                             <div className="row">
                                                                                 <div className="col-12">
-                                                                                    <h3 className="col-med">Dr Doctor5 Agnecy</h3>
+                                                                                    <h3 className="col-med"key={item.user_id}>{item.user_full_name}</h3>
+                                                                                </div>
+                                                                                <div className="col-md-6 col-lg-4">
+                                                                                <p className="mt-1 col-med">
+                                                                                        Role : <span className="mb-1 col-black"key={item.role_id}>{item.user_role}</span>
+                                                                                    </p>
+                                                                                    <p className="mt-1 col-med">
+                                                                                    Designation : <span className="mb-1 col-black">{item.designation}</span>
+                                                                                    </p>
+                                                                                    
+                                                                                </div>
+                                                                                <div className="col-md-6 col-lg-4">
+                                                                                <p className="mt-1 col-med">
+                                                                                        Status : <span className="mb-1 badge badge-success cursor">{item.status}</span>
+                                                                                    </p>
+                                                                                    <p className="mt-1 col-med">
+                                                                                        Created Date : <span className="mb-1 col-black">{item.create_date}</span>
+                                                                                    </p>
+                                                                                    
                                                                                 </div>
                                                                                 <div className="col-md-6 col-lg-4">
                                                                                     <p className="mt-1 col-med">
-                                                                                        Industry : <span className="mb-1 col-black">Healthcare</span>
+                                                                                        Last Login : <span className="mb-1 col-black">{item.last_login}</span>
                                                                                     </p>
                                                                                     <p className="mt-1 col-med">
-                                                                                        Company Id : <span className="mb-1 col-black">XY12345</span>
-                                                                                    </p>
-                                                                                </div>
-                                                                                <div className="col-md-6 col-lg-4">
-                                                                                    <p className="mt-1 col-med">
-                                                                                        Created Date : <span className="mb-1 col-black">12/07/2023</span>
-                                                                                    </p>
-                                                                                    <p className="mt-1 col-med">
-                                                                                        Financial Year : <span className="mb-1 col-black">2023 - 2024</span>
-                                                                                    </p>
-                                                                                </div>
-                                                                                <div className="col-md-6 col-lg-4">
-                                                                                    <p className="mt-1 col-med">
-                                                                                        Phone : <span className="mb-1 col-black">0122 345 6789</span>
-                                                                                    </p>
-                                                                                    <p className="mt-1 col-med">
-                                                                                        Email : <span className="mb-1 col-black">drdoctor.gmail.com</span>
+                                                                                    Login from IP : <span className="mb-1 col-black">{item.login_from_ip}</span>
                                                                                     </p>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
+                                                                    ))}
                                                             </div>
                                                         </div>
                                                     </div>
