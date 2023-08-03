@@ -1,5 +1,4 @@
 import { getCookie } from "cookies-next";
-
 const _baseUrl=process.env.BaseUri;
 const token = getCookie('token');      
 const Checksum =getCookie('checksum');
