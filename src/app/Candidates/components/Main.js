@@ -775,7 +775,7 @@ function Main() {
                                     <Dashboard />
                                 </div>
                                 <div id="TabBasic_Placeholder" role="tabpanel" className="tab-pane clsemptabs  in active">
-                                    <Account />
+                                    {/* <Account /> */}
                                 </div>
                                 <div id="TabCompliance_Placeholder" role="tabpanel" class="tab-pane clsemptabs">
                                     <Compliance />
