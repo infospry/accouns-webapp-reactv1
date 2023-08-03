@@ -12572,7 +12572,7 @@ span.table-row-btn {
 
 .opacity_6 {
     opacity: 0.35;
-    width: 90px;
+    width: 90px!important;
 }
 
 #popover-password .list-unstyled li {
