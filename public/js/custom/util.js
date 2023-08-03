@@ -1,4 +1,4 @@
-﻿var uri ="https://staffport-apis.azurewebsites.net/"; //"http://localhost:55220/";// 
+﻿var uri ="http://localhost:55220/";// "https://staffport-apis.azurewebsites.net/"; //
 var leaveApi = 'https://leaves-api.azurewebsites.net/'//'http://localhost:64978/';//
 var Token,RequestChecksum,Source;
 getToken(); 

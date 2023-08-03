@@ -310,12 +310,12 @@ ns_employee = {
         
         if (getInfoFor.toUpperCase() === 'PROFILES') {             
             if (act=='more')
-                $('.loadmoreEmployees').html('Loading...<img src="/images/spin.gif" />');
+                $('.loadmoreEmployees').html('Loading...<img src="/spin.gif" />');
             else
-                $('#CndProfiles_Placeholder').html('<tr><td colspan="12" style="text-align:center;">Loading...<img src="/images/spin.gif" /></td></tr>')
+                $('#CndProfiles_Placeholder').html('<tr><td colspan="12" style="text-align:center;">Loading...<img src="/spin.gif" /></td></tr>')
         }
         if (getInfoFor.toUpperCase() == 'PERSONAL-INFO' || getInfoFor.toUpperCase() == 'EMP-DASHBOARD') {
-            $('#CndProfileHeader_Placeholder').html('<div class="text-center">Loading...<img src="/images/spin.gif" /></div>');
+            $('#CndProfileHeader_Placeholder').html('<div class="text-center">Loading...<img src="/spin.gif" /></div>');
             $('#CndProfileInfoHeader_Placeholder, #EmployeeProfileTabs_Placeholder, #TabDashboard_Placeholder').html('');
         }
         
@@ -333,8 +333,7 @@ ns_employee = {
                             objCndData = null;
 
                         if (getInfoFor.toUpperCase() == 'PERSONAL-INFO' || getInfoFor.toUpperCase() == 'EMP-DASHBOARD') {
-
-                            console.log(data);
+                         
                             call_tmpl_binder(data.Response.ProfileHeader, '/js/Template/cnd_profile_tmpl.html', '#CndProfileHeader_Template', '#CndProfileHeader_Placeholder');
                             call_tmpl_binder(data.Response.ProfileHeader, '/js/Template/cnd_profile_tmpl.html', '#CndProfileInfoHeader_Template', '#CndProfileInfoHeader_Placeholder');
                             call_tmpl_binder(data.Response, '/js/Template/cnd_profile_tmpl.html', '#EmployeeProfileTabs_Template', '#EmployeeProfileTabs_Placeholder');
@@ -407,7 +406,7 @@ ns_employee = {
         var btnText = $(id).html();
        
           
-        $(id).html('Wait...<img src="/images/spin.gif" />');
+        $(id).html('Wait...<img src="/spin.gif" />');
        
         var serverResponse;
         ns_ajax.post(
@@ -1950,7 +1949,7 @@ ns_employee = {
     },    
 
     getOverviewAbsencesCalender: function (type, weekdate) {     
-        $('#OverviewAbsences_placeholder').html('<div style="text-align:center; line-height:40px;width: 100%; padding:25px">Loading...<img src="/images/spin.gif" /></div>');
+        $('#OverviewAbsences_placeholder').html('<div style="text-align:center; line-height:40px;width: 100%; padding:25px">Loading...<img src="/spin.gif" /></div>');
         $.ajax({
             type: "GET",
             contentType: "application/json",
@@ -1971,7 +1970,7 @@ ns_employee = {
 
     getEmployeeAnualAbsences: function (cnd_id) {     
         $('#btnRefreahEmployeeAnualLeaves').attr('data-id', cnd_id);
-        $('#EmployeeLeaveTotal_placeholder').html('<div style="text-align:center; line-height:40px;width: 100%; padding:25px">Loading...<img src="/images/spin.gif" /></div>');
+        $('#EmployeeLeaveTotal_placeholder').html('<div style="text-align:center; line-height:40px;width: 100%; padding:25px">Loading...<img src="/spin.gif" /></div>');
         $.ajax({
             type: "GET",
             contentType: "application/json",
@@ -2021,7 +2020,7 @@ ns_employee = {
 
     UpdateEmoplyeeLeaves: function (cnd_id, buttonId) {
         var total_leave = 0;
-        $('#' + buttonId).html('<img src="/images/spin.gif" />');
+        $('#' + buttonId).html('<img src="/spin.gif" />');
         $.ajax({
             type: "GET",
             contentType: "application/json",
@@ -2046,7 +2045,7 @@ ns_employee = {
     getOverview: function () {
         var param = '{"action":"get","section":"overview"}';
         var params = { json: param }
-        $('#Overview_placeholder').html('<div class="text-center">Loading...<img src="/images/spin.gif" /></div>');
+        $('#Overview_placeholder').html('<div class="text-center">Loading...<img src="/spin.gif" /></div>');
         ns_ajax.get(
             urls.employees,
             params,
@@ -2064,21 +2063,22 @@ ns_employee = {
     },      
    
     tabAccountDeatils: function (objCndData) {
-        call_tmpl_binder(objCndData, '/Template/cnd_profile_tmpl.html', '#CndAccountDetails_Template', '#TabBasic_Placeholder');
+        console.log(objCndData);
+        call_tmpl_binder(objCndData, '/js/Template/cnd_profile_tmpl.html', '#CndAccountDetails_Template', '#TabBasic_Placeholder');
     },   
 
     tabProfile: function (objContactsData) {
-        call_tmpl_binder(objContactsData, '/Template/cnd_profile_tmpl.html', '#CndProfilInfo_Template', '#TabProfile_Placeholder');
+        call_tmpl_binder(objContactsData, '/js/Template/cnd_profile_tmpl.html', '#CndProfilInfo_Template', '#TabProfile_Placeholder');
     },
 
     tabContacts: function (objContactsData) {
         if (objContactsData != null)
-            call_tmpl_binder(objContactsData, '/Template/cnd_profile_tmpl.html', '#CndContacts_Template', '#TabContacts_Placeholder');
+            call_tmpl_binder(objContactsData, '/js/Template/cnd_profile_tmpl.html', '#CndContacts_Template', '#TabContacts_Placeholder');
     },
 
     tabTerms: function (objTermsData) {
         if (objTermsData != null) {
-            call_tmpl_binder(objTermsData.Table, '/Template/cnd_profile_tmpl.html', '#CndTerms_Template', '#TabTerms_Placeholder');
+            call_tmpl_binder(objTermsData.Table, '/js/Template/cnd_profile_tmpl.html', '#CndTerms_Template', '#TabTerms_Placeholder');
             //here dr=default roles,dl = default locations
             ns_employee_template.bindDropdowns("dro=der-tm");
         }
@@ -2087,11 +2087,11 @@ ns_employee = {
     tabLocations: function (objLocationsData) {
         if (objLocationsData != null) {
             if (bindLocationPopup) {
-                call_tmpl_binder(objLocationsData, '/Template/cnd_profile_tmpl.html', '#CndPopLocations_Template', '#TabLocationsPopup_Placeholder');
+                call_tmpl_binder(objLocationsData, '/js/Template/cnd_profile_tmpl.html', '#CndPopLocations_Template', '#TabLocationsPopup_Placeholder');
                 bindLocationPopup = false;
             }
             else
-                call_tmpl_binder(objLocationsData, '/Template/cnd_profile_tmpl.html', '#CndLocations_Template', '#Locations_Placeholder');
+                call_tmpl_binder(objLocationsData, '/js/Template/cnd_profile_tmpl.html', '#CndLocations_Template', '#Locations_Placeholder');
         }
     },
 
@@ -2099,7 +2099,7 @@ ns_employee = {
         $('#TabWorkschedule_Placeholder').html('');
         console.log(objWorkScheduleData);
         if (objWorkScheduleData != undefined)
-            call_tmpl_binder(objWorkScheduleData, '/Template/cnd_profile_tmpl.html', '#CndWorkschedule_Template', '#TabWorkschedule_Placeholder');
+            call_tmpl_binder(objWorkScheduleData, '/js/Template/cnd_profile_tmpl.html', '#CndWorkschedule_Template', '#TabWorkschedule_Placeholder');
         else {
             var workSchedulehtml = '<div class="table-responsive h__hgt">\
                                         <table class="table table-bordered">\
@@ -2171,7 +2171,7 @@ ns_employee = {
     },
 
     tabAbsence: function (objAbsenceData) {
-        call_tmpl_binder(objAbsenceData, '/Template/cnd_profile_tmpl.html', '#AbsenceForm_Template', '#TabAbsenses_Placeholder');
+        call_tmpl_binder(objAbsenceData, '/js/Template/cnd_profile_tmpl.html', '#AbsenceForm_Template', '#TabAbsenses_Placeholder');
     },
 
     allProfiles: function (objProfilesData, act) {
@@ -2181,7 +2181,7 @@ ns_employee = {
                 jQuery('#CndProfiles_Template').tmpl(objProfilesData).appendTo('#CndProfiles_Placeholder');
             }
             else
-                call_tmpl_binder(objProfilesData, '/Template/cnd_profile_tmpl.html', '#CndProfiles_Template', '#CndProfiles_Placeholder');
+                call_tmpl_binder(objProfilesData, '/js/Template/cnd_profile_tmpl.html', '#CndProfiles_Template', '#CndProfiles_Placeholder');
 
             total_cnd = objProfilesData[0].total_cnd;
             $.each(objProfilesData, function (key, value) {
@@ -2216,7 +2216,7 @@ ns_employee = {
             function (data) {
                 if (data.Status == 'OK') {
                     var obj = data;//jQuery.parseJSON(response.split('|')[1]);
-                    call_tmpl_binder(obj, '/Template/cnd_profile_tmpl.html', '#Activity_Template', '#Activity_Placeholder');
+                    call_tmpl_binder(obj, '/js/Template/cnd_profile_tmpl.html', '#Activity_Template', '#Activity_Placeholder');
                 }
                 else {
                     $('#Activity_Placeholder').html(empty());
@@ -3124,7 +3124,7 @@ ns_Notes = {
 
 
                         str += '<div  id="divNote-' + value.note_id + '" class="div-chat clearfix p-b-0">' +
-                            '<img src="images/profile.jpg" alt="avatar" class="img-responsive rounded-circle img" />' +
+                            '<img src="/images/profile.jpg" alt="avatar" class="img-responsive rounded-circle img" />' +
                             '<div class="about" style="margin-bottom:0px">' +
                             '<div class="name">' +
                             '<b class="col-blue">' + value.name + '</b>&nbsp;' +
