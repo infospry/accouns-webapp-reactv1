@@ -3,15 +3,16 @@ function LeftMenuSidebar() {
 
     return(
         <>
+        
              <aside id="leftsidebar" className="sidebar">
         <div className="menu cls-sidebarnavmenu">
             <div className="slimScrollDiv">
                 <ul id="UserNav_Placeholder" className="list">
                     <li title="Dashboard"> <Link href="/dashboard"> <i
                                 className="fa fa-desktop"></i> <span>Dashboard</span> </Link> </li>
-                    <li title="Employees"> <Link href="/employers"> <i
+                    <li title="Employers"> <Link href="/employers"> <i
                                 className="fa fa-user"></i> <span>Employers</span> </Link> </li>
-                    <li title="Employees"> <Link href="/Candidates" data-count="0"> <i
+                    <li title="Candidates"> <Link href="/Candidates" data-count="0"> <i
                                 className="fa fa-users"></i> <span>Candidates</span> </Link> </li>
 
                                 <li title="Manage Jobs"> <Link href="javascript:void(0);"

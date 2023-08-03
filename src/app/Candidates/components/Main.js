@@ -14,80 +14,157 @@ import Image from 'next/image';
 import profile from '@/app/images/profile.jpg';
 
 
-import { useState,useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { asyncGet } from '@/app/services/HttpServices';
 import { endpoint_agency_role, endpoint_candidate, endpoint_employer, endpoint_employer_ddl } from '@/app/services/ApiEndPoints';
 
 
 
 function Main() {
-  
+
+    const [errors, setErrors] = useState({});
+    const [candidate, setCandidates] = useState([]);
+    const [employerdropdown, setEmployers] = useState([]);
+    const [empAgencyRoles, setAgencyRoles] = useState([]);
+    const [empLocations, setEmployerLocations] = useState([]);
+    const [empRoles, setEmployerRoles] = useState([]);
     
-    
-        const [candidate, setCandidates] = useState([]);
-      
-        useEffect(() => {
-          async function fetchData() {
+   
+
+    useEffect(() => {
+
+        async function fetchsetEmployerRolesData() {
             try {
-              const response = await asyncGet(endpoint_candidate);
-              setCandidates(response.Response[0].Candidates);
+                const response = await asyncGet(endpoint_employer + '/14/roles/dropdown');
+                setEmployerRoles(response.Response[0].EmployerRoles);
+               
             } catch (error) {
               console.error('Error fetching data:', error);
             }
           }
-      
-          fetchData();
-        }, []);
 
-
-        const [employerdropdown, setEmployers] = useState([]);
-      
-        useEffect(() => {
-          async function fetchData() {
+        async function fetchCandidateData() {
             try {
-              const response = await asyncGet(endpoint_employer_ddl);
-              setEmployers(response.Response[0].Employers);
+                const response = await asyncGet(endpoint_candidate);
+                setCandidates(response.Response[0].Candidates);
             } catch (error) {
-              console.error('Error fetching data:', error);
+                console.error('Error fetching candidate data:', error);
             }
-          }
-      
-          fetchData();
-        }, []);
+        }
 
-
-        const [empAgencyRoles, setAgencyRoles] = useState([]);
-      
-        useEffect(() => {
-          async function fetchData() {
+        async function fetchEmployerData() {
             try {
-              const response = await asyncGet(endpoint_agency_role);
-              setAgencyRoles(response.Response[0].AgencyRoles);
+                const response = await asyncGet(endpoint_employer_ddl);
+                setEmployers(response.Response[0].Employers);
             } catch (error) {
-              console.error('Error fetching data:', error);
+                console.error('Error fetching employer data:', error);
             }
-          }
-      
-          fetchData();
-        }, []);
+        }
 
-        const [empLocations, setEmployerLocations] = useState([]);
-
-        useEffect(() => {
-            async function fetchData() {
-                try {
-                    const response = await asyncGet(endpoint_employer + '/14/location');
-                    setEmployerLocations(response.Response[0].EmployerLocations);
-                } catch (error) {
-                    console.error('Error fetching data:', error);
-                }
+        async function fetchAgencyRolesData() {
+            try {
+                const response = await asyncGet(endpoint_agency_role);
+                setAgencyRoles(response.Response[0].AgencyRoles);
+            } catch (error) {
+                console.error('Error fetching agency roles data:', error);
             }
+        }
+
+        async function fetchEmployerLocationsData() {
+            try {
+                const response = await asyncGet(endpoint_employer + '/14/location');
+                setEmployerLocations(response.Response[0].EmployerLocations);
+            } catch (error) {
+                console.error('Error fetching employer locations data:', error);
+            }
+        }
+
+        fetchCandidateData();
+        fetchEmployerData();
+        fetchAgencyRolesData();
+        fetchEmployerLocationsData();
+        fetchsetEmployerRolesData();
+    }, []);
+
+    // New candidate validation
+    const [formData, setFormData] = useState({
+        empTitle: '',
+        firstName: '',
+        lastName: '',
+        email: '',
+        mobileNumber: '',
+        role: '',
+        employer_status: false,
+        Employers: '',
+        employerRole: '',
+        Location: '',
+        sentInvitations: false,
+    });
+
+    const handleChange = (event) => {
+        const { name, value } = event.target;
+        setFormData({ ...formData, [name]: value });
+      };
     
-            fetchData();
-        }, []);
+      const handleCheckboxChange = (event) => {        
+        const { id, checked } = event.target;
+        setFormData({ ...formData, [id]: checked });
+      };
+    
+    
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        const validationErrors = {};
+        // Perform validation here
+        if (!formData.empTitle) {
+            validationErrors.empTitle = 'Required.';
+        }
 
-        
-        
+        if (!formData.firstName.trim()) {
+            validationErrors.firstName = 'First name is required';
+        }
+
+        if (!formData.lastName.trim()) {
+            validationErrors.lastName = 'Last name is required';
+        }
+
+        if (!formData.email.trim()) {
+            validationErrors.email = 'Email is required';
+        }
+        if (!formData.role) {
+            validationErrors.role = 'Role is required.';
+        }
+
+        if (!formData.Employers) {
+            validationErrors.Employers = 'Please select an Employer';
+        }
+        if (!formData.employerRole) {
+            validationErrors.employerRole = 'Please select an Employer Role';
+        }
+        if (!formData.Location) {
+            validationErrors.Location = 'Please select a Location';
+        }
+        // Validate mobile number format using a regular expression
+        const mobileNumberRegex = /^[0-9]{10}$/; // Assuming a 10-digit mobile number format
+        if (!formData.mobileNumber.trim()) {
+            validationErrors.mobileNumber = 'Mobile number is required';
+        } else if (!mobileNumberRegex.test(formData.mobileNumber)) {
+            validationErrors.mobileNumber = 'Invalid mobile number format. Please enter a 10-digit number.';
+        }
+
+
+
+        setErrors(validationErrors);
+
+        // If there are no errors, proceed with form submission
+        if (Object.keys(validationErrors).length === 0) {
+            // Handle form submission here (e.g., send data to server)
+            console.log('Form submitted successfully:', formData);
+        }
+    };
+
+    // New candidate validation
+
     return (
         <>
             <section className="content">
@@ -113,14 +190,14 @@ function Main() {
                                                     <div className="d-flex justify-content-between align-items-center">
                                                         <div className="input-group mr-1">
                                                             <select className="form-control" id="ddlEmployeeRoles">
-                                                            <option data-role-id="0" data-rate="0" value="0"
+                                                                <option data-role-id="0" data-rate="0" value="0"
                                                                     selected="selected">Select Employer</option>
-                                                            { employerdropdown.map((item) => (  
-                                                            <option value={item.emp_id}>
-                                                                {item.emp_name}
-                                                            </option>
-                                                            ))} 
-                                                                
+                                                                {employerdropdown.map((item) => (
+                                                                    <option value={item.emp_id}>
+                                                                        {item.emp_name}
+                                                                    </option>
+                                                                ))}
+
                                                             </select>
                                                         </div>
                                                         <div className="input-group mr-1">
@@ -131,7 +208,7 @@ function Main() {
                                                             <select className="form-control" id="ddlEmployeeLocations">
                                                                 <option value="0" selected="selected">All Locations</option>
                                                                 {empLocations.map((item) => (
-                                                                <option value={item.emp_location_id}>{item.emp_location_name}</option>
+                                                                    <option value={item.emp_location_id}>{item.emp_location_name}</option>
                                                                 ))}
                                                             </select>
                                                         </div>
@@ -140,12 +217,12 @@ function Main() {
                                                             <select className="form-control" id="ddlEmployeeRoles">
                                                                 <option data-role-id="0" data-rate="0" value="0"
                                                                     selected="selected">Select Role</option>
-                                                                {empAgencyRoles.map((item) => (  
-                                                            <option value={item.id}>
-                                                                {item.name}
-                                                            </option>
-                                                            ))} 
-                                                                
+                                                                {empAgencyRoles.map((item) => (
+                                                                    <option value={item.id}>
+                                                                        {item.name}
+                                                                    </option>
+                                                                ))}
+
                                                             </select>
                                                         </div>
 
@@ -253,57 +330,57 @@ function Main() {
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                            { candidate.map((item) => ( 
-                                                                <tr>
-                                                                    <td scope="row">{item.cnd_id}</td>
-                                                                    <td>
-                                                                        <div className="d-flex">
-                                                                            <div className="float-left mt-2 col-black"> <a
-                                                                                className="btn-cnd-profiles-view"
-                                                                                data-toggle="modal" data-target="#viewprofile"><i
-                                                                                    className="fa fa-user font-14">&nbsp;</i><b>
-                                                                                   {item.cnd_full_name}</b></a>
-                                                                                <div></div>
+                                                                {candidate.map((item) => (
+                                                                    <tr>
+                                                                        <td scope="row">{item.cnd_id}</td>
+                                                                        <td>
+                                                                            <div className="d-flex">
+                                                                                <div className="float-left mt-2 col-black"> <a
+                                                                                    className="btn-cnd-profiles-view"
+                                                                                    data-toggle="modal" data-target="#viewprofile"><i
+                                                                                        className="fa fa-user font-14">&nbsp;</i><b>
+                                                                                        {item.cnd_full_name}</b></a>
+                                                                                    <div></div>
+                                                                                </div>
                                                                             </div>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td className="col-blue"><i
-                                                                        className="zmdi zmdi-email">&nbsp;</i> {item.cnd_email}</td>
-                                                                    <td> {item.cnd_sub_type_name} <div> <span style={{ color: "#1cbfd0" }}>
-                                                                    {item.emp_role}  </span> </div>
-                                                                    </td>
-                                                                    <td className="text-center"> <b className="col-blue"><span
-                                                                        style={{ color: "#CEC6CE" }}>{item.cnd_wage_or_salary}</span></b> </td>
-                                                                    <td className="text-center"><span style={{ color: "#CEC6CE" }}>{item.cnd_contract_type}</span></td>
-                                                                    <td className="text-center">
-                                                                        <div className="tital-text"> <i className="zmdi zmdi-pin"></i>
-                                                                            <Link href="/" data-toggle="modal"
-                                                                                data-target="#location_preview" data-id="153"
-                                                                                className="badge badge-info cnd-location-counter"><b>
-                                                                                    {item.cnd_locations_total}</b></Link>
-                                                                            <div className="tital-text__tooltip">
-                                                                                <p className="mb-1">{item.cnd_locations} </p>
-                                                                                <p className="wd-16pxl bold"><i className="zmdi zmdi-pin"></i> LOCATIONS</p>
-                                                                                <br />
-                                                                                <p>{item.emp_location_name}</p>
+                                                                        </td>
+                                                                        <td className="col-blue"><i
+                                                                            className="zmdi zmdi-email">&nbsp;</i> {item.cnd_email}</td>
+                                                                        <td> {item.cnd_sub_type_name} <div> <span style={{ color: "#1cbfd0" }}>
+                                                                            {item.emp_role}  </span> </div>
+                                                                        </td>
+                                                                        <td className="text-center"> <b className="col-blue"><span
+                                                                            style={{ color: "#CEC6CE" }}>{item.cnd_wage_or_salary}</span></b> </td>
+                                                                        <td className="text-center"><span style={{ color: "#CEC6CE" }}>{item.cnd_contract_type}</span></td>
+                                                                        <td className="text-center">
+                                                                            <div className="tital-text"> <i className="zmdi zmdi-pin"></i>
+                                                                                <Link href="/" data-toggle="modal"
+                                                                                    data-target="#location_preview" data-id="153"
+                                                                                    className="badge badge-info cnd-location-counter"><b>
+                                                                                        {item.cnd_locations_total}</b></Link>
+                                                                                <div className="tital-text__tooltip">
+                                                                                    <p className="mb-1">{item.cnd_locations} </p>
+                                                                                    <p className="wd-16pxl bold"><i className="zmdi zmdi-pin"></i> LOCATIONS</p>
+                                                                                    <br />
+                                                                                    <p>{item.emp_location_name}</p>
+                                                                                </div>
                                                                             </div>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td> <a  onclick="return confirm('Are you sure you want to send invitation to employee?');"
-                                                                        className="btn btn-outline-primary btn-sm btn-cnd-invite"
-                                                                        data-action="invite" title="Send Invitation"> Resend
-                                                                        <b>{item.invitation_status}</b> </a> </td>
+                                                                        </td>
+                                                                        <td> <a onclick="return confirm('Are you sure you want to send invitation to employee?');"
+                                                                            className="btn btn-outline-primary btn-sm btn-cnd-invite"
+                                                                            data-action="invite" title="Send Invitation"> Resend
+                                                                            <b>{item.invitation_status}</b> </a> </td>
 
-                                                                    <td> <a className="badge badge-success cursor"> {item.account_status_label} </a>
-                                                                    </td>
-                                                                    <td> <a className="btn btn-outline-primary btn-sm btn-cnd-profiles-view"
-                                                                        data-toggle="modal"
-                                                                        data-target="#viewprofile"><i
-                                                                            className="zmdi zmdi-search"></i></a>
+                                                                        <td> <a className="badge badge-success cursor"> {item.account_status_label} </a>
+                                                                        </td>
+                                                                        <td> <a className="btn btn-outline-primary btn-sm btn-cnd-profiles-view"
+                                                                            data-toggle="modal"
+                                                                            data-target="#viewprofile"><i
+                                                                                className="zmdi zmdi-search"></i></a>
 
-                                                                    </td>
-                                                                </tr>
-                                                            ))}
+                                                                        </td>
+                                                                    </tr>
+                                                                ))}
                                                             </tbody>
                                                         </table>
                                                     </div>
@@ -320,157 +397,246 @@ function Main() {
             </section>
             <div className="modal right-quater" id="add_internal" tabindex="-1" role="dialog" aria-labelledby="add_internal"
                 aria-hidden="true">
-                <div className="modal-dialog ui-draggable" role="document">
-                    <div className="modal-content">
+                <div className="modal-dialog" role="document">
+                    <form onSubmit={handleSubmit} className="modal-content">
                         <div className="modal-header ui-draggable-handle">
                             <button type="button" className="close" data-dismiss="modal" aria-label="Close"><span
                                 aria-hidden="true">×</span></button>
                             <h4 className="modal-title" id="myModalLabel2"> <b>Add New Candidate</b> </h4>
                         </div>
                         <div className="modal-body">
+                            <div className="p-3">
+                                <div className="row">
+                                    <div className="col-sm-12 form-group">
+                                        <div className="row">
+                                            <div className="col-sm-3">
+                                                <label>Title<span>*</span></label>
 
-                            {/* <!---***************************Internal Employee**************************--> */}
-                            <div className="row">
-                                <div className="col-md-12 col-sm-12 p-3">
-                                    <div className="row">
-                                        
-                                        
-                                            <div className="col-sm-12 form-group">
-                                                <div className="row">
-                                                    <div className="col-sm-3">
-                                                        <label>Title<span>*</span></label>
-                                                        <select id="ddlEmpTitle" className="form-control"style={{ minWidth: '78px' }}>
-                                                            <option value="0">Title</option>
-                                                            <option value="Dr">Dr.</option>
-                                                            <option value="Mr">Mr.</option>
-                                                            <option value="Mrs">Mrs.</option>
-                                                            <option value="Miss">Miss.</option>
-                                                        </select>
-                                                    </div>
-                                                    <div className="col-sm-5 col-6 pl-1">
-                                                        <label>First Name<span>*</span></label>
-                                                        <input id="txtCndFirstName" type="text" className="form-control clearText"
-                                                            placeholder="First Name" />
-                                                    </div>
-                                                    <div className="col-sm-4 col-6 pl-1">
-                                                        <label>Last Name<span></span></label>
-                                                        <input id="txtCndLastName" type="text" className="form-control clearText"
-                                                            placeholder="Last Name" />
-                                                    </div>
-                                                </div>
+                                                <select
+                                                    id="empTitle"
+                                                    className="form-control"
+                                                    name="empTitle"
+                                                    style={{ minWidth: '78px' }}
+                                                    value={formData.empTitle}
+                                                    onChange={handleChange}
+                                                >
+                                                    <option value="" disabled>
+                                                    Title 
+                                                    </option>
+                                                    
+                                                    <option value="Dr">Dr.</option>
+                                                    <option value="Mr">Mr.</option>
+                                                    <option value="Mrs">Mrs.</option>
+                                                    <option value="Miss">Miss.</option>
+                                                </select>
+                                                {errors.empTitle && <div className="error">{errors.empTitle}</div>}
                                             </div>
-                                        
-                                        <div className="col-md-12">
-                                            <div className="form-group">
-                                                <label>Email Id <span>*</span></label>
-                                                <input id="txtCndEmailId" type="text"
-                                                    className="form-control clearText validateEmail" placeholder="Email Id " />
+
+                                            <div className="col-sm-5 col-6 pl-1">
+                                                <label>First Name<span>*</span></label>
+                                                <input
+                                                    type="text"
+                                                    name="firstName"
+                                                    value={formData.firstName}
+                                                    onChange={handleChange}
+                                                    className="form-control form-control-lg"
+                                                    placeholder="Enter First name"
+                                                />
+                                                {errors.firstName && <div className="error">{errors.firstName}</div>}
                                             </div>
-                                        </div>
-                                        <div className="col-md-12">
-                                            <div className="form-group">
-                                                <label>Mobile Number <span>*</span></label>
-                                                <input id="txtCndMobileNumber" type="text" className="form-control clearText number"
-                                                    maxlength="11" placeholder="Mobile Number" />
-                                            </div>
-                                        </div>
-                                       
-                                        <div className="col-md-12">
-                                            <div className="form-group">
-                                                <label>Role<span>*</span></label>
-                                                <div className="input-group">
-                                                <select className="form-control" id="ddlEmployeeRoles">
-                                                                <option data-role-id="0" data-rate="0" value="0"
-                                                                    selected="selected">Select Role</option>
-                                                                {empAgencyRoles.map((item) => (  
-                                                            <option value={item.id}>
-                                                                {item.name}
-                                                            </option>
-                                                            ))} 
-                                                                
-                                                            </select>
-                                                    <Link href="/Settings/JobRoles" className="btn btn-outline-primary cursor ml-1"
-                                                        data-tippy="" data-original-title="Add Role"><i
-                                                            className="ti ti-plus"></i></Link>
-                                                </div>
+                                            <div className="col-sm-4 col-6 pl-1">
+                                                <label>Last Name<span></span></label>
+                                                <input
+                                                    type="text"
+                                                    name="lastName"
+                                                    value={formData.lastName}
+                                                    onChange={handleChange}
+                                                    className="form-control form-control-lg"
+                                                    placeholder="Enter Last name"
+                                                />
+                                                {errors.lastName && <div className="error">{errors.lastName}</div>}
                                             </div>
                                         </div>
-                                        <div className="col-md-12" style={{ display: "none" }}>
-                                            <div className="form-group">
-                                                <label>Job Title<span>*</span></label>
-                                                <input id="txtCndJobTitle" name="txtjobtitle0" placeholder="Job Title" value=""
-                                                    className="form-control clearText" type="text" />
-                                            </div>
-                                        </div>
-
-                                        <div id="divEmployerlocations" className="col-md-12">
-                                            <div className="form-group">
-                                                <label> Select locations<span>*</span></label>
-                                                <div className="input-group">
-                                                    <div className="select2-container form-control show-tick ms select2"
-                                                        id="s2id_ddlCndLocation"><a href="javascript:void(0)"
-                                                            className="select2-choice" tabindex="-1"> <span className="select2-chosen"
-                                                                id="select2-chosen-1">&nbsp;</span><abbr
-                                                                    className="select2-search-choice-close"></abbr> <span
-                                                                        className="select2-arrow" role="presentation"><b
-                                                                            role="presentation"></b></span></a><label
-                                                                                for="s2id_autogen1" className="select2-offscreen"></label><input
-                                                            className="select2-focusser select2-offscreen" type="text"
-                                                            aria-haspopup="true" role="button"
-                                                            aria-labelledby="select2-chosen-1" id="s2id_autogen1" />
-                                                        <div className="select2-drop select2-display-none select2-with-searchbox">
-                                                            <div className="select2-search"> <label for="s2id_autogen1_search"
-                                                                className="select2-offscreen"></label> <input type="text"
-                                                                 className="select2-input" id="s2id_autogen1_search"
-                                                                    placeholder="" /> </div>
-                                                          
-                                                        </div>
-                                                    </div><select id="ddlCndLocation" className="form-control show-tick ms select2"
-                                                        data-placeholder="Select" tabindex="-1" title="" style={{ display: "none" }}>
-                                                        <option value="7">Birmingham</option>
-                                                        <option value="8">Tamworth</option>
-                                                        <option value="9">Solihull</option>
-                                                        <option value="10">Aberdeen</option>
-                                                        <option value="11">Westhill</option>
-                                                        <option value="12">Bromsgrove</option>
-                                                        <option value="13">Redditch</option>
-                                                        <option value="14">Bradford</option>
-                                                        <option value="15">Bolton</option>
-                                                        <option value="16">Bristol</option>
-                                                    </select>
-                                                    <Link href="/Settings/locations" className="btn btn-outline-primary cursor ml-1"
-                                                        data-tippy="" data-original-title="Add Location"><i
-                                                            className="ti ti-plus"></i></Link>
-                                                </div>
-                                            </div>
-                                        </div>
-
-
-                                        {/* <!--Invitation Status--> */}
-                                        <div className="row col-12 mb-3 clsinvitation_status">
-                                            <label className="col-8 col-form-label col-form-label-lg"><i
-                                                className="fa fa-envelope font-20">&nbsp;</i>Send invitation</label>
-                                            <span className="col-4 switch  pt-2">
-                                                <input id="chkinvitation_status" type="checkbox" className="switch clsswichDoc" />
-                                                <label for="chkinvitation_status"></label>
-                                            </span>
-                                        </div>
-
-
                                     </div>
+                                    <div className="col-md-12">
+                                        <div className="form-group">
+                                            <label>Email Id <span>*</span></label>
+                                            <input
+                                                type="email"
+                                                name="email"
+                                                value={formData.email}
+                                                onChange={handleChange}
+                                                className="form-control form-control-lg"
+                                                placeholder="Enter Email Id"
+                                            />
+                                            {errors.email && <div className="error">{errors.email}</div>}
+                                        </div>
+                                    </div>
+                                    <div className="col-md-12">
+                                        <div className="form-group">
+                                            <label>Mobile Number <span>*</span></label>
+                                            <input
+                                                type="text"
+                                                name="mobileNumber"
+                                                value={formData.mobileNumber}
+                                                onChange={handleChange}
+                                                className="form-control form-control-lg"
+                                                placeholder="Enter Mobile number"
+                                            />
+                                            {errors.mobileNumber && <div className="error">{errors.mobileNumber}</div>}
+                                        </div>
+                                    </div>
+                                    <div className="col-md-12">
+                                        <div className="form-group">
+                                            <label>Role<span>*</span></label>
+                                            <div className="input-group">
+
+                                                <select
+                                                    id="role"
+                                                    className="form-control"
+                                                    data-step="3"
+                                                    name="role"
+                                                    value={formData.role}
+                                                    onChange={handleChange}
+                                                >
+                                                    <option value="" disabled>
+                                                        Select Role
+                                                    </option>
+                                                    {empAgencyRoles.map((item) => (
+                                                        <option value={item.id}>
+                                                            {item.name}
+                                                        </option>
+                                                    ))}
+                                                </select>
+                                                <Link href="/Settings/JobRoles" className="btn btn-outline-primary cursor ml-1"
+                                                    data-tippy="" data-original-title="Add Role"><i
+                                                        className="ti ti-plus"></i></Link>
+                                            </div>
+                                            {errors.role && <div className="error">{errors.role}</div>}
+                                        </div>
+                                    </div>
+                                    <div className="col-12 mb-3">
+        <div className="custom-control custom-checkbox checkbox-inline pl-4">
+          <input
+            id="employer_status"
+            type="checkbox"
+            className="custom-control-input"
+            checked={formData.employer_status}
+            onChange={handleCheckboxChange}
+          />
+          <label htmlFor="employer_status" className="custom-control-label line24 pointer">
+            Employer Map Status
+          </label>
+        </div>
+      </div>
+
+                                    {formData.employer_status && (
+        <div className="col-md-12">
+          {/* Show this div when the checkbox is checked */}
+          
+            <div className="form-group">
+              <label>Employers<span>*</span></label>
+              <div className="input-group">
+                <select
+                  id="Employers"
+                  className="form-control"
+                  name="Employers"
+                  value={formData.Employers}
+                  onChange={handleChange}
+                >
+                  <option value="" disabled>
+                    Select Employer
+                  </option>
+                  {employerdropdown.map((item) => (
+                    <option key={item.emp_id} value={item.emp_id}>
+                      {item.emp_name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              {errors.Employers && <div className="error">{errors.Employers}</div>}
+            </div>
+         
+
+            <div className="form-group">
+              <label>Employer Role<span>*</span></label>
+              <div className="input-group">
+                <select
+                  id="employerRole"
+                  className="form-control"
+                  name="employerRole"
+                  value={formData.employerRole}
+                  onChange={handleChange}
+                >
+                  <option value="" disabled>
+                    Select
+                  </option>
+                  {empRoles.map((item) => (
+                    <option key={item.id} value={item.id}>
+                      {item.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              {errors.employerRole && <div className="error">{errors.employerRole}</div>}
+            </div>
+          
+
+          
+            <div className="form-group">
+              <label>Location<span>*</span></label>
+              <div className="input-group">
+                <select
+                  id="Location"
+                  className="form-control"
+                  name="Location"
+                  value={formData.Location}
+                  onChange={handleChange}
+                >
+                  <option value="" disabled>
+                    Select
+                  </option>
+                  {empLocations.map((item) => (
+                    <option key={item.emp_location_id} value={item.emp_location_id}>
+                      {item.emp_location_name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              {errors.Location && <div className="error">{errors.Location}</div>}
+            </div>
+          </div>
+      
+      )}
+
+
+
+                                    <div className="col-12 mb-3">
+                                        <div className="custom-control custom-checkbox checkbox-inline pl-4">
+                                            <input
+                                                id="sentInvitations"
+                                                type="checkbox"
+                                                className="custom-control-input"
+                                                checked={formData.sentInvitations}
+                                                onChange={handleCheckboxChange}
+                                            />
+                                            <label htmlFor="sentInvitations" className="custom-control-label line24 pointer">
+                                                Sent Invitations
+                                            </label>
+                                        </div>
+                                    </div>
+
+
                                 </div>
-
                             </div>
-
-                            {/* <!---***************************Agency User**************************--> */}
-
-                           
                         </div>
                         <div className="modal-footer mail-footer text-center" >
-                            <a id="btnNewEmpSubmit" className="btn btn-primary">Register Now</a>
+                            <button type="submit" id="btnNewEmpSubmit" className="btn btn-primary">
+                                Register Now
+                            </button>
                             <a id="btnNewEmpClose" data-dismiss="modal" className="btn btn-outline-danger">Cancel</a>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
 
@@ -720,7 +886,7 @@ function Main() {
                             <h4 className="modal-title" id="myModalLabel2">
                                 <b id="lblDocMasterTitle">Add Edit Document</b>
                             </h4>
-                        </div>  
+                        </div>
                         <div className="modal-body">
                             <div className="row m-0">
                                 <div className="col-12 mt-2">
@@ -728,8 +894,8 @@ function Main() {
                                         <label className="col-form-label col-form-label-lg">
                                             Document name<span>*</span>
                                         </label>
-                                        <input id="txtDocMasterDocName" type="text" className="form-control form-control-lg docClear" 
-                                        placeholder="Enter document name"/>
+                                        <input id="txtDocMasterDocName" type="text" className="form-control form-control-lg docClear"
+                                            placeholder="Enter document name" />
                                     </div>
                                 </div>
                                 <div className="col-12 mt-2">
@@ -737,120 +903,120 @@ function Main() {
                                         <label className="col-form-label col-form-label-lg">
                                             Document No.<span>*</span>
                                         </label>
-                                        <input id="" type="text" className="form-control form-control-lg " 
-                                        placeholder="Enter document no."/>
+                                        <input id="" type="text" className="form-control form-control-lg "
+                                            placeholder="Enter document no." />
                                     </div>
-                                </div> 
+                                </div>
 
                                 <div className="col-lg-12 upld">
                                     <div className="file_folder"></div>
                                     <div id="divAttachedFiles" className="attachedFile card pb-0 ">
                                         <table className="table table-hover table-bordered divAttachedFiles" style={{ display: 'none' }}>
-                                        <thead>
-                                            <tr>
-                                            <th style={{ width: '40px' }}>SN.</th>
-                                            <th style={{ width: '270px' }}>File Name</th>
-                                            <th style={{ width: '70px' }}>Size</th>
-                                            <th>File</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="tblBodyAttachedFiles"></tbody>
+                                            <thead>
+                                                <tr>
+                                                    <th style={{ width: '40px' }}>SN.</th>
+                                                    <th style={{ width: '270px' }}>File Name</th>
+                                                    <th style={{ width: '70px' }}>Size</th>
+                                                    <th>File</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="tblBodyAttachedFiles"></tbody>
                                         </table>
                                         <div>
-                                        <a className="btn btn-primary  cls-doc-file-action browes_btn clickmode m-2" data-show=".divFileAttachfile, .admorebtn" data-hide=".browes_btn,.attachedFile ">
-                                            <i className="zmdi zmdi-plus-circle-o-duplicate col-white"></i> <b className="col-white">Browse to upload file....</b>
-                                        </a>
+                                            <a className="btn btn-primary  cls-doc-file-action browes_btn clickmode m-2" data-show=".divFileAttachfile, .admorebtn" data-hide=".browes_btn,.attachedFile ">
+                                                <i className="zmdi zmdi-plus-circle-o-duplicate col-white"></i> <b className="col-white">Browse to upload file....</b>
+                                            </a>
                                         </div>
                                     </div>
                                     <div id="divFileAttachfile" className="card pb-0 divFileAttachfile" style={{ display: 'none' }}>
                                         <div id="divAttchFiles">
                                             <div className="row g-0 mb-2 mt-2">
                                                 <div className='col-md-1 text-center pr-0'>
-                                                <div style={{ paddingTop: '33px' }}>
-                                                <label id="lblTaskFile">1</label>
-                                                </div>
+                                                    <div style={{ paddingTop: '33px' }}>
+                                                        <label id="lblTaskFile">1</label>
+                                                    </div>
                                                 </div>
                                                 <div className="col-md-6 pl-1 pr-0" id="divFileUploader1">
-                                                <div>
-                                                    <label>
-                                                    Choose file<span>*</span>
-                                                    </label>
-                                                    <div className="input-group" style={{ marginBottom: '5px' }}>                                                
-                                                    <div className="custom-file">
-                                                        <input
-                                                        id="fileUploader1"
-                                                        accept="image/*,application/pdf,application/msword/,application/xlxs/,application/xlx,.txt,.docx,.doc,.zip,.rar,.mp4,.wav,.3gp"
-                                                        type="file"
-                                                        row-hidden="true"
-                                                        data-val="1"
-                                                        className="custom-file-input file-uploader clearTextFile"
-                                                        aria-describedby="fileUploaderAddOn"
-                                                        />
-                                                        <label className="custom-file-label" htmlFor="fileUploader">
-                                                        Choose file
+                                                    <div>
+                                                        <label>
+                                                            Choose file<span>*</span>
                                                         </label>
+                                                        <div className="input-group" style={{ marginBottom: '5px' }}>
+                                                            <div className="custom-file">
+                                                                <input
+                                                                    id="fileUploader1"
+                                                                    accept="image/*,application/pdf,application/msword/,application/xlxs/,application/xlx,.txt,.docx,.doc,.zip,.rar,.mp4,.wav,.3gp"
+                                                                    type="file"
+                                                                    row-hidden="true"
+                                                                    data-val="1"
+                                                                    className="custom-file-input file-uploader clearTextFile"
+                                                                    aria-describedby="fileUploaderAddOn"
+                                                                />
+                                                                <label className="custom-file-label" htmlFor="fileUploader">
+                                                                    Choose file
+                                                                </label>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                    </div>
-                                                </div>
                                                 </div>
                                                 <div className="col-md-4 pl-1 pr-0">
-                                                <div>
-                                                    <label>
-                                                    File Name<span></span>
-                                                    </label>
-                                                    <input
-                                                    id="txtFileDescription1"
-                                                    type="text"
-                                                    row-hidden="false"
-                                                    data-val="1"
-                                                    className="form-control clearTextFile"
-                                                    autoComplete="off"
-                                                    placeholder="Enter File description"
-                                                    />
-                                                </div>
+                                                    <div>
+                                                        <label>
+                                                            File Name<span></span>
+                                                        </label>
+                                                        <input
+                                                            id="txtFileDescription1"
+                                                            type="text"
+                                                            row-hidden="false"
+                                                            data-val="1"
+                                                            className="form-control clearTextFile"
+                                                            autoComplete="off"
+                                                            placeholder="Enter File description"
+                                                        />
+                                                    </div>
                                                 </div>
                                                 <div className="col-md-1 pl-1 pr-0">
-                                                <div className="mt-4"></div>
+                                                    <div className="mt-4"></div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div id="divAttachFileContainer" className='admorebtn mb-3 text-center'>
-                                            <hr/>
-                                        <a id="btnAddMoreFiles" className="btn btn-info clearTextFile  modal-taskfile-btn" style={{ marginRight: '5px' }} task-action="addMoreFiles">
-                                            <i className="zmdi zmdi-plus col-white"></i> <b className="col-white">Add More Files</b>
-                                        </a>
-                                        <a id="btnAttachFiles" className="btn btn-success clearTextFile modal-taskfile-btn mr-1 clickmode"data-hide=".divFileAttachfile" data-show=".attachedFile,.divAttachedFiles, .browes_btn" action-from="taskAdd" task-action="attachFiles">
-                                            <i className="zmdi zmdi-plus-circle-o-duplicate col-white"></i> <b className="col-white">Attach Files</b>
-                                        </a>
-                                        <a className="btn btn-outline-danger clearTextFile  cls-doc-file-action"  data-action="cancel">
-                                            Cancel
-                                        </a>
+                                            <hr />
+                                            <a id="btnAddMoreFiles" className="btn btn-info clearTextFile  modal-taskfile-btn" style={{ marginRight: '5px' }} task-action="addMoreFiles">
+                                                <i className="zmdi zmdi-plus col-white"></i> <b className="col-white">Add More Files</b>
+                                            </a>
+                                            <a id="btnAttachFiles" className="btn btn-success clearTextFile modal-taskfile-btn mr-1 clickmode" data-hide=".divFileAttachfile" data-show=".attachedFile,.divAttachedFiles, .browes_btn" action-from="taskAdd" task-action="attachFiles">
+                                                <i className="zmdi zmdi-plus-circle-o-duplicate col-white"></i> <b className="col-white">Attach Files</b>
+                                            </a>
+                                            <a className="btn btn-outline-danger clearTextFile  cls-doc-file-action" data-action="cancel">
+                                                Cancel
+                                            </a>
                                         </div>
                                     </div>
-                                    
+
                                 </div>
 
                                 <div className="col-12 mb-1">
                                     <div className='row g-0'>
-                                    <div className="form-group col-md-6">
-  <label className="col-form-label col-form-label-lg">
-    Document Issue date <input id="chkDocMasterDocIssue" type="checkbox" className="ml-2 clsswichDoc" />
-  </label>
-  <input type="text" id="divDocumentIssueDate" className="form-control" placeholder="DD/MM/YYYY" />
-</div>
-<div className="form-group col-md-6">
-  <label className="col-form-label col-form-label-lg">
-    Document Expiry date <input id="chkDocMasterDocExpiry" type="checkbox" className="ml-2 clsswichDoc" />
-  </label>
-  <input type="text" id="divDocumentExpiryDate" className="form-control" placeholder="DD/MM/YYYY" />
-</div>
+                                        <div className="form-group col-md-6">
+                                            <label className="col-form-label col-form-label-lg">
+                                                Document Issue date <input id="chkDocMasterDocIssue" type="checkbox" className="ml-2 clsswichDoc" />
+                                            </label>
+                                            <input type="text" id="divDocumentIssueDate" className="form-control" placeholder="DD/MM/YYYY" />
+                                        </div>
+                                        <div className="form-group col-md-6">
+                                            <label className="col-form-label col-form-label-lg">
+                                                Document Expiry date <input id="chkDocMasterDocExpiry" type="checkbox" className="ml-2 clsswichDoc" />
+                                            </label>
+                                            <input type="text" id="divDocumentExpiryDate" className="form-control" placeholder="DD/MM/YYYY" />
+                                        </div>
                                     </div>
                                 </div>
 
-                               
-                               
-                                
-                              
+
+
+
+
                                 <div className="col-12">
                                     <div className="form-group">
                                         <label className="col-form-label col-form-label-lg">
@@ -870,7 +1036,7 @@ function Main() {
                                     </div>
                                 </div>
 
-                             
+
 
                                 <div className="col-md-12 mb-5">
                                     <div className="d-flex justify-content-start">
@@ -878,16 +1044,16 @@ function Main() {
                                         <div className="ml-4">
                                             <label className="">Inactive</label>
                                             <span className="switch ml-1">
-                                                <input type="checkbox" className="switch clsswichDoc" id="chkDocMasterStatus"/>
-                                                    <label for="chkDocMasterStatus"></label>
+                                                <input type="checkbox" className="switch clsswichDoc" id="chkDocMasterStatus" />
+                                                <label for="chkDocMasterStatus"></label>
                                             </span>
                                             <label className="">Active</label>
                                         </div>
                                     </div>
                                 </div>
 
-                                </div>
-                            
+                            </div>
+
                         </div>
                         <div className="modal-footer">
                             <div className="row">
@@ -906,137 +1072,137 @@ function Main() {
             <div id="uploadPreview" className="modal right-full" tabIndex="-1" role="dialog" aria-hidden="true">
                 <div className="modal-dialog ui-draggable" role="document">
                     <div className="modal-content">
-                    <div className="modal-header ui-draggable-handle">
-                        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                        </button>
-                        <div className="row">
-                        <div className="col-md-12">
-                            <h4 className="modal-title" id="myModalLabel2">
-                            <button className="btn btn-info btn-sm reveal-click float-left mr-2" style={{ position: 'relative', margin: 0, top: 0, left: '-6px' }}>
-                                <i className="zmdi zmdi-menu"></i>
+                        <div className="modal-header ui-draggable-handle">
+                            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
                             </button>
-                            <b>Preview file(s) in <span id="docFilename">CV</span></b>
-                            </h4>
-                        </div>
-                        </div>
-                    </div>
-                    <div className="modal-body">
-                        <div id="divPreviewBodyContent_placeholder" className="d-flex">
-                        {/* Documents List */}
-                        <div className="inbox left pr-0 mr-0 lftfxd pt-3" id="email-nav">
-                            <div className="file_folder">
-                            {/* File 1 */}
-                            <a id="file-ff4493563cf642ffbc0f05c18be531a7.png" href="javascript:void(0);" className="cls-docs-action" data-action="viewfile" data-extension=".png" data-url="https://thestaffport23.s3.eu-west-2.amazonaws.com/compliance/ff4493563cf642ffbc0f05c18be531a7.png?X-Amz-Expires=600&amp;X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=AKIA3NHQF7DCXRKNIZWF/20230724/eu-west-2/s3/aws4_request&amp;X-Amz-Date=20230724T132539Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=3e86e0827a460e0211e088ab993cc297cf67d29774f4e8a67735df2274d23d8b" data-hide=".one" data-show=".two">
-                                <button id="" className="btn btn-danger btnhover cls-docs-action" data-action="deletefile" data-path="ff4493563cf642ffbc0f05c18be531a7.png" data-uid="62ED78FA-3063-424C-BD73-6476952CC53F" title="Remove File">
-                                <i className="zmdi zmdi-close-circle"></i>
-                                </button>
-                                <div className="icon mr-0">
-                                <i className="zmdi zmdi-collection-image text-info"></i>
-                                </div>
-                                <div className="file-name" style={{ padding: '8px' }}>
-                                <p className="mb-0 text-muted">cnt.png</p>
-                                <div style={{ fontSize: '11px', lineHeight: 0 }}>
-                                    <b style={{ color: 'forestgreen' }}>
-                                    <span className="col-grey">
-                                        <i className="fa fa-external-link-square">&nbsp;NEW</i>
-                                    </span>
-                                    </b>
-                                </div>
-                                <p></p>
-                                </div>
-                            </a>
-                            {/* File 2 */}
-                            <a id="file-74bd2b17b6c648a7b0aac2f391e8558d.png" href="javascript:void(0);" className="cls-docs-action" data-action="viewfile" data-extension=".png" data-url="https://thestaffport23.s3.eu-west-2.amazonaws.com/compliance/74bd2b17b6c648a7b0aac2f391e8558d.png?X-Amz-Expires=600&amp;X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=AKIA3NHQF7DCXRKNIZWF/20230724/eu-west-2/s3/aws4_request&amp;X-Amz-Date=20230724T132539Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=1115ddf4884d90b3d786f953087b2056ff13d567e8414f9688e923ac1d6505e1" data-hide=".one" data-show=".two">
-                                <button id="" className="btn btn-danger btnhover cls-docs-action" data-action="deletefile" data-path="74bd2b17b6c648a7b0aac2f391e8558d.png" data-uid="62ED78FA-3063-424C-BD73-6476952CC53F" title="Remove File">
-                                <i className="zmdi zmdi-close-circle"></i>
-                                </button>
-                                <div className="icon mr-0">
-                                <i className="zmdi zmdi-collection-image text-info"></i>
-                                </div>
-                                <div className="file-name" style={{ padding: '8px' }}>
-                                <p className="mb-0 text-muted">border.png</p>
-                                <div style={{ fontSize: '11px', lineHeight: 0 }}>
-                                    <b style={{ color: 'forestgreen' }}>
-                                    <span className="col-grey">
-                                        <i className="fa fa-external-link-square">&nbsp;NEW</i>
-                                    </span>
-                                    </b>
-                                </div>
-                                <p></p>
-                                </div>
-                            </a>
-                            </div>
-                        </div>
-                        {/* Preview & Action Block */}
-                        <div className="inbox right rgtinbox">
-                            {/* Document Preview */}
-                            <div className="pl-3 pr-3 mt-3">
-                            <iframe id="iframedocfile" src="https://thestaffport23.s3.eu-west-2.amazonaws.com/compliance/ff4493563cf642ffbc0f05c18be531a7.png?X-Amz-Expires=600&amp;X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=AKIA3NHQF7DCXRKNIZWF/20230724/eu-west-2/s3/aws4_request&amp;X-Amz-Date=20230724T132539Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=3e86e0827a460e0211e088ab993cc297cf67d29774f4e8a67735df2274d23d8b" style={{ height: '400px' }} className="one" data-download-url="https://thestaffport23.s3.eu-west-2.amazonaws.com/compliance/ff4493563cf642ffbc0f05c18be531a7.png?X-Amz-Expires=600&amp;X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=AKIA3NHQF7DCXRKNIZWF/20230724/eu-west-2/s3/aws4_request&amp;X-Amz-Date=20230724T132539Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=3e86e0827a460e0211e088ab993cc297cf67d29774f4e8a67735df2274d23d8b"></iframe>
-                            </div>
-                            <div className="row p-3">
-                            {/* Update Status */}
-                            <div className="col-md-12 mb-4">
-                                <div className="row mt-0">
-                                <hr />
-                                
-                                <div className="col-lg-6">
-                                    <p className="mb-3">
-                                    <span className="wd-180px">Download File</span>
-                                    <span>:</span>
-                                    <span className="col-black font-16 font-bold ml-1"><a id="link_download_file" className="cls-docs-action" data-action="download_file" data-url="" style={{ color: 'blue' }}>
-                                            <i className="fa fa-download">&nbsp;</i>Download
-                                        </a></span>
-                                    </p>
-                                </div>
-                                <div className="col-lg-6">
-                                    <p className="mb-3">
-                                    <span className="wd-180px">Document Name</span>
-                                    <span>:</span>
-                                    <span className="col-black font-16 font-bold ml-1">CV</span>
-                                    </p>
-                                </div>
-                                <div className="col-lg-6">
-                                    <p className="mb-3">
-                                    <span className="wd-180px">Document No.</span>
-                                    <span>:</span>
-                                    <span className="col-black font-16 font-bold ml-1"></span>
-                                    </p>
-                                </div>
-                                <div className="col-lg-6">
-                                    <p className="mb-3">
-                                    <span className="wd-180px">Issue Date</span>
-                                    <span>:</span>
-                                    <span className="col-black font-16 font-bold ml-1"></span>
-                                    </p>
-                                </div>
-                                <div className="col-lg-6">
-                                    <p className="mb-3">
-                                    <span className="wd-180px">Expiry Date</span>
-                                    <span>:</span>
-                                    <span className="col-black font-16 font-bold ml-1"></span>
-                                    </p>
-                                </div>
-                                <div className="col-lg-6">
-                                    <p className="mb-3">
-                                    <span className="wd-180px">Description</span>
-                                    <span>:</span>
-                                    <span className="col-black font-16 font-bold ml-1">Not available</span>
-                                    </p>
-                                </div>
+                            <div className="row">
+                                <div className="col-md-12">
+                                    <h4 className="modal-title" id="myModalLabel2">
+                                        <button className="btn btn-info btn-sm reveal-click float-left mr-2" style={{ position: 'relative', margin: 0, top: 0, left: '-6px' }}>
+                                            <i className="zmdi zmdi-menu"></i>
+                                        </button>
+                                        <b>Preview file(s) in <span id="docFilename">CV</span></b>
+                                    </h4>
                                 </div>
                             </div>
-                            {/* History */}
+                        </div>
+                        <div className="modal-body">
+                            <div id="divPreviewBodyContent_placeholder" className="d-flex">
+                                {/* Documents List */}
+                                <div className="inbox left pr-0 mr-0 lftfxd pt-3" id="email-nav">
+                                    <div className="file_folder">
+                                        {/* File 1 */}
+                                        <a id="file-ff4493563cf642ffbc0f05c18be531a7.png" href="javascript:void(0);" className="cls-docs-action" data-action="viewfile" data-extension=".png" data-url="https://thestaffport23.s3.eu-west-2.amazonaws.com/compliance/ff4493563cf642ffbc0f05c18be531a7.png?X-Amz-Expires=600&amp;X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=AKIA3NHQF7DCXRKNIZWF/20230724/eu-west-2/s3/aws4_request&amp;X-Amz-Date=20230724T132539Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=3e86e0827a460e0211e088ab993cc297cf67d29774f4e8a67735df2274d23d8b" data-hide=".one" data-show=".two">
+                                            <button id="" className="btn btn-danger btnhover cls-docs-action" data-action="deletefile" data-path="ff4493563cf642ffbc0f05c18be531a7.png" data-uid="62ED78FA-3063-424C-BD73-6476952CC53F" title="Remove File">
+                                                <i className="zmdi zmdi-close-circle"></i>
+                                            </button>
+                                            <div className="icon mr-0">
+                                                <i className="zmdi zmdi-collection-image text-info"></i>
+                                            </div>
+                                            <div className="file-name" style={{ padding: '8px' }}>
+                                                <p className="mb-0 text-muted">cnt.png</p>
+                                                <div style={{ fontSize: '11px', lineHeight: 0 }}>
+                                                    <b style={{ color: 'forestgreen' }}>
+                                                        <span className="col-grey">
+                                                            <i className="fa fa-external-link-square">&nbsp;NEW</i>
+                                                        </span>
+                                                    </b>
+                                                </div>
+                                                <p></p>
+                                            </div>
+                                        </a>
+                                        {/* File 2 */}
+                                        <a id="file-74bd2b17b6c648a7b0aac2f391e8558d.png" href="javascript:void(0);" className="cls-docs-action" data-action="viewfile" data-extension=".png" data-url="https://thestaffport23.s3.eu-west-2.amazonaws.com/compliance/74bd2b17b6c648a7b0aac2f391e8558d.png?X-Amz-Expires=600&amp;X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=AKIA3NHQF7DCXRKNIZWF/20230724/eu-west-2/s3/aws4_request&amp;X-Amz-Date=20230724T132539Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=1115ddf4884d90b3d786f953087b2056ff13d567e8414f9688e923ac1d6505e1" data-hide=".one" data-show=".two">
+                                            <button id="" className="btn btn-danger btnhover cls-docs-action" data-action="deletefile" data-path="74bd2b17b6c648a7b0aac2f391e8558d.png" data-uid="62ED78FA-3063-424C-BD73-6476952CC53F" title="Remove File">
+                                                <i className="zmdi zmdi-close-circle"></i>
+                                            </button>
+                                            <div className="icon mr-0">
+                                                <i className="zmdi zmdi-collection-image text-info"></i>
+                                            </div>
+                                            <div className="file-name" style={{ padding: '8px' }}>
+                                                <p className="mb-0 text-muted">border.png</p>
+                                                <div style={{ fontSize: '11px', lineHeight: 0 }}>
+                                                    <b style={{ color: 'forestgreen' }}>
+                                                        <span className="col-grey">
+                                                            <i className="fa fa-external-link-square">&nbsp;NEW</i>
+                                                        </span>
+                                                    </b>
+                                                </div>
+                                                <p></p>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                                {/* Preview & Action Block */}
+                                <div className="inbox right rgtinbox">
+                                    {/* Document Preview */}
+                                    <div className="pl-3 pr-3 mt-3">
+                                        <iframe id="iframedocfile" src="https://thestaffport23.s3.eu-west-2.amazonaws.com/compliance/ff4493563cf642ffbc0f05c18be531a7.png?X-Amz-Expires=600&amp;X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=AKIA3NHQF7DCXRKNIZWF/20230724/eu-west-2/s3/aws4_request&amp;X-Amz-Date=20230724T132539Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=3e86e0827a460e0211e088ab993cc297cf67d29774f4e8a67735df2274d23d8b" style={{ height: '400px' }} className="one" data-download-url="https://thestaffport23.s3.eu-west-2.amazonaws.com/compliance/ff4493563cf642ffbc0f05c18be531a7.png?X-Amz-Expires=600&amp;X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=AKIA3NHQF7DCXRKNIZWF/20230724/eu-west-2/s3/aws4_request&amp;X-Amz-Date=20230724T132539Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=3e86e0827a460e0211e088ab993cc297cf67d29774f4e8a67735df2274d23d8b"></iframe>
+                                    </div>
+                                    <div className="row p-3">
+                                        {/* Update Status */}
+                                        <div className="col-md-12 mb-4">
+                                            <div className="row mt-0">
+                                                <hr />
+
+                                                <div className="col-lg-6">
+                                                    <p className="mb-3">
+                                                        <span className="wd-180px">Download File</span>
+                                                        <span>:</span>
+                                                        <span className="col-black font-16 font-bold ml-1"><a id="link_download_file" className="cls-docs-action" data-action="download_file" data-url="" style={{ color: 'blue' }}>
+                                                            <i className="fa fa-download">&nbsp;</i>Download
+                                                        </a></span>
+                                                    </p>
+                                                </div>
+                                                <div className="col-lg-6">
+                                                    <p className="mb-3">
+                                                        <span className="wd-180px">Document Name</span>
+                                                        <span>:</span>
+                                                        <span className="col-black font-16 font-bold ml-1">CV</span>
+                                                    </p>
+                                                </div>
+                                                <div className="col-lg-6">
+                                                    <p className="mb-3">
+                                                        <span className="wd-180px">Document No.</span>
+                                                        <span>:</span>
+                                                        <span className="col-black font-16 font-bold ml-1"></span>
+                                                    </p>
+                                                </div>
+                                                <div className="col-lg-6">
+                                                    <p className="mb-3">
+                                                        <span className="wd-180px">Issue Date</span>
+                                                        <span>:</span>
+                                                        <span className="col-black font-16 font-bold ml-1"></span>
+                                                    </p>
+                                                </div>
+                                                <div className="col-lg-6">
+                                                    <p className="mb-3">
+                                                        <span className="wd-180px">Expiry Date</span>
+                                                        <span>:</span>
+                                                        <span className="col-black font-16 font-bold ml-1"></span>
+                                                    </p>
+                                                </div>
+                                                <div className="col-lg-6">
+                                                    <p className="mb-3">
+                                                        <span className="wd-180px">Description</span>
+                                                        <span>:</span>
+                                                        <span className="col-black font-16 font-bold ml-1">Not available</span>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {/* History */}
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        </div>
-                    </div>
                     </div>
                 </div>
             </div>
         </>
     )
-  
+
 }
 
 export default Main

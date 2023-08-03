@@ -12,7 +12,7 @@ const HeaderNav = () => {
 <nav className="navbar navbar-dark d-flex justify-content-between align-items-center bg-dark mb-0">
         <div className="">
             <div className="navbar-brand mr-4 pr-0  float-left d-flex">
-                <button className="btn-menu ls-toggle-btn" data-status="o" type="button">
+                <button className="btn-menu ls-toggle-btn" type="button">
                     <i className="zmdi zmdi-menu"></i>
                 </button>
                 <Link href="/">
