@@ -13,7 +13,6 @@ import Terms from './viewProfile/Terms';
 import Image from 'next/image';
 import profile from '@/app/images/profile.jpg';
 
-
 import { useState, useEffect } from 'react';
 import { asyncGet } from '@/app/services/HttpServices';
 import { endpoint_agency_role, endpoint_candidate, endpoint_employer, endpoint_employer_ddl } from '@/app/services/ApiEndPoints';
@@ -374,6 +373,7 @@ function Main() {
                                                                         <td> <a className="badge badge-success cursor"> {item.account_status_label} </a>
                                                                         </td>
                                                                         <td> <a className="btn btn-outline-primary btn-sm btn-cnd-profiles-view"
+                                                                            data-val={item.cnd_id}
                                                                             data-toggle="modal"
                                                                             data-target="#viewprofile"><i
                                                                                 className="zmdi zmdi-search"></i></a>
@@ -644,9 +644,11 @@ function Main() {
                 <div className="modal-dialog" role="document">
 
                     <div className="modal-content upmodel" style={{ height: "99.3%" }}>
-                        <div className="modal-header">
+                        <div id='CndProfileHeader_Placeholder' className="modal-header">
                             <div className="">
-                                <h4 className="modal-title hide-head profile-header" data-val="107"> <b>General Practitioner</b>
+                                <h4 className="modal-title hide-head profile-header" data-val="0"> <b>General Practitioner 
+                                    <i className='profile-id'></i>
+                                </b>
                                 </h4>
                                 <div className="show-head smd_none"> <Image src={profile} alt="img"
                                     className="img-responsive rounded-circle img" />
@@ -662,7 +664,7 @@ function Main() {
                                 </div>
                             </div>
                             <div> <a className="btn btn-outline-primary  btn-cnd-profiles-view mr-1" data-toggle="modal"
-                                data-val="107" data-sub-type="Agency"><i className="zmdi zmdi-refresh font-16"></i> <b
+                                data-val="0" data-sub-type="Agency"><i className="zmdi zmdi-refresh font-16"></i> <b
                                     className="dis_mob">Refresh</b></a>
                                 <a className="btn btn-outline-danger btnSearchEmployeesRefresh" data-dismiss="modal"
                                     aria-label="Close"> <i className="zmdi zmdi-close"></i><b className="dis_mob"> Close</b></a>

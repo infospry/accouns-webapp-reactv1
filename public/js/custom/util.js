@@ -8,6 +8,7 @@ var uri2 = uri;
 var urls2 = {
     autocompleteApi: uri2 + 'api/auto'
 };
+
 //Api Fuction  
 var urls = {
     addressFinderApi: 'api/address',
@@ -77,7 +78,7 @@ var ns_api = {
 //Ajax Funtions
 var ns_ajax = {
     get: function (ws_method, param, on_success) {
-     
+            
         if (uri == '') {
             alert('Source uri missing');
             return false;
@@ -86,7 +87,8 @@ var ns_ajax = {
             alert('Missing web method');
             return false;
         }     
-        if (param == '') {          
+        if (param == '') {   
+           
             $.ajax({              
                 url: uri + ws_method,
                 dataType: "json",
@@ -116,12 +118,12 @@ var ns_ajax = {
                 data:param,// this.stringifyParam(param),
                 dataType: "json",
                 type: "GET",               
-                beforeSend: function () {
-                    blockUI('JobsTable');
-                },
-                complete: function () {
-                    unblockUI('JobsTable');
-                },
+                // beforeSend: function () {
+                //     blockUI('JobsTable');
+                // },
+                // complete: function () {
+                //     unblockUI('JobsTable');
+                // },
                 success: on_success,
                 error: function (error) {
                     if (error.statusText == 'Unauthorized' && error.responseJSON.Message == 'Session has expired') {
@@ -468,7 +470,7 @@ function eraseCookie(name) {
 
 
 function getToken(){
-    Token = readCookie('token');
+    Token = readCookie('token');  
     if (Token == null || Token == '') {
         clearCookie();
         alert('Your session has expired. \nPlease login again.');
@@ -477,12 +479,12 @@ function getToken(){
     else {
         RequestChecksum = readCookie('checksum');
         Source = 'ORG';
-        $('#spanprofile-name, .spanprofile-name').html(readCookie('pname'));
-        $('.EmployeeAvatar').html(readCookie('pname').charAt(0));
-        $('.EmployeeAvatar').attr('title', readCookie('pname'));
-        $('#spanprofile-email, .spanprofile-email').html(readCookie('pemail'));
-        $('#spanEmpname').html(readCookie('pempname'));
-        $('#spanlogdatetime').html(readCookie('logdatetime'));       
+        // $('#spanprofile-name, .spanprofile-name').html(readCookie('pname'));
+        // $('.EmployeeAvatar').html(readCookie('pname').charAt(0));
+        // $('.EmployeeAvatar').attr('title', readCookie('pname'));
+        // $('#spanprofile-email, .spanprofile-email').html(readCookie('pemail'));
+        // $('#spanEmpname').html(readCookie('pempname'));
+        // $('#spanlogdatetime').html(readCookie('logdatetime'));       
     }
    
 }
@@ -491,15 +493,15 @@ function clearCookie() {
     eraseCookie('tokenExpiry');
     eraseCookie('token');
     eraseCookie('checksum');
-    eraseCookie('ptype');
-    eraseCookie('pname');
-    eraseCookie('pemail');
-    eraseCookie('pempname');
-    eraseCookie('logdatetime');
+    // eraseCookie('ptype');
+    // eraseCookie('pname');
+    // eraseCookie('pemail');
+    // eraseCookie('pempname');
+    // eraseCookie('logdatetime');
     //Remove localStorage
-    localStorage.removeItem('usernav');
-    localStorage.removeItem('totalunreadmsg');
-    localStorage.removeItem('totalunreadLogs');
+    // localStorage.removeItem('usernav');
+    // localStorage.removeItem('totalunreadmsg');
+    // localStorage.removeItem('totalunreadLogs');
     
     window.location.href = "/";
 }
@@ -899,9 +901,9 @@ function unblockUIbyId(id) {
 
 //datepair
 function DatePairFuction() {
-    $('.ClsDatepair .time').timepicker({ 'showDuration': true, 'timeFormat': 'H:i', 'step': '15' });
-    $('.ClsDatepair .date').datepicker({ 'format': 'dd/mm/yyyy', 'autoclose': true });
-    $('.ClsDatepair').datepair();
+    // $('.ClsDatepair .time').timepicker({ 'showDuration': true, 'timeFormat': 'H:i', 'step': '15' });
+    // $('.ClsDatepair .date').datepicker({ 'format': 'dd/mm/yyyy', 'autoclose': true });
+    // $('.ClsDatepair').datepair();
 }
 
 //File Upload Functions to Validate Size and extensions

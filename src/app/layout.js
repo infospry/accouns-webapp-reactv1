@@ -22,7 +22,11 @@ export default function RootLayout({ children }) {
               <script src="js/libscripts.bundle.js"></script>
               <script src="js/vendorscripts.bundle.js"></script>
               <script src="js/mainscripts.bundle.js"></script> 
+              
+              <script src="js/custom/jquery.tmpl.js"></script>               
               <script src="js/custom.js"></script>
+              <script src="js/custom/util.js"></script>
+              <script src="js/custom/masters.1.0.0.js"></script>
       </body>
       
     </html>

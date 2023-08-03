@@ -69,9 +69,7 @@ function Main() {
 
             if(formData!==null)
             {
-               let payload=[formData];               
-              console.log(payload);
-           
+               let payload=[formData];        
               const response = await asyncPost(endpoint_employer + '/registration', payload);
               console.log(response);
   
