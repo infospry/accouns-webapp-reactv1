@@ -104,7 +104,7 @@ function FillAddress(addr) {
 
 
 $(document).ready(function () {   
-
+   
     $(document).on('change', '#chk_overtime_allowed', function () {
         if ($(this).is(":checked")) {
             $("#divOvertimeDetails").show();
@@ -282,8 +282,11 @@ $(document).ready(function () {
 
     $(document).on('click', ".btn-cnd-profiles-view", function () {
         // var request = $(this).attr('data-request');
-        $('.profile-id').attr('data-id', $(this).attr('data-val'));     
+        var cnd_id= $(this).attr('data-val');
+      
+        $('.profile-id').attr('data-id',cnd_id);     
         ns_employee.get('Personal-Info');
+        DatePairFuction();
         //$("#viewprofile").modal('show');
        // alert(request);
         // if (request == 'compliance') {
@@ -298,6 +301,127 @@ $(document).ready(function () {
         //     }, 2000);
         // }        
     });
+
+    $(document).on('click', ".btn-update-terms", function (evt) {
+        var action = $(this).attr('data-action');
+        if (action.toUpperCase() == 'BANK-INFO') {
+            var id = $(this).attr('data-id');
+            var action = $(this).attr('data-req');
+           
+            ns_employee.AddUpdateBankDetail(id, action);
+        }
+        if (action.toUpperCase() == 'PENSION-INFO') {
+            var id = $(this).attr('data-id');
+            var action = $(this).attr('data-req');
+            ns_candidate.AddUpdateProfile('PENSION', action);
+            //ns_employee.AddUpdateBankDetail(id, action);
+        }
+        else {
+            ns_employee.update(action,evt);
+        }
+    });
+
+    $(document).on("click", ".ClsCndProfile", function () {
+        var block = $(this).attr('data-block');
+        var action = $(this).attr('data-action');
+        if (block == 'BASIC_INFO' || block == 'PERSONAL_STATEMENT' || block == "PENSION" || block == "ADDRESS") {
+            ns_candidate.AddUpdateProfile(block, action);
+        }
+        else if (block == "DEFAULT_STATUS" || block == "BANK_DEFAULT") {
+            var id = $(this).attr('data-id');
+            if (confirm("Are you sure you want to set this " + (block == "BANK_DEFAULT" ? 'A/c' : 'location') + " as default ?"))
+                ns_candidate.AddUpdateProfile(block + '-' + id, action);
+        }
+
+        else if (block == "SOCIAL_PROFILE" || block == "WORK_HISTORY" || block == "QUALIFICATION" || block == "ADDITIONAL_EXP" || block == "REFRENCE") {
+            var id = action == 'UPDATE' ? $(this).attr('data-id') : '0';
+            ns_candidate.AddUpdateProfile(block + '-' + id, action);
+        }
+        else if (block == "SUBSCRIPTION") {
+            if (!$('#chktagree').prop('checked')) {
+                $('#chktagree').focus();
+                ShowAlertMessage("Message", "Kindly indicate that you have read and agree to the Terms & Conditions", "A");
+            }
+            else if (!$('#chkpagree').prop('checked')) {
+                $('#chkpagree').focus();
+                ShowAlertMessage("Message", "Kindly indicate that you have read and agree to the Privacy Policy", "A");
+            }
+            else
+                ns_candidate.AddUpdateProfile(block, action);
+        }
+        else if (block == "EXP_FILL_CONTROL") {
+            $('#txtExpDetail').Editor();
+            if (action == 'UPDATE') {
+                $('#txtCategory').val($(this).attr('data-category'));
+                $('.Editor-editor').html($(this).attr('data-cat-detail'));
+                $('#btnSaveAddExp').html('Update').attr('data-action', 'UPDATE').attr('data-id', $(this).attr('data-id'));
+            }
+            else {
+                $('#txtCategory').val('');
+                $('.Editor-editor').html('');
+                $('#btnSaveAddExp').html('Save').attr('data-action', 'INSERT').attr('data-id', '0');
+            }
+        }
+        else if (block == "ADDRESS_FILL_CONTROL") {
+            if (action == 'UPDATE') {
+                $('#txtPostCode').val($(this).attr('data-postcode').trim());
+                $('#txtaddressline2').val($(this).attr('data-address').trim());
+                $('#txtCndCity').val($(this).attr('data-city').trim());
+                $('#txtCndArea').val($(this).attr('data-area').trim());
+                $('#txtCndCounty').val($(this).attr('data-county').trim());
+                $('.divaddress2').show();
+                $('#spnAddressHeading').html('-<b>Edit Contact Address </b>-');
+                $('#btnAddUpdateAddress').html('Update').attr('data-action', 'UPDATE').attr('data-id', $(this).attr('data-id'));
+            }
+            else {
+                $('#txtPostCode, #txtaddressline2, #txtCndCity, #txtCndArea, #txtCndCounty').val('');
+                //$('.divaddress2').hide();
+                $('#selectList2').html('<option value="">select address</option>');
+                //$('.divselectAddres2').hide();
+                $('#spnAddressHeading').html('-<b>Add Contact Address </b>-');
+                $('#btnAddUpdateAddress').html('Save').attr('data-action', 'INSERT').attr('data-id', '0');
+            }
+        }
+        else if (block == "PREFRENCE" || block == "ITSYS" || block == "LANGUAGE") {
+            ns_candidate.AddUpdateProfile(block, action);
+        }
+        else if (block == "CHKPREFRENCE" || block == "CHKLANGUAGE" || block == "CHKITSYS") {
+            var ids = $(this).attr('data-ids');
+            var txt = block == "CHKPREFRENCE" ? 'chkpref' : block == "CHKLANGUAGE" ? 'ChkLang' : block == "CHKITSYS" ? 'ChkIT' : '';
+            for (var i = 0; i < ids.split(',').length; i++) {
+                $('#' + txt + '-' + ids.split(',')[i]).prop('checked', true);
+            }
+        }
+        else if (block == "DEL_SOCIAL_PRO" || block == "DEL_WORK_HIST" || block == "DEL_QUALIFICATION" || block == "DEL_ADD_EXP" || block == "DEL_ADDRESS" || block == "DEL_REFRENCE") {
+            var id = $(this).attr('data-id');
+            var msg = block == "DEL_SOCIAL_PRO" ? 'Social Profile' : block == "DEL_WORK_HIST" ? 'Work History' : block == "DEL_QUALIFICATION" ? 'Qualification' : block == "DEL_ADD_EXP" ? 'Experienced' : block == "DEL_ADDRESS" ? 'address' : block == "DEL_REFRENCE" ? 'REFRENCE' : '';
+            if (confirm("Are you sure you want to delete this  " + msg + "?"))
+                ns_candidate.AddUpdateProfile(block + '-' + id, action);
+        }
+        else if (block == "BANK_DETAILS") {
+            var id = $(this).attr('data-id');
+            ns_candidate.AddUpdateBankDetail(id, action);
+        }
+        else if (block == "DEL_BANK_DETAIL") {
+            var id = $(this).attr('data-id');
+            if ($('#btnBankdefault-' + id).attr('data-status') == 1) {
+                ShowAlertMessage("Message", "Default A/c can not be deleted.", "A");
+                return false;
+            }
+            if (confirm("Are you sure you want to delete this  bank detail ?"))
+                ns_candidate.AddUpdateProfile(block + '-' + id, action);
+        }
+    });
+
+    $(document).on('click', "#txtchangepassempcnd", function (evt) {
+        ns_employee.add('Password',evt);
+    });
+
+    $(document).on('click', "#btnContactsFindAddress", function () {
+        var postcode = $("#txtEditProfilePostCode").val();
+        AddressFinder.Finder(postcode, "#txtContactsCity", "#txtContactsCounty", "#ddlContactsAddressList");
+    });
+
 });
 
 ns_employee = {   
@@ -2554,6 +2678,2258 @@ ns_employee_template = {
                 }
             }
         );
+    },
+}
+
+ns_candidate = {
+    TotalQty: function (obj) {
+        var totaljobs = 0, flag = true;
+        if (obj == 'No Records') {
+            //$('.cls-All, .cls-ACTIVE, .cls-INACTIVE, .cls-DELETED).html('0');
+        }
+        else {
+            if (obj.length == 1)
+                flag = false;
+            $.each(obj, function (key, value) {
+                $('.cls-' + value.status).html(value.total);
+                if (value.status == 'ACTIVE' || value.status == 'INACTIVE' || value.status == 'DELETED') {
+                    totaljobs = parseInt(totaljobs) + parseInt(value.total);
+                }
+            });
+            if (flag)
+                $('.cls-All').html(totaljobs);
+        }
+    },
+    GetCandidates: function (obj) {
+        var TotalRecords = 0;
+        var rows = '';
+        if (obj !== 'No Records') {
+            $.each(obj, function (key, value) {
+                TotalRecords = value.TotalRecord;
+                var cndid = value.cnd_id;
+                var account_status_label = value.account_status_label;
+                var cndname = value.cnd_name;
+                rows += '<tr>';
+                rows += '<td><div class="checkbox"><input id="chkAllMsg' + cndid + '" type="checkbox"><label for="chkAllMsg' + cndid + '">&nbsp;</label></div></td>';
+                $.each(value, function (i, item) {
+                    var field = i;
+                    var val = value[i] == null ? '' : value[i];
+                    if (field == 'TotalRecord') { }
+                    else if (field == 'RowNumber') {
+                        rows += '<td class="' + field + '">' +
+                            //SrNo.
+                            '<span>' + val + '</span>' +
+                            //Action Buttons   
+                            '<span class="table-row-btn">';
+                        var clsAction = 'class="btn btn-outline-primary btn-sm mr-1 btn-account-action"';
+
+                        rows += '<a ' + clsAction + ' data-action="blockpayment" data-toggle="modal" data-target="#block-payment"><i class="zmdi zmdi-flag"></i></a>';
+
+                        rows += '<a class="btn btn-outline-primary btn-sm mr-1 btnNotes" data-id="' + cndid + '" data-name="' + (cndname.split('#')[0]) + '" data-role="' + (cndname.split('#')[1]) + '" data-profile-type="CND" title="Notes" data-toggle="modal" data-target="#ModalNotes"><i class="zmdi zmdi-file-text"></i></a>';
+
+                        //rows += '<a ' + clsAction + ' data-action="notes" data-toggle="modal" data-target="#notes-modal"><i class="zmdi zmdi-file-text"></i></a>';
+                        //rows += '<a ' + clsAction + ' data-action="comments" data-id="' + cndid + '" title="Comments" data-toggle="modal" data-target="#comments"><i class="zmdi zmdi-comment-more col-brown">&nbsp;</i></a>';
+                        rows += '<a ' + clsAction + ' data-action="view" data-id="' + cndid + '" data-name="' + (cndname.split('#')[0]) + '" data-role="' + (cndname.split('#')[1]) + '" data-profile-type="CND" title="View" data-toggle="modal" data-target="#viewprofile"><i class="zmdi zmdi-search col-teal">&nbsp;</i>View</a>';
+                        rows += '</span>';
+                        '</td>';
+                    }
+                    else if (field == 'cnd_id') {
+                        rows += '<td class="fixed-side ' + field + '">' +
+                            '<a data-action="view" data-id="' + cndid + '" title="View" data-toggle="modal" data-target="#viewprofile" class="btn-account-action col-blue"><b>' + val + '</b></a>' +
+                            '</td>';
+
+
+                    }
+                    else if (field == 'cnd_name') {
+                        rows += '<td class="' + field + '">' +
+                            '<span class="ml-1">' +
+                            '<span><b>' + (val.split('#')[0]) + '</b></span>' +
+                            '<br><small class="col-lime"><b>' + (val.split('#')[1]) + '</b></small>' +
+                            '</span>' +
+                            '</td>';
+                    }
+                    else if (field == 'owner_name') {
+                        rows += '<td class="' + field + '">' +
+                            '<a class="badge badge-primary" data-toggle="modal" data-target="#ownership">' + GetShortName(val) + '</i></a>' +
+                            '</td>';
+                    }
+                    else if (field == 'cnd_email_details') {
+                        rows += '<td class="' + field + '">' +
+                            '<a href="#" class="EShow "><i class="zmdi zmdi-email-open"></i> ' + val.split("#")[0] + '</a>' +
+                            (val.split("#")[1] == '1' ? '<br><span class="col-green"><i class="zmdi zmdi-check-all"></i> Verified</span><br>' + val.split("#")[2] + ''
+                                : '<br><span class="col-red"><i class="zmdi zmdi-alert-triangle"></i> Not Verified</span>') +
+                            '</td>';
+                    }
+                    else if (field == 'cnd_mobile_details') {
+                        rows += '<td class="' + field + '">' +
+                            '<a href="#" class="PShow col-grey"><i class="zmdi zmdi-phone-in-talk"></i> ' + val.split("#")[0] + '</a>' +
+                            (val.split("#")[1] == '1' ? '<br><span class="col-green"><i class="zmdi zmdi-check-all"></i> Verified</span><br>' + val.split("#")[2] + ''
+                                : '<br><span class="col-red"><i class="zmdi zmdi-alert-triangle"></i> Not Verified</span>') +
+                            '</td>';
+                    }
+                    else if (field == 'cnd_audit_status') {
+                        rows += '<td class="' + field + '">' +
+                            (val == '1' ? '<span class="col-green"><b><i class="zmdi zmdi-check-all">&nbsp;</i>Audited</b></span>' :
+                                '<span class="badge badge-default"><b>Audit</b></span>') +
+                            '</td>';
+                    }
+                    else if (field == 'mdr') {
+                        rows += '<td class="' + field + '">' +
+                            '<a data-toggle="modal" data-target="#viewalldocs18" class="badge badge-danger" data-toggle="tooltip" title="Non Compliant" ' +
+                            'data-original-title="Non Compliant"> <i class="fa fa-warning faa-flash animated red">&nbsp;</i></a>' +
+                            '<a data-toggle="modal" data-target="#viewalldocs18" class="badge badge-danger m-1" data-toggle="tooltip" title="Non Compliant Mandatory Docs" ' +
+                            'data-original-title="Non Compliant Mandatory Docs">' + (val.split('#')[0]) + ' <b>/</b> ' + (val.split('#')[1]) + '</a>' +
+
+                            '</td>';
+                    }
+                    else if (field == 'trn') {
+                        rows += '<td class="' + field + '">' +
+                            '<a data-toggle="modal" data-target="#viewalldocs18" class="badge badge-warning btn-sm red" data-toggle="tooltip" title="Non Compliant Training Docs"' +
+                            'data-original-title="Non Compliant Training Docs">' + (val.split('#')[0]) + ' <b>/</b> ' + (val.split('#')[1]) + '</a>' +
+
+                            '</td>';
+                    }
+                    else if (field == 'opt') {
+                        rows += '<td class="' + field + '">' +
+                            '<a data-toggle="modal" data-target="#viewalldocs18" class="badge badge-info btn-sm viewalldocs" data-toggle="tooltip" title="Non Compliant Optional Docs"' +
+                            'data-original-title="Non Compliant Optional Docs">' + (val.split('#')[0]) + ' <b>/</b> ' + (val.split('#')[1]) + '</a>' +
+
+                            '</td>';
+                    }
+                    else if (field == 'account_status_label') {
+                        rows += '<td class="' + field + '">' +
+                            (val == 'ACTIVE' ? '<span class="badge badge-success"><b>' + val + '</b></span>' :
+                                val == 'INACTIVE' ? '<span class="badge badge-default"><b>' + val + '</b></span>' : +
+                                    val == 'DELETED' ? '<span class="badge badge-danger"><b>' + val + '</b></span>' : '') +
+                            '</td>';
+                    }
+                    else {
+                        rows += '<td class="' + field + '">' +
+                            '<span>' + val + '</span>' +
+                            '</td>';
+                    }
+                });
+                rows += '</tr>';
+            });
+        }
+        else {
+            rows = '<td colspan="5" style="height:100px;color:lightcoral; font-size:16px">' + obj + '</td>';
+        }
+        result = ns_Paging._Object(rows, TotalRecords);
+        $('.tblRecods').html(rows);
+        DatePairFuction();
+        return result;
+        fn_autocomplete('txtcandidatename', 'cnd', 'txtcandidatename');
+    },
+
+    Insert_Candidate: function () {
+      
+        var obj = {};
+        var ddlCat = $("#ddlcat").val();
+        var ddlRole = $("#ddlRole").val();
+        var ddlTitle = $("#ddltitle").val();
+        var txtFirstName = $("#txtFirstName").val();
+        var txtLastName = $("#txtLastName").val();
+        var txtGmcNumber = $("#txtGmcNumber").val();
+        var txtMobileNumber = $("#txtCndMobileNumber").val();
+        var txtCndEmail = $("#txtCndEmail").val();
+        var Gender = $("input[name='Gender']:checked").val();
+        var txtPostcode = $("#txtPostCode").val();
+        var ddlCndLocation = $("#selectList2").val();
+        var txtCndAddress1 = $("#txtaddressline2").val();
+        var txtCity = $("#txtCndCity").val();
+        var txtCounty = $("#tctCndCounty").val();
+        var IsEmailChecked = $('#ChkCndSignupEMAIL').is(":checked");
+        var IsSmsChecked = $('#ChkCndSignupSMS').val();
+        if ($('#ChkCndSignupEMAIL').attr('type') === 'checkbox')
+            IsEmailChecked = +$('#ChkCndSignupEMAIL').is(':checked');
+        if ($('#ChkCndSignupSMS').attr('type') === 'checkbox')
+            IsSmsChecked = +$('#ChkCndSignupSMS').is(':checked');
+
+
+        if (ddlTitle == '0') {
+            $("#ddlTitle").focus();
+            ShowAlertMessage("Message", "Select Title ", "A");
+            return false;
+        }
+        if (txtFirstName == '') {
+            $("#txtFirstName").focus();
+            ShowAlertMessage("Message", "Enter First Name ", "A");
+            return false;
+        }
+        if (txtMobileNumber != '' && txtMobileNumber.length < 10) {
+            $("#txtMobileNumber").focus();
+            ShowAlertMessage("Message", "Enter Valid Mobile Number", "A");
+            return false;
+        }
+        if (txtCndEmail != '' && !IsEmail(txtCndEmail)) {
+            $("#txtCndEmail").focus();
+            ShowAlertMessage("Message", "Enter Valid Email", "A");
+            return false;
+        }
+        if (ddlCat == '') {
+            $("#ddlcat").focus();
+            ShowAlertMessage("Message", "Select Category ", "A");
+            return false;
+        }
+        if (ddlRole == 0) {
+            $("#ddlRole").focus();
+            ShowAlertMessage("Message", "Select Role ", "A");
+            return false;
+        }
+        //if (txtPostcode == '') {
+        //    $("#txtPostCode").focus();
+        //    ShowAlertMessage("Message", "Enter Post Code ", "A");
+        //    return false;
+        //}
+        obj.cnd_id = 0;
+        obj.cnd_role_id = $("#ddlRole").val();
+        obj.emp_title = ddlTitle;
+        obj.cnd_first_name = txtFirstName;
+        obj.cnd_last_name = txtLastName;
+        obj.cnd_gender = Gender;
+        obj.cnd_mobile = txtMobileNumber;
+        obj.cnd_email = txtCndEmail;
+        obj.IsEmailChecked = IsEmailChecked;
+        obj.IsSmsChecked = IsSmsChecked;
+        obj.cnd_postcode = txtPostcode;
+        obj.cnd_address1 = txtCndAddress1;
+        obj.cnd_city = txtCity;
+        obj.cnd_county = txtCounty;
+       
+        ns_ajax.post(
+            'Candidate/InsertCandidate',
+            obj,
+            function (response) {
+                if (response == 'OK') {
+                    ShowAlertMessage("Message", 'Candidate <b>' + obj.cnd_first_name + '</b> has been registered successfully.', "C");
+                    $('#register-new-candidate-modal').modal('hide');
+                    $(".modal-backdrop").css('display', 'none');
+                    ns_candidate.Reset();
+                    ns_Paging._createPager('#PgData', (ns_gris_setting.get_grid_field(ns_Paging.options.currentIndex, ns_Paging.options.rPP)));
+                    ns_employee.get('Profiles');
+                    ns_candidate.GetCandidateList();
+                   
+                }
+                else
+                    ShowAlertMessage("Message", response, "A");
+            });
+    },
+    ChangeStatus: function (cnd_id, status, action, type) {
+        var param = '{cnd_id:"' + cnd_id + '",status:"' + status + '",type:"' + action + '"}';
+        ns_ajax.post(
+            'Candidate/ChangeCandidateStatus',
+            param,
+            function (response) {
+                if (response.split('|')[0] == 'OK') {
+                    ShowAlertMessage("Message", "Status has been changed successfully.", "C");
+                    if (type == 'M') {
+                        if (status == 1)
+                            $('#CandidateChangeStatus-' + cnd_id).html('<i class="zmdi zmdi-check-all">&nbsp;</i>Active').removeClass('btn btn-warning btn sm').addClass('btn btn-success btn sm');
+                        else
+                            $('#CandidateChangeStatus-' + cnd_id).html('<i class="zmdi zmdi-money-off">&nbsp;</i>Inactive').removeClass('btn btn-success btn sm').addClass('btn btn-warning btn sm');
+                    }
+                    else
+                        ns_candidate.GetCandidate(cnd_id);
+                }
+                else
+                    ShowAlertMessage("Message", response, "A");
+            });
+    },
+    GetCandidateList: function () {
+        var Param = { status: IsActive };
+        ns_ajax.get(
+            'Candidate/GetCandidate',
+            Param,
+            function (response) {
+                if (response.split('|')[0] == 'OK') {
+                    var obj = jQuery.parseJSON(response.split('|')[1]);
+                    var strVal = '', i = 0, AllCount = 0;
+                    var TotalCountObj = jQuery.parseJSON(response.split('|')[2]);
+                    $('.cls-ACTIVE').html('0');
+                    $('.cls-INACTIVE').html('0');
+                    $.each(TotalCountObj, function (key, value) {
+                        $('.cls-DELETED').html(value.deletecount);
+                        if (value.cnd_account_status == 1 ? $('.cls-ACTIVE').html(value.totalcount) : $('.cls-INACTIVE').html(value.totalcount));
+                        AllCount += parseInt(value.totalcount);
+                    });
+                    $('.cls-All').html(AllCount);
+                    $.each(obj, function (key, value) {
+                        var StrStatus = value.cnd_account_status == 1 ? '<a id="CandidateChangeStatus-' + value.cnd_id + '"  class="w65 btn btn-success btn sm CandidateChangeStatus"  title="Click to change status"><i class="zmdi zmdi-check-all">&nbsp;</i>Active</a>' : '<a id="CandidateChangeStatus-' + value.cnd_id + '"  class="w65 btn btn-warning btn sm CandidateChangeStatus"  title="Click to change status"><i class="zmdi zmdi-money-off">&nbsp;</i>Inactive</a>';
+                        var MobileNumber = '<a class="PShow col-grey"><i class="zmdi zmdi-phone-in-talk">&nbsp;</i>' + value.cnd_mobile + '</a> <span class="col-grey Ptarget"><i class="zmdi zmdi-phone-in-talk"></i><b>' + value.cnd_mobile + '</b></span><br><span class="col-green"><i class="zmdi zmdi-check-all"></i>Verified</span>';
+                        var Email = '<a href="#" class="EShow "><i class="zmdi zmdi-email-open">&nbsp;</i>' + value.cnd_email + '<span class="text-blue Etarget"><i class="zmdi zmdi-email-open"></i>' + value.cnd_email + '</span><br><span class="col-red"><i class="zmdi zmdi-alert-triangle"></i>Not Verified</span></a>';
+                        var Action = '<span class="table-row-btn"><a class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#viewprofile"><i class="zmdi zmdi-eye"></i>view</a><a class="btn btn-outline-primary btn-sm" title="History" data-toggle="modal" data-target="#history">H</a><a class="ion btn btn-outline-danger btn-sm"><div class="lid"></div><div class="lidcap"></div><div class="bin"></div></a></span>';
+                        strVal += '<tr>' +
+                            '<td class="checkbox">' + '<input id="ChkCandidate-' + value.cnd_id + '" type="checkbox"><label for="ChkCandidate-' + value.cnd_id + '">&nbsp;</label>' + '</td>' +
+                            '<td>' + value.ROWNUMBER + '</td>' +
+                            '<td>' + value.cnd_first_name + ' ' + value.cnd_last_name + '<br>' + StrStatus + '</td>' +
+                            '<td>' + 'CND' + '</td>' +
+                            '<td>' + 'Self' + '</td>' +
+                            '<td>' + Email + '</td>' +
+                            '<td>' + MobileNumber + '</td>' +
+                            '<td class="col-blue-grey">' + '<i class="zmdi zmdi-pin">&nbsp;</i>' + value.cnd_city + '</td>' +
+                            '<td class="col-blue-grey">' + '<i class="zmdi zmdi-calendar">&nbsp;</i>' + value.create_date2 + Action + '</td>' +
+                            '</tr>';
+                    });
+                    $('.tblManageCandidate').html(strVal);
+                }
+                else
+                    $('.tblManageCandidate').html("");
+            });
+    },
+    Bind_Parent: function () {
+        $('#ddlcat').html('');
+        ns_ajax.get(
+            'Candidate/BindParentRoles',
+            '',
+            function (response) {
+                if (response.split('|')[0] == 'OK') {
+                    var obj = jQuery.parseJSON(response.split('|')[1]);
+                    var StrVal = '';
+                    StrVal = '<option value="">Select Category</option>';
+                    $('#ddlRole').html('<option value="0">Select Role</option>');
+                    $.each(obj, function (key, value) {
+                        StrVal += '<option value=' + value.role_id + '>' + value.role_name + '</option>'
+                    })
+                    $('#ddlcat').html(StrVal);
+                }
+            });
+    },
+    Bind_Role: function () {
+        var role_id = $('#ddlcat').val();
+        if (role_id == 0) {
+            $('#ddlRole').html('<option value="0">Select Role</option>');
+            return false;
+        }
+        $('#ddlRole').html('');
+        var Param = { role_id: role_id };
+        ns_ajax.get(
+            'Candidate/BindRoles',
+            Param,
+            function (response) {
+                if (response.split('|')[0] == 'OK') {
+                    var objRole = jQuery.parseJSON(response.split('|')[1]);
+                    var StrVal = '';
+                    StrVal = '<option value="0">Select Role</option>';
+                    $.each(objRole, function (key, value) {
+                        StrVal += '<option value=' + value.role_id + '>' + value.role_name + '</option>'
+                    })
+                    $('#ddlRole').html(StrVal);
+                }
+            });
+    },
+    VerifyRegNo: function () {
+        var firstname = $("#txtFirstName");
+        var lastname = $("#txtLastName");
+        var gmcNumber = $("#txtGmcNumber");
+        if (firstname.val() == '') {
+            firstname.addClass('highlight');
+            $("#txtFirstName").focus();
+            ShowAlertMessage("Message", 'Enter first name', "A");
+            return false;
+        }
+        if (lastname.val() == '') {
+            lastname.addClass('highlight');
+            $("#txtLastName").focus();
+            ShowAlertMessage("Message", 'Enter last name', "A");
+            return false;
+        }
+        if (gmcNumber.val() == '') {
+            gmcNumber.addClass('highlight');
+            $('#msgPractice').fadeIn('slow', function () {
+                $('#msgPractice').css('color', '#A94442');
+            });
+            $("#txtGmcNumber").focus();
+            var ph = $("#txtGmcNumber").attr('placeholder');
+            ShowAlertMessage("Message", ph, "A");
+            return false;
+        }
+        var api = "http://dev2.infospry.in/gmcapi/api/GMC/get?Gname=" + firstname.val() + "&SName=" + lastname.val() + "&GMC_No=" + gmcNumber.val() + "&Type=D";
+
+        $.ajax({
+            type: "GET",
+            url: api,
+            beforeSend: function () {
+                $("#verifynumber").html("Wait...");
+            },
+            success: function (data) {
+                var flag = false;
+                var obj = jQuery.parseJSON(data);
+                var status = obj.status;
+                if (status == 'OK') {
+                    $.each(obj.result, function (field, value) {
+                        if (value.GMC_Ref_No == gmcNumber.val()) {
+                            flag = true;
+                            return false;
+                        }
+                    });
+                    if (flag) {
+                        gmcNumber.removeClass('highlight');
+                        $('#msgPractice').fadeIn('slow', function () {
+                            $('#msgPractice').html('');
+                        });
+                        $("#verifynumber").html("<i class='fa fa-check'></i>");
+                    }
+                    else {
+                        gmcNumber.addClass('highlight');
+                        $('#msgPractice').fadeIn('slow', function () {
+                            $('#msgPractice').css('color', '#A94442');
+                        });
+                        ShowAlertMessage("Message", 'Sorry ! Not found.', "A");
+                        $("#verifynumber").html("<i class='zmdi zmdi-search'>&nbsp;</i>Verify");
+                    }
+                }
+                else {
+                    gmcNumber.addClass('highlight');
+                    $('#msgPractice').fadeIn('slow', function () {
+                        $('#msgPractice').css('color', '#A94442');
+                    });
+                    ShowAlertMessage("Message", 'Sorry ! Not found.', "A");
+                    $("#verifynumber").html("<i class='zmdi zmdi-search'>&nbsp;</i>Verify");
+                }
+            },
+            error: function (request) {
+                var obj = jQuery.parseJSON(request.responseText);
+                ShowAlertMessage("Message", obj.Message + ' ! ' + $("#txtGmcNumber").attr('placeholder'), "A");
+                $("#verifynumber").html("<i class='zmdi zmdi-search'>&nbsp;</i>Verify");
+            }
+        });
+    },
+    GetAddress: function () {
+        var zip = $("#txtPostCode").val();
+        if (zip == '') {
+            ShowAlertMessage("Message", "Enter Postcode", "A");
+            $("#txtPostCode").focus();
+            return false;
+        }
+        $.ajax({
+
+            type: "GET",
+            url: urls.addressFinderApi + "?id=" + zip,
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            headers: { 'UA-TOKEN': Token, 'RequestChecksum': RequestChecksum, 'Source': Source, 'Content-Type': 'application/json' },
+            beforeSend: function (xhr) {
+                $("#btnFindCndidatePostcode").html("Finding...");
+            },
+            success: function (data) {
+                if (data != 'NO') {
+                    $('#spannotfound2').html("");
+                    $('.divselectAddres2').show();
+                    //var js1 = JSON.stringify(data, null, 2);
+                    var json1 = $.parseJSON(data);
+                    ns_candidate.FillAddress(json1);
+                    ns_candidate.FillForm(json1["Addresses"][0].split(',')[5], json1["Addresses"][0].split(',')[6]);
+                    $("#btnFindCndidatePostcode").html('<i class="zmdi zmdi-search">&nbsp;</i>Find Address');
+                }
+                else {
+                    $('#spannotfound2').html("Not found ! enter currect postcode.");
+                    $("#btnFindCndidatePostcode").html('<i class="zmdi zmdi-search">&nbsp;</i>Find Address');
+                }
+            },
+            error: function (error) {
+                $('#spannotfound2').html("Not found ! enter currect postcode.");
+                $("#btnFindCndidatePostcode").html('<i class="zmdi zmdi-search">&nbsp;</i>Find Address');
+            }
+        });
+    },
+    FillForm: function (town, county) {
+        $("#txtCndCity").val(town);
+        $("#tctCndCounty").val(county);
+    },
+    FillAddress: function (addr) {
+        var list = $("#selectList2");
+        list.empty();
+        list.append(new Option("select address", ""));
+        $.each(addr.Addresses, function (index, item) {
+            list.append(new Option(item.split(',')[0] + " " + item.split(',')[1], item.split(',')[0] + " " + item.split(',')[1]));
+        });
+        list.append(new Option("Not Found ? enter address below", "other"));
+    },
+    Reset: function () {
+        $("#ddlcat").val('');
+        $("#ddlRole").val('0');
+        $("#ddltitle").val('0');
+        $("#txtFirstName").val('');
+        $("#txtLastName").val('');
+        $("#txtGmcNumber").val('');
+        $("#txtCndMobileNumber").val('');
+        $("#txtCndEmail").val('');
+        $("input[name='Gender']:checked", false);
+        $("#txtPostCode").val('');
+        $("#selectList2").val('');
+        $("#txtaddressline2").val('');
+        $("#txtCndCity").val('');
+        $("#tctCndCounty").val('');
+        $('#ChkCndSignupEMAIL').is(":checked", false);
+        $('#empemail').val('');
+        $('#ChkCndSignupSMS').val();
+    },
+
+    //Compliance Documents
+    GetCndFilesDetails: function (docId) {
+        var cndId = $('#CndId').html();
+        var Param = { CndId: cndId };
+        ns_ajax.get(
+            'Candidate/GetCndDocsDetails',
+            Param,
+            function (response) {
+                if (response.split('|')[0] == 'OK') {
+                    var obj = jQuery.parseJSON(response.split('|')[1]);
+                    var currentdoc = "", previousdoc = "";
+                    var cndDocs = "", cndDetails = ""; roleName = "", fileStatus = "";
+                    var flag = false;
+                    $.each(obj, function (key, value) {
+                        roleName = value.role_name;
+                        if (key == 0) {
+                            cndDetails += '<tr>' +
+                                '<td>Candidate: <b> ' + value.cnd_name + '</b></td>' +
+                                '<td> A/c Status: <b class=" ' + (value.cnd_account_status == 1 ? 'col-green' : 'col-red') + '"> ' + (value.cnd_account_status == 1 ? 'Active' : 'Inactive') + '</b></td>' +
+                                '<td>A/c Registration Date: <b>' + value.registration_date2 + '</b></td>' +
+                                '</tr>';
+                        }
+                        currentdoc = value.doc_status;
+                        if (previousdoc == "" || currentdoc != previousdoc) {
+                            cndDocs += '<li class="list-group-item d-flex justify-content-between align-items-center">' +
+                                '<div class="font-18">' +
+                                '<i class="zmdi zmdi-file-text">&nbsp</i>' +
+                                '<b>' + value.doc_status + '</b>' +
+                                '</div>' +
+                                '</li>';
+                            previousdoc = value.doc_status;
+                        }
+                        if (value.doc_additional == 1 && (value.history_record == null || value.history_record == "")) {
+                            $('#btnSubmitAddDoc').attr('data-doc-id', value.doc_id);
+                            $('#btnAddMoreDoc').show();
+                        }
+                        else {
+                            cndDocs += '<li id="UploadStatus-' + value.doc_id + '" data-fileid="' + value.file_id + '" data-docstatus="' + value.DocStatusId + '" class="list-group-item d-flex justify-content-between align-items-center UploadStatus">' +
+                                '<div class="checkbox mb-0 mt-2">' +
+                                '<input id="doc-' + value.doc_id + '" data-status="' + value.verify_status + '" data-docname="' + value.doc_name + '" class="ChkSendCndDoc" type="checkbox">' +
+                                '<label class="elpis" for="doc-' + value.doc_id + '">' + value.doc_name + '</label>' +
+                                '</div>' +
+                                '<a id="VerifyStatus-' + value.doc_id + '" class="float-right text-right font-12 font-bold docVerifyStatus ' + (value.verify_status == 'UNVERIFIED' ? 'col-blue' : value.verify_status == 'APPROVED' ? 'col-green' : (value.verify_status == 'DISAPPROVED' || value.verify_status == 'EXPIRED' || value.verify_status == 'INAPPROPRIATE') ? 'col-red' : 'col-grey') + '">' + (value.verify_status) + '</a>' +
+                                '</li>';
+
+                        }
+
+                        if (value.doc_additional == 1 && value.history_record == 1) {
+                            $('#btnSubmitAddDoc').attr('data-doc-id', value.doc_id);
+                            $('#btnAddMoreDoc').show();
+                        }
+
+                        if (flag == false && value.doc_additional == 1)
+                            flag = true;
+                    });
+                    if (flag)
+                        $('#btnAddMoreDoc').show();
+                    else
+                        $('#btnAddMoreDoc').hide();
+                    $('#modalTitleRole').html(roleName + ' Compliance Documents');
+                    $('#tbodycndDetails').html(cndDetails);
+                    $('#CndDocuments').html(cndDocs);
+                    if (docId == 0) {
+                        $('.UploadStatus:first').trigger('click');
+                        $('.docVerifyStatus:first').trigger('click');
+                    }
+                    else {
+                        $('#doc-' + docId).prop('checked', true);
+                        $('#UploadStatus-' + docId).css('background-color', 'yellow');
+                    }
+
+                }
+            });
+    },
+    UploadCndDocument: function (data, docId, docName) {
+        ns_ajax.upload(
+            urls.uploadFileApi + "jobfile",
+            data,
+            function (response) {
+                if (response == "OK") {
+                    ShowAlertMessage("Message", docName + " uploaded successfully", 'C');
+                    $('.SectionUpload').hide();
+                    $('.SectionViewDoc').show();
+                    ns_candidate.ResetCompliance();
+                    ns_candidate.GetCndFilesDetails(docId);
+                    ns_candidate.getFileHistory(docId);
+                }
+                else
+                    ShowAlertMessage("Message", response, 'A');
+            });
+    },
+    viewFile: function (fileId, fileName) {
+        var param = { fileId: fileId, fileName: fileName };
+        ns_ajax.get(
+            urls.getFileApi + "jobfile",
+            param,
+            function (response) {
+                if (response.split('##')[0] == "OK") {
+                    var filePath = response.split('##')[1];
+                    $('#vwHistoryFile').show().attr('src', filePath);
+                }
+                else {
+                    $('#vwHistoryFile').show().attr('src', '');
+                    ShowAlertMessage("Message", response, 'A');
+                }
+            });
+    },
+    getFileHistory: function (docId) {
+        var cndId = $('#CndId').html();
+        var Param = { CndId: cndId, DocId: docId };
+        ns_ajax.get(
+            'Candidate/getFileHistory',
+            Param,
+            function (response) {
+                if (response.split('|')[0] == 'OK') {
+                    var obj = jQuery.parseJSON(response.split('|')[1]);
+                    var history = "";
+                    $.each(obj, function (key, value) {
+                        if (value.history_record == 0) {
+                            var verify_status = '<span class="' + (value.verify_status == 'APPROVED' ? 'col-green' : (value.verify_status == 'DISAPPROVED' || value.verify_status == 'EXPIRED' || value.verify_status == 'INAPPROPRIATE') ? 'col-red' : 'col-blue') + '">' +
+                                '<i class="' + (value.verify_status == 'APPROVED' ? 'zmdi zmdi-spellcheck' :
+                                    (value.verify_status == 'DISAPPROVED' || value.verify_status == 'INAPPROPRIATE') ? 'zmdi zmdi-thumb-down' : value.verify_status == 'EXPIRED' ? 'zmdi zmdi-alert-triangle' : 'zmdi zmdi-time') + '"></i> ' + (value.verify_status) + '</span>';
+                            history += '<div class="panel panel-primary" role="tab" id="acc-' + value.file_id + '">' +
+                                '<div class="panel-heading" role="tab">' +
+                                '<h4 class="panel-title">' +
+                                '<a class="collapsed font-12" role="button" data-toggle="collapse" data-parent="#accordiondata" href="#collapse-' + value.file_id + '" aria-expanded="false" aria-controls="collapse">' +
+                                verify_status +
+                                '<span class="float-right">' +
+                                '<i class="zmdi zmdi-calendar"></i> ' + value.upload_date + '</span>' +
+                                '</a>' +
+                                '</h4>' +
+                                '</div>' +
+                                '<div id="collapse-' + value.file_id + '" class="panel-collapse collapse" role="tabpanel" aria-labelledby="acc-' + value.file_id + '">' +
+                                '<div class="panel-body  p-0">' +
+                                '<table class="table table-bordered">' +
+                                '<tr>' +
+                                '<td>Issue Date</td>' +
+                                '<td>' + value.issue_date + '</td>' +
+                                '</tr>' +
+                                '<tr>' +
+                                '<td>Expiry Date</td>' +
+                                '<td>' + value.expiry_date + '</td>' +
+                                '</tr>' +
+                                '<tr>' +
+                                '<td>Doc Type</td>' +
+                                '<td>' + (value.document_type) + '</td>' +
+                                '</tr>' +
+                                '<tr>' +
+                                '<td>Doc Number</td>' +
+                                '<td>' + (value.document_no) + '</td>' +
+                                '</tr>' +
+                                '<tr>' +
+                                '<td>By User</td>' +
+                                '<td>Admin</td>' +
+                                '</tr>' +
+                                '<tr>' +
+                                '<td colspan="2">' +
+                                '<a class="btn btn-outline-primary clsViewDocFile" data-file-id="' + value.file_id + '" data-file-name="' + value.file_path + '"  data-toggle="tooltip" title="View file">View</a>&nbsp' +
+                                '<a id="delDocHistory-' + value.file_id + '" class="btn btn-danger clsDeleteDocHistory" data-toggle="tooltip" title="Delete">Delete</a>' +
+                                '</td>' +
+                                '</tr>' +
+                                '</table>' +
+                                '</div>' +
+                                '</div>' +
+                                '</div>';
+                        }
+                        else {
+
+                            $('#txtDocType').val(value.document_type);
+                            $('#txtDocNumber').val(value.document_no);
+                            $('#Dociframe').show().attr('src', value.file_path);
+                            $('#txtDocIssueDate').val(value.issue_date);
+                            $('#txtDocExpiryDate').val(value.expiry_date);
+                            var audit = "";
+                            audit = '<b>Audit Status: <span class="pull-right">' + (value.audit_status == 1 ? '<b class="col-red">Audited</b>' : '<b class="col-red">Pending</b>') + ' ' + ((value.audit_date == '' || value.audit_date == null) ? '' : ' (' + value.audit_date + ')') + ' </span></b></br>' +
+                                '<b>Audit By: <span class="pull-right">' + (value.doc_audit_by_user_name) + '</span></b>';
+                            $('#auditDetails').html(audit);
+
+                            value.file_verification_status == 1 ? $('#rdoApprove').prop('checked', true) :
+                                value.file_verification_status == 2 ? $('#rdoDisapprove').prop('checked', true) :
+                                    value.file_verification_status == 3 ? $('#rdoInappropriate').prop('checked', true) : '';
+                            $('.clsVerifyStatus').trigger('change');
+
+
+                            $('#ddlCommentReason').val(value.disapproved_reason);
+                            $('#txtcommentReason').val(value.commentText);
+                        }
+                    });
+                    $('#accordiondata').html(history);
+                }
+            });
+    },
+    SaveDocVerificationDetails: function (fileId, docId) {
+        var issue_date = $('#txtDocIssueDate').val();
+        var expiry_date = $('#txtDocExpiryDate').val();
+        var doc_type = $('#txtDocType').val();
+        var doc_number = $('#txtDocNumber').val();
+        var verify_status = $('#rdoApprove').prop('checked') ? 1 : $('#rdoDisapprove').prop('checked') ? 2 : $('#rdoInappropriate').prop('checked') ? 3 : 0;
+        var reason = $('#ddlCommentReason').val();
+        var comment = $('#txtcommentReason').val();
+        var msg = "", flag = 0;
+
+        if (issue_date == "") {
+            $("#txtDocIssueDate").focus();
+            flag = 1;
+            msg = "Enter document issue date";
+        }
+        else if (expiry_date == "") {
+            $("#txtDocExpiryDate").focus();
+            flag = 1;
+            msg = "Enter document expiry date";
+        }
+        else if (issue_date == expiry_date) {
+            $("#txtDocExpiryDate").focus();
+            flag = 1;
+            msg = "Both issue date and expiry date can not be same. Enter a different expiry date";
+        }
+        else if ((reason == "") && (verify_status != 1)) {
+            $("#ddlCommentReason").focus();
+            flag = 1;
+            msg = "Select a reason";
+        }
+        else if ((comment == "") && (verify_status != 1)) {
+            $("#txtcommentReason").focus();
+            flag = 1;
+            msg = "Enter a comment";
+        }
+        if (flag == 0) {
+            var Param = "{FileId:'" + fileId + "',IssueDate:'" + issue_date + "',ExpiryDate:'" + expiry_date + "',docType:'" + doc_type + "',docNumber:'" + doc_number + "',VerifyStatus:'" + verify_status + "',Reason:'" + reason + "',CommentText:'" + comment + "'}";
+            ns_ajax.post(
+                'Candidate/SaveDocVerificationDetails',
+                Param,
+                function (response) {
+                    if (response.split('|')[0] == 'OK') {
+                        ShowAlertMessage("Message", 'Verification details has been saved successfully.', "C");
+                        ns_candidate.GetCndFilesDetails(docId);
+                        ns_candidate.getFileHistory(docId);
+                    }
+                    else
+                        ShowAlertMessage("Message", response, "A");
+                });
+        }
+        else
+            ShowAlertMessage("Message", msg, "A");
+    },
+    ResetCompliance: function () {
+        $('#txtDocType').val('');
+        $('#txtDocNumber').val('');
+        $('#txtDocIssueDate').val('');
+        $('#txtDocExpiryDate').val('');
+        $('#ddlCommentReason').val('');
+        $('#txtcommentReason').val('');
+        $('#auditStatus').html('');
+        $('#UploadedFile').val('');
+        $('#SbmtCndUploadedFile').attr('id', 'btnUploadFile').html('Upload');
+        $('.UploadStatus').css('background-color', '');
+        $('#img-upload').attr('src', "");
+    },
+    DeleteCndDocHistory: function (fileId) {
+        var Param = "{FileId: '" + fileId + "'}";
+        try {
+            ns_ajax.post(
+                'Candidate/DeleteCndDocHistory',
+                Param,
+                function (response) {
+                    if (response.split('|')[0] == "OK") {
+                        ShowAlertMessage("Message", "Document history deleted successfully.", 'C');
+                        $("#acc-" + fileId).hide();
+                    }
+                    else
+                        ShowAlertMessage("Message", response, 'A');
+                });
+        }
+        catch (err) {
+            ShowAlertMessage("Error", err.message, 'A');
+        }
+    },
+    SendDocs: function () {
+        var row = "";
+        $('.ChkSendCndDoc:checked').each(function () {
+            var docId = this.id.split('-')[1];
+            var docName = $(this).attr('data-docname');
+            var verifyStatus = $(this).attr('data-status');
+
+            var verify_status = '<span class="' + (verifyStatus == 'APPROVED' ? 'col-green' : (verifyStatus == 'DISAPPROVED' || verifyStatus == 'EXPIRED' || verifyStatus == 'INAPPROPRIATE') ? 'col-red' : 'col-blue') + '">' +
+                '<i class="' + (verifyStatus == 'APPROVED' ? 'zmdi zmdi-spellcheck' :
+                    (verifyStatus == 'DISAPPROVED' || verifyStatus == 'INAPPROPRIATE') ? 'zmdi zmdi-thumb-down' : verifyStatus == 'EXPIRED' ? 'zmdi zmdi-alert-triangle' : 'zmdi zmdi-time') + '"></i> ' + (verifyStatus) + '</span>';
+            row += '<tr>' +
+                '<td>' +
+                '<span>' +
+                '<b> ' + docName + '</b>' +
+                '</span>' +
+                '</td>' +
+                '<td><b>' + verify_status + '</b></td>' +
+                '</tr>';
+        });
+        $('#tbodySendDocs').html(row);
+    },
+    GetCndUploadedDocs: function () {
+        var cndId = $('#hdfCndId').val();
+        var Param = { CndId: cndId };
+        ns_ajax.get(
+            'Candidate/GetAllCndUploadedFile',
+            Param,
+            function (response) {
+                if (response.split('|')[0] == 'OK') {
+                    var obj = jQuery.parseJSON(response.split('|')[1]);
+                    var cndDocs = "", currentdoc = "", previousdoc = "";
+                    $.each(obj, function (key, value) {
+                        currentdoc = value.doc_status;
+                        var verify_status = '<span class="' + (value.verify_status == 'APPROVED' ? 'col-green' : (value.verify_status == 'DISAPPROVED' || value.verify_status == 'EXPIRED' || value.verify_status == 'INAPPROPRIATE') ? 'col-red' : 'col-blue') + '"><i class="' + (value.verify_status == 'APPROVED' ? 'zmdi zmdi-spellcheck' : (value.verify_status == 'DISAPPROVED' || value.verify_status == 'INAPPROPRIATE') ? 'zmdi zmdi-thumb-down' : value.verify_status == 'EXPIRED' ? 'zmdi zmdi-alert-triangle' : 'zmdi zmdi-time') + '"></i> ' + value.verify_status + '</span>';
+                        if (previousdoc == "" || currentdoc != previousdoc) {
+                            cndDocs += '<tr class="bg-blu-lite">' +
+                                '<td colspan="7">' +
+                                '<b class="col-blue">' + value.doc_status + '</b>' +
+                                '</td>' +
+                                '</tr>';
+                            previousdoc = value.doc_status;
+                        }
+                        cndDocs += '<tr>' +
+                            '<td><span><b><i class="zmdi zmdi-check-all"></i> ' + value.doc_name + '</b></span></td>' +
+                            '<td><i class="' + (value.issue_date == "" ? '' : 'zmdi zmdi-time') + '"></i> ' + (value.issue_date == "" ? 'NA' : value.issue_date) + '</td>' +
+                            '<td><i class="' + (value.expiry_date == "" ? '' : 'zmdi zmdi-time') + '"></i> ' + (value.expiry_date == "" ? 'NA' : value.expiry_date) + '</td>' +
+                            '<td><i class="zmdi zmdi-time"></i> ' + value.upload_date + '</td><td>' +
+                            '<span>' +
+                            '<a class="' + (value.audit_status == 1 ? 'col-green' : 'col-red') + '">' +
+                            '' + (value.audit_status == 1 ? 'Audited' : 'Pending') + '</a>' +
+                            '</span>' +
+                            '</td>' +
+                            '<td>' + verify_status + '</td><td>' +
+                            '<a class="btn btn-outline-primary btn-sm clsViewUploadedFile" data-audit-status="' + value.audit_status + '" data-file-id="' + value.file_id + '" data-file-name="' + value.file_path + '" data-file-title="' + value.doc_name + '" data-toggle="tooltip" title="View file">' +
+                            '<i class="zmdi zmdi-eye"></i>View' +
+                            '</a>';
+                        '</td>' +
+                            '</tr>';
+                    });
+                    $('#tbodyCndUploadedDocs').html(cndDocs);
+                }
+            });
+    },
+    DeleteCndFile: function (docId, fileId) {
+        var doc_expiry_date = $('#txtDocExpiryDate').val();
+        var Param = "{FileId: '" + fileId + "', DocExpiryDate:'" + doc_expiry_date + "'}";
+        try {
+            ns_ajax.post(
+                'Candidate/DeleteCndFile',
+                Param,
+                function (response) {
+                    if (response.split('|')[0] == "OK") {
+                        ShowAlertMessage("Message", "Uploaded file deleted successfully.", 'C');
+                        ns_candidate.GetCndFilesDetails(docId);
+                        ns_candidate.getFileHistory(docId);
+                    }
+                    else
+                        ShowAlertMessage("Message", response, 'A');
+                });
+        }
+        catch (err) {
+            ShowAlertMessage("Error", err.message, 'A');
+        }
+    },
+    SaveDocAuditStatus: function (fileId) {
+        var Param = "{FileId: '" + fileId + "'}";
+        try {
+            ns_ajax.post(
+                'Candidate/SaveDocAuditStatus',
+                Param,
+                function (response) {
+                    if (response.split('|')[0] == "OK") {
+                        ShowAlertMessage("Message", "Document audit status submitted successfully.", 'C');
+                        ns_candidate.GetCndUploadedDocs();
+                    }
+                    else
+                        ShowAlertMessage("Message", response, 'A');
+                });
+        }
+        catch (err) {
+            ShowAlertMessage("Error", err.message, 'A');
+        }
+    },
+
+    //Profile  
+
+
+    GetCandidate: function (CndId) {
+        $('.ClsCndWizard').html('');
+        var Param = { ProfileId: CndId, ProfileType: 'cnd', SettingType: 1 };
+        ns_ajax.get(
+            'Candidate/GetProfileWizard',
+            Param,
+            function (response) {
+                if (response.split('|')[0] == 'OK') {
+
+                    var obj = jQuery.parseJSON(response.split('|')[1]);
+                    var objMulti = jQuery.parseJSON(response.split('|')[2]);
+                    var StrVal = '', currentparent = '', previousparent = '';
+
+                    $.each(obj.Table1, function (key, value) {
+                        var MobileStatus = value.cnd_mobile_verification_status == 1 ? '<span class="col-green">Verified</span>' : '<a class="btnCndStatus btn btn-outline-primary" data-action="Mobile" data-status="' + value.cnd_mobile_verification_status + '" title="Verify Mobile" style="margin-left: 2px;padding: 4px;">Verify Mobile</a>';
+                        var EmailStatus = value.cnd_email_verification_status == 1 ? '<span class="col-green">Verified</span>' : '<a class="btnCndStatus btn btn-outline-primary" data-action="Email" data-status="' + value.cnd_email_verification_status + '" title="Verify Email" style="margin-left: 2px;padding: 4px;">Verify Email</a>';
+                        var AccountStatus = '<a class="btnCndStatus  ' + (value.cnd_account_status == 1 ? 'col-green' : 'col-red') + '" data-action="Account" data-status="' + value.cnd_account_status + '" title="Click to change status">' + (value.cnd_account_status == 1 ? 'Active' : 'Inactive') + '</a>';
+
+                        $('#spnCndAcountStatus').html(AccountStatus);
+
+                        $('#spnCndMobile').html((value.cnd_mobile == null || value.cnd_mobile == '') ? 'NA' : value.cnd_mobile + '&nbsp;' + MobileStatus);
+                        $('#spnCndEmail').html((value.cnd_email == null || value.cnd_email == '') ? 'NA' : value.cnd_email + '&nbsp;' + EmailStatus);
+
+
+                        $('#spnCndRoleName').html(value.cnd_role_name);
+                        $('#hCndName').html(value.cnd_first_name + ' ' + value.cnd_last_name);
+                        $('#spnCndGmcNumber').html((value.cnd_gmc_or_regnumber == null || value.cnd_gmc_or_regnumber == '') ? 'NA' : value.cnd_gmc_or_regnumber);
+                        $('#spnCndSmartCard').html((value.cnd_smart_card == null || value.cnd_smart_card == '') ? 'NA' : value.cnd_smart_card);
+
+                    });
+
+                    if (objMulti !== '0') {
+                        $.each(objMulti.Earning, function (key, value) {
+                            $('#spnCndHourlyRate').html('£' + parseFloat(value.hourly_rate).toFixed(2));
+                            $('#spnCndTotalEarned').html('£' + parseFloat(value.total_earned).toFixed(2));
+                            $('#spnCndJobs').html(value.total_jobs);
+                            $('#spnCndWorkedHours').html((value.hours_worked == null || value.hours_worked == '') ? '0' : value.hours_worked);
+                        });
+                    }
+                    else {
+
+                        $('#spnCndHourlyRate').html('£0.0');
+                        $('#spnCndTotalEarned').html('£0.0');
+                        $('#spnCndJobs').html('0');
+                        $('#spnCndWorkedHours').html('0');
+                    }
+
+                    $.each(obj.WizardField, function (key, value) {
+                        currentparent = value.w_id;
+                        value.w_keyword == "WZLOCUMCONTACTADDRESS" ? $('.ulCndLocation').attr('data-wid', value.w_id) : '0';
+                        if (value.w_keyword != "WZLOCUMCONTACTADDRESS") {
+                            var Icon = (value.w_keyword == 'WZSOCIALPROFILES' || value.w_keyword == 'WZWORKHISTORY' || value.w_keyword == 'WZPROFESSIONALQUALIFICATION') ? '<i class="zmdi zmdi-plus-circle-o-duplicate"></i> Add' : '<i class="zmdi zmdi-edit"></i> Edit';
+                            var ClsAttr = 'class="btn btn-sm btn-primary hover btnCndEditWizard"  data-btntype="edit"';
+                            var ClsAdd = 'class="btn btn-sm btn-primary hover btnCndEditWizard"  data-btntype="add"';
+                            var btn = (value.w_keyword == 'WZSOCIALPROFILES' || value.w_keyword == 'WZWORKHISTORY' || value.w_keyword == 'WZPROFESSIONALQUALIFICATION') ? '<a id="btnCndEditWizard-' + value.w_id + '" ' + ClsAdd + '>' + Icon + '</a>' : '<a id="btnCndEditWizard-' + value.w_id + '" ' + ClsAttr + '>' + Icon + '</a>';
+                            if (previousparent == "" || currentparent != previousparent) {
+                                StrVal += '</div></div>';
+                                previousparent = value.w_id;
+                                value.w_keyword == 'WZPERSONALSTATEMENT' ? StrVal += '<div class="bxsaddow  mt-4 col-md-12">' : StrVal += '<div class="bxsaddow  mt-4 col-md-6">';
+                                StrVal += '<h4>' + '<span id=spnWId-' + value.w_id + '>' + value.w_name + '</span>' + btn + '</h4>';
+                                StrVal += '<div id="CndWizardField-' + value.w_id + '" class="p-2 bdr1 h4show">';
+                                //-----Social Profile
+                                if (objMulti.length != 0) {
+                                    if (value.w_keyword == 'WZSOCIALPROFILES') {
+                                        StrVal += '<div class="class="table-responsive">'
+                                        StrVal += '<Table class="table table-bordered mb-0">';
+                                        StrVal += '<thead><tr><th>Profile Type</th><th>Profile Link</th><th>Action</th></tr></thead>';
+                                        StrVal += '<tbody class="tbodyCndSocialProfile">';
+                                        $.each(objMulti.SocialProfile, function (key, val) {
+                                            StrVal += '<tr class="trMdelete-' + val.id + '">' +
+                                                '<td><span>' + val.social_profile_type + '</span></td>' +
+                                                '<td><span>' + val.social_profile_link + '</span></td>' +
+                                                '<td>' + '<a id="btnCndWorkHistoryProfileEdit-' + val.id + '" class="btn btn-outline-primary btn-sm btnCndProfileEdit" data-wid="' + value.w_id + '" data-btntype="edit"><i class="zmdi zmdi-edit">&nbsp;</i></a>' +
+                                                '&nbsp;<a id="btnCndWorkHistoryProfileDelete-' + val.id + '" class="btn btn-danger btn-sm btnCndProfileDelete" data-wid="' + value.w_id + '"  title="Delete"><i class="zmdi zmdi-delete">&nbsp;</i></a>' + '</td>' +
+                                                '</tr>';
+                                        });
+                                        StrVal += '</tbody></Table>';
+                                        StrVal += '</div>';
+                                    }
+                                    //-----Work History
+                                    else if (value.w_keyword == 'WZWORKHISTORY') {
+                                        StrVal += '<div class="class="table-responsive">'
+                                        StrVal += '<Table class="table table-bordered mb-0">';
+                                        StrVal += '<thead><tr><th>Hospitality/Employer</th><th>Role</th><th>From Date</th><th>To Date</th><th>Action</th></tr></thead>';
+                                        StrVal += '<tbody class="tbodyCndWorkHistory">';
+                                        $.each(objMulti.WorkHistory, function (key, val) {
+                                            StrVal += '<tr class="trMdelete-' + val.id + '">' +
+                                                '<td><span>' + val.cnd_employer_name + '</span></td>' +
+                                                '<td><span class="col-green">' + (val.cnd_role_speciality == 0 ? '' : val.role_name) + '</span></td>' +
+                                                '<td><span>' + val.from_date + '</span></td>' +
+                                                '<td><span>' + val.to_date + '</span></td>' +
+                                                '<td>' + '<a id="btnCndWorkHistoryProfileEdit-' + val.id + '" class="btn btn-outline-primary btn-sm btnCndProfileEdit" data-wid="' + value.w_id + '" data-btntype="edit"><i class="zmdi zmdi-edit">&nbsp;</i></a>' +
+                                                '&nbsp;<a id="btnCndWorkHistoryProfileDelete-' + val.id + '" class="btn btn-danger btn-sm btnCndProfileDelete" data-wid="' + value.w_id + '"  title="Delete"><i class="zmdi zmdi-delete">&nbsp;</i></a>' + '</td>' +
+                                                '</tr>';
+                                        });
+                                        StrVal += '</tbody></Table>';
+                                        StrVal += '</div>';
+                                    }
+                                    //-----Qualification
+                                    else if (value.w_keyword == 'WZPROFESSIONALQUALIFICATION') {
+                                        StrVal += '<div class="class="table-responsive">'
+                                        StrVal += '<Table class="table table-bordered mb-0">';
+                                        StrVal += '<thead><tr><th>Institution</th><th>Qualification</th><th>Received Date</th><th>Action</th></tr></thead>';
+                                        StrVal += '<tbody class="tbodyCndProfessionalQualification">';
+                                        $.each(objMulti.Qualification, function (key, val) {
+                                            StrVal += '<tr class="trMdelete-' + val.id + '">' +
+                                                '<td>' + val.institution + '</td>' +
+                                                '<td>' + val.qualification + '</td>' +
+                                                '<td>' + val.received_date + '</td>' +
+                                                '<td>' + '<a id="btnCndQualProfileEdit-' + val.id + '" class="btn btn-outline-primary btn-sm btnCndProfileEdit" data-wid="' + value.w_id + '"><i class="zmdi zmdi-edit">&nbsp;</i></a>' +
+                                                '&nbsp;<a id="btnCndQualProfileDelete-' + val.id + '" class="btn btn-danger btn-sm btnCndProfileDelete"  data-wid="' + value.w_id + '" title="Delete"><i class="zmdi zmdi-delete">&nbsp;</i></a>' + '</td>' +
+                                                '</tr>';
+                                        });
+                                        StrVal += '</tbody></Table>';
+                                        StrVal += '</div>';
+                                    }
+                                }
+                            }
+                            if (value.ws_field_id != value.w_id) {
+                                if (value.w_keyword == 'WZPERSONALSTATEMENT')
+                                    value.ws_field_name == 'cnd_id' ? '' : StrVal += '<p class="mb-1"><span id="spnFieldId-' + value.ws_field_id + '">' + ((value.field_Value == null || value.field_Value == '') ? 'NA' : value.field_Value) + '</span></p>';
+                                else if (value.w_keyword == 'WZSOCIALPROFILES')
+                                    value.ws_field_name == 'cnd_id' ? '' : StrVal += '';
+                                else if (value.w_keyword == 'WZWORKHISTORY')
+                                    value.ws_field_name == 'cnd_id' ? '' : StrVal += '';
+                                else if (value.w_keyword == 'WZPROFESSIONALQUALIFICATION')
+                                    value.ws_field_name == 'cnd_id' ? '' : StrVal += '';
+                                else {
+                                    var Fieldval = ((value.ws_field_name == 'dateofbirth' || value.ws_field_name == 'cnd_dob') ? (value.field_Value == null ? 'NA' : value.field_Value.split(' ')[0]) : ((value.field_Value == null || value.field_Value == '') ? 'NA' : value.field_Value));
+                                    value.ws_field_name == 'cnd_id' ? '' : StrVal += '<p class="mb-1"><span class="wd-16px">' + value.ws_field_label + '</span><span>:</span><span id="spnFieldId-' + value.ws_field_id + '">&nbsp;' + Fieldval + '</span></p>';
+                                }
+                            }
+                        }
+                    });
+                    $('.ClsCndWizard').html(StrVal);
+                }
+            });
+    },
+
+    GetColumns: function (wid, cnd_id) {
+        $('.clsCndFieldControl').html('');
+        var Param = { WizardId: wid, ProfileId: cnd_id, ProfileType: 'cnd', SettingType: 1 };
+        ns_ajax.get(
+            'Candidate/GetProfileWizard',
+            Param,
+            function (response) {
+                if (response.split('|')[0] == 'OK') {
+                    var obj = jQuery.parseJSON(response.split('|')[1]);
+                    ns_candidate.GenerateControls(obj.WizardField, wid);
+                }
+            });
+    },
+
+    GenerateControls: function (obj, wid) {
+        var StrVal = '', Control = '';
+        $.each(obj, function (key, value) {
+            var Placeholder = ((value.ws_place_holder == null || value.ws_place_holder == '') ? 'Enter ' + value.ws_field_label : value.ws_place_holder);
+            var IsRequried = value.ws_isRequired == 0 ? '' : '<span>*</span>';
+            var ControlActivity = value.ws_control_activity == null ? '' : value.ws_control_activity;
+            var FieldValue = $('#btnCndEditWizard-' + wid).attr('data-btntype') == 'edit' ? FieldValue = 'value="' + ((value.field_Value == null || value.field_Value == '') ? '' : value.field_Value) + '"' : FieldValue = 'value=""';
+            var Attribute = 'data-fieldname="' + value.ws_field_name + '" data-fieldlabel="' + value.ws_field_label + '" data-required="' + value.ws_isRequired + '" data-wid="' + wid + '" placeholder="' + Placeholder + '"';
+            if (value.ws_field_type == 'text') {
+                if (ControlActivity.split('#')[0] == 'datepicker') {
+                    Control = '<input id=txt-' + value.ws_field_id + ' class="form-control clsCndControl datepicker" ' + Attribute + '   value="' + ((value.field_Value == null || value.field_Value == '') ? '' : value.field_Value.split(' ')[0]) + '">';
+                }
+                else if (value.ws_field_name == 'cnd_mobile')
+                    Control = '<input id=txt-' + value.ws_field_id + ' class="form-control clsCndControl ChkMobile" maxlength="10" ' + Attribute + '   value="' + ((value.field_Value == null || value.field_Value == '') ? '' : value.field_Value) + '">';
+                else if (value.ws_field_name == 'extrampavcs')
+                    Control = '<input id=txt-' + value.ws_field_id + ' class="form-control clsCndControl ChkDecimal" maxlength="5" ' + Attribute + '   value="' + ((value.field_Value == null || value.field_Value == '') ? '' : value.field_Value) + '">';
+                else if (value.ws_field_name == 'pension_tiered_rate')
+                    Control = '<input id=txt-' + value.ws_field_id + ' class="form-control clsCndControl ChkMobile" maxlength="6" ' + Attribute + '   value="' + ((value.field_Value == null || value.field_Value == '') ? '' : value.field_Value) + '">';
+                else
+                    Control = '<input id=txt-' + value.ws_field_id + ' class="form-control clsCndControl" ' + Attribute + ' ' + FieldValue + '>';
+            }
+            else if (value.ws_field_type == 'multitext')
+                Control = '<textarea id=txt-' + value.ws_field_id + ' class="form-control clsCndControl" ' + Attribute + '  style="height: 200px;">' + value.field_Value + '</textarea>';
+            else if (value.ws_field_type == 'select') {
+                if (ControlActivity.split('#')[1] == 'title') {
+                    Control = '<select id="ddl-' + value.ws_field_id + '" class="form-control clsCndControl" ' + Attribute + '><option value="">Select a title...</option><option value="Dr">Dr</option><option value="Mr">Mr</option><option value="Mrs">Mrs</option><option value="Miss">Miss</option></select>';
+                    // $('#ddl-' + value.ws_field_id).val(value.field_Value);                       
+                }
+                else {
+                    Control = '<select id="ddl-' + value.ws_field_id + '" class="form-control clsCndControl" ' + Attribute + '><option value="' + FieldValue + '">Select</option></select>';
+                    ns_candidate.BindControls(ControlActivity, value.ws_field_label, value.ws_field_id, value.ws_field_type);
+                }
+            }
+            else
+                Control = '<label id=lbl-' + value.ws_field_id + '>' + value.ws_field_label + '</label>';
+            if (ControlActivity.split('#')[0] == 'datepicker')
+                StrVal += '<div class="form-group mt-2 masked-input unset"><label>' + value.ws_field_label + '' + IsRequried + '</label>' + '' + Control + '</div>';
+            else
+                value.ws_field_name == 'cnd_id' ? '' : StrVal += '<div class="form-group mt-2"><label id="' + value.ws_field_name + '">' + value.ws_field_label + '' + IsRequried + '</label>' + '' + Control + '</div>';
+        });
+
+        $('#spnWizardHeading').html($('#spnWId-' + wid).html());
+        $('.clsCndFieldControl').html(StrVal);
+    },
+
+    ForMultiValuesColumns: function (id, wid, cnd_id) {
+        $('.clsCndFieldControl').html('');
+        var Param = { id: id, WizardId: wid, ProfileId: cnd_id, ProfileType: 'cnd', SettingType: 1 };
+        ns_ajax.get(
+            'Candidate/GetFields',
+            Param,
+            function (response) {
+                if (response.split('|')[0] == 'OK') {
+                    var obj = jQuery.parseJSON(response.split('|')[1]);
+                    ns_candidate.MultiValuesControl(obj.WizardField, wid);
+                }
+            });
+    },
+
+    MultiValuesControl: function (obj, wid) {
+        var StrVal = '', Control = '';
+        $.each(obj, function (key, value) {
+            var Placeholder = ((value.ws_place_holder == null || value.ws_place_holder == '') ? 'Enter ' + value.ws_field_label : value.ws_place_holder);
+            var IsRequried = value.ws_isRequired == 0 ? '' : '<span>*</span>';
+            var ControlActivity = value.ws_control_activity == null ? '' : value.ws_control_activity;
+            var FieldValue = $('.btnCndProfileEdit').attr('data-btntype') == 'edit' ? FieldValue = 'value="' + ((value.field_Value == null || value.field_Value == '') ? '' : value.field_Value) + '"' : FieldValue = 'value=""';
+            var Attribute = 'data-fieldname="' + value.ws_field_name + '" data-fieldlabel="' + value.ws_field_label + '" data-required="' + value.ws_isRequired + '" data-wid="' + wid + '" placeholder="' + Placeholder + '"';
+            if (value.ws_field_type == 'text') {
+                if (ControlActivity.split('#')[0] == 'datepicker') {
+                    Control = '<input id=txt-' + value.ws_field_id + ' class="form-control clsCndControl datepicker" ' + Attribute + '   value="' + ($('.btnCndProfileEdit').attr('data-btntype') == 'edit' ? ((value.field_Value == null || value.field_Value == '') ? '' : value.field_Value.split(' ')[0]) : '') + '">';
+                }
+                else
+                    Control = '<input id=txt-' + value.ws_field_id + ' class="form-control clsCndControl" ' + Attribute + ' ' + FieldValue + '>';
+            }
+            else if (value.ws_field_type == 'select') {
+                if (ControlActivity.split('#')[0] == 'SOCIAL') {
+                    Control = '<select id="ddl-' + value.ws_field_id + '" class="form-control clsCndControl" ' + Attribute + '><option value="">Select profile type...</option><option value="Facebook">Facebook</option><option value="Twiter">Twiter</option><option value="Whatsapp">Whatsapp</option><option value="Linkdin">Linkdin</option></select>';
+                }
+                else {
+                    Control = '<select id="ddl-' + value.ws_field_id + '" class="form-control clsCndControl" ' + Attribute + '><option value="' + FieldValue + '">Select</option></select>';
+                    ns_candidate.BindControls(ControlActivity, value.ws_field_label, value.ws_field_id, value.ws_field_type, value.field_Value);
+                }
+            }
+            else
+                Control = '<label id=lbl-' + value.ws_field_id + '>' + value.ws_field_label + '</label>';
+            if (ControlActivity.split('#')[0] == 'datepicker')
+                StrVal += '<div class="form-group mt-2 masked-input unset"><label>' + value.ws_field_label + '' + IsRequried + '</label>' + '' + Control + '</div>';
+            else
+                value.ws_field_name == 'cnd_id' ? '' : StrVal += '<div class="form-group mt-2"><label id="' + value.ws_field_name + '">' + value.ws_field_label + '' + IsRequried + '</label>' + '' + Control + '</div>';
+        });
+        $('#spnWizardHeading').html($('#spnWId-' + wid).html());
+        $('.clsCndFieldControl').html(StrVal);
+    },
+
+    BindControls: function (ControlActivity, FieldLabel, ControlId, ControlType, FieldValue) {
+        var StrVal = '';
+        var ActionType = ControlActivity.split('#')[0];
+        var RequestFor = ControlActivity.split('#')[1];
+        if (ControlType == 'select') {
+            if (ActionType == 'filldropdown') {
+                if (RequestFor == 'parent') {
+                    ns_ajax.get(
+                        'Candidate/BindParentRoles',
+                        '',
+                        function (response) {
+                            if (response.split('|')[0] == 'OK') {
+                                var obj = jQuery.parseJSON(response.split('|')[1]);
+                                StrVal = '<option value="0">Select  a ' + FieldLabel + '</option>';
+                                $.each(obj, function (key, value) {
+                                    StrVal += '<option value=' + value.role_id + '>' + value.role_name + '</option>';
+                                })
+                                $('#ddl-' + ControlId).html(StrVal);
+                                if ($('.btnCndProfileEdit').attr('data-btntype') == 'edit')
+                                    $('#ddl-' + ControlId).val(FieldValue);
+                            }
+                        });
+                }
+            }
+        }
+    },
+
+    AddEditCandidateDetail: function (cndId) {
+        var obj = [], Result = 1;
+        $('.clsCndControl').each(function (index) {
+            //remove apostrophy
+            var val = $(this).val().replace(/'/g, '"');
+            if ($(this).attr('data-required') == 1) {
+                if ($(this).val() == '') {
+                    ShowAlertMessage("Message", "Enter " + $(this).attr('data-fieldlabel') + "", "A");
+                    $(this).focus();
+                    Result = 0;
+                    return false;
+                }
+            }
+            if ($(this).attr('data-fieldname') == 'cnd_mobile') {
+                if (val.length < 10) {
+                    ShowAlertMessage("Message", "Enter correct mobile no..", "A");
+                    $(this).focus();
+                    Result = 0;
+                    return false;
+                }
+            }
+            if ($(this).attr('data-fieldname') == 'cnd_email') {
+                if (val !== '' && IsEmail(val) == false) {
+                    ShowAlertMessage("Message", "Enter correct email.", "A");
+                    $(this).focus();
+                    Result = 0;
+                    return false;
+                }
+            }
+            obj.push({
+                id: $('#btnCndUpdateWizardField').attr('data-id'),
+                cnd_id: cndId,
+                w_id: $(this).attr('data-wid'),
+                fieldname: $(this).attr('data-fieldname'),
+                fieldvalue: val,
+                action: $('#btnCndUpdateWizardField').attr('data-action')
+            });
+        });
+
+        if (Result == 0) { return false; }
+        ns_ajax.post(
+            'Candidate/InsertCndProfile',
+            obj,
+            function (response) {
+                if (response.split('|')[0] == 'OK') {
+                    ShowAlertMessage("Message", "Fields has been update successfully.", "C");
+                    $("#ModalEditDetails").modal('hide');
+                    $(".modal-backdrop").css('display', 'none');
+                    ns_candidate.GetCandidate(cndId);
+                }
+                else
+                    ShowAlertMessage("Message", response, "A");
+            });
+    },
+
+    DeleteEmpProfile: function (profileid, id, wid) {
+        var Param = '{profileid:"' + profileid + '",id:"' + id + '",wid:"' + wid + '" }';
+        ns_ajax.post(
+            'Candidate/DeleteEmpProfile',
+            Param,
+            function (response) {
+                if (response.split('|')[0] == 'OK') {
+                    ShowAlertMessage("Message", "deleted successfully.", "C");
+                    $('.trMdelete-' + id).remove();
+                }
+                else
+                    ShowAlertMessage("Message", response, "A");
+            });
+    },
+    //Locations  
+    AddEditLocation: function (Location_id, Action, Status) {
+        var obj = [], Result = 1;
+        if ($('.spannotfound2').html() != '') {
+            ShowAlertMessage("Message", "Address not found ! enter correct postcode.", "A");
+            Result = 0;
+            return false;
+        }
+        if ($('#ddlCndLocation').val() == '') {
+            ShowAlertMessage("Message", "Find address.", "A");
+            $('#ddlCndLocation').focus()
+            Result = 0;
+            return false;
+        }
+        $('.clsCndLocation').each(function (index) {
+            if ($(this).attr('data-required') == 1) {
+                if ($(this).val() == '') {
+                    ShowAlertMessage("Message", "Enter " + $(this).attr('data-fieldlabel') + "", "A");
+                    $(this).focus();
+                    Result = 0;
+                    return false;
+                }
+            }
+            obj.push({
+                location_id: Location_id,
+                cnd_id: CndId,
+                w_id: $(this).attr('data-wid'),
+                fieldname: $(this).attr('data-fieldname'),
+                fieldvalue: $(this).val(),
+                action: Action
+            });
+        });
+        if (Result == 0) { return false; }
+        ns_ajax.post(
+            'Candidate/InsertUpdate',
+            obj,
+            function (response) {
+                if (response.split('|')[0] == 'OK') {
+                    Action == 'INSERT' ? ShowAlertMessage("Message", "Contact address save successfully.", "C") : ShowAlertMessage("Message", "Contact address updated successfully.", "C");
+                    ns_candidate.GetLocation(Status);
+                    $('#ModalLocation').modal('hide');
+                    $(".modal-backdrop").css('display', 'none');
+                }
+                else
+                    ShowAlertMessage("Message", response, "A");
+            });
+    },
+
+    GetLocation: function (CndId, status) {
+        var Param = { cnd_id: CndId, status: status };
+        ns_ajax.get(
+            'Candidate/GetLocations',
+            Param,
+            function (response) {
+                if (response.split('|')[0] == 'OK') {
+                    var obj = jQuery.parseJSON(response.split('|')[1]);
+                    var objCountVal = jQuery.parseJSON(response.split('|')[2]);
+                    //Show delete count
+                    $.each(objCountVal, function (key, value) {
+                        value.delete_status == 0 ? $('#spnLocationActive').html(value.total_count) : $('#spnLocationInactive').html(value.total_count);
+                    });
+                    var Str = '', btnClassAttr = '', Modal = '';
+                    var EditClass = status == 0 ? 'btnCndEditLocation' : 'btnCndLocationRevert';
+                    var Modal = status == 0 ? 'data-toggle="modal" data-target="#ModalLocation"' : '';
+                    var ChangeEdithtml = status == 0 ? '<i class="zmdi zmdi-edit">&nbsp;</i>edit' : '<i class="zmdi zmdi-rotate-ccw">&nbsp;</i>Revert';
+                    Str += '<a id="btnCndLocationAddMore" data-toggle="modal" data-target="#ModalLocation" data-action="edit">' +
+                        '<div class="bxsaddow w-lft-qutr mt-3 bg-add" style="height:340px;"><b>&#43; </b>Add More</div> </a>';
+                    $.each(obj, function (key, value) {
+                        //Str += '</div></div>';
+                        var btnStatus = '<a id="btnCndLocationStatus-' + value.location_id + '"  class="btn btn-sm ' + (value.cnd_status == 1 ? 'btn-success' : 'btn-warning') + ' btn sm btnCndLocationStatus"  title="Click to change status">' + (value.cnd_status == 1 ? '<i class="zmdi zmdi-check-all">&nbsp;</i>Active' : '<i class="zmdi zmdi-money-off">&nbsp;</i>Inactive') + '</a>';
+                        var btnSetDefault = '<a id="btnCndDefaultStatus-' + value.location_id + '" data-status="1" class="btn btn-outline-primary btn-sm btnCndDefaultStatus">Set As Default</a>';
+                        var btnDefault = value.cnd_default == 1 ? '<span id="spnEmpDefault-' + value.location_id + '" data-default="' + value.cnd_default + '" class="col-green" style="float:right;"><i class="zmdi zmdi-check">&nbsp;</i>Default</span>' : '<span id="spnEmpDefault-' + value.location_id + '" data-default="' + value.cnd_default + '"></span>';
+                        var btnDelete = '<a id="btnCndLocationDelete-' + value.location_id + '" class="btn btn-danger btn-sm btnCndLocationDelete"><i class="zmdi zmdi-delete">&nbsp;</i>delete</a>';
+                        var btnEdit = '<a id="btnCndEditLocation-' + value.location_id + '" class="btn btn-outline-primary btn-sm ' + EditClass + '"  ' + Modal + '>' + ChangeEdithtml + '</a> ';
+
+                        Str += '<div id="divlocation-' + value.location_id + '" class="bxsaddow w-lft-qutr mt-3">' +
+                            '<h4><span>Contact Address</span>' + btnDefault + '</h4>' +
+                            '<div class="p-2 bdr1 h4show">' +
+                            '<div style="height:240px;overflow:auto;">' +
+                            '<div><label>Address</label><span class="m-l-2 mr-2">:</span></div>' +
+                            '<div><i class="zmdi zmdi-pin col-blue-grey">&nbsp;</i>' + value.cnd_location + '</div>';
+                        //Hide address if empty
+                        if (value.cnd_address2 != null && value.cnd_address2 != '') {
+                            Str += '<div><label>Address2</label><span>:</span</div>' +
+                                '<div>' + value.cnd_address2 + '</div>';
+                        }
+
+                        Str += '<div><label>Phone</label><span class="m-l-2 mr-2">:</span>' + (((value.cnd_phone == null || value.cnd_phone == '')) ? 'NA' : value.cnd_phone) + '</div>' +
+                            '</div>' +
+                            '<hr class="mt-2" style="margin-bottom: 9px;"><span>' + (value.cnd_default == 1 ? '' : btnSetDefault) + '&nbsp;' + btnEdit + '&nbsp;' + '&nbsp;' + btnStatus + '&nbsp;' + (value.cnd_default == 1 ? '' : btnDelete) + '</span>' +
+                            '</div></div>';
+                    });
+                    Str += '</div>';
+                    $('.divCndLocation').html(Str);
+                    if (status == 1) {
+                        $('.btnCndDefaultStatus').hide();
+                        $('.btnCndLocationStatus').hide();
+                    }
+                }
+                else {
+                    $('#spnLocationActive').html('0');
+                    $('#spnLocationInactive').html('0');
+                    $('.divCndLocation').html('<span class="col-green">Not Available</span>');
+                }
+            });
+    },
+
+    GetLocationColumns: function (CndId, wid, action, location_id) {
+        $('.clsEmpLocationField').html('');
+        var Param = { WizardId: wid, ProfileId: CndId, ProfileType: 'cnd', SettingType: 1, location_id: location_id };
+        ns_ajax.get(
+            'Candidate/GetProfileWizard',
+            Param,
+            function (response) {
+                if (response.split('|')[0] == 'OK') {
+                    var obj = jQuery.parseJSON(response.split('|')[1]);
+                    ns_candidate.GenerateLocationFields(obj.WizardField, wid, action);
+                }
+            });
+    },
+
+    GenerateLocationFields: function (obj, id, action) {
+        var StrVal = '', Control = '';
+        $.each(obj, function (key, value) {
+            var HideDiv = '', FillAdd = '';
+            if (value.ws_field_name == 'cnd_address1') { HideDiv = 'CndLAddressDiv none'; FillAdd = 'txtfillCndLAddress'; }
+            else if (value.ws_field_name == 'cnd_city') { HideDiv = 'CndLCityDiv none'; FillAdd = 'txtfillCndLCity'; }
+            else if (value.ws_field_name == 'cnd_county') { HideDiv = 'CndLCountyDiv none'; FillAdd = 'txtfillCndLCounty'; }
+
+            var Placeholder = ((value.ws_place_holder == null || value.ws_place_holder == '') ? 'Enter ' + value.ws_field_label : value.ws_place_holder);
+            var IsRequried = value.ws_isRequired == 0 ? '' : '<span>*</span>';
+            var Attribute = 'data-fieldname="' + value.ws_field_name + '" data-fieldlabel="' + value.ws_field_label + '" data-required="' + value.ws_isRequired + '" data-wid="' + id + '" placeholder="' + Placeholder + '"';
+            var FieldValue = $('#btnCndLocationAddMore').attr('data-action') == 'edit' ? ((value.field_Value == null || value.field_Value == '') ? '' : value.field_Value) : '';
+
+            if (value.ws_field_type == 'text') {
+                if (value.ws_field_name == 'cnd_postcode') {
+                    Control = '<div class="row m-l-2"><input id=txt-' + value.ws_field_id + ' class="form-control clsCndLocation col-sm-8 txtPostcode" maxlength="15" ' + Attribute + ' value="' + FieldValue + '">&nbsp;<a id="btnCndContactAddress" class="btn btn-primary col-sm-3 GetAddress2"><i class="zmdi zmdi-search">&nbsp;</i>Find</a></div>' +
+                        '<div><span id="spannotfound2" class="spannotfound2" style="color: #FF0000;"></span></div>';
+                    Control += '<div class="form-group divselectAddres2 none mt-3" ><select id="ddlCndLocation" class="form-control"></select></div>';
+                }
+                else if (value.ws_field_name == 'cnd_phone')
+                    Control = '<input id=txt-' + value.ws_field_id + ' class="form-control clsCndLocation ChkLocationMobile" maxlength="11" ' + Attribute + ' value="' + FieldValue + '">';
+                else
+                    Control = '<input id=txt-' + value.ws_field_id + ' class="form-control clsCndLocation ' + FillAdd + '" ' + Attribute + ' value="' + FieldValue + '">';
+            }
+            else if (value.ws_field_type == 'select')
+                Control = '<select id="ddl-' + value.ws_field_id + '" class="form-control clsCndLocation"  ' + Attribute + '><option  value="' + FieldValue + '">Select</option></select>';
+            else {
+                Control = '<label id=lbl-' + value.ws_field_id + '>' + value.ws_field_label + '</label>';
+            }
+            value.ws_field_name == 'cnd_id' ? '' : StrVal += '<div class="form-group mt-2 ' + HideDiv + '"><label id="' + value.ws_field_name + '">' + value.ws_field_label + '' + IsRequried + '</label>' + '' + Control + '</div>';
+        });
+        $('.clsCndLocationField').html(StrVal);
+        if (action == 'edit') {
+            $(".CndLAddressDiv").show();
+            $('.CndLCityDiv').show();
+            $('.CndLCountyDiv').show();
+        }
+    },
+
+    ChangeGetLocationStatus: function (emp_id, Locationid, status, type) {
+        var Param = '{cnd_id:"' + emp_id + '" ,location_id:"' + Locationid + '",Status:"' + status + '",type:"' + type + '" }';
+        ns_ajax.post(
+            'Candidate/ChangeLocationsStatus',
+            Param,
+            function (response) {
+                if (response.split('|')[0] == 'OK')
+                    ShowAlertMessage("Message", "Status has been changed successfully.", "C");
+                else
+                    ShowAlertMessage("Message", response, "A");
+            });
+    },
+
+    DeleteLocation: function (Locationid, status, ulstatus) {
+        var Param = '{location_id:"' + Locationid + '",status:"' + status + '" }';
+        ns_ajax.post(
+            'Candidate/DeleteLocations',
+            Param,
+            function (response) {
+                if (response.split('|')[0] == 'OK') {
+                    ShowAlertMessage("Message", "Contact address has been deleted successfully.", "C");
+                    ns_candidate.GetLocation(ulstatus);
+                }
+                else
+                    ShowAlertMessage("Message", response, "A");
+            });
+    },
+
+    getEmployerJobShifts: function () {
+        var CndId = $('#hdfCndId').val();
+        var Param = { CndId: CndId };
+        ns_ajax.get(
+            'Candidate/GetEmployerJobShifts',
+            Param,
+            function (response) {
+                if (response.split('|')[0] == 'OK') {
+                    var obj = jQuery.parseJSON(response.split('|')[1]), index = 1, jobShifts = "";
+                    $.each(obj, function (key, value) {
+                        jobShifts += '<tr>' +
+                            '<td><b>' + index + '</b></td>' +
+                            '<td><a href="#"><b>' + value.total_jobs + '</b></a></td>' +
+                            '<td class="col-blue-grey"><b>' + value.total_duration + '</b></td>' +
+                            '<td><span><b>' + value.job_type_title.split('-')[1] + '</b></span></td>' +
+                            '<td><span><b>' + value.emp_name + '</b></span></td>' +
+                            '<td>' +
+                            '<a class="btn btn-outline-primary btn-sm clsViewEmpJobShifts" data-title="' + value.emp_name + '" data-emp-id="' + value.emp_id + '" data-job-type="' + value.job_type_title.split('-')[0] + '" data-toggle="modal" data-target="#viewjobshifts"><i class="zmdi zmdi-eye">&nbsp</i>view</a>' +
+                            '</td>' +
+                            '</tr>';
+                        index += 1;
+                    });
+                    $('#tbodyEmployers').html(jobShifts);
+                }
+                else
+                    $('#tbodyEmployers').html("<tr><td colspan='5'><center>" + response + "<br/></center></td></tr>");
+            });
+    },
+
+    ViewAllEmpJobShifts: function (empId, jobType) {
+        var CndId = $('#hdfCndId').val();
+        var Param = { CndId: CndId, EmpId: empId, JobType: jobType };
+        ns_ajax.get(
+            'Candidate/ViewAllEmpJobShifts',
+            Param,
+            function (response) {
+                if (response.split('|')[0] == 'OK') {
+                    var obj = jQuery.parseJSON(response.split('|')[1]), index = 1, row = "";
+                    var totalDurations = 0;
+                    $.each(obj, function (key, value) {
+                        row += '<tr>' +
+                            '<td><b>' + index + '</b></td>' +
+                            '<td><span><b>' + value.job_id + '</b></span></td>' +
+                            '<td class="col-blue-grey"><i class="zmdi zmdi-calendar">&nbsp;</i><b>' + value.job_start_datetime2 + '</b></td>' +
+                            '<td class="col-blue-grey"><i class="zmdi zmdi-calendar">&nbsp;</i><b>' + value.job_end_datetime2 + '</b></td>' +
+                            '<td><span><b>' + value.job_type_title.split('-')[1] + '</b></span></td>' +
+                            '<td><span><b>' + value.job_duration + '</b></span></td>' +
+                            '<td><span class="' + (value.job_status_label == "COMPLETED" ? 'col-green' : 'col-red') + '"><b>' + value.job_status_label + '</b></span></td>' +
+                            '</tr>';
+                        totalDurations = (parseFloat(totalDurations) + parseFloat(value.job_duration_in_hour) + (value.job_type == 'P' ? ' day(s)' : ' hr(s)'));
+                        index += 1;
+                    });
+                    $('#tbodyEmpJobShifts').html(row);
+                    $('#totalDurations').html(totalDurations);
+                }
+            });
+    },
+
+    //Change candidate Profile Images
+    UploadImage: function (dataUrl, cnd_id) {
+        var ImageURL = dataUrl;// $('#landscape img').first().attr('src');
+        // Split the base64 string in data and contentType     
+        var block = ImageURL.split(";");
+        // Get the content type of the image
+        var contentType = block[0].split(":")[1];// In this case "image/gif"
+        // get the real base64 content of the file
+
+        var realData = block[1].split(",")[1];// In this case "R0lGODlhPQBEAPeoAJosM...."
+
+        // Convert it to a blob to upload
+        var blob = b64toBlob(realData, contentType);
+        //console.log('blob='+blob);
+        var formData = new FormData();
+        formData.append("image", blob);
+        formData.append("type", contentType);
+        formData.append("cnd_id", cnd_id);
+        ns_ajax.upload_pw(
+            urls.uploadFileApi + "CNDPROFILEIMG_EMP",
+            formData,
+            "", "",
+            function (response) {
+                if (response == '"OK"') {
+                    $('#fileInput').val('');
+                    $('#fileInput').attr('data-val', '0');
+                    $(".pixelarity-img-edit-cancel").click();
+                    ShowAlertMessage("Message", "Profile Picture uploaded successfylly.", 'C');
+                }
+                else
+                    ShowAlertMessage("Message", response, 'A');
+            });
+    },
+
+    InsertCandidate: function () {
+        var obj = {};
+      /*  var ddlCat = $("#ddlcat").val();*/
+        var ddlRole = $("#ddlRole").val();
+        var ddlTitle = $("#ddltitle_ss").val();
+        var txtFirstName = $("#txtFirstName").val();
+        var txtLastName = $("#txtLastName").val();
+        var txtGmcNumber = $("#txtGmcNumber").val();
+        var txtMobileNumber = $("#txtCndMobileNumber").val(); 
+        var txtCndEmail = $("#txtCndEmail").val();
+        var Gender = $("input[name='Gender']:checked").val();
+        var txtPostcode = $("#txtPostCode_ss").val();
+        var ddlCndLocation = $("#selectList2_ss").val();
+        var txtCndAddress1 = $("#txtaddressline2_ss").val();
+        var txtCity = $("#txtCndCity_ss").val();
+        var txtCounty = $("#tctCndCounty_ss").val();
+        var IsEmailChecked = $('#ChkCndSignupEMAIL').is(":checked");
+        var IsSmsChecked = $('#ChkCndSignupSMS').val();
+        var cndrefered_by = $("#hfcndid").val();
+
+        if ($('#ChkCndSignupEMAIL').attr('type') === 'checkbox')
+            IsEmailChecked = +$('#ChkCndSignupEMAIL').is(':checked');
+        if ($('#ChkCndSignupSMS').attr('type') === 'checkbox')
+            IsSmsChecked = +$('#ChkCndSignupSMS').is(':checked');
+
+        
+        var reftype = $('input[type=radio][name=ReferredBy]:checked').val();
+        var cndrefered_by = '0';
+        if (reftype == 'E')
+            var cndrefered_by = $("#hfcndidExt").val();
+        else
+            var cndrefered_by = $("#hfcndid").val();
+
+        var titleRef = $("#ddltitleRef").val();
+        var FirstNameRef = $("#txtFirstNameRef").val();
+        var LastNameRef = $("#txtLastNameRef").val();
+        var EmailRef = $("#txtEmailRef").val();
+        var MobileNumberRef = $("#txtCndMobileNumberRef").val();
+
+      
+        if (ddlTitle == '0') {
+            $("#ddlTitle_ss").focus();
+            ShowAlertMessage("Message", "Select Title ", "A");
+            return false;
+        }
+        if (txtFirstName == '') {
+            $("#txtFirstName").focus();
+            ShowAlertMessage("Message", "Enter First Name ", "A");
+            return false;
+        }
+        if (txtMobileNumber != '' && txtMobileNumber.length < 10) {
+            $("#txtMobileNumber").focus();
+            ShowAlertMessage("Message", "Enter Valid Mobile Number", "A");
+            return false;
+        }
+        if (txtCndEmail != '' && !IsEmail(txtCndEmail)) {
+            $("#txtCndEmail").focus();
+            ShowAlertMessage("Message", "Enter Valid Email", "A");
+            return false;
+        }
+        //if (txtPostcode == '') {
+        //    $("#txtPostCode_ss").focus();
+        //    ShowAlertMessage("Message", "Enter Post Code ", "A");
+        //    return false;
+        //}
+
+        //if (reftype == 'E' && titleRef == '0' && cndrefered_by == '0') {
+        //    ShowAlertMessage("Message", "Please select reference title", "A");
+        //    $("#ddltitleRef").focus();
+        //    return false;
+        //}
+        //if (reftype == 'E' && FirstNameRef == '' && cndrefered_by == '0') {
+        //    ShowAlertMessage("Message", "Enter Reference First name", "A");
+        //    $("#txtFirstNameRef").focus();
+        //    return false;
+        //}
+        //if (ddlCat == '') {
+        //    $("#ddlcat").focus();
+        //    ShowAlertMessage("Message", "Select Category ", "A");
+        //    return false;
+        //}
+        if (ddlRole == 0) {
+            $("#ddlRole").focus();
+            ShowAlertMessage("Message", "Select Role ", "A");
+            return false;
+        }
+        obj.cnd_id = 0;
+        obj.cnd_role_id = $("#ddlRole").val();
+        obj.cnd_title = ddlTitle;
+        obj.cnd_first_name = txtFirstName;
+        obj.cnd_last_name = txtLastName;
+        obj.cnd_gender = Gender;
+        obj.cnd_mobile = txtMobileNumber;
+        obj.cnd_email = txtCndEmail;
+        obj.IsEmailChecked = IsEmailChecked;
+        obj.IsSmsChecked = IsSmsChecked;
+
+        obj.cnd_postcode = txtPostcode;
+        obj.cnd_address1 = txtCndAddress1;
+        obj.cnd_city = txtCity;
+        obj.cnd_county = txtCounty;
+        obj.cnd_gmc_number = txtGmcNumber;
+        //Ref
+        obj.reftype = reftype;
+        obj.cnd_refered_by = cndrefered_by;
+        obj.titleRef = titleRef;
+        obj.FirstNameRef = FirstNameRef;
+        obj.LastNameRef = LastNameRef;
+        obj.EmailRef = EmailRef;
+        obj.MobileNumberRef = MobileNumberRef;
+        var Param = "[" + JSON.stringify(obj) + "]";
+        ns_ajax.post(
+            urls.candidateApi + "InsertCnd",//  'Candidate/InsertCandidate',
+            Param,
+            function (response) {
+                if (response == 'OK') {
+                    ShowAlertMessage("Message", 'Candidate <b>' + obj.cnd_first_name + '</b> has been registered successfully.', "C");
+                    $('#register-new-candidate-modal').modal('hide');
+                    $(".modal-backdrop").css('display', 'none');
+                    $("#txtCndMobileNumber").val(''); 
+                    ns_candidate.Reset();
+                    fnPG._createPager('#PgCnd', ns_gris_setting.get_grid_field(fnPG.options.currentIndex, fnPG.options.rPP));
+                    //ns_candidate.GetCandidateList();
+                }
+                else
+                    ShowAlertMessage("Message", response, "A");
+            });
+    },
+    Reset: function () {
+       /* $("#ddlcat").val('');*/
+        $("#ddlRole").val('0');
+        $("#ddltitle_ss").val('0');
+        $("#txtFirstName").val('');
+        $("#txtLastName").val('');
+        $("#txtGmcNumber").val('');
+        
+        $("#txtCndMobileNumber").val('');
+        $("#txtCndEmail").val('');
+        $("input[name='Gender']:checked", false);
+        $("#txtPostCode_ss").val('');
+        $("#selectList2_ss").val('');
+        $("#txtaddressline2_ss").val('');
+        $("#txtCndCity_ss").val('');
+        $("#tctCndCounty_ss").val('');
+        $('#ChkCndSignupEMAIL').is(":checked", false);
+        $('#empemail').val('');
+        $('#ChkCndSignupSMS').val();
+    },
+
+    AddUpdateProfile: function (block, action) {
+        var obj = {}, val = '', ids = '';
+        if (block == 'BASIC_INFO') {
+            var firstname = $('#txtfirstName').val();
+            var lastname = $('#txtLastName').val();
+            var mobile = $('#txtMobile').val();
+            var email = $('#txtEmail').val();
+            if ($('#ddltitle').val() == '0') {
+                $('#ddltitle').focus();
+                ShowAlertMessage("Message", "Select title", "A");
+                return false;
+            }
+            if (firstname == '') {
+                $('#txtfirstName').focus();
+                ShowAlertMessage("Message", "Enter first name", "A");
+                return false;
+            }
+
+            obj.cnd_title = $('#ddltitle').val();
+            obj.cnd_first_name = firstname;
+            obj.cnd_last_name = lastname;
+            obj.cnd_email = email;
+            obj.cnd_mobile = mobile;
+        }
+        else if (block == 'PERSONAL_STATEMENT') {
+            var statement = $('#txtPersonalStatement').val();
+            if (statement == '') {
+                $('#txtPersonalStatement').focus();
+                ShowAlertMessage("Message", "Enter personal statement", "A");
+                return false;
+            }
+            obj.personal_statement = statement;
+        }
+        else if (block == "PENSION") {
+            var pensionscheme = $('#txtNhsPensionScheme').val();
+            var tiredrate = $('#txtPensionTiredRate').val();
+            var insurancenum = $('#txtNationalInsuranceNum').val();
+            var addedyears = $('#txtPensionAddedYears').val();
+            var dob = $('#txtdob').val();
+
+            if (pensionscheme == '') {
+                $('#txtNhsPensionScheme').focus();
+                ShowAlertMessage("Message", "Enter pension scheme", "A");
+                return false;
+            }
+            if (tiredrate == '') {
+                $('#txtPensionTiredRate').focus();
+                ShowAlertMessage("Message", "Enter tired rate", "A");
+                return false;
+            }
+            if (insurancenum == '') {
+                $('#txtNationalInsuranceNum').focus();
+                ShowAlertMessage("Message", "Enter insurance number", "A");
+                return false;
+            }
+            if (addedyears == '') {
+                $('#txtPensionAddedYears').focus();
+                ShowAlertMessage("Message", "Enter years", "A");
+                return false;
+            }
+            if (dob == '') {
+                $('#txtdob').focus();
+                ShowAlertMessage("Message", "Enter date of birth", "A");
+                return false;
+            }
+            obj.nhs_pension_scheme = pensionscheme;
+            obj.pension_tiered_rate = tiredrate;
+            obj.national_insurance_number = insurancenum;
+            obj.pensionaddedyears = addedyears;
+            obj.dateofbirth = dob;
+            obj.extrampavcstype = $('#txtExtrampavsType').val();
+            obj.hostnhscb_lhb = $('#txtHostnhscbLhb').val();
+            obj.extrampavcs = $('#txtExtrampavs').val();
+            obj.hostlhbrefno = $('#txtHostlhbRefNo').val();
+            obj.nhspsrefnumber = $('#txtNhspsRefNumber').val();
+        }
+        else if (block.split('-')[0] == 'SOCIAL_PROFILE') {
+            var id = block.split('-')[1];
+            var profiletype = $('#txtProfileType' + (action == 'UPDATE' ? '-' + id : '') + '').val();
+            var profilelink = $('#txtProfileLink' + (action == 'UPDATE' ? '-' + id : '') + '').val();
+            if (profiletype == '') {
+                $('#txtProfileType' + (action == 'UPDATE' ? '-' + id : '') + '').focus();
+                ShowAlertMessage("Message", "Enter profile type", "A");
+                return false;
+            }
+            if (profilelink == '') {
+                $('#txtProfileLink' + (action == 'UPDATE' ? '-' + id : '') + '').focus();
+                ShowAlertMessage("Message", "Enter profile link", "A");
+                return false;
+            }
+            obj.social_profile_type = profiletype;
+            obj.social_profile_link = profilelink;
+        }
+        else if (block.split('-')[0] == 'WORK_HISTORY') {
+            var id = block.split('-')[1];
+            var workrole = $('#txtWorkRole' + (action == 'UPDATE' ? '-' + id : '') + '').val();
+            var employername = $('#txtEmployer' + (action == 'UPDATE' ? '-' + id : '') + '').val();
+            var fromdate = $('#txtFromDate' + (action == 'UPDATE' ? '-' + id : '') + '').val();
+            var todate = $('#txtTodate' + (action == 'UPDATE' ? '-' + id : '') + '').val();
+
+            if (workrole == '') {
+                $('#txtWorkRole' + (action == 'UPDATE' ? '-' + id : '') + '').focus();
+                ShowAlertMessage("Message", "Enter work role", "A");
+                return false;
+            }
+            if (employername == '') {
+                $('#txtEmployer' + (action == 'UPDATE' ? '-' + id : '') + '').focus();
+                ShowAlertMessage("Message", "Enter employer name", "A");
+                return false;
+            }
+            if (fromdate == '') {
+                $('#txtFromDate' + (action == 'UPDATE' ? '-' + id : '') + '').focus();
+                ShowAlertMessage("Message", "Enter from date", "A");
+                return false;
+            }
+            if (todate == '') {
+                $('#txtTodate' + (action == 'UPDATE' ? '-' + id : '') + '').focus();
+                ShowAlertMessage("Message", "Enter to date", "A");
+                return false;
+            }
+            obj.work_role = workrole;
+            obj.cnd_employer_name = employername;
+            obj.from_date = fromdate;
+            obj.to_date = todate;
+        }
+        else if (block.split('-')[0] == "QUALIFICATION") {
+            var id = block.split('-')[1];
+            var recivedate = $('#txtReceivedate' + (action == 'UPDATE' ? '-' + id : '') + '').val();
+            var qualification = $('#txtQualification' + (action == 'UPDATE' ? '-' + id : '') + '').val();
+            var institutin = $('#txtInstitution' + (action == 'UPDATE' ? '-' + id : '') + '').val();
+
+            if (recivedate == '') {
+                $('#txtReceivedate' + (action == 'UPDATE' ? '-' + id : '') + '').focus();
+                ShowAlertMessage("Message", "Select date", "A");
+                return false;
+            }
+            if (qualification == '') {
+                $('#txtQualification' + (action == 'UPDATE' ? '-' + id : '') + '').focus();
+                ShowAlertMessage("Message", "Enter qualification", "A");
+                return false;
+            }
+            if (institutin == '') {
+                $('#txtInstitution' + (action == 'UPDATE' ? '-' + id : '') + '').focus();
+                ShowAlertMessage("Message", "Enter institution name", "A");
+                return false;
+            }
+            obj.qualification = qualification;
+            obj.institution = institutin;
+            obj.received_date = recivedate;
+        }
+        else if (block.split('-')[0] == "ADDITIONAL_EXP") {
+            var id = block.split('-')[1];
+            var category = $('#txtCategory').val();
+            var expdetails = $('#txtExpDetail').Editor("getText");
+
+            if (category == '') {
+                $('#txtCategory').focus();
+                ShowAlertMessage("Message", "Enter Category", "A");
+                return false;
+            }
+            if (expdetails == '') {
+                $('#txtExpDetail').focus();
+                ShowAlertMessage("Message", "Enter Experience Detail", "A");
+                return false;
+            }
+            obj.experience_category = category;
+            obj.experience_detail = expdetails;
+        }
+        else if (block.split('-')[0] == "ADDRESS") {
+            var id = block.split('-')[1];
+            var postcode = $('#txtPostCode').val();
+            var address = $('#txtaddressline2').val();
+            var city = $('#txtCndCity').val();
+            var county = $('#txtCndCounty').val();
+            if (postcode == '') {
+                $('#txtPostCode').focus();
+                ShowAlertMessage("Message", "Enter Postcode", "A");
+                return false;
+            }
+            if (address == '') {
+                $('#txtaddressline2').focus();
+                ShowAlertMessage("Message", "Enter address", "A");
+                return false;
+            }
+            if (city == '') {
+                $('#txtCndCity').focus();
+                ShowAlertMessage("Message", "Enter city", "A");
+                return false;
+            }
+            if (county == '') {
+                $('#txtCndCounty').focus();
+                ShowAlertMessage("Message", "Enter county", "A");
+                return false;
+            }
+
+            obj.location_id = id;
+            obj.cnd_postcode = postcode;
+            obj.cnd_area = '';
+            obj.cnd_address1 = address;
+            obj.cnd_city = city;
+            obj.cnd_county = county;
+        }
+        else if (block.split('-')[0] == "DEFAULT_STATUS" || block.split('-')[0] == "BANK_DEFAULT") {
+            obj.id = block.split('-')[1];
+        }
+        else if (block == "SUBSCRIPTION") {
+            obj.jobemail = $("#email_jobs").is(':checked') ? '1' : '0';
+            obj.jobsms = $("#sms_jobs").is(':checked') ? '1' : '0';
+            obj.jobapp = $("#appnotification_jobs").is(':checked') ? '1' : '0';
+            obj.invemail = $("#chkinemail").is(':checked') ? '1' : '0';
+            obj.invsms = $("#chkinsms").is(':checked') ? '1' : '0';
+            obj.invapp = $("#chkinapp").is(':checked') ? '1' : '0';
+            obj.newsemail = $("#chknewslemail").is(':checked') ? '1' : '0';
+            obj.newssms = $("#chknewslsms").is(':checked') ? '1' : '0';
+            obj.newsapp = $("#chknewslapp").is(':checked') ? '1' : '0';
+        }
+        else if (block == "PREFRENCE" || block == "ITSYS" || block == "LANGUAGE") {
+            var cls = block == "PREFRENCE" ? '.clschkpref' : block == "ITSYS" ? '.clschkIt' : block == "LANGUAGE" ? '.clschklang' : '';
+            $(cls).each(function (index) {
+                IsChecked = +$(this).is(':checked');
+                if (IsChecked == '1') {
+                    val += $(this).attr('name') + ',';
+                    ids += $(this).val() + ',';
+                }
+            });
+            obj.id = ids;
+        }
+        else if (block.split('-')[0] == "DEL_SOCIAL_PRO" || block.split('-')[0] == "DEL_WORK_HIST" || block.split('-')[0] == "DEL_QUALIFICATION" || block.split('-')[0] == "DEL_ADD_EXP" || block.split('-')[0] == "DEL_REFRENCE") {
+            obj.id = block.split('-')[1];
+        }
+        else if (block.split('-')[0] == "DEL_BANK_DETAIL") {
+            obj.id = block.split('-')[1];
+        }
+        else if (block.split('-')[0] == 'REFRENCE') {
+            var id = block.split('-')[1];
+            var name = $('#txtRefName' + (action == 'UPDATE' ? '-' + id : '') + '').val();
+            var mobile = $('#txtRefMobile' + (action == 'UPDATE' ? '-' + id : '') + '').val();
+            var email = $('#txtRefEmail' + (action == 'UPDATE' ? '-' + id : '') + '').val();
+            var address = $('#txtRefAddress' + (action == 'UPDATE' ? '-' + id : '') + '').val();
+            if (name == '') {
+                $('#txtRefName' + (action == 'UPDATE' ? '-' + id : '') + '').focus();
+                ShowAlertMessage("Message", "Enter name", "A");
+                return false;
+            }
+            if (mobile == '') {
+                $('#txtRefMobile' + (action == 'UPDATE' ? '-' + id : '') + '').focus();
+                ShowAlertMessage("Message", "Enter mobile number", "A");
+                return false;
+            }
+            if (mobile !== '' && mobile.length < 10) {
+                $('#txtRefMobile' + (action == 'UPDATE' ? '-' + id : '') + '').focus();
+                ShowAlertMessage("Message", "Enter correct mobile number", "A");
+                return false;
+            }
+            if (email !== '' && IsEmail(email) == false) {
+                ShowAlertMessage("Message", "Enter correct email.", "A");
+                $('#txtRefEmail' + (action == 'UPDATE' ? '-' + id : '') + '').focus();
+                Result = 0;
+                return false;
+            }
+            obj.id = id;
+            obj.name = name;
+            obj.mobile = mobile;
+            obj.email = email;
+            obj.r_address = address;
+        }
+
+        obj.cnd_id = $('.profile-id').attr('data-id');
+        obj.block = block;
+        obj.action = action;
+        var param = "[" + JSON.stringify(obj) + "]";
+        ns_ajax.post(
+            urls.candidateApi + 'profile',
+            param,
+            function (response) {
+                if (response.split('|')[0] == 'OK') {
+                    var msg = '', id = 0;
+                    id = block.split('-')[1];
+                    block = block.split('-')[0];
+                    if (block == 'BASIC_INFO') {
+                        ShowAlertMessage("Message", "Information has been update successfully.", "C");
+                        var status = $('#spnstatus').html();
+
+                        var span = '[<b id="spnstatus" class="' + (status == 'Active' ? 'col-green' : 'col-red') + ' font-13 ml-1">' + status + '</b>]';
+                        $('#spncndname').html('<b>' + obj.cnd_title + ' ' + obj.cnd_first_name + ' ' + obj.cnd_last_name + '</b>' + span);
+                        $('#spncndname1').html('<b>' + obj.cnd_title + ' ' + obj.cnd_first_name + ' ' + obj.cnd_last_name + '</b>' + span);
+                       
+                        $('#spanprofile-name').html(obj.cnd_title + ' ' + obj.cnd_first_name + ' ' + obj.cnd_last_name);
+                        $('.spanprofile-name').html(obj.cnd_title + ' ' + obj.cnd_first_name + ' ' + obj.cnd_last_name);
+
+                        createCookie('pname', obj.cnd_title + ' ' + obj.cnd_first_name + ' ' + obj.cnd_last_name, 1);
+                        $('#spncndmobile').html(obj.cnd_mobile);
+                        $('#spncndemail').html(obj.cnd_email);
+                        $('#txtfirstName').val(obj.cnd_first_name);
+                        $('#txtLastName').val(obj.cnd_last_name);
+                        $('#txtEmail').val(obj.cnd_email);
+                        $('#txtMobile').val(obj.cnd_mobile);
+                        $('.h_pro_edit').hide();
+                        $('.s_pro_view, .hd-edit, .over-layer').show();
+                    }
+                    else if (block == "PERSONAL_STATEMENT") {
+                        ShowAlertMessage("Message", "Personal Statement has been update successfully.", "C");
+                        $('#spanstatement').html(obj.personal_statement);
+                        $('#btnupdatestatement').attr('data-statement', obj.personal_statement);
+                        $('#ModalPersonalStatement').modal('hide');
+                        $(".modal-backdrop").css('display', 'none');
+                        $('.personal_sat_edit, .cro_p').hide();
+                        $('.hp-edit, .personal_sat_view').show();
+                    }
+                    else if (block == "SOCIAL_PROFILE") {
+                        ShowAlertMessage("Message", "Social Profile has been " + (action == 'UPDATE' ? 'updated' : 'saved') + " successfully.", "C");
+                        obj.id = response.split('|')[1];
+                        if (action == 'UPDATE') {
+                            $('#spnlbltype-' + obj.id).html(obj.social_profile_type);
+                            $('#spnlbllink-' + obj.id).html(obj.social_profile_link);
+                            $('.sphide-' + obj.id).hide();
+                            $('.spshow-' + obj.id).show();
+                        }
+                        else {
+                            var lastrowSN = $('#Social_Profile_Placeholder').closest('table').find('tr:last td:first').text();
+                            lastrowSN++;
+                            obj.ROWNUMBER = lastrowSN;
+                            call_Sub_tmpl_binder(obj, '/Template/cnd_profile_tmpl.html', '#SocialProfile_footer_Template', '#SocialProfile_footer_Placeholder');
+                            $('.sodial_add, .cro_add').hide();
+                            $('.had-add, .social_view').show();
+                            $('#txtProfileType, #txtProfileLink').val('');
+                        }
+                    }
+                    else if (block == "WORK_HISTORY") {
+                        ShowAlertMessage("Message", "Work History has been " + (action == 'UPDATE' ? 'updated' : 'saved') + " successfully.", "C");
+                        obj.id = response.split('|')[1];
+                        if (action == 'UPDATE') {
+                            $('#spnworkrole-' + obj.id).html(obj.work_role);
+                            $('#spnempname-' + obj.id).html(obj.cnd_employer_name);
+                            $('#spnfromdate-' + obj.id).html(obj.from_date);
+                            $('#spntodate-' + obj.id).html(obj.to_date);
+                            $('.whhide-' + obj.id).hide();
+                            $('.whshow-' + obj.id).show();
+                        }
+                        else {
+                            var lastrowSN = $('#WorkHistory_Placeholder').closest('table').find('tr:last td:first').text();
+                            lastrowSN++;
+                            obj.ROWNUMBER = lastrowSN;
+                            call_Sub_tmpl_binder(obj, '/Template/cnd_profile_tmpl.html', '#WorkHistory_footer_Template', '#WorkHistory_footer_Placeholder');
+                            $('.add-evnt').hide();
+                            $('.editshow').show();
+                            $('#txtWorkRole, #txtEmployer, #txtFromDate, #txtTodate').val('');
+                        }
+                    }
+                    else if (block == "QUALIFICATION") {
+                        ShowAlertMessage("Message", "Qualification has been " + (action == 'UPDATE' ? 'updated' : 'saved') + " successfully.", "C");
+                        obj.id = response.split('|')[1];
+                        if (action == 'UPDATE') {
+                            $('#spnReceicedate-' + obj.id).html(obj.received_date);
+                            $('#spnQualification-' + obj.id).html(obj.qualification);
+                            $('#spnInstitution-' + obj.id).html(obj.institution);
+                            $('.Qhide-' + obj.id).hide();
+                            $('.Qshow-' + obj.id).show();
+                        }
+                        else {
+                            var lastrowSN = $('#Qualification_Placeholder').closest('table').find('tr:last td:first').text();
+                            lastrowSN++;
+                            obj.ROWNUMBER = lastrowSN;
+                            call_Sub_tmpl_binder(obj, '/Template/cnd_profile_tmpl.html', '#Qualification_footer_Template', '#Qualification_footer_Placeholder');
+                            $('.d_noneedit').hide();
+                            $('.qualshow').show();
+                            $('#txtReceivedate, #txtQualification, #txtInstitution').val('');
+                        }
+                    }
+                    else if (block == "ADDRESS") {
+                        ShowAlertMessage("Message", "Address has been " + (action == 'UPDATE' ? 'updated' : 'saved') + " successfully.", "C");
+                        obj.location_id = response.split('|')[1];
+                        if (action == 'UPDATE') {
+                            $('#spncityandcounty-' + obj.location_id).html(obj.cnd_city + ', ' + obj.cnd_county);
+                            $('#spnpostcode-' + obj.location_id).html(obj.cnd_postcode);
+                            $('#btnaddress-' + obj.location_id).html(obj.cnd_address1);
+                            $('#btnContAddEdit-' + obj.location_id).attr('data-address', obj.cnd_address1).attr('data-city', obj.cnd_city).attr('data-county', obj.cnd_county).attr('data-postcode', obj.cnd_postcode);
+                        }
+                        else {
+                            call_Sub_tmpl_binder(obj, '/Template/cnd_profile_tmpl.html', '#Address_footer_Template', '#ContactAddress_footer_Placeholder');
+                            $('#txtPostCode, #txtaddressline2, #txtCndCity, #txtCndCounty').val('');
+                        }
+                        $('.disply_newaddresso').hide();
+                        $('.disply_none_newcontacto').show();
+                    }
+                    else if (block == "PENSION" || block == "SUBSCRIPTION") {
+                        ShowAlertMessage("Message", "" + (block == 'PENSION' ? 'Pension details' : 'Subscription') + " has been update successfully.", "C");
+                        if (block == "PENSION") {
+                            $('#spnpensionscheme').html(obj.nhs_pension_scheme);
+                            $('#spntiredrate').html(obj.pension_tiered_rate);
+                            $('#spninsurancenum').html(obj.national_insurance_number);
+                            $('#spnpensionaddedyear').html(obj.pensionaddedyears);
+                            $('#spndob').html(obj.dateofbirth);
+                            $('#spnextrampavcstype').html(obj.extrampavcstype);
+                            $('#spnhostnhscb_lhb').html(obj.hostnhscb_lhb);
+                            $('#spnextrampavcs').html(obj.extrampavcs);
+                            $('#spnhostlhbrefno').html(obj.hostlhbrefno);
+                            $('#spnnhspsrefnumber').html(obj.nhspsrefnumber);
+                            $('.disply_none_rowPension').show('slow');
+                            $('.disply_rowPension').hide('slow');
+                            $('.pnsnedt').hide();
+                            $('.pnsnview, .pnsnbtn').show();
+                        }
+                    }
+                    else if (block == "ADDITIONAL_EXP") {
+                        ShowAlertMessage("Message", "Experience has been " + (action == 'UPDATE' ? 'updated' : 'saved') + " successfully.", "C");
+                        obj.id = response.split('|')[1];
+                        if (action == 'UPDATE') {
+                            $('#spncategory-' + obj.id).html(obj.experience_category);
+                            $('#spncatdetail-' + obj.id).html(obj.experience_detail);
+                            $('#btnExpedit-' + obj.id).attr('data-category', obj.experience_category).attr('data-cat-detail', obj.experience_detail);
+                        }
+                        else {
+                            var lastrowSN = $('#Experience_Placeholder').closest('table').find('tr:last').attr('data-row');
+                            lastrowSN++;
+                            obj.ROWNUMBER = lastrowSN;
+                            call_Sub_tmpl_binder(obj, '/Template/cnd_profile_tmpl.html', '#Experience_footer_Template', '#Experience_footer_Placeholder');
+                        }
+                        $('.edit-adition').hide();
+                        $('.show-adition').show();
+                    }
+                    else if (block == "PREFRENCE" || block == "ITSYS" || block == "LANGUAGE") {
+                        msg = block == 'PREFRENCE' ? 'Job Prefrence' : block == 'ITSYS' ? 'IT system' : block == 'LANGUAGE' ? 'Language' : '';
+                        ShowAlertMessage("Message", "" + msg + " has been updated successfully.", "C");
+                        var item = '', placeholder = '';
+                        val = val.slice(0, -1);
+                        if (block == "PREFRENCE") {
+                            $('#btnEditPref').attr('data-ids', ids);
+                            $('.jobprpedt').hide();
+                            $('.jobprp, .jbe').show();
+                            placeholder = 'Prefrence';
+                        }
+                        else if (block == "ITSYS") {
+                            $('#btnEditITSys').attr('data-ids', ids);
+                            $('.itsystedt').hide();
+                            $('.itsystview, .itsyst').show();
+                            placeholder = 'ITSystem';
+                        }
+                        else if (block == "LANGUAGE") {
+                            $('#btnEditLang').attr('data-ids', ids);
+                            $('.langedt').hide();
+                            $('.langview, .langbtn').show();
+                            placeholder = 'Language';
+                        }
+                        $('#' + placeholder + '_Placeholder').html('');
+                        for (var i = 0; i < val.split(',').length; i++) {
+                            item += '<span class="badge badge-info mr-1">' + val.split(',')[i] + '</span>';
+                        }
+                        $('#' + placeholder + '_Placeholder').html(item);
+                    }
+                    else if (block == "DEFAULT_STATUS") {
+                        ShowAlertMessage("Message", "Default status has been change successfully.", "C");
+                        $('.defaultstatus').html('').removeClass('bbl-light');
+                        $('#spndefault-' + id).html('Main').addClass('bbl-light');
+                        $('.removedisabled').removeClass('disabled');
+                        $('#btnAddDel-' + id).addClass('disabled');
+                        $('#btndefault-' + id).addClass('disabled');
+                    }
+                    else if (block == "DEL_SOCIAL_PRO" || block == "DEL_WORK_HIST" || block == "DEL_QUALIFICATION" || block == "DEL_ADD_EXP" || block == "DEL_REFRENCE") {
+                        msg = block == 'DEL_SOCIAL_PRO' ? 'Social Profile' : block == 'DEL_WORK_HIST' ? 'Work History' : block == 'DEL_QUALIFICATION' ? 'Qualification' : block == 'DEL_ADD_EXP' ? 'Experience' : block == 'DEL_REFRENCE' ? 'Refenerce' : '';
+                        var text = block == 'DEL_SOCIAL_PRO' ? 'trsp' : block == 'DEL_WORK_HIST' ? 'trwh' : block == 'DEL_QUALIFICATION' ? 'trQ' : block == 'DEL_ADD_EXP' ? 'txexp' : block == 'DEL_REFRENCE' ? 'ref' : '';
+                        ShowAlertMessage("Message", "" + msg + " has been deleted successfully.", "C");
+                        $('#' + text + '-' + id).remove();
+                    }
+                    else if (block == "DEL_ADDRESS") {
+                        ShowAlertMessage("Message", "Address has been deleted successfully.", "C");
+                        $('#divTemp-' + id).remove();
+                    }
+                    else if (block == "DEL_BANK_DETAIL") {
+                        ShowAlertMessage("Message", "Bank detail has been deleted successfully.", "C");
+                        $('#tbd-' + id).remove();
+                    }
+                    else if (block == "BANK_DEFAULT") {
+                        ShowAlertMessage("Message", "Default status has been change successfully.", "C");
+                        if ($('#btnBankdefault-' + id).attr('data-status') == 0) {
+                            $('.clsrembtncol').attr('data-status', '0').removeClass('btn-success clsrembtncol').addClass('btn-warning ClsCndProfile').html('No');
+                            $('#btnBankdefault-' + id).attr('data-status', '1').removeClass('btn-warning ClsCndProfile').addClass('btn-success clsrembtncol').html('Yes');
+                        }
+                    }
+                    else if (block == "REFRENCE") {
+                        ShowAlertMessage("Message", "References has been " + (action == 'UPDATE' ? 'updated' : 'saved') + " successfully.", "C");
+                        obj.id = response.split('|')[1];
+                        if (action == 'UPDATE') {
+                            $('#spanrefname-' + obj.id).html(obj.name);
+                            $('#spanrefmobile-' + obj.id).html(obj.mobile);
+                            $('#spnrefemail-' + obj.id).html(obj.email);
+                            $('#spnrefaddres-' + obj.id).html(obj.r_address);
+                            $('.rhide-' + obj.id).hide();
+                            $('.rshow-' + obj.id).show();
+                        }
+                        else {
+                            $('.ref_add').hide();
+                            $('.hadRef-add').show();
+                            var lastrowSN = '';
+                            var count = $('#Refrence_Placeholder tr').length;
+                            if (count > 0)
+                                lastrowSN = $('#Refrence_Placeholder').closest('table').find('tr:last td:first').attr('data-id');
+                            else
+                                lastrowSN = 0;
+
+                            lastrowSN++;
+                            obj.ROWNUMBER = lastrowSN;
+                            call_Sub_tmpl_binder(obj, '/Template/cnd_profile_tmpl.html', '#Refrence_Footer_Template', '#Refrence_Footer_Placeholder');
+                            $('#txtRefName, #txtRefMobile,#txtRefEmail,#txtRefAddress').val('');
+                        }
+                    }
+                }
+                else
+                    ShowAlertMessage("Message", response, "A");
+            });
+    },
+    AddUpdateBankDetail: function (id, action) {
+        var data = new FormData();
+        var name = $('#txtAccountHolder' + (action == 'UPDATE' ? '-' + id : '') + '').val();
+        var accountnumber = $('#txtAccountNumber' + (action == 'UPDATE' ? '-' + id : '') + '').val();
+        var sortcode = $('#txtSortCode' + (action == 'UPDATE' ? '-' + id : '') + '').val();
+        var companyname = $('#txtCompanyName' + (action == 'UPDATE' ? '-' + id : '')).val();
+
+        var compregno = $('#txtCompanyRegNo' + (action == 'UPDATE' ? '-' + id : '') + '').val();
+        var fileUpload = $('#RegUrl' + (action == 'UPDATE' ? '-' + id : '') + '').get(0);
+        var files = fileUpload.files;
+        if (name == '') {
+            $('#txtAccountHolder' + (action == 'UPDATE' ? '-' + id : '') + '').focus();
+            ShowAlertMessage("Message", "Enter name", "A");
+            return false;
+        }
+        if (accountnumber == '') {
+            ShowAlertMessage("Message", "Enter account number", "A");
+            $('#txtAccountNumber' + (action == 'UPDATE' ? '-' + id : '') + '').focus();
+            return false;
+        }
+        if (sortcode == '') {
+            ShowAlertMessage("Message", "Enter sort code", "A");
+            $('#txtSortCode' + (action == 'UPDATE' ? '-' + id : '') + '').focus();
+            return false;
+        }
+        if (sortcode.length < 6) {
+            ShowAlertMessage("Message", "Sortcode must be 6 characters long", "A");
+            $('#txtSortCode' + (action == 'UPDATE' ? '-' + id : '') + '').focus();
+            return false;
+        }
+        data.append("FileUpload", files[0]);
+        data.append("Id", id),
+            data.append("Name", name),
+            data.append("AccountNumber", accountnumber),
+            data.append("SortCode", sortcode);
+        data.append("CompanyName", companyname);
+        data.append("CompanyRegNo", compregno);
+        data.append("cnd_id", $('.profile-id').attr('data-id'));
+        ns_ajax.upload2(
+            urls.complianceApi + 'cndbankdetails',
+            data,
+            function (response) {
+                response = response.slice(1, -1);
+                if (response.split('|')[0] == 'OK') {
+                    ShowAlertMessage("Message", "Bank detail " + (id == 0 ? 'saved' : 'updated') + " successfully.", "C");
+
+                    var id = response.split('|')[1];
+                    var url = response.split('|')[2];
+                    if (action == 'UPDATE') {
+                        $('#spnAccountholder-' + id).html(name);
+                        $('#spnAccountNumber-' + id).html(accountnumber);
+                        $('#spnSortCode-' + id).html(sortcode);
+                        $('#spnCompanyName-' + id).html(companyname);
+                        $('#spnCompanyRegNo-' + id).html(compregno);
+                        $('#spnRegUrl-' + id).html('<i class="zmdi zmdi-file-text"  style="font-size: 24px;">&nbsp;</i>');
+                        $('#spnRegUrl-' + id).attr('data-file-name', url);
+                        $('.bdhide-' + id).hide();
+                        $('.bdshow-' + id).show();
+                    }
+                    else {
+                        $('.bank_add').hide();
+                        var count = $('#Bank_Detail_Placeholder tr').length;
+                        var lastrowSN = count > 0 ? $('#Bank_Detail_Placeholder').closest('table').find('tr:last td:first').attr('data-id') : '0';
+                        lastrowSN++;
+                        var obj = {};
+                        obj.id = id;
+                        obj.ROWNUMBER = lastrowSN;
+                        obj.cnd_account_holder_name = name;
+                        obj.cnd_bank_account_number = accountnumber;
+                        obj.cnd_sort_code = sortcode;
+                        obj.company_name = companyname;
+                        obj.cnd_company_reg_no = compregno;
+                        obj.cnd_reg_certificate_url = url;
+                        call_Sub_tmpl_binder(obj, '/Template/cnd_profile_tmpl.html', '#BankDetail_footer_Template', '#BankDetail_footer_Placeholder');
+                        $('#txtAccountHolder, #txtAccountNumber,#txtSortCode,#txtCompanyName,#txtCompanyRegNo,#RegUrl').val('');
+                    }
+                }
+                else
+                    ShowAlertMessage("Message", response, "A");
+            });
+
+    },
+    viewRegcertificate: function (fileName) {
+        $('#iframeCertificate').attr('src', "/images/process.gif");
+        var param = { fileId: '0', fileName: fileName };
+        ns_ajax.get(
+            urls.complianceApi,
+            param,
+            function (response) {
+                if (response.split('##')[0] == 'OK') {
+                    var url = response.split('##')[1];
+                    $('#iframeCertificate').attr('src', url);
+                }
+                else
+                    $('#iframeCertificate').attr('src', "/images/notavailable.jpg");
+
+            });
     },
 }
 

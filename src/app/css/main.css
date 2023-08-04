@@ -15998,3 +15998,5 @@ display: block;}
         word-wrap:break-word
        }
        .error{color:red}
+       
+       #CndProfileHeader_Placeholder .text-center img{width:auto!important}

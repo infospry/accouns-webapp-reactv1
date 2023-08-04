@@ -640,14 +640,14 @@ function Main() {
                 </div>
             </div>
 
-            <div id="viewprofile" className="modal right-full confirm" tabindex="-1" role="dialog" aria-labelledby="viewprofile">
+            <div id="viewprofile" className="modal right-full confirm profile-id" data-id="0" tabindex="-1" role="dialog" aria-labelledby="viewprofile">
                 <div className="modal-dialog" role="document">
-
+                
                     <div className="modal-content upmodel" style={{ height: "99.3%" }}>
                         <div id='CndProfileHeader_Placeholder' className="modal-header">
                             <div className="">
                                 <h4 className="modal-title hide-head profile-header" data-val="0"> <b>General Practitioner 
-                                    <i className='profile-id'></i>
+                                 
                                 </b>
                                 </h4>
                                 <div className="show-head smd_none"> <Image src={profile} alt="img"
@@ -760,10 +760,6 @@ function Main() {
                                                 href="#TabActivity_Placeholder">Activity</a> </li>
                                             <li className="nav-item"> <a id="TabTerms" className="tab-terms nav-link " data-toggle="tab"
                                                 href="#TabTerms_Placeholder">Terms</a> </li>
-
-
-
-
                                             <li className="nav-item"> <a id="TabSettings" className="tab-settings nav-link "
                                                 data-toggle="tab" href="#TabSettings_Placeholder">Settings</a> </li>
                                         </ul>

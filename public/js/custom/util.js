@@ -901,9 +901,9 @@ function unblockUIbyId(id) {
 
 //datepair
 function DatePairFuction() {
-    // $('.ClsDatepair .time').timepicker({ 'showDuration': true, 'timeFormat': 'H:i', 'step': '15' });
-    // $('.ClsDatepair .date').datepicker({ 'format': 'dd/mm/yyyy', 'autoclose': true });
-    // $('.ClsDatepair').datepair();
+    $('.ClsDatepair .time').timepicker({ 'showDuration': true, 'timeFormat': 'H:i', 'step': '15' });
+    $('.ClsDatepair .date').datepicker({ 'format': 'dd/mm/yyyy', 'autoclose': true });
+    $('.ClsDatepair').datepair();
 }
 
 //File Upload Functions to Validate Size and extensions
