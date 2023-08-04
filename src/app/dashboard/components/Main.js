@@ -5,7 +5,7 @@ import { useState,useEffect } from 'react';
 import { asyncGet } from '@/app/services/HttpServices';
 import { endpoint_employer } from '@/app/services/ApiEndPoints';
 
-
+import { toast } from '@/app/components/ToastContainer';
 // export default function main() {
 //     const [employer,setEmployer]=useState([])
 //     useEffect(async()=>{
@@ -14,6 +14,24 @@ import { endpoint_employer } from '@/app/services/ApiEndPoints';
 //     },[])
 
     export default function main() {
+
+      const handleShowNotification = () => {
+        toast.success('This is a success notification!', {
+          position: 'bottom-right',
+          });
+      };
+
+      const showToast = () => {
+        toast.error('This is a error toast!', {
+          position: 'top-right',
+          autoClose: 3000, // Close the toast after 3 seconds
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      };
       const [employer, setEmployer] = useState([]);
     
       useEffect(() => {
@@ -43,7 +61,12 @@ import { endpoint_employer } from '@/app/services/ApiEndPoints';
                             <h2 className="mb-0"><i className="zmdi zmdi-widgets"></i> Dashboard</h2>
                         </div>
                         <span className="float-right pr-2"><Link className="cls-personalized-wizards btn btn-outline-info" data-action="view-setting" data-toggle="modal" data-target="#ModalPersonalizedWizards" href="/"><i className="zmdi zmdi-settings zmdi-hc-spin">&nbsp;</i>Personalize Wizards</Link></span>
-                    </div>  
+                    </div> 
+
+                    <button className='btn btn-primary m-2' onClick={handleShowNotification}>Show Notification</button>
+
+                    <button className='btn btn-danger m-2' onClick={showToast}>Show Toast</button>
+
                     <div className="table-responsive p-2">
                   <h1 className='col-blue p-2 text-center'>Welcome To Agency Panel</h1>
                   <h3><b>Employers:-</b></h3>

@@ -15631,9 +15631,7 @@ font-weight:normal!important;
 .sidebar .menu .list li {
     border-bottom: 1px solid var(--border);
   }
-  .sidebar .menu .list {
-    /*! background: #e4e4e4; */ 
-  }
+ 
   .w70per{width:70%}
   .cursorHelp{cursor: help;}
   .partFst{border: 1px solid #ccc; padding:15px; width: 50%; float: left;}
@@ -16000,3 +15998,4 @@ display: block;}
        .error{color:red}
        
        #CndProfileHeader_Placeholder .text-center img{width:auto!important}
+       img{width:auto!important}

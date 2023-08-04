@@ -14,7 +14,7 @@ import '../app/css/main.css'
 
 
 
-
+import { ToastContainer, toast } from './components/ToastContainer';
 export default function RootLayout({ children }) {
    
   return (
@@ -44,10 +44,7 @@ export default function RootLayout({ children }) {
               <script src="js/bootstrap-datepicker.js"></script>  
               <script src="js/jquery.timepicker.js"></script>  
               <script src="js/datepair.js"></script>  
-              <script src="js/jquery.datepair.js"></script>  
-           
-      
-                    
+              <script src="js/jquery.datepair.js"></script>                      
       </body>
       
     </html>
