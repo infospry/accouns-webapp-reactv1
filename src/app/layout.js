@@ -6,7 +6,7 @@ import '../app/css/main.css'
 
 
 
-
+import { ToastContainer, toast } from './components/ToastContainer';
 export default function RootLayout({ children }) {
    
   return (
@@ -15,7 +15,8 @@ export default function RootLayout({ children }) {
       
       </head>
       
-      <body classname="theme-blue ">{children}     
+      <body classname="theme-blue ">{children}   
+      <ToastContainer />
             <script src="js/jquery-2.1.4.min.js"></script>              
             <script src="js/bootstrap.min.js" ></script>
             <script src="js/libscripts.bundle.js"></script>

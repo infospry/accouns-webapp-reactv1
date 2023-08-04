@@ -7,7 +7,11 @@ import Image from 'next/image'
 import padlock from '@/app/images/padlock.png'
 import { useState } from 'react';
 
+
 function Main() {
+
+
+
 
   const [formData, setFormData] = useState({
     currentPassword: '',
@@ -136,6 +140,7 @@ function Main() {
             <div className="col-md-6 col-sm-6 offset-sm-4">
               <hr />
               <button type="submit" className="btn btn-primary mr-1">Update</button>
+             
               <button type="button" className="btn btn-outline-danger clickmode" data-hide=".editableDiv" data-show=".divdemo">
                 <i className="zmdi zmdi-close"></i>Cancel
               </button>
