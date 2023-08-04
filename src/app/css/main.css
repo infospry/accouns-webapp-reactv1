@@ -15631,9 +15631,7 @@ font-weight:normal!important;
 .sidebar .menu .list li {
     border-bottom: 1px solid var(--border);
   }
-  .sidebar .menu .list {
-    /*! background: #e4e4e4; */ 
-  }
+ 
   .w70per{width:70%}
   .cursorHelp{cursor: help;}
   .partFst{border: 1px solid #ccc; padding:15px; width: 50%; float: left;}
@@ -15998,3 +15996,5 @@ display: block;}
         word-wrap:break-word
        }
        .error{color:red}
+
+      img{width:auto!important}

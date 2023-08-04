@@ -15,18 +15,16 @@ export default function RootLayout({ children }) {
       
       </head>
       
-      <body classname="theme-blue ">{children}
-     
-              <script src="js/jquery-2.1.4.min.js"></script>              
-              <script src="js/bootstrap.min.js" ></script>
-              <script src="js/libscripts.bundle.js"></script>
-              <script src="js/vendorscripts.bundle.js"></script>
-              <script src="js/mainscripts.bundle.js"></script> 
-              <script src="js/custom.js"></script>
-              <script src="js/custom/jquery.tmpl.js"></script>    
-      
-              <script src="js/custom/util.js"></script>
-              <script src="js/custom/masters.1.0.0.js"></script>             
+      <body classname="theme-blue ">{children}     
+            <script src="js/jquery-2.1.4.min.js"></script>              
+            <script src="js/bootstrap.min.js" ></script>
+            <script src="js/libscripts.bundle.js"></script>
+            <script src="js/vendorscripts.bundle.js"></script>
+            <script src="js/mainscripts.bundle.js"></script>               
+            <script src="js/custom/jquery.tmpl.js"></script> 
+            <script src="js/custom/util.js"></script>
+            <script src="js/custom/masters.1.0.0.js"></script>   
+            <script src="js/custom.js"></script>          
       </body>
       
     </html>

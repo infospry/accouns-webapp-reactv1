@@ -122,7 +122,7 @@ export default function GeneralInfo() {
                                                                 <div className="profileEdit dd_none">
                                                                     <p className="mb-3 input-group">
                                                                         <input id="txt_user_profile_name" className="form-control" type="text" maxlength="30"
-                                                                            placeholder="Enter your name" value="Healthcare Demo " />
+                                                                            placeholder="Enter your name"/>
                                                                         <a id="updateProName" className="btn btn-primary cls-user-profile ml-1" data-action="updatename" style={{
                                                                             width: "90px"
                                                                         }}>Submit</a>
@@ -158,8 +158,7 @@ export default function GeneralInfo() {
                                                                         Address</h4>
                                                                     <p className="mb-3 input-group">
                                                                         <input id="txt_user_profile_email" className="form-control mr-1" maxlength="30" type="email"
-                                                                            placeholder="Enter email Id" value="demo.healthcare@thestaffport.com"
-                                                                            data-email="demo.healthcare@thestaffport.com" />
+                                                                            placeholder="Enter email Id"/>
                                                                         <a id="updateProEmail" className="btn btn-primary  cls-user-profile" data-action="updateemail"
                                                                             data-show=".otpEdit" data-hide=".emailEdit" style={{ width: "90px" }}>Submit</a>
                                                                         <a className="btn btn-danger clickmode ml-1" data-show=".emailView" data-hide=".emailEdit">X</a>
@@ -190,7 +189,7 @@ export default function GeneralInfo() {
                                                                         Number</h4>
                                                                     <p className="mb-3 input-group">
                                                                         <input id="txt_user_profile_mobile" className="form-control mr-1 number" maxlength="11" type="text"
-                                                                            placeholder="Enter mobile number" data-mobile="" />
+                                                                            placeholder="Enter mobile number"  />
                                                                         <a id="updateProMobile" className="btn btn-primary cls-user-profile" data-action="updatemobile"
                                                                             data-show=".phone_Edit" data-hide=".phoneEdit" style={{ width: "90px" }}>Submit</a>
                                                                         <a className="btn btn-danger clickmode  ml-1" data-show=".phoneView" data-hide=".phoneEdit">X</a>

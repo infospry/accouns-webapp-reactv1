@@ -1,11 +1,57 @@
+
+"use client"
 import React from 'react'
 import LeftSidebar from '../../components/LeftSidebar';
 import TwoFactorAuthentication from './TwoFactorAuthentication';
 import Image from 'next/image'
 import padlock from '@/app/images/padlock.png'
-
+import { useState } from 'react';
 
 function Main() {
+
+  const [formData, setFormData] = useState({
+    currentPassword: '',
+    newPassword: '',
+    confirmPassword: '',
+  });
+
+  const [errors, setErrors] = useState({});
+
+  const handleChange = (e) => {
+    const { id, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [id]: value,
+    }));
+  };
+
+  const validateForm = () => {
+    const newErrors = {};
+
+    if (!formData.currentPassword) {
+      newErrors.currentPassword = 'Current password is required';
+    }
+
+    if (!formData.newPassword) {
+      newErrors.newPassword = 'New password is required';
+    } else if (formData.newPassword !== formData.confirmPassword) {
+      newErrors.confirmPassword = 'Passwords do not match';
+    }
+
+    setErrors(newErrors);
+
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (validateForm()) {
+      console.log('Form is valid:', formData);
+    } else {
+      console.log('Form is invalid');
+    }
+  };
     return (
         <>
             <section className="content">
@@ -34,79 +80,69 @@ function Main() {
         </div>
         <div className="dd_none editableDiv">
           <div className="row">
-            <div className="col-md-8 offset-md-2 mt-4">
-              <div className="form-group row">
-                <label className="control-label col-md-4 col-sm-4 col-12" htmlFor="txtCurrentPassword">
-                  Password <span>*</span>
-                </label>
-                <div className="col-md-6 col-sm-6 col-12">
-                  <input type="password" id="txtCurrentPassword" className="form-control" placeholder="Current password" />
-                </div>
-              </div>
-              <div className="form-group row">
-                <label className="control-label col-md-4 col-sm-4 col-12" htmlFor="txtNewPassword">
-                  New Password <span>*</span>
-                </label>
-                <div className="col-md-6 col-sm-6 col-12">
-                  <input type="password" id="txtNewPassword" className="form-control" maxLength="20" placeholder="New password" />
-                  <span className="show-pass" >
-                    <i className="fa fa-eye"></i>
-                  </span>
-                  <div id="popover-password" style={{ display: 'none' }}>
-                    <p><span id="result"></span></p>
-                    <div className="progress">
-                      <div id="passwordstrength" className="progress-bar" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style={{ width: '0%' }}></div>
-                    </div>
-                    <ul className="list-unstyled ms-2 text-start">
-                      <li className="">
-                        <span className="low-upper-case">
-                          <i className="fa fa-circle" aria-hidden="true"></i>
-                          &nbsp;Lowercase &amp; Uppercase
-                        </span>
-                      </li>
-                      <li className="">
-                        <span className="one-number">
-                          <i className="fa fa-circle" aria-hidden="true"></i>
-                          &nbsp;Number (0-9)
-                        </span>
-                      </li>
-                      <li className="">
-                        <span className="one-special-char">
-                          <i className="fa fa-circle" aria-hidden="true"></i>
-                          &nbsp;Special Character (!#$%^&amp;*)
-                        </span>
-                      </li>
-                      <li className="">
-                        <span className="eight-character">
-                          <i className="fa fa-circle" aria-hidden="true"></i>
-                          &nbsp;At least 8 Characters
-                        </span>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div className="form-group row">
-                <label className="control-label col-md-4 col-sm-4 col-12" htmlFor="txtConfirmPassword">
-                  Confirm Password <span>*</span>
-                </label>
-                <div className="col-md-6 col-sm-6 col-12">
-                  <input type="password" id="txtConfirmPassword" className="form-control" maxLength="20" placeholder="Confirm password" />
-                  <span className="show-pass" >
-                    <i className="fa fa-eye"></i>
-                  </span>
-                </div>
-              </div>
-              <div className="form-group row">
-                <div className="col-md-6 col-sm-6 offset-sm-4">
-                  <hr />
-                  <a id="btnPasswordUpdateEmployer" className="btn btn-primary">Update</a>
-                  <a id="btnCancelPasswordUpdate" className="btn btn-outline-danger clickmode" data-hide=".editableDiv" data-show=".divdemo">
-                    <i className="zmdi zmdi-close"></i>Cancel
-                  </a>
-                </div>
-              </div>
+          <div className="col-md-8 offset-md-2 mt-4">
+        <form onSubmit={handleSubmit}>
+          <div className="form-group row">
+            <label className="control-label col-md-4 col-sm-4 col-12" htmlFor="currentPassword">
+              Password <span>*</span>
+            </label>
+            <div className="col-md-6 col-sm-6 col-12">
+              <input
+                type="password"
+                id="currentPassword"
+                className="form-control"
+                placeholder="Current password"
+                value={formData.currentPassword}
+                onChange={handleChange}
+              />
+              {errors.currentPassword && <p className="text-danger">{errors.currentPassword}</p>}
             </div>
+          </div>
+          <div className="form-group row">
+            <label className="control-label col-md-4 col-sm-4 col-12" htmlFor="newPassword">
+              New Password <span>*</span>
+            </label>
+            <div className="col-md-6 col-sm-6 col-12">
+              <input
+                type="password"
+                id="newPassword"
+                className="form-control"
+                maxLength="20"
+                placeholder="New password"
+                value={formData.newPassword}
+                onChange={handleChange}
+              />
+              {errors.newPassword && <p className="text-danger">{errors.newPassword}</p>}
+            </div>
+          </div>
+          <div className="form-group row">
+            <label className="control-label col-md-4 col-sm-4 col-12" htmlFor="confirmPassword">
+              Confirm Password <span>*</span>
+            </label>
+            <div className="col-md-6 col-sm-6 col-12">
+              <input
+                type="password"
+                id="confirmPassword"
+                className="form-control"
+                maxLength="20"
+                placeholder="Confirm password"
+                value={formData.confirmPassword}
+                onChange={handleChange}
+              />
+              {errors.confirmPassword && <p className="text-danger">{errors.confirmPassword}</p>}
+            </div>
+          </div>
+          <div className="form-group row">
+            <div className="col-md-6 col-sm-6 offset-sm-4">
+              <hr />
+              <button type="submit" className="btn btn-primary mr-1">Update</button>
+              <button type="button" className="btn btn-outline-danger clickmode" data-hide=".editableDiv" data-show=".divdemo">
+                <i className="zmdi zmdi-close"></i>Cancel
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
           </div>
         </div>
       </div>
