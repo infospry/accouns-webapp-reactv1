@@ -120,21 +120,18 @@
 
     <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">Other <span
-            className="caret"></span></a>
-            <ul className="dropdown-menu" role="menu">
+            class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
                 {{each(i,list) Tabs}}
-                    {{if id =='TabBasic' || id=='TabCompliance' || id=='TabAvailability' ||id =='TabSecurity' || id=='TabAbsenses'}}
+                    {{if id =='TabDashboard' || id =='TabBasic' || id=='TabCompliance' || id=='TabAvailability' ||id =='TabSecurity' || id=='TabAbsenses'}}
                     {{else}}       
-                        <li className="nav-item">                    
-                            <a id="${id}" class="${cls} nav-link" data-toggle="tab" href="#${id}_Placeholder">${name}</a> 
+                        <li class="nav-item">                    
+                            <a id="${id}" class="${cls} nav-link clscndtabs" data-toggle="tab" href="#${id}_Placeholder">${name}</a> 
                         </li>
                         {{/if}}
-                {{/each}}
-               
+                {{/each}}               
             </ul> 
-    </li>
-
-   
+            </li>   
 </script>
 
 <!--Profile Dashboard-->
