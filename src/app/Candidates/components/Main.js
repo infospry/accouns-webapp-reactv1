@@ -20,6 +20,28 @@ import { endpoint_agency_role, endpoint_candidate, endpoint_employer, endpoint_e
 
 
 function Main() {
+// Select Employers
+    const [selectedValueEmp, setSelectedValueEmp] = useState('');
+    const handleSelectChangeEmp = (event) => {
+    const newEmpValue = event.target.value;
+    setSelectedValueEmp(newEmpValue);
+    alert(`Selected Value is : ${newEmpValue}`);
+    };
+// Select Location
+const [selectedValueLocation, setSelectedValueLocation] = useState('');
+    const handleSelectChangeLocation = (event) => {
+    const newLocationValue = event.target.value;
+    setSelectedValueLocation(newLocationValue);
+    alert(`Location Selected Value is : ${newLocationValue}`);
+    };
+
+// Select Role
+const [selectedValueRole, setSelectedValueRole] = useState('');
+    const handleSelectChangeRole = (event) => {
+    const newRoleValue = event.target.value;
+    setSelectedValueRole(newRoleValue);
+    alert(`Role Selected Value is : ${newRoleValue}`);
+    };
 
     const [errors, setErrors] = useState({});
     const [candidate, setCandidates] = useState([]);
@@ -188,7 +210,7 @@ function Main() {
                                                 <div className="dr-breakout displayblk">
                                                     <div className="d-flex justify-content-between align-items-center">
                                                         <div className="input-group mr-1">
-                                                            <select className="form-control" id="ddlEmployeeRoles">
+                                                            <select className="form-control" onChange={handleSelectChangeEmp} value={selectedValueEmp}>
                                                                 <option data-role-id="0" data-rate="0" value="0"
                                                                     selected="selected">Select Employer</option>
                                                                 {employerdropdown.map((item) => (
@@ -204,7 +226,7 @@ function Main() {
                                                                 <span className="input-group-text"> <i
                                                                     className="zmdi zmdi-pin"></i></span>
                                                             </div>
-                                                            <select className="form-control" id="ddlEmployeeLocations">
+                                                            <select className="form-control"  onChange={handleSelectChangeLocation} value={selectedValueLocation}>
                                                                 <option value="0" selected="selected">All Locations</option>
                                                                 {empLocations.map((item) => (
                                                                     <option value={item.emp_location_id}>{item.emp_location_name}</option>
@@ -212,8 +234,7 @@ function Main() {
                                                             </select>
                                                         </div>
                                                         <div className="input-group mr-1">
-
-                                                            <select className="form-control" id="ddlEmployeeRoles">
+                                                            <select className="form-control"  onChange={handleSelectChangeRole} value={selectedValueRole}>
                                                                 <option data-role-id="0" data-rate="0" value="0"
                                                                     selected="selected">Select Role</option>
                                                                 {empAgencyRoles.map((item) => (
