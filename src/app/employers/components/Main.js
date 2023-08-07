@@ -6,6 +6,15 @@ import { asyncGet,asyncPost } from '@/app/services/HttpServices';
 import { endpoint_category_ddl, endpoint_employer } from "@/app/services/ApiEndPoints";
 
 function Main() {
+    const [selectedValue, setSelectedValue] = useState('');
+
+    const handleSelectChange = (event) => {
+    const newValue = event.target.value;
+    setSelectedValue(newValue);
+    alert(`Selected Value is : ${newValue}`);
+    };
+
+
     const [errors, setErrors] = useState({});
     const [employer, setEmployer] = useState([]);
     const [employerProfilep, setEmployerProfile] = useState([]);
@@ -98,9 +107,7 @@ function Main() {
 //*******************************Validation************************************ */
 //Add New Employer
 
-function handleTabClick(tab_status){   
-    // alert(tab_status);     
-    // setAccountStatus(tab_status);
+function handleTabClick(tab_status){ 
     getEmployers(tab_status);
    } 
 
@@ -148,9 +155,7 @@ const handleSubmit = (e) => {
     if (!formData.email.trim()) {
         validationErrors.email = 'Email is required';
     }
-
-    // Validate mobile number format using a regular expression
-    const mobileNumberRegex = /^[0-9]{10}$/; // Assuming a 10-digit mobile number format
+    const mobileNumberRegex = /^[0-9]{10}$/; 
     if (!formData.mobile.trim()) {
         validationErrors.mobile = 'Mobile number is required';
     } else if (!mobileNumberRegex.test(formData.mobile)) {
@@ -170,12 +175,7 @@ const handleSubmit = (e) => {
     }
 
     setErrors(validationErrors);
-
-    // If there are no errors, proceed with form submission
     if (Object.keys(validationErrors).length === 0) {
-        // Handle form submission here (e.g., send data to server)
-       //setIsValid(true);
-        // console.log('Form submitted successfully:', formData);
         AddNewEmployer();
     }
 };
@@ -223,14 +223,6 @@ const handleSubmitRole = (e) => {
     if (!formDataRole.roleAlias.trim()) {
         validationErrors.roleAlias = 'Role alias is required';
     }
-    // if (!formDataRole.defaultBreak.trim()) {
-    //     validationErrors.defaultBreak = 'Role Default Break is required';
-    //   }
-
-    //   if (!formDataRole.defaultRate.trim()) {
-    //     validationErrors.defaultRate = 'Role defaultis required';
-    //   }
-
 
     if (!formDataRole.roleColor.trim()) {
         validationErrors.roleColor = 'Role color is required';
@@ -400,7 +392,7 @@ const handleSubmitLocation = (e) => {
                                                                 <span className="input-group-text"> <i
                                                                     className="zmdi zmdi-account"></i></span>
                                                             </div>
-                                                            <select className="form-control">
+                                                            <select className="form-control"onChange={handleSelectChange} value={selectedValue}>
                                                                 <option value="" disabled="disabled" selected="selected">Select an industry </option>
                                                                 {category_ddl.map((item) => (
                                                                     <optgroup label={item.industry_name}>
@@ -458,6 +450,7 @@ const handleSubmitLocation = (e) => {
                                             <div className="tab-content p-2">
                                                 <div role="tabpanel" className="tab-pane in active show" id="emp_all">
                                                     <div className="table-responsive leave_management">
+
                                                         <table className="table mb-0 table-hover rwd-table btdr_none emptbl">
                                                             <thead>
                                                                 <tr>
