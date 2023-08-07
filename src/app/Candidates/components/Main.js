@@ -20,27 +20,27 @@ import { endpoint_agency_role, endpoint_candidate, endpoint_employer, endpoint_e
 
 
 function Main() {
-// Select Employers
+    // Select Employers
     const [selectedValueEmp, setSelectedValueEmp] = useState('');
     const handleSelectChangeEmp = (event) => {
-    const newEmpValue = event.target.value;
-    setSelectedValueEmp(newEmpValue);
-    alert(`Selected Value is : ${newEmpValue}`);
+        const newEmpValue = event.target.value;
+        setSelectedValueEmp(newEmpValue);
+        alert(`Selected Value is : ${newEmpValue}`);
     };
-// Select Location
-const [selectedValueLocation, setSelectedValueLocation] = useState('');
+    // Select Location
+    const [selectedValueLocation, setSelectedValueLocation] = useState('');
     const handleSelectChangeLocation = (event) => {
-    const newLocationValue = event.target.value;
-    setSelectedValueLocation(newLocationValue);
-    alert(`Location Selected Value is : ${newLocationValue}`);
+        const newLocationValue = event.target.value;
+        setSelectedValueLocation(newLocationValue);
+        alert(`Location Selected Value is : ${newLocationValue}`);
     };
 
-// Select Role
-const [selectedValueRole, setSelectedValueRole] = useState('');
+    // Select Role
+    const [selectedValueRole, setSelectedValueRole] = useState('');
     const handleSelectChangeRole = (event) => {
-    const newRoleValue = event.target.value;
-    setSelectedValueRole(newRoleValue);
-    alert(`Role Selected Value is : ${newRoleValue}`);
+        const newRoleValue = event.target.value;
+        setSelectedValueRole(newRoleValue);
+        alert(`Role Selected Value is : ${newRoleValue}`);
     };
 
     const [errors, setErrors] = useState({});
@@ -49,8 +49,8 @@ const [selectedValueRole, setSelectedValueRole] = useState('');
     const [empAgencyRoles, setAgencyRoles] = useState([]);
     const [empLocations, setEmployerLocations] = useState([]);
     const [empRoles, setEmployerRoles] = useState([]);
-    
-   
+
+
 
     useEffect(() => {
 
@@ -58,11 +58,11 @@ const [selectedValueRole, setSelectedValueRole] = useState('');
             try {
                 const response = await asyncGet(endpoint_employer + '/14/roles/dropdown');
                 setEmployerRoles(response.Response[0].EmployerRoles);
-               
+
             } catch (error) {
-              console.error('Error fetching data:', error);
+                console.error('Error fetching data:', error);
             }
-          }
+        }
 
         async function fetchCandidateData() {
             try {
@@ -125,14 +125,14 @@ const [selectedValueRole, setSelectedValueRole] = useState('');
     const handleChange = (event) => {
         const { name, value } = event.target;
         setFormData({ ...formData, [name]: value });
-      };
-    
-      const handleCheckboxChange = (event) => {        
+    };
+
+    const handleCheckboxChange = (event) => {
         const { id, checked } = event.target;
         setFormData({ ...formData, [id]: checked });
-      };
-    
-    
+    };
+
+
     const handleSubmit = (event) => {
         event.preventDefault();
         const validationErrors = {};
@@ -226,7 +226,7 @@ const [selectedValueRole, setSelectedValueRole] = useState('');
                                                                 <span className="input-group-text"> <i
                                                                     className="zmdi zmdi-pin"></i></span>
                                                             </div>
-                                                            <select className="form-control"  onChange={handleSelectChangeLocation} value={selectedValueLocation}>
+                                                            <select className="form-control" onChange={handleSelectChangeLocation} value={selectedValueLocation}>
                                                                 <option value="0" selected="selected">All Locations</option>
                                                                 {empLocations.map((item) => (
                                                                     <option value={item.emp_location_id}>{item.emp_location_name}</option>
@@ -234,7 +234,7 @@ const [selectedValueRole, setSelectedValueRole] = useState('');
                                                             </select>
                                                         </div>
                                                         <div className="input-group mr-1">
-                                                            <select className="form-control"  onChange={handleSelectChangeRole} value={selectedValueRole}>
+                                                            <select className="form-control" onChange={handleSelectChangeRole} value={selectedValueRole}>
                                                                 <option data-role-id="0" data-rate="0" value="0"
                                                                     selected="selected">Select Role</option>
                                                                 {empAgencyRoles.map((item) => (
@@ -442,9 +442,9 @@ const [selectedValueRole, setSelectedValueRole] = useState('');
                                                     onChange={handleChange}
                                                 >
                                                     <option value="" disabled>
-                                                    Title 
+                                                        Title
                                                     </option>
-                                                    
+
                                                     <option value="Dr">Dr.</option>
                                                     <option value="Mr">Mr.</option>
                                                     <option value="Mrs">Mrs.</option>
@@ -537,98 +537,98 @@ const [selectedValueRole, setSelectedValueRole] = useState('');
                                         </div>
                                     </div>
                                     <div className="col-12 mb-3">
-        <div className="custom-control custom-checkbox checkbox-inline pl-4">
-          <input
-            id="employer_status"
-            type="checkbox"
-            className="custom-control-input"
-            checked={formData.employer_status}
-            onChange={handleCheckboxChange}
-          />
-          <label htmlFor="employer_status" className="custom-control-label line24 pointer">
-            Employer Map Status
-          </label>
-        </div>
-      </div>
+                                        <div className="custom-control custom-checkbox checkbox-inline pl-4">
+                                            <input
+                                                id="employer_status"
+                                                type="checkbox"
+                                                className="custom-control-input"
+                                                checked={formData.employer_status}
+                                                onChange={handleCheckboxChange}
+                                            />
+                                            <label htmlFor="employer_status" className="custom-control-label line24 pointer">
+                                                Employer Map Status
+                                            </label>
+                                        </div>
+                                    </div>
 
                                     {formData.employer_status && (
-        <div className="col-md-12">
-          {/* Show this div when the checkbox is checked */}
-          
-            <div className="form-group">
-              <label>Employers<span>*</span></label>
-              <div className="input-group">
-                <select
-                  id="Employers"
-                  className="form-control"
-                  name="Employers"
-                  value={formData.Employers}
-                  onChange={handleChange}
-                >
-                  <option value="" disabled>
-                    Select Employer
-                  </option>
-                  {employerdropdown.map((item) => (
-                    <option key={item.emp_id} value={item.emp_id}>
-                      {item.emp_name}
-                    </option>
-                  ))}
-                </select>
-              </div>
-              {errors.Employers && <div className="error">{errors.Employers}</div>}
-            </div>
-         
+                                        <div className="col-md-12">
+                                            {/* Show this div when the checkbox is checked */}
 
-            <div className="form-group">
-              <label>Employer Role<span>*</span></label>
-              <div className="input-group">
-                <select
-                  id="employerRole"
-                  className="form-control"
-                  name="employerRole"
-                  value={formData.employerRole}
-                  onChange={handleChange}
-                >
-                  <option value="" disabled>
-                    Select
-                  </option>
-                  {empRoles.map((item) => (
-                    <option key={item.id} value={item.id}>
-                      {item.name}
-                    </option>
-                  ))}
-                </select>
-              </div>
-              {errors.employerRole && <div className="error">{errors.employerRole}</div>}
-            </div>
-          
+                                            <div className="form-group">
+                                                <label>Employers<span>*</span></label>
+                                                <div className="input-group">
+                                                    <select
+                                                        id="Employers"
+                                                        className="form-control"
+                                                        name="Employers"
+                                                        value={formData.Employers}
+                                                        onChange={handleChange}
+                                                    >
+                                                        <option value="" disabled>
+                                                            Select Employer
+                                                        </option>
+                                                        {employerdropdown.map((item) => (
+                                                            <option key={item.emp_id} value={item.emp_id}>
+                                                                {item.emp_name}
+                                                            </option>
+                                                        ))}
+                                                    </select>
+                                                </div>
+                                                {errors.Employers && <div className="error">{errors.Employers}</div>}
+                                            </div>
 
-          
-            <div className="form-group">
-              <label>Location<span>*</span></label>
-              <div className="input-group">
-                <select
-                  id="Location"
-                  className="form-control"
-                  name="Location"
-                  value={formData.Location}
-                  onChange={handleChange}
-                >
-                  <option value="" disabled>
-                    Select
-                  </option>
-                  {empLocations.map((item) => (
-                    <option key={item.emp_location_id} value={item.emp_location_id}>
-                      {item.emp_location_name}
-                    </option>
-                  ))}
-                </select>
-              </div>
-              {errors.Location && <div className="error">{errors.Location}</div>}
-            </div>
-          </div>
-      
-      )}
+
+                                            <div className="form-group">
+                                                <label>Employer Role<span>*</span></label>
+                                                <div className="input-group">
+                                                    <select
+                                                        id="employerRole"
+                                                        className="form-control"
+                                                        name="employerRole"
+                                                        value={formData.employerRole}
+                                                        onChange={handleChange}
+                                                    >
+                                                        <option value="" disabled>
+                                                            Select
+                                                        </option>
+                                                        {empRoles.map((item) => (
+                                                            <option key={item.id} value={item.id}>
+                                                                {item.name}
+                                                            </option>
+                                                        ))}
+                                                    </select>
+                                                </div>
+                                                {errors.employerRole && <div className="error">{errors.employerRole}</div>}
+                                            </div>
+
+
+
+                                            <div className="form-group">
+                                                <label>Location<span>*</span></label>
+                                                <div className="input-group">
+                                                    <select
+                                                        id="Location"
+                                                        className="form-control"
+                                                        name="Location"
+                                                        value={formData.Location}
+                                                        onChange={handleChange}
+                                                    >
+                                                        <option value="" disabled>
+                                                            Select
+                                                        </option>
+                                                        {empLocations.map((item) => (
+                                                            <option key={item.emp_location_id} value={item.emp_location_id}>
+                                                                {item.emp_location_name}
+                                                            </option>
+                                                        ))}
+                                                    </select>
+                                                </div>
+                                                {errors.Location && <div className="error">{errors.Location}</div>}
+                                            </div>
+                                        </div>
+
+                                    )}
 
 
 
@@ -663,12 +663,12 @@ const [selectedValueRole, setSelectedValueRole] = useState('');
 
             <div id="viewprofile" className="modal right-full confirm profile-id" data-id="0" tabindex="-1" role="dialog" aria-labelledby="viewprofile">
                 <div className="modal-dialog" role="document">
-                
+
                     <div className="modal-content upmodel" style={{ height: "99.3%" }}>
                         <div id='CndProfileHeader_Placeholder' className="modal-header">
                             <div className="">
-                                <h4 className="modal-title hide-head profile-header" data-val="0"> <b>General Practitioner 
-                                 
+                                <h4 className="modal-title hide-head profile-header" data-val="0"> <b>General Practitioner
+
                                 </b>
                                 </h4>
                                 <div className="show-head smd_none"> <Image src={profile} alt="img"
@@ -766,7 +766,7 @@ const [selectedValueRole, setSelectedValueRole] = useState('');
                                         data-toggle="tab" href="#TabCompliance_Placeholder">Compliance</a> </li>
                                     <li className="nav-item"> <a id="TabAvailability" className="tab-availability nav-link "
                                         data-toggle="tab" href="#TabAvailability_Placeholder">Availability</a> </li>
-
+ 
                                     <li className="nav-item dropdown">
                                         <a href="#" className="nav-link" data-toggle="dropdown" >Other <span
                                             className="caret"></span></a>
