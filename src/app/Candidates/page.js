@@ -7,6 +7,8 @@ import RightSidebar from'../components/RightSidebar';
 import Main from './components/Main'
 import Loading from '../loading';
 
+
+
 export default function Candidates() {
   return (
    <>
@@ -14,9 +16,11 @@ export default function Candidates() {
    <RightMenuSidebar></RightMenuSidebar>
    <LeftMenuSidebar/>
    <RightSidebar/>
+   <script src="/js/custom/util.js"></script>
    <Suspense fallback={<Loading />}>
     <Main/>
     </Suspense>
+   
    </>
   )
 }

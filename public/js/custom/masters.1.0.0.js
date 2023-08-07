@@ -422,6 +422,38 @@ $(document).ready(function () {
         AddressFinder.Finder(postcode, "#txtContactsCity", "#txtContactsCounty", "#ddlContactsAddressList");
     });
 
+ 
+    $(document).on('click', ".clscndtabs", function (evt) {
+        $('.clscndtabs').removeClass('active');
+        $(this).addClass('active');
+    });
+
+    
+    $(document).on('click', ".tab-availability", function () {
+        calendar_cnd_id = profile_Id;
+        var IsReadonly = 'yes', add_tags = 'no', layout_tabs = 'yes', navigator = 'yes';
+        ns_calendar.design('available', '', '', '#Placeholder_calendar', '#cnd_viewlist_placeholder', IsReadonly, add_tags, layout_tabs, navigator);
+
+    });
+
+    $(document).on('click', '.chkeventtype', function () {
+        var type = $(this).attr('data-title');
+        $('.eventtitlesection').hide();
+        $('#txteventtitle').val(type);
+        if (type == 'Task') {
+            $('#txteventtitle').val('');
+            $('.eventtitlesection').show();
+        }
+    });
+    $(document).on('click', '#chkalldaypartial', function () {
+        if ($(this).prop('checked')) {
+            $('.switchnormal').hide();
+            $('.switch-normal').show();
+        } else {
+            $('.switchnormal').show();
+            $('.switch-normal').hide();
+        }
+    });
 });
 
 ns_employee = {   
@@ -473,6 +505,7 @@ ns_employee = {
                           
                             setTimeout(
                                 function () {
+                                   
                                     $('.clsemptabs').removeClass('in active');
                                     $('#TabDashboard_Placeholder').addClass('in active');
                                     if (data.Response.ProfileHeader[0].cnd_sub_type == 'A') {
