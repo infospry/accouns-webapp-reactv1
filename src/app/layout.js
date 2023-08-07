@@ -34,7 +34,7 @@ export default function RootLayout({ children }) {
               <script src="js/jquery.toast.min.js"></script> 
               <script src="js/jquery.toast.js"></script> 
               <script src="js/custom/jquery.tmpl.js"></script>   
-              <script src="js/custom/util.js"></script>
+              {/* <script src="js/custom/util.js"></script> */}
               <script src="js/custom/masters.1.0.0.js"></script>   
 
               <script src="js/moment.js"></script>   
