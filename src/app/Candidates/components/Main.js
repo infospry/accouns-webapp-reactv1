@@ -405,7 +405,6 @@ const [selectedValueRole, setSelectedValueRole] = useState('');
                                                             </tbody>
                                                         </table>
                                                     </div>
-
                                                 </div>
                                             </div>
                                         </div>
@@ -416,6 +415,7 @@ const [selectedValueRole, setSelectedValueRole] = useState('');
                     </div>
                 </div>
             </section>
+
             <div className="modal right-quater" id="add_internal" tabindex="-1" role="dialog" aria-labelledby="add_internal"
                 aria-hidden="true">
                 <div className="modal-dialog" role="document">
@@ -826,6 +826,7 @@ const [selectedValueRole, setSelectedValueRole] = useState('');
 
                 </div>
             </div>
+
             <div className="modal right-full" id="location_preview" tabIndex="-1" role="dialog" aria-labelledby="location_preview" aria-modal="true">
                 <div className="modal-dialog" role="document">
                     <div className="modal-content">
@@ -866,6 +867,7 @@ const [selectedValueRole, setSelectedValueRole] = useState('');
                     </div>
                 </div>
             </div>
+
             <div className="modal fade" id="CurrentStatusModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div className="modal-dialog modal-dialog-centered" role="document">
                     <div className="modal-content" style={{ height: '400px' }}>
@@ -895,6 +897,7 @@ const [selectedValueRole, setSelectedValueRole] = useState('');
                     </div>
                 </div>
             </div>
+
             <div id="addEdit" className="modal md-one right-quater" tabindex="-1" role="dialog" aria-labelledby="addEdit" aria-hidden="true">
                 <div className="modal-dialog ui-draggable" role="document">
                     <div className="modal-content">
@@ -1032,10 +1035,6 @@ const [selectedValueRole, setSelectedValueRole] = useState('');
                                     </div>
                                 </div>
 
-
-
-
-
                                 <div className="col-12">
                                     <div className="form-group">
                                         <label className="col-form-label col-form-label-lg">
@@ -1054,8 +1053,6 @@ const [selectedValueRole, setSelectedValueRole] = useState('');
                                         <textarea id="txtDocMasterInstrections" rows="1" className="form-control form-control-lg no-resize docClear" placeholder="Instructions / Help text"></textarea>
                                     </div>
                                 </div>
-
-
 
                                 <div className="col-md-12 mb-5">
                                     <div className="d-flex justify-content-start">
