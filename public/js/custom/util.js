@@ -432,10 +432,6 @@ var ns_ajax = {
     stringifyParam: function (param) { return typeof (param) == 'object' ? '{obj :' + JSON.stringify(param) + ' }' : param; },   
 }
 
-//Cookie
-//function createCookie(t, o, e) { var a; if (e) { var n = new Date; n.setTime(n.getTime() + 24 * e * 60 * 60 * 1e3), a = "; expires=" + n.toGMTString() } else a = ""; void 0 !== window.localStorage ? window.localStorage.setItem(encodeURIComponent(t), encodeURIComponent(t) + "=" + encodeURIComponent(o) + a + "; path=/") : document.cookie = encodeURIComponent(t) + "=" + encodeURIComponent(o) + a + "; path=/" } function readCookie(t) { var o = ""; if (void 0 === window.localStorage) { o = encodeURIComponent(t) + "="; for (e = document.cookie.split(";"), a = 0; a < e.length; a++) { for (n = e[a]; " " === n.charAt(0) ;) n = n.substring(1, n.length); if (0 === n.indexOf(o)) return decodeURIComponent(n.substring(o.length, n.length)) } return null } if (o = encodeURIComponent(t) + "=", nameEQ1 = window.localStorage.getItem(decodeURIComponent(t)), null === nameEQ1) return "N"; for (var e = nameEQ1.split(";"), a = 0; a < e.length; a++) { for (var n = e[a]; " " === n.charAt(0) ;) n = n.substring(1, n.length); if (0 === n.indexOf(o)) return decodeURIComponent(n.substring(o.length, n.length)) } } function eraseCookie(t) { void 0 !== window.localStorage ? window.localStorage.setItem(t, "") : createCookie(t, "", -1) } jQuery(document).ready(function () { var t = readCookie("lbar"), o = readCookie("rbar"); "o" == t ? ($(".ls-toggle-btn").attr("data-status", "c"), $("body").removeClass("ls-toggle-menu")) : "c" == t && ($(".ls-toggle-btn").attr("data-status", "o"), $("body").addClass("ls-toggle-menu")), "o" == o ? ($(".right_icon_toggle_btn").attr("data-status", "c"), $("body").removeClass("right_icon_toggle")) : "c" == o && ($(".right_icon_toggle_btn").attr("data-status", "o"), $("body").addClass("right_icon_toggle")) }), $(".right_icon_toggle_btn").on("click", function () { "o" == $(this).attr("data-status") ? ($(this).attr("data-status", "c"), $("body").removeClass("right_icon_toggle"), createCookie("rbar", "c", 1)) : (createCookie("rbar", "o", 1), $(this).attr("data-status", "o"), $("body").addClass("right_icon_toggle")) }), $(".ls-toggle-btn").on("click", function () { "o" == $(this).attr("data-status") ? ($(this).attr("data-status", "c"), $("body").removeClass("ls-toggle-menu"), createCookie("lbar", "c", 1)) : (createCookie("lbar", "o", 1), $(this).attr("data-status", "o"), $("body").addClass("ls-toggle-menu")) });
-
-
 function createCookie(name, value, time_duration) {
     var expires;
     if (time_duration) {
@@ -467,10 +463,9 @@ function eraseCookie(name) {
 }
 
 
-
-
 function getToken(){
     Token = readCookie('token');  
+ 
     if (Token == null || Token == '') {
         clearCookie();
         alert('Your session has expired. \nPlease login again.');
