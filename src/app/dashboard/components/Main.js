@@ -22,9 +22,9 @@ import { toast } from '@/app/components/ToastContainer';
       };
 
       const showToast = () => {
-        toast.error('This is a error toast!', {
+        toast.info('This is a error toast!', {
           position: 'top-right',
-          autoClose: 3000, // Close the toast after 3 seconds
+          autoClose: 9000, // Close the toast after 3 seconds
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,

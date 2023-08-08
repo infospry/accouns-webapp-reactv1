@@ -297,3 +297,8 @@ $(document).on('click', ".cls-backup-code", function (evt) {
     }
 });  
 
+const inputElement = document.getElementById("txtEventTitle");
+
+inputElement.addEventListener("input", function(event) {
+  console.log("Input changed:", event.target.value);
+});

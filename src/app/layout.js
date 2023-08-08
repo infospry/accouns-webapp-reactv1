@@ -32,6 +32,8 @@ export default function RootLayout({ children }) {
               <script src="js/libscripts.bundle.js"></script>
               <script src="js/vendorscripts.bundle.js"></script>
               <script src="js/mainscripts.bundle.js"></script> 
+              <script src="js/custom/calendarV3.js"></script>                                     
+
               <script src="js/custom.js"></script>
               <script src="js/jquery.toast.min.js"></script> 
               <script src="js/jquery.toast.js"></script> 
@@ -47,7 +49,6 @@ export default function RootLayout({ children }) {
               <script src="js/jquery.timepicker.js"></script>  
               <script src="js/datepair.js"></script>  
               <script src="js/jquery.datepair.js"></script>  
-              <script src="js/custom/calendarV3.js"></script>                                     
       </body>
       
     </html>

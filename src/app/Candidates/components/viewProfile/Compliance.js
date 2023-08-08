@@ -305,8 +305,8 @@ function Compliance() {
                                                         data-hide=".documentation_view"><i
                                                             className="zmdi zmdi-upload">&nbsp;</i><b>Upload</b></a>
                                                 </td>
-                                                <td><a className="btn btn-outline-primary btn-sm"> <i
-                                                            className="zmdi zmdi-eye"></i> View </a>
+                                                <td><a className="btn btn-outline-primary btn-sm"data-target="#modalComplanceDetails"
+                                                    data-toggle="modal"> <i className="zmdi zmdi-eye"></i> View </a>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -376,8 +376,8 @@ function Compliance() {
                                                         data-hide=".documentation_view"><i
                                                             className="zmdi zmdi-upload">&nbsp;</i><b>Upload</b></a>
                                                 </td>
-                                                <td><a className="btn btn-outline-primary btn-sm"> <i
-                                                            className="zmdi zmdi-eye"></i> View </a>
+                                                <td><a className="btn btn-outline-primary btn-sm"data-target="#modalComplanceDetails"
+                                                        data-toggle="modal"> <i className="zmdi zmdi-eye"></i> View </a>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -409,8 +409,8 @@ function Compliance() {
                                                         data-hide=".documentation_view"><i
                                                             className="zmdi zmdi-upload">&nbsp;</i><b>Upload</b></a>
                                                 </td>
-                                                <td><a className="btn btn-outline-primary btn-sm"> <i
-                                                            className="zmdi zmdi-eye"></i> View </a>
+                                                <td><a className="btn btn-outline-primary btn-sm"data-target="#modalComplanceDetails"
+                                                        data-toggle="modal"> <i className="zmdi zmdi-eye"></i> View </a>
                                                 </td>
                                             </tr>
                                         </tbody>
