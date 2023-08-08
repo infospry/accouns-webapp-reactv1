@@ -1228,6 +1228,13 @@ function Main() {
                 <h4 className="modal-title" id="eventModelTitleEvent"><b>Add Event</b></h4>
             </div>
             <div className="modal-body" >
+            <input
+                                    
+                                    type="text"
+                                    className="form-control"
+                                    autoComplete="off"
+                                    placeholder="Event Title"          
+                                    />
                 <div className="ClsDatepair">
                     <div className="" id="divRowEventsAddModal">
                         <div id="divCreateEventsForm" className="col-lg-12">
@@ -1256,7 +1263,7 @@ function Main() {
                                 <div className="form-group">
                                     <label><b>Event Title</b><span></span></label>
                                     <input
-                                    id="txtEventTitle"
+                                    
                                     type="text"
                                     className="form-control"
                                     autoComplete="off"

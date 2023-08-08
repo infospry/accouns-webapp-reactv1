@@ -17,7 +17,7 @@ import { toast } from '@/app/components/ToastContainer';
 
       const handleShowNotification = () => {
         toast.success('This is a success notification!', {
-          position: 'bottom-right',
+          position: 'bottom-left',
           });
       };
 

@@ -26,7 +26,7 @@ export default function RootLayout({ children }) {
       
       <body classname="theme-blue ">
               {children}
-     
+              <ToastContainer />
               <script src="js/jquery-2.1.4.min.js"></script>              
               <script src="js/bootstrap.min.js" ></script>
               <script src="js/libscripts.bundle.js"></script>
