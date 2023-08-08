@@ -16001,3 +16001,8 @@ display: block;}
            border-right: 4px solid transparent;
            border-left: 4px solid transparent;
        }
+
+       .clndr-area .col-tab-rigt {
+        width: 31.5%!important;
+        float: left;
+      }   

@@ -115,7 +115,7 @@ function Availability() {
           {/* Calendar */}
           <div id="Placeholder_calendar" className="preparecalendar candidate-calendar-container"></div>
           {/* List */}
-          <div id="cnd_viewlist_placeholder" className="col-tab-right"></div>
+          <div id="cnd_viewlist_placeholder" class="col-tab-rigt"></div>
         </div>
       </div>
     </div>
