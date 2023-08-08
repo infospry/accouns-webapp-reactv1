@@ -1226,6 +1226,7 @@ function Main() {
                     <span aria-hidden="true">×</span>
                 </button>
                 <h4 className="modal-title" id="eventModelTitleEvent"><b>Add Event</b></h4>
+
             </div>
             <div className="modal-body" >
             <input
@@ -1268,7 +1269,8 @@ function Main() {
                                     className="form-control"
                                     autoComplete="off"
                                     placeholder="Event Title"          
-                                    />
+                                    ></input>
+                                    <input className="form-control"></input>
                                 </div>
                             </div>
                             <div className="col-md-12 task-name p-0" >
