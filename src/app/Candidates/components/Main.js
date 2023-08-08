@@ -1215,6 +1215,183 @@ const [selectedValueRole, setSelectedValueRole] = useState('');
                     </div>
                 </div>
             </div>
+
+
+
+            <div className="modal add-new-event right-quater" id="addEvent" tabindex="-1" role="dialog" aria-labelledby="addEvent"  aria-hidden="true">
+    <div className="modal-dialog right-quater" role="document">
+        <div className="modal-content">
+            <div className="modal-header">
+                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 className="modal-title" id="eventModelTitleEvent"><b>Add Event</b></h4>
+            </div>
+            <div className="modal-body" >
+                <div className="ClsDatepair">
+                    <div className="" id="divRowEventsAddModal">
+                        <div id="divCreateEventsForm" className="col-lg-12">
+                            <div className="row HeDslCt">
+                                <div className="col-md-4">
+                                    <div className=" inputGroup bgbdr-white">
+                                        <input id="rdoAvailable" type="radio" name="rdoEventType" data-item="Available" className="rdoEventType" value="Available" checked="checked"/>
+                                        <label for="rdoAvailable">Available</label>
+                                    </div>
+                                </div>
+                                <div className="col-md-4">
+                                    <div className=" inputGroup bgbdr-white">
+                                        <input id="rdoUnAvailable" type="radio" name="rdoEventType" data-item="UnAvailable" className="rdoEventType" value="UnAvailable"/>
+                                        <label for="rdoUnAvailable">UnAvailable</label>
+                                    </div>
+                                </div>
+                                <div className="col-md-4">
+                                    <div className=" inputGroup bgbdr-white">
+                                        <input id="rdoTask" type="radio" name="rdoEventType" data-item="Task" className="rdoEventType" value="Task"/>
+                                        <label for="rdoTask">Task</label>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div className="col-md-12 event-title p-0">
+                                <div className="form-group">
+                                    <label><b>Event Title</b><span></span></label>
+                                    <input id="txtEventTitle" type="text" className="form-control clearText" autocomplete="off" placeholder="Event Title" ></input>
+                                </div>
+                            </div>
+                            <div className="col-md-12 task-name p-0" >
+                                <div className="form-group">
+                                    <label>
+                                        <b>Task Name</b>
+                                        <span></span>
+                                    </label>
+                                    <input id="txtTaskName" type="text" className="form-control clearText" autocomplete="off" placeholder="Task Name"/>
+                                </div>
+                            </div>
+                            <div className="col-md-12 p-0 HeDslCt pb-4">
+                                <label><b>Availability</b></label>
+                                <div className="row">
+                                    <div className="col-sm-6 col-xs-6">
+                                        <div className=" inputGroup bgbdr-white">
+                                            <input id="rdoAllDay" type="radio" name="rdoAvailability" data-val="all-day" className="rdoAvailability" value="1" checked="checked"/>
+                                            <label for="rdoAllDay">All Day</label>
+                                        </div>
+                                    </div>
+                                    <div className="col-sm-6 col-xs-6">
+                                        <div className=" inputGroup bgbdr-white">
+                                            <input id="rdoPartail" type="radio" name="rdoAvailability" data-val="partial" className="rdoAvailability" value="2"/>
+                                            <label for="rdoPartail">Partial</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="row">
+                                <div className="col-md-6 col-xs-6">
+                                    <label><b>Start Date </b></label>
+                                    <div className="form-group">
+                                        <div className="input-group masked-input unset mb-1">
+                                            <div className="input-group-prepend">
+                                                <input type="text" id="txtEventStartDate" className="form-control date start clearText" autocomplete="off" placeholder="dd/mm/yyyy"  />
+                                                <input type="text" id="txtEventStartTime" className="form-control time start w-90 clearText event-time ui-timepicker-input"  autocomplete="off" placeholder="hh:mm" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="col-md-6 col-xs-6">
+                                    <div className="form-group">
+                                        <label><b>End Date </b></label>
+                                        <div className="input-group masked-input unset mb-1">
+                                           
+                                            <input type="text" id="txtEventEndDate" className="form-control date end clearText" autocomplete="off" placeholder="dd/mm/yyyy"  />
+                                            <input type="text" id="txtEventEndTime" className="form-control time end w-90 clearText event-time ui-timepicker-input"  autocomplete="off" placeholder="hh:mm" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="col-md-12 p-0">
+                                <div className="form-group">
+                                    <label><b>Description</b></label>
+                                    <textarea id="txtEventDescription" className="form-control clearText" rows="3" placeholder="Description"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div className="row">
+                        <div className="col-md-12 text-center">
+                            <button id="btnSubmitCNDEvent" data-id="" data-action="event_add" className="btn btn-primary Evt_calendar">Submit</button>
+                            <button id="btnCancelCNDEvent" data-dismiss="modal" className="btn btn-outline-danger"><b>Cancel</b></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="modal fade" id="ModalHowItWork" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" draggable="true">
+    <div class="modal-dialog" style={{ top: '80px', width:"800px!important",height:"520px!important" }} >
+        <div class="modal-content" style={{ border: '2px solid #337ab7', width:"800px!important",height:"520px!important" }} >
+            <div class="form-horizontal" onsubmit="return false;">
+                <div class="modal-header" style={{ border: '1px solid #337ab7', width:"800px!important" }}>
+                    <h3 class="modal-title" style={{ fontSize: '18px' }}>
+                        How it works
+                    </h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="btnPopClose">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body" style={{ padding: '18px' }} >
+                    <div class="row">
+                        <video style={{ width: '100%',height:'auto' }}  controls>
+                            <source src="~/Content/videos/medico-dairyv3.mp4" type="video/mp4" ></source>
+                        </video>
+                    </div>
+                </div>
+                <div ><a class="btn btn-sm btn-outline-danger" data-dismiss="modal">Close</a></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal right-quater" id="modalCNDCldrDelete" tabindex="-1" role="dialog">
+    <div class="modal-dialog calendardiary" role="document" style={{ width: '400px',height:'200px!important' }}  >
+        <div class="modal-content" style={{ width: '400px',height:'200px!important' }} >
+            <div class="modal-header" id="modalDeleteHeader" style={{ padding: '5px 15px',height:'200px!important' }}>
+                <h4 class="modal-title"><b id="modalCNDcldrDeleteHeading" ></b></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="btnPopClose">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body" >
+                <div class="bg-white" id="actionModal">
+                    <table class="table">
+                        <tbody>
+                            <tr class="tr_bg">
+                                <td style={{border: 'none',textAlign: 'center'}}        >
+                                    <span class="text-blue"><b id="cndcldrDeletelbl"></b></span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="text-center">
+                                <button id="modalCNDDeleteBtnYes" value="Submit" data-action="delete" data-title="Yes" class="btn btn-warning Evt_calendar">Yes</button>
+                                <button value="Submit" data-dismiss="modal" data-title="No" class="btn btn-primary  Evt_calendar">No</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
         </>
     )
 

@@ -342,9 +342,11 @@ $(document).ready(function () {
             ns_calendar.post_jobs(strFinal, this);
         }
     });
+
     $(document).on('change', ".calendar-calculate-Amount", function () {
         ns_calendar.fn_calculate_amount();
     });
+    
     $(document).on('keyup', ".calendar-calculate-Amount", function () {
         ns_calendar.fn_calculate_amount();
     });
@@ -352,6 +354,7 @@ $(document).ready(function () {
     $(document).on("keypress", "#cldrTxtCNDRate", function (event) {
         return ns_calendar.isDecimal(event, this);
     });
+
     $(document).on('change', '.rdoEventType', function () {
         if ($(this).attr('data-item') == 'Task') {
             $("#txtTaskName").val('');
@@ -368,6 +371,7 @@ $(document).ready(function () {
             $('.task-name').hide('slow');
         }
     });
+
     $(document).on('change', '.rdoAvailability', function () {
         if ($(this).attr('data-val') == 'partial') {
             $("#txtEventStartTime").val('');
@@ -630,9 +634,9 @@ ns_calendar = {
 
                     var objCal = jQuery.parseJSON(response.split('|')[1]);
                  
-                    call_tmpl_binder(objCal, '/Template/calendarV3_tmpl.html', '#cnd_calendar_template', (placeholder_calendar == '' ? '#Placeholder_calendar' : placeholder_calendar));
+                    call_tmpl_binder(objCal, '/js/Template/calendarV3_tmpl.html', '#cnd_calendar_template', (placeholder_calendar == '' ? '#Placeholder_calendar' : placeholder_calendar));
                     if (placeholder_list !== '')
-                        call_tmpl_binder(objCal, '/Template/calendarV3_tmpl.html', '#cnd_viewlist_template', placeholder_list);
+                        call_tmpl_binder(objCal, '/js/Template/calendarV3_tmpl.html', '#cnd_viewlist_template', placeholder_list);
                   
                     setTimeout(function () {
                         $('.calendarview').removeClass('active');
@@ -658,9 +662,9 @@ ns_calendar = {
                 $('#overlay').hide();
                 if (response.split('|')[0] === 'OK') {
                     var objCal = $.parseJSON(response.split('|')[1]);
-                    call_tmpl_binder(objCal, '/Template/calendarV3_tmpl.html', '#cnd_calendar_template', (placeholder_calendar == '' ? '#Placeholder_calendar' : placeholder_calendar));
+                    call_tmpl_binder(objCal, '/js/Template/calendarV3_tmpl.html', '#cnd_calendar_template', (placeholder_calendar == '' ? '#Placeholder_calendar' : placeholder_calendar));
                     if (placeholder_list !== '')
-                        call_tmpl_binder(objCal, '/Template/calendarV3_tmpl.html', '#cnd_viewlist_template', placeholder_list);
+                        call_tmpl_binder(objCal, '/js/Template/calendarV3_tmpl.html', '#cnd_viewlist_template', placeholder_list);
 
                     setTimeout(function () {
                         $('.calendarview').removeClass('active');

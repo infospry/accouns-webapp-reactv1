@@ -431,6 +431,7 @@ $(document).ready(function () {
     
     $(document).on('click', ".tab-availability", function () {
         calendar_cnd_id = profile_Id;
+       
         var IsReadonly = 'yes', add_tags = 'no', layout_tabs = 'yes', navigator = 'yes';
         ns_calendar.design('available', '', '', '#Placeholder_calendar', '#cnd_viewlist_placeholder', IsReadonly, add_tags, layout_tabs, navigator);
 
