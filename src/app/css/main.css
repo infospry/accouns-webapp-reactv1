@@ -15755,28 +15755,7 @@ height: 61vh;
 border-right: 1px solid var(--border) !important;
 width: 100%;
 display: block;}
-.caret {
-    display:inline-block;
-    width:0;
-    height:0;
-    margin-left:2px;
-    vertical-align:middle;
-    border-top:4px dashed;
-    border-top:4px solid\9;
-    border-right:4px solid transparent;
-    border-left:4px solid transparent
-   }
-   .dropdown.show .caret {
-       display: inline-block;
-       width: 0;
-       height: 0;
-       margin-left: 2px;
-       vertical-align: middle;
-       border-bottom: 4px dashed;
-       border-top: 0px solid transparent;
-       border-right: 4px solid transparent;
-       border-left: 4px solid transparent;
-   }
+
    .file_folder .header-dropdown {
     position:absolute;
     top:14px;
@@ -15999,3 +15978,26 @@ display: block;}
        
        #CndProfileHeader_Placeholder .text-center img{width:auto!important}
        img{width:auto!important}
+
+       .caret {
+        display:inline-block!important;
+        width:0;
+        height:0;
+        margin-left:2px;
+        vertical-align:middle;
+        border-top:4px dashed;
+        border-top:4px solid\9;
+        border-right:4px solid transparent!important;
+        border-left:4px solid transparent!important
+       }
+       .dropdown.show .caret {
+           display: inline-block!important;
+           width: 0;
+           height: 0;
+           margin-left: 2px;
+           vertical-align: middle;
+           border-bottom: 4px dashed;
+           border-top: 0px solid transparent;
+           border-right: 4px solid transparent;
+           border-left: 4px solid transparent;
+       }
