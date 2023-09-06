@@ -33,7 +33,7 @@ export default function RootLayout({ children }) {
               <script src="js/vendorscripts.bundle.js"></script>
               <script src="js/mainscripts.bundle.js"></script> 
               <script src="js/custom/calendarV3.js"></script>                                     
-
+              <Script src="js/custom.js"/>
               <script src="js/custom.js"></script>
               <script src="js/jquery.toast.min.js"></script> 
               <script src="js/jquery.toast.js"></script> 

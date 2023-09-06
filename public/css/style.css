@@ -1,0 +1,144 @@
+body {
+    font-family: 'Adobe Clean', sans-serif !important;
+    margin: 0;
+    padding: 0;
+}
+@font-face {
+    font-family: Material-Design-Iconic-Font;
+    src: url('../font/Material-Design-Iconic-Font.eot');
+}
+
+@font-face {
+    font-family: Material-Design-Iconic-Font;
+    src: url('../font/Material-Design-Iconic-Font.svg');
+}
+
+@font-face {
+    font-family: Material-Design-Iconic-Font;
+    src: url('../font/Material-Design-Iconic-Font.ttf');
+}
+
+@font-face {
+    font-family: Material-Design-Iconic-Font;
+    src: url('../font/Material-Design-Iconic-Font.woff');
+}
+
+@font-face {
+    font-family: Material-Design-Iconic-Font;
+    src: url('../font/Material-Design-Iconic-Font.woff2');
+}
+@font-face {
+    font-family: 'Adobe Clean';
+    src: url('../font/AdobeClean-Regular.eot');
+    src: local('Adobe Clean'), local('AdobeClean-Regular'),
+        url('../font/AdobeClean-Regular.eot?#iefix') format('embedded-opentype'),
+        url('../font/AdobeClean-Regular.woff') format('woff'),
+        url('../font/AdobeClean-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+ p { 
+    color:#111;
+    font-size: 20px;
+    line-height: 30px;
+    font-weight: 400;
+} 
+
+@font-face {
+    font-family: 'Adobe Clean';
+    src: url('../font/AdobeClean-Light.eot');
+    src: local('Adobe Clean Light'), local('AdobeClean-Light'),
+        url('../font/AdobeClean-Light.eot?#iefix') format('embedded-opentype'),
+        url('../font/AdobeClean-Light.woff') format('woff'),
+        url('../font/AdobeClean-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Adobe Clean';
+    src: url('../font/AdobeClean-Bold.eot');
+    src: local('Adobe Clean Bold'), local('AdobeClean-Bold'),
+        url('../font/AdobeClean-Bold.eot?#iefix') format('embedded-opentype'),
+        url('../font/AdobeClean-Bold.woff') format('woff'),
+        url('../font/AdobeClean-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+} 
+a {
+    outline: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+ 
+/* header */
+header {
+    background:transparent;
+    /*! box-shadow: 0 1px 5px 0 rgba(59, 130, 255, 0.18); */
+}
+
+
+
+
+
+
+/* BOTTOM BARS ================================= */
+
+
+/* :::::::::::::::: thank-you::::::::::::::::::::::::::: */
+
+/*=============================================================================
+===============================================================================
+                        Responsive CSS
+===============================================================================
+=============================================================================*/
+
+
+
+
+
+
+
+
+/*=============================================================================
+===============================================================================
+                        Responsive CSS
+===============================================================================
+=============================================================================*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
