@@ -7,7 +7,7 @@ import { Suspense } from 'react'
 import LogIn from '../app/login/components/LogIn'
 import Loading from './loading';
 
-import styles from './page.module.css';
+// import styles from './page.module.css';
 
 
 export default function Home() {

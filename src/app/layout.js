@@ -1,17 +1,13 @@
-import Script from 'next/script';
+// import Script from 'next/script';
 import './globals.css'
-import '../app/css/bootstrap.css'
-import '../app/css/jquery.toast.css'
+import '../../public/css/bootstrap.min.css'
+import '../../public/css/style.min.css'
+import '../../public/css/maininner.css'
+import '../../public/css/material-design-iconic-font.css'
 
 //Date range picker
-import '../app/css/daterangepicker.css'
-//Date Pair
-import '../app/css/jquery.timepicker.css'
-import '../app/css/bootstrap-datepicker.css'
 
-import '../app/css/style.min.css'
-import '../app/css/main.css'
-import '../app/css/calendarV3.css'
+//Date Pair
 
 
 
@@ -27,28 +23,14 @@ export default function RootLayout({ children }) {
       <body classname="theme-blue ">
               {children}
               <ToastContainer />
-              <script src="js/jquery-2.1.4.min.js"></script>              
-              <script src="js/bootstrap.min.js" ></script>
-              <script src="js/libscripts.bundle.js"></script>
-              <script src="js/vendorscripts.bundle.js"></script>
-              <script src="js/mainscripts.bundle.js"></script> 
-              <script src="js/custom/calendarV3.js"></script>                                     
-              <Script src="js/custom.js"/>
-              <script src="js/custom.js"></script>
-              <script src="js/jquery.toast.min.js"></script> 
-              <script src="js/jquery.toast.js"></script> 
-              <script src="js/custom/jquery.tmpl.js"></script>   
-              {/* <script src="js/custom/util.js"></script> */}
-              <script src="js/custom/masters.1.0.0.js"></script>   
+          
+    <script src="js/libscripts.bundle.js"></script>
+    <script src="js/jquery-2.1.4.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="js/vendorscripts.bundle.js"></script>
+    <script src="js/mainscripts.bundle.js"></script>
+    <script src="js/custom.js" defer></script>
 
-              <script src="js/moment.js"></script>   
-              <script src="js/daterangepicker.js"></script>   
-              <script src="js/custom-date-range.js"></script>   
-
-              <script src="js/bootstrap-datepicker.js"></script>  
-              <script src="js/jquery.timepicker.js"></script>  
-              <script src="js/datepair.js"></script>  
-              <script src="js/jquery.datepair.js"></script>  
       </body>
       
     </html>
