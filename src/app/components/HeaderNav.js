@@ -1,126 +1,105 @@
-import Link from "next/link";
-import Image from "next/image";
-import notification from '@/app/images/notification.png'
-import logo from '@/app/images/logo.png'
 
+import React from 'react';
+import Link from "next/link";
 
 const HeaderNav = () => {
-    return (
+  return (
 
-        <>
+    <>
 
-<nav className="navbar navbar-dark d-flex justify-content-between align-items-center bg-dark mb-0">
-        <div className="">
-            <div className="navbar-brand mr-4 pr-0  float-left d-flex">
-                <button className="btn-menu ls-toggle-btn" type="button">
-                    <i className="zmdi zmdi-menu"></i>
-                </button>
-                <Link href="/">
-                    <Image src={logo} alt="W e l c o m e"/>
-                </Link>
+      <nav className="navbar navbar-expand-xl mb-0 navbar-dark fixed-top">
+        <Link className="navbar-brand ms-2 me-3" href="/dashboard"><img src="images/logo.png" alt="logo" /></Link>
+        <div className="d_display">
+          <div className="dropdown nav-item displinl ">
+            <Link href="javascript:void(0);" className="nav-link text-right dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+
+              <span className="EmployeeAvatar">A</span></Link>
+            <div className="dropdown-menu p-0 bg-gradient-secondary">             
+              <div className="user-header">
+                <img className="img-thumbnail rounded-circle profileImgBig" alt="User Image"
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ20gNp9VRFxCE1eMrvYwwIxQp_0zOdxL8BSxC5-igPkuZd0iSbxA&s" />
+
+                <p id="header_spanProfilename2" className="profileName">Andrew Garfield</p>
+                <small>
+                  <p id="header_spanType">Admin</p>
+                </small>
+              </div>          
+              <div className="user-body bg-secondary p-1">
+                <div>
+                  <Link className="btn btn-light btn-sm" data-toggle="modal" data-target="#password">Change Password</Link>
+                </div>
+              </div>
+              <div className="user-footer text-center p-1 pb-2 pt-1 d-flex justify-content-center">
+                <div>
+                  <Link href="/settings" className="btn btn-primary me-2 btn-sm">Profile</Link>
+                </div>
+                <div>
+                  <Link href="/logout" className="btn btn-outline-danger btn-sm">Sign out</Link>
+                </div>
+              </div>
             </div>
-            <ul className="navbar-nav mr-4 pr-3 bdrr float-left ">
-                <li className="dropdown nav-item"></li>
-            </ul>
-            <div className="col-black mr-3 float-left mtop">
-                <h2 className="col-white">Dashboard <span className="col-grey f-13 hdnone"></span> </h2>
-            </div>
+          </div>
+          <button className="navbar-toggler me-2" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <a className=" btn btn-primary btn-icon float-right right_icon_toggle_btn" href="#">
+            <i className="zmdi zmdi-arrow-right"></i></a>
         </div>
-        <form className="form-inline smd_none">
-        </form>
-        <div>
-            <button className="btn btn-primary btn-icon float-right right_icon_toggle_btn ml-3 mr-2 smd_none"
-                data-status="c" type="button">
-                <i className="zmdi zmdi-arrow-right"></i>
-            </button>
-            <ul className="navbar-nav ml-2 pl-3 bdrl floatmargint">
-                <li className="dropdown nav-item smd_none">
-                    <Link href="#" className="nav-link dropdown-toggle cls-get-CriticalActivity"
-                        type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                        <i className="fa fa-bullhorn">&nbsp;</i><span
-                            id="spanTotalCriticalActivityUnread"
-                            className="badge badge-warning  spanTotalCriticalActivityUnread"></span>
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul className="navbar-nav m-auto">
+            <li className="nav-item active"><Link className="nav-link" href="/dashboard"> <i className='zmdi zmdi-desktop-windows'></i> Dashboard</Link></li>
+           
+            <li className="nav-item"><Link className="nav-link" href="/">   <i className='zmdi zmdi-graduation-cap'></i> Clients</Link></li>
+           <li className="nav-item"><Link className="nav-link" href="/"> <i className='zmdi zmdi-pizza'></i> Expances</Link></li>
+            <li className="nav-item"><Link className="nav-link" href="/"><i className='zmdi zmdi-receipt'></i> Invoices</Link></li>
+            <li className="nav-item"><Link className="nav-link" href="/"><i className='zmdi zmdi-folder'></i> Projects</Link></li>
+            <li className="nav-item"><Link className="nav-link" href="/reports"><i className='zmdi zmdi-trending-up'></i> Reports</Link></li>
+            <li className="nav-item"><Link className="nav-link" href="/"><i className='zmdi zmdi-comments'></i> Quotes</Link></li>
+            <li className="nav-item"><Link className="nav-link" href="/"><i className='zmdi zmdi-settings'></i> Settings</Link></li>
+            <li className="nav-item"><Link className="nav-link" href="/"><i className='zmdi zmdi-accounts-alt'></i> Team</Link></li>
+            <li className="nav-item"><Link className="nav-link" href="/"><i className='zmdi zmdi-widgets'></i> Vendor</Link></li>
+          </ul>
+          <ul className="nav navbar-nav floatmargint">
+            <li className="dropdown nav-item displinl ">
+              <Link href="javascript:void(0);" className="nav-link text-right dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
 
-                    </Link>
-                    <ul className="dropdown-menu notification-ui_dd slideUp2">
-                        <li className="header font-16 font-bold d-flex justify-content-between text-transform">
-                            <div>Critical Activities</div>
-                            <div>
-                                <span className="str-grey cls-vw-log-top" data-action="readall">
-                                    <Image src={notification} alt="notification"/>
-                                </span>
-                            </div>
-                        </li>
-                        <li className="body">
-                            <ul id="TopCriticalActivity_Placeholder" className="menu list-unstyled"></ul>
-                        </li>
-                        <li className="footer text-center">
-                            <Link href="https://empapp.thestaffport.com/Events" className="col-blue">View All</Link>
-                        </li>
-                    </ul>
-                </li>
-                <li className="dropdown nav-item smd_none">
-                    <Link href="#" className="nav-link dropdown-toggle cls-get-conversation" type="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                        <i className="fa fa-comments-o">&nbsp;</i><span id="spanTotalConversationUnread"
-                            className="badge badge-success spanTotalConversationUnread"></span>
-                    </Link>
-                    <ul className="dropdown-menu notification-ui_dd slideUp2">
-                        <li className="header font-16 font-bold d-flex justify-content-between text-transform">
-                            <div><i className="fa fa-comments-o font-18">&nbsp;</i>Job Chats</div>
-                            <div>
-
-                            </div>
-                        </li>
-                        <li className="body">
-                            <ul id="TopConversation_Placeholder" className="menu list-unstyled"></ul>
-                        </li>
-                        <li className="footer text-center">
-
-                        </li>
-                    </ul>
-                </li>
-                <li className="dropdown nav-item smd_none">
-                    <Link href="#" className="nav-link dropdown-toggle cls-get-notification" type="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                        <i className="zmdi zmdi-notifications">&nbsp;</i><span id="spanTotalNofificationUnread"
-                            className="badge badge-success spanTotalNofificationUnread"></span>
-                    </Link>
-                    <ul className="dropdown-menu notification-ui_dd slideUp2">
-                        <li className="header font-16 font-bold d-flex justify-content-between text-transform">
-                            <div>NOTIFICATIONS</div>
-                            <div>
-                                <span className="str-grey cls-vw-msg-top" data-action="readall">
-                                <Image src={notification} alt="notification"/>
-                                </span>
-                            </div>
-                        </li>
-                        <li className="body">
-                            <ul id="TopNotifications_Placeholder" className="menu list-unstyled"></ul>
-                        </li>
-                        <li className="footer text-center">
-                            <Link href="https://empapp.thestaffport.com/Account/MessageCenter" className="col-blue">View All
-                                Notifications</Link>
-                        </li>
-                    </ul>
-                </li>
-
-                <li className="nav-item bdrl smd_none hidden-sm-down">
-                    <Link className="nav-link text-right" href="https://empapp.thestaffport.com/Settings/Profile">
-                        <span className="float-left lngth font-11 dd_none">
-                            <b id="spanprofile-name">Healthcare Demo</b><br/>
-                            <span id="spanprofile-email"></span>
-                        </span>
-                        <span className="EmployeeAvatar" data-tippy="" data-original-title="Healthcare Demo">H</span>
-                    </Link>
-                </li>
+                <span className="EmployeeAvatar">A</span></Link>
+              <div className="dropdown-menu p-0 bg-gradient-secondary">
                
-            </ul>
-        </div>
+                <div className="user-header">
+                  <img className="img-thumbnail rounded-circle profileImgBig" alt="User Image"
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ20gNp9VRFxCE1eMrvYwwIxQp_0zOdxL8BSxC5-igPkuZd0iSbxA&s" />
 
-    </nav>
-            
-        </>
-    )
+                  <p id="header_spanProfilename2" className="profileName">Andrew Garfield</p>
+                  <small>
+                    <p id="header_spanType">Admin</p>
+                  </small>
+                </div>
+             
+                <div className="user-body bg-secondary p-1">
+                  <div>
+                    <Link className="btn btn-light btn-sm" data-toggle="modal" data-target="#password">Change Password</Link>
+                  </div>
+                </div>
+                <div className="user-footer text-center p-1 pb-2 pt-1 d-flex justify-content-center">
+                  <div>
+                    <Link href="/settings" className="btn btn-primary me-2 btn-sm">Profile</Link>
+                  </div>
+                  <div>
+                    <Link href="/logout" className="btn btn-outline-danger btn-sm">Sign out</Link>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li className="nav-item float-right">
+              <Link className=" btn btn-primary btn-icon float-right right_icon_toggle_btn" href="#">
+                <i className="zmdi zmdi-arrow-right"></i></Link>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+    </>
+  )
 }
 export default HeaderNav;

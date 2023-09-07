@@ -10,8 +10,8 @@ export default function Home() {
    <>
    <Header></Header>
    <RightMenuSidebar></RightMenuSidebar>
-   <LeftMenuSidebar/>
-   <RightSidebar/>
+   {/* <LeftMenuSidebar/> */}
+   {/* <RightSidebar/> */}
    <Main/>
    </>
   )
