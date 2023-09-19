@@ -1,3 +1,4 @@
+
 import React from 'react';
 import Header from '../components/Header';
 import RightMenuSidebar from "../components/RightMenuSidebar"
@@ -9,7 +10,7 @@ export default function Home() {
   return (
    <>
    <Header></Header>
-   <RightMenuSidebar></RightMenuSidebar>
+   {/* <RightMenuSidebar></RightMenuSidebar> */}
    {/* <LeftMenuSidebar/> */}
    {/* <RightSidebar/> */}
    <Main/>

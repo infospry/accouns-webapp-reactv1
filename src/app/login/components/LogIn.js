@@ -16,7 +16,7 @@ const LogIn = () =>{
             <div className="col-lg-6 col-xl-5 col-md-9 col-sm-10">
                 <form className="card auth_form login_area_hide">
                     <div className="header text-left">                       
-                        <img className="m-auto" src="images/logod.png" alt="img" />
+                        <img className="m-auto" src="images/logod.png" alt="img" style={{ height: 'auto' }} />
                         <p className="mt-4 mb-0 col-grey"><span className="font-24 col-black">Join as a professional</span> <br/>
                             Free to get started, instant online activation
                         </p>
@@ -24,12 +24,12 @@ const LogIn = () =>{
                     <div className="body pt-1">
                         <div className="group">
                             <input type="text" id="Username" required="required"/>
-                            <label for="Username"><i className="zmdi zmdi-email-open">&nbsp;</i>Your Email</label>
+                            <label htmlFor="Username"><i className="zmdi zmdi-email-open">&nbsp;</i>Your Email</label>
                             <div className="bar"></div>
                         </div>
                         <div className="group">
                             <input type="password" id="passwords" required="required"/>
-                            <label for="passwords"><i className="zmdi zmdi-lock">&nbsp;</i> Password</label>
+                            <label htmlFor="passwords"><i className="zmdi zmdi-lock">&nbsp;</i> Password</label>
                             <span toggle="#password" className="zmdi field-icon toggle-password zmdi-eye col-grey"></span>
                             <div className="bar"></div>
                         </div>
@@ -38,19 +38,19 @@ const LogIn = () =>{
                                 <div className="col-6 pr-0">
                                     <div className="checkbox">
                                         <input id="remember_me" type="checkbox"/>
-                                        <label for="remember_me">Remember Me </label>
+                                        <label htmlFor="remember_me">Remember Me </label>
                                     </div>
                                 </div>
                                 <div className="col-6 pl-0">
                                     <div className="float-end">
-                                        <a href="#" className="col-blue  clickmode col-blue"data-hide=".login_area_hide"data-show=".forgot_passarea" ><b>Forgot Password</b></a> 
+                                        <a className="col-blue  clickmode col-blue"data-hide=".login_area_hide"data-show=".forgot_passarea" >Forgot Password</a> 
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div className="mt-4 mb-3 text-center">
-                            <a href="/dashboard" className="btn btn-primary btn-lg btn-block waves-effect waves-light mt-3 mb-4"><b>Sign in</b> →</a>
-                            <span className="text-center col-grey d-block">Don't have an account? <a href="#" className="col-blue ml-2 create-send-btn"><b> Sign Up Now</b>  →</a></span>                                    
+                            <a href="/dashboard" className="btn btn-primary btn-lg btn-block waves-effect waves-light mt-3 mb-4">Sign in →</a>
+                            <span className="text-center col-grey d-block">Don't have an account? <a  className="col-blue ml-2 create-send-btn"> Sign Up Now  →</a></span>                                    
                         </div>
                     </div>
                 </form>
@@ -64,7 +64,7 @@ const LogIn = () =>{
                         <div className="group">
                             
                             <input type="text" id="email" required="required"/>
-                            <label for="email"><i className="zmdi zmdi-email-open">&nbsp;</i> Mobile number or Email Id</label>
+                            <label htmlFor="email"><i className="zmdi zmdi-email-open">&nbsp;</i> Mobile number or Email Id</label>
                             <div className="bar"></div>
                         </div>
                         <div className="group mt-4 mb-4 text-center">
@@ -104,7 +104,7 @@ const LogIn = () =>{
                     <div className="body pt-3">
                         <div className="group">                                 
                             <input type="password" id="password" required="required"/>
-                                <label for="password"><i className="zmdi zmdi-lock col-grey">&nbsp;</i>  New Password</label>
+                                <label htmlFor="password"><i className="zmdi zmdi-lock col-grey">&nbsp;</i>  New Password</label>
                                 <span toggle="#password" className="zmdi field-icon toggle-password zmdi-eye col-grey"></span>
                                 <div className="bar"></div>
                         </div> 
@@ -113,7 +113,7 @@ const LogIn = () =>{
                         </p>
                         <div className="group">
                                 <input type="password" id="passwordd" required="required"/>
-                                <label for="passwordd"><i className="zmdi zmdi-lock-open col-grey"></i> Confirm New Password</label>
+                                <label htmlFor="passwordd"><i className="zmdi zmdi-lock-open col-grey"></i> Confirm New Password</label>
                                 <span toggle="#password" className="zmdi field-icon toggle-password zmdi-eye col-grey"></span>
                                 <div className="bar"></div>
                         </div>                          

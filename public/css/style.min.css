@@ -12162,7 +12162,7 @@ section.content {
  color:#673AB7 !important
 }
 .col-blue {
- color:#2f3187 !important; 
+ color:var(--secondary) !important; 
 }.col-info { 
  color:#5457ff !important;
 }  
