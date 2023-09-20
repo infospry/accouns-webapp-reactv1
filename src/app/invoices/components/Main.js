@@ -1,7 +1,7 @@
 "use client"
 import Loading from '@/app/components/Loading'
 import React, { useState } from 'react';
-
+import Image from 'next/image'
 function Main() {
 const customStyles = {
 borderLeft: '1px solid rgb(221, 221, 221)',
@@ -45,20 +45,21 @@ return (
                 </div>
             </div>
             <div className="scroll_bar">
-                <div class="booktab d-flex justify-content-between align-items-center bdrbtm">
-                    <div class="">
-                        <ul class="nav nav-tabs nav-justified p-0">
+                <div className="booktab d-flex justify-content-between align-items-center bdrbtm">
+                    <div className="">
+                        <ul className="nav nav-tabs nav-justified p-0">
 
-                            <li class="nav-item">
-                                <a class="nav-link padnav font-16 clickmode active" data-show=".invoiceArea"
-                                    data-hide=".recArea" href="javascript:void(0);"><i class="zmdi zmdi-receipt"></i>
-                                    <span class="d-none_small"> Invoices </span> </a>
+                            <li className="nav-item">
+                                <a className="nav-link padnav font-16 clickmode active" data-show=".invoiceArea"
+                                    data-hide=".recArea" href="javascript:void(0);"><i
+                                        className="zmdi zmdi-receipt"></i>
+                                    <span className="d-none_small"> Invoices </span> </a>
                             </li>
 
-                            <li class="nav-item">
-                                <a class="nav-link padnav font-16  clickmode" data-hide=".invoiceArea"
-                                    data-show=".recArea" href="javascript:void(0);"><i class="zmdi zmdi-folder"></i>
-                                    <span class="d-none_small"> Recurring Templates </span> </a>
+                            <li className="nav-item">
+                                <a className="nav-link padnav font-16  clickmode" data-hide=".invoiceArea"
+                                    data-show=".recArea" href="javascript:void(0);"><i className="zmdi zmdi-folder"></i>
+                                    <span className="d-none_small"> Recurring Templates </span> </a>
                             </li>
                         </ul>
                     </div>
@@ -158,7 +159,7 @@ return (
                                 </div>
                             </div>
                             <div className='recArea dd_none'>
-                            <div className="card bdr5 mb-1">
+                                <div className="card bdr5 mb-1">
                                     <div className="header d-flex justify-content-between align-items-center p-0">
                                         <div className="d-flex justify-content-start align-items-center">
                                             <h2 className="font-bold"> All Recurring Templates </h2>
@@ -252,229 +253,193 @@ return (
             </div>
         </div>
     </section>
-    <div class="modal right-full md-one" id="addpage"  role="dialog" aria-labelledby="shortModal">
-        <div class="modal-dialog" role="document">
-        <div class="modal-content" style={{height:"auto!important"}}>
-                <div class="modal-header bg-blu-lite fixed-top">
-                <button type="button" className="btn-close" data-dismiss="modal" aria-label="Close"> </button>
-                    <h4 class="modal-title" id="myModalLabel2">
-                        <b> <i class="zmdi zmdi-plus-circle-o-duplicate"></i> Add New Invoice </b>
-                    </h4>
-                </div>
-                <div class="modal-body pr-0 pl-0 pb-0 contbody">  
-                <div className="row  m-0">
-                        <div className="col-12 col-sm-12 col-md-8 col-lg-9  mt-4">
-                            
-                        </div>
-                        <div className="col-12 col-sm-12 col-md-4 col-lg-3" style={customStyles}>
-                            <h4 className="mt-4 mb-0">Settings</h4>
-                            <hr className='mt-2 mb-2' />
-                            <div
-                                className='invwhite d-flex justify-content-between align-items-center pe-0 ps-2 pt-2 pb-2'>
-                                <div>
-                                    <p className="m-0 font-14">
-                                        <b>
-                                            <i className="zmdi zmdi-city"></i> Assign to client/Project
-                                        </b>
-                                    </p>
-                                    <p className="col-grey m-0 font-14">test Ltd.</p>
-                                </div>
-                            </div>
-                            <hr className="mt-2 mb-2" />
-                            <div className="invwhite d-flex justify-content-between align-items-center pe-0 ps-2 pt-2 pb-2">
-                                <div>
-                                    <p className="m-0 font-14"><b><i className="zmdi zmdi-refresh"></i> Make
-                                            Recurring</b></p>
-                                    <p className="col-grey m-0 font-14">Repeat this expanses automatically</p>
-                                </div>
-                                <div class="form-check form-switch ms-1">
-                                    <input className="form-check-input" type="checkbox" id="flexSwitchCheckDefault" />
-                                </div>
-                            </div>
-                            <hr className='mt-2 mb-2' />
-                            <a href="javascript:void(0);"
-                                className="invwhite d-flex justify-content-between align-items-center pe-0 ps-2 pt-2 pb-2 clickmode">
-                                <div>
-                                    <p className="m-0 font-14"><b><i className="zmdi zmdi-city"></i> Currency </b></p>
-                                    <p className="col-grey m-0 font-14">GBP </p>
-                                </div>
-                            </a>
-                            <hr className='mt-2 mb-2' />
-                        </div>
-                    </div>               
-                </div>
-                <div class="model-footer">
-                    <div class="row m-0">
-                        <div class="col-md-12">                          
-                            <div class="text-center">
-                            <a href="Invoice-print.html" target="_blank" class="btn btn-outline-primary me-1"> Print</a>
-                                <button type="button" class="btn btn-success me-1"> Submit Payment
-                                </button>
-                                <button type="button" class="btn btn-primary me-2">
-                                   Generate PDF
-                                </button>
-                                <button class="btn btn-primary clickmode me-1"data-show=".contactlist"
-                                    data-hide=".md-one, .Lodingbox, .modal-backdrop" type="button"> <i
-                                        className="zmdi zmdi-upload"></i> Save </button>
-                                <button class="btn btn-danger" type="button"><i class="zmdi zmdi-rotate-left"></i> Cancel</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>  
-    <div className="modal right-half md-one" id="addpage9" tabindex="-1" role="dialog" aria-labelledby="shortModal">
-        <div className="modal-dialog modal-dialog-scrollable" role="document">
-            <div className="modal-content">
+
+    <div className="modal right-full md-one" id="addpage" role="dialog" aria-labelledby="shortModal">
+        <div className="modal-dialog" role="document">
+            <div className="modal-content" style={{height:"auto!important"}}>
                 <div className="modal-header bg-blu-lite fixed-top">
-                    <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"> </button>
+                    <button type="button" className="btn-close" data-dismiss="modal" aria-label="Close"> </button>
                     <h4 className="modal-title" id="myModalLabel2">
-                        <b> <i className="zmdi zmdi-plus-circle-o-duplicate"></i> Create New</b>
+                        <b> <i className="zmdi zmdi-plus-circle-o-duplicate"></i> Add New Invoice </b>
                     </h4>
                 </div>
                 <div className="modal-body pr-0 pl-0 pb-0 contbody">
-
                     <div className="row  m-0">
-                        <div className="col-12 col-sm-12 col-md-7 col-lg-8  mt-4">
-                            <div className="row m-0">
-                                <div className="col-6">
-                                    <div className="form-floating">
-                                        <select className="form-select" id="floatingSelect"
-                                            aria-label="Floating label select example">
-                                            <option selected>Select Category</option>
-                                            <option value="1">One</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option>
-                                        </select>
-                                        <label for="floatingSelect">Add Category</label>
+                        <div className="col-12 col-sm-12 col-md-8 col-lg-9  mt-4">
+
+
+                            {/* :::::: */}
+                            <div className="est-inv" style={{width:"98%", margin:"0.5%"}}>
+                                <div className="row justify-content-between">
+                                    <div className="col-sm-6 col-lg-4 tradelogo">
+                                        <label for="et_pb_contact_brand_file_request_0"
+                                            className="et_pb_contact_form_label">Enter</label>
+                                        <input type="file" id="et_pb_contact_brand_file_request_0"
+                                            className="file-upload" />
+                                    </div>
+                                    <div className="col-sm-6 col-lg-4 text-end">
+                                        <a href="#"><b className="cls-Preview" id="aBillToPreview"></b><strong>John
+                                                Doe</strong></a><br />
+                                        <p className="cls-Preview" id="ContactAddressPreview">
+                                            795 Folsom Ave, Suite 600<br />
+                                            San Francisco, CA 94107<br />
+                                            Phone: (555) 539-1037<br />
+                                            Email: john.doe@example.com<br />
+                                            <a href="/">Edit to Business Information</a>
+                                        </p>
+
                                     </div>
 
                                 </div>
-                                <div className="col-6">
-                                    <div className="form-floating mb-3">
-                                        <input type="date" className="form-control" id="floatingInput"
-                                            placeholder="date" />
-                                        <label for="floatingInput">Date</label>
+                                <div className="row justify-content-between align-items-center mt-5">
+                                    <div className="col-6 col-md-3">
+                                        <label className="col-grey font-16">Billed To</label>
+                                        <input className="form-control none_border" placeholder="text Client" />
+                                    </div>
+                                    <div className="col-6 col-md-3">
+                                        <label className="col-grey font-16">Date of Issue</label>
+                                        <input className="form-control none_border" placeholder="DD/MM/YYYY" />
+                                    </div>
+                                    <div className="col-6 col-md-3">
+                                        <label className="col-grey font-16">Invoice Number</label>
+                                        <input className="form-control none_border" placeholder="eg. 000123000" />
+                                    </div>
+                                    <div className="col-6 col-md-3 text-end">
+                                        <label className="col-grey font-16">Amount Due(GBP)</label>
+                                        <h4>£0.00</h4>
                                     </div>
                                 </div>
-                            </div>
-                            <div className="row m-0">
-                                <div className="col-12">
-                                    <div className="form-floating mb-3">
-                                        <input type="text" className="form-control" id="floatingInput"
-                                            placeholder="Company Name" />
-                                        <label for="floatingInput">Name<span className='red'>*</span></label>
+                                <div className="row justify-content-between align-items-center mt-2">
+                                    <div className="col-6 col-md-3">
+                                        <a href="/">Edit Client</a><br />
+                                        <a href="/">Remove Client</a>
+                                    </div>
+                                    <div className="col-6 col-md-3">
+                                        <label className="col-grey font-16">Due Date</label>
+                                        <input className="form-control none_border" placeholder="DD/MM/YYYY" />
+                                    </div>
+                                    <div className="col-6 col-md-3">
+                                        <label className="col-grey font-16">Reference</label>
+                                        <input className="form-control none_border" placeholder="eg. PO#00" />
+                                    </div>
+                                    <div className="col-6 col-md-3 text-end">
+
                                     </div>
                                 </div>
-                            </div>
-                            <div className="row m-0">
-                                <div className="col-12">
-                                    <div className="form-floating">
-                                        <textarea className="form-control" placeholder="Leave a comment here"
-                                            id="floatingTextarea"></textarea>
-                                        <label for="floatingTextarea">Add Description(Optional)</label>
+
+                                <table className="table bgless mt-4">
+                                    <thead>
+                                        <tr>
+                                            <th style={{width:"20px"}}></th>
+                                            <th>Description</th>
+                                            <th className="text-end" style={{width:"120px"}}>Rate</th>
+                                            <th className="text-end" style={{width:"90px"}}>Qty</th>
+                                            <th className="text-end" style={{width:"120px"}}>Line total</th>
+                                            <th style={{width:"20px"}}></th>
+                                        </tr>
+                                    </thead>
+                                    <tr className="dd_none showtd">
+                                        <td><i className="zmdi zmdi-menu"></i></td>
+                                        <td>Web Design</td>
+                                        <td className="text-end">£10.00</td>
+                                        <td className="text-end">1</td>
+                                        <td className="text-end">£10.00</td>
+                                        <td><i className="zmdi zmdi-delete"></i></td>
+                                    </tr>
+
+                                </table>
+                                <a className="dottedBtn mt-3 mb-4 clickmode" data-show=".showtd">+ Add a Line</a>
+
+                                <div className="row justify-content-end align-items-top">
+
+                                    <div className="col-6 col-md-3 text-end">
+                                        <p className="mb-0">Subtotal<br /><a href="/">Add a Discount</a></p>
                                     </div>
-                                    <button className='btn btn-outline-primary addTaskBtn mt-3 clickmode'
-                                        data-hide=".addTaskBtn" data-show=".addtax"> + Add Tax</button>
+                                    <div className="col-6 col-md-3 text-end">
+                                        <p className="mb-0"> £10.00</p>
+                                    </div>
+                                </div>
+                                <div className="row justify-content-end align-items-center mt-1">
 
-                                    <div className='addtax dd_none'>
-                                        <table className="table mt-3">
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col" style={{ width: "28px" }}>-</th>
-                                                    <th scope="col">Rate</th>
-                                                    <th scope="col">Tax Name</th>
-                                                    <th scope="col">Tax Number(Optinal)</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td scope="row">
-                                                        <div className="form-check">
-                                                            <input className="form-check-input" type="checkbox" value=""
-                                                                id="flexCheckDefault" />
-                                                            <label className="form-check-label"
-                                                                for="flexCheckDefault"></label>
-                                                        </div>
-                                                    </td>
-                                                    <td><input className="form-control form-control-sm" type="text"
-                                                            id="rate" /></td>
-                                                    <td><input className="form-control form-control-sm" type="text"
-                                                            id="name" /></td>
-                                                    <td><input className="form-control form-control-sm" type="text"
-                                                            id="taxNumber" /></td>
-                                                </tr>
+                                    <div className="col-6 col-md-3 text-end">
+                                        <p className="mb-0">Tax</p>
+                                    </div>
+                                    <div className="col-6 col-md-3 text-end">
+                                        <p className="mb-0"> 0.00</p>
+                                    </div>
+                                </div>
+                                <div className="row justify-content-end align-items-center">
 
-                                            </tbody>
-                                        </table>
-                                        <button className='btn btn-outline-secondry d-block text-center mt-2' style={{
-                                            border: "2px dashed #ddd" }}>+ Add Another Tax</button>
-
+                                    <div className="col-6 col-md-6 text-end">
                                         <hr />
-                                        <button className='btn btn-primary me-1 clickmode' data-show=".asstexView"
-                                            data-hide=".addtax">Apply Tax</button>
-                                        <button className='btn btn-danger clickmode' data-show=".addTaskBtn"
-                                            data-hide=".addtax">Cancel</button>
                                     </div>
 
-                                    <div className='asstexView dd_none'>
-                                        <table className="table mt-3">
-                                            <tr>
-                                                <td className='col-black'>Subtotal(GBP )</td>
-                                                <td style={{ textAlign: "end" }}>£0.00 </td>
-                                                <td style={{width:"20px"}}> <i
-                                                        className='zmdi zmdi-refresh col-grey'></i></td>
-                                            </tr>
-                                            <tr>
-                                                <td className='col-blue'>VAT 5%</td>
-                                                <td style={{ textAlign: "end" }}>£0.00 </td>
-                                                <td style={{width:"20px"}}> <i
-                                                        className='zmdi zmdi-delete col-grey'></i></td>
-                                            </tr>
-                                            <tr>
-                                                <td className='col-blue'>ST 2%</td>
-                                                <td style={{ textAlign: "end" }}>£0.00 </td>
-                                                <td style={{width:"20px"}}> <i
-                                                        className='zmdi zmdi-delete col-grey'></i></td>
-                                            </tr>
-                                        </table>
+                                </div>
+                                <div className="row justify-content-end align-items-center mt-1">
+
+                                    <div className="col-6 col-md-3 text-end">
+                                        <p className="mb-0">Total</p>
                                     </div>
-                                    <hr />
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div>Grand Total(GBP )</div>
-                                        <div class="Invoice-list-total font-20" style={{ textAlign: "end" }}>£0.00
+                                    <div className="col-6 col-md-3 text-end">
+                                        <p className="mb-0"> £10.00</p>
+                                    </div>
+                                </div>
+                                <div className="row justify-content-end align-items-center mt-1">
+
+                                    <div className="col-6 col-md-3 text-end">
+                                        <p className="mb-0">Amount Paid</p>
+                                    </div>
+                                    <div className="col-6 col-md-3 text-end">
+                                        <p className="mb-0"> £10.00</p>
+                                    </div>
+                                </div>
+                                <div className="row justify-content-end align-items-center">
+
+                                    <div className="col-6 col-md-6 text-end">
+                                        <hr />
+                                    </div>
+
+                                </div>
+                                <div className="row justify-content-end align-items-center">
+                                    <div className="col-6 col-md-3 text-end">
+                                        <p className="mb-0">Amount Due(GBP)</p>
+                                    </div>
+                                    <div className="col-6 col-md-3 text-end">
+                                        <p className="mb-0 font-20"> £10.00</p>
+                                    </div>
+                                </div>
+
+                                <div className="row justify-content-start mt-5 mb-3">
+                                    <div class="col-sm-12 col-md-6 col-lg-6">    
+                                        <div class="form-floating">
+                                            <textarea class="form-control none_border" placeholder="Customer Footnote (0/250)"style={{height:"100px"}} id="floatingTextarea2"></textarea>
+                                            <label for="floatingTextarea2">Customer Footnote (0/250)</label>
                                         </div>
                                     </div>
-
                                 </div>
+
+
                             </div>
+                            {/* ::::::: */}
+
+
+
+
+
+
                         </div>
-                        <div className="col-12 col-sm-12 col-md-5 col-lg-4" style={customStyles}>
-                            <h4 className="mt-4 mb-0">Expanses Settings</h4>
+
+                        <div className="col-12 col-sm-12 col-md-4 col-lg-3" style={customStyles}>
+                            <h4 className="mt-4 mb-0">Settings</h4>
+                            <span className="font-14 col-grey"><b>For the Invoice</b></span>
                             <hr className='mt-2 mb-2' />
-                            <div
-                                className='invwhite d-flex justify-content-between align-items-center pe-0 ps-2 pt-2 pb-2'>
-                                <div>
-                                    <p className="m-0 font-14">
-                                        <b>
-                                            <i className="zmdi zmdi-city"></i> Assign to client/Project
-                                        </b>
-                                    </p>
-                                    <p className="col-grey m-0 font-14">test Ltd.</p>
-                                </div>
-
-                            </div>
-                            <hr className="mt-2 mb-2" />
-
-
-
                             <div
                                 className="invwhite d-flex justify-content-between align-items-center pe-0 ps-2 pt-2 pb-2">
                                 <div>
-                                    <p className="m-0 font-14"><b><i className="zmdi zmdi-refresh"></i> Make
-                                            Recurring</b></p>
-                                    <p className="col-grey m-0 font-14">Repeat this expanses automatically</p>
+                                    <p className="m-0 font-14"><b><i className="zmdi zmdi-card"></i> Accept Online
+                                            Payments</b></p>
+                                    <p className="col-grey m-0 font-14">Lets clients pay online</p>
+                                    <img className="m-auto" src="images/images.png" alt="img" style={{ height: 'auto'}} />
                                 </div>
                                 <div class="form-check form-switch ms-1">
                                     <input className="form-check-input" type="checkbox" id="flexSwitchCheckDefault" />
@@ -483,26 +448,159 @@ return (
                             <hr className='mt-2 mb-2' />
 
 
-
-
                             <a href="javascript:void(0);"
                                 className="invwhite d-flex justify-content-between align-items-center pe-0 ps-2 pt-2 pb-2 clickmode">
                                 <div>
-                                    <p className="m-0 font-14"><b><i className="zmdi zmdi-city"></i> Currency </b></p>
-                                    <p className="col-grey m-0 font-14">GBP </p>
+                                    <p className="m-0 font-14"><b><i className="zmdi zmdi-aspect-ratio me-1"></i>
+                                            Customize Invoice Style </b></p>
+                                    <p className="col-grey m-0 font-14">Change Templets, Color </p>
                                 </div>
                             </a>
                             <hr className='mt-2 mb-2' />
+                            <div className="mkreqbtn">
+                                <a href="javascript:void(0);"
+                                    className="invwhite d-flex justify-content-between align-items-center pe-0 ps-2 pt-2 pb-2 clickmode"
+                                    data-show=".makeRec" data-hide=".mkreqbtn">
+                                    <div>
+                                        <p className="m-0 font-14"><b><i className="zmdi zmdi-refresh me-1"></i>
+                                                Make Recurring</b></p>
+                                        <p className="col-grey m-0 font-14">Bill your clients automatically </p>
+                                        <span className="btn btn-outline-primary mb-0 mt-1 btn-sm">Make Recurring</span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="makeRec dd_none">
+                                <h4 className="mt-4 mb-0">Recurring Schedule</h4>
+                                <hr className='mt-2 mb-2' />
+                                <div class="mb-3">
+                                    <label for="exampleFormControlInput1" class="form-label">How Often?</label>
+                                    <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                                        <option selected>Monthly</option>
+                                        <option value="1">Weekly</option>
+                                        <option value="2">Yearly</option>
+                                        <option value="3">Daily</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="exampleFormControlTextarea1" class="form-label">Next Issue date</label>
+                                    <input class="form-control form-control-sm" type="text" placeholder="DD/MM/YYYY"
+                                        aria-label=".form-control-sm example" />
+                                </div>
+                                <hr className='mt-2 mb-2' />
 
+                                <label for="exampleFormControlTextarea1" class="form-label">Number of Invoices</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" style={{height:"1em"}} name="nobofInv"
+                                        id="Infinite" checked />
+                                    <label class="form-check-label col-grey" for="Infinite">
+                                        Infinite
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" style={{height:"1em"}} name="nobofInv"
+                                        id="specific" />
+                                    <label class="form-check-label col-grey" for="specific">
+                                        A specific Number
+                                    </label>
+                                </div>
+                                <hr className='mt-2 mb-2' />
+                                <label for="exampleFormControlTextarea1" class="form-label">Delivery Options</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" style={{height:"1em"}} name="delivery"
+                                        id="automatically" checked />
+                                    <label class="form-check-label col-grey" for="automatically">
+                                        Send invoice automatically
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" style={{height:"1em"}} name="delivery"
+                                        id="manually" />
+                                    <label class="form-check-label col-grey" for="manually">
+                                        Create Draft invoice and send manually
+                                    </label>
+                                </div>
+
+                                <hr className='mt-2 mb-2' />
+                                <label for="exampleFormControlTextarea1" class="form-label"><b>Accept Online
+                                        Payment</b></label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+                                    <label class="form-check-label col-grey" for="flexCheckDefault">
+                                        Allow clients to save credits card to make automatic payments.
+                                    </label>
+                                </div>
+                                <hr className='mt-2 mb-2' />
+
+                                <button className="btn btn-primary btn-sm me-1 clickmode" data-hide=".makeRec"
+                                    data-show=".recSchedule">Done</button>
+                                <button className="btn btn-danger btn-sm me-1">Cancel</button>
+                            </div>
+                            <div className="recSchedule dd_none">
+                               
+                                <div
+                                    className="invwhite d-flex justify-content-between align-items-center pe-0 ps-2 pt-2 pb-2">
+                                    <div>
+                                        <p className="m-0 font-14"><b><i className="zmdi zmdi-refresh me-1"></i>
+                                                Recurring Schedule</b></p>
+                                        <p className="col-grey m-0 font-14">Sends an Invoice every Month</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr className='mt-2 mb-2' />
+                            <span className="font-14 col-grey"><b>For the test ltd.</b></span>
+                            <hr className='mt-2 mb-2' />
+                            <div
+                                className="invwhite d-flex justify-content-between align-items-center pe-0 ps-2 pt-2 pb-2">
+                                <div>
+                                    <p className="m-0 font-14"><b><i className="zmdi zmdi-alarm"></i> Set Reminders</b>
+                                    </p>
+                                    <p className="col-grey m-0 font-14">At Customizable Intervals</p>
+                                </div>
+                                <div class="form-check form-switch ms-1">
+                                    <input className="form-check-input" type="checkbox" id="flexSwitchCheckDefault" />
+                                </div>
+                            </div>
+                            <hr className='mt-2 mb-2' />
+                            <div
+                                className="invwhite d-flex justify-content-between align-items-center pe-0 ps-2 pt-2 pb-2">
+                                <div>
+                                    <p className="m-0 font-14"><b><i className="zmdi zmdi-alarm"></i> Charge Late
+                                            Fees</b>
+                                    </p>
+                                    <p className="col-grey m-0 font-14">Percentage or Flat-Rate fees</p>
+                                </div>
+                                <div class="form-check form-switch ms-1">
+                                    <input className="form-check-input" type="checkbox" id="flexSwitchCheckDefault" />
+                                </div>
+                            </div>
+                            <hr className='mt-2 mb-2' />
+                            <div
+                                className="invwhite d-flex justify-content-between align-items-center pe-0 ps-2 pt-2 pb-2">
+                                <div>
+                                    <p className="m-0 font-14"><b><i className="zmdi zmdi-alarm"></i> Currency &
+                                            Language</b></p>
+                                    <p className="col-grey m-0 font-14">GBP, English</p>
+                                </div>
+                                <div class="form-check form-switch ms-1">
+                                    <input className="form-check-input" type="checkbox" id="flexSwitchCheckDefault" />
+                                </div>
+                            </div>
+                            <hr className='mt-2 mb-2' />
                         </div>
                     </div>
-
                 </div>
                 <div className="model-footer">
                     <div className="row m-0">
                         <div className="col-md-12">
                             <div className="text-center">
-                                <button className="btn btn-primary me-1 clickmode" data-show=".contactlist"
+                                <a href="Invoice-print.html" target="_blank" className="btn btn-outline-primary me-1">
+                                    Print</a>
+                                <button type="button" className="btn btn-success me-1"> Submit Payment
+                                </button>
+                                <button type="button" className="btn btn-primary me-2">
+                                    Generate PDF
+                                </button>
+                                <button className="btn btn-primary clickmode me-1" data-show=".contactlist"
                                     data-hide=".md-one, .Lodingbox, .modal-backdrop" type="button"> <i
                                         className="zmdi zmdi-upload"></i> Save </button>
                                 <button className="btn btn-danger" type="button"><i
@@ -516,6 +614,7 @@ return (
         </div>
     </div>
 
+    
 
 
 
