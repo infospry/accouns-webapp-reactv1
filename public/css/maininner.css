@@ -11914,3 +11914,8 @@ font-size:18px; font-weight:300;line-height:38px;}
       font-size: 16px;
       color: #888;
     }
+    .lb .form-label {
+      margin-bottom:4px!important;
+      font-size: 16px;
+      color: #888!important;
+    }
