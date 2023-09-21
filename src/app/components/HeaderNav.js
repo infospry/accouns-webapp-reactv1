@@ -55,6 +55,7 @@ const HeaderNav = () => {
             <li className="nav-item"><Link href="/reports" className="nav-link"><i className='zmdi zmdi-trending-up'></i> Reports</Link></li>
             <li className="nav-item"><Link href="/" className="nav-link"><i className='zmdi zmdi-comments'></i> Quotes</Link></li>            
             <li className="nav-item"><Link href="/team" className="nav-link"><i className='zmdi zmdi-accounts-alt'></i> Team</Link></li>
+            <li className="nav-item"><Link href="/items" className="nav-link" ><i className='zmdi zmdi-folder'></i> Items</Link></li>
             <li className="nav-item"><Link href="/vendor" className="nav-link" ><i className='zmdi zmdi-widgets'></i> Vendor</Link></li>
             <li className="nav-item"><Link href="/settings" className="nav-link"><i className='zmdi zmdi-settings'></i> Settings</Link></li>
           </ul>

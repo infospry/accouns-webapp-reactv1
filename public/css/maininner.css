@@ -7888,9 +7888,7 @@ tr:nth-child(even) th {
     padding: 8px 10px;
     cursor: pointer;
   }
-  .font-13 {
-    font-size: 10px;
-  }
+  
   .booktab .p-3 {
     padding: 0.5rem 0.2rem 0.5rem 1rem !important;
   }
@@ -8069,7 +8067,7 @@ tr:nth-child(even) th {
     cursor: pointer;
   }
   .font-13 {
-    font-size: 13px;
+    font-size: 14px;
   }
   .booktab .p-3 {
     padding: 0.5rem 0.2rem 0.5rem 1rem !important;
@@ -8233,7 +8231,7 @@ tr:nth-child(even) th {
     cursor: pointer;
   }
   .font-13 {
-    font-size: 13px;
+    font-size: 14px;
   }
   .booktab .p-3 {
     padding: 0.5rem 0.2rem 1rem 1rem !important;
@@ -11919,3 +11917,15 @@ font-size:18px; font-weight:300;line-height:38px;}
       font-size: 16px;
       color: #888!important;
     }
+    p {
+      font-size: 16px!important
+    }
+     .abbs .saddow_box {
+      background-color: #fff;
+      position: relative;
+      border-radius: 4px;
+      border: 1px solid #ddd;
+      padding: 15px;
+      box-shadow: 1px 1px 6px 0 rgba(0, 0, 0, 0.12);
+      margin: 10px 0;
+  }
