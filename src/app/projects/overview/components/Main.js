@@ -98,63 +98,16 @@ function Main() {
                                                                     <span id="">25-07-2020 to 25-08-2020</span>
                                                                 </p>
                                                             </div>
-                                                            <div className="col-lg-4">
+                                                            <div className="col-lg-4 text-end">
                                                                 <span className="float-right mt-3">
                                                                     <a href="#" className="btn btn btn-primary m-1"><i
                                                                             className="zmdi zmdi-email-open"></i> <span
                                                                             className="d-none_small">Send Email</span></a>
                                                                     <a href="#" className="btn btn btn-primary m-1"><i className="zmdi zmdi-phone"></i>
-                                                                        <span className="d-none_small"> Call</span></a>
-                                                                    <a href="#" className="btn btn btn-primary m-1"><i
-                                                                            className="zmdi zmdi-favorite-outline"></i> <span
-                                                                            className="d-none_small">Save</span></a>
-
-                                                                    <div className="btn-group m-1">
-                                                                        <button className="btn btn-primary  dropdown-toggle" type="button"
-                                                                            data-toggle="dropdown" aria-haspopup="true"
-                                                                            aria-expanded="true"><i className="zmdi zmdi-alert-polygon"></i>
-                                                                            <span className="d-none_small"> Status</span></button>
-                                                                        <div className="dropdown-menu">
-                                                                            <a className="dropdown-item" href="javascript:void(0);"
-                                                                                data-toggle="modal" data-target="#fristattempt">1st
-                                                                                attempt</a>
-                                                                            <a className="dropdown-item" href="javascript:void(0);"
-                                                                                data-toggle="modal" data-target="#fristattempt"> 2nd
-                                                                                attempt</a>
-                                                                            <a className="dropdown-item" href="javascript:void(0);"
-                                                                                data-toggle="modal" data-target="#fristattempt">3rd
-                                                                                attempt</a>
-                                                                            <a className="dropdown-item" href="javascript:void(0);"
-                                                                                data-toggle="modal" data-target="#fristattempt">4th
-                                                                                attempt</a>
-                                                                            <a className="dropdown-item" href="javascript:void(0);"
-                                                                                data-toggle="modal"
-                                                                                data-target="#fristattempt">Interested</a>
-                                                                            <a className="dropdown-item" href="javascript:void(0);"
-                                                                                data-toggle="modal" data-target="#fristattempt">Very
-                                                                                Interested</a>
-                                                                            <a className="dropdown-item" href="javascript:void(0);"
-                                                                                data-toggle="modal" data-target="#fristattempt">Call
-                                                                                Later</a>
-                                                                            <a className="dropdown-item" href="javascript:void(0);"
-                                                                                data-toggle="modal" data-target="#fristattempt">Not
-                                                                                Interested</a>
-                                                                            <a className="dropdown-item" href="javascript:void(0);"
-                                                                                data-toggle="modal" data-target="#fristattempt">Fake
-                                                                                Lead</a>
-                                                                        </div>
-                                                                    </div>
-                                                                    <a href="#" className="btn btn btn-outline-primary m-1" data-toggle="modal"
-                                                                        data-target="#convert"><i className="zmdi zmdi-swap"></i> <span
-                                                                            className="d-none_small"><b>Convert</b> </span></a>
+                                                                        <span className="d-none_small"> Call</span></a>                                                                   
                                                                 </span>
                                                             </div>
                                                         </div>
-
-
-
-
-
                                                     </div>
                                                 </div>
                                                 <div className="p-3">

@@ -11340,7 +11340,7 @@ right: 0;
 .profile-card__txt {font-size:15px;font-weight:500;color:#444; line-height:24px;}
 .profile-card__txt strong {font-weight:700;}
 .flt__left{float:left;width:70px;}.m__tten{margin-top:-10px!important}.mar_max{max-width:100px!important;margin-right:1.5em!important;}
- 
+ .float-right{float:right}
 .inbox.left .mail-side .nav li li{
   margin-bottom: 0px; padding-left:0px; list-style: none;
 } 
@@ -11947,3 +11947,10 @@ font-size:18px; font-weight:300;line-height:38px;}
   .booktab:hover .floatinglabel, .bdr5:hover .floatinglabel  {background:transparent;background-color:transparent;outline:none;border:1px solid #ddd;box-shadow: 0 0 0 .25rem rgba(13,110,253,.00);}
   .floatinglabel:focus{outline:none;border:1px solid #ddd;background:transparent;background-color:transparent;box-shadow: 0 0 0 .25rem rgba(13,110,253,.00);}
   .booktab:focus .floatinglabel, .bdr5:focus .floatinglabel{background:transparent;background-color:transparent;outline:none;border:1px solid #ddd;box-shadow: 0 0 0 .25rem rgba(13,110,253,.00);}
+  .bsdmd td input[type=text],
+  .bsdmd td select {
+    width: 100%;
+    height: 30px;
+    margin: 0;
+    padding: 2px 8px;
+  }

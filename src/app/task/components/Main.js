@@ -26,11 +26,15 @@ function Main() {
                                 <a class="btnA"> <img src="images/tag-gray.svg" alt="img" /></a>
                                 <a class="btnA font-20 a col-blue clickmode" data-hide=".a" data-show=".b">£</a>
                                 <a class="b btnA font-20  dd_none col-grey clickmode" data-hide=".b" data-show=".a">£</a>
-
                                
-                                    <span class="btnA font-20 col-black tracker"id="timer">00:00:00</span>
-                                    <button class="btn btn-success ps-4 pe-4 tracker"id="start">START</button>                                
                                
+                                    <span class="btnA font-20 col-black tracker" id="timer">00:00:00</span>
+                                    <button class="btn btn-success ps-4 pe-4 tracker clickmode start"id="start"data-show=".stop" data-hide=".start">START</button>                                
+                                   
+                                    <button class="btn btn-danger ps-4 pe-4 dd_none clickmode stop" id="stop" data-show=".start" data-hide=".stop"> Stop </button>
+                                    <button id="pause" class="dd_none">  </button>
+                                    <button id="continue"  class="dd_none"hidden>  </button>
+       
                                 <div class="menual dd_none">
                                     <div class="d-flex">
                                     <input type="text" className="form-control floatinglabel me-2" style={{width:"65px"}} placeholder='14:10' />
@@ -59,13 +63,13 @@ function Main() {
 
                             <div className="row">
                                 <div className="col-12 col-lg-12 mt-3">
-                                    <p class="d-flex justify-content-between align-items-center col-grey mb-2">This Week <b class="col-black">Week Total - 00:00:14</b></p>
+                                    {/* <p class="d-flex justify-content-between align-items-center col-grey mb-2">This Week Total <b class="col-black" id="fulltime"></b></p> */}
                                     <div className="bdr5 mb-0 d-flex justify-content-between align-items-center ps-3  pe-3 pt-2 pb-2 bdRT bgblulgt">
                                         <div className="d-flex justify-content-start align-items-center">
                                             <b>Today</b>                          
                                         </div>
                                         <div className="d-flex justify-content-end align-items-center">
-                                            <b class="col-black me-1 font-16">Total - 00:00:14</b>      
+                                            <b class="col-black me-1 font-16" id="fulltime"> </b>      
                                         </div>
                                     </div> 
                                     <div className="bdr5 mb-0 d-flex justify-content-between align-items-center p-1 bdRT">
@@ -164,7 +168,7 @@ function Main() {
 
                         </div>
                     </div>
-                    <p id="fulltime" class="fulltime"> </p>
+                   
                 </div>
             </section>
 

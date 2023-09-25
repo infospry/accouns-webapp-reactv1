@@ -27,6 +27,12 @@ $(document).on('click', ".clickmode", function() {
     $(this).addClass('active');
  
 });
+
+
+
+
+
+
 // Select all elements with the class "toggle-password" and attach a click event listener to them
 document.querySelectorAll('.toggle-password').forEach(function(element) {
     element.addEventListener('click', function() {
