@@ -18,6 +18,15 @@ $(document).on('click', ".clickmode", function() {
       $(this).addClass('active');
    
   });
+
+  $(document).on('click', ".nav__link", function() {
+    // Remove 'active' class from all links
+    $('.nav__link').removeClass('active');
+
+    // Add 'active' class to the clicked link
+    $(this).addClass('active');
+ 
+});
 // Select all elements with the class "toggle-password" and attach a click event listener to them
 document.querySelectorAll('.toggle-password').forEach(function(element) {
     element.addEventListener('click', function() {

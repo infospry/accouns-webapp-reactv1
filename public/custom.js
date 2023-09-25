@@ -14,6 +14,8 @@ function showhide() {
       document.getElementById('authenticate_div').style.display = 'block';
     }
 };
+
+
    
   $('.clickmode').click(function() {
     var evt_hide = $(this).data('hide');

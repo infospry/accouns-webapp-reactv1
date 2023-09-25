@@ -1,15 +1,16 @@
 "use client"
 import React from 'react';
 import Link from "next/link";
-
+import Image from 'next/image';
+import logo from '../images/logo.png';
 const HeaderNav = () => {
-
+ 
   return (
 
     <>
 
       <nav className="navbar navbar-expand-xl mb-0 navbar-dark fixed-top">
-        <Link className="navbar-brand ms-2 me-3" href="/dashboard"><img src="images/logo.png" alt="logo" /></Link>
+        <Link className="navbar-brand ms-2 me-3" href="/dashboard"><Image src={logo} alt="logo" style={{height:"30px"}} /></Link>
         <div className="d_display">
           <div className="dropdown nav-item displinl ">
             <a href="javascript:void(0);" className="nav-link text-right dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -51,7 +52,16 @@ const HeaderNav = () => {
             <li className="nav-item"><Link href="/clients" className="nav-link"><i className='zmdi zmdi-graduation-cap'></i> Clients</Link></li>
             <li className="nav-item"><Link href="/expenses" className="nav-link"><i className='zmdi zmdi-pizza'></i> Expences</Link></li>            
             <li className="nav-item"><Link href="/invoices" className="nav-link"><i className='zmdi zmdi-receipt'></i> Invoices</Link></li>
-            <li className="nav-item"><Link href="/" className="nav-link"><i className='zmdi zmdi-folder'></i> Projects</Link></li>
+            <li className="nav-item dropdown">
+              <a className="nav-link dropdown-toggle" href="javascript:void(0);" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i className='zmdi zmdi-folder'></i> Projects
+              </a>
+              <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><Link className="dropdown-item" href="/task">Tasks</Link></li>
+                <li><Link className="dropdown-item" href="/projects">Projects</Link></li>
+              </ul>
+            </li>
+           
             <li className="nav-item"><Link href="/reports" className="nav-link"><i className='zmdi zmdi-trending-up'></i> Reports</Link></li>
             <li className="nav-item"><Link href="/" className="nav-link"><i className='zmdi zmdi-comments'></i> Quotes</Link></li>            
             <li className="nav-item"><Link href="/team" className="nav-link"><i className='zmdi zmdi-accounts-alt'></i> Team</Link></li>
