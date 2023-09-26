@@ -18,8 +18,7 @@ const HeaderNav = () => {
               <span className="EmployeeAvatar">A</span></a>
             <div className="dropdown-menu p-0 bg-gradient-secondary">             
               <div className="user-header">
-                <img className="img-thumbnail rounded-circle profileImgBig" alt="User Image"
-                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ20gNp9VRFxCE1eMrvYwwIxQp_0zOdxL8BSxC5-igPkuZd0iSbxA&s" />
+                <img className="img-thumbnail rounded-circle profileImgBig" alt="User Image"src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ20gNp9VRFxCE1eMrvYwwIxQp_0zOdxL8BSxC5-igPkuZd0iSbxA&s" />
                 <p id="header_spanProfilename2" className="profileName">Andrew Garfield</p>
                 <small>
                   <p id="header_spanType">Admin</p>
@@ -67,6 +66,15 @@ const HeaderNav = () => {
             <li className="nav-item"><Link href="/team" className="nav-link"><i className='zmdi zmdi-accounts-alt'></i> Team</Link></li>
             <li className="nav-item"><Link href="/items" className="nav-link" ><i className='zmdi zmdi-folder'></i> Items</Link></li>
             <li className="nav-item"><Link href="/vendor" className="nav-link" ><i className='zmdi zmdi-widgets'></i> Vendor</Link></li>
+            <li className="nav-item dropdown">
+              <a className="nav-link dropdown-toggle" href="javascript:void(0);" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i className='zmdi zmdi-account-alt'></i> Employee
+              </a>
+              <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><Link className="dropdown-item" href="/employee/dashboard">Employee Dashboard</Link></li>
+                <li><Link className="dropdown-item" href="/employee">Employee</Link></li>
+              </ul>
+            </li>
             <li className="nav-item"><Link href="/settings" className="nav-link"><i className='zmdi zmdi-settings'></i> Settings</Link></li>
           </ul>
           <ul className="nav navbar-nav floatmargint lg_none">

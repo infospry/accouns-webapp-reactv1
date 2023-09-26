@@ -18,7 +18,7 @@ function Main() {
                                 <h2 className="font-bold mb-0"><i class="zmdi zmdi-file-text me-1"></i> Files </h2>
                             </div>
                            <div className="pe-2">
-                            <a href="javascript:void(0);" className="btn btn-success" data-toggle="modal" data-target="#add"><i className="zmdi zmdi-plus-circle-o-duplicate"></i>  Create New File</a>
+                            <a href="javascript:void(0);" className="btn btn-success" data-toggle="modal" data-target="#addpage"><i className="zmdi zmdi-plus-circle-o-duplicate"></i>  Create New File</a>
                                   <div className="btn-group ms-1">
                                     <button className="btn btn-outline-primary  dropdown-toggle font-w" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"> More Actions</button>
                                     <div className="dropdown-menu">
@@ -455,7 +455,70 @@ function Main() {
                    
                 </div>
             </section>
-
+            <div class="modal right-quater md-one" id="addpage" tabindex="-1" role="dialog" >
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-blu-lite fixed-top">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel2">
+                        <b> <i class="zmdi zmdi-plus-circle-o-duplicate"></i> Add Edit New Files </b>
+                    </h4>
+                </div>
+                <div class="modal-body pr-0 pl-0 pb-0 contbody">  
+                    <div class="row m-0">
+                        <div class="col-md-12 Uploadimg mt-3">
+                            
+                            <div class="group_lead mt-3">
+                                <input type="text" id="" class="input_text" required="required"/>
+                                <label for="" class="lablefilled">Name</label>                                           
+                            </div>
+                            <form method="post" action="#" id="#">                      
+                                <div class="form-group files mt-3">
+                                <p><b>Upload Your File/Image </b></p> 
+                                <input type="file" class="form-control mt-3" multiple=""/>
+                                </div>
+                                <p class="col-grey font- mt-2">Select Media(jpg, png, pdf allowed - upto 6 Mb)</p> 
+                            </form>  
+                           
+                            <div class="group_lead">
+                                <input type="url" id="" class="input_text" required="required"/>
+                                <label for="" class="lablefilled">Modified On [Date]</label>                                           
+                            </div>
+                            <div class="group_lead">
+                                <select type="text" id="unit" class="custom-select select_f" required="required">  
+                                    <option selected="">Folder</option>                                         
+                                    <option value="cm" class="option">Policy</option>                                                                                       
+                                </select> 
+                            </div>
+                            <div class="group_lead">
+                                <select type="text" id="unit" class="custom-select select_f" required="required">  
+                                    <option selected="">File Type</option>                                         
+                                    <option value="cm" class="option">Jpeg</option>                                                                                       
+                                </select> 
+                            </div>
+                            <div class="group_lead">
+                                <textarea required="required" id="Description"></textarea>
+                                <label class="lablefilled" for="Description">Description</label>                                   
+                            </div>
+                                          
+                        </div>                                                        
+                    </div>             
+                </div>
+                <div class="model-footer">
+                    <div class="row m-0">
+                        <div class="col-md-12">                          
+                            <div class="text-center">
+                                <button class="btn btn-primary btn-lg clickmode btn-lg" data-show=".contactlist, .showthing, .nxtprv" data-hide=".md-one, .hdbox, .modal-backdrop" type="button"> <i class="zmdi zmdi-plus-circle-o-duplicate"></i> Add </button>
+                                <button class="btn btn-danger btn-lg ms-1" type="button"><i class="zmdi zmdi-rotate-left"></i> Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
           
         </>
     )

@@ -270,7 +270,7 @@ function Main() {
             </section>
 
             <div class="modal bsdmd" id="addpage" tabindex="-1" role="dialog" aria-labelledby="shortModal">
-                <div class="modal-dialog ui-draggable ui-draggable-handle" role="document">
+                <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header bg-blu-lite">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">

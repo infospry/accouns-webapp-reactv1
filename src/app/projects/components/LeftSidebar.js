@@ -9,6 +9,7 @@ function LeftSidebar() {
         <li class="nav__link"><Link href="/projects/users"><i className="zmdi zmdi-accounts-list-alt"></i><br/> Users </Link></li>
         <li class="nav__link"><Link href="/projects/accounts"><i className="zmdi zmdi-accounts"></i><br/> Accounts </Link> </li>
         <li class="nav__link"><Link href="/projects/files"><i className="zmdi zmdi-file-text"></i><br/> Files </Link></li>
+        <li class="nav__link"><Link href="/projects/settings"><i className="zmdi zmdi-settings"></i><br/> Settings </Link></li>
     </ul>
   )
 }

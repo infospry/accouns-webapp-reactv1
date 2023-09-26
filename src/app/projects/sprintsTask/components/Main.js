@@ -5,7 +5,12 @@ import Image from 'next/image';
 import Link from "next/link";
 import LeftSidebar from '../../components/LeftSidebar';
 function Main() {
-   
+    const [isDivVisible, setIsDivVisible] = useState(false);
+
+    const toggleDiv = () => {
+      setIsDivVisible(!isDivVisible);
+    };
+
 
 
     return (
@@ -15,7 +20,7 @@ function Main() {
                     <div className="scrolfx">
                         <div className="booktab d-flex justify-content-between align-items-center bdrb">
                             <div className="p-2">
-                                <h2 className="font-bold mb-0"><i class="zmdi zmdi-widgets me-1"></i> Projects Overview </h2>
+                                <h2 className="font-bold mb-0"><i class="zmdi zmdi-copy me-1"></i> Sprints And Task</h2>
                             </div>
                             <div className="pe-2">
                                 <div className="btn-group ms-1">
@@ -49,244 +54,84 @@ function Main() {
                                     </div>
                                     <div className="inbox right">
                                         <div className="row">
-                                            <div className="col-12 col-sm-12 col-md-12 col-lg-12 bg-white">
-                                                <div className="media border p-4 mb-2 mt-2">
-                                                    <div className="media-body ptag">
-                                                        <div className="row">
+                                            <div className="col-12 col-sm-12 col-md-12 col-lg-12">
+                                            <div className="bdr5 mb-0 d-flex justify-content-between align-items-center ps-3  pe-3 pt-2 pb-2 bdRT bgblulgt">
+                                        <div className="d-flex justify-content-start align-items-center">
+                                            <b>Today</b>                          
+                                        </div>
+                                        <div className="d-flex justify-content-end align-items-center">
+                                            <b class="col-black me-1 font-16" id="fulltime"> </b>      
+                                        </div>
+                                    </div> 
+                                
+                                    <div className="bdr5 mb-0 d-flex justify-content-between align-items-center p-1 bdRT">
+                                        <div className="d-flex justify-content-start align-items-center">
+                                            <button class="badge bg-primary me-1"onClick={toggleDiv}>2</button>
+                                            <input type="text" className="form-control floatinglabel me-2" style={{width:"215px"}} placeholder='Task A' />
+                                            <a class="btnA col-blue fwN"><i className="zmdi zmdi-plus-circle me-1"></i> React </a>                            
+                                        </div>
+                                        <div className="d-flex justify-content-end align-items-center">                                
+                                            <a class="btnA"> <img src="images/tag-gray.svg" alt="img" /></a>
+                                            <a class="btnA font-20 a col-blue clickmode" data-hide=".a" data-show=".b">£</a>
+                                            <a class="b btnA font-20  dd_none col-grey clickmode" data-hide=".b" data-show=".a">£</a>
+                                            <div class="d-flex">
+                                                <input type="text" className="form-control floatinglabel me-2" style={{width:"65px"}} placeholder='14:10' />
+                                                <span class="btnA ps-0 pe-1" style={{borderRight:"0px solid #fff"}}> -</span>
+                                                <input type="text" className="form-control floatinglabel me-0"style={{width:"65px"}} placeholder='14:11' />
+                                                <a class="btnA font-20"style={{borderLeft:"1px solid #eee"}}>
+                                                <img src="images/calendar-gray.svg" alt="img" /></a>
+                                                <span class="btnA font-16 col-black">00:00:00</span>
+                                                <a class="btnA"><img src="images/play.svg" alt="img" /></a>
+                                                <a class="btnA"style={{borderRight:"0px solid #eee"}}><img src="images/menu-dots-vertical.svg" alt="img" /></a>
+                                            </div>
+                                        </div>
+                                    </div> 
+                                    {isDivVisible && <div>
+                                        
+                                        <div className="bdr5 mb-0 d-flex justify-content-between align-items-center p-1 bdRT" style={{background:"#f9f9f9"}}>
+                                        <div className="d-flex justify-content-start align-items-center">
+                                            <input type="text" className="form-control floatinglabel me-2" style={{width:"240px"}} placeholder='Task a.2' />
+                                            <a class="btnA col-blue fwN"><i className="zmdi zmdi-plus-circle me-1"></i> React </a>                            
+                                        </div>
+                                        <div className="d-flex justify-content-end align-items-center">                                
+                                            <a class="btnA"> <img src="images/tag-gray.svg" alt="img" /></a>
+                                            <a class="btnA font-20 a col-blue clickmode" data-hide=".a" data-show=".b">£</a>
+                                            <a class="b btnA font-20  dd_none col-grey clickmode" data-hide=".b" data-show=".a">£</a>
+                                            <div class="d-flex">
+                                                <input type="text" className="form-control floatinglabel me-2" style={{width:"65px"}} placeholder='14:10' />
+                                                <span class="btnA ps-0 pe-1" style={{borderRight:"0px solid #fff"}}> -</span>
+                                                <input type="text" className="form-control floatinglabel me-0"style={{width:"65px"}} placeholder='14:11' />
+                                                <a class="btnA font-20"style={{borderLeft:"1px solid #eee"}}>
+                                                <img src="images/calendar-gray.svg" alt="img" /></a>
+                                                <span class="btnA font-16 col-black">00:00:00</span>
+                                                <a class="btnA"><img src="images/play.svg" alt="img" /></a>
+                                                <a class="btnA"style={{borderRight:"0px solid #eee"}}><img src="images/menu-dots-vertical.svg" alt="img" /></a>
+                                            </div>
+                                        </div>
+                                    </div>  
+                                    <div className="bdr5 mb-0 d-flex justify-content-between align-items-center p-1 bdRT" style={{background:"#f9f9f9"}}>
+                                        <div className="d-flex justify-content-start align-items-center">
+                                            <input type="text" className="form-control floatinglabel me-2" style={{width:"240px"}} placeholder='Task a.1' />
+                                            <a class="btnA col-blue fwN"><i className="zmdi zmdi-plus-circle me-1"></i> React</a>                            
+                                        </div>
+                                        <div className="d-flex justify-content-end align-items-center">                                
+                                            <a class="btnA"> <img src="images/tag-gray.svg" alt="img" /></a>
+                                            <a class="btnA font-20 a col-blue clickmode" data-hide=".a" data-show=".b">£</a>
+                                            <a class="b btnA font-20  dd_none col-grey clickmode" data-hide=".b" data-show=".a">£</a>
+                                            <div class="d-flex">
+                                                <input type="text" className="form-control floatinglabel me-2" style={{width:"65px"}} placeholder='14:10' />
+                                                <span class="btnA ps-0 pe-1" style={{borderRight:"0px solid #fff"}}> -</span>
+                                                <input type="text" className="form-control floatinglabel me-0"style={{width:"65px"}} placeholder='14:11' />
+                                                <a class="btnA font-20"style={{borderLeft:"1px solid #eee"}}>
+                                                <img src="images/calendar-gray.svg" alt="img" /></a>
+                                                <span class="btnA font-16 col-black">00:00:00</span>
+                                                <a class="btnA"><img src="images/play.svg" alt="img" /></a>
+                                                <a class="btnA"style={{borderRight:"0px solid #eee"}}><img src="images/menu-dots-vertical.svg" alt="img" /></a>
+                                            </div>
+                                        </div>
+                                    </div>  
+                                        </div>}
 
-                                                            <div className="col-lg-4">
-                                                                <div className="avatar-upload float-left mar_max">
-                                                                    <div className="avatar-preview">
-                                                                        <div id="imagePreview"
-                                                                            style={{backgroundImage: "url(images/user.png)"}}></div>
-                                                                    </div>
-                                                                </div>
-                                                                <div className="float-left">
-                                                                    <h5> Andrew Filntuff
-                                                                    </h5>
-                                                                    <p className="mb-1">
-                                                                        <span className="wd-12px">Project Name</span>
-                                                                        <span>:</span>
-                                                                        <span id=""> Home Care Services</span>
-                                                                    </p>
-
-                                                                    <p className="mb-1">
-                                                                        <span className="wd-12px">Project Group </span>
-                                                                        <span>:</span>
-                                                                        <span id="">Ungrouped Projects</span>
-                                                                    </p>
-                                                                    <p className="mb-1">
-                                                                        <span className="wd-12px">Team Role</span>
-                                                                        <span>:</span>
-                                                                        <span id="">Admin</span>
-                                                                    </p>
-                                                                </div>
-                                                            </div>
-                                                            <div className="col-lg-4">
-                                                                <p className="mb-1 mt-3">
-                                                                    <span className="wd-12px"> Estimate Value</span> <span>:</span>
-                                                                    <span><b>$25 - 35/hrs</b></span>
-                                                                </p>
-                                                                <p className="mb-1">
-                                                                    <span className="wd-12px"> Priority </span> <span>:</span>
-                                                                    <span className="">--- </span>
-                                                                </p>
-
-                                                                <p className="mb-1">
-                                                                    <span className="wd-12px">Contract Dates</span>
-                                                                    <span>:</span>
-                                                                    <span id="">25-07-2020 to 25-08-2020</span>
-                                                                </p>
-                                                            </div>
-                                                            <div className="col-lg-4">
-                                                                <span className="float-right mt-3">
-                                                                    <a href="#" className="btn btn btn-primary m-1"><i
-                                                                            className="zmdi zmdi-email-open"></i> <span
-                                                                            className="d-none_small">Send Email</span></a>
-                                                                    <a href="#" className="btn btn btn-primary m-1"><i className="zmdi zmdi-phone"></i>
-                                                                        <span className="d-none_small"> Call</span></a>
-                                                                    <a href="#" className="btn btn btn-primary m-1"><i
-                                                                            className="zmdi zmdi-favorite-outline"></i> <span
-                                                                            className="d-none_small">Save</span></a>
-
-                                                                    <div className="btn-group m-1">
-                                                                        <button className="btn btn-primary  dropdown-toggle" type="button"
-                                                                            data-toggle="dropdown" aria-haspopup="true"
-                                                                            aria-expanded="true"><i className="zmdi zmdi-alert-polygon"></i>
-                                                                            <span className="d-none_small"> Status</span></button>
-                                                                        <div className="dropdown-menu">
-                                                                            <a className="dropdown-item" href="javascript:void(0);"
-                                                                                data-toggle="modal" data-target="#fristattempt">1st
-                                                                                attempt</a>
-                                                                            <a className="dropdown-item" href="javascript:void(0);"
-                                                                                data-toggle="modal" data-target="#fristattempt"> 2nd
-                                                                                attempt</a>
-                                                                            <a className="dropdown-item" href="javascript:void(0);"
-                                                                                data-toggle="modal" data-target="#fristattempt">3rd
-                                                                                attempt</a>
-                                                                            <a className="dropdown-item" href="javascript:void(0);"
-                                                                                data-toggle="modal" data-target="#fristattempt">4th
-                                                                                attempt</a>
-                                                                            <a className="dropdown-item" href="javascript:void(0);"
-                                                                                data-toggle="modal"
-                                                                                data-target="#fristattempt">Interested</a>
-                                                                            <a className="dropdown-item" href="javascript:void(0);"
-                                                                                data-toggle="modal" data-target="#fristattempt">Very
-                                                                                Interested</a>
-                                                                            <a className="dropdown-item" href="javascript:void(0);"
-                                                                                data-toggle="modal" data-target="#fristattempt">Call
-                                                                                Later</a>
-                                                                            <a className="dropdown-item" href="javascript:void(0);"
-                                                                                data-toggle="modal" data-target="#fristattempt">Not
-                                                                                Interested</a>
-                                                                            <a className="dropdown-item" href="javascript:void(0);"
-                                                                                data-toggle="modal" data-target="#fristattempt">Fake
-                                                                                Lead</a>
-                                                                        </div>
-                                                                    </div>
-                                                                    <a href="#" className="btn btn btn-outline-primary m-1" data-toggle="modal"
-                                                                        data-target="#convert"><i className="zmdi zmdi-swap"></i> <span
-                                                                            className="d-none_small"><b>Convert</b> </span></a>
-                                                                </span>
-                                                            </div>
-                                                        </div>
-
-
-
-
-
-                                                    </div>
-                                                </div>
-                                                <div className="p-3">
-                                                    <div className="alert alert-danger mb-0" role="alert">
-                                                        <i className="zmdi zmdi-info"></i> Type the name of your service to start searching out
-                                                        thousands of available services.
-                                                    </div>
-                                                </div>
-                                                <div className="row">
-                                                    <div className="col-md-12 col-sm-12">
-                                                        <div className="bxsaddow wd100">
-                                                            <div className="bdr1 h4show taskboard">
-                                                                <div className="dd">
-                                                                    <ol className="dd-list row" Style={{display:"flex"}}>
-
-                                                                        <li className="dd-item col-lg-12 mt-2 mb-0">
-                                                                            <div
-                                                                                className="dd-handle d-flex justify-content-between align-items-center pt-2 pb-2">
-                                                                                <div className="h6 mb-2 mt-2 text-blue">
-
-                                                                                    <i className="zmdi zmdi-folder"></i> <b>Project Sprint /
-                                                                                        Milestones</b>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div className="dd-content p-1">
-                                                                                <div className="table-responsive">
-                                                                                    <table className="table table-bordered">
-                                                                                        <thead>
-                                                                                            <tr>
-                                                                                                <th className="pt-2 pb-2">#</th>
-                                                                                                <th>Name</th>
-                                                                                                <th>Start Date</th>
-                                                                                                <th>End Date</th>
-                                                                                                <th>Description</th>
-                                                                                                <th>Files</th>
-                                                                                            </tr>
-                                                                                        </thead>
-                                                                                        <tbody>
-                                                                                            <tr>
-                                                                                                <td className="pt-3 pb-3">1</td>
-                                                                                                <td className="col-black bold">Home Care Service
-                                                                                                </td>
-                                                                                                <td className="col-grey">May 25, 2021</td>
-                                                                                                <td className="col-grey">June/25/2021</td>
-                                                                                                <td>Sorry. We’re having trouble getting your
-                                                                                                    pages back</td>
-                                                                                                <td className="col-blue"><i
-                                                                                                        className="zmdi zmdi-collection-pdf mr-1"></i>usd.pdf
-                                                                                                </td>
-                                                                                            </tr>
-                                                                                            <tr>
-                                                                                                <td className="pt-3 pb-3">2</td>
-                                                                                                <td className="col-black bold">Label text Here
-                                                                                                </td>
-                                                                                                <td className="col-grey">May 25, 2021</td>
-                                                                                                <td className="col-grey">June/25/2021</td>
-                                                                                                <td>Sorry. We’re having trouble getting your
-                                                                                                    pages back</td>
-                                                                                                <td className="col-blue"><i
-                                                                                                        className="zmdi zmdi-collection-pdf mr-1"></i>usd.pdf
-                                                                                                </td>
-                                                                                            </tr>
-                                                                                            <tr>
-                                                                                                <td className="pt-3 pb-3">3</td>
-                                                                                                <td className="col-black bold">Rroublehalyna
-                                                                                                    Nadia</td>
-                                                                                                <td className="col-grey">May 25, 2021</td>
-                                                                                                <td className="col-grey">June/25/2021</td>
-                                                                                                <td>Sorry. We’re having trouble getting your
-                                                                                                    pages back</td>
-                                                                                                <td className="col-blue"><i
-                                                                                                        className="zmdi zmdi-collection-pdf mr-1"></i>usd.pdf
-                                                                                                </td>
-                                                                                            </tr>
-                                                                                            <tr>
-                                                                                                <td className="pt-3 pb-3">4</td>
-                                                                                                <td className="col-black bold">Halyna Nadia</td>
-                                                                                                <td className="col-grey">May 25, 2021</td>
-                                                                                                <td className="col-grey">June/25/2021</td>
-                                                                                                <td>Sorry. We’re having trouble getting your
-                                                                                                    pages back</td>
-                                                                                                <td className="col-blue"><i
-                                                                                                        className="zmdi zmdi-collection-pdf mr-1"></i>usd.pdf
-                                                                                                </td>
-                                                                                            </tr>
-                                                                                        </tbody>
-                                                                                    </table>
-                                                                                </div>
-                                                                            </div>
-
-                                                                        </li>
-                                                                        <li className="dd-item col-lg-12 mt-2 mb-0">
-                                                                            <div
-                                                                                className="dd-handle d-flex justify-content-between align-items-center pt-2 pb-2">
-                                                                                <div className="h6 mb-2 mt-2 text-blue">
-
-                                                                                    <i className="zmdi zmdi-folder"></i> <b>Project backlog
-                                                                                        items</b>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div className="dd-content p-1">
-                                                                                <div className="table-responsive">
-                                                                                    <table className="table table-bordered">
-                                                                                        <thead>
-                                                                                            <tr>
-                                                                                                <th className="pt-2 pb-2">#</th>
-                                                                                                <th>Milestone</th>
-                                                                                                <th>User</th>
-                                                                                                <th>Due Date</th>
-
-                                                                                            </tr>
-                                                                                        </thead>
-                                                                                        <tbody>
-                                                                                            <tr>
-                                                                                                <td className="pt-3 pb-3">1</td>
-                                                                                                <td className="col-black ">-</td>
-                                                                                                <td className="col-black bold">Andrew Fillintuff
-                                                                                                </td>
-                                                                                                <td className="col-grey">June/25/2021</td>
-                                                                                            </tr>
-                                                                                        </tbody>
-                                                                                    </table>
-                                                                                </div>
-                                                                            </div>
-
-                                                                        </li>
-                                                                    </ol>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>

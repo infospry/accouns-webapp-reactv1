@@ -18,7 +18,7 @@ function Main() {
                                 <h2 className="font-bold mb-0"><i class="zmdi zmdi-accounts me-1"></i> Accounts </h2>
                             </div>
                             <div className="pe-2">
-                            <a href="javascript:void(0);" className="btn btn-success" data-toggle="modal" data-target="#add"><i className="zmdi zmdi-plus-circle-o-duplicate"></i>  Create Account</a>
+                            <a href="javascript:void(0);" className="btn btn-success"  data-toggle="modal" data-target="#addpage"><i className="zmdi zmdi-plus-circle-o-duplicate"></i>  Create Account</a>
                                 <div className="btn-group ms-1">
                                     <button className="btn btn-outline-primary  dropdown-toggle font-w" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"> More Actions</button>
                                     <div className="dropdown-menu">
@@ -108,7 +108,82 @@ function Main() {
                    
                 </div>
             </section>
-
+            <div class="modal right_one_thrd md-one" id="addpage" tabindex="-1" role="dialog" aria-labelledby="shortModal">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header bg-blu-lite">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                            <h4 class="modal-title" id="myModalLabel2">
+                                <b> <i class="zmdi zmdi-plus-circle-o-duplicate"></i> Add Accounts</b>
+                            </h4>
+                        </div>
+                        <div class="modal-body pe-0 ps-0 pb-0 contbody">
+                            <div class="pagediv p-2 pt-0" style={{minHeight:"450px"}}>
+                                <table class="table table-bordered" id="editableTable">
+                                    <thead>
+                                        <tr>
+                                            <th style={{width:"40px"}}>1</th>
+                                            <th>Account Name</th>
+                                            <th><select class="form-control">
+                                                    <option>Category</option>
+                                                </select> </th>
+                                            <th>login</th>
+                                            <th>password </th>
+                                            <th>Description</th>
+                                            <th> <button class="btn btn-primary float-right add-row"><i
+                                                        class="zmdi zmdi-plus me-2"></i>Add Row</button></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td style={{width:"40px"}}><input type='text' style={{width:"40px"}}/></td>
+                                            <td><input type='url'/></td>
+                                            <td><select name=''>
+                                                    <option>Category</option>
+                                                </select></td>
+                                            <td><input type='email'/></td>
+                                            <td><input type='Password'/></td>
+                                            <td><input type='text'/></td>
+                                            <td style={{width:"96px"}}><a class='btn btn-sm btn-outline-primary edit'
+                                                    title='Edit'><i class='zmdi zmdi-save'></i></a> <a
+                                                    class='btn btn-sm btn-danger' title='Delete'><i
+                                                        class='zmdi zmdi-delete'></i></a></td>
+                                        </tr>
+                                        <tr>
+                                            <td style={{width:"40px"}}>1</td>
+                                            <td>https://www.google.com/</td>
+                                            <td>-</td>
+                                            <td>someone**@g**.com</td>
+                                            <td>******</td>
+                                            <td>Sorry. We’re having trouble</td>
+                                            <td style={{width:"40px"}}>
+                                                <a class="btn btn-sm btn-outline-primary edit" title="Edit"><i
+                                                        class="zmdi zmdi-edit"></i></a>
+                                                <a class="btn btn-sm btn-danger" title="Delete"><i
+                                                        class="zmdi zmdi-delete"></i></a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="model-footer">
+                            <div class="row m-0">
+                                <div class="col-md-12">
+                                    <div class="text-center">
+                                        <button class="btn btn-primary btn-lg clickmode" data-hide=".md-one, .modal-backdrop"
+                                            type="button"> <i class="zmdi zmdi-upload"></i> Save </button>
+                                        <button class="btn btn-danger btn-lg" type="button"><i class="zmdi zmdi-rotate-left"></i>
+                                            Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
           
         </>
     )
