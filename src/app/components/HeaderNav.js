@@ -49,8 +49,7 @@ const HeaderNav = () => {
           <ul className="navbar-nav m-auto">
             <li className="nav-item"><Link className="nav-link" href="/dashboard"> <i className='zmdi zmdi-desktop-windows'></i> Dashboard</Link></li>
             <li className="nav-item"><Link href="/clients" className="nav-link"><i className='zmdi zmdi-graduation-cap'></i> Clients</Link></li>
-            <li className="nav-item"><Link href="/expenses" className="nav-link"><i className='zmdi zmdi-pizza'></i> Expences</Link></li>            
-            <li className="nav-item"><Link href="/invoices" className="nav-link"><i className='zmdi zmdi-receipt'></i> Invoices</Link></li>
+            
             <li className="nav-item dropdown">
               <a className="nav-link dropdown-toggle" href="javascript:void(0);" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <i className='zmdi zmdi-folder'></i> Projects
@@ -60,15 +59,25 @@ const HeaderNav = () => {
                 <li><Link className="dropdown-item" href="/projects">Projects</Link></li>
               </ul>
             </li>
-           
-            <li className="nav-item"><Link href="/reports" className="nav-link"><i className='zmdi zmdi-trending-up'></i> Reports</Link></li>
-            <li className="nav-item"><Link href="/" className="nav-link"><i className='zmdi zmdi-comments'></i> Quotes</Link></li>            
-            <li className="nav-item"><Link href="/team" className="nav-link"><i className='zmdi zmdi-accounts-alt'></i> Team</Link></li>
-            <li className="nav-item"><Link href="/items" className="nav-link" ><i className='zmdi zmdi-folder'></i> Items</Link></li>
-            <li className="nav-item"><Link href="/vendor" className="nav-link" ><i className='zmdi zmdi-widgets'></i> Vendor</Link></li>
             <li className="nav-item dropdown">
               <a className="nav-link dropdown-toggle" href="javascript:void(0);" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <i className='zmdi zmdi-account-alt'></i> Employee
+              <i className='zmdi zmdi-receipt'></i> Sales
+              </a>
+              <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><Link href="/items" className="dropdown-item" > Items</Link></li>
+              <li><Link href="/expenses" className="dropdown-item" > Expences</Link></li>
+              <li><Link href="/invoices" className="dropdown-item" > Invoices</Link></li>
+              <li><Link href="/vendor" className="dropdown-item" > Quotes</Link></li>
+              <li><Link href="/team" className="dropdown-item" > Team</Link></li>
+                <li><Link href="/vendor" className="dropdown-item" > Vendor</Link></li>
+              </ul>
+            </li>
+            <li className="nav-item"><Link href="/reports" className="nav-link"><i className='zmdi zmdi-trending-up'></i> Reports</Link></li>
+            
+            <li className="nav-item"></li>
+            <li className="nav-item dropdown">
+              <a className="nav-link dropdown-toggle" href="javascript:void(0);" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i className='zmdi zmdi-accounts'></i> Employee
               </a>
               <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                 <li><Link className="dropdown-item" href="/employee/dashboard">Employee Dashboard</Link></li>
