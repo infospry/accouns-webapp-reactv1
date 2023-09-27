@@ -28,9 +28,34 @@ $(document).on('click', ".clickmode", function() {
  
 });
 
+$(".dropdown-toggle").click(function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    $(this).closest(".search-dropdown").toggleClass("open");
+  });
+  
+  $(".dropdown-menu > li > a").click(function (e) {
+    e.preventDefault();
+    var clicked = $(this);
+    clicked
+      .closest(".dropdown-menu")
+      .find(".menu-active")
+      .removeClass("menu-active");
+    clicked.parent("li").addClass("menu-active");
+    clicked
+      .closest(".search-dropdown")
+      .find(".toggle-active")
+      .html(clicked.html());
+  });
+  
+  $(document).click(function () {
+    $(".search-dropdown.open").removeClass("open");
+  });
+  
 
-
-
+  $(".dropdown-menu a ").click(function(){ 
+    $(this).parents(".input-group-btn").find('.btn').text($(this).text()); 
+  });
 
 
 // Select all elements with the class "toggle-password" and attach a click event listener to them

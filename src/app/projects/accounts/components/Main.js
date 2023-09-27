@@ -120,7 +120,7 @@ function Main() {
                             </h4>
                         </div>
                         <div class="modal-body pe-0 ps-0 pb-0 contbody">
-                            <div class="pagediv p-2 pt-0" style={{minHeight:"450px"}}>
+                            <div class="pagediv p-0 pt-0" style={{minHeight:"450px"}}>
                                 <table class="table table-bordered" id="editableTable">
                                     <thead>
                                         <tr>
@@ -138,7 +138,7 @@ function Main() {
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td style={{width:"40px"}}><input type='text' style={{width:"40px"}}/></td>
+                                            <td style={{width:"24px"}}><input type='text' style={{width:"24px"}}/></td>
                                             <td><input type='url'/></td>
                                             <td><select name=''>
                                                     <option>Category</option>
@@ -152,7 +152,7 @@ function Main() {
                                                         class='zmdi zmdi-delete'></i></a></td>
                                         </tr>
                                         <tr>
-                                            <td style={{width:"40px"}}>1</td>
+                                            <td style={{width:"24px"}}>1</td>
                                             <td>https://www.google.com/</td>
                                             <td>-</td>
                                             <td>someone**@g**.com</td>
@@ -160,8 +160,7 @@ function Main() {
                                             <td>Sorry. We’re having trouble</td>
                                             <td style={{width:"40px"}}>
                                                 <a class="btn btn-sm btn-outline-primary edit" title="Edit"><i
-                                                        class="zmdi zmdi-edit"></i></a>
-                                                <a class="btn btn-sm btn-danger" title="Delete"><i
+                                                        class="zmdi zmdi-edit"></i></a> <a class="btn btn-sm btn-danger" title="Delete"><i
                                                         class="zmdi zmdi-delete"></i></a>
                                             </td>
                                         </tr>

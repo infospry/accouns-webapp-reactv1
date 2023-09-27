@@ -19,11 +19,32 @@ function Main() {
                         <div className="booktab d-flex justify-content-between align-items-center bdrb p-1">
                             <div className="d-flex justify-content-start align-items-center">
                                 <input type="text" className="form-control floatinglabel me-2" placeholder='What are you working on...' />
-                                <a class="btnA col-blue fwN"><i className="zmdi zmdi-plus-circle me-1"></i> Project</a>                            
+                               
+
+                                <div class="expanding-search-form">
+                                    <div class="search-dropdown">
+                                        <button class="button dropdown-toggle btnA col-blue fwN" type="button">
+                                            <span class="toggle-active"><i className="zmdi zmdi-plus-circle me-1"></i> Project</span>
+                                            <span class="ion-arrow-down-b"></span>
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <input class="search-input" id="global-search" type="search" placeholder="Search"/>
+                                            <li class="menu-active"><a href="#">Everything</a></li>
+                                            <li><a href="#">People</a></li>
+                                            <li><a href="#">Products</a></li>
+                                            <li><a href="#">Blog</a></li>
+                                            <hr/>
+                                            <button className="btn btn-primary" data-toggle="modal" data-target="#addpage"style={{width:"100%"}}><i className="zmdi zmdi-plus-circle me-1"></i> Project</button>
+                                        </ul>
+                                    </div>
+                                </div>
+
+
+
                             </div>
                             <div className="d-flex justify-content-end align-items-center">
                                 
-                                <a class="btnA"> <img src="images/tag-gray.svg" alt="img" /></a>
+                                <a class="btnA"> <img src="images/tag-gray.svg" alt="img"/></a>
                                 <a class="btnA font-20 a col-blue clickmode" data-hide=".a" data-show=".b">£</a>
                                 <a class="b btnA font-20  dd_none col-grey clickmode" data-hide=".b" data-show=".a">£</a>
                                
@@ -171,7 +192,56 @@ function Main() {
                    
                 </div>
             </section>
-
+            <div class="modal right-quater md-one" id="addpage" tabindex="-1" role="dialog" aria-labelledby="shortModal" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header bg-blu-lite fixed-top">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                            <h4 class="modal-title" id="myModalLabel2">
+                                <b> <i class="zmdi zmdi-folder"></i> Create new project </b>
+                            </h4>
+                        </div>
+                        <div class="modal-body ps-0 pe-0 pb-0 contbody">  
+                            <div class="row  m-0">
+                                <div class="col-12 col-sm-12">
+                                    <div class="group_lead mt-4">
+                                        <input type="text"class="input_text" required="required"/>
+                                        <label for="" class="lablefilled"><i class="zmdi zmdi-folder col-grey">&nbsp;</i> Project Name</label>                                           
+                                    </div>
+                                    <div class="group_lead">
+                                        <select class="custom-select select_f" required="required">
+                                            <option>Select Client</option>                                            
+                                        </select>                                           
+                                    </div>
+                                    <div class="group_lead">
+                                        <select class="custom-select select_f" required="required">
+                                            <option>Select Template</option>   
+                                            <option>No Template</option>                                           
+                                        </select>                                                                                  
+                                    </div>
+                                    <div class="checkbox mb-3 mt-0">
+                                        <input id="NeverExpires " type="checkbox"/>
+                                        <label for="NeverExpires ">Public</label>
+                                    </div>
+                                                                            
+                                </div>
+                            </div>
+                        </div>
+                        <div class="model-footer">
+                            <div class="row m-0">
+                                <div class="col-md-12">
+                                    <div class="text-center">
+                                        <button class="btn btn-primary clickmode me-1" data-show="." data-hide="" type="button"> <i class="zmdi zmdi-upload"></i> Save </button>
+                                        <button class="btn btn-danger" type="button"><i class="zmdi zmdi-rotate-left"></i> Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
           
         </>
     )

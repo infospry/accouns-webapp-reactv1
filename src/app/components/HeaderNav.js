@@ -67,7 +67,7 @@ const HeaderNav = () => {
               <li><Link href="/items" className="dropdown-item" > Items</Link></li>
               <li><Link href="/expenses" className="dropdown-item" > Expences</Link></li>
               <li><Link href="/invoices" className="dropdown-item" > Invoices</Link></li>
-              <li><Link href="/vendor" className="dropdown-item" > Quotes</Link></li>
+              <li><Link href="/quotes" className="dropdown-item" > Quotes</Link></li>
               <li><Link href="/team" className="dropdown-item" > Team</Link></li>
                 <li><Link href="/vendor" className="dropdown-item" > Vendor</Link></li>
               </ul>
