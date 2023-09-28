@@ -1,6 +1,7 @@
 "use client"
 import Loading from '@/app/components/Loading'
 import React, { useState } from 'react';
+import Image from 'next/image';
 
 function Main() {
     const customStyles = {
@@ -91,7 +92,7 @@ function Main() {
                                     <div className="card bdr5 mb-1">
                                         <div className="header d-flex justify-content-between align-items-center p-0">
                                             <div className="">
-                                                <h2 className="font-bold"><i className="zmdi zmdi-accounts-list-alt mr-1"></i> All Clients </h2>
+                                                <h2 className="font-bold"><i className="zmdi zmdi-accounts-list-alt me-1"></i> All Clients </h2>
                                             </div>
                                             <div className="input-group" style={{ maxWidth: '460px' }}>
                                                 <input type="text" className="form-control radius_l" aria-label="Text input with dropdown button" placeholder='Search...' />
@@ -110,46 +111,58 @@ function Main() {
                                         <Loading />
                                     </div>
                                     <div className='dd_none contactlist'>
-                                        <div class="table-responsive">
-                                            <table class="table table-bordered rwd-table btdr_none mb-0">
+                                        <div className="table-responsive" style={{overflowX:"unset"}}>
+                                            <table className="table table-bordered rwd-table btdr_none mb-0">
                                                 <thead>
                                                     <tr>
-                                                        <th style={{ width: '28px' }}><div class="checkbox">
-                                                            <input class="all_slct" id="order" type="checkbox" />
-                                                            <label for="order" class="pl-0">&nbsp;</label>
-                                                        </div></th>
-
+                                                        <th style={{ width: '28px' }}>
+                                                            <div className="checkbox">
+                                                                <input className="all_slct" id="order" type="checkbox" />
+                                                                <label for="order" className="ps-0">&nbsp;</label>
+                                                            </div>
+                                                        </th>
                                                         <th style={{ width: '240px' }}>Client Name/ Primary Contact</th>
                                                         <th>Internal Note</th>
                                                         <th style={{ width: '180px' }}>Client</th>
                                                         <th className='txtRgt' style={{ width: '140px',textAlign:"end" }}>Total Outstanding</th>
+                                                        <th style={{width:"24px"}}>-</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                   
                                                     <tr>
 
-                                                        <td><div class="checkbox">
-                                                            <input class="all_slct" id="product1" type="checkbox" />
-                                                            <label for="product1" class="pl-0">&nbsp;</label>
-                                                        </div>  </td>
-
                                                         <td>
-                                                            <span class="font-weight-bold"> Loporem Pvt.ltd. </span>
+                                                            <div className="checkbox">
+                                                                <input className="all_slct" id="product1" type="checkbox" />
+                                                                <label for="product1" className="ps-0">&nbsp;</label>
+                                                            </div>  
                                                         </td>
-                                                        <td class="dnone-mob"></td>
-                                                        
+                                                        <td>
+                                                            <a href="javascript:void(0);" class="d-flex justify-content-start align-items-center" data-toggle="modal" data-target="#preview"><div class="shortTitle me-2">LD</div><div class="mt-2" style={{lineHeight:"14px"}}><span class="font-weight-bold"> Loporem Dummy Pvt.ltd.</span></div><div></div></a>
+                                                        </td>
+                                                        <td className="dnone-mob"></td>                                                        
                                                         <td></td>
                                                         <td  className='txtRgt'>
                                                             £0.00GBP
                                                         </td>
+                                                        <td>
+                                                            <div className="dropdown">
+                                                                <button className="btn dropdown-toggle"style={{boder:"0px"}} type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                <img src="../images/menu-dots-vertical.svg" alt="user" />
+                                                                </button>
+                                                                <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                                                    <li><a className="dropdown-item col-green" href="javascript:void(0);" data-toggle="modal" data-target="#preview"><i className="zmdi zmdi-search me-1"></i>View</a></li>
+                                                                    <li><a className="dropdown-item col-blue" href="javascript:void(0);" data-toggle="modal" data-target="#addpage"><i className="zmdi zmdi-edit me-1"></i>Edit</a></li>
+                                                                    <li><a className="dropdown-item text-danger" href="#"><i className="zmdi zmdi-delete me-1"></i>Delete</a></li>
+                                                                </ul>
+                                                            </div>
+                                                        </td>
                                                     </tr>
-
-
                                                 </tbody>
                                             </table>
                                         </div>
-                                        <div class="listTotal"><div>Total</div><div class="Invoice-list-total"style={{textAlign:"end" }}>£0.00GBP  </div></div>
+                                        <div className="listTotal"><div>Total</div><div className="Invoice-list-total"style={{textAlign:"end" }}>£0.00GBP  </div></div>
                                     </div>
                                 </div>
                             </div>
@@ -166,7 +179,7 @@ function Main() {
                                 <b> <i className="zmdi zmdi-plus-circle-o-duplicate"></i> Add / Edit Client</b>
                             </h4>
                         </div>
-                        <div className="modal-body pr-0 pl-0 pb-0 contbody" >
+                        <div className="modal-body pe-0 ps-0 pb-0 contbody" >
 
                             <div className="row  m-0">
                                 <div className="col-12 col-sm-12 col-md-7 col-lg-8  mt-4">
@@ -335,7 +348,7 @@ function Main() {
                                                 </p>
                                                 <p className="col-grey m-0 font-14">At Customizable Intervals</p>
                                             </div>
-                                            <div class="form-check form-switch ms-1">
+                                            <div className="form-check form-switch ms-1">
                                             <input
                                                     className="form-check-input"
                                                     type="checkbox"
@@ -351,7 +364,7 @@ function Main() {
                                                 <p className="m-0 font-14"><b><i className="zmdi zmdi-city"></i> Charge Late Fees  </b></p>
                                                 <p className="col-grey m-0 font-14">Percentage or Flat-Rate Fees</p>
                                             </div>
-                                            <div class="form-check form-switch ms-1">
+                                            <div className="form-check form-switch ms-1">
                                             <input
                                                     className="form-check-input"
                                                     type="checkbox"
@@ -374,7 +387,7 @@ function Main() {
                                             <p className="m-0 font-14"><b><i className="zmdi zmdi-city"></i>  Invoice Attachments</b></p>
                                             <p className="col-grey m-0 font-14">Attach PDF copy to emails</p>
                                         </div>
-                                        <div class="form-check form-switch ms-1">
+                                        <div className="form-check form-switch ms-1">
                                         <input
                                                     className="form-check-input"
                                                     type="checkbox"
@@ -398,6 +411,251 @@ function Main() {
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+            <div className="modal right_one_thrd md-one" id="preview" tabindex="-1" role="dialog" aria-labelledby="shortModal"aria-hidden="true">
+                <div className="modal-dialog ui-draggable ui-draggable-handle" role="document">
+                    <div className="modal-content">
+                        <div className="modal-header bg-blu-lite fixed-top">
+                            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                            <h4 className="modal-title" id="myModalLabel2">
+                                <b> <i className="zmdi zmdi-plus-circle-o-duplicate"></i> Preview Client</b>
+                            </h4>
+                        </div>
+                        <div className="modal-body pe-0 ps-0 pb-0 contbody">   
+                            <div class="p-4 text-center" style={{background:"#f2f2fa"}}>
+                                <div class="proTitle">LD</div>
+                                <h2 class="font-weight-bold mt-2 mb-2"> Loporem Dummy Pvt.ltd.</h2>  
+                                <ul class="social-network social-circle m-0 p-0" style={{minHeight:"35px"}}>
+                                    <li><a href="#" class="" title="Facebook"><i class="zmdi zmdi-facebook"></i></a></li>
+                                    <li><a href="#" class="" title="Linkedin"><i class="zmdi zmdi-linkedin"></i></a></li>
+                                    <li><a href="#" class="" title="Facebook"><i class="zmdi zmdi-twitter"></i></a></li>
+                                    <li><a href="#" class="" title="Linkedin"><i class="zmdi zmdi-whatsapp"></i></a></li>
+                                </ul>  
+                            </div>                     
+                            <div className="row  m-0">
+                                <div className="col-md-12 ps-0 pe-0">
+                                    <div className="bgblulgt">
+                                        <ul className="nav nav-tabs nav-justified p-0">                            
+                                            <li className="nav-item">
+                                                <a className="nav-link active" data-toggle="tab" href="#Overview"><i className="ti ti-layout-accordion-list"></i> Overview </a>
+                                            </li>   
+                                            <li className="nav-item">
+                                                <a className="nav-link" data-toggle="tab" href="#Page__Notes"><i className="zmdi zmdi-comment-edit"></i> Notes</a>
+                                            </li>                      
+                                        </ul>
+                                    </div>
+                                    <div className="tab-content p-0">                                            
+                                        <div role="tabpanel" className=" tab-pane in active" id="Overview">                                             
+                                           <div className="p-4">
+                                           <div className="row justify-content-center font-h4">
+                                                                <div className="col-xl-6 pt-1">
+                                                                    <h2 class="font-18"> <i className="zmdi zmdi-info me-1 col-grey"></i><b> Information</b> <span className="bbl-light ms-1">Main</span></h2>
+                                                                    <hr/>
+                                                                    <div className="row">
+                                                                        <div className="col-lg-12">
+                                                                            <h4 className="col-grey m-0 p-0"> Categories</h4>
+                                                                            <p className="mb-3"> <span className="col-black">Customer </span> </p>
+                                                                        </div>
+                                                                        <div className="col-lg-12">
+                                                                            <h4 className="col-grey m-0 p-0"> Tax Reg.No.</h4>
+                                                                            <p className="mb-3"> <span className="col-black">DK9999 - </span> </p>
+                                                                        </div>
+                                                                        <div className="col-lg-12">
+                                                                            <h4 className="col-grey m-0 p-0"> UTR Number</h4>
+                                                                            <p className="mb-3"> <span className="col-black">01234567890 </span> </p>
+                                                                        </div>
+                                                                        <div className="col-lg-12">
+                                                                            <h4 className="col-grey m-0 p-0"> Opening Balance</h4>
+                                                                            <p className="mb-3"> <span className="col-black"><b>$25 - 35/hrs</b> </span> </p>
+                                                                        </div>
+                                                                        <div className="col-lg-12">
+                                                                            <h4 className="col-grey m-0 p-0"> Payment Method</h4>
+                                                                            <p className="mb-3"> <span className="col-black">---- </span> </p>
+                                                                        </div>
+                                                                        <div className="col-lg-12">
+                                                                            <h4 className="col-grey m-0 p-0"> Terms</h4>
+                                                                            <p className="mb-3"> <span className="col-black">25-07-2020 to 25-08-2020 </span> </p>
+                                                                        </div>
+                                                                        <div className="col-lg-12">
+                                                                            <h4 className="col-grey m-0 p-0"> Portal Language </h4>
+                                                                            <p className="mb-3"> <span className="col-black">---</span> </p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                    <div className="col-xl-6 pt-1" style={{borderLeft:"1px solid #ddd"}}>   
+                                                                    <h2 class="font-18"> <i className="zmdi zmdi-pin me-1 col-grey"></i><b> Contact Address </b> <span className="bbl-light ms-1">Main</span></h2>
+                                                                   <hr/>
+                                                                    <div className="row">
+                                                                        <div className="col-lg-12">
+                                                                            <h4 className="col-grey m-0 p-0"> Company Name</h4>
+                                                                            <p className="mb-3"> <span className="col-black">Nixon Enterprise </span> </p>
+                                                                        </div>
+                                                                        <div className="col-lg-12">
+                                                                            <h4 className="col-grey m-0 p-0"> Name</h4>
+                                                                            <p className="mb-3"> <span className="col-black">Mr. jons Piterson</span> </p>
+                                                                        </div>
+                                                                        <div className="col-lg-12">
+                                                                            <h4 className="col-grey m-0 p-0"> Mobile</h4>
+                                                                            <p className="mb-3"> <span className="col-black">01234567890 <small className="col-green"> <i className="zmdi zmdi-check-all"> </i> Verified</small></span> </p>
+                                                                        </div>
+                                                                        <div className="col-lg-12">
+                                                                            <h4 className="col-grey m-0 p-0"> Email Address</h4>
+                                                                            <p className="mb-3"> <span className="col-black">solutions.topicccano@gmail.com</span> </p>
+                                                                        </div>
+                                                                        <div className="col-lg-12">
+                                                                            <h4 className="col-grey m-0 p-0"> Address Line</h4>
+                                                                            <p className="mb-3"> <span className="col-black">445 Mount Eden Road</span> </p>
+                                                                        </div>
+                                                                        <div className="col-lg-12">
+                                                                            <h4 className="col-grey m-0 p-0"> City &amp; County</h4>
+                                                                            <p className="mb-3"> <span className="col-black"><span id=""> Mount Eden</span>, <span id=""> Auckland</span></span> </p>
+                                                                        </div>
+                                                                        <div className="col-lg-12">
+                                                                            <h4 className="col-grey m-0 p-0"> Postcode </h4>
+                                                                            <p className="mb-3"> <span className="col-black">b841213</span> </p>
+                                                                        </div>
+                                                                    </div>
+                                                                    
+                                                                   
+                                                                </div>
+                                                            </div>
+                                           </div>
+                                            <div className="p-4" style={{background:"#f9f9f9"}}>
+                                                <h2 class="font-18"><i className="zmdi zmdi-accounts-list-alt me-1 col-grey"></i><b>Contact Person</b></h2>
+                                                                    
+                                                <div className="table-responsive">
+                                                    <table className="table table-bordered btdr_none mb-0" id="sortable">
+                                                        <thead className="font_b dnone-mob">                     
+                                                            <tr className="font_btd">
+                                                                <th style={{width:"30px"}}> 
+                                                                    #
+                                                                </th>
+                                                                <th className=""> Contact / Company </th>
+                                                                <th> Phone </th>                                                                                    
+                                                                <th>  Open Balance   </th>                                                  
+                                                                <th class="text-start" style={{width:"90px"}}>  Action</th>
+                                                            </tr>
+                                                        </thead>            
+                                                        <tbody>
+                                                            <tr className="">
+                                                                <td className="">
+                                                                    1
+                                                                </td> 
+                                                                <td className="pt-3 pb-3">
+                                                                    <b>DMRC </b> <i className="zmdi zmdi-email ms-2"></i><br/>
+                                                                    Delhi Metro Rail Corporation
+                                                                </td>                                                         
+                                                                <td> --</td>
+                                                                <td> $596.00</td>                                                
+                                                                <td>
+                                                                <button className="btn btn-danger btn-sm" title="Delete" type="button"> <i className="zmdi zmdi-delete"></i> <span className="dnone-mob">Delete</span></button>                                                 
+                                                                </td> 
+                                                            </tr>
+                                                            <tr className="">
+                                                                <td className="">
+                                                                    2
+                                                                </td> 
+                                                                <td className="pt-3 pb-3">
+                                                                    Soft technotech ltd <i className="zmdi zmdi-email ms-2"></i>
+                                                                </td>                                                         
+                                                                <td> --</td>
+                                                                <td> $596.00</td>                                                
+                                                                <td>
+                                                                <button className="btn btn-danger btn-sm" title="Delete" type="button"> <i className="zmdi zmdi-delete"></i> <span className="dnone-mob">Delete</span></button>                                                 
+
+                                                                </td> 
+                                                            </tr>
+                                                            <tr className="">
+                                                                <td className="">
+                                                                3 
+                                                                </td> 
+                                                                <td className="pt-3 pb-3">
+                                                                    Soft technotech ltd <i className="zmdi zmdi-email ms-2"></i>
+                                                                </td>                                                         
+                                                                <td> --</td>
+                                                                <td> $596.00</td>                                                
+                                                                <td>
+                                                                <button className="btn btn-danger btn-sm" title="Delete" type="button"> <i className="zmdi zmdi-delete"></i> <span className="dnone-mob">Delete</span></button>                                                 
+
+                                                                </td> 
+                                                            </tr>
+                                                            
+                                                        </tbody>        
+                                                    </table>   
+                                                </div>
+                                            </div>                     
+                                        </div>
+                                        
+                                        <div role="tabpanel" className=" tab-pane" id="Page__Notes"> 
+                                            <div className="row justify-content-center  m-0">
+                                                <div className="col-md-12 col-lg-8 col-xl-7">
+                                                
+                                                    
+                                                        <div className="group_lead mt-4">
+                                                            <textarea required="required" id="Description"></textarea>
+                                                            <label for="Description" className="lablefilled"> Write a private note</label>                                                          
+                                                        </div> 
+                                                
+                                                    <div className="text-right mt-3 mb-3">
+                                                        <button className="btn btn-danger savea me-1" type="button"><i className="zmdi zmdi-rotate-left"></i> Cancel</button>
+                                                        <a href="" className="btn btn-primary"> <i className="zmdi zmdi-upload"></i> Update </a>                                            
+                                                    </div>
+                                                    <div className="card">
+                                                        <div className="p-3">
+                                                            <h4><i className="zmdi zmdi-comment-alt-text me-2"></i>Comments</h4>
+                                                            <hr/>
+                                                        </div>
+                                                    
+                                                        <div className="mt-2 mb-4">
+                                                            <div className="d-flex flex-row p-3"> <img src="../images/download.jpg" className="rounded-circle me-3" width="40" height="40"/>
+                                                                <div className="w-100">
+                                                                    <div className="d-flex justify-content-between align-items-center">
+                                                                        <div className="d-flex flex-row align-items-center"> <span className="me-2 font-18 col-head">Brian selter</span> <small className="c-badge">Top Comment</small> </div> <small><i className="zmdi zmdi-calendar me-1"></i> 12h ago</small>
+                                                                    </div>
+                                                                    <p className="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
+                                                                    <div className="d-flex flex-row user-feed"> <span className="wish"><i className="zmdi zmdi-thumb-up me-2"></i>24</span> </div>
+                                                                </div>
+                                                            </div>
+                                                            <hr/>
+                                                            <div className="d-flex flex-row p-3"> <img src="https://i.imgur.com/3J8lTLm.jpg" className="rounded-circle me-3" width="40" height="40"/>
+                                                                <div className="w-100">
+                                                                    <div className="d-flex justify-content-between align-items-center">
+                                                                        <div className="d-flex flex-row align-items-center"> <span className="me-2 font-18 col-head">Seltos Majito</span> <small className="c-badge">Top Comment</small> </div><small> <i className="zmdi zmdi-calendar me-1"></i> 10-Feb-2021</small>
+                                                                    </div>
+                                                                    <p className="text-justify">Tellus in hac habitasse platea dictumst vestibulum. Lectus nulla at volutpat diam ut venenatis tellus. Aliquam etiam erat velit scelerisque in dictum non consectetur. Sagittis nisl rhoncus mattis rhoncus urna neque viverra justo nec. Tellus cras adipiscing enim eu turpis egestas pretium aenean pharetra. Aliquam faucibus purus in massa.</p>
+                                                                    <div className="d-flex flex-row user-feed"> <span className="wish"><i className="zmdi zmdi-thumb-up me-2"></i>14</span> </div>
+                                                                </div>
+                                                            </div>
+                                                            <hr/>
+                                                            <div className="d-flex flex-row p-3"> <img src="../images/download.jpg" className="rounded-circle me-3" width="40" height="40"/>
+                                                                <div className="w-100">
+                                                                    <div className="d-flex justify-content-between align-items-center">
+                                                                        <div className="d-flex flex-row align-items-center"> <span className="me-2 font-18 col-head
+                                                                            ">Maria Santola</span> <small className="c-badge">Top Comment</small> </div> <small><i className="zmdi zmdi-calendar me-1"></i> 17-Feb-2021</small>
+                                                                    </div>
+                                                                    <p className="text-justify"> Id eu nisl nunc mi ipsum faucibus. Massa massa ultricies mi quis hendrerit dolor. Arcu bibendum at varius vel pharetra vel turpis nunc eget. Habitasse platea dictumst quisque sagittis purus sit amet volutpat. Urna condimentum mattis pellentesque id.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
+                                                                    <div className="d-flex flex-row user-feed"> <span className="wish"><i className="zmdi zmdi-thumb-up me-2"></i>54</span>  </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>          
+                                                </div>                                          
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                                    
+                            </div>                        
+                        </div>
+                        <div className="model-footer">
+                            <div className="text-center">                                 
+                                <button className="btn btn-danger" type="button"><i className="zmdi zmdi-rotate-left"></i> Cancel</button>
+                            </div>   
+                        </div>
+                    </div>            
                 </div>
             </div>
         </>

@@ -340,7 +340,16 @@ return (
                                     </thead>
                                     <tr className="dd_none showtd">
                                         <td><i className="zmdi zmdi-menu"></i></td>
-                                        <td>Web Design</td>
+                                        <td><div class="input-group-btn p-0">
+                                                                <button type="button" class="btn btn-outline-secondary  text-left dropdown-toggle" style={{border:"0px"}} data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                    Web Design
+                                                                </button>
+                                                                <div class="dropdown-menu">
+                                                                    <a class="dropdown-item" href="#">Example product</a>
+                                                                    <a class="dropdown-item" href="#">Sales excluding VAT</a>
+                                                                    <a class="dropdown-item" href="#">Sales exempt from VAT</a>                                                   
+                                                                </div>
+                                                            </div></td>
                                         <td className="text-end">£10.00</td>
                                         <td className="text-end">1</td>
                                         <td className="text-end">£10.00</td>
@@ -439,7 +448,7 @@ return (
                                     <p className="m-0 font-14"><b><i className="zmdi zmdi-card"></i> Accept Online
                                             Payments</b></p>
                                     <p className="col-grey m-0 font-14">Lets clients pay online</p>
-                                    <img className="m-auto" src="images/images.png" alt="img" style={{ height: 'auto'}} />
+                                    <img className="m-auto" src="../images/images.png" alt="img" style={{ height: 'auto'}} />
                                 </div>
                                 <div class="form-check form-switch ms-1">
                                     <input className="form-check-input" type="checkbox" id="flexSwitchCheckDefault" />

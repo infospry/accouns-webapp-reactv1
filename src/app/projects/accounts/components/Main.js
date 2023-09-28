@@ -61,7 +61,7 @@ function Main() {
                                                                 <th>Password</th>
                                                                 <th>Last Created</th>
                                                                 <th class="Status"></th>
-                                                                <th style={{width:"180px"}}>Action</th>
+                                                                <th style={{width:"24px"}}></th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
@@ -74,11 +74,16 @@ function Main() {
                                                                 <td class="col-grey">04/03/2021</td>
                                                                 <td class="col-grey"><span class="badge badge-success"><i
                                                                             class="zmdi zmdi-check-all me-1"></i>Done</span></td>
-                                                                <td><a class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addpage"><i
-                                                                            class="zmdi zmdi-search"></i><span class="dnone-mob">View</span></a><a
-                                                                        class="btn btn-outline-primary btn-sm  ms-1 me-1"><i class="zmdi zmdi-edit"></i>Edit</a><a
-                                                                        class="btn btn-danger btn-sm" title="Delete" type="button"><i
-                                                                            class="zmdi zmdi-delete"></i><span class="dnone-mob">Delete</span></a></td>
+                                                                <td><div className="dropdown">
+                                                                <button className="btn dropdown-toggle"style={{boder:"0px"}} type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                <img src="../images/menu-dots-vertical.svg" alt="user" />
+                                                                </button>
+                                                                <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                                                    <li><a className="dropdown-item col-green" href="javascript:void(0);" data-toggle="modal" data-target="#preview"><i className="zmdi zmdi-search me-1"></i>View</a></li>
+                                                                    <li><a className="dropdown-item col-blue" href="javascript:void(0);" data-toggle="modal" data-target="#addpage"><i className="zmdi zmdi-edit me-1"></i>Edit</a></li>
+                                                                    <li><a className="dropdown-item text-danger" href="#"><i className="zmdi zmdi-delete me-1"></i>Delete</a></li>
+                                                                </ul>
+                                                            </div></td>
                                                             </tr>
                                                             <tr class="">
                                                                 <td class="">1</td>
@@ -89,11 +94,16 @@ function Main() {
                                                                 <td class="col-grey">04/03/2021</td>
                                                                 <td class="col-grey"><span class="badge badge-warning"><i
                                                                             class="zmdi zmdi-alert-octagon me-1"></i>Pending</span></td>
-                                                                <td><a class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addpage"><i
-                                                                            class="zmdi zmdi-search"></i><span class="dnone-mob">View</span></a><a
-                                                                        class="btn btn-outline-primary btn-sm ms-1 me-1"><i class="zmdi zmdi-edit"></i>Edit</a><a
-                                                                        class="btn btn-danger btn-sm" title="Delete" type="button"><i
-                                                                            class="zmdi zmdi-delete"></i><span class="dnone-mob">Delete</span></a></td>
+                                                                <td><div className="dropdown">
+                                                                <button className="btn dropdown-toggle"style={{boder:"0px"}} type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                <img src="../images/menu-dots-vertical.svg" alt="user" />
+                                                                </button>
+                                                                <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                                                    <li><a className="dropdown-item col-green" href="javascript:void(0);" data-toggle="modal" data-target="#preview"><i className="zmdi zmdi-search me-1"></i>View</a></li>
+                                                                    <li><a className="dropdown-item col-blue" href="javascript:void(0);" data-toggle="modal" data-target="#addpage"><i className="zmdi zmdi-edit me-1"></i>Edit</a></li>
+                                                                    <li><a className="dropdown-item text-danger" href="#"><i className="zmdi zmdi-delete me-1"></i>Delete</a></li>
+                                                                </ul>
+                                                            </div></td>
                                                             </tr>
                                                         </tbody>
                                                     </table>

@@ -71,7 +71,7 @@ function Main() {
                                             <a class="btnA col-blue fwN"><i className="zmdi zmdi-plus-circle me-1"></i> React </a>                            
                                         </div>
                                         <div className="d-flex justify-content-end align-items-center">                                
-                                            <a class="btnA"> <img src="images/tag-gray.svg" alt="img" /></a>
+                                            <a class="btnA"> <img src="../images/tag-gray.svg" alt="img" /></a>
                                             <a class="btnA font-20 a col-blue clickmode" data-hide=".a" data-show=".b">£</a>
                                             <a class="b btnA font-20  dd_none col-grey clickmode" data-hide=".b" data-show=".a">£</a>
                                             <div class="d-flex">
@@ -79,10 +79,10 @@ function Main() {
                                                 <span class="btnA ps-0 pe-1" style={{borderRight:"0px solid #fff"}}> -</span>
                                                 <input type="text" className="form-control floatinglabel me-0"style={{width:"65px"}} placeholder='14:11' />
                                                 <a class="btnA font-20"style={{borderLeft:"1px solid #eee"}}>
-                                                <img src="images/calendar-gray.svg" alt="img" /></a>
+                                                <img src="../images/calendar-gray.svg" alt="img" /></a>
                                                 <span class="btnA font-16 col-black">00:00:00</span>
-                                                <a class="btnA"><img src="images/play.svg" alt="img" /></a>
-                                                <a class="btnA"style={{borderRight:"0px solid #eee"}}><img src="images/menu-dots-vertical.svg" alt="img" /></a>
+                                                <a class="btnA"><img src="../images/play.svg" alt="img" /></a>
+                                                <a class="btnA"style={{borderRight:"0px solid #eee"}}><img src="../images/menu-dots-vertical.svg" alt="img" /></a>
                                             </div>
                                         </div>
                                     </div> 
@@ -94,7 +94,7 @@ function Main() {
                                             <a class="btnA col-blue fwN"><i className="zmdi zmdi-plus-circle me-1"></i> React </a>                            
                                         </div>
                                         <div className="d-flex justify-content-end align-items-center">                                
-                                            <a class="btnA"> <img src="images/tag-gray.svg" alt="img" /></a>
+                                            <a class="btnA"> <img src="../images/tag-gray.svg" alt="img" /></a>
                                             <a class="btnA font-20 a col-blue clickmode" data-hide=".a" data-show=".b">£</a>
                                             <a class="b btnA font-20  dd_none col-grey clickmode" data-hide=".b" data-show=".a">£</a>
                                             <div class="d-flex">
@@ -102,10 +102,10 @@ function Main() {
                                                 <span class="btnA ps-0 pe-1" style={{borderRight:"0px solid #fff"}}> -</span>
                                                 <input type="text" className="form-control floatinglabel me-0"style={{width:"65px"}} placeholder='14:11' />
                                                 <a class="btnA font-20"style={{borderLeft:"1px solid #eee"}}>
-                                                <img src="images/calendar-gray.svg" alt="img" /></a>
+                                                <img src="../images/calendar-gray.svg" alt="img" /></a>
                                                 <span class="btnA font-16 col-black">00:00:00</span>
-                                                <a class="btnA"><img src="images/play.svg" alt="img" /></a>
-                                                <a class="btnA"style={{borderRight:"0px solid #eee"}}><img src="images/menu-dots-vertical.svg" alt="img" /></a>
+                                                <a class="btnA"><img src="../images/play.svg" alt="img" /></a>
+                                                <a class="btnA"style={{borderRight:"0px solid #eee"}}><img src="../images/menu-dots-vertical.svg" alt="img" /></a>
                                             </div>
                                         </div>
                                     </div>  
@@ -115,7 +115,7 @@ function Main() {
                                             <a class="btnA col-blue fwN"><i className="zmdi zmdi-plus-circle me-1"></i> React</a>                            
                                         </div>
                                         <div className="d-flex justify-content-end align-items-center">                                
-                                            <a class="btnA"> <img src="images/tag-gray.svg" alt="img" /></a>
+                                            <a class="btnA"> <img src="../images/tag-gray.svg" alt="img" /></a>
                                             <a class="btnA font-20 a col-blue clickmode" data-hide=".a" data-show=".b">£</a>
                                             <a class="b btnA font-20  dd_none col-grey clickmode" data-hide=".b" data-show=".a">£</a>
                                             <div class="d-flex">
@@ -123,10 +123,10 @@ function Main() {
                                                 <span class="btnA ps-0 pe-1" style={{borderRight:"0px solid #fff"}}> -</span>
                                                 <input type="text" className="form-control floatinglabel me-0"style={{width:"65px"}} placeholder='14:11' />
                                                 <a class="btnA font-20"style={{borderLeft:"1px solid #eee"}}>
-                                                <img src="images/calendar-gray.svg" alt="img" /></a>
+                                                <img src="../images/calendar-gray.svg" alt="img" /></a>
                                                 <span class="btnA font-16 col-black">00:00:00</span>
-                                                <a class="btnA"><img src="images/play.svg" alt="img" /></a>
-                                                <a class="btnA"style={{borderRight:"0px solid #eee"}}><img src="images/menu-dots-vertical.svg" alt="img" /></a>
+                                                <a class="btnA"><img src="../images/play.svg" alt="img" /></a>
+                                                <a class="btnA"style={{borderRight:"0px solid #eee"}}><img src="../images/menu-dots-vertical.svg" alt="img" /></a>
                                             </div>
                                         </div>
                                     </div>  

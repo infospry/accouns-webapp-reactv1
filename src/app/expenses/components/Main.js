@@ -63,7 +63,7 @@ function Main() {
                                     </div>
                                     <div className='dd_none contactlist'>
                                         <div className="table-responsive">
-                                            <table className="table table-bordered rwd-table btdr_none mb-0">
+                                            <table className="table table-bordered  btdr_none mb-0">
                                                 <thead>
                                                     <tr>
                                                         <th style={{ width: '28px' }}><div className="checkbox">
@@ -74,7 +74,8 @@ function Main() {
                                                         <th style={{ width: '240px' }}>Merchant / Category</th>
                                                         <th style={{ width: '180px' }}>Date</th>
                                                         <th >Client / Project / Description</th>
-                                                        <th className='txtRgt' style={{ width: '180px' }}>Amount / Tax / Status</th>
+                                                        <th className='txtRgt text-end' style={{ width: '180px' }}>Amount / Tax / Status</th>
+                                                        <th style={{width:"20px"}}></th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -100,11 +101,21 @@ function Main() {
                                                             test ltd<br />
                                                             <span className='col-grey font-13'>new expanse for the computer</span>
                                                         </td>
-                                                        <td className='txtRgt'>
+                                                        <td className='txtRgt  text-end'>
                                                             £100.00GBP<br />
                                                             <span className='col-grey'>£6.54 tax</span><br />
                                                             <span className='col-grey badge badge-warning'>Unbilled</span>
                                                         </td>
+                                                        <td><div className="dropdown">
+                                                                <button className="btn dropdown-toggle"style={{boder:"0px"}} type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                <img src="../images/menu-dots-vertical.svg" alt="user" />
+                                                                </button>
+                                                                <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                                                    <li><a className="dropdown-item col-green" href="javascript:void(0);" data-toggle="modal" data-target="#addpage"><i className="zmdi zmdi-search me-1"></i>View</a></li>
+                                                                    <li><a className="dropdown-item col-blue" href="javascript:void(0);" data-toggle="modal" data-target="#addteam"><i className="zmdi zmdi-edit me-1"></i>Edit</a></li>
+                                                                    <li><a className="dropdown-item text-danger" href="#"><i className="zmdi zmdi-delete me-1"></i>Delete</a></li>
+                                                                </ul>
+                                                            </div></td>
                                                     </tr>
 
 

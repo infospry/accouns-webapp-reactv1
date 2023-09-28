@@ -51,7 +51,7 @@ function Main() {
                                         <div className="row">
                                             <div className="col-12 col-sm-12 col-md-12 col-lg-12 bg-white">
                                                 <div className="media border p-4 mb-2 mt-2">
-                                                    <div className="media-body ptag">
+                                                    <div className="media-body ptag font-h4">
                                                         <div className="row">
 
                                                             <div className="col-lg-4">
@@ -62,43 +62,29 @@ function Main() {
                                                                     </div>
                                                                 </div>
                                                                 <div className="float-left">
-                                                                    <h5> Andrew Filntuff
-                                                                    </h5>
-                                                                    <p className="mb-1">
-                                                                        <span className="wd-12px">Project Name</span>
-                                                                        <span>:</span>
-                                                                        <span id=""> Home Care Services</span>
-                                                                    </p>
-
-                                                                    <p className="mb-1">
-                                                                        <span className="wd-12px">Project Group </span>
-                                                                        <span>:</span>
-                                                                        <span id="">Ungrouped Projects</span>
-                                                                    </p>
-                                                                    <p className="mb-1">
-                                                                        <span className="wd-12px">Team Role</span>
-                                                                        <span>:</span>
-                                                                        <span id="">Admin</span>
-                                                                    </p>
+                                                                    <h5 className="pb-2"> Andrew Filntuff </h5>
+                                                                    <h4 className="col-grey m-0 p-0"> Project Name</h4>
+                                                                    <p className="mb-2"> <span className="col-black">Home Care Services </span> </p>
+                                                                    <h4 className="col-grey m-0 p-0"> Project Gropu</h4>
+                                                                    <p className="mb-2"> <span className="col-black">Ungrouped Projects</span> </p>
+                                                                                                                                    
                                                                 </div>
                                                             </div>
-                                                            <div className="col-lg-4">
-                                                                <p className="mb-1 mt-3">
-                                                                    <span className="wd-12px"> Estimate Value</span> <span>:</span>
-                                                                    <span><b>$25 - 35/hrs</b></span>
-                                                                </p>
-                                                                <p className="mb-1">
-                                                                    <span className="wd-12px"> Priority </span> <span>:</span>
-                                                                    <span className="">--- </span>
-                                                                </p>
-
-                                                                <p className="mb-1">
-                                                                    <span className="wd-12px">Contract Dates</span>
-                                                                    <span>:</span>
-                                                                    <span id="">25-07-2020 to 25-08-2020</span>
-                                                                </p>
+                                                            <div className="col-lg-3 pt-4">
+                                                                    <h4 className="col-grey m-0 p-0"> Team Role</h4>
+                                                                    <p className="mb-2"> <span className="col-black">Admin</span> </p>    
+                                                                    <h4 className="col-grey m-0 p-0"> Estimate Value</h4>
+                                                                    <p className="mb-2"> <span className="col-black"><b>$25 - 35/hrs</b> </span> </p>
+                                                                      
+                                                               
                                                             </div>
-                                                            <div className="col-lg-4 text-end">
+                                                            <div className="col-lg-3 pt-4">
+                                                                    <h4 className="col-grey m-0 p-0"> Priority</h4>
+                                                                    <p className="mb-2"> <span className="col-black">---</span> </p>
+                                                                    <h4 className="col-grey m-0 p-0"> Contract Dates</h4>
+                                                                    <p className="mb-2"> <span className="col-black">25-07-2020 to 25-08-2020</span> </p> 
+                                                            </div>
+                                                            <div className="col-lg-2 text-end">
                                                                 <span className="float-right mt-3">
                                                                     <a href="#" className="btn btn btn-primary m-1"><i
                                                                             className="zmdi zmdi-email-open"></i> <span

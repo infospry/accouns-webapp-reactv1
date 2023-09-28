@@ -67,6 +67,7 @@ function Main() {
                                                         <th>Income Account</th>
                                                         <th>Current Stock</th>
                                                         <th className='txtRgt' style={{ width: '120px' }}>Rate / Taxes</th>
+                                                        <th style={{width:"20px"}}></th> 
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -96,6 +97,17 @@ function Main() {
                                                         <td className='txtRgt'>
                                                         <b>£20.00</b>
                                                         </td>
+                                                        <td><div className="dropdown">
+                                                                <button className="btn dropdown-toggle"style={{boder:"0px"}} type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                <img src="../images/menu-dots-vertical.svg" alt="user" />
+                                                                </button>
+                                                                <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                                                    <li><a className="dropdown-item col-green" href="javascript:void(0);" data-toggle="modal" data-target="#addpage"><i className="zmdi zmdi-search me-1"></i>View</a></li>
+                                                                    <li><a className="dropdown-item col-blue" href="javascript:void(0);" data-toggle="modal" data-target="#addteam"><i className="zmdi zmdi-edit me-1"></i>Edit</a></li>
+                                                                    <li><a className="dropdown-item text-danger" href="#"><i className="zmdi zmdi-delete me-1"></i>Delete</a></li>
+                                                                </ul>
+                                                            </div>
+                                                        </td>    
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -187,41 +199,50 @@ function Main() {
                 <div className="modal-dialog modal-dialog-scrollable" role="document">
                     <div className="modal-content">
                         <div className="modal-header bg-blu-lite fixed-top">
-                            <button type="button" className="btn-close" data-dismiss="modal" aria-label="Close"> </button>
+                            <button type="button" className="btn-close" data-dismiss="modal" aria-label="Close"> </button>                            
                             <h4 className="modal-title" id="myModalLabel2">
                                 <b> Test Member</b>
                             </h4>
                         </div>
-                        <div className="modal-body pr-0 pl-0 pb-0 contbody">
+                        <div className="modal-body ps-0 pe-0 pb-0 contbody">
                             <div className="row m-0">
-                                <div className="col-12 col-sm-12 col-md-7 col-lg-8  mt-4">
-                                    <div className="media border p-4 mb-3 d-flex justify-content-start align-items-top" style={{ borderRadius: ".25rem" }}>
-                                        <div className='short-Title'>BS</div>
-                                        <div className="media-body ptag ms-3 d-block">
-                                            <div className='d-flex justify-content-between align-items-center'>
-                                                <h5 style={{ marginBottom: "0px" }}>Ben Stokes </h5>
-                                                <a href="javascript:void(0);" className="pointer" data-toggle="modal" data-target="#editpage"><i className="zmdi zmdi-edit"></i>  Edit</a>
+                                <div className="col-12 col-sm-12 col-md-7 col-lg-8 p-0">
+
+                                    <div class="p-4 text-center" style={{background:"#f2f2fa"}}>
+                                        <div class="proTitle">BS</div>
+                                        <h2 class="font-weight-bold mt-2 mb-2"> Ben Stocks</h2>                                 
+                                    </div> 
+
+                                    <div class="p-4 font-h4">          
+                                        <div class="d-flex justify-content-between">
+                                            <div>
+                                                <h4 className="col-grey m-0 p-0"> <i className="zmdi zmdi-phone col-grey"></i> Mobile</h4>                                        
+                                                <p className="mb-3"> <span className="col-black">01234567890 <small className="col-green"> <i className="zmdi zmdi-check-all"> </i> Verified</small></span> </p>
                                             </div>
-                                            <hr />
-                                            <p className="mb-1"><i className="zmdi zmdi-email-open col-grey"></i> <span id=""> solutions.topicccano@gmail.com</span> <small className="col-green font-12">  Verified</small></p>
-                                            <p className="mb-1"><i className="zmdi zmdi-phone col-grey"></i> 120 XXXX 345  <small className="col-green font-12">  Verified</small>  </p>
-                                            <p className="mb-1"><i className="zmdi zmdi-pin col-grey"></i> No Address   </p>
-                                        </div>
-                                    </div>
+                                            <a href="javascript:void(0);" className="pointer"data-toggle="modal" data-target="#editpage"><i className="zmdi zmdi-edit"></i>  Edit</a>
+                                        </div>      
+
+                                        <h4 className="col-grey m-0 p-0"><i className="zmdi zmdi-email-open col-grey"></i> Email Address</h4>
+                                        <p className="mb-3"> <span className="col-black">solutions.topicccano@gmail.com</span> </p>
                                     
-                                    <div className="media border p-0 mb-0 mt-2" style={{ borderRadius: ".25rem" }}>
-
-                                        <div className="media-body ptag d-block p-3">
-                                        <h4>Role and Permission</h4>
-                                            <p className="mb-1 mt-1">
-Invite your Team Members as an Admin, Employee, Contractor or Accountant to collaborate and work together on your bussiness.
-<a href='/'>Learn about Permissions</a>
-<button className='btn btn-success mt-2'>Invite</button>
-
-                                            </p>
-
+                                        <h4 className="col-grey m-0 p-0"><i className="zmdi zmdi-pin col-grey"></i> Address </h4>
+                                        <p className="mb-3"> <span className="col-black">445 Mount Eden Road Mount Eden, Auckland b841213</span> </p>
+                                    
+                                        <div className="media border p-0 mb-0 mt-2" style={{ borderRadius: ".25rem" }}>
+                                            <div className="media-body ptag d-block p-3">
+                                                <h4>Role and Permission</h4>
+                                                <p className="mb-1 mt-1">
+                                                    Invite your Team Members as an Admin, Employee, Contractor or Accountant to collaborate and work together on your bussiness.
+                                                    <a href='/'>Learn about Permissions</a>
+                                                </p>
+                                                <button className='btn btn-success btn-sm mt-2 MB-2'>Invite</button>
+                                            </div>
                                         </div>
                                     </div>
+
+
+                                   
+                                   
                                 </div>
                                 <div className="col-12 col-sm-12 col-md-5 col-lg-4" style={customStyles}>
                                     <h4 className="mt-4 mb-0">Team Member Settings</h4>
@@ -253,7 +274,8 @@ Invite your Team Members as an Admin, Employee, Contractor or Accountant to coll
                             <div className="row m-0">
                                 <div className="col-md-12">
                                     <div className="text-center">
-                                        <button className="btn btn-primary me-1 clickmode" data-show=".contactlist" data-hide=".md-one, .Lodingbox, .modal-backdrop" type="button"> <i className="zmdi zmdi-upload"></i> Save </button>
+                                    <a href="javascript:void(0);" className="pointer btn btn-primary me-1" data-toggle="modal" data-target="#editpage"><i className="zmdi zmdi-edit"></i>  Edit</a>
+                                        {/* <button className="btn btn-primary me-1 clickmode" data-show=".contactlist" data-hide=".md-one, .Lodingbox, .modal-backdrop" type="button"> <i className="zmdi zmdi-upload"></i> Save </button> */}
                                         <button className="btn btn-danger" type="button"><i className="zmdi zmdi-rotate-left"></i>
                                             Cancel</button>
                                     </div>

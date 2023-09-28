@@ -85,6 +85,8 @@ const HeaderNav = () => {
               </ul>
             </li>
             <li className="nav-item"><Link href="/settings" className="nav-link"><i className='zmdi zmdi-settings'></i> Settings</Link></li>
+            <li className="nav-item"><Link href="/activity" className="nav-link"><i className='zmdi zmdi-view-dashboard'></i> Activity</Link></li>
+
           </ul>
           <ul className="nav navbar-nav floatmargint lg_none">
             <li className="dropdown nav-item displinl ">
