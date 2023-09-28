@@ -11242,8 +11242,8 @@ border: 1px solid #ffc000;}
 .bdr_rad{border-radius:100%!important;}
 .lineheight_22{line-height: 22px;}.htg_auto{height:auto!important;}
 .posabs{position:absolute;right:0;margin-top:8px;}
-.h_4 h4{background: #E2E9FF !important; padding: 10px 15px 10px 15px!important; font-weight:bold;border-radius:0px;color:var(--secondary); border:1px solid #ccd4ee; }
-.h-4 h4{background: #fff !important; padding: 10px 15px 10px 15px!important; font-weight:bold;border-radius:0px;color:var(--secondary); border:1px solid #E2E9FF }
+.h_4 h4{background: #3E839E1A !important; padding: 10px 15px 10px 15px!important; font-weight:bold;border-radius:0px;color:var(--secondary); border:1px solid #ccd4ee; }
+.h-4 h4{background: #fff !important; padding: 10px 15px 10px 15px!important; font-weight:bold;border-radius:0px;color:var(--secondary); border:1px solid #3E839E1A }
 .h_4 .list-group-item {color: #333; background: #f2f2fa;}
 .inbox.left .mail-side .nav li a { text-overflow: ellipsis;  white-space: nowrap; overflow: hidden;}
 

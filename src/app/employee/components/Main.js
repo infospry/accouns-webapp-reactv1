@@ -97,9 +97,9 @@ function Main() {
                                                                     <td> California</td>
                                                                     <td> <span class="badge badge-success"> Active</span></td>
                                                                     <td>
-                                                                        <a class="btn btn-primary btn-sm" title="Edit" data-toggle="modal"
+                                                                        {/* <a class="btn btn-primary btn-sm" title="Edit" data-toggle="modal"
                                                                             data-target="#addpage"> <i class="zmdi zmdi-search"></i> <span
-                                                                                class="dnone-mob">View</span></a>
+                                                                                class="dnone-mob">View</span></a> */}
                                                                         <a class="btn btn-outline-primary btn-sm dropdown-toggle me-1 ms-1" type="button"
                                                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
                                                                                 class="zmdi zmdi-edit"></i> Edit</a>
@@ -139,128 +139,128 @@ function Main() {
                 </div>
             </section>
             <div class="modal md-one bsdmd" id="addpage" tabindex="-1" role="dialog" aria-labelledby="addpage" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header bg-blu-lite" style={{position:"absolute"}}>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                        aria-hidden="true">×</span></button>
-                <h4 class="modal-title" id="myModalLabel2"> <b>Add Employee</b> </h4>
-            </div>
-            <div class="modal-body">
-                <div class="pagediv">
-                    <div class="row  m-0">
-                        <div class="col-md-3 col-lg-3 itempro text-center pt-3 mb-3 bdrrgtt">
-                            <div class="form-group mb-1">
-                                <div class="avatar-upload">
-                                    <div class="avatar-edit">
-                                        <input type="file" id="imageUpload" accept=".png, .jpg, .jpeg"
-                                            disabled="disabled"/>
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header bg-blu-lite" style={{position:"absolute"}}>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                    aria-hidden="true">×</span></button>
+                            <h4 class="modal-title" id="myModalLabel2"> <b>Add Employee</b> </h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="pagediv">
+                                <div class="row  m-0">
+                                    <div class="col-md-3 col-lg-3 itempro text-center pt-3 mb-3 bdrrgtt">
+                                        <div class="form-group mb-1">
+                                            <div class="avatar-upload">
+                                                <div class="avatar-edit">
+                                                    <input type="file" id="imageUpload" accept=".png, .jpg, .jpeg"
+                                                        disabled="disabled"/>
+                                                </div>
+                                                <div class="avatar-preview">
+                                                    <div id="imagePreview" style={{backgroundImage: "url(images/user.png)"}}></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="btn-group mb-2">
+                                            <a class="btn btn-outline-primary btn-sm"><i class="zmdi zmdi-edit"></i></a>
+                                            <a class="btn btn-danger btn-sm"><i class="zmdi zmdi-delete"></i></a>
+                                        </div>
                                     </div>
-                                    <div class="avatar-preview">
-                                        <div id="imagePreview" style={{backgroundImage: "url(images/user.png)"}}></div>
+                                    <div class="col-md-8 col-lg-9  mt-2">
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="group_lead mt-4">
+                                                    <input type="text" id="" class="input_text" required="required"/>
+                                                    <label for="" class="lablefilled"><i class="zmdi zmdi-account me-1"></i>First
+                                                        Name</label>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="group_lead mt-4">
+                                                    <input type="text" id="" class="input_text" required="required"/>
+                                                    <label for="" class="lablefilled"><i class="zmdi zmdi-account me-1"></i> Last
+                                                        Name</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="group_lead">
+                                                    <input type="text" id="" class="input_text" required="required"/>
+                                                    <label for="" class="lablefilled"><i
+                                                            class="zmdi zmdi-email me-1"></i>Email</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="group_lead">
+                                                    <input type="text" id="" class="input_text" required="required"/>
+                                                    <label for="" class="lablefilled"><i
+                                                            class="zmdi zmdi-smartphone-android me-1"></i>Mobile</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="group_lead">
+                                            <select type="text" id="Role" class="custom-select select_f" required="required">
+                                                <option selected="">Type</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="group_lead">
+                                            <select type="text" id="Role" class="custom-select select_f" required="required">
+                                                <option selected="">Role</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="group_lead">
+                                            <input type="text" id="" class="input_text" required="required"/>
+                                            <label for="" class="lablefilled"><i class="zmdi zmdi-calendar me-1"></i>Date</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="group_lead">
+                                            <input type="text" id="" class="input_text" required="required"/>
+                                            <label for="" class="lablefilled"><i class="zmdi zmdi-pin me-1"></i>Location</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <p class="mb-1"><b class="col-grey">Status</b></p>
+                                    </div>
+                                    <div class="col-md-6 col-12 col-sm-6 mt-0 mb-4">
+                                        <div class="form-check me-3">
+                                            <input type="radio" class="form-check-input" id="customRadio" name="example"
+                                                value="customEx"style={{height:"1. rem"}}/>
+                                            <label class="form-check-label bold" for="customRadio">Active</label>
+                                        </div>
+                                        <div class="form-check ml-3">
+                                            <input type="radio" class="form-check-input" id="customRadio2" name="example"
+                                                value="customEx"style={{height:"1. rem"}}/>
+                                            <label class="form-check-label bold" for="customRadio2"> Inactive </label>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="btn-group mb-2">
-                                <a class="btn btn-outline-primary btn-sm"><i class="zmdi zmdi-edit"></i></a>
-                                <a class="btn btn-danger btn-sm"><i class="zmdi zmdi-delete"></i></a>
-                            </div>
                         </div>
-                        <div class="col-md-8 col-lg-9  mt-2">
-                            <div class="row">
-                                <div class="col">
-                                    <div class="group_lead mt-4">
-                                        <input type="text" id="" class="input_text" required="required"/>
-                                        <label for="" class="lablefilled"><i class="zmdi zmdi-account me-1"></i>First
-                                            Name</label>
+                        <div class="model-footer">
+                            <div class="row m-0">
+                                <div class="col-md-12">
+                                    <div class="text-center">
+                                        <button class="btn btn-primary clickmode me-1"
+                                            data-show=".contactlist, .showthing, .nxtprv, .contactlist"
+                                            data-hide=".md-one, .hdbox, .Lodingbox, .modal-backdrop" type="button"> <i
+                                                class="zmdi zmdi-upload"></i> Save </button>
+                                        <button class="btn btn-danger" type="button"><i class="zmdi zmdi-rotate-left"></i>
+                                            Cancel</button>
                                     </div>
                                 </div>
-                                <div class="col">
-                                    <div class="group_lead mt-4">
-                                        <input type="text" id="" class="input_text" required="required"/>
-                                        <label for="" class="lablefilled"><i class="zmdi zmdi-account me-1"></i> Last
-                                            Name</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <div class="group_lead">
-                                        <input type="text" id="" class="input_text" required="required"/>
-                                        <label for="" class="lablefilled"><i
-                                                class="zmdi zmdi-email me-1"></i>Email</label>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="group_lead">
-                                        <input type="text" id="" class="input_text" required="required"/>
-                                        <label for="" class="lablefilled"><i
-                                                class="zmdi zmdi-smartphone-android me-1"></i>Mobile</label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="group_lead">
-                                <select type="text" id="Role" class="custom-select select_f" required="required">
-                                    <option selected="">Type</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="group_lead">
-                                <select type="text" id="Role" class="custom-select select_f" required="required">
-                                    <option selected="">Role</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="group_lead">
-                                <input type="text" id="" class="input_text" required="required"/>
-                                <label for="" class="lablefilled"><i class="zmdi zmdi-calendar me-1"></i>Date</label>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="group_lead">
-                                <input type="text" id="" class="input_text" required="required"/>
-                                <label for="" class="lablefilled"><i class="zmdi zmdi-pin me-1"></i>Location</label>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <p class="mb-1"><b class="col-grey">Status</b></p>
-                        </div>
-                        <div class="col-md-6 col-12 col-sm-6 mt-0 mb-4">
-                            <div class="form-check me-3">
-                                <input type="radio" class="form-check-input" id="customRadio" name="example"
-                                    value="customEx"style={{height:"1. rem"}}/>
-                                <label class="form-check-label bold" for="customRadio">Active</label>
-                            </div>
-                            <div class="form-check ml-3">
-                                <input type="radio" class="form-check-input" id="customRadio2" name="example"
-                                    value="customEx"style={{height:"1. rem"}}/>
-                                <label class="form-check-label bold" for="customRadio2"> Inactive </label>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="model-footer">
-                <div class="row m-0">
-                    <div class="col-md-12">
-                        <div class="text-center">
-                            <button class="btn btn-primary clickmode me-1"
-                                data-show=".contactlist, .showthing, .nxtprv, .contactlist"
-                                data-hide=".md-one, .hdbox, .Lodingbox, .modal-backdrop" type="button"> <i
-                                    class="zmdi zmdi-upload"></i> Save </button>
-                            <button class="btn btn-danger" type="button"><i class="zmdi zmdi-rotate-left"></i>
-                                Cancel</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
 
 
