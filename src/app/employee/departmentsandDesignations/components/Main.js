@@ -57,7 +57,7 @@ function Main() {
                                             </div>
                                             <div className="pagination-email">
                                                 <div className="btn-group">                       
-                                                    <a href="#" className="btn btn btn-success" data-toggle="modal" data-target="#addeditlocation"><i className="zmdi zmdi-plus-circle-o-duplicate"></i> Add New</a>
+                                                    <a href="#" className="btn btn btn-success" data-bs-toggle="modal" data-bs-target="#addeditlocation"><i className="zmdi zmdi-plus-circle-o-duplicate"></i> Add New</a>
                                                                         
                                                 </div>                                   
                                             </div>

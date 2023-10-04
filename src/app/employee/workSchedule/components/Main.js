@@ -33,7 +33,7 @@ function Main() {
                                 <div className="col-12 p-0">                        
                                     <div className="d-flex">
                                         <div className="mobile-left">
-                                            <a className="btn btn-info btn-icon toggle-email-nav collapsed" data-toggle="collapse" href="#email-nav" role="button" aria-expanded="false" aria-controls="email-nav">
+                                            <a className="btn btn-info btn-icon toggle-email-nav collapsed" data-bs-toggle="collapse" href="#email-nav" role="button" aria-expanded="false" aria-controls="email-nav">
                                                 <span className="btn-label"><i className="zmdi zmdi-more"></i></span>
                                             </a>
                                         </div>

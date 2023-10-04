@@ -66,7 +66,7 @@ function Main() {
                                         <div className="panel panel-primary bdr">
                                             <div className="panel-heading" role="tab" id="headingOne_2">
                                                 <h4 className="panel-title">
-                                                    <a role="button" data-toggle="collapse" data-parent="#accordion_1" href="#collapseOne_2"
+                                                    <a role="button" data-bs-toggle="collapse" data-bs-parent="#accordion_1" href="#collapseOne_2"
                                                         aria-expanded="false" aria-controls="collapseOne_2" className="collapsed text-left">
                                                         <span className="col-blue text-left">
                                                             <b> 1. Basu deo </b> </span>

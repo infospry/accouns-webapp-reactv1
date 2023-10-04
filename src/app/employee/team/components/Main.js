@@ -22,7 +22,7 @@ function Main() {
                                 <h2 className="font-bold mb-0"><i className="zmdi zmdi-account-alt me-1"></i>Teams </h2>
                             </div>
                             <div className="pe-2">
-                                <a href="javascript:void(0);" className="btn btn-success" data-toggle="modal" data-target="#addpage"><i className="zmdi zmdi-plus-circle-o-duplicate"></i>  Add Team Member</a>
+                                <a href="javascript:void(0);" className="btn btn-success" data-bs-toggle="modal" data-bs-target="#addpage"><i className="zmdi zmdi-plus-circle-o-duplicate"></i>  Add Team Member</a>
                                 <div className="btn-group ms-1">
                                     <button className="btn btn-outline-primary  dropdown-toggle font-w" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"> More Actions</button>
                                     <div className="dropdown-menu">
@@ -83,7 +83,7 @@ function Main() {
                                                         <div className="btn-group">
                                                             <button type="button" className="btn btn-primary btn-sm dropdown-toggle dr-breakout-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Action <span className="caret"></span></button>
                                                             <ul className="dropdown-menu dr-breakout">                                                          
-                                                                <li className="btn btn-outline-primary btn-sm me-1" title="Edit" data-toggle="modal" data-target="#addpage"> <i className="zmdi zmdi-edit"></i> <span className="dnone-mob">Edit</span></li>
+                                                                <li className="btn btn-outline-primary btn-sm me-1" title="Edit" data-bs-toggle="modal" data-bs-target="#addpage"> <i className="zmdi zmdi-edit"></i> <span className="dnone-mob">Edit</span></li>
                                                                 <li className="btn btn-danger btn-sm" title="Delete" type="button"> <i className="zmdi zmdi-delete"></i> <span className="dnone-mob">Delete</span></li>                                                 
                                                             </ul>
                                                         </div> 
@@ -106,7 +106,7 @@ function Main() {
         <div className="modal-dialog" role="document">
             <div className="modal-content">
                 <div className="modal-header bg-blu-lite">
-                    <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" className="close" data-bs-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                     <h4 className="modal-title" id="myModalLabel2">
