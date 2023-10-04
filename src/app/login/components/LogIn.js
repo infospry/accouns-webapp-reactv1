@@ -54,7 +54,7 @@ const LogIn = () =>{
                         </div>
                     </div>
                 </form>
-                <form className="card auth_form forgot_passarea ddnone">  
+                <form className="auth_form forgot_passarea ddnone">  
                     <div className="header text-center pb-0">
                         <h1 className="mb-0"><span className="col-black">Reset Password? </span> </h1>
                         <p className="mt-0 mb-0 col-grey">If you have forgotten your password, enter your e-mail address and we will send you an e mail telling you how to recover it.</p> 
@@ -74,7 +74,7 @@ const LogIn = () =>{
                 </form>
                 
 
-                <form className="card auth_form resetarea ddnone"> 
+                <form className="auth_form resetarea ddnone"> 
                     <div className="logo_sign text-center">  
                         <i className="zmdi zmdi-check-circle zmdi-hc-3x text-success"></i>                                              
                         <h5>OTP Process </h5>
@@ -97,7 +97,7 @@ const LogIn = () =>{
                     </div>
                 </form>
 
-                <form className="card auth_form  ddnone  resetareapasswordd">   
+                <form className="auth_form  ddnone  resetareapasswordd">   
                     <div className="header text-center pb-0">
                         <h1 className="mb-0"><span className="col-black">Change Password </span> </h1>
                      </div>                  

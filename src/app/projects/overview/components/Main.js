@@ -15,7 +15,7 @@ function Main() {
                     <div className="scrolfx">
                         <div className="booktab d-flex justify-content-between align-items-center bdrb">
                             <div className="p-2">
-                                <h2 className="font-bold mb-0"><i class="zmdi zmdi-widgets me-1"></i> Projects Overview </h2>
+                                <h2 className="font-bold mb-0"><i className="zmdi zmdi-widgets me-1"></i> Projects Overview </h2>
                             </div>
                             <div className="pe-2">
                                 <div className="btn-group ms-1">
@@ -105,20 +105,10 @@ function Main() {
                                                 <div className="row">
                                                     <div className="col-md-12 col-sm-12">
                                                         <div className="bxsaddow wd100">
-                                                            <div className="bdr1 h4show taskboard">
-                                                                <div className="dd">
-                                                                    <ol className="dd-list row" Style={{display:"flex"}}>
-
-                                                                        <li className="dd-item col-lg-12 mt-2 mb-0">
-                                                                            <div
-                                                                                className="dd-handle d-flex justify-content-between align-items-center pt-2 pb-2">
-                                                                                <div className="h6 mb-2 mt-2 text-blue">
-
-                                                                                    <i className="zmdi zmdi-folder"></i> <b>Project Sprint /
+                                                        <div className="h6 mb-1  font-17 mt-2 text-blue">
+                                                                                    <i className="zmdi zmdi-folder ps-2"></i> <b>Project Sprint /
                                                                                         Milestones</b>
                                                                                 </div>
-                                                                            </div>
-                                                                            <div className="dd-content p-1">
                                                                                 <div className="table-responsive">
                                                                                     <table className="table table-bordered">
                                                                                         <thead>
@@ -141,7 +131,7 @@ function Main() {
                                                                                                 <td>Sorry. We’re having trouble getting your
                                                                                                     pages back</td>
                                                                                                 <td className="col-blue"><i
-                                                                                                        className="zmdi zmdi-collection-pdf mr-1"></i>usd.pdf
+                                                                                                        className="zmdi zmdi-collection-pdf me-1"></i>usd.pdf
                                                                                                 </td>
                                                                                             </tr>
                                                                                             <tr>
@@ -153,7 +143,7 @@ function Main() {
                                                                                                 <td>Sorry. We’re having trouble getting your
                                                                                                     pages back</td>
                                                                                                 <td className="col-blue"><i
-                                                                                                        className="zmdi zmdi-collection-pdf mr-1"></i>usd.pdf
+                                                                                                        className="zmdi zmdi-collection-pdf me-1"></i>usd.pdf
                                                                                                 </td>
                                                                                             </tr>
                                                                                             <tr>
@@ -165,7 +155,7 @@ function Main() {
                                                                                                 <td>Sorry. We’re having trouble getting your
                                                                                                     pages back</td>
                                                                                                 <td className="col-blue"><i
-                                                                                                        className="zmdi zmdi-collection-pdf mr-1"></i>usd.pdf
+                                                                                                        className="zmdi zmdi-collection-pdf me-1"></i>usd.pdf
                                                                                                 </td>
                                                                                             </tr>
                                                                                             <tr>
@@ -176,25 +166,16 @@ function Main() {
                                                                                                 <td>Sorry. We’re having trouble getting your
                                                                                                     pages back</td>
                                                                                                 <td className="col-blue"><i
-                                                                                                        className="zmdi zmdi-collection-pdf mr-1"></i>usd.pdf
+                                                                                                        className="zmdi zmdi-collection-pdf me-1"></i>usd.pdf
                                                                                                 </td>
                                                                                             </tr>
                                                                                         </tbody>
                                                                                     </table>
                                                                                 </div>
-                                                                            </div>
-
-                                                                        </li>
-                                                                        <li className="dd-item col-lg-12 mt-2 mb-0">
-                                                                            <div
-                                                                                className="dd-handle d-flex justify-content-between align-items-center pt-2 pb-2">
-                                                                                <div className="h6 mb-2 mt-2 text-blue">
-
-                                                                                    <i className="zmdi zmdi-folder"></i> <b>Project backlog
-                                                                                        items</b>
+                                                                                <div className="h6 font-17 mb-1 mt-3 text-blue">
+                                                                                <i className="zmdi zmdi-folder ps-2"></i> <b>Project backlog
+                                                                                    items</b>
                                                                                 </div>
-                                                                            </div>
-                                                                            <div className="dd-content p-1">
                                                                                 <div className="table-responsive">
                                                                                     <table className="table table-bordered">
                                                                                         <thead>
@@ -217,12 +198,6 @@ function Main() {
                                                                                         </tbody>
                                                                                     </table>
                                                                                 </div>
-                                                                            </div>
-
-                                                                        </li>
-                                                                    </ol>
-                                                                </div>
-                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>

@@ -19,8 +19,19 @@ function Main() {
                             <div className="p-2">
                                 <h2 className="font-bold mb-0"><i className="zmdi zmdi-pizza me-1"></i>Expenses </h2>
                             </div>
+                            <div className="input-group" style={{ maxWidth: '460px' }}>
+                                <input type="text" className="form-control radius_l" aria-label="Text input with dropdown button" placeholder='Search...' />
+                                <button className="btn btn-outline-secondary dropdown-toggle radius_r" type="button" data-bs-toggle="dropdown" aria-expanded="false"><i className="zmdi zmdi-tune"></i> Advance Search</button>
+                                <ul className="dropdown-menu dropdown-menu-end">
+                                    <li><a className="dropdown-item" href="#">Action</a></li>
+                                    <li><a className="dropdown-item" href="#">Another action</a></li>
+                                    <li><a className="dropdown-item" href="#">Something else here</a></li>
+                                    <li><hr className="dropdown-divider" /></li>
+                                    <li><a className="dropdown-item" href="#">Separated link</a></li>
+                                </ul>
+                            </div>
                             <div className="pe-2">
-                                <a href="#" className="btn btn-success" data-toggle="modal" data-target="#addpage"><i className="zmdi zmdi-plus-circle-o-duplicate"></i>  New Expanse</a>
+                                <a href="#" className="btn btn-success" data-bs-toggle="modal" data-bs-target="#addpage"><i className="zmdi zmdi-plus-circle-o-duplicate"></i>  New Expanse</a>
                                 <div className="btn-group ms-1">
                                     <button className="btn btn-outline-primary  dropdown-toggle font-w" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"> More Actions</button>
                                     <div className="dropdown-menu">
@@ -40,24 +51,7 @@ function Main() {
 
                             <div className="row">
                                 <div className="col-12 col-lg-12 mt-3">
-                                    <div className="card bdr5 mb-1">
-                                        <div className="header d-flex justify-content-between align-items-center p-0">
-                                            <div className="">
-                                                <h2 className="font-bold"><i className="zmdi zmdi-accounts-list-alt mr-1"></i> All Expenses </h2>
-                                            </div>
-                                            <div className="input-group" style={{ maxWidth: '460px' }}>
-                                                <input type="text" className="form-control radius_l" aria-label="Text input with dropdown button" placeholder='Search...' />
-                                                <button className="btn btn-outline-secondary dropdown-toggle radius_r" type="button" data-bs-toggle="dropdown" aria-expanded="false"><i className="zmdi zmdi-tune"></i> Advance Search</button>
-                                                <ul className="dropdown-menu dropdown-menu-end">
-                                                    <li><a className="dropdown-item" href="#">Action</a></li>
-                                                    <li><a className="dropdown-item" href="#">Another action</a></li>
-                                                    <li><a className="dropdown-item" href="#">Something else here</a></li>
-                                                    <li><hr className="dropdown-divider" /></li>
-                                                    <li><a className="dropdown-item" href="#">Separated link</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    
                                     <div className='Lodingbox'>
                                         <Loading />
                                     </div>
@@ -229,7 +223,7 @@ function Main() {
                                                 </table>                                               
                                             </div>
                                             <hr />
-                                            <div class="d-flex justify-content-between align-items-center"><div>Grand Total(GBP )</div><div class="Invoice-list-total font-20" style={{ textAlign: "end" }}>£0.00 </div></div>
+                                            <div className="d-flex justify-content-between align-items-center"><div>Grand Total(GBP )</div><div className="Invoice-list-total font-20" style={{ textAlign: "end" }}>£0.00 </div></div>
 
                                         </div>
                                     </div>
@@ -256,7 +250,7 @@ function Main() {
                                                 <p className="m-0 font-14"><b><i className="zmdi zmdi-refresh"></i> Make Recurring</b></p>
                                                 <p className="col-grey m-0 font-14">Repeat this expanses automatically</p>
                                             </div>
-                                            <div class="form-check form-switch ms-1">
+                                            <div className="form-check form-switch ms-1">
                                             <input
                                                     className="form-check-input"
                                                     type="checkbox"

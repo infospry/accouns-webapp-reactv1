@@ -2,12 +2,16 @@
 import Loading from '@/app/components/Loading'
 import React, { useState } from 'react';
 import Image from 'next/image';
-
+import menuImage from "../../images/menu-dots-vertical.svg";
+import aImage from "../../images/download.jpg";
+import bImage from "../../images/download.jpg";
 function Main() {
     const customStyles = {
         borderLeft: '1px solid rgb(221, 221, 221)',
         height: '100vh',
     };
+
+    
     const [showEmailInput, setShowEmailInput] = useState(false);
     const [email, setEmail] = useState('');
 
@@ -27,9 +31,10 @@ function Main() {
         // Perform any actions with the email (e.g., validation, submission to a server, etc.)
         console.log('Email submitted:', email); console.log('Phone number submitted:', phoneNumber);
     };
+//#region phone 
     const [showPhoneNumberInput, setShowPhoneNumberInput] = useState(false);
     const [phoneNumber, setPhoneNumber] = useState('');
-
+//#endregion
     // Function to handle the click event and show the phone number input field
     const handlePhoneNumberClick = () => {
         setShowPhoneNumberInput(true);
@@ -46,6 +51,8 @@ function Main() {
         // Perform any actions with the phone number (e.g., validation, submission to a server, etc.)
 
     };
+   
+
     const [showAddressFields, setShowAddressFields] = useState(false);
     const [addressLine1, setAddressLine1] = useState('');
     const [addressLine2, setAddressLine2] = useState('');
@@ -68,10 +75,21 @@ function Main() {
                             <div className="p-2">
                                 <h2 className="font-bold mb-0"><i className="zmdi zmdi-graduation-cap me-1"></i>Clients </h2>
                             </div>
+                            <div className="input-group" style={{ maxWidth: '460px' }}>
+                                <input type="text" className="form-control radius_l" aria-label="Text input with dropdown button" placeholder='Search...' />
+                                <button className="btn btn-outline-secondary dropdown-toggle radius_r" type="button" data-bs-toggle="dropdown" aria-expanded="false"><i className="zmdi zmdi-tune"></i> Advance Search</button>
+                                <ul className="dropdown-menu dropdown-menu-end">
+                                    <li><a className="dropdown-item" href="#">Action</a></li>
+                                    <li><a className="dropdown-item" href="#">Another action</a></li>
+                                    <li><a className="dropdown-item" href="#">Something else here</a></li>
+                                    <li><hr className="dropdown-divider" /></li>
+                                    <li><a className="dropdown-item" href="#">Separated link</a></li>
+                                </ul>
+                            </div>
                             <div className="pe-2">
-                                <a href="#" className="btn btn-success" data-toggle="modal" data-target="#addpage"><i className="zmdi zmdi-plus-circle-o-duplicate"></i>  New Client</a>
+                                <a href="#" className="btn btn-success" data-bs-toggle="modal" data-bs-target="#addpage"><i className="zmdi zmdi-plus-circle-o-duplicate"></i>  New Client</a>
                                 <div className="btn-group ms-1">
-                                    <button className="btn btn-outline-primary  dropdown-toggle font-w" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"> More Actions</button>
+                                    <button className="btn btn-outline-secondary  dropdown-toggle font-w" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true"> More Actions</button>
                                     <div className="dropdown-menu">
                                         <a className="dropdown-item" href="javascript:void(0);" data-toggle="modal" data-target="#"><i className="zmdi zmdi-upload"></i> Export</a>
                                         <a className="dropdown-item" href="javascript:void(0);" data-toggle="modal" data-target="#"><i className="zmdi zmdi-download"></i> Import</a>
@@ -89,24 +107,7 @@ function Main() {
 
                             <div className="row">
                                 <div className="col-12 col-lg-12 mt-3">
-                                    <div className="card bdr5 mb-1">
-                                        <div className="header d-flex justify-content-between align-items-center p-0">
-                                            <div className="">
-                                                <h2 className="font-bold"><i className="zmdi zmdi-accounts-list-alt me-1"></i> All Clients </h2>
-                                            </div>
-                                            <div className="input-group" style={{ maxWidth: '460px' }}>
-                                                <input type="text" className="form-control radius_l" aria-label="Text input with dropdown button" placeholder='Search...' />
-                                                <button className="btn btn-outline-secondary dropdown-toggle radius_r" type="button" data-bs-toggle="dropdown" aria-expanded="false"><i className="zmdi zmdi-tune"></i> Advance Search</button>
-                                                <ul className="dropdown-menu dropdown-menu-end">
-                                                    <li><a className="dropdown-item" href="#">Action</a></li>
-                                                    <li><a className="dropdown-item" href="#">Another action</a></li>
-                                                    <li><a className="dropdown-item" href="#">Something else here</a></li>
-                                                    <li><hr className="dropdown-divider" /></li>
-                                                    <li><a className="dropdown-item" href="#">Separated link</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    
                                     <div className='Lodingbox'>
                                         <Loading />
                                     </div>
@@ -139,7 +140,7 @@ function Main() {
                                                             </div>  
                                                         </td>
                                                         <td>
-                                                            <a href="javascript:void(0);" class="d-flex justify-content-start align-items-center" data-toggle="modal" data-target="#preview"><div class="shortTitle me-2">LD</div><div class="mt-2" style={{lineHeight:"14px"}}><span class="font-weight-bold"> Loporem Dummy Pvt.ltd.</span></div><div></div></a>
+                                                            <a href="javascript:void(0);" class="d-flex justify-content-start align-items-center" data-toggle="modal" data-target="#preview"><div class="shortTitle me-2">LD</div><div style={{lineHeight:"14px"}}><span class="font-weight-bold"> Loporem Dummy Pvt.ltd.</span></div><div></div></a>
                                                         </td>
                                                         <td className="dnone-mob"></td>                                                        
                                                         <td></td>
@@ -149,11 +150,11 @@ function Main() {
                                                         <td>
                                                             <div className="dropdown">
                                                                 <button className="btn dropdown-toggle"style={{boder:"0px"}} type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                                                <img src="../images/menu-dots-vertical.svg" alt="user" />
+                                                                <Image src={menuImage} alt="user" width={"5"} height={"21"} />
                                                                 </button>
                                                                 <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                                                    <li><a className="dropdown-item col-green" href="javascript:void(0);" data-toggle="modal" data-target="#preview"><i className="zmdi zmdi-search me-1"></i>View</a></li>
-                                                                    <li><a className="dropdown-item col-blue" href="javascript:void(0);" data-toggle="modal" data-target="#addpage"><i className="zmdi zmdi-edit me-1"></i>Edit</a></li>
+                                                                    <li><a className="dropdown-item col-green" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#preview"><i className="zmdi zmdi-search me-1"></i>View</a></li>
+                                                                    <li><a className="dropdown-item col-blue" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#addpage"><i className="zmdi zmdi-edit me-1"></i>Edit</a></li>
                                                                     <li><a className="dropdown-item text-danger" href="#"><i className="zmdi zmdi-delete me-1"></i>Delete</a></li>
                                                                 </ul>
                                                             </div>
@@ -173,7 +174,7 @@ function Main() {
             <div className="modal right-half md-one" id="addpage" tabindex="-1" role="dialog" aria-labelledby="shortModal">
                 <div className="modal-dialog modal-dialog-scrollable" role="document">
                     <div className="modal-content">
-                        <div className="modal-header bg-blu-lite fixed-top">
+                        <div className="modal-header bg-blu-lite">
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"> </button>
                             <h4 className="modal-title" id="myModalLabel2">
                                 <b> <i className="zmdi zmdi-plus-circle-o-duplicate"></i> Add / Edit Client</b>
@@ -216,8 +217,7 @@ function Main() {
                                         </div>
 
                                         <div className="col-12">
-                                            <button className='btn btn-outline-primary mb-3' onClick={handleEmailClick}> + Add Email Address</button>
-                                            <button className='btn btn-outline-primary mb-3 ms-1 me-1' onClick={handlePhoneNumberClick}> + Add Phone Number</button>
+                                            
                                             <button className='btn btn-outline-primary mb-3' onClick={handleAddressClick}> + Add Address</button>
                                             {/* Render the email input field conditionally */}
                                             <div className="row">
@@ -414,10 +414,10 @@ function Main() {
                 </div>
             </div>
             <div className="modal right_one_thrd md-one" id="preview" tabindex="-1" role="dialog" aria-labelledby="shortModal"aria-hidden="true">
-                <div className="modal-dialog ui-draggable ui-draggable-handle" role="document">
+                <div className="modal-dialog" role="document">
                     <div className="modal-content">
-                        <div className="modal-header bg-blu-lite fixed-top">
-                            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                        <div className="modal-header bg-blu-lite">
+                            <button type="button" className="close" data-bs-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">×</span>
                             </button>
                             <h4 className="modal-title" id="myModalLabel2">
@@ -425,10 +425,15 @@ function Main() {
                             </h4>
                         </div>
                         <div className="modal-body pe-0 ps-0 pb-0 contbody">   
-                            <div class="p-4 text-center" style={{background:"#f2f2fa"}}>
-                                <div class="proTitle">LD</div>
-                                <h2 class="font-weight-bold mt-2 mb-2"> Loporem Dummy Pvt.ltd.</h2>  
-                                <ul class="social-network social-circle m-0 p-0" style={{minHeight:"35px"}}>
+                            <div class="p-3 d-flex justify-content-between  align-items-center" style={{background:"#f2f2fa"}}>
+                                <div className="d-flex justify-content-start align-items-center">
+                                    <div class="pro__Title">LD</div>
+                                    <div className="ms-2">
+                                        <h2 class="font-weight-bold font-18 mb-0"> Loporem Dummy Pvt.ltd.</h2>
+                                        <p className="mb-0"><span className="col-grey"> UTR Number:</span>01234567890 </p> 
+                                    </div>
+                                </div> 
+                                <ul class="social-network social-circle m-0 p-0 text-end" style={{minHeight:"35px", width:"180px"}}>
                                     <li><a href="#" class="" title="Facebook"><i class="zmdi zmdi-facebook"></i></a></li>
                                     <li><a href="#" class="" title="Linkedin"><i class="zmdi zmdi-linkedin"></i></a></li>
                                     <li><a href="#" class="" title="Facebook"><i class="zmdi zmdi-twitter"></i></a></li>
@@ -440,10 +445,10 @@ function Main() {
                                     <div className="bgblulgt">
                                         <ul className="nav nav-tabs nav-justified p-0">                            
                                             <li className="nav-item">
-                                                <a className="nav-link active" data-toggle="tab" href="#Overview"><i className="ti ti-layout-accordion-list"></i> Overview </a>
+                                                <a className="nav-link active" data-bs-toggle="tab" href="#Overview"><i className="ti ti-layout-accordion-list"></i> Overview </a>
                                             </li>   
                                             <li className="nav-item">
-                                                <a className="nav-link" data-toggle="tab" href="#Page__Notes"><i className="zmdi zmdi-comment-edit"></i> Notes</a>
+                                                <a className="nav-link" data-bs-toggle="tab" href="#Page__Notes"><i className="zmdi zmdi-comment-edit"></i> Notes</a>
                                             </li>                      
                                         </ul>
                                     </div>
@@ -610,7 +615,7 @@ function Main() {
                                                         </div>
                                                     
                                                         <div className="mt-2 mb-4">
-                                                            <div className="d-flex flex-row p-3"> <img src="../images/download.jpg" className="rounded-circle me-3" width="40" height="40"/>
+                                                            <div className="d-flex flex-row p-3"> <Image src={aImage} alt="img" width={"40"} height={"40"}/>
                                                                 <div className="w-100">
                                                                     <div className="d-flex justify-content-between align-items-center">
                                                                         <div className="d-flex flex-row align-items-center"> <span className="me-2 font-18 col-head">Brian selter</span> <small className="c-badge">Top Comment</small> </div> <small><i className="zmdi zmdi-calendar me-1"></i> 12h ago</small>
@@ -620,7 +625,7 @@ function Main() {
                                                                 </div>
                                                             </div>
                                                             <hr/>
-                                                            <div className="d-flex flex-row p-3"> <img src="https://i.imgur.com/3J8lTLm.jpg" className="rounded-circle me-3" width="40" height="40"/>
+                                                            <div className="d-flex flex-row p-3"> <Image src={aImage} alt="img" width={"40"} height={"40"}/>
                                                                 <div className="w-100">
                                                                     <div className="d-flex justify-content-between align-items-center">
                                                                         <div className="d-flex flex-row align-items-center"> <span className="me-2 font-18 col-head">Seltos Majito</span> <small className="c-badge">Top Comment</small> </div><small> <i className="zmdi zmdi-calendar me-1"></i> 10-Feb-2021</small>
@@ -630,7 +635,7 @@ function Main() {
                                                                 </div>
                                                             </div>
                                                             <hr/>
-                                                            <div className="d-flex flex-row p-3"> <img src="../images/download.jpg" className="rounded-circle me-3" width="40" height="40"/>
+                                                            <div className="d-flex flex-row p-3"> <Image src={aImage} alt="img" width={"40"} height={"40"}/>
                                                                 <div className="w-100">
                                                                     <div className="d-flex justify-content-between align-items-center">
                                                                         <div className="d-flex flex-row align-items-center"> <span className="me-2 font-18 col-head

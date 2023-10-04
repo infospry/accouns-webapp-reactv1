@@ -8483,10 +8483,10 @@ body {
  -o-transition:all 0.5s;
  -webkit-transition:all 0.5s;
  transition:all 0.5s;
- font-family:Open Sans,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+ font-family:'Figtree',-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
  background-color:#EBF0F9;
  font-weight:400;
- font-size:14px;
+ font-size:14px!important;
  overflow: hidden;  
 }  
 button,
@@ -9927,7 +9927,6 @@ section.content {
  -moz-border-radius:0;
  -ms-border-radius:0;
  border-radius:0;
- font-family:Open Sans,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
  border:none;
  position:fixed;
  top:0;
@@ -10126,7 +10125,6 @@ section.content {
  -o-transition:all 0.5s;
  -webkit-transition:all 0.5s;
  transition:all 0.5s;
- font-family:Open Sans,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
  width:250px;
  height:calc(100vh - 0px);
  position:fixed;
@@ -18165,7 +18163,6 @@ table tr:nth-child(even) {
 
  
 body {
-    font-family: 'Adobe Clean', sans-serif !important;
     margin: 0;
     padding: 0;
 }
@@ -18193,43 +18190,12 @@ body {
     font-family: Material-Design-Iconic-Font;
     src: url('../font/Material-Design-Iconic-Font.woff2');
 }
-@font-face {
-    font-family: 'Adobe Clean';
-    src: url('../font/AdobeClean-Regular.eot');
-    src: local('Adobe Clean'), local('AdobeClean-Regular'),
-        url('../font/AdobeClean-Regular.eot?#iefix') format('embedded-opentype'),
-        url('../font/AdobeClean-Regular.woff') format('woff'),
-        url('../font/AdobeClean-Regular.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
+
  p { 
     color:#111;
     font-size: 20px;
     line-height: 30px;
     font-weight: 400;
-} 
-
-@font-face {
-    font-family: 'Adobe Clean';
-    src: url('../font/AdobeClean-Light.eot');
-    src: local('Adobe Clean Light'), local('AdobeClean-Light'),
-        url('../font/AdobeClean-Light.eot?#iefix') format('embedded-opentype'),
-        url('../font/AdobeClean-Light.woff') format('woff'),
-        url('../font/AdobeClean-Light.ttf') format('truetype');
-    font-weight: 300;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Adobe Clean';
-    src: url('../font/AdobeClean-Bold.eot');
-    src: local('Adobe Clean Bold'), local('AdobeClean-Bold'),
-        url('../font/AdobeClean-Bold.eot?#iefix') format('embedded-opentype'),
-        url('../font/AdobeClean-Bold.woff') format('woff'),
-        url('../font/AdobeClean-Bold.ttf') format('truetype');
-    font-weight: bold;
-    font-style: normal;
 } 
 a {
     outline: none;

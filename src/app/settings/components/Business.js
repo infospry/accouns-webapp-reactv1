@@ -1,3 +1,4 @@
+"use client"
 import React from 'react'
 
 function Business() {
@@ -24,8 +25,8 @@ function Business() {
                         </div>
                         <div className="col-12 col-md-6">
                             <div className="mb-3">                                                
-                                <label  class="form-label">Mobile Number</label>
-                                <input type="text" class="form-control mb-3" placeholder="Mobile Number"/>            
+                                <label  className="form-label">Mobile Number</label>
+                                <input type="text" className="form-control mb-3" placeholder="Mobile Number"/>            
                             </div>
                         </div>  
 
@@ -81,7 +82,7 @@ function Business() {
                 <div className="">
                     <h2 className="font-bold"> Preferences</h2>
                     <hr/>
-                    <div class="row">
+                    <div className="row">
                         <div className="col-12 col-md-6">
                             <div className="mb-3">
                                 <label className="form-label">Base Currency</label>
@@ -92,7 +93,7 @@ function Business() {
                         <div className="col-12 col-md-6 ">
                             <div className="mb-3">
                                 <label className="form-label">Business Time Zone</label>
-                                <select class="form-select" name="timezone">
+                                <select className="form-select" name="timezone">
                                 <option selected> Select Time Zone</option>
                                 <option value="Etc/GMT+12">(GMT-12:00) International Date Line West</option>
                                 <option value="Pacific/Midway">(GMT-11:00) Midway Island, Samoa</option>
@@ -182,7 +183,7 @@ function Business() {
                         <div className="col-12 col-md-6">
                             <div className="mb-3">
                                 <label className="form-label">Fiscal Year End Month</label>
-                                <select class="form-select" name="Month">
+                                <select className="form-select" name="Month">
                                 <option value=''>--Select Month--</option>
                                 <option selected value='1'>Janaury</option>
                                 <option value='2'>February</option>
@@ -202,7 +203,7 @@ function Business() {
                         <div className="col-12 col-md-6">
                             <div className="mb-3">
                                 <label className="form-label">Fiscal Year End Day</label>
-                                <select class="form-select" name="timezone">
+                                <select className="form-select" name="timezone">
                                     <option selected> Select Time Format</option>
                                     <option value="12 hours">1</option>
                                     <option value="24 hours">31</option>                                                    
@@ -212,7 +213,7 @@ function Business() {
                         <div className="col-12 col-md-6">
                             <div className="mb-3">
                                 <label className="form-label">Start week On</label>
-                                <select class="form-select" name="weekday">
+                                <select className="form-select" name="weekday">
                                 <option value="0">Monday</option>
                                 <option value="1">Tuesday</option>
                                 <option value="2">Wednesday</option>
@@ -226,7 +227,7 @@ function Business() {
                         <div className="col-12 col-md-6">
                             <div className="mb-3">
                                 <label className="form-label">Date Format</label>
-                                <select class="form-select" name="dateFormat">
+                                <select className="form-select" name="dateFormat">
                                 <option value="0">dd/mm/yyyy</option>  
                                 </select>
                             </div>
@@ -246,9 +247,9 @@ function Business() {
                         <div className="col-12 col-md-6">
                             <div className="mb-3">
                                 <label className="form-label">Standred Rate</label>
-                                <div class="input-group mb-0">
-                                <input type="text" class="form-control" placeholder="£0.00"/>
-                                <span class="input-group-text" id="basic-addon2"> /hr</span>
+                                <div className="input-group mb-0">
+                                <input type="text" className="form-control" placeholder="£0.00"/>
+                                <span className="input-group-text" id="basic-addon2"> /hr</span>
                                 </div>
                             </div>
                         </div>
@@ -256,10 +257,10 @@ function Business() {
                 </div>                
             </div>
                     
-            <div class="text-center col-12">
+            <div className="text-center col-12">
             <hr/>
-                <button class="btn btn-primary clickmode me-1"> <i class="zmdi zmdi-upload"></i> Save </button>
-                <button class="btn btn-danger" type="button"><i class="zmdi zmdi-rotate-left"></i> Cancel</button>
+                <button className="btn btn-primary clickmode me-1"> <i className="zmdi zmdi-upload"></i> Save </button>
+                <button className="btn btn-danger" type="button"><i className="zmdi zmdi-rotate-left"></i> Cancel</button>
             </div>
                 
 

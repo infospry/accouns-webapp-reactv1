@@ -29,8 +29,22 @@ return (
                     </div>                   
                 </div>
             </div>
+          
             <div className="scroll_bar">
-                <div className="booktab d-flex justify-content-between align-items-center bdrbtm">
+            <div className="p-4 text-center" style={{background:"#f2f2fa"}}>
+            <div className="avatar-upload mt-1" style={{maxWidth:"150px"}}>
+                    <div className="avatar-edit">
+                        <input type="file" id="imageUpload" accept=".png, .jpg, .jpeg" />
+                        <label for="imageUpload"></label>
+                    </div>
+                    <div className="avatar-preview">
+                        <div className="proTitle" id="imagePreview" style={{backgroundColor:"#eee"}}>LD</div>
+                    </div>
+                </div>
+               
+                <h2 className="font-weight-bold mt-3 mb-0"> Loporem Dummy </h2>                  
+            </div>  
+                <div className="booktab d-flex justify-content-center align-items-center bdrbtm">
                     <div className="">
                         <ul className="nav nav-tabs nav-justified p-0">
                             <li className="nav-item">
@@ -71,7 +85,7 @@ return (
                 <div className="container-fluid">
                     <div className="row">
                         <div className="col-12 col-lg-12 mt-3 lb">
-                            <div className='account p-4'>
+                            <div className='account p-3'>
                                <Account/>
                             </div>
                             <div className='business p-4 dd_none'>
@@ -87,7 +101,11 @@ return (
                                 <EmailTemplates/>
                             </div>
                             <div className='security abbs p-4 dd_none'>
-                               <Security/>
+                               <div className="row justify-content-center">
+                                    <div className="col-xl-8">
+                                    <Security/>
+                                    </div>
+                               </div>
                             </div>
                         </div>
                     </div>
@@ -95,52 +113,52 @@ return (
             </div>
         </div>
     </section>
-    <div class="modal right-quater md-one" id="two-step" tabindex="-1" role="dialog" aria-labelledby="shortModal">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header bg-blu-lite fixed-top">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <div className="modal right-quater md-one" id="two-step" tabindex="-1" role="dialog" aria-labelledby="shortModal">
+        <div className="modal-dialog" role="document">
+            <div className="modal-content">
+                <div className="modal-header bg-blu-lite fixed-top">
+                    <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
-                    <h4 class="modal-title" id="myModalLabel2">
-                        <b> <i class="zmdi zmdi-shield-security"></i> Turn on two-step authentication</b>
+                    <h4 className="modal-title" id="myModalLabel2">
+                        <b> <i className="zmdi zmdi-shield-security"></i> Turn on two-step authentication</b>
                     </h4>
                 </div>
-                <div class="modal-body pr-0 pl-0 pb-0 contbody">  
-                    <div class="p-3">                                            
+                <div className="modal-body pr-0 pl-0 pb-0 contbody">  
+                    <div className="p-3">                                            
                         <p><b>Select an authentication methd for your account.</b></p>
                         <hr/>
-                        <div class="form-check">
-                            <input type="radio" id="customRadio1" name="customRadio" class="form-check-input"style={{height:'1em'}}/>
-                            <label class="form-check-label" for="customRadio1">
-                                <h4 class="mb-0"><strong>Authenticator app</strong></h4>
-                                <p class="mb-0">Use an app to generate an authentication code when you log in.</p>
+                        <div className="form-check">
+                            <input type="radio" id="customRadio1" name="customRadio" className="form-check-input"style={{height:'1em'}}/>
+                            <label className="form-check-label" for="customRadio1">
+                                <h4 className="mb-0"><strong>Authenticator app</strong></h4>
+                                <p className="mb-0">Use an app to generate an authentication code when you log in.</p>
                             </label>
                         </div>
                             <hr/>
-                        <div class="form-check">
-                            <input type="radio" id="customRadio2" name="customRadio" class="form-check-input"style={{height:'1em'}}/>
-                            <label class="form-check-label" for="customRadio2">
-                                <h4 class="mb-0"><strong>Security key</strong></h4>
-                                <p class="mb-0">Use a compatible security key like a fingerprint reader or USB key when you log in.</p>
+                        <div className="form-check">
+                            <input type="radio" id="customRadio2" name="customRadio" className="form-check-input"style={{height:'1em'}}/>
+                            <label className="form-check-label" for="customRadio2">
+                                <h4 className="mb-0"><strong>Security key</strong></h4>
+                                <p className="mb-0">Use a compatible security key like a fingerprint reader or USB key when you log in.</p>
                             </label>
                         </div>
                             <hr/>
-                        <div class="form-check ">
-                            <input type="radio" id="customRadio3" name="customRadio" class="form-check-input"style={{height:'1em'}}/>
-                            <label class="form-check-label" for="customRadio3">
-                                <h4 class="mb-0"><strong>SMS delivery</strong></h4>
-                                <p class="mb-0">Receive an SMS/text message with an authentication code when you log in.</p>
+                        <div className="form-check ">
+                            <input type="radio" id="customRadio3" name="customRadio" className="form-check-input"style={{height:'1em'}}/>
+                            <label className="form-check-label" for="customRadio3">
+                                <h4 className="mb-0"><strong>SMS delivery</strong></h4>
+                                <p className="mb-0">Receive an SMS/text message with an authentication code when you log in.</p>
                             </label>
                         </div>                       
                     </div>
                 </div>
-                <div class="model-footer">
-                    <div class="row m-0">
-                        <div class="col-md-12">
-                            <div class="text-center">
-                                <button class="btn btn-primary clickmode me-1" data-show="." data-hide="" type="button"> <i class="zmdi zmdi-upload"></i> Save </button>
-                                <button class="btn btn-danger" type="button"><i class="zmdi zmdi-rotate-left"></i> Cancel</button>
+                <div className="model-footer">
+                    <div className="row m-0">
+                        <div className="col-md-12">
+                            <div className="text-center">
+                                <button className="btn btn-primary clickmode me-1" data-show="." data-hide="" type="button"> <i className="zmdi zmdi-upload"></i> Save </button>
+                                <button className="btn btn-danger" type="button"><i className="zmdi zmdi-rotate-left"></i> Cancel</button>
                             </div>
                         </div>
                     </div>

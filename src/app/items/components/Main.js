@@ -19,8 +19,11 @@ function Main() {
                             <div className="p-2">
                                 <h2 className="font-bold mb-0"><i className="zmdi zmdi-folder mr-1"></i> Items & Services </h2>
                             </div>
+                            <div className="input-group" style={{ maxWidth: '300px' }}>
+                                <input type="text" className="form-control radius_all" aria-label="Text input with dropdown button" placeholder='Search...' />
+                            </div>
                             <div className="pe-2">
-                                <a href="javascript:void(0);" className="btn btn-success" data-toggle="modal" data-target="#addteam"><i className="zmdi zmdi-plus-circle-o-duplicate"></i>  Add New Item</a>
+                                <a href="javascript:void(0);" className="btn btn-success" data-bs-toggle="modal" data-bs-target="#addteam"><i className="zmdi zmdi-plus-circle-o-duplicate"></i>  Add New Item</a>
                                 <div className="btn-group ms-1">
                                     <button className="btn btn-outline-primary  dropdown-toggle font-w" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"> More Actions</button>
                                     <div className="dropdown-menu">
@@ -40,16 +43,7 @@ function Main() {
 
                             <div className="row">
                                 <div className="col-12 col-lg-12 mt-3">
-                                    <div className="card bdr5 mb-1">
-                                        <div className="header d-flex justify-content-between align-items-center p-0">
-                                            <div className="">
-                                                <h2 className="font-bold"><i className="zmdi zmdi-folder mr-1"></i> Items </h2>
-                                            </div>
-                                            <div className="input-group" style={{ maxWidth: '300px' }}>
-                                                <input type="text" className="form-control radius_all" aria-label="Text input with dropdown button" placeholder='Search...' />
-                                            </div>
-                                        </div>
-                                    </div>
+                                    
                                     <div className='Lodingbox'>
                                         <Loading />
                                     </div>
@@ -102,8 +96,8 @@ function Main() {
                                                                 <img src="../images/menu-dots-vertical.svg" alt="user" />
                                                                 </button>
                                                                 <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                                                    <li><a className="dropdown-item col-green" href="javascript:void(0);" data-toggle="modal" data-target="#addpage"><i className="zmdi zmdi-search me-1"></i>View</a></li>
-                                                                    <li><a className="dropdown-item col-blue" href="javascript:void(0);" data-toggle="modal" data-target="#addteam"><i className="zmdi zmdi-edit me-1"></i>Edit</a></li>
+                                                                    <li><a className="dropdown-item col-green" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#addpage"><i className="zmdi zmdi-search me-1"></i>View</a></li>
+                                                                    <li><a className="dropdown-item col-blue" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#addteam"><i className="zmdi zmdi-edit me-1"></i>Edit</a></li>
                                                                     <li><a className="dropdown-item text-danger" href="#"><i className="zmdi zmdi-delete me-1"></i>Delete</a></li>
                                                                 </ul>
                                                             </div>
@@ -124,7 +118,7 @@ function Main() {
                 <div className="modal-dialog" role="document">
                     <div className="modal-content" style={{ height: "auto!important" }}>
                         <div className="modal-header bg-blu-lite fixed-top">
-                            <button type="button" className="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             <h4 className="modal-title" id="myModalLabel2">
                                 <b> <i className="zmdi zmdi-plus-circle-o-duplicate"></i> Add Items</b>
                             </h4>
@@ -139,13 +133,13 @@ function Main() {
                                 </div>
                                 <div className="col-12">
                                     <div className="form-floating mb-3">
-                                    <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+                                    <textarea className="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
                                         <label for="floatingInput">Description</label>
                                     </div>
                                 </div>
                                 <div className="col-12">
                                     <div className="form-floating mb-3">
-                                        <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                                        <select className="form-select" id="floatingSelect" aria-label="Floating label select example">
                                             <option selected>Sales</option>
                                             <option value="1">One</option>
                                             <option value="2">Two</option>
@@ -162,7 +156,7 @@ function Main() {
                                 </div>
                                 <div className="col-6 col-md-6">
                                     <div className="form-floating mb-3">
-                                        <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                                        <select className="form-select" id="floatingSelect" aria-label="Floating label select example">
                                         <option selected>Add Tax</option>
                                             <option value="1">One</option>
                                             <option value="2">Two</option>
@@ -176,7 +170,7 @@ function Main() {
                                     <input id="Invite" type="checkbox" />
                                     <label for="Invite" className="pl-0">
                                         Track Inventory<br/>
-                                        <span class="col-grey" style={{fontWeight:"normal"}}>
+                                        <span className="col-grey" style={{fontWeight:"normal"}}>
                                             Track your current stock. When you invoice for an item your inventory will decrease. When you receive more, you can update your inventory here.
                                         </span>
 
@@ -199,7 +193,7 @@ function Main() {
                 <div className="modal-dialog modal-dialog-scrollable" role="document">
                     <div className="modal-content">
                         <div className="modal-header bg-blu-lite fixed-top">
-                            <button type="button" className="btn-close" data-dismiss="modal" aria-label="Close"> </button>                            
+                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"> </button>                            
                             <h4 className="modal-title" id="myModalLabel2">
                                 <b> Test Member</b>
                             </h4>
@@ -208,18 +202,18 @@ function Main() {
                             <div className="row m-0">
                                 <div className="col-12 col-sm-12 col-md-7 col-lg-8 p-0">
 
-                                    <div class="p-4 text-center" style={{background:"#f2f2fa"}}>
-                                        <div class="proTitle">BS</div>
-                                        <h2 class="font-weight-bold mt-2 mb-2"> Ben Stocks</h2>                                 
+                                    <div className="p-4 text-center" style={{background:"#f2f2fa"}}>
+                                        <div className="proTitle">BS</div>
+                                        <h2 className="font-weight-bold mt-2 mb-2"> Ben Stocks</h2>                                 
                                     </div> 
 
-                                    <div class="p-4 font-h4">          
-                                        <div class="d-flex justify-content-between">
+                                    <div className="p-4 font-h4">          
+                                        <div className="d-flex justify-content-between">
                                             <div>
                                                 <h4 className="col-grey m-0 p-0"> <i className="zmdi zmdi-phone col-grey"></i> Mobile</h4>                                        
                                                 <p className="mb-3"> <span className="col-black">01234567890 <small className="col-green"> <i className="zmdi zmdi-check-all"> </i> Verified</small></span> </p>
                                             </div>
-                                            <a href="javascript:void(0);" className="pointer"data-toggle="modal" data-target="#editpage"><i className="zmdi zmdi-edit"></i>  Edit</a>
+                                            <a href="javascript:void(0);" className="pointer"data-bs-toggle="modal" data-bs-target="#editpage"><i className="zmdi zmdi-edit"></i>  Edit</a>
                                         </div>      
 
                                         <h4 className="col-grey m-0 p-0"><i className="zmdi zmdi-email-open col-grey"></i> Email Address</h4>
@@ -274,7 +268,7 @@ function Main() {
                             <div className="row m-0">
                                 <div className="col-md-12">
                                     <div className="text-center">
-                                    <a href="javascript:void(0);" className="pointer btn btn-primary me-1" data-toggle="modal" data-target="#editpage"><i className="zmdi zmdi-edit"></i>  Edit</a>
+                                    <a href="javascript:void(0);" className="pointer btn btn-primary me-1" data-bs-toggle="modal" data-bs-target="#editpage"><i className="zmdi zmdi-edit"></i>  Edit</a>
                                         {/* <button className="btn btn-primary me-1 clickmode" data-show=".contactlist" data-hide=".md-one, .Lodingbox, .modal-backdrop" type="button"> <i className="zmdi zmdi-upload"></i> Save </button> */}
                                         <button className="btn btn-danger" type="button"><i className="zmdi zmdi-rotate-left"></i>
                                             Cancel</button>
@@ -290,7 +284,7 @@ function Main() {
                 <div className="modal-dialog modal-dialog-scrollable" role="document">
                     <div className="modal-content">
                         <div className="modal-header bg-blu-lite fixed-top">
-                            <button type="button" className="btn-close" data-dismiss="modal" aria-label="Close"> </button>
+                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"> </button>
                             <h4 className="modal-title" id="myModalLabel2">
                                 <b> Test Member</b>
                             </h4>

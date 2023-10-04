@@ -38,30 +38,30 @@ function Main() {
                         </div>
                     </div>
                     {/* <<<<<<<<<<<< */}
-                    <div class=" contactlist scroll_bar">
-                        <div class="container-fluid">
-                            <div class="row clearfix">
-                                <div class="col-12 p-0">                        
-                                    <div class="d-flex">
-                                        <div class="mobile-left">
-                                            <a class="btn btn-info btn-icon toggle-email-nav collapsed" data-toggle="collapse" href="#email-nav" role="button" aria-expanded="false" aria-controls="email-nav">
-                                                <span class="btn-label"><i class="zmdi zmdi-more"></i></span>
+                    <div className=" contactlist scroll_bar">
+                        <div className="container-fluid">
+                            <div className="row clearfix">
+                                <div className="col-12 p-0">                        
+                                    <div className="d-flex">
+                                        <div className="mobile-left">
+                                            <a className="btn btn-info btn-icon toggle-email-nav collapsed" data-toggle="collapse" href="#email-nav" role="button" aria-expanded="false" aria-controls="email-nav">
+                                                <span className="btn-label"><i className="zmdi zmdi-more"></i></span>
                                             </a>
                                         </div>
-                                        <div class="inbox left pe-0 me-0 lftfxd" id="email-nav">                                        
-                                            <div class="mail-side"> 
+                                        <div className="inbox left pe-0 me-0 lftfxd" id="email-nav">                                        
+                                            <div className="mail-side"> 
                                             <LeftSidebar/>                                       
                                             </div>
                                         </div>                               
                                         
                                         
                                     </div>
-                                    <div class="inbox right rgtinbox  htg_auto">
+                                    <div className="inbox right rgtinbox  htg_auto">
                                     
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered overflow-y rwd-table btdr_none mb-0" id="sortable">
-                                            <thead class="font_b dnone-mob">                     
-                                                <tr class="font_btd">
+                                    <div className="table-responsive">
+                                        <table className="table table-bordered overflow-y rwd-table btdr_none mb-0" id="sortable">
+                                            <thead className="font_b dnone-mob">                     
+                                                <tr className="font_btd">
                                                     <th style={{width:"28px"}}> 
                                                        #
                                                     </th>
@@ -71,20 +71,20 @@ function Main() {
                                                  </tr>
                                             </thead>            
                                             <tbody>
-                                                <tr class="">
-                                                    <td class="">
+                                                <tr className="">
+                                                    <td className="">
                                                        1 
                                                     </td>                                                
-                                                    <td class="pt-3 pb-3">
+                                                    <td className="pt-3 pb-3">
                                                         ADMINISTRATION
                                                     </td>                                                         
                                                                                                
                                                     <td>
-                                                        <div class="btn-group">
-                                                            <button type="button" class="btn btn-primary btn-sm dropdown-toggle dr-breakout-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Action <span class="caret"></span></button>
-                                                            <ul class="dropdown-menu dr-breakout">                                                          
-                                                                <li class="btn btn-outline-primary btn-sm me-1" title="Edit" data-toggle="modal" data-target="#addpage"> <i class="zmdi zmdi-edit"></i> <span class="dnone-mob">Edit</span></li>
-                                                                <li class="btn btn-danger btn-sm" title="Delete" type="button"> <i class="zmdi zmdi-delete"></i> <span class="dnone-mob">Delete</span></li>                                                 
+                                                        <div className="btn-group">
+                                                            <button type="button" className="btn btn-primary btn-sm dropdown-toggle dr-breakout-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Action <span className="caret"></span></button>
+                                                            <ul className="dropdown-menu dr-breakout">                                                          
+                                                                <li className="btn btn-outline-primary btn-sm me-1" title="Edit" data-toggle="modal" data-target="#addpage"> <i className="zmdi zmdi-edit"></i> <span className="dnone-mob">Edit</span></li>
+                                                                <li className="btn btn-danger btn-sm" title="Delete" type="button"> <i className="zmdi zmdi-delete"></i> <span className="dnone-mob">Delete</span></li>                                                 
                                                             </ul>
                                                         </div> 
                                                     </td> 
@@ -102,29 +102,29 @@ function Main() {
             </section>
             
 
-            <div class="modal right-quater md-one" id="addpage" tabindex="-1" role="dialog" aria-labelledby="shortModal">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header bg-blu-lite">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <div className="modal right-quater md-one" id="addpage" tabindex="-1" role="dialog" aria-labelledby="shortModal">
+        <div className="modal-dialog" role="document">
+            <div className="modal-content">
+                <div className="modal-header bg-blu-lite">
+                    <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
-                    <h4 class="modal-title" id="myModalLabel2">
-                        <b> <i class="zmdi zmdi-plus-circle-o-duplicate"></i> Add Edit Team</b>
+                    <h4 className="modal-title" id="myModalLabel2">
+                        <b> <i className="zmdi zmdi-plus-circle-o-duplicate"></i> Add Edit Team</b>
                     </h4>
                 </div>
-                <div class="modal-body pr-0 pl-0 pb-0 contbody">
-                    <div class="tab-content">
-                        <div role="tabpanel" class="tab-pane in active">
-                            <div class="row  m-0">
-                                <div class="col-md-12 pl-0 pr-0">
-                                    <div class="tab-content pt-2 pb-2 pl-2 pr-2">
-                                        <div role="tabpanel" class=" tab-pane in active">
-                                            <div class="row  m-0">
-                                                <div class="col-12 col-sm-12">
-                                                    <div class="group_lead mt-4">
-                                                        <input type="text" id="" class="input_text" required="required"/>
-                                                        <label for="" class="lablefilled"><i class="zmdi zmdi-account col-grey">&nbsp;</i> Team</label>
+                <div className="modal-body pr-0 pl-0 pb-0 contbody">
+                    <div className="tab-content">
+                        <div role="tabpanel" className="tab-pane in active">
+                            <div className="row  m-0">
+                                <div className="col-md-12 pl-0 pr-0">
+                                    <div className="tab-content pt-2 pb-2 pl-2 pr-2">
+                                        <div role="tabpanel" className=" tab-pane in active">
+                                            <div className="row  m-0">
+                                                <div className="col-12 col-sm-12">
+                                                    <div className="group_lead mt-4">
+                                                        <input type="text" id="" className="input_text" required="required"/>
+                                                        <label for="" className="lablefilled"><i className="zmdi zmdi-account col-grey">&nbsp;</i> Team</label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -135,14 +135,14 @@ function Main() {
                         </div>
                     </div>
                 </div>
-                <div class="model-footer">
-                    <div class="row m-0">
-                        <div class="col-md-12">
-                            <div class="text-center">
-                                <button class="btn btn-primary clickmode btn-lg me-1" data-show="." data-hide=""
-                                    type="button"> <i class="zmdi zmdi-upload"></i> Save </button>
-                                <button class="btn btn-danger btn-lg" type="button"><i
-                                        class="zmdi zmdi-rotate-left"></i> Cancel</button>
+                <div className="model-footer">
+                    <div className="row m-0">
+                        <div className="col-md-12">
+                            <div className="text-center">
+                                <button className="btn btn-primary clickmode btn-lg me-1" data-show="." data-hide=""
+                                    type="button"> <i className="zmdi zmdi-upload"></i> Save </button>
+                                <button className="btn btn-danger btn-lg" type="button"><i
+                                        className="zmdi zmdi-rotate-left"></i> Cancel</button>
                             </div>
                         </div>
                     </div>

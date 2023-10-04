@@ -20,7 +20,7 @@ function Main() {
                                 <h2 className="font-bold mb-0"><i className="zmdi zmdi-accounts-list-alt mr-1"></i> My Team </h2>
                             </div>
                             <div className="pe-2">
-                                <a href="javascript:void(0);" className="btn btn-success" data-toggle="modal" data-target="#addteam"><i className="zmdi zmdi-plus-circle-o-duplicate"></i>  Add Team Member</a>
+                                <a href="javascript:void(0);" className="btn btn-success" data-bs-toggle="modal" data-bs-target="#addteam"><i className="zmdi zmdi-plus-circle-o-duplicate"></i>  Add Team Member</a>
                                 <div className="btn-group ms-1">
                                     <button className="btn btn-outline-primary  dropdown-toggle font-w" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"> More Actions</button>
                                     <div className="dropdown-menu">
@@ -79,7 +79,7 @@ function Main() {
                                                             </div>
                                                         </td>
                                                         <td>
-                                                            <a href='javascript:void(0);' className='d-flex justify-content-start align-items-center' data-toggle="modal" data-target="#addpage">
+                                                            <a href='javascript:void(0);' className='d-flex justify-content-start align-items-center' data-bs-toggle="modal" data-bs-target="#addpage">
                                                                 <div className='shortTitle me-2'>BS</div>
                                                                 <div className='mt-2' style={{ lineHeight: "14px" }}>
                                                                     <span className="font-weight-bold"> Ben Stokes</span><br />

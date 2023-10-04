@@ -22,7 +22,7 @@ function Main() {
                                 <h2 className="font-bold mb-0"><i className="zmdi zmdi-folder me-1"></i> Projects </h2>
                             </div>
                             <div className="pe-2">
-                                <a href="javascript:void(0);" className="btn btn-success" data-toggle="modal" data-target="#addpage"><i className="zmdi zmdi-plus-circle-o-duplicate"></i>  Create New </a>
+                                <a href="javascript:void(0);" className="btn btn-success" data-bs-toggle="modal" data-bs-target="#addpage"><i className="zmdi zmdi-plus-circle-o-duplicate"></i>  Create New </a>
                                 <div className="btn-group ms-1">
                                     <button className="btn btn-outline-primary  dropdown-toggle font-w" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"> More Actions</button>
                                     <div className="dropdown-menu">
@@ -269,371 +269,371 @@ function Main() {
                 </div>
             </section>
 
-            <div class="modal bsdmd" id="addpage" tabindex="-1" role="dialog" aria-labelledby="shortModal">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header bg-blu-lite">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <div className="modal bsdmd" id="addpage" tabindex="-1" role="dialog" aria-labelledby="shortModal">
+                <div className="modal-dialog" role="document">
+                    <div className="modal-content">
+                        <div className="modal-header bg-blu-lite" style={{position:"relative"}}>
+                            <button type="button" className="close" data-bs-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">×</span>
                             </button>
-                            <h4 class="modal-title" id="myModalLabel2">
-                                <b> <i class="zmdi zmdi-plus-circle-o-duplicate"></i> Add Project</b>
+                            <h4 className="modal-title" id="myModalLabel2">
+                                <b> <i className="zmdi zmdi-plus-circle-o-duplicate"></i> Add Project</b>
                             </h4>
                         </div>
-                        <div class="modal-body ps-0 pe-0">  
+                        <div className="modal-body ps-0 pe-0 pt-0">  
                                                 
-                                    <div class="fststep"> 
-                                        <div class="steps mb-2">    
-                                            <div class="step active">
-                                            <i class="zmdi zmdi-info step-icon"></i>
-                                            <div class="step-body">
-                                                <div class="step-title">
+                                    <div className="fststep"> 
+                                        <div className="steps mb-2">    
+                                            <div className="step active">
+                                            <i className="zmdi zmdi-info step-icon"></i>
+                                            <div className="step-body">
+                                                <div className="step-title">
                                                     Create Project
                                                 </div>
-                                                <div class="step-description">
+                                                <div className="step-description">
                                                     First Step
                                                 </div>
                                             </div>
                                             </div>                                    
-                                            <div class="step">
-                                            <i class="zmdi zmdi-calendar-note step-icon"></i>
-                                            <div class="step-body">
-                                                <div class="step-title">
+                                            <div className="step">
+                                            <i className="zmdi zmdi-calendar-note step-icon"></i>
+                                            <div className="step-body">
+                                                <div className="step-title">
                                                 Project Users
                                                 </div>
-                                                <div class="step-description">
+                                                <div className="step-description">
                                                     Second Step
                                                 </div>
                                             </div>
                                             </div>                                    
-                                            <div class="step">
-                                            <i class="zmdi zmdi-check-circle step-icon"></i>
-                                            <div class="step-body">
-                                                <div class="step-title">
+                                            <div className="step">
+                                            <i className="zmdi zmdi-check-circle step-icon"></i>
+                                            <div className="step-body">
+                                                <div className="step-title">
                                                 Sprint / Milestones
                                                 </div>
-                                                <div class="step-description">
+                                                <div className="step-description">
                                                     Third Step
                                                 </div>
                                             </div>
                                             </div>  
-                                            <div class="step">
-                                                <i class="zmdi zmdi-check-circle step-icon"></i>
-                                                <div class="step-body">
-                                                <div class="step-title">
+                                            <div className="step">
+                                                <i className="zmdi zmdi-check-circle step-icon"></i>
+                                                <div className="step-body">
+                                                <div className="step-title">
                                                     Backlog Items
                                                 </div>
-                                                <div class="step-description">
+                                                <div className="step-description">
                                                     Fourth Step
                                                 </div>
                                                 </div>
                                             </div>                                  
                                         </div>                                                                  
                                                 
-                                        <div class="p-4">
-                                        <div class="row  m-0">                                                                      
-                                            <div class="col-12 col-sm-12 col-md-12 mt-3">                                      
-                                                <div class="group_lead">
-                                                    <input type="text" id="" class="input_text" required="required"/>
-                                                    <label for="" class="lablefilled">Project Name</label>                                           
+                                        <div className="p-4">
+                                        <div className="row  m-0">                                                                      
+                                            <div className="col-12 col-sm-12 col-md-12 mt-3">                                      
+                                                <div className="group_lead">
+                                                    <input type="text" id="" className="input_text" required="required"/>
+                                                    <label for="" className="lablefilled">Project Name</label>                                           
                                                 </div>
                                             </div>
-                                            <div class="col-12 col-sm-12 col-md-6">        
-                                                <div class="group_lead">
-                                                    <select type="text" id="unit" class="custom-select select_f" required="required">  
+                                            <div className="col-12 col-sm-12 col-md-6">        
+                                                <div className="group_lead">
+                                                    <select type="text" id="unit" className="custom-select select_f" required="required">  
                                                         <option selected="">Project Owner</option>                                         
-                                                        <option value="Price excluding VAT" class="option">Andrew Fillinfuff</option>                                                
+                                                        <option value="Price excluding VAT" className="option">Andrew Fillinfuff</option>                                                
                                                     </select> 
                                                 </div>
                                             </div>
-                                            <div class="col-12 col-sm-12 col-md-6"> 
-                                                <div class="group_lead">
-                                                    <select type="text" id="unit" class="custom-select select_f" required="required">  
+                                            <div className="col-12 col-sm-12 col-md-6"> 
+                                                <div className="group_lead">
+                                                    <select type="text" id="unit" className="custom-select select_f" required="required">  
                                                         <option selected="">Project Group</option>                                         
-                                                        <option value="Price excluding VAT" class="option">Ungrouped Projects</option>                                                
+                                                        <option value="Price excluding VAT" className="option">Ungrouped Projects</option>                                                
                                                     </select> 
                                                 </div>
                                             </div> 
                                                 
-                                            <div class="col-12">
-                                                <div class="row">
-                                                    <div class="col">
-                                                        <div class="group_lead">
-                                                            <input type="text" id="" class="input_text" required="required"/>
-                                                            <label for="" class="lablefilled">Start Date [DD/MM/YYYY]</label>                                           
+                                            <div className="col-12">
+                                                <div className="row">
+                                                    <div className="col">
+                                                        <div className="group_lead">
+                                                            <input type="text" id="" className="input_text" required="required"/>
+                                                            <label for="" className="lablefilled">Start Date [DD/MM/YYYY]</label>                                           
                                                         </div>
                                                     </div>
-                                                    <div class="col">
-                                                        <div class="group_lead">
-                                                            <input type="text" id="" class="input_text" required="required"/>
-                                                            <label for="" class="lablefilled">End Date [DD/MM/YYYY]</label>                                           
+                                                    <div className="col">
+                                                        <div className="group_lead">
+                                                            <input type="text" id="" className="input_text" required="required"/>
+                                                            <label for="" className="lablefilled">End Date [DD/MM/YYYY]</label>                                           
                                                         </div>
                                                     </div>
                                                 </div>                                        
                                             </div> 
                                                 
-                                            <div class="col-12">
-                                                <div class="row">
-                                                    <div class="col-6 col-sm-6">
-                                                        <div class="group_lead">
-                                                            <select type="text" id="unit" class="custom-select select_f" required="required">  
+                                            <div className="col-12">
+                                                <div className="row">
+                                                    <div className="col-6 col-sm-6">
+                                                        <div className="group_lead">
+                                                            <select type="text" id="unit" className="custom-select select_f" required="required">  
                                                                 <option selected="">Priority</option>                                         
-                                                                <option value="Price excluding VAT" class="option">Standard Layout</option>                                                
+                                                                <option value="Price excluding VAT" className="option">Standard Layout</option>                                                
                                                             </select>                                      
                                                         </div>
                                                     </div>
                                                 </div>                                        
                                             </div> 
                                                 
-                                            <div class="col-12 col-sm-6 col-md-6"> 
-                                                <div class="group_lead">
-                                                    <input type="text" id="" class="input_text" required="required"/>
-                                                    <label for="" class="lablefilled">Est. Hours</label>                                           
+                                            <div className="col-12 col-sm-6 col-md-6"> 
+                                                <div className="group_lead">
+                                                    <input type="text" id="" className="input_text" required="required"/>
+                                                    <label for="" className="lablefilled">Est. Hours</label>                                           
                                                 </div>
                                             </div>    
-                                            <div class="col-12 col-sm-6 col-md-6">    
-                                                <div class="row">
-                                                    <div class="col-6 col-sm-6">
-                                                        <div class="group_lead">
-                                                            <input type="text" id="" class="input_text bglightblu" required="required"/>
-                                                            <label for="" class="lablefilled">Rate</label>                                           
+                                            <div className="col-12 col-sm-6 col-md-6">    
+                                                <div className="row">
+                                                    <div className="col-6 col-sm-6">
+                                                        <div className="group_lead">
+                                                            <input type="text" id="" className="input_text bglightblu" required="required"/>
+                                                            <label for="" className="lablefilled">Rate</label>                                           
                                                         </div>
                                                     </div>
-                                                    <div class="col-6 col-sm-6">
-                                                        <div class="group_lead">
-                                                            <select type="text" id="unit" class="custom-select select_f" required="required">  
+                                                    <div className="col-6 col-sm-6">
+                                                        <div className="group_lead">
+                                                            <select type="text" id="unit" className="custom-select select_f" required="required">  
                                                                 <option selected="">Hourly</option>                                         
-                                                                <option value="Price excluding VAT" class="option">1hrs</option>                                                
+                                                                <option value="Price excluding VAT" className="option">1hrs</option>                                                
                                                             </select>                                      
                                                         </div>
                                                     </div>
                                                 </div> 
                                             </div>                                          
                                             
-                                            <div class="col-12 col-sm-12">                                               
-                                                <div class="group_lead">
-                                                    <textarea required="required" class="input_text" id="Description"></textarea>
-                                                    <label for="Description" class="lablefilled">Description</label>                                           
+                                            <div className="col-12 col-sm-12">                                               
+                                                <div className="group_lead">
+                                                    <textarea required="required" className="input_text" id="Description"></textarea>
+                                                    <label for="Description" className="lablefilled">Description</label>                                           
                                                 </div>
                                             </div>                                                                                                      
                                         </div> 
                                         </div>                                                                                                    
                                         
                                     </div> 
-                                    <div class="secondtstep dnnone">                                  
-                                        <div class="steps mb-2">    
-                                            <div class="step completed">
-                                            <i class="zmdi zmdi-info step-icon"></i>
-                                            <div class="step-body">
-                                                <div class="step-title">
+                                    <div className="secondtstep dnnone">                                  
+                                        <div className="steps mb-2">    
+                                            <div className="step completed">
+                                            <i className="zmdi zmdi-info step-icon"></i>
+                                            <div className="step-body">
+                                                <div className="step-title">
                                                     Create Project
                                                 </div>
-                                                <div class="step-description">
+                                                <div className="step-description">
                                                     First Step
                                                 </div>
                                             </div>
                                             </div>                                    
-                                            <div class="step active">
-                                            <i class="zmdi zmdi-calendar-note step-icon"></i>
-                                            <div class="step-body">
-                                                <div class="step-title">
+                                            <div className="step active">
+                                            <i className="zmdi zmdi-calendar-note step-icon"></i>
+                                            <div className="step-body">
+                                                <div className="step-title">
                                                 Project Users
                                                 </div>
-                                                <div class="step-description">
+                                                <div className="step-description">
                                                     Second Step
                                                 </div>
                                             </div>
                                             </div>                                    
-                                            <div class="step">
-                                            <i class="zmdi zmdi-check-circle step-icon"></i>
-                                            <div class="step-body">
-                                                <div class="step-title">
+                                            <div className="step">
+                                            <i className="zmdi zmdi-check-circle step-icon"></i>
+                                            <div className="step-body">
+                                                <div className="step-title">
                                                 Sprint / Milestones
                                                 </div>
-                                                <div class="step-description">
+                                                <div className="step-description">
                                                     Third Step
                                                 </div>
                                             </div>
                                             </div>  
-                                            <div class="step">
-                                                <i class="zmdi zmdi-check-circle step-icon"></i>
-                                                <div class="step-body">
-                                                <div class="step-title">
+                                            <div className="step">
+                                                <i className="zmdi zmdi-check-circle step-icon"></i>
+                                                <div className="step-body">
+                                                <div className="step-title">
                                                     Backlog Items
                                                 </div>
-                                                <div class="step-description">
+                                                <div className="step-description">
                                                     Fourth Step
                                                 </div>
                                                 </div>
                                             </div>                                  
                                         </div> 
-                                        <div class="p-4 pb-1">                                                               
-                                            <div class="row m-0">  
-                                                <div class="col-12 col-sm-12 col-md-6  col-lg-6  items mb-3">
-                                                    <div class=" card bdr5 mt-0 profile-card mb-0">
-                                                        <div class="flt__left float-left">
-                                                            <div class="profile-card__img">
+                                        <div className="p-4 pb-1">                                                               
+                                            <div className="row m-0">  
+                                                <div className="col-12 col-sm-12 col-md-6  col-lg-6  items mb-3">
+                                                    <div className=" card bdr5 mt-0 profile-card mb-0">
+                                                        <div className="flt__left float-left">
+                                                            <div className="profile-card__img">
                                                                 <img src="images/download.jpg" alt="profile card"/>
                                                             </div> 
                                                         </div>                                       
-                                                        <div class="profile-card__cnt float-left">                                                
-                                                            <div class="profile-card__name d-flex justify-content-between">
-                                                                <div>Andrew Filntuff<span class="badge badge-success ms-2 mt-1 mb-0"><b>Owner</b> </span></div>
-                                                                <div class="checkbox posabs m__tten">
-                                                                    <input class="all_slct" id="order" type="checkbox"/>
-                                                                    <label for="order" class="ps-0">&nbsp;</label>
+                                                        <div className="profile-card__cnt float-left">                                                
+                                                            <div className="profile-card__name d-flex justify-content-between">
+                                                                <div>Andrew Filntuff<span className="badge badge-success ms-2 mt-1 mb-0"><b>Owner</b> </span></div>
+                                                                <div className="checkbox posabs m__tten">
+                                                                    <input className="all_slct" id="order" type="checkbox"/>
+                                                                    <label for="order" className="ps-0">&nbsp;</label>
                                                                 </div>                                                      
                                                             </div> 
-                                                            <div class="profile-card__txt"><strong>Email : </strong> andrewfilntuff@gmail.com</div>
-                                                            <div class="profile-card__txt"><strong>Team Role : </strong> Admin</div>
-                                                            <div class="profile-card__txt"><strong>Project Profile : </strong> Project Owner</div> 
+                                                            <div className="profile-card__txt"><strong>Email : </strong> andrewfilntuff@gmail.com</div>
+                                                            <div className="profile-card__txt"><strong>Team Role : </strong> Admin</div>
+                                                            <div className="profile-card__txt"><strong>Project Profile : </strong> Project Owner</div> 
                                                         </div>
                                                     </div>                                                                
                                                 </div>  
-                                                <div class="col-12 col-sm-12 col-md-6  col-lg-6  items mb-3">
-                                                    <div class=" card bdr5 mt-0 profile-card mb-0">
-                                                        <div class="flt__left float-left">
-                                                            <div class="profile-card__img">
+                                                <div className="col-12 col-sm-12 col-md-6  col-lg-6  items mb-3">
+                                                    <div className=" card bdr5 mt-0 profile-card mb-0">
+                                                        <div className="flt__left float-left">
+                                                            <div className="profile-card__img">
                                                                 <img src="images/download.jpg" alt="profile card"/>
                                                             </div> 
                                                         </div>                                       
-                                                        <div class="profile-card__cnt float-left">                                                
-                                                            <div class="profile-card__name d-flex justify-content-between">
+                                                        <div className="profile-card__cnt float-left">                                                
+                                                            <div className="profile-card__name d-flex justify-content-between">
                                                                 <div>Maek andrew Filntuff</div>
-                                                                <div class="checkbox posabs m__tten">
-                                                                    <input class="all_slct" id="user" type="checkbox"/>
-                                                                    <label for="user" class="ps-0">&nbsp;</label>
+                                                                <div className="checkbox posabs m__tten">
+                                                                    <input className="all_slct" id="user" type="checkbox"/>
+                                                                    <label for="user" className="ps-0">&nbsp;</label>
                                                                 </div>                                                      
                                                             </div> 
-                                                            <div class="profile-card__txt"><strong>Email : </strong> andrewfilntuff@gmail.com</div>
-                                                            <div class="profile-card__txt"><strong>Team Role : </strong> Admin</div>
-                                                            <div class="profile-card__txt"><strong>Project Profile : </strong> Project Owner</div> 
+                                                            <div className="profile-card__txt"><strong>Email : </strong> andrewfilntuff@gmail.com</div>
+                                                            <div className="profile-card__txt"><strong>Team Role : </strong> Admin</div>
+                                                            <div className="profile-card__txt"><strong>Project Profile : </strong> Project Owner</div> 
                                                         </div>
                                                     </div>                                                                
                                                 </div> 
-                                                <div class="col-12 col-sm-12 col-md-6  col-lg-6  items mb-3">
-                                                    <div class=" card bdr5 mt-0 profile-card mb-0">
-                                                        <div class="flt__left float-left">
-                                                            <div class="profile-card__img">
+                                                <div className="col-12 col-sm-12 col-md-6  col-lg-6  items mb-3">
+                                                    <div className=" card bdr5 mt-0 profile-card mb-0">
+                                                        <div className="flt__left float-left">
+                                                            <div className="profile-card__img">
                                                                 <img src="images/download.jpg" alt="profile card"/>
                                                             </div> 
                                                         </div>                                       
-                                                        <div class="profile-card__cnt float-left">                                                
-                                                            <div class="profile-card__name d-flex justify-content-between">
+                                                        <div className="profile-card__cnt float-left">                                                
+                                                            <div className="profile-card__name d-flex justify-content-between">
                                                                 <div>Maek andrew Filntuff</div>
-                                                                <div class="checkbox posabs m__tten">
-                                                                    <input class="all_slct" id="user" type="checkbox"/>
-                                                                    <label for="user" class="ps-0">&nbsp;</label>
+                                                                <div className="checkbox posabs m__tten">
+                                                                    <input className="all_slct" id="user" type="checkbox"/>
+                                                                    <label for="user" className="ps-0">&nbsp;</label>
                                                                 </div>                                                      
                                                             </div> 
-                                                            <div class="profile-card__txt"><strong>Email : </strong> andrewfilntuff@gmail.com</div>
-                                                            <div class="profile-card__txt"><strong>Team Role : </strong> Admin</div>
-                                                            <div class="profile-card__txt"><strong>Project Profile : </strong> Project Owner</div> 
+                                                            <div className="profile-card__txt"><strong>Email : </strong> andrewfilntuff@gmail.com</div>
+                                                            <div className="profile-card__txt"><strong>Team Role : </strong> Admin</div>
+                                                            <div className="profile-card__txt"><strong>Project Profile : </strong> Project Owner</div> 
                                                         </div>
                                                     </div>                                                                
                                                 </div> 
-                                                <div class="col-12 col-sm-12 col-md-6  col-lg-6  items mb-3">
-                                                    <div class=" card bdr5 mt-0 profile-card mb-0">
-                                                        <div class="flt__left float-left">
-                                                            <div class="profile-card__img">
+                                                <div className="col-12 col-sm-12 col-md-6  col-lg-6  items mb-3">
+                                                    <div className=" card bdr5 mt-0 profile-card mb-0">
+                                                        <div className="flt__left float-left">
+                                                            <div className="profile-card__img">
                                                                 <img src="images/download.jpg" alt="profile card"/>
                                                             </div> 
                                                         </div>                                       
-                                                        <div class="profile-card__cnt float-left">                                                
-                                                            <div class="profile-card__name d-flex justify-content-between">
-                                                                <div>Andrew Filntuff<span class="badge badge-success ms-2 mt-1 mb-0"><b>Owner</b> </span></div>
-                                                                <div class="checkbox posabs m__tten">
-                                                                    <input class="all_slct" id="order" type="checkbox"/>
-                                                                    <label for="order" class="ps-0">&nbsp;</label>
+                                                        <div className="profile-card__cnt float-left">                                                
+                                                            <div className="profile-card__name d-flex justify-content-between">
+                                                                <div>Andrew Filntuff<span className="badge badge-success ms-2 mt-1 mb-0"><b>Owner</b> </span></div>
+                                                                <div className="checkbox posabs m__tten">
+                                                                    <input className="all_slct" id="order" type="checkbox"/>
+                                                                    <label for="order" className="ps-0">&nbsp;</label>
                                                                 </div>                                                      
                                                             </div> 
-                                                            <div class="profile-card__txt"><strong>Email : </strong> andrewfilntuff@gmail.com</div>
-                                                            <div class="profile-card__txt"><strong>Team Role : </strong> Admin</div>
-                                                            <div class="profile-card__txt"><strong>Project Profile : </strong> Project Owner</div> 
+                                                            <div className="profile-card__txt"><strong>Email : </strong> andrewfilntuff@gmail.com</div>
+                                                            <div className="profile-card__txt"><strong>Team Role : </strong> Admin</div>
+                                                            <div className="profile-card__txt"><strong>Project Profile : </strong> Project Owner</div> 
                                                         </div>
                                                     </div>                                                                
                                                 </div>  
-                                                <div class="col-12 col-sm-12 col-md-6  col-lg-6  items mb-3">
-                                                    <div class=" card bdr5 mt-0 profile-card mb-0">
-                                                        <div class="flt__left float-left">
-                                                            <div class="profile-card__img">
+                                                <div className="col-12 col-sm-12 col-md-6  col-lg-6  items mb-3">
+                                                    <div className=" card bdr5 mt-0 profile-card mb-0">
+                                                        <div className="flt__left float-left">
+                                                            <div className="profile-card__img">
                                                                 <img src="images/download.jpg" alt="profile card"/>
                                                             </div> 
                                                         </div>                                       
-                                                        <div class="profile-card__cnt float-left">                                                
-                                                            <div class="profile-card__name d-flex justify-content-between">
+                                                        <div className="profile-card__cnt float-left">                                                
+                                                            <div className="profile-card__name d-flex justify-content-between">
                                                                 <div>Maek andrew Filntuff</div>
-                                                                <div class="checkbox posabs m__tten">
-                                                                    <input class="all_slct" id="user" type="checkbox"/>
-                                                                    <label for="user" class="ps-0">&nbsp;</label>
+                                                                <div className="checkbox posabs m__tten">
+                                                                    <input className="all_slct" id="user" type="checkbox"/>
+                                                                    <label for="user" className="ps-0">&nbsp;</label>
                                                                 </div>                                                      
                                                             </div> 
-                                                            <div class="profile-card__txt"><strong>Email : </strong> andrewfilntuff@gmail.com</div>
-                                                            <div class="profile-card__txt"><strong>Team Role : </strong> Admin</div>
-                                                            <div class="profile-card__txt"><strong>Project Profile : </strong> Project Owner</div> 
+                                                            <div className="profile-card__txt"><strong>Email : </strong> andrewfilntuff@gmail.com</div>
+                                                            <div className="profile-card__txt"><strong>Team Role : </strong> Admin</div>
+                                                            <div className="profile-card__txt"><strong>Project Profile : </strong> Project Owner</div> 
                                                         </div>
                                                     </div>                                                                
                                                 </div>                                                                    
                                             </div> 
                                         </div>
                                     </div>  
-                                    <div class="thirdtstep dnnone"> 
-                                        <div class="steps mb-2">    
-                                            <div class="step completed">
-                                            <i class="zmdi zmdi-info step-icon"></i>
-                                            <div class="step-body">
-                                                <div class="step-title">
+                                    <div className="thirdtstep dnnone"> 
+                                        <div className="steps mb-2">    
+                                            <div className="step completed">
+                                            <i className="zmdi zmdi-info step-icon"></i>
+                                            <div className="step-body">
+                                                <div className="step-title">
                                                     Create Project
                                                 </div>
-                                                <div class="step-description">
+                                                <div className="step-description">
                                                     First Step
                                                 </div>
                                             </div>
                                             </div>                                    
-                                            <div class="step completed">
-                                            <i class="zmdi zmdi-calendar-note step-icon"></i>
-                                            <div class="step-body">
-                                                <div class="step-title">
+                                            <div className="step completed">
+                                            <i className="zmdi zmdi-calendar-note step-icon"></i>
+                                            <div className="step-body">
+                                                <div className="step-title">
                                                 Project Users
                                                 </div>
-                                                <div class="step-description">
+                                                <div className="step-description">
                                                     Second Step
                                                 </div>
                                             </div>
                                             </div>                                    
-                                            <div class="step active">
-                                            <i class="zmdi zmdi-check-circle step-icon"></i>
-                                            <div class="step-body">
-                                                <div class="step-title">
+                                            <div className="step active">
+                                            <i className="zmdi zmdi-check-circle step-icon"></i>
+                                            <div className="step-body">
+                                                <div className="step-title">
                                                 Sprint / Milestones
                                                 </div>
-                                                <div class="step-description">
+                                                <div className="step-description">
                                                     Third Step
                                                 </div>
                                             </div>
                                             </div>  
-                                            <div class="step">
-                                                <i class="zmdi zmdi-check-circle step-icon"></i>
-                                                <div class="step-body">
-                                                <div class="step-title">
+                                            <div className="step">
+                                                <i className="zmdi zmdi-check-circle step-icon"></i>
+                                                <div className="step-body">
+                                                <div className="step-title">
                                                     Backlog Items
                                                 </div>
-                                                <div class="step-description">
+                                                <div className="step-description">
                                                     Fourth Step
                                                 </div>
                                                 </div>
                                             </div>                                  
                                         </div>  
-                                        <div class="pagediv p-2 pt-0" style={{minHeight:"450px"}}>                                                                    
-                                            <div class="row m-0">
-                                                <div class="col-md-12 mb-1">                                        
-                                                <button class="btn btn-primary float-right add-row"><i class="zmdi zmdi-plus me-2"></i>Add Row</button>
+                                        <div className="pagediv p-2 pt-0" style={{minHeight:"450px"}}>                                                                    
+                                            <div className="row m-0">
+                                                <div className="col-md-12 mb-1">                                        
+                                                <button className="btn btn-primary float-right add-row"><i className="zmdi zmdi-plus me-2"></i>Add Row</button>
                                                 </div>
                                             </div>
                                             
-                                            <div class="row m-0">
-                                                <div class="col-md-12">
-                                                <table class="table table-bordered" id="editableTable">
+                                            <div className="row m-0">
+                                                <div className="col-md-12">
+                                                <table className="table table-bordered">
                                                     <thead>
                                                     <tr>
                                                         <th>Name</th>
@@ -653,8 +653,8 @@ function Main() {
                                                         <td data-field="desc">Sorry. We’re having trouble getting your pages back</td>
                                                         <td data-field="files">usd.pdf</td>
                                                         <td style={{width:"96px"}}>
-                                                        <a class="btn btn-sm btn-outline-primary edit" title="Edit"><i class="zmdi zmdi-edit"></i></a> 
-                                                        <a class="btn btn-sm btn-danger" title="Delete"><i class="zmdi zmdi-delete"></i></a>
+                                                        <a className="btn btn-sm btn-outline-primary edit me-1" title="Edit"><i className="zmdi zmdi-edit"></i></a> 
+                                                        <a className="btn btn-sm btn-danger" title="Delete"><i className="zmdi zmdi-delete"></i></a>
                                                         </td>
                                                     </tr>
                                                     </tbody>
@@ -665,63 +665,63 @@ function Main() {
                                         
                                         </div>  
                                     </div> 
-                                    <div class="fourthtstep dnnone"> 
-                                        <div class="steps mb-2">    
-                                            <div class="step completed">
-                                            <i class="zmdi zmdi-info step-icon"></i>
-                                            <div class="step-body">
-                                                <div class="step-title">
+                                    <div className="fourthtstep dnnone"> 
+                                        <div className="steps mb-2">    
+                                            <div className="step completed">
+                                            <i className="zmdi zmdi-info step-icon"></i>
+                                            <div className="step-body">
+                                                <div className="step-title">
                                                     Create Project
                                                 </div>
-                                                <div class="step-description">
+                                                <div className="step-description">
                                                     First Step
                                                 </div>
                                             </div>
                                             </div>                                    
-                                            <div class="step completed">
-                                            <i class="zmdi zmdi-calendar-note step-icon"></i>
-                                            <div class="step-body">
-                                                <div class="step-title">
+                                            <div className="step completed">
+                                            <i className="zmdi zmdi-calendar-note step-icon"></i>
+                                            <div className="step-body">
+                                                <div className="step-title">
                                                 Project Users
                                                 </div>
-                                                <div class="step-description">
+                                                <div className="step-description">
                                                     Second Step
                                                 </div>
                                             </div>
                                             </div>                                    
-                                            <div class="step completed">
-                                            <i class="zmdi zmdi-check-circle step-icon"></i>
-                                            <div class="step-body">
-                                                <div class="step-title">
+                                            <div className="step completed">
+                                            <i className="zmdi zmdi-check-circle step-icon"></i>
+                                            <div className="step-body">
+                                                <div className="step-title">
                                                 Sprint / Milestones
                                                 </div>
-                                                <div class="step-description">
+                                                <div className="step-description">
                                                     Third Step
                                                 </div>
                                             </div>
                                             </div>  
-                                            <div class="step active">
-                                                <i class="zmdi zmdi-check-circle step-icon"></i>
-                                                <div class="step-body">
-                                                <div class="step-title">
+                                            <div className="step active">
+                                                <i className="zmdi zmdi-check-circle step-icon"></i>
+                                                <div className="step-body">
+                                                <div className="step-title">
                                                     Backlog Items
                                                 </div>
-                                                <div class="step-description">
+                                                <div className="step-description">
                                                     Fourth Step
                                                 </div>
                                                 </div>
                                             </div>                                  
                                         </div>  
-                                        <div class="pagediv p-2 pt-0" style={{minHeight:"450px"}}>                                                                    
-                                            <div class="row m-0">
-                                                <div class="col-md-12 mb-1">                                        
-                                                <button class="btn btn-primary float-right add-row"><i class="zmdi zmdi-plus me-2"></i>Add Row</button>
+                                        <div className="pagediv p-2 pt-0" style={{minHeight:"450px"}}>                                                                    
+                                            <div className="row m-0">
+                                                <div className="col-md-12 mb-1">                                        
+                                                <button className="btn btn-primary float-right add-row"><i className="zmdi zmdi-plus me-2"></i>Add Row</button>
                                                 </div>
                                             </div>
                                             
-                                            <div class="row m-0">
-                                                <div class="col-md-12">
-                                                <table class="table table-bordered" id="editableTable">
+                                            <div className="row m-0">
+                                                <div className="col-md-12">
+                                                <table className="table table-bordered">
                                                     <thead>
                                                     <tr>
                                                         <th>Select Milestone</th>
@@ -737,8 +737,8 @@ function Main() {
                                                         <td data-field="user">Andrew Filintuff</td>
                                                         <td data-field="start">May 25, 2015</td>
                                                         <td style={{width:"96px"}}>
-                                                        <a class="btn btn-sm btn-outline-primary edit" title="Edit"><i class="zmdi zmdi-edit"></i></a> 
-                                                        <a class="btn btn-sm btn-danger" title="Delete"><i class="zmdi zmdi-delete"></i></a>
+                                                        <a className="btn btn-sm btn-outline-primary edit me-1" title="Edit"><i className="zmdi zmdi-edit"></i></a> 
+                                                        <a className="btn btn-sm btn-danger" title="Delete"><i className="zmdi zmdi-delete"></i></a>
                                                         </td>
                                                     </tr>
                                                     </tbody>
@@ -753,27 +753,27 @@ function Main() {
                                     
                         </div>
                         
-                        <div class="model-footer">
-                            <div class="row m-0">
-                                <div class="col-md-12">                          
-                                    <div class="text-center fststep">
-                                        <button class="btn btn-primary btn-lg clickmode btn-lg" data-show=".secondtstep" data-hide=".fststep, .thirdtstep,.fourthtstep" type="button">  Next <i class="zmdi zmdi-arrow-right"></i> </button>
-                                        <button class="btn btn-danger btn-lg ms-1" type="button"><i class="zmdi zmdi-rotate-left"></i> Cancel</button>
+                        <div className="model-footer">
+                            <div className="row m-0">
+                                <div className="col-md-12">                          
+                                    <div className="text-center fststep">
+                                        <button className="btn btn-primary btn-lg clickmode btn-lg" data-show=".secondtstep" data-hide=".fststep, .thirdtstep,.fourthtstep" type="button">  Next <i className="zmdi zmdi-arrow-right"></i> </button>
+                                        <button className="btn btn-danger btn-lg ms-1" type="button"><i className="zmdi zmdi-rotate-left"></i> Cancel</button>
                                     </div>
-                                    <div class="text-center secondtstep dnnone">
-                                        <button class="btn btn-outline-primary btn-lg clickmode btn-lg" data-show=".fststep" data-hide=".secondtstep, .thirdtstep,.fourthtstep" type="button"><i class="zmdi zmdi-arrow-left"></i>  Prev </button>
-                                        <button class="btn btn-primary btn-lg clickmode btn-lg ms-1 me-1" data-show=".thirdtstep" data-hide=".fststep, .secondtstep" type="button">Next <i class="zmdi zmdi-arrow-right"></i> </button>
-                                        <button class="btn btn-danger btn-lg" type="button"><i class="zmdi zmdi-rotate-left"></i> Cancel</button>
+                                    <div className="text-center secondtstep dnnone">
+                                        <button className="btn btn-outline-primary btn-lg clickmode btn-lg" data-show=".fststep" data-hide=".secondtstep, .thirdtstep,.fourthtstep" type="button"><i className="zmdi zmdi-arrow-left"></i>  Prev </button>
+                                        <button className="btn btn-primary btn-lg clickmode btn-lg ms-1 me-1" data-show=".thirdtstep" data-hide=".fststep, .secondtstep" type="button">Next <i className="zmdi zmdi-arrow-right"></i> </button>
+                                        <button className="btn btn-danger btn-lg" type="button"><i className="zmdi zmdi-rotate-left"></i> Cancel</button>
                                     </div>
-                                    <div class="text-center thirdtstep dnnone">
-                                        <button class="btn btn-outline-primary btn-lg clickmode btn-lg" data-show=".secondtstep" data-hide=".fststep, .thirdtstep,.fourthtstep" type="button"><i class="zmdi zmdi-arrow-left"></i>  Prev </button>
-                                        <button class="btn btn-primary btn-lg clickmode btn-lg  ms-1 me-1" data-show=".fourthtstep" data-hide=".fststep, .secondtstep, .thirdtstep" type="button">Next <i class="zmdi zmdi-arrow-right"></i> </button>
-                                        <button class="btn btn-danger btn-lg" type="button"><i class="zmdi zmdi-rotate-left"></i> Cancel</button>
+                                    <div className="text-center thirdtstep dnnone">
+                                        <button className="btn btn-outline-primary btn-lg clickmode btn-lg" data-show=".secondtstep" data-hide=".fststep, .thirdtstep,.fourthtstep" type="button"><i className="zmdi zmdi-arrow-left"></i>  Prev </button>
+                                        <button className="btn btn-primary btn-lg clickmode btn-lg  ms-1 me-1" data-show=".fourthtstep" data-hide=".fststep, .secondtstep, .thirdtstep" type="button">Next <i className="zmdi zmdi-arrow-right"></i> </button>
+                                        <button className="btn btn-danger btn-lg" type="button"><i className="zmdi zmdi-rotate-left"></i> Cancel</button>
                                     </div>
-                                    <div class="text-center fourthtstep dnnone">
-                                        <button class="btn btn-outline-primary btn-lg clickmode btn-lg" data-show=".thirdtstep" data-hide=".fststep,.secondtstep, .fourthtstep" type="button"><i class="zmdi zmdi-arrow-left"></i>  Prev </button>
-                                        <button class="btn btn-success btn-lg clickmode btn-lg ms-1 me-1" type="button">  Completed <i class="zmdi zmdi-arrow-right"></i> </button>
-                                        <button class="btn btn-danger btn-lg" type="button"><i class="zmdi zmdi-rotate-left"></i> Cancel</button>
+                                    <div className="text-center fourthtstep dnnone">
+                                        <button className="btn btn-outline-primary btn-lg clickmode btn-lg" data-show=".thirdtstep" data-hide=".fststep,.secondtstep, .fourthtstep" type="button"><i className="zmdi zmdi-arrow-left"></i>  Prev </button>
+                                        <button className="btn btn-success btn-lg clickmode btn-lg ms-1 me-1" type="button">  Completed <i className="zmdi zmdi-arrow-right"></i> </button>
+                                        <button className="btn btn-danger btn-lg" type="button"><i className="zmdi zmdi-rotate-left"></i> Cancel</button>
                                     </div>
                                 </div>
                             </div>

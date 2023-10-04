@@ -15,7 +15,7 @@ function Main() {
                     <div className="scrolfx">
                         <div className="booktab d-flex justify-content-between align-items-center bdrb">
                             <div className="p-2">
-                                <h2 className="font-bold mb-0"><i class="zmdi zmdi-settings me-1"></i> Projects Settings </h2>
+                                <h2 className="font-bold mb-0"><i className="zmdi zmdi-settings me-1"></i> Projects Settings </h2>
                             </div>
                             <div className="pe-2">
                                
@@ -40,63 +40,63 @@ function Main() {
                                     <div className="inbox right">
                                         <div className="row">
                                             <div className="col-12 col-sm-12 col-md-12 col-lg-12 bg-white">
-                                            <div class="saddow_box">
+                                            <div className="saddow_box">
         <div className="row mt-3">            
             <div className="col-12 col-md-6 col-lg-4">
                 <div className="mb-3">
-                <p class="m-0 font-14"><b>Name</b></p>
+                <p className="m-0 font-14"><b>Name</b></p>
                     <input type="text" className="form-control" placeholder="Name" />
                 </div>
             </div>
             <div className="col-12 col-md-6 col-lg-4">
                 <div className="mb-3">
-                <p class="m-0 font-14"><b>Client</b></p>
-                    <select class="form-select" name="">
+                <p className="m-0 font-14"><b>Client</b></p>
+                    <select className="form-select" name="">
                         <option selected> No Client Select</option>                    
                     </select>
                 </div>
             </div>
             <div className="col-12 col-md-12">
-            <hr class="mt-2 mb-2"/>
-                <div class="invwhite d-flex justify-content-start align-items-center pe-0  pt-2 pb-2">
+            <hr className="mt-2 mb-2"/>
+                <div className="invwhite d-flex justify-content-start align-items-center pe-0  pt-2 pb-2">
                     <div>
-                        <p class="m-0 font-14"><b>Billable by default </b></p>
-                        <p class="col-grey m-0 font-14">All new entries on this project will be initially set as billable.</p>
+                        <p className="m-0 font-14"><b>Billable by default </b></p>
+                        <p className="col-grey m-0 font-14">All new entries on this project will be initially set as billable.</p>
                     </div>
-                    <div class="form-check form-switch ms-4">
-                        <input class="form-check-input" id="flexSwitchCheckDefault" type="checkbox"/>
+                    <div className="form-check form-switch ms-4">
+                        <input className="form-check-input" id="flexSwitchCheckDefault" type="checkbox"/>
                     </div>
                 </div>
-                <hr class="mt-2 mb-2"/>
+                <hr className="mt-2 mb-2"/>
             </div>
             <div className="col-12 col-md-12 col-lg-6">           
-                <div class="invwhite d-flex justify-content-between align-items-center pe-0  pt-2 pb-2">
+                <div className="invwhite d-flex justify-content-between align-items-center pe-0  pt-2 pb-2">
                     <div>
-                        <p class="m-0 font-14"><b>Project billable rate</b></p>
-                        <p class="col-grey m-0 font-14">Billable rate used for calculating billable amount for this project.</p>
+                        <p className="m-0 font-14"><b>Project billable rate</b></p>
+                        <p className="col-grey m-0 font-14">Billable rate used for calculating billable amount for this project.</p>
                     </div>
                     
                 </div>
                 <div className="">
                     <label className="form-label">Hourly rate (USD) </label>
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="-"/>
-                        <span class="input-group-text" id="basic-addon2">Set rate</span>
+                    <div className="input-group mb-3">
+                        <input type="text" className="form-control" placeholder="-"/>
+                        <span className="input-group-text" id="basic-addon2">Set rate</span>
                     </div>
                 </div>
 
             </div>
             <div className="col-12 col-md-12 col-lg-6">           
-                <div class="invwhite d-flex justify-content-between align-items-center pe-0  pt-2 pb-2">
+                <div className="invwhite d-flex justify-content-between align-items-center pe-0  pt-2 pb-2">
                     <div>
-                        <p class="m-0 font-14"><b>Project estimate </b></p>
-                        <p class="col-grey m-0 font-14">Choose how you wish to track project progress (time or fixed fee budget). </p>
+                        <p className="m-0 font-14"><b>Project estimate </b></p>
+                        <p className="col-grey m-0 font-14">Choose how you wish to track project progress (time or fixed fee budget). </p>
                     </div>
                    
                 </div>
                 <div className="mb-3">
                     <label className="form-label"> Estimate </label>
-                    <select class="form-select" name="">
+                    <select className="form-select" name="">
                         <option selected> No Estimate</option> 
                         <option> Time Estimate </option>                      
                     </select>

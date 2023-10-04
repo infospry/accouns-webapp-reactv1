@@ -20,7 +20,7 @@ function Main() {
                                 <h2 className="font-bold mb-0"><i className="zmdi zmdi-widgets me-1"></i>Vendors </h2>
                             </div>
                             <div className="pe-2">
-                                <a href="#" className="btn btn-success" data-toggle="modal" data-target="#addpage"><i className="zmdi zmdi-plus-circle-o-duplicate"></i>  New Vendor</a>
+                                <a href="#" className="btn btn-success" data-bs-toggle="modal" data-bs-target="#addpage"><i className="zmdi zmdi-plus-circle-o-duplicate"></i>  New Vendor</a>
                                 <div className="btn-group ms-1">
                                     <button className="btn btn-outline-primary  dropdown-toggle font-w" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"> More Actions</button>
                                     <div className="dropdown-menu">
@@ -241,7 +241,7 @@ function Main() {
                                             <p className="col-grey m-0 font-14">GBP, English </p>
                                         </div>
                                     </a><hr className='mt-2 mb-2' />
-                                    <div class="clickmode a" data-show=".b" data-hide=".a">
+                                    <div className="clickmode a" data-show=".b" data-hide=".a">
                                         <div className='invwhite d-flex justify-content-between align-items-center pe-0 ps-2 pt-2 pb-2'>
                                             <div>
                                                 <p className="m-0 font-14">
@@ -251,7 +251,7 @@ function Main() {
                                                 </p>
                                                 <p className="col-grey m-0 font-14">To record the sales tax you pay</p>
                                             </div>
-                                            <div class="form-check form-switch ms-1">
+                                            <div className="form-check form-switch ms-1">
                                                 <input
                                                     className="form-check-input"
                                                     type="checkbox"

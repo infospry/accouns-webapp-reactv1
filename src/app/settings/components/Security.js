@@ -1,73 +1,74 @@
+"use client"
 import React from 'react'
 
 function Security() {
   return (
     <>
-      <div class="row mt-3">
-                                    <div class="col-sm-6 col-md-4"><p class="mb-2 mt-3 font-16 blucolor">  <b>Password</b></p></div>
-                                    <div class="col-sm-6 col-md-4 saddow_box">
-                                        <p class="mb-2"> 
+      <div className="row mt-3">
+                                    <div className="col-sm-6 col-md-6"><p className="mb-2 mt-3 font-16 blucolor">  <b>Password</b></p></div>
+                                    <div className="col-sm-6 col-md-6 saddow_box">
+                                        <p className="mb-2"> 
                                             You last changed your password about 1 year ago.
                                         </p>
-                                        <p class="mb-0">
-                                            <button class="btn btn-outline-info" data-toggle="modal" data-target="#password"> Change Password</button>
+                                        <p className="mb-0">
+                                            <button className="btn btn-outline-info" data-toggle="modal" data-target="#password"> Change Password</button>
                                         </p>
                                     </div>
                                 </div>
-                                <div class="row mt-3">
-                                    <div class="col-sm-6 col-md-4">
-                                        <p class="mb-2 font-16 blucolor mt-3">   <b>Recovery Email</b></p>
-                                        <p class="mb-3">
+                                <div className="row mt-3">
+                                    <div className="col-sm-6 col-md-6">
+                                        <p className="mb-2 font-16 blucolor mt-3">   <b>Recovery Email</b></p>
+                                        <p className="mb-3">
                                             An account recovery email can be used to restore access to your account. Security notifications are also sent to this email.
                                          </p>
                                     </div>
-                                    <div class="col-sm-6 col-md-4 saddow_box">                                            
-                                         <p class="mb-2 font-16 blucolor">   <b>Recovery Email</b></p>
-                                         <p class="mb-0 col-info mb-0">angle_customers@gmail.coms <a href="#" class="font-13 font-bold text-right float-right" data-toggle="modal" data-target="#recoveremail">Edit →</a></p>   
+                                    <div className="col-sm-6 col-md-6 saddow_box">                                            
+                                         <p className="mb-2 font-16 blucolor">   <b>Recovery Email</b></p>
+                                         <p className="mb-0 col-info mb-0">angle_customers@gmail.coms <a href="#" className="font-13 font-bold text-right float-right" data-toggle="modal" data-target="#recoveremail">Edit →</a></p>   
                                     </div>
                                 </div>
-                                <div class="row mt-3">
-                                    <div class="col-sm-6 col-md-4 "><p class="mb-2 font-16 blucolor mt-3">   <b>Two-step authentication</b></p>
-                                        <p class="mb-3">  After entering your password. verify your identity with a second authentication method.</p> 
+                                <div className="row mt-3">
+                                    <div className="col-sm-6 col-md-6 "><p className="mb-2 font-16 blucolor mt-3">   <b>Two-step authentication</b></p>
+                                        <p className="mb-3">  After entering your password. verify your identity with a second authentication method.</p> 
                                     </div>
-                                    <div class="col-sm-6 col-md-4 saddow_box">
+                                    <div className="col-sm-6 col-md-6 saddow_box">
                                        
-                                        <p class="mb-2">
+                                        <p className="mb-2">
                                             <b>Two-step authentication is off.</b>
                                         </p>
                                         <hr/>
-                                       <p class="mb-2"><i class="zmdi zmdi-shield-security"></i> with two step authentication, only you can account even if someone else has password.<br/>
-                                           <a href="#" class="font-13 font-bold text-right float-right col-info" data-toggle="" data-target="#">Learn More →</a>
+                                       <p className="mb-2"><i className="zmdi zmdi-shield-security"></i> with two step authentication, only you can account even if someone else has password.<br/>
+                                           <a href="#" className="font-13 font-bold text-right float-right col-info" data-toggle="" data-target="#">Learn More →</a>
                                        </p>   
-                                        <p class="mb-2">
+                                        <p className="mb-2">
                                             <b>How it works</b><br/>
                                                when you log in, you will need to:-
                                         </p>
-                                        <p class="mb-1 pl-3"><b>1.</b> Enter Your Password</p>
-                                         <p class="mb-2 pl-3"> <b> 2.</b> Enter a code generated by a mobile app or an SMS text message</p>
-                                         <p class="mb-0">
-                                           <button class="btn btn-outline-info"data-toggle="modal" data-target="#two-step"> Turn on Two-Step</button>
+                                        <p className="mb-1 pl-3"><b>1.</b> Enter Your Password</p>
+                                         <p className="mb-2 pl-3"> <b> 2.</b> Enter a code generated by a mobile app or an SMS text message</p>
+                                         <p className="mb-0">
+                                           <button className="btn btn-outline-info"data-toggle="modal" data-target="#two-step"> Turn on Two-Step</button>
                                            </p>  
                                     </div>
                                 </div>
-                                <div class="row mt-3">
-                                    <div class="col-sm-6 col-md-4"><p class="mb-2 font-16 blucolor mt-3">   <b>Devices</b></p>
-                                        <p class="mb-2">
+                                <div className="row mt-3">
+                                    <div className="col-sm-6 col-md-6"><p className="mb-2 font-16 blucolor mt-3">   <b>Devices</b></p>
+                                        <p className="mb-2">
                                             You are currently logged in these devices. If you don.t recognize a device log out to keep your account secure.
                                         </p>
                                     </div>
-                                    <div class="col-sm-6 col-md-4 saddow_box">
-                                        <p class="mb-2 font-16 blucolor"> 
+                                    <div className="col-sm-6 col-md-6 saddow_box">
+                                        <p className="mb-2 font-16 blucolor"> 
                                            <b>Logged in</b>
                                         </p> <hr/>
-                                       <p class="mb-2">
-                                           <i class="zmdi zmdi-devices mr-1"></i> 
-                                           <span class="col-info">Firefox on Window</span>
-                                           <span class="font-13 ml-3 badge badge-info ">This Device</span>
+                                       <p className="mb-2">
+                                           <i className="zmdi zmdi-devices mr-1"></i> 
+                                           <span className="col-info">Firefox on Window</span>
+                                           <span className="font-13 ml-3 badge badge-info ">This Device</span>
                                        </p>   
-                                       <p class="mb-1">
+                                       <p className="mb-1">
                                           Today at 6:02 pm 
-                                          <a href="#" class="font-13 font-bold text-right float-right btn btn-outline-info" data-toggle="modal" data-target="#logdetails">Log out →</a> <br/>
+                                          <a href="#" className="font-13 font-bold text-right float-right btn btn-outline-info" data-toggle="modal" data-target="#logdetails">Log out →</a> <br/>
                                           <span>Patna, Bihar, India</span>
                                        </p>
                                     </div>

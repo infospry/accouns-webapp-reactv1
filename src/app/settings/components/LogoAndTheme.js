@@ -1,3 +1,4 @@
+"use client"
 import React from 'react'
 import Image from 'next/image'
 
@@ -156,9 +157,9 @@ function LogoAndTheme() {
                                 </div>
 
                                 <div className="row justify-content-start mt-5 mb-3">
-                                    <div class="col-sm-12 col-md-6 col-lg-6">    
-                                        <div class="form-floating">
-                                            <textarea class="form-control none_border" placeholder="Customer Footnote (0/250)"style={{height:"100px"}} id="floatingTextarea2"></textarea>
+                                    <div className="col-sm-12 col-md-6 col-lg-6">    
+                                        <div className="form-floating">
+                                            <textarea className="form-control none_border" placeholder="Customer Footnote (0/250)"style={{height:"100px"}} id="floatingTextarea2"></textarea>
                                             <label for="floatingTextarea2">Customer Footnote (0/250)</label>
                                         </div>
                                     </div>

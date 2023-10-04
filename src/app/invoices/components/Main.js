@@ -19,9 +19,26 @@ return (
                     <div className="p-2">
                         <h2 className="font-bold mb-0"><i className="zmdi zmdi-receipt me-1"></i>Invoices </h2>
                     </div>
+                    <div className="input-group" style={{ maxWidth: '460px' }}>
+                        <input type="text" className="form-control radius_l"
+                            aria-label="Text input with dropdown button" placeholder='Search...' />
+                        <button className="btn btn-outline-secondary dropdown-toggle radius_r"
+                            type="button" data-bs-toggle="dropdown" aria-expanded="false"><i
+                                className="zmdi zmdi-tune"></i> Advance
+                            Search</button>
+                        <ul className="dropdown-menu dropdown-menu-end">
+                            <li><a className="dropdown-item" href="#">Action</a></li>
+                            <li><a className="dropdown-item" href="#">Another action</a></li>
+                            <li><a className="dropdown-item" href="#">Something else here</a></li>
+                            <li>
+                                <hr className="dropdown-divider" />
+                            </li>
+                            <li><a className="dropdown-item" href="#">Separated link</a></li>
+                        </ul>
+                    </div>
                     <div className="pe-2">
                         <a href="#" className="btn btn-outline-primary me-1"> Accept Online Payment</a>
-                        <a href="#" className="btn btn-success" data-toggle="modal" data-target="#addpage"><i
+                        <a href="#" className="btn btn-success" data-bs-toggle="modal" data-bs-target="#addpage"><i
                                 className="zmdi zmdi-plus-circle-o-duplicate"></i> New Invoice</a>
                         <div className="btn-group ms-1">
                             <button className="btn btn-outline-primary  dropdown-toggle font-w" type="button"
@@ -70,31 +87,7 @@ return (
                     <div className="row">
                         <div className="col-12 col-lg-12 mt-3">
                             <div className='invoiceArea'>
-                                <div className="card bdr5 mb-1">
-                                    <div className="header d-flex justify-content-between align-items-center p-0">
-                                        <div className="d-flex justify-content-start align-items-center">
-                                            <h2 className="font-bold"> All Invoices </h2>
-                                            <a href="#" className="btn btn-success btn-sm ms-3" style={{padding:".1rem .5rem"}} data-toggle="modal" data-target="#addpage">+</a>
-                                        </div>
-                                        <div className="input-group" style={{ maxWidth: '460px' }}>
-                                            <input type="text" className="form-control radius_l"
-                                                aria-label="Text input with dropdown button" placeholder='Search...' />
-                                            <button className="btn btn-outline-secondary dropdown-toggle radius_r"
-                                                type="button" data-bs-toggle="dropdown" aria-expanded="false"><i
-                                                    className="zmdi zmdi-tune"></i> Advance
-                                                Search</button>
-                                            <ul className="dropdown-menu dropdown-menu-end">
-                                                <li><a className="dropdown-item" href="#">Action</a></li>
-                                                <li><a className="dropdown-item" href="#">Another action</a></li>
-                                                <li><a className="dropdown-item" href="#">Something else here</a></li>
-                                                <li>
-                                                    <hr className="dropdown-divider" />
-                                                </li>
-                                                <li><a className="dropdown-item" href="#">Separated link</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
+                                
                                 <div className='Lodingbox'>
                                     <Loading />
                                 </div>
@@ -159,31 +152,7 @@ return (
                                 </div>
                             </div>
                             <div className='recArea dd_none'>
-                                <div className="card bdr5 mb-1">
-                                    <div className="header d-flex justify-content-between align-items-center p-0">
-                                        <div className="d-flex justify-content-start align-items-center">
-                                            <h2 className="font-bold"> All Recurring Templates </h2>
-                                            <a href="#" className="btn btn-success btn-sm ms-3" style={{padding:".1rem .5rem"}} data-toggle="modal" data-target="#addpage">+</a>
-                                        </div>
-                                        <div className="input-group" style={{ maxWidth: '460px' }}>
-                                            <input type="text" className="form-control radius_l"
-                                                aria-label="Text input with dropdown button" placeholder='Search...' />
-                                            <button className="btn btn-outline-secondary dropdown-toggle radius_r"
-                                                type="button" data-bs-toggle="dropdown" aria-expanded="false"><i
-                                                    className="zmdi zmdi-tune"></i> Advance
-                                                Search</button>
-                                            <ul className="dropdown-menu dropdown-menu-end">
-                                                <li><a className="dropdown-item" href="#">Action</a></li>
-                                                <li><a className="dropdown-item" href="#">Another action</a></li>
-                                                <li><a className="dropdown-item" href="#">Something else here</a></li>
-                                                <li>
-                                                    <hr className="dropdown-divider" />
-                                                </li>
-                                                <li><a className="dropdown-item" href="#">Separated link</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
+                                
                                 <div className='Lodingbox'>
                                     <Loading />
                                 </div>
@@ -258,7 +227,7 @@ return (
         <div className="modal-dialog" role="document">
             <div className="modal-content" style={{height:"auto!important"}}>
                 <div className="modal-header bg-blu-lite fixed-top">
-                    <button type="button" className="btn-close" data-dismiss="modal" aria-label="Close"> </button>
+                    <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"> </button>
                     <h4 className="modal-title" id="myModalLabel2">
                         <b> <i className="zmdi zmdi-plus-circle-o-duplicate"></i> Add New Invoice </b>
                     </h4>
@@ -340,14 +309,14 @@ return (
                                     </thead>
                                     <tr className="dd_none showtd">
                                         <td><i className="zmdi zmdi-menu"></i></td>
-                                        <td><div class="input-group-btn p-0">
-                                                                <button type="button" class="btn btn-outline-secondary  text-left dropdown-toggle" style={{border:"0px"}} data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <td><div className="input-group-btn p-0">
+                                                                <button type="button" className="btn btn-outline-secondary  text-left dropdown-toggle" style={{border:"0px"}} data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                                     Web Design
                                                                 </button>
-                                                                <div class="dropdown-menu">
-                                                                    <a class="dropdown-item" href="#">Example product</a>
-                                                                    <a class="dropdown-item" href="#">Sales excluding VAT</a>
-                                                                    <a class="dropdown-item" href="#">Sales exempt from VAT</a>                                                   
+                                                                <div className="dropdown-menu">
+                                                                    <a className="dropdown-item" href="#">Example product</a>
+                                                                    <a className="dropdown-item" href="#">Sales excluding VAT</a>
+                                                                    <a className="dropdown-item" href="#">Sales exempt from VAT</a>                                                   
                                                                 </div>
                                                             </div></td>
                                         <td className="text-end">£10.00</td>
@@ -419,9 +388,9 @@ return (
                                 </div>
 
                                 <div className="row justify-content-start mt-5 mb-3">
-                                    <div class="col-sm-12 col-md-6 col-lg-6">    
-                                        <div class="form-floating">
-                                            <textarea class="form-control none_border" placeholder="Customer Footnote (0/250)"style={{height:"100px"}} id="floatingTextarea2"></textarea>
+                                    <div className="col-sm-12 col-md-6 col-lg-6">    
+                                        <div className="form-floating">
+                                            <textarea className="form-control none_border" placeholder="Customer Footnote (0/250)"style={{height:"100px"}} id="floatingTextarea2"></textarea>
                                             <label for="floatingTextarea2">Customer Footnote (0/250)</label>
                                         </div>
                                     </div>
@@ -450,7 +419,7 @@ return (
                                     <p className="col-grey m-0 font-14">Lets clients pay online</p>
                                     <img className="m-auto" src="../images/images.png" alt="img" style={{ height: 'auto'}} />
                                 </div>
-                                <div class="form-check form-switch ms-1">
+                                <div className="form-check form-switch ms-1">
                                     <input className="form-check-input" type="checkbox" id="flexSwitchCheckDefault" />
                                 </div>
                             </div>
@@ -478,63 +447,63 @@ return (
                                     </div>
                                 </a>
                             </div>
-                            <div class="makeRec dd_none">
+                            <div className="makeRec dd_none">
                                 <h4 className="mt-4 mb-0">Recurring Schedule</h4>
                                 <hr className='mt-2 mb-2' />
-                                <div class="mb-3">
-                                    <label for="exampleFormControlInput1" class="form-label">How Often?</label>
-                                    <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                                <div className="mb-3">
+                                    <label for="exampleFormControlInput1" className="form-label">How Often?</label>
+                                    <select className="form-select form-select-sm" aria-label=".form-select-sm example">
                                         <option selected>Monthly</option>
                                         <option value="1">Weekly</option>
                                         <option value="2">Yearly</option>
                                         <option value="3">Daily</option>
                                     </select>
                                 </div>
-                                <div class="mb-3">
-                                    <label for="exampleFormControlTextarea1" class="form-label">Next Issue date</label>
-                                    <input class="form-control form-control-sm" type="text" placeholder="DD/MM/YYYY"
+                                <div className="mb-3">
+                                    <label for="exampleFormControlTextarea1" className="form-label">Next Issue date</label>
+                                    <input className="form-control form-control-sm" type="text" placeholder="DD/MM/YYYY"
                                         aria-label=".form-control-sm example" />
                                 </div>
                                 <hr className='mt-2 mb-2' />
 
-                                <label for="exampleFormControlTextarea1" class="form-label">Number of Invoices</label>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" style={{height:"1em"}} name="nobofInv"
+                                <label for="exampleFormControlTextarea1" className="form-label">Number of Invoices</label>
+                                <div className="form-check">
+                                    <input className="form-check-input" type="radio" style={{height:"1em"}} name="nobofInv"
                                         id="Infinite" checked />
-                                    <label class="form-check-label col-grey" for="Infinite">
+                                    <label className="form-check-label col-grey" for="Infinite">
                                         Infinite
                                     </label>
                                 </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" style={{height:"1em"}} name="nobofInv"
+                                <div className="form-check">
+                                    <input className="form-check-input" type="radio" style={{height:"1em"}} name="nobofInv"
                                         id="specific" />
-                                    <label class="form-check-label col-grey" for="specific">
+                                    <label className="form-check-label col-grey" for="specific">
                                         A specific Number
                                     </label>
                                 </div>
                                 <hr className='mt-2 mb-2' />
-                                <label for="exampleFormControlTextarea1" class="form-label">Delivery Options</label>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" style={{height:"1em"}} name="delivery"
+                                <label for="exampleFormControlTextarea1" className="form-label">Delivery Options</label>
+                                <div className="form-check">
+                                    <input className="form-check-input" type="radio" style={{height:"1em"}} name="delivery"
                                         id="automatically" checked />
-                                    <label class="form-check-label col-grey" for="automatically">
+                                    <label className="form-check-label col-grey" for="automatically">
                                         Send invoice automatically
                                     </label>
                                 </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" style={{height:"1em"}} name="delivery"
+                                <div className="form-check">
+                                    <input className="form-check-input" type="radio" style={{height:"1em"}} name="delivery"
                                         id="manually" />
-                                    <label class="form-check-label col-grey" for="manually">
+                                    <label className="form-check-label col-grey" for="manually">
                                         Create Draft invoice and send manually
                                     </label>
                                 </div>
 
                                 <hr className='mt-2 mb-2' />
-                                <label for="exampleFormControlTextarea1" class="form-label"><b>Accept Online
+                                <label for="exampleFormControlTextarea1" className="form-label"><b>Accept Online
                                         Payment</b></label>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-                                    <label class="form-check-label col-grey" for="flexCheckDefault">
+                                <div className="form-check">
+                                    <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+                                    <label className="form-check-label col-grey" for="flexCheckDefault">
                                         Allow clients to save credits card to make automatic payments.
                                     </label>
                                 </div>
@@ -565,7 +534,7 @@ return (
                                     </p>
                                     <p className="col-grey m-0 font-14">At Customizable Intervals</p>
                                 </div>
-                                <div class="form-check form-switch ms-1">
+                                <div className="form-check form-switch ms-1">
                                     <input className="form-check-input" type="checkbox" id="flexSwitchCheckDefault" />
                                 </div>
                             </div>
@@ -578,7 +547,7 @@ return (
                                     </p>
                                     <p className="col-grey m-0 font-14">Percentage or Flat-Rate fees</p>
                                 </div>
-                                <div class="form-check form-switch ms-1">
+                                <div className="form-check form-switch ms-1">
                                     <input className="form-check-input" type="checkbox" id="flexSwitchCheckDefault" />
                                 </div>
                             </div>
@@ -590,7 +559,7 @@ return (
                                             Language</b></p>
                                     <p className="col-grey m-0 font-14">GBP, English</p>
                                 </div>
-                                <div class="form-check form-switch ms-1">
+                                <div className="form-check form-switch ms-1">
                                     <input className="form-check-input" type="checkbox" id="flexSwitchCheckDefault" />
                                 </div>
                             </div>

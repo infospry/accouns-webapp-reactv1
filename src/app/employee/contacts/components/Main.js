@@ -27,359 +27,359 @@ function Main() {
                         </div>
                     </div>
                     {/* <<<<<<<<<<<< */}
-                    <div class=" contactlist scroll_bar">
-                        <div class="container-fluid">
-                            <div class="row clearfix">
-                                <div class="col-12 p-0">                        
-                                    <div class="d-flex">
-                                        <div class="mobile-left">
-                                            <a class="btn btn-info btn-icon toggle-email-nav collapsed" data-toggle="collapse" href="#email-nav" role="button" aria-expanded="false" aria-controls="email-nav">
-                                                <span class="btn-label"><i class="zmdi zmdi-more"></i></span>
+                    <div className=" contactlist scroll_bar">
+                        <div className="container-fluid">
+                            <div className="row clearfix">
+                                <div className="col-12 p-0">                        
+                                    <div className="d-flex">
+                                        <div className="mobile-left">
+                                            <a className="btn btn-info btn-icon toggle-email-nav collapsed" data-toggle="collapse" href="#email-nav" role="button" aria-expanded="false" aria-controls="email-nav">
+                                                <span className="btn-label"><i className="zmdi zmdi-more"></i></span>
                                             </a>
                                         </div>
-                                        <div class="inbox left pe-0 me-0 lftfxd" id="email-nav">                                        
-                                            <div class="mail-side"> 
+                                        <div className="inbox left pe-0 me-0 lftfxd" id="email-nav">                                        
+                                            <div className="mail-side"> 
                                             <LeftSidebar/>                                       
                                             </div>
                                         </div>                               
                                         
                                         
                                     </div>
-                                    <div class="inbox right rgtinbox  htg_auto">
-                            <div class="row">
-                                <div class="col-md-10 offset-md-1 pro mt-3">
-                                    <div class="text-center">
+                                    <div className="inbox right rgtinbox  htg_auto">
+                            <div className="row">
+                                <div className="col-md-10 offset-md-1 pro mt-3">
+                                    <div className="text-center">
                                         <br/>
                                         <br/>
                                         <h2>
                                             <b>Hours of work, Probation & Employment details. </b>
                                         </h2>
-                                        <p class="col-grey">
+                                        <p className="col-grey">
                                             Create and manage your contacts, all in one place.</p>
-                                        <button class="btn btn-primary btn-lg addcontact mt-3 mb-3 font-16">
+                                        <button className="btn btn-primary btn-lg addcontact mt-3 mb-3 font-16">
                                             <b> Create New Contact</b></button><br/>
                                         <small><a href="#">Click here </a>to import Contact from file</small>
                                         <br/>
                                         <br/>
                                     </div>
-                                    <div class="panel-group" id="accordion_1" role="tablist" aria-multiselectable="true">
-                                        <div class="panel panel-primary bdr">
-                                            <div class="panel-heading" role="tab" id="headingOne_2">
-                                                <h4 class="panel-title">
+                                    <div className="panel-group" id="accordion_1" role="tablist" aria-multiselectable="true">
+                                        <div className="panel panel-primary bdr">
+                                            <div className="panel-heading" role="tab" id="headingOne_2">
+                                                <h4 className="panel-title">
                                                     <a role="button" data-toggle="collapse" data-parent="#accordion_1" href="#collapseOne_2"
-                                                        aria-expanded="false" aria-controls="collapseOne_2" class="collapsed text-left">
-                                                        <span class="col-blue text-left">
+                                                        aria-expanded="false" aria-controls="collapseOne_2" className="collapsed text-left">
+                                                        <span className="col-blue text-left">
                                                             <b> 1. Basu deo </b> </span>
-                                                        <span class="float-right col-blue me-3">
-                                                            <i class="zmdi zmdi-account-box-phone"></i> <b>9555 930 490</b> </span>
+                                                        <span className="float-right col-blue me-3">
+                                                            <i className="zmdi zmdi-account-box-phone"></i> <b>9555 930 490</b> </span>
                                                     </a>
                                                 </h4>
                                             </div>
-                                            <div id="collapseOne_2" class="panel-collapse in collapse collapse" role="tabpanel"
+                                            <div id="collapseOne_2" className="panel-collapse in collapse collapse" role="tabpanel"
                                                 aria-labelledby="headingOne_2">
-                                                <div class="panel-body pt-0">
-                                                    <div class="disply_viewcontact">
-                                                        <div class="p-2 bdr1 h4show taskboard">
-                                                            <div class="dd">
-                                                                <ol class="dd-list row" style={{display:"flex"}}>
-                                                                    <li class="dd-item col-md-12 col-lg-3">
-                                                                        <div class="dd-content">
-                                                                            <div class="avt_bg text-center mt-4 mb-3">
-                                                                                <div class="avatar_circle m-auto">
+                                                <div className="panel-body pt-0">
+                                                    <div className="disply_viewcontact">
+                                                        <div className="p-2 bdr1 h4show taskboard">
+                                                            <div className="dd">
+                                                                <ol className="dd-list row" style={{display:"flex"}}>
+                                                                    <li className="dd-item col-md-12 col-lg-3">
+                                                                        <div className="dd-content">
+                                                                            <div className="avt_bg text-center mt-4 mb-3">
+                                                                                <div className="avatar_circle m-auto">
                                                                                     <img src="images/no-image.jpg" alt="avatar"
-                                                                                        class="img-fluid rounded-circle img"/>
+                                                                                        className="img-fluid rounded-circle img"/>
                                                                                 </div>
-                                                                                <div class="hedlline font-18 bold ms-0">
+                                                                                <div className="hedlline font-18 bold ms-0">
                                                                                     Carom Recruitment Limited
                                                                                 </div>
                                                                             </div>
-                                                                            <ul class="social-network social-circle">
-                                                                                <li><a href="#" class="" title="Facebook"><i
-                                                                                            class="zmdi zmdi-facebook"></i></a></li>
-                                                                                <li><a href="#" class="" title="Linkedin"><i
-                                                                                            class="zmdi zmdi-linkedin"></i></a></li>
-                                                                                <li><a href="#" class="" title="Facebook"><i
-                                                                                            class="zmdi zmdi-twitter"></i></a></li>
-                                                                                <li><a href="#" class="" title="Linkedin"><i
-                                                                                            class="zmdi zmdi-whatsapp"></i></a></li>
+                                                                            <ul className="social-network social-circle">
+                                                                                <li><a href="#" className="" title="Facebook"><i
+                                                                                            className="zmdi zmdi-facebook"></i></a></li>
+                                                                                <li><a href="#" className="" title="Linkedin"><i
+                                                                                            className="zmdi zmdi-linkedin"></i></a></li>
+                                                                                <li><a href="#" className="" title="Facebook"><i
+                                                                                            className="zmdi zmdi-twitter"></i></a></li>
+                                                                                <li><a href="#" className="" title="Linkedin"><i
+                                                                                            className="zmdi zmdi-whatsapp"></i></a></li>
                                                                             </ul>
                                                                         </div>
                                                                     </li>
-                                                                    <li class="dd-item col-md-12 col-lg-4 dd-bdrnone">
+                                                                    <li className="dd-item col-md-12 col-lg-4 dd-bdrnone">
                                                                         <div
-                                                                            class="dd-handle d-flex justify-content-between align-items-center pt-2 pb-2 ">
-                                                                            <div class="h6 mb-2 mt-2 text-blue">
-                                                                                <b> Information</b> <span class="bbl-light ms-1">Main</span>
+                                                                            className="dd-handle d-flex justify-content-between align-items-center pt-2 pb-2 ">
+                                                                            <div className="h6 mb-2 mt-2 text-blue">
+                                                                                <b> Information</b> <span className="bbl-light ms-1">Main</span>
                                                                             </div>
 
                                                                         </div>
-                                                                        <div class="dd-content p-3">
+                                                                        <div className="dd-content p-3">
 
-                                                                            <p class="mb-1">
-                                                                                <span class="wd-12px">Categories </span>
+                                                                            <p className="mb-1">
+                                                                                <span className="wd-12px">Categories </span>
                                                                                 <span>:</span>
                                                                                 <span id=""> Customer </span>
 
                                                                             </p>
 
-                                                                            <p class="mb-1">
-                                                                                <span class="wd-12px">Tax Reg.No. </span>
+                                                                            <p className="mb-1">
+                                                                                <span className="wd-12px">Tax Reg.No. </span>
                                                                                 <span>:</span>
                                                                                 <span id="">DK9999 - </span>
                                                                             </p>
-                                                                            <p class="mb-1">
-                                                                                <span class="wd-12px">UTR no.. </span>
+                                                                            <p className="mb-1">
+                                                                                <span className="wd-12px">UTR no.. </span>
                                                                                 <span>:</span>
                                                                                 <span id="">01234567890</span>
                                                                             </p>
-                                                                            <p class="mb-1">
-                                                                                <span class="wd-12px"> Opening Balance</span> <span>:</span>
+                                                                            <p className="mb-1">
+                                                                                <span className="wd-12px"> Opening Balance</span> <span>:</span>
                                                                                 <span><b>$25 - 35/hrs</b></span>
                                                                             </p>
-                                                                            <p class="mb-1">
-                                                                                <span class="wd-12px"> Payment Method </span> <span>:</span>
-                                                                                <span class="">-----</span>
+                                                                            <p className="mb-1">
+                                                                                <span className="wd-12px"> Payment Method </span> <span>:</span>
+                                                                                <span className="">-----</span>
                                                                             </p>
 
-                                                                            <p class="mb-1">
-                                                                                <span class="wd-12px">Terms</span>
+                                                                            <p className="mb-1">
+                                                                                <span className="wd-12px">Terms</span>
                                                                                 <span>:</span>
                                                                                 <span id="">25-07-2020 to 25-08-2020</span>
                                                                             </p>
-                                                                            <p class="mb-0">
-                                                                                <span class="wd-12px">Portal Language </span>
+                                                                            <p className="mb-0">
+                                                                                <span className="wd-12px">Portal Language </span>
                                                                                 <span>:</span>
                                                                                 <span id="">---</span>
                                                                             </p>
 
                                                                         </div>
                                                                     </li>
-                                                                    <li class="dd-item col-md-12 col-lg-5">
+                                                                    <li className="dd-item col-md-12 col-lg-5">
                                                                         <div
-                                                                            class="dd-handle d-flex justify-content-between align-items-center pt-2 pb-2">
-                                                                            <div class="h6 mb-2 mt-2 text-blue"><b> Contact Address </b> <span
-                                                                                    class="bbl-light ms-1">Main</span></div>
+                                                                            className="dd-handle d-flex justify-content-between align-items-center pt-2 pb-2">
+                                                                            <div className="h6 mb-2 mt-2 text-blue"><b> Contact Address </b> <span
+                                                                                    className="bbl-light ms-1">Main</span></div>
                                                                             <div>
-                                                                                <a class="btn btn-sm btn-primary clickmode"
+                                                                                <a className="btn btn-sm btn-primary clickmode"
                                                                                     data-hide=".disply_viewcontact"
                                                                                     data-show=".disply_editcontact">
-                                                                                    <i class="zmdi zmdi-edit"></i> Edit
+                                                                                    <i className="zmdi zmdi-edit"></i> Edit
                                                                                 </a>
                                                                             </div>
                                                                         </div>
-                                                                        <div class="dd-content p-3">
-                                                                            <p class="mb-1">
-                                                                                <span class="wd-12px">Company Name</span>
+                                                                        <div className="dd-content p-3">
+                                                                            <p className="mb-1">
+                                                                                <span className="wd-12px">Company Name</span>
                                                                                 <span>:</span>
                                                                                 <span id="">Nixon Enterprise</span>
                                                                             </p>
-                                                                            <p class="mb-1">
-                                                                                <span class="wd-12px">Name </span>
+                                                                            <p className="mb-1">
+                                                                                <span className="wd-12px">Name </span>
                                                                                 <span>:</span>
                                                                                 <span id=""> Mr. jons Piterson</span>
 
                                                                             </p>
-                                                                            <p class="mb-1">
-                                                                                <span class="wd-12px"> Mobile</span> <span>:</span>
-                                                                                <span id=""> 9973373851 <small class="col-green"> <i
-                                                                                            class="zmdi zmdi-check-all"> </i>
+                                                                            <p className="mb-1">
+                                                                                <span className="wd-12px"> Mobile</span> <span>:</span>
+                                                                                <span id=""> 9973373851 <small className="col-green"> <i
+                                                                                            className="zmdi zmdi-check-all"> </i>
                                                                                         Verified</small></span>
                                                                             </p>
-                                                                            <p class="mb-1">
-                                                                                <span class="wd-12px"> Email </span> <span>:</span>
+                                                                            <p className="mb-1">
+                                                                                <span className="wd-12px"> Email </span> <span>:</span>
                                                                                 <span id="">solutions.topicccano@gmail.com</span>
                                                                             </p>
 
-                                                                            <p class="mb-1">
-                                                                                <span class="wd-12px">Address Line</span>
+                                                                            <p className="mb-1">
+                                                                                <span className="wd-12px">Address Line</span>
                                                                                 <span>:</span>
                                                                                 <span id="">445 Mount Eden Road</span>
                                                                             </p>
-                                                                            <p class="mb-1">
-                                                                                <span class="wd-12px">City &amp; County </span>
+                                                                            <p className="mb-1">
+                                                                                <span className="wd-12px">City &amp; County </span>
                                                                                 <span>:</span>
                                                                                 <span id=""> Mount Eden</span>,
                                                                                 <span id=""> Auckland</span>
                                                                             </p>
-                                                                            <p class="mb-1">
-                                                                                <span class="wd-12px">Postcode </span>
+                                                                            <p className="mb-1">
+                                                                                <span className="wd-12px">Postcode </span>
                                                                                 <span>:</span>
                                                                                 <span id="">b841213</span>
                                                                             </p>
                                                                         </div>
                                                                     </li>
-                                                                    <li class="dd-item col-lg-12">
+                                                                    <li className="dd-item col-lg-12">
                                                                         <div
-                                                                            class="dd-handle d-flex justify-content-between align-items-center pt-2 pb-2">
-                                                                            <div class="h6 mb-2 mt-2 text-blue">
-                                                                                <i class="zmdi zmdi-accounts-list-alt me-1"></i><b>Contact
+                                                                            className="dd-handle d-flex justify-content-between align-items-center pt-2 pb-2">
+                                                                            <div className="h6 mb-2 mt-2 text-blue">
+                                                                                <i className="zmdi zmdi-accounts-list-alt me-1"></i><b>Contact
                                                                                     Person</b>
                                                                             </div>
                                                                         </div>
-                                                                        <div class="dd-content p-1">
+                                                                        <div className="dd-content p-1">
 
-                                                                            <div class="table-responsive">
+                                                                            <div className="table-responsive">
                                                                                 <table
-                                                                                    class="table table-bordered overflow-y rwd-table btdr_none mb-0"
+                                                                                    className="table table-bordered overflow-y rwd-table btdr_none mb-0"
                                                                                     id="sortable">
-                                                                                    <thead class="font_b dnone-mob">
-                                                                                        <tr class="font_btd">
+                                                                                    <thead className="font_b dnone-mob">
+                                                                                        <tr className="font_btd">
                                                                                             <th style={{width:"30px"}}>
                                                                                                 #
                                                                                             </th>
-                                                                                            <th class=""> Contact / Company </th>
+                                                                                            <th className=""> Contact / Company </th>
                                                                                             <th> Phone </th>
                                                                                             <th> Open Balance </th>
                                                                                             <th style={{width:"180px"}}> Action</th>
                                                                                         </tr>
                                                                                     </thead>
                                                                                     <tbody>
-                                                                                        <tr class="">
-                                                                                            <td class="">
+                                                                                        <tr className="">
+                                                                                            <td className="">
                                                                                                 1
                                                                                             </td>
-                                                                                            <td class="pt-3 pb-3">
+                                                                                            <td className="pt-3 pb-3">
                                                                                                 <b>DMRC </b> <i
-                                                                                                    class="zmdi zmdi-email ms-2"></i><br/>
+                                                                                                    className="zmdi zmdi-email ms-2"></i><br/>
                                                                                                 Delhi Metro Rail Corporation
                                                                                             </td>
                                                                                             <td> --</td>
                                                                                             <td> $596.00</td>
                                                                                             <td>
-                                                                                                <div class="btn-group">
+                                                                                                <div className="btn-group">
                                                                                                     <button type="button"
-                                                                                                        class="btn btn-primary btn-sm dropdown-toggle dr-breakout-btn"
+                                                                                                        className="btn btn-primary btn-sm dropdown-toggle dr-breakout-btn"
                                                                                                         data-toggle="dropdown"
                                                                                                         aria-haspopup="true"
                                                                                                         aria-expanded="false"> Action <span
-                                                                                                            class="caret"></span></button>
-                                                                                                    <ul class="dropdown-menu dr-breakout">
-                                                                                                        <li class="btn btn-danger btn-sm"
+                                                                                                            className="caret"></span></button>
+                                                                                                    <ul className="dropdown-menu dr-breakout">
+                                                                                                        <li className="btn btn-danger btn-sm"
                                                                                                             title="Delete" type="button"> <i
-                                                                                                                class="zmdi zmdi-delete"></i>
+                                                                                                                className="zmdi zmdi-delete"></i>
                                                                                                             <span
-                                                                                                                class="dnone-mob">Delete</span>
+                                                                                                                className="dnone-mob">Delete</span>
                                                                                                         </li>
                                                                                                     </ul>
                                                                                                 </div>
                                                                                             </td>
                                                                                         </tr>
-                                                                                        <tr class="">
-                                                                                            <td class="">
+                                                                                        <tr className="">
+                                                                                            <td className="">
                                                                                                 2
                                                                                             </td>
-                                                                                            <td class="pt-3 pb-3">
+                                                                                            <td className="pt-3 pb-3">
                                                                                                 Soft technotech ltd <i
-                                                                                                    class="zmdi zmdi-email ms-2"></i>
+                                                                                                    className="zmdi zmdi-email ms-2"></i>
                                                                                             </td>
                                                                                             <td> --</td>
                                                                                             <td> $596.00</td>
                                                                                             <td>
-                                                                                                <div class="btn-group">
+                                                                                                <div className="btn-group">
                                                                                                     <button type="button"
-                                                                                                        class="btn btn-primary btn-sm dropdown-toggle dr-breakout-btn"
+                                                                                                        className="btn btn-primary btn-sm dropdown-toggle dr-breakout-btn"
                                                                                                         data-toggle="dropdown"
                                                                                                         aria-haspopup="true"
                                                                                                         aria-expanded="false"> Action <span
-                                                                                                            class="caret"></span></button>
-                                                                                                    <ul class="dropdown-menu dr-breakout">
-                                                                                                        <li class="btn btn-danger btn-sm"
+                                                                                                            className="caret"></span></button>
+                                                                                                    <ul className="dropdown-menu dr-breakout">
+                                                                                                        <li className="btn btn-danger btn-sm"
                                                                                                             title="Delete" type="button"> <i
-                                                                                                                class="zmdi zmdi-delete"></i>
+                                                                                                                className="zmdi zmdi-delete"></i>
                                                                                                             <span
-                                                                                                                class="dnone-mob">Delete</span>
+                                                                                                                className="dnone-mob">Delete</span>
                                                                                                         </li>
                                                                                                     </ul>
                                                                                                 </div>
                                                                                             </td>
                                                                                         </tr>
-                                                                                        <tr class="">
-                                                                                            <td class="">
+                                                                                        <tr className="">
+                                                                                            <td className="">
                                                                                                 3
                                                                                             </td>
-                                                                                            <td class="pt-3 pb-3">
+                                                                                            <td className="pt-3 pb-3">
                                                                                                 Soft technotech ltd <i
-                                                                                                    class="zmdi zmdi-email ms-2"></i>
+                                                                                                    className="zmdi zmdi-email ms-2"></i>
                                                                                             </td>
                                                                                             <td> --</td>
                                                                                             <td> $596.00</td>
                                                                                             <td>
-                                                                                                <div class="btn-group">
+                                                                                                <div className="btn-group">
                                                                                                     <button type="button"
-                                                                                                        class="btn btn-primary btn-sm dropdown-toggle dr-breakout-btn"
+                                                                                                        className="btn btn-primary btn-sm dropdown-toggle dr-breakout-btn"
                                                                                                         data-toggle="dropdown"
                                                                                                         aria-haspopup="true"
                                                                                                         aria-expanded="false"> Action <span
-                                                                                                            class="caret"></span></button>
-                                                                                                    <ul class="dropdown-menu dr-breakout">
-                                                                                                        <li class="btn btn-danger btn-sm"
+                                                                                                            className="caret"></span></button>
+                                                                                                    <ul className="dropdown-menu dr-breakout">
+                                                                                                        <li className="btn btn-danger btn-sm"
                                                                                                             title="Delete" type="button"> <i
-                                                                                                                class="zmdi zmdi-delete"></i>
+                                                                                                                className="zmdi zmdi-delete"></i>
                                                                                                             <span
-                                                                                                                class="dnone-mob">Delete</span>
+                                                                                                                className="dnone-mob">Delete</span>
                                                                                                         </li>
                                                                                                     </ul>
                                                                                                 </div>
                                                                                             </td>
                                                                                         </tr>
-                                                                                        <tr class="">
-                                                                                            <td class="">
-                                                                                                <div class="checkbox">
-                                                                                                    <input class="all_slct" id="product1"
+                                                                                        <tr className="">
+                                                                                            <td className="">
+                                                                                                <div className="checkbox">
+                                                                                                    <input className="all_slct" id="product1"
                                                                                                         type="checkbox"/>
                                                                                                     <label for="product1"
-                                                                                                        class="ps-0">&nbsp;</label>
+                                                                                                        className="ps-0">&nbsp;</label>
                                                                                                 </div>
                                                                                             </td>
-                                                                                            <td class="pt-3 pb-3">
+                                                                                            <td className="pt-3 pb-3">
                                                                                                 Soft technotech ltd <i
-                                                                                                    class="zmdi zmdi-email ms-2"></i>
+                                                                                                    className="zmdi zmdi-email ms-2"></i>
                                                                                             </td>
                                                                                             <td> --</td>
                                                                                             <td> $596.00</td>
                                                                                             <td>
-                                                                                                <div class="btn-group">
+                                                                                                <div className="btn-group">
                                                                                                     <button type="button"
-                                                                                                        class="btn btn-primary btn-sm dropdown-toggle dr-breakout-btn"
+                                                                                                        className="btn btn-primary btn-sm dropdown-toggle dr-breakout-btn"
                                                                                                         data-toggle="dropdown"
                                                                                                         aria-haspopup="true"
                                                                                                         aria-expanded="false"> Action <span
-                                                                                                            class="caret"></span></button>
-                                                                                                    <ul class="dropdown-menu dr-breakout">
-                                                                                                        <li class="btn btn-danger btn-sm"
+                                                                                                            className="caret"></span></button>
+                                                                                                    <ul className="dropdown-menu dr-breakout">
+                                                                                                        <li className="btn btn-danger btn-sm"
                                                                                                             title="Delete" type="button"> <i
-                                                                                                                class="zmdi zmdi-delete"></i>
+                                                                                                                className="zmdi zmdi-delete"></i>
                                                                                                             <span
-                                                                                                                class="dnone-mob">Delete</span>
+                                                                                                                className="dnone-mob">Delete</span>
                                                                                                         </li>
                                                                                                     </ul>
                                                                                                 </div>
                                                                                             </td>
                                                                                         </tr>
-                                                                                        <tr class="">
-                                                                                            <td class="">
+                                                                                        <tr className="">
+                                                                                            <td className="">
                                                                                                 4
                                                                                             </td>
-                                                                                            <td class="pt-3 pb-3">
+                                                                                            <td className="pt-3 pb-3">
                                                                                                 Soft technotech ltd <i
-                                                                                                    class="zmdi zmdi-email ms-2"></i>
+                                                                                                    className="zmdi zmdi-email ms-2"></i>
                                                                                             </td>
                                                                                             <td> --</td>
                                                                                             <td> $596.00</td>
                                                                                             <td>
-                                                                                                <div class="btn-group">
+                                                                                                <div className="btn-group">
                                                                                                     <button type="button"
-                                                                                                        class="btn btn-primary btn-sm dropdown-toggle dr-breakout-btn"
+                                                                                                        className="btn btn-primary btn-sm dropdown-toggle dr-breakout-btn"
                                                                                                         data-toggle="dropdown"
                                                                                                         aria-haspopup="true"
                                                                                                         aria-expanded="false"> Action <span
-                                                                                                            class="caret"></span></button>
-                                                                                                    <ul class="dropdown-menu dr-breakout">
-                                                                                                        <li class="btn btn-danger btn-sm"
+                                                                                                            className="caret"></span></button>
+                                                                                                    <ul className="dropdown-menu dr-breakout">
+                                                                                                        <li className="btn btn-danger btn-sm"
                                                                                                             title="Delete" type="button"> <i
-                                                                                                                class="zmdi zmdi-delete"></i>
+                                                                                                                className="zmdi zmdi-delete"></i>
                                                                                                             <span
-                                                                                                                class="dnone-mob">Delete</span>
+                                                                                                                className="dnone-mob">Delete</span>
                                                                                                         </li>
                                                                                                     </ul>
                                                                                                 </div>
@@ -392,39 +392,39 @@ function Main() {
 
                                                                         </div>
                                                                     </li>
-                                                                    <li class="dd-item col-lg-12">
+                                                                    <li className="dd-item col-lg-12">
                                                                         <div
-                                                                            class="dd-handle d-flex justify-content-between align-items-center pt-2 pb-2">
-                                                                            <div class="h6 mb-2 mt-2 text-blue">
+                                                                            className="dd-handle d-flex justify-content-between align-items-center pt-2 pb-2">
+                                                                            <div className="h6 mb-2 mt-2 text-blue">
 
-                                                                                <i class="zmdi zmdi-comment"></i> <b>Note</b>
+                                                                                <i className="zmdi zmdi-comment"></i> <b>Note</b>
                                                                             </div>
                                                                         </div>
-                                                                        <div class="dd-content p-3">
-                                                                            <div class="row m-0">
-                                                                                <div class="col-12">
-                                                                                    <ul class="timeline">
+                                                                        <div className="dd-content p-3">
+                                                                            <div className="row m-0">
+                                                                                <div className="col-12">
+                                                                                    <ul className="timeline">
                                                                                         <li>
-                                                                                            <div class="timeline-time">
-                                                                                                <span class="date">Today</span>
-                                                                                                <span class="time">04:20</span>
+                                                                                            <div className="timeline-time">
+                                                                                                <span className="date">Today</span>
+                                                                                                <span className="time">04:20</span>
                                                                                             </div>
-                                                                                            <div class="timeline-icon">
+                                                                                            <div className="timeline-icon">
                                                                                                 <a href="javascript:;">&nbsp;</a>
                                                                                             </div>
-                                                                                            <div class="timeline-body">
-                                                                                                <div class="timeline-header">
-                                                                                                    <span class="userimage"><img
+                                                                                            <div className="timeline-body">
+                                                                                                <div className="timeline-header">
+                                                                                                    <span className="userimage"><img
                                                                                                             src="images/download.jpg"/></span>
-                                                                                                    <span class="username"><a
+                                                                                                    <span className="username"><a
                                                                                                             href="javascript:;">John Smith</a>
                                                                                                         <small></small></span>
                                                                                                     <span
-                                                                                                        class="text-right float-right text-muted">New
+                                                                                                        className="text-right float-right text-muted">New
                                                                                                         Lead</span>
                                                                                                 </div>
-                                                                                                <div class="timeline-content">
-                                                                                                    <p class="lead">Traning Magager Software
+                                                                                                <div className="timeline-content">
+                                                                                                    <p className="lead">Traning Magager Software
                                                                                                         Engneering</p>
                                                                                                     <p>
                                                                                                         A Leads Status in a campaign can be
@@ -435,26 +435,26 @@ function Main() {
                                                                                             </div>
                                                                                         </li>
                                                                                         <li>
-                                                                                            <div class="timeline-time">
-                                                                                                <span class="date">16/2-2021</span>
-                                                                                                <span class="time">09:20</span>
+                                                                                            <div className="timeline-time">
+                                                                                                <span className="date">16/2-2021</span>
+                                                                                                <span className="time">09:20</span>
                                                                                             </div>
-                                                                                            <div class="timeline-icon">
+                                                                                            <div className="timeline-icon">
                                                                                                 <a href="javascript:;">&nbsp;</a>
                                                                                             </div>
-                                                                                            <div class="timeline-body">
-                                                                                                <div class="timeline-header">
-                                                                                                    <span class="userimage"><img
+                                                                                            <div className="timeline-body">
+                                                                                                <div className="timeline-header">
+                                                                                                    <span className="userimage"><img
                                                                                                             src="images/download.jpg"/></span>
-                                                                                                    <span class="username"><a
+                                                                                                    <span className="username"><a
                                                                                                             href="javascript:;">John Smith</a>
                                                                                                         <small></small></span>
                                                                                                     <span
-                                                                                                        class="text-right float-right text-muted">New
+                                                                                                        className="text-right float-right text-muted">New
                                                                                                         Lead</span>
                                                                                                 </div>
-                                                                                                <div class="timeline-content">
-                                                                                                    <p class="lead">Traning Magager Software
+                                                                                                <div className="timeline-content">
+                                                                                                    <p className="lead">Traning Magager Software
                                                                                                         Engneering</p>
                                                                                                     <p>
                                                                                                         A Leads Status in a campaign can be
@@ -465,10 +465,10 @@ function Main() {
                                                                                             </div>
                                                                                         </li>
                                                                                         <li>
-                                                                                            <div class="timeline-icon">
+                                                                                            <div className="timeline-icon">
                                                                                                 <a href="javascript:;">&nbsp;</a>
                                                                                             </div>
-                                                                                            <div class="timeline-body">
+                                                                                            <div className="timeline-body">
                                                                                                 Loading...
                                                                                             </div>
                                                                                         </li>
@@ -480,56 +480,56 @@ function Main() {
                                                                     </li>
                                                                 </ol>
                                                             </div>
-                                                            <div class="mb-5 text-center">
-                                                                <button class="btn btn-outline-danger clickmode" data-show="." data-hide="."><b>
+                                                            <div className="mb-5 text-center">
+                                                                <button className="btn btn-outline-danger clickmode" data-show="." data-hide="."><b>
                                                                         Cancel</b></button>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="disply_editcontact ddnone p-3 pt-4">
-                                                        <div class="row">
-                                                            <div class="col-12 col-sm-6">
-                                                                <h3 class="font-18 mb-3"><i class="zmdi zmdi-info"></i><b> Primary Contacts </b>
+                                                    <div className="disply_editcontact ddnone p-3 pt-4">
+                                                        <div className="row">
+                                                            <div className="col-12 col-sm-6">
+                                                                <h3 className="font-18 mb-3"><i className="zmdi zmdi-info"></i><b> Primary Contacts </b>
                                                                 </h3>
-                                                                <div class="row">
-                                                                    <div class="col">
-                                                                        <div class="group_lead">
-                                                                            <input type="text" id="" class="input_text" required="required"/>
-                                                                            <label for="" class="lablefilled"> First Name</label>
+                                                                <div className="row">
+                                                                    <div className="col">
+                                                                        <div className="group_lead">
+                                                                            <input type="text" id="" className="input_text" required="required"/>
+                                                                            <label for="" className="lablefilled"> First Name</label>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="col">
-                                                                        <div class="group_lead">
-                                                                            <input type="text" id="" class="input_text" required="required"/>
-                                                                            <label for="" class="lablefilled"> Last Name</label>
+                                                                    <div className="col">
+                                                                        <div className="group_lead">
+                                                                            <input type="text" id="" className="input_text" required="required"/>
+                                                                            <label for="" className="lablefilled"> Last Name</label>
                                                                         </div>
                                                                     </div>
                                                                 </div>
 
 
 
-                                                                <div class="group_lead">
-                                                                    <input type="text" id="" class="input_text" required="required"/>
-                                                                    <label for="" class="lablefilled"> Email</label>
+                                                                <div className="group_lead">
+                                                                    <input type="text" id="" className="input_text" required="required"/>
+                                                                    <label for="" className="lablefilled"> Email</label>
 
                                                                 </div>
-                                                                <div class="group_lead">
-                                                                    <input type="text" id="" class="input_text" required="required"/>
-                                                                    <label for="" class="lablefilled"> Mobile</label>
+                                                                <div className="group_lead">
+                                                                    <input type="text" id="" className="input_text" required="required"/>
+                                                                    <label for="" className="lablefilled"> Mobile</label>
 
                                                                 </div>
-                                                                <div class="group_lead">
-                                                                    <input type="text" id="" class="input_text" required="required"/>
-                                                                    <label for="" class="lablefilled"> Phone</label>
+                                                                <div className="group_lead">
+                                                                    <input type="text" id="" className="input_text" required="required"/>
+                                                                    <label for="" className="lablefilled"> Phone</label>
 
                                                                 </div>
 
-                                                                <div class="group_lead">
-                                                                    <input type="text" id="" class="input_text" required="required"/>
-                                                                    <label for="" class="lablefilled"> Fax</label>
+                                                                <div className="group_lead">
+                                                                    <input type="text" id="" className="input_text" required="required"/>
+                                                                    <label for="" className="lablefilled"> Fax</label>
                                                                 </div>
-                                                                <div class="group_lead">
-                                                                    <select id="" class="custom-select select_f" required="required">
+                                                                <div className="group_lead">
+                                                                    <select id="" className="custom-select select_f" required="required">
                                                                         <option value="">Relationship</option>
                                                                         <option value="Mother">Mother</option>
                                                                         <option value="Father">Father</option>
@@ -560,43 +560,43 @@ function Main() {
                                                                         <option value="Son-in-law">Son-in-law</option>
                                                                     </select>
                                                                 </div>
-                                                                <div class="checkbox mt-3">
+                                                                <div className="checkbox mt-3">
                                                                     <input id="billinfsame" type="checkbox"/>
                                                                     <label for="billinfsame"><b>Is Primary Contact</b> </label>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-12 col-sm-6">
+                                                            <div className="col-12 col-sm-6">
 
-                                                                <h3 class="font-18 mb-3"><i class="zmdi zmdi-city-alt"></i><b> Address
+                                                                <h3 className="font-18 mb-3"><i className="zmdi zmdi-city-alt"></i><b> Address
                                                                         Information</b></h3>
-                                                                <div class="group_lead">
-                                                                    <input type="text" id="txtcity2" class="input_text bglightblu"
+                                                                <div className="group_lead">
+                                                                    <input type="text" id="txtcity2" className="input_text bglightblu"
                                                                         required="required"/>
-                                                                    <label for="Address2" class="lablefilled"> Address Line 1 </label>
+                                                                    <label for="Address2" className="lablefilled"> Address Line 1 </label>
                                                                 </div>
-                                                                <div class="group_lead">
-                                                                    <input type="text" id="txtcity2" class="input_text bglightblu"
+                                                                <div className="group_lead">
+                                                                    <input type="text" id="txtcity2" className="input_text bglightblu"
                                                                         required="required"/>
-                                                                    <label for="Address2" class="lablefilled"> Address Line 2 </label>
+                                                                    <label for="Address2" className="lablefilled"> Address Line 2 </label>
                                                                 </div>
-                                                                <div class="group_lead">
-                                                                    <input type="text" id="txtcity2" class="input_text bglightblu"
+                                                                <div className="group_lead">
+                                                                    <input type="text" id="txtcity2" className="input_text bglightblu"
                                                                         required="required"/>
-                                                                    <label for="txtcity2" class="lablefilled"> Town / City</label>
+                                                                    <label for="txtcity2" className="lablefilled"> Town / City</label>
                                                                 </div>
-                                                                <div class="group_lead">
-                                                                    <input type="text" id="txtstate2" class="input_text bglightblu"
+                                                                <div className="group_lead">
+                                                                    <input type="text" id="txtstate2" className="input_text bglightblu"
                                                                         required="required"/>
-                                                                    <label for="txtstate2" class="lablefilled"> State</label>
+                                                                    <label for="txtstate2" className="lablefilled"> State</label>
                                                                 </div>
 
-                                                                <div class="group_lead">
-                                                                    <input type="text" id="txtzip2" class="input_text bglightblu"
+                                                                <div className="group_lead">
+                                                                    <input type="text" id="txtzip2" className="input_text bglightblu"
                                                                         required="required"/>
-                                                                    <label for="txtzip2" class="lablefilled"> Zip Code</label>
+                                                                    <label for="txtzip2" className="lablefilled"> Zip Code</label>
                                                                 </div>
-                                                                <div class="group_lead">
-                                                                    <select id="txtCountry2" class="custom-select select_f bglightblu "
+                                                                <div className="group_lead">
+                                                                    <select id="txtCountry2" className="custom-select select_f bglightblu "
                                                                         required="required">
                                                                         <option value="">Country</option>
                                                                         <option value="86">Afghanistan</option>
@@ -839,16 +839,16 @@ function Main() {
                                                                 </div>
 
                                                             </div>
-                                                            <div class="mb-5 col-md-12 text-center">
-                                                                <hr class="m-0 mb-4"/>
-                                                                <button value="Submit" class="btn btn-primary clickmode"
+                                                            <div className="mb-5 col-md-12 text-center">
+                                                                <hr className="m-0 mb-4"/>
+                                                                <button value="Submit" className="btn btn-primary clickmode"
                                                                     data-show=".disply_viewcontact" data-hide=".disply_editcontact"><b>Save
                                                                         -&gt;</b></button>
-                                                                <button class="btn btn-outline-danger clickmode" data-show=".disply_viewcontact"
+                                                                <button className="btn btn-outline-danger clickmode" data-show=".disply_viewcontact"
                                                                     data-hide=".disply_editcontact"><b> Cancel</b></button>
                                                             </div>
-                                                            <div class="col-12 text-center">
-                                                                <p><span class="col-red">Note</span> : You can add and manage additional
+                                                            <div className="col-12 text-center">
+                                                                <p><span className="col-red">Note</span> : You can add and manage additional
                                                                     addresses from contact details section. </p>
                                                             </div>
                                                         </div>
@@ -859,66 +859,66 @@ function Main() {
 
                                     </div>
 
-                                    <div class="disply_contact mt-3 dd_none" >
-                                        <div class="panel-group" id="accordion_1" role="tablist" aria-multiselectable="true">
-                                            <div class="panel panel-primary bdr">
-                                                <div class="panel-heading" role="tab" id="headingOne_1">
-                                                    <h4 class="panel-title">
+                                    <div className="disply_contact mt-3 dd_none" >
+                                        <div className="panel-group" id="accordion_1" role="tablist" aria-multiselectable="true">
+                                            <div className="panel panel-primary bdr">
+                                                <div className="panel-heading" role="tab" id="headingOne_1">
+                                                    <h4 className="panel-title">
                                                         <a role="button" data-toggle="collapse" data-parent="#accordion_1" href="#collapseOne_1"
-                                                            aria-expanded="false" aria-controls="collapseOne_1" class="collapsed">
-                                                            <span class="col-blue">
-                                                                <i class="zmdi zmdi-plus"></i> <b>Add New Contact </b> </span>
-                                                            <span class="float-right">
-                                                                <i class="zmdi zmdi-dialpad"></i></span>
+                                                            aria-expanded="false" aria-controls="collapseOne_1" className="collapsed">
+                                                            <span className="col-blue">
+                                                                <i className="zmdi zmdi-plus"></i> <b>Add New Contact </b> </span>
+                                                            <span className="float-right">
+                                                                <i className="zmdi zmdi-dialpad"></i></span>
                                                         </a>
                                                     </h4>
                                                 </div>
-                                                <div id="collapseOne_1" class="panel-collapse in collapse collapse show" role="tabpanel"
+                                                <div id="collapseOne_1" className="panel-collapse in collapse collapse show" role="tabpanel"
                                                     aria-labelledby="headingOne_1">
-                                                    <div class="panel-body p-3">
-                                                        <div class="row">
-                                                            <div class="col-12 col-sm-6">
-                                                                <h3 class="font-18 mb-3"><i class="zmdi zmdi-info"></i><b> Primary Contacts </b>
+                                                    <div className="panel-body p-3">
+                                                        <div className="row">
+                                                            <div className="col-12 col-sm-6">
+                                                                <h3 className="font-18 mb-3"><i className="zmdi zmdi-info"></i><b> Primary Contacts </b>
                                                                 </h3>
-                                                                <div class="row">
-                                                                    <div class="col">
-                                                                        <div class="group_lead">
-                                                                            <input type="text" id="" class="input_text" required="required"/>
-                                                                            <label for="" class="lablefilled"> First Name</label>
+                                                                <div className="row">
+                                                                    <div className="col">
+                                                                        <div className="group_lead">
+                                                                            <input type="text" id="" className="input_text" required="required"/>
+                                                                            <label for="" className="lablefilled"> First Name</label>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="col">
-                                                                        <div class="group_lead">
-                                                                            <input type="text" id="" class="input_text" required="required"/>
-                                                                            <label for="" class="lablefilled"> Last Name</label>
+                                                                    <div className="col">
+                                                                        <div className="group_lead">
+                                                                            <input type="text" id="" className="input_text" required="required"/>
+                                                                            <label for="" className="lablefilled"> Last Name</label>
                                                                         </div>
                                                                     </div>
                                                                 </div>
 
 
 
-                                                                <div class="group_lead">
-                                                                    <input type="text" id="" class="input_text" required="required"/>
-                                                                    <label for="" class="lablefilled"> Email</label>
+                                                                <div className="group_lead">
+                                                                    <input type="text" id="" className="input_text" required="required"/>
+                                                                    <label for="" className="lablefilled"> Email</label>
 
                                                                 </div>
-                                                                <div class="group_lead">
-                                                                    <input type="text" id="" class="input_text" required="required"/>
-                                                                    <label for="" class="lablefilled"> Mobile</label>
+                                                                <div className="group_lead">
+                                                                    <input type="text" id="" className="input_text" required="required"/>
+                                                                    <label for="" className="lablefilled"> Mobile</label>
 
                                                                 </div>
-                                                                <div class="group_lead">
-                                                                    <input type="text" id="" class="input_text" required="required"/>
-                                                                    <label for="" class="lablefilled"> Phone</label>
+                                                                <div className="group_lead">
+                                                                    <input type="text" id="" className="input_text" required="required"/>
+                                                                    <label for="" className="lablefilled"> Phone</label>
 
                                                                 </div>
 
-                                                                <div class="group_lead">
-                                                                    <input type="text" id="" class="input_text" required="required"/>
-                                                                    <label for="" class="lablefilled"> Fax</label>
+                                                                <div className="group_lead">
+                                                                    <input type="text" id="" className="input_text" required="required"/>
+                                                                    <label for="" className="lablefilled"> Fax</label>
                                                                 </div>
-                                                                <div class="group_lead">
-                                                                    <select id="" class="custom-select select_f" required="required">
+                                                                <div className="group_lead">
+                                                                    <select id="" className="custom-select select_f" required="required">
                                                                         <option value="">Relationship</option>
                                                                         <option value="Mother">Mother</option>
                                                                         <option value="Father">Father</option>
@@ -949,43 +949,43 @@ function Main() {
                                                                         <option value="Son-in-law">Son-in-law</option>
                                                                     </select>
                                                                 </div>
-                                                                <div class="checkbox mt-3">
+                                                                <div className="checkbox mt-3">
                                                                     <input id="billinfsame" type="checkbox"/>
                                                                     <label for="billinfsame"><b>Is Primary Contact</b> </label>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-12 col-sm-6">
+                                                            <div className="col-12 col-sm-6">
 
-                                                                <h3 class="font-18 mb-3"><i class="zmdi zmdi-city-alt"></i><b> Address
+                                                                <h3 className="font-18 mb-3"><i className="zmdi zmdi-city-alt"></i><b> Address
                                                                         Information</b></h3>
-                                                                <div class="group_lead">
-                                                                    <input type="text" id="txtcity2" class="input_text bglightblu"
+                                                                <div className="group_lead">
+                                                                    <input type="text" id="txtcity2" className="input_text bglightblu"
                                                                         required="required"/>
-                                                                    <label for="Address2" class="lablefilled"> Address Line 1 </label>
+                                                                    <label for="Address2" className="lablefilled"> Address Line 1 </label>
                                                                 </div>
-                                                                <div class="group_lead">
-                                                                    <input type="text" id="txtcity2" class="input_text bglightblu"
+                                                                <div className="group_lead">
+                                                                    <input type="text" id="txtcity2" className="input_text bglightblu"
                                                                         required="required"/>
-                                                                    <label for="Address2" class="lablefilled"> Address Line 2 </label>
+                                                                    <label for="Address2" className="lablefilled"> Address Line 2 </label>
                                                                 </div>
-                                                                <div class="group_lead">
-                                                                    <input type="text" id="txtcity2" class="input_text bglightblu"
+                                                                <div className="group_lead">
+                                                                    <input type="text" id="txtcity2" className="input_text bglightblu"
                                                                         required="required"/>
-                                                                    <label for="txtcity2" class="lablefilled"> Town / City</label>
+                                                                    <label for="txtcity2" className="lablefilled"> Town / City</label>
                                                                 </div>
-                                                                <div class="group_lead">
-                                                                    <input type="text" id="txtstate2" class="input_text bglightblu"
+                                                                <div className="group_lead">
+                                                                    <input type="text" id="txtstate2" className="input_text bglightblu"
                                                                         required="required"/>
-                                                                    <label for="txtstate2" class="lablefilled"> State</label>
+                                                                    <label for="txtstate2" className="lablefilled"> State</label>
                                                                 </div>
 
-                                                                <div class="group_lead">
-                                                                    <input type="text" id="txtzip2" class="input_text bglightblu"
+                                                                <div className="group_lead">
+                                                                    <input type="text" id="txtzip2" className="input_text bglightblu"
                                                                         required="required"/>
-                                                                    <label for="txtzip2" class="lablefilled"> Zip Code</label>
+                                                                    <label for="txtzip2" className="lablefilled"> Zip Code</label>
                                                                 </div>
-                                                                <div class="group_lead">
-                                                                    <select id="txtCountry2" class="custom-select select_f bglightblu "
+                                                                <div className="group_lead">
+                                                                    <select id="txtCountry2" className="custom-select select_f bglightblu "
                                                                         required="required">
                                                                         <option value="">Country</option>
                                                                         <option value="86">Afghanistan</option>
@@ -1228,17 +1228,17 @@ function Main() {
                                                                 </div>
 
                                                             </div>
-                                                            <div class="mb-5 col-md-12 text-center">
-                                                                <hr class="m-0 mb-4"/>
-                                                                <button value="Submit" class="btn btn-primary clickmode"
+                                                            <div className="mb-5 col-md-12 text-center">
+                                                                <hr className="m-0 mb-4"/>
+                                                                <button value="Submit" className="btn btn-primary clickmode"
                                                                     data-show=".disply_none_newcontact" data-hide=".disply_contact"><b>Save
                                                                         -&gt;</b></button>
-                                                                <button class="btn btn-outline-danger clickmode"
+                                                                <button className="btn btn-outline-danger clickmode"
                                                                     data-show=".disply_none_newcontact" data-hide=".disply_contact"><b>
                                                                         Cancel</b></button>
                                                             </div>
-                                                            <div class="col-12 text-center">
-                                                                <p><span class="col-red">Note</span> : You can add and manage additional
+                                                            <div className="col-12 text-center">
+                                                                <p><span className="col-red">Note</span> : You can add and manage additional
                                                                     addresses from contact details section. </p>
                                                             </div>
                                                         </div>

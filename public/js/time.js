@@ -1,3 +1,41 @@
+
+
+
+
+// Event handler for elements with class 'clickmode'
+$(document).on('click', ".clickmode", function() {
+  var evt_hide = $(this).data('hide');  // Get the 'hide' data attribute value
+  var evt_show = $(this).data('show');  // Get the 'show' data attribute value
+
+  // Hide the element specified in 'hide' attribute (if not empty)
+  if (evt_hide != "") {
+      $(evt_hide).hide();
+  }
+
+  // Show the element specified in 'show' attribute (if not empty)
+  if (evt_show != "") {
+      $(evt_show).show();
+  }
+});
+
+// Event handler for elements with class 'clickmode'
+$(document).on('click', ".clickmode", function() {
+  // Remove 'active' class from all elements with class 'nav-link'
+  $('.nav-link').removeClass('active');
+
+  // Add 'active' class to the clicked element
+  $(this).addClass('active');
+});
+
+// Event handler for elements with class 'nav__link'
+$(document).on('click', ".nav__link", function() {
+  // Remove 'active' class from all elements with class 'nav__link'
+  $('.nav__link').removeClass('active');
+
+  // Add 'active' class to the clicked element
+  $(this).addClass('active');
+});
+
 /* initialization of different variables 
 to be used in Count-Up App*/
 var clearTime;
@@ -390,3 +428,5 @@ $("#editableTable").find("a[title='Delete']").click(function(e){
         
     }     
 });
+
+
