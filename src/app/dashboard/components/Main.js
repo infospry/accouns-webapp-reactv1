@@ -15,7 +15,7 @@ function Main() {
                         <h2 className="font-bold mb-0"><i className="zmdi zmdi-view-dashboard me-1"></i>Dashboard </h2>
                     </div>
                     <div className="pagination-email">
-                        <div className="btn-group bdrr dnone-mob pe-0">
+                        <div className="btn-group bdrr dnone-mob pe-2">
                             <button className="btn btn-outline-primary dropdown-toggle pe-0" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                 <span className="col-grey me-1">Last 7 Days</span>
                                 <b>Jun 7 - 13,2019</b>

@@ -5,13 +5,14 @@ import Image from 'next/image';
 import Link from "next/link";
 import LeftSidebar from '../../components/LeftSidebar';
 function Main() {
-    const [isDivVisible, setIsDivVisible] = useState(false);
+   //#region toggle
+   const [isDivVisible, setIsDivVisible] = useState(false);
 
-    const toggleDiv = () => {
-      setIsDivVisible(!isDivVisible);
-    };
+   const toggleDiv = () => {
+     setIsDivVisible(!isDivVisible);
+   };
 
-
+//#endregion
 
     return (
         <>

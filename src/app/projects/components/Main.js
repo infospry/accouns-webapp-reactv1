@@ -5,12 +5,14 @@ import Image from 'next/image';
 import Link from "next/link";
 function Main() {
    
-    const [isDivVisible, setIsDivVisible] = useState(false);
+   
+ //#region toggle
+ const [isDivVisible, setIsDivVisible] = useState(false);
 
     const toggleDiv = () => {
       setIsDivVisible(!isDivVisible);
     };
-
+//#endregion
 
     return (
         <>

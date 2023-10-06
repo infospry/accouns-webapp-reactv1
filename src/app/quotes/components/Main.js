@@ -3,10 +3,13 @@ import Loading from '@/app/components/Loading'
 import React, { useState } from 'react';
 import Image from 'next/image'
 function Main() {
+//#region style
 const customStyles = {
-borderLeft: '1px solid rgb(221, 221, 221)',
-height: '100vh',
+    borderLeft: '1px solid rgb(221, 221, 221)',
+    height: '100vh',
 };
+//#endregion
+
 
 
 

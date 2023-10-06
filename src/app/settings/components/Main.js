@@ -11,12 +11,6 @@ import Security from './Security'
 import Image from 'next/image'
 
 function Main() {
-const customStyles = {
-borderLeft: '1px solid rgb(221, 221, 221)',
-height: '100vh',
-};
-
-
 
 return (
 <>

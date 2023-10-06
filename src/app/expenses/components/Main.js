@@ -3,10 +3,12 @@ import Loading from '@/app/components/Loading'
 import React, { useState } from 'react';
 
 function Main() {
-    const customStyles = {
-        borderLeft: '1px solid rgb(221, 221, 221)',
-        height: '100vh',
-    };
+   //#region style
+   const customStyles = {
+    borderLeft: '1px solid rgb(221, 221, 221)',
+    height: '100vh',
+};
+//#endregion
 
 
 

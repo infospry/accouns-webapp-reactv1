@@ -5,13 +5,7 @@ import Link from "next/link";
 import LeftSidebar from '../../components/LeftSidebar';
 
 function Main() {
-    const customStyles = {
-        borderLeft: '1px solid rgb(221, 221, 221)',
-        height: '100vh',
-    };
-
-
-
+  
     return (
         <>
             <section className="content">

@@ -6,64 +6,55 @@ import menuImage from "../../images/menu-dots-vertical.svg";
 import aImage from "../../images/download.jpg";
 import bImage from "../../images/download.jpg";
 function Main() {
+    //#region style
     const customStyles = {
         borderLeft: '1px solid rgb(221, 221, 221)',
         height: '100vh',
     };
-
-    
+   //#endregion
+     //#region  use state
     const [showEmailInput, setShowEmailInput] = useState(false);
     const [email, setEmail] = useState('');
-
-    // Function to handle the click event and show the email input field
-    const handleEmailClick = () => {
-        setShowEmailInput(true);
-    };
-
-    // Function to handle changes in the email input field
-    const handleEmailChange = (e) => {
-        setEmail(e.target.value);
-    };
-
-    // Function to handle form submission (you can customize this)
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        // Perform any actions with the email (e.g., validation, submission to a server, etc.)
-        console.log('Email submitted:', email); console.log('Phone number submitted:', phoneNumber);
-    };
-//#region phone 
     const [showPhoneNumberInput, setShowPhoneNumberInput] = useState(false);
     const [phoneNumber, setPhoneNumber] = useState('');
-//#endregion
-    // Function to handle the click event and show the phone number input field
-    const handlePhoneNumberClick = () => {
-        setShowPhoneNumberInput(true);
-    };
-
-    // Function to handle changes in the phone number input field
-    const handlePhoneNumberChange = (e) => {
-        setPhoneNumber(e.target.value);
-    };
-
-    // Function to handle form submission (you can customize this)
-    const handlePhoneSubmit = (e) => {
-        e.preventDefault();
-        // Perform any actions with the phone number (e.g., validation, submission to a server, etc.)
-
-    };
-   
-
     const [showAddressFields, setShowAddressFields] = useState(false);
     const [addressLine1, setAddressLine1] = useState('');
     const [addressLine2, setAddressLine2] = useState('');
     const [postTown, setPostTown] = useState('');
     const [postcode, setPostcode] = useState('');
+   //#endregion
 
-    // Function to handle the click event and show the address input fields
-    const handleAddressClick = () => {
-        setShowAddressFields(true);
-    };
+  //#region handal click
+  const handleEmailClick = () => {
+    setShowEmailInput(true);
+};
 
+const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+};
+
+
+const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('Email submitted:', email); console.log('Phone number submitted:', phoneNumber);
+};
+
+const handlePhoneNumberClick = () => {
+    setShowPhoneNumberInput(true);
+};
+
+const handlePhoneNumberChange = (e) => {
+    setPhoneNumber(e.target.value);
+};
+const handlePhoneSubmit = (e) => {
+    e.preventDefault();
+};
+
+const handleAddressClick = () => {
+    setShowAddressFields(true);
+};
+
+  //#endregion
 
 
     return (

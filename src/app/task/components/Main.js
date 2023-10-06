@@ -4,11 +4,14 @@ import React, { useState } from 'react';
 import Image from 'next/image'
 function Main() {
    
-    const [isDivVisible, setIsDivVisible] = useState(false);
+    //#region toggle
+   const [isDivVisible, setIsDivVisible] = useState(false);
 
-    const toggleDiv = () => {
-      setIsDivVisible(!isDivVisible);
-    };
+   const toggleDiv = () => {
+     setIsDivVisible(!isDivVisible);
+   };
+
+//#endregion
 
 
     return (
