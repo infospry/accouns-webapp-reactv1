@@ -118,8 +118,8 @@ const HeaderNav = () => {
               </div>
             </li>
             <li className="nav-item float-right">
-              <a className=" btn btn-primary btn-icon float-right right_icon_toggle_btn" href="javascript:void(0);">
-                <i className="zmdi zmdi-arrow-right"></i></a>
+              <button className=" btn btn-primary btn-icon float-right right_icon_toggle_btn">
+                <i className="zmdi zmdi-arrow-right"></i></button>
             </li>
           </ul>
         </div>

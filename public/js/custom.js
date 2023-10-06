@@ -137,6 +137,16 @@ document.querySelectorAll('.toggle-password').forEach(function(element) {
       });
   });
 
+  document.addEventListener('DOMContentLoaded', () => {
+  const toggleButton = document.querySelector('.right_icon_toggle_btn');
   
+  toggleButton.addEventListener('click', () => {
+    const mt60Div = document.querySelector('.mt60');
+    mt60Div.style.display = 'none';
+
+    const contentDiv = document.querySelector('.content');
+    contentDiv.style.marginRight = '0';
+  });
+});
 
       

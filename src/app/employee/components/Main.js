@@ -230,13 +230,13 @@ function Main() {
                                         <p className="mb-1"><b className="col-grey">Status</b></p>
                                     </div>
                                     <div className="col-md-6 col-12 col-sm-6 mt-0 mb-4">
-                                        <div className="form-check me-3">
-                                            <input type="radio" className="form-check-input" id="customRadio" name="example"
+                                        <div className="form-check form-check-inline me-3">
+                                            <input type="radio" className="form-check-input mt-2" id="customRadio" name="example"
                                                 value="customEx"style={{height:"1. rem"}}/>
                                             <label className="form-check-label bold" for="customRadio">Active</label>
                                         </div>
-                                        <div className="form-check ml-3">
-                                            <input type="radio" className="form-check-input" id="customRadio2" name="example"
+                                        <div className="form-check form-check-inline ms-3">
+                                            <input type="radio" className="form-check-input mt-2" id="customRadio2" name="example"
                                                 value="customEx"style={{height:"1. rem"}}/>
                                             <label className="form-check-label bold" for="customRadio2"> Inactive </label>
                                         </div>
