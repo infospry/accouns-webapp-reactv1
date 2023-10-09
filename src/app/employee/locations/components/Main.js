@@ -27,7 +27,7 @@ function Main() {
                                 <div className="col-12 p-0">                        
                                     <div className="d-flex">
                                         <div className="mobile-left">
-                                            <a className="btn btn-info btn-icon toggle-email-nav collapsed" data-toggle="collapse" href="#email-nav" role="button" aria-expanded="false" aria-controls="email-nav">
+                                            <a className="btn btn-info btn-icon toggle-email-nav collapsed" data-bs-toggle="collapse" href="#email-nav" role="button" aria-expanded="false" aria-controls="email-nav">
                                                 <span className="btn-label"><i className="zmdi zmdi-more"></i></span>
                                             </a>
                                         </div>
@@ -68,7 +68,7 @@ function Main() {
                                                         </span>
                                                     
                                                         <span className="bubl-light ml-2">Main</span>
-                                                        <a className="btn btn-sm btn-primary hvr" data-toggle="modal" data-target="#addeditlocation">
+                                                        <a className="btn btn-sm btn-primary hvr" data-bs-toggle="modal" data-target="#addeditlocation">
                                                             <i className="zmdi zmdi-edit"></i> Edit
                                                         </a>
                                                     </h4>
@@ -111,7 +111,7 @@ function Main() {
                                                                     <i className="zmdi zmdi-city"> </i> Delhi City Center
                                                             </label>
                                                         </span>
-                                                        <a className="btn btn-sm btn-primary hvr" data-toggle="modal" data-target="#addeditlocation">
+                                                        <a className="btn btn-sm btn-primary hvr" data-bs-toggle="modal" data-target="#addeditlocation">
                                                             <i className="zmdi zmdi-edit"></i> Edit
                                                         </a>
                                                     </h4>
@@ -189,7 +189,7 @@ function Main() {
                                                 </div> 
                                             </div> 
                                             <div className="col-4 col-sm-4">                                   
-                                                <button className="btn btn-outline-primary btn-block hig50" type="button" data-toggle="modal" data-target="#addunit">Add</button>
+                                                <button className="btn btn-outline-primary btn-block hig50" type="button" data-bs-toggle="modal" data-target="#addunit">Add</button>
                                             </div>
                                         </div>
 

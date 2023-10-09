@@ -16,13 +16,14 @@ export default function RootLayout({ children }) {
         <link rel="stylesheet" href="/css/maininner.css" />
         <title>Agency</title>                                           
     </head>      
-    <body className="theme-blue">
+    <body className="theme-blue"id="box">
       {children}
       <script src="js/jquery-3.7.1.min.js"></script>
       <script src="js/time.js"></script>   
       <Script src="js/bootstrap.bundle.min.js"></Script>
       <Script src="js/custom.js"></Script>   
       <ToastContainer />
+      
     </body>
       
     </html>

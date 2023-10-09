@@ -1,4 +1,20 @@
-
+const div = document.getElementById('box');
+const addBtn = document.getElementById('add-btn');
+const removeBtn = document.getElementById('remove-btn');
+const addBtnn = document.getElementById('add--btn');
+const removeBtnn = document.getElementById('remove--btn');
+addBtn.addEventListener('click',()=>{
+    div.classList.add('shadw');
+})
+addBtnn.addEventListener('click',()=>{
+  div.classList.add('shadw');
+})
+removeBtn.addEventListener('click',()=>{
+    div.classList.remove('shadw');
+})
+removeBtnn.addEventListener('click',()=>{
+  div.classList.remove('shadw');
+})
 $(document).on('click', ".clickmode", function() {
     var evt_hide = $(this).data('hide');
     var evt_show = $(this).data('show');
@@ -18,7 +34,15 @@ $(document).on('click', ".clickmode", function() {
       $(this).addClass('active');
    
   });
+  $(document).on('click', ".formobile .clickmode", function() {
+    // Remove 'active' class from all links
+    $('.nav__link').removeClass('bdrlftcol');
 
+    // Add 'active' class to the clicked link
+    $(this).addClass('bdrlftcol');
+ 
+});
+  
   $(document).on('click', ".nav__link", function() {
     // Remove 'active' class from all links
     $('.nav__link').removeClass('active');
@@ -54,6 +78,12 @@ document.querySelectorAll('.dropdown-toggle').forEach(function(element) {
   });
 });
 
+
+
+$('.trig-add, .trig-cross').on('click', function () {
+    $('#side_lft').toggleClass('span0 col-4');
+    $('#side_rgt').toggleClass('col-md-12 col-8');
+});
 // Event handler for elements with class 'dropdown-menu'
 document.querySelectorAll('.dropdown-menu > li > a').forEach(function(element) {
   element.addEventListener('click', function(event) {
@@ -104,49 +134,4 @@ document.querySelectorAll('.dropdown-menu a').forEach(function(element) {
 });
 
 
-// Select all elements with the class "toggle-password" and attach a click event listener to them
-document.querySelectorAll('.toggle-password').forEach(function(element) {
-    element.addEventListener('click', function() {
-      // Toggle the classes "zmdi-eye" and "zmdi-eye-off" on the clicked element
-      this.classList.toggle('zmdi-eye');
-      this.classList.toggle('zmdi-eye-off');
-  
-      // Find the input element based on the "toggle" attribute of the clicked element
-      var input = document.querySelector(this.getAttribute('toggle'));
-  
-      // Toggle the input field's type attribute between "password" and "text"
-      if (input.getAttribute('type') === 'password') {
-        input.setAttribute('type', 'text');
-      } else {
-        input.setAttribute('type', 'password');
-      }
-    });
-  });
-  
-  const navItems = document.querySelectorAll('.nav-item');
 
-  navItems.forEach((item) => {
-      item.addEventListener('click', () => {
-          // Remove "active" class from all navigation items
-          navItems.forEach((navItem) => {
-              navItem.classList.remove('active');
-          });
-  
-          // Add "active" class to the clicked navigation item
-          item.classList.add('active');
-      });
-  });
-
-  document.addEventListener('DOMContentLoaded', () => {
-  const toggleButton = document.querySelector('.right_icon_toggle_btn');
-  
-  toggleButton.addEventListener('click', () => {
-    const mt60Div = document.querySelector('.mt60');
-    mt60Div.style.display = 'none';
-
-    const contentDiv = document.querySelector('.content');
-    contentDiv.style.marginRight = '0';
-  });
-});
-
-      

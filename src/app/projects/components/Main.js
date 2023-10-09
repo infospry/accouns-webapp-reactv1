@@ -26,14 +26,14 @@ function Main() {
                             <div className="pe-2">
                                 <a href="javascript:void(0);" className="btn btn-success" data-bs-toggle="modal" data-bs-target="#addpage"><i className="zmdi zmdi-plus-circle-o-duplicate"></i>  Create New </a>
                                 <div className="btn-group ms-1">
-                                    <button className="btn btn-outline-primary  dropdown-toggle font-w" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"> More Actions</button>
+                                    <button className="btn btn-outline-primary  dropdown-toggle font-w" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">More</button>
                                     <div className="dropdown-menu">
-                                        <a className="dropdown-item" href="javascript:void(0);" data-toggle="modal" data-target="#"><i className="zmdi zmdi-upload"></i> Export</a>
-                                        <a className="dropdown-item" href="javascript:void(0);" data-toggle="modal" data-target="#"><i className="zmdi zmdi-download"></i> Import</a>
-                                        <a className="dropdown-item" href="javascript:void(0);" data-toggle="modal" data-target="#"><i className="zmdi zmdi-email"></i> Send Email</a>
-                                        <a className="dropdown-item" href="javascript:void(0);" data-toggle="modal" data-target="#"><i className="zmdi zmdi-repeat"></i> History</a>
-                                        <a className="dropdown-item" href="javascript:void(0);" data-toggle="modal" data-target="#"><i className="zmdi zmdi-rotate-left"></i> Refresh</a>
-                                        <a className="dropdown-item" href="javascript:void(0);" data-toggle="modal" data-target="#"><i className="zmdi zmdi-notifications-active"></i> Delete</a>
+                                        <a className="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-target="#"><i className="zmdi zmdi-upload"></i> Export</a>
+                                        <a className="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-target="#"><i className="zmdi zmdi-download"></i> Import</a>
+                                        <a className="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-target="#"><i className="zmdi zmdi-email"></i> Send Email</a>
+                                        <a className="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-target="#"><i className="zmdi zmdi-repeat"></i> History</a>
+                                        <a className="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-target="#"><i className="zmdi zmdi-rotate-left"></i> Refresh</a>
+                                        <a className="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-target="#"><i className="zmdi zmdi-notifications-active"></i> Delete</a>
                                     </div>
                                 </div>
                             </div>
@@ -49,7 +49,7 @@ function Main() {
                                            <Link href="/projects/overview"><h2><i className="zmdi zmdi-view-dashboard"></i> Home Care Services<br/><small>Ungrouped Projects</small> </h2></Link>
                                             <ul className="header-dropdown">
                                                 <li className="dropdown"> <a href="javascript:void(0);" className="dropdown-toggle" role="button"> <i className="zmdi zmdi-star"></i> </a></li>
-                                                <li className="dropdown"> <a href="javascript:void(0);" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i className="zmdi zmdi-more-vert"></i> </a>
+                                                <li className="dropdown"> <a href="javascript:void(0);" className="dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i className="zmdi zmdi-more-vert"></i> </a>
                                                     <ul className="dropdown-menu dropdown-menu-right">
                                                         <li><a href="javascript:void(0);">Action</a></li>
                                                         <li><a href="javascript:void(0);">Another action</a></li>
@@ -104,7 +104,7 @@ function Main() {
                                            <Link href="/projects/overview"> <h2><i className="zmdi zmdi-view-dashboard"></i> Pension Module<br/><small>Ungrouped Projects</small> </h2></Link>
                                             <ul className="header-dropdown">
                                                 <li className="dropdown"> <a href="javascript:void(0);" className="dropdown-toggle" role="button"> <i className="zmdi zmdi-star"></i> </a></li>
-                                                <li className="dropdown"> <a href="javascript:void(0);" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i className="zmdi zmdi-more-vert"></i> </a>
+                                                <li className="dropdown"> <a href="javascript:void(0);" className="dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i className="zmdi zmdi-more-vert"></i> </a>
                                                     <ul className="dropdown-menu dropdown-menu-right">
                                                         <li><a href="javascript:void(0);">Action</a></li>
                                                         <li><a href="javascript:void(0);">Another action</a></li>
@@ -159,7 +159,7 @@ function Main() {
                                            <Link href="/projects/overview"> <h2><i className="zmdi zmdi-view-dashboard"></i> Medico Tasks<br/><small>Ungrouped Projects</small> </h2></Link>
                                             <ul className="header-dropdown">
                                                 <li className="dropdown"> <a href="javascript:void(0);" className="dropdown-toggle" role="button"> <i className="zmdi zmdi-star"></i> </a></li>
-                                                <li className="dropdown"> <a href="javascript:void(0);" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i className="zmdi zmdi-more-vert"></i> </a>
+                                                <li className="dropdown"> <a href="javascript:void(0);" className="dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i className="zmdi zmdi-more-vert"></i> </a>
                                                     <ul className="dropdown-menu dropdown-menu-right">
                                                         <li><a href="javascript:void(0);">Action</a></li>
                                                         <li><a href="javascript:void(0);">Another action</a></li>
@@ -214,7 +214,7 @@ function Main() {
                                            <Link href="/projects/overview"> <h2><i className="zmdi zmdi-view-dashboard"></i> IamTheLocum<br/><small>Ungrouped Projects</small> </h2></Link>
                                             <ul className="header-dropdown">
                                                 <li className="dropdown"> <a href="javascript:void(0);" className="dropdown-toggle" role="button"> <i className="zmdi zmdi-star text-warning"></i> </a></li>
-                                                <li className="dropdown"> <a href="javascript:void(0);" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i className="zmdi zmdi-more-vert"></i> </a>
+                                                <li className="dropdown"> <a href="javascript:void(0);" className="dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i className="zmdi zmdi-more-vert"></i> </a>
                                                     <ul className="dropdown-menu dropdown-menu-right">
                                                         <li><a href="javascript:void(0);">Action</a></li>
                                                         <li><a href="javascript:void(0);">Another action</a></li>

@@ -13,8 +13,7 @@ const HeaderNav = () => {
         <Link className="navbar-brand ms-2 me-3" href="/dashboard"><Image src={logo} alt="logo" style={{height:"30px"}} /></Link>
         <div className="d_display">
           <div className="dropdown nav-item displinl ">
-            <a href="javascript:void(0);" className="nav-link text-right dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-
+            <a href="javascript:void(0);" className="nav-link text-right dropdown-toggle me-1" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
               <span className="EmployeeAvatar">A</span></a>
             <div className="dropdown-menu p-0 bg-gradient-secondary">             
               <div className="user-header">
@@ -39,17 +38,17 @@ const HeaderNav = () => {
               </div>
             </div>
           </div>
-          <button className="navbar-toggler me-2" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <button className="navbar-toggler me-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
-          </button>
-          <a className=" btn btn-primary btn-icon float-right right_icon_toggle_btn" href="javascript:void(0);">
-            <i className="zmdi zmdi-arrow-right"></i></a>
+          </button>          
+          <button className=" btn btn-primary btn-icon right_icon_toggle_btn" id="add--btn"><i className="zmdi zmdi-arrow-right"></i></button>  
+          <button className=" btn btn-primary btn-icon float-right right_icon_toggle_btn" id="remove--btn"><i className="zmdi zmdi-arrow-left"></i></button>
         </div>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav m-auto">
             <li className="nav-item"><Link className="nav-link" href="/dashboard"> <i className='zmdi zmdi-desktop-windows'></i> Dashboard</Link></li>
             <li className="nav-item"><Link href="/clients" className="nav-link"><i className='zmdi zmdi-graduation-cap'></i> Clients</Link></li>
-            
+            <li className="nav-item"><Link href="/opportunities" className="nav-link"><i className='zmdi zmdi-labels'></i> Opportunities</Link></li>
             <li className="nav-item dropdown">
               <a className="nav-link dropdown-toggle" href="javascript:void(0);" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <i className='zmdi zmdi-folder'></i> Projects
@@ -90,7 +89,7 @@ const HeaderNav = () => {
           </ul>
           <ul className="nav navbar-nav floatmargint lg_none">
             <li className="dropdown nav-item displinl ">
-              <a href="javascript:void(0);"className="nav-link text-right dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+              <a href="javascript:void(0);"className="nav-link text-right dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                   <span className="EmployeeAvatar">A</span>
               </a>
               <div className="dropdown-menu p-0 bg-gradient-secondary">               
@@ -118,8 +117,8 @@ const HeaderNav = () => {
               </div>
             </li>
             <li className="nav-item float-right">
-              <button className=" btn btn-primary btn-icon float-right right_icon_toggle_btn">
-                <i className="zmdi zmdi-arrow-right"></i></button>
+              <button className=" btn btn-primary btn-icon right_icon_toggle_btn" id="add-btn"><i className="zmdi zmdi-arrow-right"></i></button>  
+              <button className=" btn btn-primary btn-icon float-right right_icon_toggle_btn" id="remove-btn"><i className="zmdi zmdi-arrow-left"></i></button>              
             </li>
           </ul>
         </div>

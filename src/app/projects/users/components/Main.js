@@ -21,14 +21,14 @@ function Main() {
                             <a href="javascript:void(0);" className="btn btn-success" data-bs-toggle="modal" data-bs-target="#add"><i className="zmdi zmdi-plus-circle-o-duplicate"></i>  Create User</a>
 
                                 <div className="btn-group ms-1">
-                                    <button className="btn btn-outline-primary  dropdown-toggle font-w" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"> More Actions</button>
+                                    <button className="btn btn-outline-primary  dropdown-toggle font-w" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">More</button>
                                     <div className="dropdown-menu">
-                                        <a className="dropdown-item" href="javascript:void(0);" data-toggle="modal" data-target="#"><i className="zmdi zmdi-upload"></i> Export</a>
-                                        <a className="dropdown-item" href="javascript:void(0);" data-toggle="modal" data-target="#"><i className="zmdi zmdi-download"></i> Import</a>
-                                        <a className="dropdown-item" href="javascript:void(0);" data-toggle="modal" data-target="#"><i className="zmdi zmdi-email"></i> Send Email</a>
-                                        <a className="dropdown-item" href="javascript:void(0);" data-toggle="modal" data-target="#"><i className="zmdi zmdi-repeat"></i> History</a>
-                                        <a className="dropdown-item" href="javascript:void(0);" data-toggle="modal" data-target="#"><i className="zmdi zmdi-rotate-left"></i> Refresh</a>
-                                        <a className="dropdown-item" href="javascript:void(0);" data-toggle="modal" data-target="#"><i className="zmdi zmdi-notifications-active"></i> Delete</a>
+                                        <a className="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-target="#"><i className="zmdi zmdi-upload"></i> Export</a>
+                                        <a className="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-target="#"><i className="zmdi zmdi-download"></i> Import</a>
+                                        <a className="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-target="#"><i className="zmdi zmdi-email"></i> Send Email</a>
+                                        <a className="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-target="#"><i className="zmdi zmdi-repeat"></i> History</a>
+                                        <a className="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-target="#"><i className="zmdi zmdi-rotate-left"></i> Refresh</a>
+                                        <a className="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-target="#"><i className="zmdi zmdi-notifications-active"></i> Delete</a>
                                     </div>
                                 </div>
                             </div>
@@ -39,7 +39,7 @@ function Main() {
                             <div className="row justify-content-center">
                                 <div className="col-12 d-flex ps-0 pe-0 project">
                                     <div className="mobile-left">
-                                        <a className="btn btn-info btn-icon toggle-email-nav collapsed" data-toggle="collapse" href="#email-nav"
+                                        <a className="btn btn-info btn-icon toggle-email-nav collapsed" data-bs-toggle="collapse" href="#email-nav"
                                             role="button" aria-expanded="false" aria-controls="email-nav">
                                             <span className="btn-label"><i className="zmdi zmdi-more"></i></span>
                                         </a>
@@ -62,12 +62,12 @@ function Main() {
                                                         <div className="profile-card__name d-flex justify-content-between">
                                                             <div>Andrew Filntuff<span className="badge badge-success ms-2 mt-1 mb-0"><b>Owner</b> </span></div>   
                                                             <div className="btn-group">
-                                                                <a className="dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><i className="zmdi zmdi-more-vert"></i></a>
+                                                                <a className="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><i className="zmdi zmdi-more-vert"></i></a>
                                                                 <div className="dropdown-menu">                            
-                                                                    <a className="dropdown-item" href="javascript:void(0);" data-toggle="modal" data-target="#"><i className="zmdi zmdi-copy"></i> Find &amp; Merge Duplicates</a>
-                                                                    <a className="dropdown-item" href="javascript:void(0);" data-toggle="modal" data-target="#"><i className="zmdi zmdi-email"></i> Send Email</a>
-                                                                    <a className="dropdown-item" href="javascript:void(0);" data-toggle="modal" data-target="#"><i className="zmdi zmdi-repeat"></i> History</a>           
-                                                                    <a className="dropdown-item" href="javascript:void(0);" data-toggle="modal" data-target="#"><i className="zmdi zmdi-notifications-active"></i> Delete</a>
+                                                                    <a className="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-target="#"><i className="zmdi zmdi-copy"></i> Find &amp; Merge Duplicates</a>
+                                                                    <a className="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-target="#"><i className="zmdi zmdi-email"></i> Send Email</a>
+                                                                    <a className="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-target="#"><i className="zmdi zmdi-repeat"></i> History</a>           
+                                                                    <a className="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-target="#"><i className="zmdi zmdi-notifications-active"></i> Delete</a>
                                                                 </div>
                                                             </div> 
                                                         </div> 
@@ -103,10 +103,10 @@ function Main() {
                             <div className="bgblulgt">
                                 <ul className="nav nav-tabs nav-justified p-0">                            
                                     <li className="nav-item">
-                                        <a className="nav-link active" data-toggle="tab" href="#AddExistingUser"><i className="ti ti-layout-accordion-list"></i> Add Existing User </a>
+                                        <a className="nav-link active" data-bs-toggle="tab" href="#AddExistingUser"><i className="ti ti-layout-accordion-list"></i> Add Existing User </a>
                                     </li>                                    
                                     <li className="nav-item">
-                                        <a className="nav-link" data-toggle="tab" href="#CreateNewUser"><i className="zmdi zmdi-comment-edit"></i> Create New User</a>
+                                        <a className="nav-link" data-bs-toggle="tab" href="#CreateNewUser"><i className="zmdi zmdi-comment-edit"></i> Create New User</a>
                                     </li>                      
                                 </ul>
                             </div>
