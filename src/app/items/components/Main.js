@@ -17,7 +17,7 @@ function Main() {
                     <div className="scrolfx">
                         <div className="booktab d-flex justify-content-between align-items-center bdrb">
                             <div className="p-2">
-                                <h2 className="font-bold mb-0"><i className="zmdi zmdi-folder mr-1"></i> Items & Services </h2>
+                                <h2 className="font-bold mb-0">Items & Services </h2>
                             </div>
                             <div className="input-group" style={{ maxWidth: '300px' }}>
                                 <input type="text" className="form-control radius_all" aria-label="Text input with dropdown button" placeholder='Search...' />

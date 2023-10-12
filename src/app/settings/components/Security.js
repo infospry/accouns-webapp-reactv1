@@ -4,14 +4,14 @@ import React from 'react'
 function Security() {
   return (
     <>
-      <div className="row mt-3">
-                                    <div className="col-sm-6 col-md-6"><p className="mb-2 mt-3 font-16 blucolor">  <b>Password</b></p></div>
+      <div className="row">
+                                    <div className="col-sm-6 col-md-6"><p className="mb-2 font-16 blucolor">  <b>Password</b></p></div>
                                     <div className="col-sm-6 col-md-6 saddow_box">
                                         <p className="mb-2"> 
                                             You last changed your password about 1 year ago.
                                         </p>
                                         <p className="mb-0">
-                                            <button className="btn btn-outline-info" data-toggle="modal" data-target="#password"> Change Password</button>
+                                            <button className="btn btn-outline-primary" data-toggle="modal" data-target="#password"> Change Password</button>
                                         </p>
                                     </div>
                                 </div>

@@ -64,7 +64,7 @@ const handleAddressClick = () => {
                     <div className="scrolfx">
                         <div className="booktab d-flex justify-content-between align-items-center bdrb">
                             <div className="p-2">
-                                <h2 className="font-bold mb-0"><i className="zmdi zmdi-graduation-cap me-1"></i>Clients </h2>
+                                <h2 className="font-bold mb-0">Clients </h2>
                             </div>
                             <div className="input-group" style={{ maxWidth: '460px' }}>
                                 <input type="text" className="form-control radius_l" aria-label="Text input with dropdown button" placeholder='Search...' />

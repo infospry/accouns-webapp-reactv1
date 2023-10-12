@@ -21,7 +21,7 @@ function Main() {
                     <div className="scrolfx">
                         <div className="booktab d-flex justify-content-between align-items-center bdrb">
                             <div className="p-2">
-                                <h2 className="font-bold mb-0"><i className="zmdi zmdi-folder me-1"></i> Projects </h2>
+                                <h2 className="font-bold mb-0"> Projects </h2>
                             </div>
                             <div className="pe-2">
                                 <a href="javascript:void(0);" className="btn btn-success" data-bs-toggle="modal" data-bs-target="#addpage"><i className="zmdi zmdi-plus-circle-o-duplicate"></i>  Create New </a>

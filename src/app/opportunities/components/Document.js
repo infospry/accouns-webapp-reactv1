@@ -1,6 +1,7 @@
 "use client"
 import React from 'react'
-
+import Image from 'next/image';
+import menuImage from "../../images/menu-dots-vertical.svg";
 function Document() {
   return (
     <>
@@ -33,8 +34,8 @@ function Document() {
         </div>
     </div>
     <div className="dnnone doclist">
-        <div className="table-responsive mb-3">
-            <table className="table table-bordered rwd-table btdr_none mb-3">
+        <div className="table-responsive mb-4">
+            <table className="table btdr_none mb-3">
                 <thead className="font_b dnone-mob">
                     <tr className="font_btd">
                         <th style={{width:"30px"}}>
@@ -44,7 +45,7 @@ function Document() {
                         <th>Folder</th>
                         <th> Modified on </th>
                         <th>File Type</th>
-                        <th style={{width:"180px"}}> Action</th>
+                        <th style={{width:"20px"}}> - </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -65,25 +66,17 @@ function Document() {
                         <td className="col-grey"> 03/06/2021</td>
                         <td>PDF</td>
                         <td>
-                            <div className="btn-group">
-                                <button type="button"
-                                    className="btn btn-primary btn-sm dropdown-toggle dr-breakout-btn"
-                                    data-toggle="dropdown" aria-haspopup="true"
-                                    aria-expanded="false"> Action <span
-                                        className="caret"></span></button>
-                                <ul className="dropdown-menu dr-breakout">
-                                    <li className="btn btn-outline-primary btn-sm" title="Edit"
-                                        data-toggle="modal" data-target=""> <i
-                                            className="zmdi zmdi-download"></i> </li>
-                                    <li className="btn btn-outline-primary ms-1 me-1 btn-sm" title="Edit"
-                                        data-toggle="modal" data-target="#addmydoc"> <i
-                                            className="zmdi zmdi-edit"></i> <span
-                                            className="dnone-mob">Edit</span></li>
-                                    <li className="btn btn-danger btn-sm" title="Delete"
-                                        type="button"> <i className="zmdi zmdi-delete"></i> <span
-                                            className="dnone-mob">Delete</span></li>
+                            <div className="dropdown">
+                                <button className="btn dropdown-toggle"style={{boder:"0px"}} type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                <Image src={menuImage} alt="user" width={"5"} height={"21"} />
+                                </button>
+                                <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <li><a className="dropdown-item col-green" href="javascript:void(0);" data-bs-toggle="modal"><i className="zmdi zmdi-download me-1"></i>Download</a></li>
+                                    <li><a className="dropdown-item col-blue" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#addmydoc"><i className="zmdi zmdi-edit me-1"></i>Edit</a></li>
+                                    <li><a className="dropdown-item text-danger" href="#"><i className="zmdi zmdi-delete me-1"></i>Delete</a></li>
                                 </ul>
                             </div>
+                           
                         </td>
                     </tr>
                     <tr className="">
@@ -103,23 +96,14 @@ function Document() {
                         <td className="col-grey"> 03/06/2021</td>
                         <td>world</td>
                         <td>
-                            <div className="btn-group">
-                                <button type="button"
-                                    className="btn btn-primary btn-sm dropdown-toggle dr-breakout-btn"
-                                    data-toggle="dropdown" aria-haspopup="true"
-                                    aria-expanded="false"> Action <span
-                                        className="caret"></span></button>
-                                <ul className="dropdown-menu dr-breakout">
-                                    <li className="btn btn-outline-primary btn-sm" title="Edit"
-                                        data-toggle="modal" data-target=""> <i
-                                            className="zmdi zmdi-download"></i> </li>
-                                    <li className="btn btn-outline-primary ms-1 me-1 btn-sm" title="Edit"
-                                        data-toggle="modal" data-target="#addmydoc"> <i
-                                            className="zmdi zmdi-edit"></i> <span
-                                            className="dnone-mob">Edit</span></li>
-                                    <li className="btn btn-danger btn-sm" title="Delete"
-                                        type="button"> <i className="zmdi zmdi-delete"></i> <span
-                                            className="dnone-mob">Delete</span></li>
+                           <div className="dropdown">
+                                <button className="btn dropdown-toggle"style={{boder:"0px"}} type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                <Image src={menuImage} alt="user" width={"5"} height={"21"} />
+                                </button>
+                                <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <li><a className="dropdown-item col-green" href="javascript:void(0);" data-bs-toggle="modal"><i className="zmdi zmdi-download me-1"></i>Download</a></li>
+                                    <li><a className="dropdown-item col-blue" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#addmydoc"><i className="zmdi zmdi-edit me-1"></i>Edit</a></li>
+                                    <li><a className="dropdown-item text-danger" href="#"><i className="zmdi zmdi-delete me-1"></i>Delete</a></li>
                                 </ul>
                             </div>
                         </td>
@@ -141,23 +125,14 @@ function Document() {
                         <td className="col-grey"> 03/06/2021</td>
                         <td>Exel</td>
                         <td>
-                            <div className="btn-group">
-                                <button type="button"
-                                    className="btn btn-primary btn-sm dropdown-toggle dr-breakout-btn"
-                                    data-toggle="dropdown" aria-haspopup="true"
-                                    aria-expanded="false"> Action <span
-                                        className="caret"></span></button>
-                                <ul className="dropdown-menu dr-breakout">
-                                    <li className="btn btn-outline-primary btn-sm" title="Edit"
-                                        data-toggle="modal" data-target=""> <i
-                                            className="zmdi zmdi-download"></i> </li>
-                                    <li className="btn btn-outline-primary ms-1 me-1 btn-sm" title="Edit"
-                                        data-toggle="modal" data-target="#addmydoc"> <i
-                                            className="zmdi zmdi-edit"></i> <span
-                                            className="dnone-mob">Edit</span></li>
-                                    <li className="btn btn-danger btn-sm" title="Delete"
-                                        type="button"> <i className="zmdi zmdi-delete"></i> <span
-                                            className="dnone-mob">Delete</span></li>
+                           <div className="dropdown">
+                                <button className="btn dropdown-toggle"style={{boder:"0px"}} type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                <Image src={menuImage} alt="user" width={"5"} height={"21"} />
+                                </button>
+                                <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <li><a className="dropdown-item col-green" href="javascript:void(0);" data-bs-toggle="modal"><i className="zmdi zmdi-download me-1"></i>Download</a></li>
+                                    <li><a className="dropdown-item col-blue" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#addmydoc"><i className="zmdi zmdi-edit me-1"></i>Edit</a></li>
+                                    <li><a className="dropdown-item text-danger" href="#"><i className="zmdi zmdi-delete me-1"></i>Delete</a></li>
                                 </ul>
                             </div>
                         </td>
@@ -179,23 +154,14 @@ function Document() {
                         <td className="col-grey"> 13/06/2021</td>
                         <td>JPEG</td>
                         <td>
-                            <div className="btn-group">
-                                <button type="button"
-                                    className="btn btn-primary btn-sm dropdown-toggle dr-breakout-btn"
-                                    data-toggle="dropdown" aria-haspopup="true"
-                                    aria-expanded="false"> Action <span
-                                        className="caret"></span></button>
-                                <ul className="dropdown-menu dr-breakout">
-                                    <li className="btn btn-outline-primary btn-sm" title="Edit"
-                                        data-toggle="modal" data-target=""> <i
-                                            className="zmdi zmdi-download"></i> </li>
-                                    <li className="btn btn-outline-primary ms-1 me-1 btn-sm" title="Edit"
-                                        data-toggle="modal" data-target="#addmydoc"> <i
-                                            className="zmdi zmdi-edit"></i> <span
-                                            className="dnone-mob">Edit</span></li>
-                                    <li className="btn btn-danger btn-sm" title="Delete"
-                                        type="button"> <i className="zmdi zmdi-delete"></i> <span
-                                            className="dnone-mob">Delete</span></li>
+                           <div className="dropdown">
+                                <button className="btn dropdown-toggle"style={{boder:"0px"}} type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                <Image src={menuImage} alt="user" width={"5"} height={"21"} />
+                                </button>
+                                <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <li><a className="dropdown-item col-green" href="javascript:void(0);" data-bs-toggle="modal"><i className="zmdi zmdi-download me-1"></i>Download</a></li>
+                                    <li><a className="dropdown-item col-blue" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#addmydoc"><i className="zmdi zmdi-edit me-1"></i>Edit</a></li>
+                                    <li><a className="dropdown-item text-danger" href="#"><i className="zmdi zmdi-delete me-1"></i>Delete</a></li>
                                 </ul>
                             </div>
                         </td>
@@ -217,23 +183,14 @@ function Document() {
                         <td className="col-grey"> 03/06/2021</td>
                         <td>PNG</td>
                         <td>
-                            <div className="btn-group">
-                                <button type="button"
-                                    className="btn btn-primary btn-sm dropdown-toggle dr-breakout-btn"
-                                    data-toggle="dropdown" aria-haspopup="true"
-                                    aria-expanded="false"> Action <span
-                                        className="caret"></span></button>
-                                <ul className="dropdown-menu dr-breakout">
-                                    <li className="btn btn-outline-primary btn-sm" title="Edit"
-                                        data-toggle="modal" data-target=""> <i
-                                            className="zmdi zmdi-download"></i> </li>
-                                    <li className="btn btn-outline-primary ms-1 me-1 btn-sm" title="Edit"
-                                        data-toggle="modal" data-target="#addmydoc"> <i
-                                            className="zmdi zmdi-edit"></i> <span
-                                            className="dnone-mob">Edit</span></li>
-                                    <li className="btn btn-danger btn-sm" title="Delete"
-                                        type="button"> <i className="zmdi zmdi-delete"></i> <span
-                                            className="dnone-mob">Delete</span></li>
+                           <div className="dropdown">
+                                <button className="btn dropdown-toggle"style={{boder:"0px"}} type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                <Image src={menuImage} alt="user" width={"5"} height={"21"} />
+                                </button>
+                                <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <li><a className="dropdown-item col-green" href="javascript:void(0);" data-bs-toggle="modal"><i className="zmdi zmdi-download me-1"></i>Download</a></li>
+                                    <li><a className="dropdown-item col-blue" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#addmydoc"><i className="zmdi zmdi-edit me-1"></i>Edit</a></li>
+                                    <li><a className="dropdown-item text-danger" href="#"><i className="zmdi zmdi-delete me-1"></i>Delete</a></li>
                                 </ul>
                             </div>
                         </td>
@@ -255,23 +212,14 @@ function Document() {
                         <td className="col-grey"> 03/06/2021</td>
                         <td>PDF</td>
                         <td>
-                            <div className="btn-group">
-                                <button type="button"
-                                    className="btn btn-primary btn-sm dropdown-toggle dr-breakout-btn"
-                                    data-toggle="dropdown" aria-haspopup="true"
-                                    aria-expanded="false"> Action <span
-                                        className="caret"></span></button>
-                                <ul className="dropdown-menu dr-breakout">
-                                    <li className="btn btn-outline-primary btn-sm" title="Edit"
-                                        data-toggle="modal" data-target=""> <i
-                                            className="zmdi zmdi-download"></i> </li>
-                                    <li className="btn btn-outline-primary ms-1 me-1 btn-sm" title="Edit"
-                                        data-toggle="modal" data-target="#addmydoc"> <i
-                                            className="zmdi zmdi-edit"></i> <span
-                                            className="dnone-mob">Edit</span></li>
-                                    <li className="btn btn-danger btn-sm" title="Delete"
-                                        type="button"> <i className="zmdi zmdi-delete"></i> <span
-                                            className="dnone-mob">Delete</span></li>
+                           <div className="dropdown">
+                                <button className="btn dropdown-toggle"style={{boder:"0px"}} type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                <Image src={menuImage} alt="user" width={"5"} height={"21"} />
+                                </button>
+                                <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <li><a className="dropdown-item col-green" href="javascript:void(0);" data-bs-toggle="modal"><i className="zmdi zmdi-download me-1"></i>Download</a></li>
+                                    <li><a className="dropdown-item col-blue" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#addmydoc"><i className="zmdi zmdi-edit me-1"></i>Edit</a></li>
+                                    <li><a className="dropdown-item text-danger" href="#"><i className="zmdi zmdi-delete me-1"></i>Delete</a></li>
                                 </ul>
                             </div>
                         </td>
@@ -293,23 +241,14 @@ function Document() {
                         <td className="col-grey"> 03/06/2021</td>
                         <td>world</td>
                         <td>
-                            <div className="btn-group">
-                                <button type="button"
-                                    className="btn btn-primary btn-sm dropdown-toggle dr-breakout-btn"
-                                    data-toggle="dropdown" aria-haspopup="true"
-                                    aria-expanded="false"> Action <span
-                                        className="caret"></span></button>
-                                <ul className="dropdown-menu dr-breakout">
-                                    <li className="btn btn-outline-primary btn-sm" title="Edit"
-                                        data-toggle="modal" data-target=""> <i
-                                            className="zmdi zmdi-download"></i> </li>
-                                    <li className="btn btn-outline-primary ms-1 me-1 btn-sm" title="Edit"
-                                        data-toggle="modal" data-target="#addmydoc"> <i
-                                            className="zmdi zmdi-edit"></i> <span
-                                            className="dnone-mob">Edit</span></li>
-                                    <li className="btn btn-danger btn-sm" title="Delete"
-                                        type="button"> <i className="zmdi zmdi-delete"></i> <span
-                                            className="dnone-mob">Delete</span></li>
+                           <div className="dropdown">
+                                <button className="btn dropdown-toggle"style={{boder:"0px"}} type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                <Image src={menuImage} alt="user" width={"5"} height={"21"} />
+                                </button>
+                                <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <li><a className="dropdown-item col-green" href="javascript:void(0);" data-bs-toggle="modal"><i className="zmdi zmdi-download me-1"></i>Download</a></li>
+                                    <li><a className="dropdown-item col-blue" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#addmydoc"><i className="zmdi zmdi-edit me-1"></i>Edit</a></li>
+                                    <li><a className="dropdown-item text-danger" href="#"><i className="zmdi zmdi-delete me-1"></i>Delete</a></li>
                                 </ul>
                             </div>
                         </td>
@@ -331,23 +270,14 @@ function Document() {
                         <td className="col-grey"> 03/06/2021</td>
                         <td>Exel</td>
                         <td>
-                            <div className="btn-group">
-                                <button type="button"
-                                    className="btn btn-primary btn-sm dropdown-toggle dr-breakout-btn"
-                                    data-toggle="dropdown" aria-haspopup="true"
-                                    aria-expanded="false"> Action <span
-                                        className="caret"></span></button>
-                                <ul className="dropdown-menu dr-breakout">
-                                    <li className="btn btn-outline-primary btn-sm" title="Edit"
-                                        data-toggle="modal" data-target=""> <i
-                                            className="zmdi zmdi-download"></i> </li>
-                                    <li className="btn btn-outline-primary ms-1 me-1 btn-sm" title="Edit"
-                                        data-toggle="modal" data-target="#addmydoc"> <i
-                                            className="zmdi zmdi-edit"></i> <span
-                                            className="dnone-mob">Edit</span></li>
-                                    <li className="btn btn-danger btn-sm" title="Delete"
-                                        type="button"> <i className="zmdi zmdi-delete"></i> <span
-                                            className="dnone-mob">Delete</span></li>
+                           <div className="dropdown">
+                                <button className="btn dropdown-toggle"style={{boder:"0px"}} type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                <Image src={menuImage} alt="user" width={"5"} height={"21"} />
+                                </button>
+                                <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <li><a className="dropdown-item col-green" href="javascript:void(0);" data-bs-toggle="modal"><i className="zmdi zmdi-download me-1"></i>Download</a></li>
+                                    <li><a className="dropdown-item col-blue" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#addmydoc"><i className="zmdi zmdi-edit me-1"></i>Edit</a></li>
+                                    <li><a className="dropdown-item text-danger" href="#"><i className="zmdi zmdi-delete me-1"></i>Delete</a></li>
                                 </ul>
                             </div>
                         </td>
@@ -369,23 +299,14 @@ function Document() {
                         <td className="col-grey"> 13/06/2021</td>
                         <td>JPEG</td>
                         <td>
-                            <div className="btn-group">
-                                <button type="button"
-                                    className="btn btn-primary btn-sm dropdown-toggle dr-breakout-btn"
-                                    data-toggle="dropdown" aria-haspopup="true"
-                                    aria-expanded="false"> Action <span
-                                        className="caret"></span></button>
-                                <ul className="dropdown-menu dr-breakout">
-                                    <li className="btn btn-outline-primary btn-sm" title="Edit"
-                                        data-toggle="modal" data-target=""> <i
-                                            className="zmdi zmdi-download"></i> </li>
-                                    <li className="btn btn-outline-primary ms-1 me-1 btn-sm" title="Edit"
-                                        data-toggle="modal" data-target="#addmydoc"> <i
-                                            className="zmdi zmdi-edit"></i> <span
-                                            className="dnone-mob">Edit</span></li>
-                                    <li className="btn btn-danger btn-sm" title="Delete"
-                                        type="button"> <i className="zmdi zmdi-delete"></i> <span
-                                            className="dnone-mob">Delete</span></li>
+                           <div className="dropdown">
+                                <button className="btn dropdown-toggle"style={{boder:"0px"}} type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                <Image src={menuImage} alt="user" width={"5"} height={"21"} />
+                                </button>
+                                <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <li><a className="dropdown-item col-green" href="javascript:void(0);" data-bs-toggle="modal"><i className="zmdi zmdi-download me-1"></i>Download</a></li>
+                                    <li><a className="dropdown-item col-blue" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#addmydoc"><i className="zmdi zmdi-edit me-1"></i>Edit</a></li>
+                                    <li><a className="dropdown-item text-danger" href="#"><i className="zmdi zmdi-delete me-1"></i>Delete</a></li>
                                 </ul>
                             </div>
                         </td>
@@ -407,23 +328,14 @@ function Document() {
                         <td className="col-grey"> 03/06/2021</td>
                         <td>PNG</td>
                         <td>
-                            <div className="btn-group">
-                                <button type="button"
-                                    className="btn btn-primary btn-sm dropdown-toggle dr-breakout-btn"
-                                    data-toggle="dropdown" aria-haspopup="true"
-                                    aria-expanded="false"> Action <span
-                                        className="caret"></span></button>
-                                <ul className="dropdown-menu dr-breakout">
-                                    <li className="btn btn-outline-primary btn-sm" title="Edit"
-                                        data-toggle="modal" data-target=""> <i
-                                            className="zmdi zmdi-download"></i> </li>
-                                    <li className="btn btn-outline-primary ms-1 me-1 btn-sm" title="Edit"
-                                        data-toggle="modal" data-target="#addmydoc"> <i
-                                            className="zmdi zmdi-edit"></i> <span
-                                            className="dnone-mob">Edit</span></li>
-                                    <li className="btn btn-danger btn-sm" title="Delete"
-                                        type="button"> <i className="zmdi zmdi-delete"></i> <span
-                                            className="dnone-mob">Delete</span></li>
+                           <div className="dropdown">
+                                <button className="btn dropdown-toggle"style={{boder:"0px"}} type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                <Image src={menuImage} alt="user" width={"5"} height={"21"} />
+                                </button>
+                                <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <li><a className="dropdown-item col-green" href="javascript:void(0);" data-bs-toggle="modal"><i className="zmdi zmdi-download me-1"></i>Download</a></li>
+                                    <li><a className="dropdown-item col-blue" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#addmydoc"><i className="zmdi zmdi-edit me-1"></i>Edit</a></li>
+                                    <li><a className="dropdown-item text-danger" href="#"><i className="zmdi zmdi-delete me-1"></i>Delete</a></li>
                                 </ul>
                             </div>
                         </td>
@@ -445,23 +357,14 @@ function Document() {
                         <td className="col-grey"> 03/06/2021</td>
                         <td>PDF</td>
                         <td>
-                            <div className="btn-group">
-                                <button type="button"
-                                    className="btn btn-primary btn-sm dropdown-toggle dr-breakout-btn"
-                                    data-toggle="dropdown" aria-haspopup="true"
-                                    aria-expanded="false"> Action <span
-                                        className="caret"></span></button>
-                                <ul className="dropdown-menu dr-breakout">
-                                    <li className="btn btn-outline-primary btn-sm" title="Edit"
-                                        data-toggle="modal" data-target=""> <i
-                                            className="zmdi zmdi-download"></i> </li>
-                                    <li className="btn btn-outline-primary ms-1 me-1 btn-sm" title="Edit"
-                                        data-toggle="modal" data-target="#addmydoc"> <i
-                                            className="zmdi zmdi-edit"></i> <span
-                                            className="dnone-mob">Edit</span></li>
-                                    <li className="btn btn-danger btn-sm" title="Delete"
-                                        type="button"> <i className="zmdi zmdi-delete"></i> <span
-                                            className="dnone-mob">Delete</span></li>
+                           <div className="dropdown">
+                                <button className="btn dropdown-toggle"style={{boder:"0px"}} type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                <Image src={menuImage} alt="user" width={"5"} height={"21"} />
+                                </button>
+                                <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <li><a className="dropdown-item col-green" href="javascript:void(0);" data-bs-toggle="modal"><i className="zmdi zmdi-download me-1"></i>Download</a></li>
+                                    <li><a className="dropdown-item col-blue" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#addmydoc"><i className="zmdi zmdi-edit me-1"></i>Edit</a></li>
+                                    <li><a className="dropdown-item text-danger" href="#"><i className="zmdi zmdi-delete me-1"></i>Delete</a></li>
                                 </ul>
                             </div>
                         </td>
@@ -483,23 +386,14 @@ function Document() {
                         <td className="col-grey"> 03/06/2021</td>
                         <td>world</td>
                         <td>
-                            <div className="btn-group">
-                                <button type="button"
-                                    className="btn btn-primary btn-sm dropdown-toggle dr-breakout-btn"
-                                    data-toggle="dropdown" aria-haspopup="true"
-                                    aria-expanded="false"> Action <span
-                                        className="caret"></span></button>
-                                <ul className="dropdown-menu dr-breakout">
-                                    <li className="btn btn-outline-primary btn-sm" title="Edit"
-                                        data-toggle="modal" data-target=""> <i
-                                            className="zmdi zmdi-download"></i> </li>
-                                    <li className="btn btn-outline-primary ms-1 me-1 btn-sm" title="Edit"
-                                        data-toggle="modal" data-target="#addmydoc"> <i
-                                            className="zmdi zmdi-edit"></i> <span
-                                            className="dnone-mob">Edit</span></li>
-                                    <li className="btn btn-danger btn-sm" title="Delete"
-                                        type="button"> <i className="zmdi zmdi-delete"></i> <span
-                                            className="dnone-mob">Delete</span></li>
+                           <div className="dropdown">
+                                <button className="btn dropdown-toggle"style={{boder:"0px"}} type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                <Image src={menuImage} alt="user" width={"5"} height={"21"} />
+                                </button>
+                                <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <li><a className="dropdown-item col-green" href="javascript:void(0);" data-bs-toggle="modal"><i className="zmdi zmdi-download me-1"></i>Download</a></li>
+                                    <li><a className="dropdown-item col-blue" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#addmydoc"><i className="zmdi zmdi-edit me-1"></i>Edit</a></li>
+                                    <li><a className="dropdown-item text-danger" href="#"><i className="zmdi zmdi-delete me-1"></i>Delete</a></li>
                                 </ul>
                             </div>
                         </td>
@@ -521,23 +415,14 @@ function Document() {
                         <td className="col-grey"> 03/06/2021</td>
                         <td>Exel</td>
                         <td>
-                            <div className="btn-group">
-                                <button type="button"
-                                    className="btn btn-primary btn-sm dropdown-toggle dr-breakout-btn"
-                                    data-toggle="dropdown" aria-haspopup="true"
-                                    aria-expanded="false"> Action <span
-                                        className="caret"></span></button>
-                                <ul className="dropdown-menu dr-breakout">
-                                    <li className="btn btn-outline-primary btn-sm" title="Edit"
-                                        data-toggle="modal" data-target=""> <i
-                                            className="zmdi zmdi-download"></i> </li>
-                                    <li className="btn btn-outline-primary ms-1 me-1 btn-sm" title="Edit"
-                                        data-toggle="modal" data-target="#addmydoc"> <i
-                                            className="zmdi zmdi-edit"></i> <span
-                                            className="dnone-mob">Edit</span></li>
-                                    <li className="btn btn-danger btn-sm" title="Delete"
-                                        type="button"> <i className="zmdi zmdi-delete"></i> <span
-                                            className="dnone-mob">Delete</span></li>
+                           <div className="dropdown">
+                                <button className="btn dropdown-toggle"style={{boder:"0px"}} type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                <Image src={menuImage} alt="user" width={"5"} height={"21"} />
+                                </button>
+                                <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <li><a className="dropdown-item col-green" href="javascript:void(0);" data-bs-toggle="modal"><i className="zmdi zmdi-download me-1"></i>Download</a></li>
+                                    <li><a className="dropdown-item col-blue" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#addmydoc"><i className="zmdi zmdi-edit me-1"></i>Edit</a></li>
+                                    <li><a className="dropdown-item text-danger" href="#"><i className="zmdi zmdi-delete me-1"></i>Delete</a></li>
                                 </ul>
                             </div>
                         </td>
@@ -559,23 +444,14 @@ function Document() {
                         <td className="col-grey"> 13/06/2021</td>
                         <td>JPEG</td>
                         <td>
-                            <div className="btn-group">
-                                <button type="button"
-                                    className="btn btn-primary btn-sm dropdown-toggle dr-breakout-btn"
-                                    data-toggle="dropdown" aria-haspopup="true"
-                                    aria-expanded="false"> Action <span
-                                        className="caret"></span></button>
-                                <ul className="dropdown-menu dr-breakout">
-                                    <li className="btn btn-outline-primary btn-sm" title="Edit"
-                                        data-toggle="modal" data-target=""> <i
-                                            className="zmdi zmdi-download"></i> </li>
-                                    <li className="btn btn-outline-primary ms-1 me-1 btn-sm" title="Edit"
-                                        data-toggle="modal" data-target="#addmydoc"> <i
-                                            className="zmdi zmdi-edit"></i> <span
-                                            className="dnone-mob">Edit</span></li>
-                                    <li className="btn btn-danger btn-sm" title="Delete"
-                                        type="button"> <i className="zmdi zmdi-delete"></i> <span
-                                            className="dnone-mob">Delete</span></li>
+                           <div className="dropdown">
+                                <button className="btn dropdown-toggle"style={{boder:"0px"}} type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                <Image src={menuImage} alt="user" width={"5"} height={"21"} />
+                                </button>
+                                <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <li><a className="dropdown-item col-green" href="javascript:void(0);" data-bs-toggle="modal"><i className="zmdi zmdi-download me-1"></i>Download</a></li>
+                                    <li><a className="dropdown-item col-blue" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#addmydoc"><i className="zmdi zmdi-edit me-1"></i>Edit</a></li>
+                                    <li><a className="dropdown-item text-danger" href="#"><i className="zmdi zmdi-delete me-1"></i>Delete</a></li>
                                 </ul>
                             </div>
                         </td>
@@ -597,23 +473,14 @@ function Document() {
                         <td className="col-grey"> 03/06/2021</td>
                         <td>PNG</td>
                         <td>
-                            <div className="btn-group">
-                                <button type="button"
-                                    className="btn btn-primary btn-sm dropdown-toggle dr-breakout-btn"
-                                    data-toggle="dropdown" aria-haspopup="true"
-                                    aria-expanded="false"> Action <span
-                                        className="caret"></span></button>
-                                <ul className="dropdown-menu dr-breakout">
-                                    <li className="btn btn-outline-primary btn-sm" title="Edit"
-                                        data-toggle="modal" data-target=""> <i
-                                            className="zmdi zmdi-download"></i> </li>
-                                    <li className="btn btn-outline-primary ms-1 me-1 btn-sm" title="Edit"
-                                        data-toggle="modal" data-target="#addmydoc"> <i
-                                            className="zmdi zmdi-edit"></i> <span
-                                            className="dnone-mob">Edit</span></li>
-                                    <li className="btn btn-danger btn-sm" title="Delete"
-                                        type="button"> <i className="zmdi zmdi-delete"></i> <span
-                                            className="dnone-mob">Delete</span></li>
+                           <div className="dropdown">
+                                <button className="btn dropdown-toggle"style={{boder:"0px"}} type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                <Image src={menuImage} alt="user" width={"5"} height={"21"} />
+                                </button>
+                                <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <li><a className="dropdown-item col-green" href="javascript:void(0);" data-bs-toggle="modal"><i className="zmdi zmdi-download me-1"></i>Download</a></li>
+                                    <li><a className="dropdown-item col-blue" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#addmydoc"><i className="zmdi zmdi-edit me-1"></i>Edit</a></li>
+                                    <li><a className="dropdown-item text-danger" href="#"><i className="zmdi zmdi-delete me-1"></i>Delete</a></li>
                                 </ul>
                             </div>
                         </td>

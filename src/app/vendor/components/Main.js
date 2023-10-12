@@ -19,7 +19,7 @@ const customStyles = {
                     <div className="scrolfx">
                         <div className="booktab d-flex justify-content-between align-items-center bdrb">
                             <div className="p-2">
-                                <h2 className="font-bold mb-0"><i className="zmdi zmdi-widgets me-1"></i>Vendors </h2>
+                                <h2 className="font-bold mb-0">Vendors </h2>
                             </div>
                             <div className="pe-2">
                                 <a href="#" className="btn btn-success" data-bs-toggle="modal" data-bs-target="#addpage"><i className="zmdi zmdi-plus-circle-o-duplicate"></i>  New Vendor</a>
@@ -45,7 +45,7 @@ const customStyles = {
                                     <div className="card bdr5 mb-1">
                                         <div className="header d-flex justify-content-between align-items-center p-0">
                                             <div className="">
-                                                <h2 className="font-bold"><i className="zmdi zmdi-accounts-list-alt mr-1"></i> All Venders </h2>
+                                                <h2 className="font-bold">All Venders </h2>
                                             </div>
                                             <div className="input-group" style={{ maxWidth: '360px' }}>
                                                 <input type="text" className="form-control radius_all" aria-label="Text input with dropdown button" placeholder='Search...' />

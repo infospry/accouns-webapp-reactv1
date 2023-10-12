@@ -78,6 +78,17 @@ document.querySelectorAll('.dropdown-toggle').forEach(function(element) {
   });
 });
 
+/////////message swift left////////////
+
+  
+$(document).ready(function(){
+    $(".formobile .clickmode").click(function(){
+        $(".add_remove").addClass("mobile_load");      
+    });
+    $(".cross_remove").click(function(){
+        $(".mobile_load").addClass("ddnone");      
+    });
+});
 
 
 $('.trig-add, .trig-cross').on('click', function () {

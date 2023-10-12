@@ -13,7 +13,7 @@ function Main() {
                     <div className="scrolfx">
                         <div className="booktab d-flex justify-content-between align-items-center bdrb">
                             <div className="p-2">
-                                <h2 className="font-bold mb-0"><i className="zmdi zmdi-city-alt me-1"></i>  Departments and Designations</h2>
+                                <h2 className="font-bold mb-0"> Departments and Designations</h2>
                             </div>
                             <div className="pe-2 d-flex">
                                                             

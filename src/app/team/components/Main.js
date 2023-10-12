@@ -19,7 +19,7 @@ const customStyles = {
                     <div className="scrolfx">
                         <div className="booktab d-flex justify-content-between align-items-center bdrb">
                             <div className="p-2">
-                                <h2 className="font-bold mb-0"><i className="zmdi zmdi-accounts-list-alt mr-1"></i> My Team </h2>
+                                <h2 className="font-bold mb-0">My Team </h2>
                             </div>
                             <div className="pe-2">
                                 <a href="javascript:void(0);" className="btn btn-success" data-bs-toggle="modal" data-bs-target="#addteam"><i className="zmdi zmdi-plus-circle-o-duplicate"></i>  Add Team Member</a>

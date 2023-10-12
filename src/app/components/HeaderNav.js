@@ -13,7 +13,7 @@ const HeaderNav = () => {
         <Link className="navbar-brand ms-2 me-3" href="/dashboard"><Image src={logo} alt="logo" style={{height:"30px"}} /></Link>
         <div className="d_display">
           <div className="dropdown nav-item displinl ">
-            <a href="javascript:void(0);" className="nav-link text-right dropdown-toggle me-1" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            <a href={{ void: 0 }} className="nav-link text-right dropdown-toggle me-1" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
               <span className="EmployeeAvatar">A</span></a>
             <div className="dropdown-menu p-0 bg-gradient-secondary">             
               <div className="user-header">
@@ -50,7 +50,7 @@ const HeaderNav = () => {
             <li className="nav-item"><Link href="/clients" className="nav-link"><i className='zmdi zmdi-graduation-cap'></i> Clients</Link></li>
             <li className="nav-item"><Link href="/opportunities" className="nav-link"><i className='zmdi zmdi-labels'></i> Opportunities</Link></li>
             <li className="nav-item dropdown">
-              <a className="nav-link dropdown-toggle" href="javascript:void(0);" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <a className="nav-link dropdown-toggle" href={{ void: 0 }} id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <i className='zmdi zmdi-folder'></i> Projects
               </a>
               <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -59,7 +59,7 @@ const HeaderNav = () => {
               </ul>
             </li>
             <li className="nav-item dropdown">
-              <a className="nav-link dropdown-toggle" href="javascript:void(0);" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <a className="nav-link dropdown-toggle" href={{ void: 0 }} id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <i className='zmdi zmdi-receipt'></i> Sales
               </a>
               <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -75,7 +75,7 @@ const HeaderNav = () => {
             
             <li className="nav-item"></li>
             <li className="nav-item dropdown">
-              <a className="nav-link dropdown-toggle" href="javascript:void(0);" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <a className="nav-link dropdown-toggle" href={{ void: 0 }} id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <i className='zmdi zmdi-accounts'></i> Employee
               </a>
               <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -89,7 +89,7 @@ const HeaderNav = () => {
           </ul>
           <ul className="nav navbar-nav floatmargint lg_none">
             <li className="dropdown nav-item displinl ">
-              <a href="javascript:void(0);"className="nav-link text-right dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+              <a href={{ void: 0 }} className="nav-link text-right dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                   <span className="EmployeeAvatar">A</span>
               </a>
               <div className="dropdown-menu p-0 bg-gradient-secondary">               
@@ -103,7 +103,7 @@ const HeaderNav = () => {
                 </div>             
                 <div className="user-body bg-secondary p-1">
                   <div>
-                    <a className="btn btn-light btn-sm" data-toggle="modal" data-target="#password">Change Password</a>
+                    <a className="btn btn-light btn-sm" data-bs-toggle="modal" data-bs-target="#password">Change Password</a>
                   </div>
                 </div>
                 <div className="user-footer text-center p-1 pb-2 pt-1 d-flex justify-content-center">
@@ -126,7 +126,7 @@ const HeaderNav = () => {
       <div className="navbar-right mt60">
         <ul className="navbar-nav">
             <li className="dropdown">
-                <a href="javascript:void(0);" className="dropdown-toggle" title="Notifications" data-toggle="dropdown" role="button">
+                <a href={{ void: 0 }} className="dropdown-toggle" title="Notifications" data-toggle="dropdown" role="button">
                     <i className="zmdi zmdi-notifications"></i>                   
                 </a>
                 <ul className="dropdown-menu slideUp2">

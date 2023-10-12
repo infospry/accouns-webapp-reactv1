@@ -6,6 +6,8 @@ import Details from './Details';
 import Document from './Document';
 import Note from './Note';
 import Activity from './Activity';
+import Messages from "./Messages";
+
 function Main() {
 //#region style
 const customStyles = {
@@ -28,7 +30,7 @@ return (
                     </div>
                     <div className="pe-2">
                        
-                        <a href="#" className="btn btn-success" data-bs-toggle="modal" data-bs-target="#addpage"><i
+                        <a href="#" className="btn btn-success" data-bs-toggle="modal" data-bs-target="#addNewOpper"><i
                                 className="zmdi zmdi-plus-circle-o-duplicate"></i> Create New</a>
                         <div className="btn-group ms-1">
                             <button className="btn btn-outline-primary  dropdown-toggle font-w" type="button"
@@ -108,57 +110,85 @@ return (
                         </div>
                         <div className="col-12 col-sm-8 col-md-8 col-lg-9 p-0 bg-white">
                             <div className="hgtt88 contbody one add_remove">
-                                <div className="media border p-4 mb-0"style={{borderLeft:"0px",borderRight:"0px"}}>
+                                <div className="media bder11 p-4 mb-0"style={{borderLeft:"0px",borderRight:"0px"}}>
                                     <div className="media-body ptag">
                                         <a href="#" className="btn cross_remove">x</a>
-                                        <h5>Graham
-                                            <span className="float-right  d-none d-lg-block ">
-                                                <a href="#" className="btn btn btn-primary" data-bs-toggle="modal"
-                                                    data-bs-target="#emailsend"><i className="zmdi zmdi-email-open"></i> <span
-                                                        className="d-none_small">Send Email</span></a>
-                                                <a href="#" className="btn btn btn-primary ms-1 me-1" data-bs-toggle="modal"
-                                                    data-bs-target="#Schedule"><i className="zmdi zmdi-alarm-check"></i> <span
-                                                        className="d-none_small"> Schedule</span></a>
-                                               
-                                                <div className="btn-group">
-                                                    <button className="btn btn-outline-primary  dropdown-toggle" type="button"
-                                                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><i
-                                                            className="zmdi zmdi-alert-polygon"></i> <span className="d-none_small">
-                                                            Status</span></button>
-                                                    <div className="dropdown-menu">
-                                                        <a className="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal"
-                                                            data-bs-target="#fristattempt">1st attempt</a>
-                                                        <a className="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal"
-                                                            data-bs-target="#fristattempt"> 2nd attempt</a>
-                                                        <a className="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal"
-                                                            data-bs-target="#fristattempt">3rd attempt</a>
-                                                        <a className="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal"
-                                                            data-bs-target="#fristattempt">4th attempt</a>
-                                                        <a className="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal"
-                                                            data-bs-target="#fristattempt">Interested</a>
-                                                        <a className="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal"
-                                                            data-bs-target="#fristattempt">Very Interested</a>
-                                                        <a className="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal"
-                                                            data-bs-target="#fristattempt">Call Later</a>
-                                                        <a className="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal"
-                                                            data-bs-target="#fristattempt">Not Interested</a>
-                                                        <a className="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal"
-                                                            data-bs-target="#fristattempt">Fake Lead</a>
+                                        
+                                        <div class="row">
+                                            <div class="col-md-6 mb-2">
+                                                <div class="d-flex justify-content-start align-items-center">    
+                                                    <div class="css-3sr5s988 me-2"><span class="css-19k1nij">GR</span></div>
+                                                    <div>
+                                                        <h5>Graham Ridwik</h5>
+                                                        <p class="mt-0 mb-0">Web Design | E-commerce</p>
                                                     </div>
                                                 </div>
-                                                <a href="#" className="btn btn btn-outline-primary ms-1" data-bs-toggle="modal"
-                                                    data-bs-target="#convert"><i className="zmdi zmdi-swap"></i> <span
-                                                        className="d-none_small"><b>Convert</b> </span></a>
-                                            </span>
-                                        </h5>
-                                        <p className="mb-1">Web Design | <span className="col-black">E-commerce</span> .</p>
-                                        <p className="mb-1"><i className="zmdi zmdi-city-alt"></i> Lisburn, BT27 </p>
-                                        <p className="mb-1"><i className="zmdi zmdi-whatsapp"></i> 9973373851 </p>
-                                        <p className="mb-1"><i className="zmdi zmdi-phone"></i> 9973373851 <small className="col-green">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p className="mb-1">
+                                                    <span className="float-right col-grey"> Respond 1yr ago</span></p>
+                                            </div>
+                                            <div class="col-md-6 col-lg-4">                                               
+                                                <p className="mb-1"><a href="#"><i className="zmdi zmdi-phone"></i> 9973373851 </a><small className="col-green">
                                                 Verified</small> </p>
-                                        <p className="mb-1"><i className="zmdi zmdi-email-open"></i> <span id="">
-                                                solutions.topicccano@gmail.com</span> <small className="col-green"> Verified</small>
-                                            <span className="float-right col-grey"> Respond 1yr ago</span></p>
+                                                <p className="mb-1"><a href="#"><i className="zmdi zmdi-email-open"></i> <span id="">
+                                                solutions.topicccano@gmail.com</span></a> <small className="col-green"> Verified</small>
+                                                </p>
+
+                                            </div>
+                                            <div class="col-md-6 col-lg-4">                                                
+                                                <p className="mb-1"><i className="zmdi zmdi-city-alt"></i> Lisburn, BT27 </p>
+                                                <p className="mb-0">
+                                                    <a href="#" className="btn btn-outline-primary btn-sm"><i className="zmdi zmdi-facebook"></i></a>
+                                                    <a href="#" className="btn btn-outline-primary btn-sm me-1 ms-1"><i className="zmdi zmdi-twitter"></i></a>
+                                                    <a href="#" className="btn btn-outline-primary btn-sm"><i className="zmdi zmdi-linkedin"></i></a>
+                                                    <a href="#" className="btn btn-outline-primary btn-sm ms-1"><i className="zmdi zmdi-whatsapp"></i></a> 
+                                                </p>
+                                            </div>
+                                            
+                                            <div class="col-md-12 col-lg-4  mt-1"> 
+                                                <div className="d-none d-lg-block float-right">
+                                                        <a href="#" className="btn btn btn-primary" data-bs-toggle="modal"
+                                                            data-bs-target="#emailsend" title="Send Email"><i className="zmdi zmdi-email-open"></i></a>
+                                                        <a href="#" className="btn btn btn-primary ms-1 me-1" data-bs-toggle="modal"
+                                                            data-bs-target="#Schedule"title="Schedule"><i className="zmdi zmdi-alarm-check"></i> <span
+                                                                className="d-none_small"> Schedule</span></a>
+                                                    
+                                                        <div className="btn-group">
+                                                            <button className="btn btn-outline-primary  dropdown-toggle" type="button"
+                                                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><i
+                                                                    className="zmdi zmdi-alert-polygon"></i> <span className="d-none_small">
+                                                                    Status</span></button>
+                                                            <div className="dropdown-menu">
+                                                                <a className="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal"
+                                                                    data-bs-target="#fristattempt">1st attempt</a>
+                                                                <a className="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal"
+                                                                    data-bs-target="#fristattempt"> 2nd attempt</a>
+                                                                <a className="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal"
+                                                                    data-bs-target="#fristattempt">3rd attempt</a>
+                                                                <a className="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal"
+                                                                    data-bs-target="#fristattempt">4th attempt</a>
+                                                                <a className="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal"
+                                                                    data-bs-target="#fristattempt">Interested</a>
+                                                                <a className="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal"
+                                                                    data-bs-target="#fristattempt">Very Interested</a>
+                                                                <a className="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal"
+                                                                    data-bs-target="#fristattempt">Call Later</a>
+                                                                <a className="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal"
+                                                                    data-bs-target="#fristattempt">Not Interested</a>
+                                                                <a className="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal"
+                                                                    data-bs-target="#fristattempt">Fake Lead</a>
+                                                            </div>
+                                                        </div>
+                                                        <a href="#" className="btn btn btn-outline-primary ms-1" data-bs-toggle="modal"
+                                                            data-bs-target="#convert"title="Convert"><i className="zmdi zmdi-swap"></i> </a>
+                                                    </div>
+                                                </div>
+                                            </div>                                       
+                                        
+                                       
+                                        
+                                        </div>
                                         <div className="mb-1 d-lg-none">
                                             <a href="#" className="btn btn btn-primary" data-bs-toggle="modal" data-bs-target="#emailsend"><i
                                                     className="zmdi zmdi-email-open"></i> <span className="d-none_small">Send
@@ -199,15 +229,14 @@ return (
                                                     className="d-none_small"><b>Convert</b> </span></a>
 
                                         </div>
-                                    </div>
                                 </div>
 
-                                <div className="p-3">
+                                {/* <div className="p-3">
                                     <div className="alert alert-danger mb-0" role="alert">
                                         <i className="zmdi zmdi-info"></i> Type the name of your service to start searching out
                                         thousands of available services.
                                     </div>
-                                </div>
+                                </div> */}
                                 <div className="bgblulgt bfix">
                                     <ul className="nav nav-tabs nav-justified p-0">
                                         <li className="nav-item">
@@ -222,7 +251,7 @@ return (
                                         
 
                                         <li className="nav-item">
-                                            <a className="nav-link" data-bs-toggle="tab" href="#Messages "><i
+                                            <a className="nav-link" data-bs-toggle="tab" href="#Messages"><i
                                                     className="zmdi zmdi-email-open"></i> <span className="d-none_small"> Messages</span>
                                             </a>
                                         </li>
@@ -252,40 +281,72 @@ return (
                                     <div role="tabpanel" class=" tab-pane" id="Activity">  
                                         <Activity/>
                                     </div>
+                                    <div role="tabpanel" class=" tab-pane" id="Messages">  
+                                        <Messages/>
+                                    </div>
                                 </div>
                                 
                             </div>
                             
                             <div className="hgtt88 contbody ddnone fone">
-                                <div className="media border p-4 mb-0" style={{borderLeft:"0px",borderRight:"0px"}}>
+                                <div className="media bder11 p-4 mb-0" style={{borderLeft:"0px",borderRight:"0px"}}>
                                     <div className="media-body ptag">
-                                        <h5>Graham
-                                            <span className="float-right">
-                                                <a href="#" className="btn btn btn-primary" data-bs-toggle="modal"
-                                                    data-bs-target="#contact"><i className="zmdi zmdi-phone"></i> Contact</a>
-                                                <a href="#" className="btn btn btn-primary ms-1 me-1" data-bs-toggle="modal"
-                                                    data-bs-target="#emailsend"><i className="zmdi zmdi-email-open"></i> Send Email</a>
-                                                <a href="#" className="btn btn btn-primary" data-bs-toggle="modal"
-                                                    data-bs-target="#smssend"><i className="zmdi zmdi-comment-text"></i> Send SMS</a>
-                                                <a href="#" className="btn btn btn-outline-danger ms-1"><i
-                                                        className="zmdi zmdi-notifications-off"></i> Not Interested</a>
-                                            </span>
-                                        </h5>
-                                        <p className="mb-1">Web Design | <span className="col-black">E-commerce</span> .</p>
-                                        <p className="mb-1"><i className="zmdi zmdi-city-alt"></i> Lisburn, BT27 </p>
-                                        <p className="mb-1"><i className="zmdi zmdi-phone"></i> 9973373851 <small className="col-green me-4">
+                                    <div class="row">
+                                            <div class="col-md-6 mb-2">
+                                                <div class="d-flex justify-content-start align-items-center">    
+                                                    <div class="css-3sr5s988 me-2"><span class="css-19k1nij">GR</span></div>
+                                                    <div>
+                                                        <h5>Graham Ridwik</h5>
+                                                        <p class="mt-0 mb-0">Web Design | E-commerce</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p className="mb-1">
+                                                    <span className="float-right col-grey"> Respond 1yr ago</span></p>
+                                            </div>
+                                            <div class="col-md-6 col-lg-4">                                               
+                                                <p className="mb-1"><a href="#"><i className="zmdi zmdi-phone"></i> 9973373851 </a><small className="col-green">
                                                 Verified</small> </p>
-                                        <p className="mb-1"><i className="zmdi zmdi-email-open"></i> <span id="">
-                                                solutions.topicccano@gmail.com</span> <small className="col-green"> Verified</small></p>
-                                        <hr />
-                                        <p className="mb-1"><i className="zmdi zmdi-tag"></i> Avarage Value<span
-                                                className="font-20 font-bold col-blue"> : $80 - 140</span> <span
-                                                className="float-right col-grey"> Respond 1yr ago</span></p>
+                                                <p className="mb-1"><a href="#"><i className="zmdi zmdi-email-open"></i> <span id="">
+                                                solutions.topicccano@gmail.com</span></a> <small className="col-green"> Verified</small>
+                                                </p>
+
+                                            </div>
+                                            <div class="col-md-6 col-lg-4">                                                
+                                                <p className="mb-1"><i className="zmdi zmdi-city-alt"></i> Lisburn, BT27 </p>
+                                                <p className="mb-0">
+                                                    <a href="#" className="btn btn-outline-primary btn-sm"><i className="zmdi zmdi-facebook"></i></a>
+                                                    <a href="#" className="btn btn-outline-primary btn-sm me-1 ms-1"><i className="zmdi zmdi-twitter"></i></a>
+                                                    <a href="#" className="btn btn-outline-primary btn-sm"><i className="zmdi zmdi-linkedin"></i></a>
+                                                    <a href="#" className="btn btn-outline-primary btn-sm ms-1"><i className="zmdi zmdi-whatsapp"></i></a> 
+                                                </p>
+                                            </div>
+                                            <div class="col-md-12 col-lg-4"> 
+                                                <div className="d-none d-lg-block float-right">
+                                                    <a href="#" className="btn btn btn-primary" data-bs-toggle="modal"
+                                                        data-bs-target="#contact"><i className="zmdi zmdi-phone"></i> Contact</a>
+                                                    <a href="#" className="btn btn btn-primary ms-1 me-1" data-bs-toggle="modal"
+                                                        data-bs-target="#emailsend"title=" Send Email"><i className="zmdi zmdi-email-open"></i></a>
+                                                    <a href="#" className="btn btn btn-primary" data-bs-toggle="modal"
+                                                        data-bs-target="#smssend"title=" Send Sms"><i className="zmdi zmdi-comment-text"></i></a>
+                                                    <a href="#" className="btn btn btn-outline-danger ms-1"><i
+                                                            className="zmdi zmdi-notifications-off"></i> Not Interested</a>
+                                                            
+                                                    
+                                                </div>
+                                            </div>                                       
+                                        
+                                       
+                                        
+                                        </div>
+                                 
+                                       
                                     </div>
                                 </div>
                                 <div className="">
                                     <div className="p-3">
-                                        <h4 className="mb-0 mt-3">Details</h4>
+                                        <h4 className="mb-0 mt-0">Details</h4>
                                         <hr />
                                         <p className="col-blue"><b>1. What type of organisation is this for? Do you already have a logo?
                                                 No I do not have a logo</b></p>
@@ -316,8 +377,103 @@ return (
         </div>
     </section>
 
-    
+    {/* Add New Oppertunities */}
+    <div class="modal right-half md-one" id="addNewOpper" tabindex="1" role="dialog" aria-labelledby="shortModal">
+        <div class="modal-dialog" role="document" style={{maxWidth:"768px"}}>
+            <div class="modal-content">
+                <div class="modal-header bg-blu-lite">
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel2">
+                        <b>Add Lead</b>
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6 pt-3">
+                            <div class="">
+                                <div class="group_lead">
+                                    <input class="input_text" id="ppreson" name="ppreson" required="required" type="text"/> 
+                                    <label class="lablefilled"><i class="zmdi zmdi-account"></i> Contact person</label>
+                                </div>
+                                <div class="group_lead">
+                                    <input class="input_text" id="ppreson" name="ppreson" required="required" type="text"/> 
+                                    <label class="lablefilled"><i class="zmdi zmdi-city"></i>  Organization</label>
+                                </div>
+                                <div class="group_lead">
+                                    <input class="input_text" id="ppreson" name="ppreson" required="required" type="text"/> 
+                                    <label class="lablefilled">  Title</label>
+                                </div>
 
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="group_lead">
+                                            <input class="input_text" name="value" required="required" type="text"/> 
+                                            <label class="lablefilled"> Value</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 ps-0">
+                                        <div class="group_lead"><select class="custom-select select_f" id="Currency"><option>  Choose Currency</option><option name="Inr" value="Inr">Indian Rupee (INR)</option></select></div>
+                                    </div>
+                                </div>
+
+                                <div class="group_lead"><select class="custom-select select_f" id="Labels"><option>  Owner</option><option name="Stokes" value="Stokes">Rikwik Stokes</option></select></div>
+                                <div class="group_lead">
+                                    <input class="input_text" name="date" required="required" type="date"/> 
+                                    <label class="lablefilled"> Expected close date </label>
+                                </div>
+                                <div class="group_lead"><select class="custom-select select_f" id="Labels"><option>  Visible to</option><option name="Owner" value="Owner">Item Owner</option><option name="visibility" value="visibility">Item owner’s visibility group</option></select></div>
+
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6 pt-3" style={{borderLeft:"1px solid #eee"}}> 
+                            <div class=""> 
+                                <h4 class="mb-0"><b>Person</b></h4>    
+                                <hr/> 
+                                <div class="row">
+                                    <div class="col-6 col-lg-7">
+                                        <div class="group_lead mb-2">
+                                            <input class="input_text" id="ppreson" name="ppreson" required="required" type="text"/> 
+                                            <label class="lablefilled"><i class="zmdi zmdi-phone"></i> Phone</label>
+                                        </div> 
+                                    </div>
+                                    <div class="col-6 col-lg-5  ps-0">
+                                        <div class="group_lead mb-2"><select class="custom-select select_f" id=""><option>  Work </option><option name="home" value="Inr">Home</option><option name="Other" value="Inr">Other</option></select></div>
+                                    </div>
+                                </div> 
+                                <a href="#">+ Add phone</a>
+                                <div class="row mt-3">
+                                    <div class="col-6 col-lg-7">
+                                        <div class="group_lead mb-2">
+                                            <input class="input_text" id="ppreson" name="ppreson" required="required" type="text"/> 
+                                            <label class="lablefilled"><i class="zmdi zmdi-email"></i> Email</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 col-lg-5  ps-0">
+                                        <div class="group_lead mb-2"><select class="custom-select select_f" id=""><option>  Work </option><option name="home" value="Inr">Home</option><option name="Other" value="Inr">Other</option></select></div>
+                                    </div>
+                                </div>                                           
+                                <a href="#">+ Add mobile</a>
+                            </div>    
+                        </div>
+                    </div>                        
+                                           
+                </div>
+                <div class="model-footer">
+                    <div class="row m-0">
+                        <div class="col-md-12">
+                            <div class="text-center">                               
+                                <button class="btn btn-primary me-1 clickmode" data-show=".contactlist, .showthing, .nxtprv" data-hide=".md-one, .hdbox, .modal-backdrop" type="button"> <i class="zmdi zmdi-upload"></i> Save </button>                        
+                                <button class="btn btn-danger" type="button"><i class="zmdi zmdi-rotate-left"></i> Cancel</button>
+                            </div>
+                        </div>
+                    </div>   
+                </div>
+            </div>            
+        </div>
+    </div>
     {/* <!-- :::::::23-feb-2020;;;;;;; add convert model       -->   */}
     <div class="modal fade mdds" id="convert" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">

@@ -20,7 +20,7 @@ return (
             <div className="scrolfx">
                 <div className="booktab d-flex justify-content-between align-items-center bdrbtm">
                     <div className="p-2">
-                        <h2 className="font-bold mb-0"><i className="zmdi zmdi-receipt me-1"></i>Quotes and Proposals </h2>
+                        <h2 className="font-bold mb-0">Quotes and Proposals </h2>
                     </div>
                     <div className="pe-2">
                         {/* <a href="#" className="btn btn-outline-primary me-1"> Accept Online Payment</a> */}

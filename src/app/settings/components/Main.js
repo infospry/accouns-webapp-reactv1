@@ -19,14 +19,14 @@ return (
             <div className="scrolfx">
                 <div className="booktab d-flex justify-content-between align-items-center bdrbtm">
                     <div className="p-2">
-                        <h2 className="font-bold mb-0"><i className="zmdi zmdi-settings me-1"></i>Settings </h2>
+                        <h2 className="font-bold mb-0">Settings </h2>
                     </div>                   
                 </div>
             </div>
           
             <div className="scroll_bar">
             <div className="p-4 text-center" style={{background:"#f2f2fa"}}>
-            <div className="avatar-upload mt-1" style={{maxWidth:"150px"}}>
+            <div className="avatar-upload mt-1" style={{maxWidth:"100px"}}>
                     <div className="avatar-edit">
                         <input type="file" id="imageUpload" accept=".png, .jpg, .jpeg" />
                         <label for="imageUpload"></label>
@@ -65,12 +65,12 @@ return (
                             </li>
                             <li className="nav-item">
                                 <a className="nav-link padnav font-16  clickmode" data-hide=".account,.theme,.notifications,.business,.security"
-                                    data-show=".templates" href="javascript:void(0);"><i className="zmdi zmdi-notifications"></i>
+                                    data-show=".templates" href="javascript:void(0);"><i className="zmdi zmdi-email"></i>
                                     <span className="d-none_small"> Email Templates </span> </a>
                             </li>  
                             <li className="nav-item">
                                 <a className="nav-link padnav font-16  clickmode" data-hide=".account,.theme,.business,.notifications,.templates"
-                                    data-show=".security" href="javascript:void(0);"><i className="zmdi zmdi-notifications"></i>
+                                    data-show=".security" href="javascript:void(0);"><i className="zmdi zmdi-shield-check"></i>
                                     <span className="d-none_small"> Security </span> </a>
                             </li>                            
                         </ul>

@@ -8,7 +8,7 @@ const RightMenuSidebar = () =>{
        <div className="navbar-right mt60">
         <ul className="navbar-nav">
             <li className="dropdown">
-                <a href="javascript:void(0);" className="dropdown-toggle" title="Notifications" data-toggle="dropdown" role="button">
+                <a href={{ void: 0 }} className="dropdown-toggle" title="Notifications" data-toggle="dropdown" role="button">
                     <i className="zmdi zmdi-notifications"></i>                   
                 </a>
                 <ul className="dropdown-menu slideUp2">

@@ -18,7 +18,7 @@ return (
             <div className="scrolfx">
                 <div className="booktab d-flex justify-content-between align-items-center bdrbtm">
                     <div className="p-2">
-                        <h2 className="font-bold mb-0"><i className="zmdi zmdi-receipt me-1"></i>Invoices </h2>
+                        <h2 className="font-bold mb-0">Invoices </h2>
                     </div>
                     <div className="input-group" style={{ maxWidth: '460px' }}>
                         <input type="text" className="form-control radius_l"
