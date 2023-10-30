@@ -11784,7 +11784,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f5f8f9', end
   border-top-right-radius: 18px;
   border-bottom-right-radius: 18px;}
   .radius_all{border-radius:18px;}
-a b{color:var(--dark)}a {color:var(--secondary);text-decoration:none;}
+a {color:var(--secondary);text-decoration:none;}
 .close { background-color: transparent;}
 .laBle{font-size:14px;line-height:20px !important;}
 .rwd-table th:last-child{text-align:right!important;}
@@ -12442,3 +12442,6 @@ b, strong{font-weight:500!important;}
       padding: 15px !important;}
   
   }
+.form-select {
+  font-size: 14px!important;}
+  .error-message{color:red}

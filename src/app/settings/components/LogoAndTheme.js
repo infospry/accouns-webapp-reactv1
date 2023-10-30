@@ -5,13 +5,37 @@ import Image from 'next/image'
 
 function LogoAndTheme() {
     const customStyles = {
-        borderLeft: '1px solid rgb(221, 221, 221)',
+        borderRight: '1px solid rgb(221, 221, 221)',
         height: '100vh',
         };
   return (
     <>
     
     <div className="row">
+    <div className="col-12 col-sm-12 col-md-4 col-lg-3" style={customStyles}>
+                            <h4 className="mt-0 mb-0">Logo & Theme </h4>
+                            <span className="font-14 col-grey"><b>For the Invoice</b></span>
+                            <hr className='mt-2 mb-2' />
+                           
+                            <a href="javascript:void(0);"
+                                className="invwhite d-flex justify-content-between align-items-center pe-0 ps-2 pt-2 pb-2 clickmode">
+                                <div>
+                                    <p className="m-0 font-14"><b><i className="zmdi zmdi-aspect-ratio me-1"></i>
+                                            Customize Invoice Style </b></p>
+                                    <p className="col-grey m-0 font-14">Change Templets, Color </p>
+                                </div>
+                            </a>
+                           
+                            <hr className='mt-3 mb-3' />
+
+                            <div className="tradelogo">
+                                        <label for="et_pb_contact_brand_file_request_0"
+                                            className="et_pb_contact_form_label">Enter</label>
+                                        <input type="file" id="et_pb_contact_brand_file_request_0"
+                                            className="file-upload" />
+                                    </div>
+                            
+                        </div>
                         <div className="col-12 col-sm-12 col-md-8 col-lg-9 ">
 
 
@@ -176,30 +200,7 @@ function LogoAndTheme() {
 
                         </div>
 
-                        <div className="col-12 col-sm-12 col-md-4 col-lg-3" style={customStyles}>
-                            <h4 className="mt-0 mb-0">Logo & Theme </h4>
-                            <span className="font-14 col-grey"><b>For the Invoice</b></span>
-                            <hr className='mt-2 mb-2' />
-                           
-                            <a href="javascript:void(0);"
-                                className="invwhite d-flex justify-content-between align-items-center pe-0 ps-2 pt-2 pb-2 clickmode">
-                                <div>
-                                    <p className="m-0 font-14"><b><i className="zmdi zmdi-aspect-ratio me-1"></i>
-                                            Customize Invoice Style </b></p>
-                                    <p className="col-grey m-0 font-14">Change Templets, Color </p>
-                                </div>
-                            </a>
-                           
-                            <hr className='mt-3 mb-3' />
-
-                            <div className="tradelogo">
-                                        <label for="et_pb_contact_brand_file_request_0"
-                                            className="et_pb_contact_form_label">Enter</label>
-                                        <input type="file" id="et_pb_contact_brand_file_request_0"
-                                            className="file-upload" />
-                                    </div>
-                            
-                        </div>
+                        
                     </div>
     </>
   )

@@ -51,7 +51,7 @@ import Messages from "./Messages";
         var params = { "leads": { "title": "0", "lead_type": "0", "lead_note": "", "status_id": "0", "from_date": "", "to_date": "", "delete_status": "0", "archieve_status": "0" }, "action": "leads", "action_on": "leads_main", "request_for": "load-more", "previous": offset, "next": 10 };
         const lang = getCookie('signin_token');
         const response = await getData(params, lang, ApiEndPoints.opportunity);
-        const obj =response;// JSON.parse(response);
+        const obj = JSON.parse(response);
         console.log(obj.data.response.leads_list);
         if (obj.response_status === "OK") {          
             setLeads(obj.data.response.leads_list);
@@ -68,7 +68,7 @@ import Messages from "./Messages";
             var params = { "leads": { "title": "0", "lead_type": "0", "lead_note": "", "status_id": "0", "from_date": "", "to_date": "", "delete_status": "0", "archieve_status": "0" }, "action": "leads", "action_on": "leads_main", "request_for": "load-more", "previous": offset, "next": 10 };
             const lang = getCookie('signin_token');
             const response = await getData(params, lang, ApiEndPoints.opportunity)
-            setLeads([...leads, ...response.data.response.leads_list]);
+            setLeads([...leads, ...JSON.parse(response).data.response.leads_list]);
         }
     }
     const trigger_click = async (i, uid) => {

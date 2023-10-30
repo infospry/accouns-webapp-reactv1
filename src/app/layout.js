@@ -21,7 +21,11 @@ export default function RootLayout({ children }) {
       <script src="js/jquery-3.7.1.min.js"></script>
       <script src="js/time.js"></script>   
       <Script src="js/bootstrap.bundle.min.js"></Script>
-      <Script src="js/custom.js"></Script>   
+      <Script src="js/custom.js"strategy='lazyOnload'></Script>   
+      <script src="js/utils/newCustom.js" strategy='lazyOnload'></script>
+        <script src="js/utils/utility.js" strategy='lazyOnload'></script>
+        <script src="js/utils/events.js" strategy='lazyOnload'></script>
+        <script src="js/utils/account.js" strategy='lazyOnload'></script>
       <ToastContainer />
       
     </body>

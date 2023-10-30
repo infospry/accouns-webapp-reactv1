@@ -1,11 +1,66 @@
 'use client'
 import Link from "next/link";
 
-import Image from 'next/image'
+import Image from 'next/image';
+import { useEffect } from 'react'
+import { useState } from 'react';
+import Head from 'next/head';
+import { useForm } from 'react-hook-form';
+import { loginUser } from '../../services/auth';
+// import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation'
 
-import React from 'react';
+import { setCookie } from 'cookies-next';
 
 const LogIn = () =>{
+    const router=useRouter();
+    const {register,handleSubmit,formState:{errors}}=useForm();
+    // const [username,setUsername]=useState("neetuisin@gmail.com");
+    // const [password,setPassword]=useState("Abc@1234");
+    // const [username,setUsername]=useState("info@infospry.com");
+    // const [password,setPassword]=useState("Jit@2021");
+    const [username,setUsername]=useState();
+    const [password,setPassword]=useState();
+    // const [login_parameter, setLogin_parameter] = useState({
+    //    username: '',
+    //    password: ''
+    // });
+    const handleChange=(e)=>{
+        console.log(e)
+        //setLogin_parameter({[e.target.name]:e.target.value});
+        
+    }
+    const login=async(e)=>{ 
+        ns_util.replace_html_in_element("#btnLogin", 'Loading...<i className="fa fa-spinner fa-pulse"></i>')
+        var signin = {
+            "sign_in": {
+                "user_name": e.username,
+                "password": e.password,
+            },
+            "log_history": {
+                "browser_name": "", "ip_address": "",
+            },
+            "action": "sign-in",
+            "action_on": "account"
+        }
+       var serverResponse= await loginUser(signin);
+       if (serverResponse.response_status == "OK") {
+        $('.spanErrMsg').hide().text('');
+        var userInfo = serverResponse.response[0].signin_info[0];
+        var nCookie = serverResponse.token_info + '#' + userInfo.user_name + '#' + userInfo.user_email + '#' + userInfo.org_user_type;
+        ns_util.setCookie(ns_util.loginCookieName, nCookie, 1);
+        setCookie(ns_util.loginCookieName, nCookie, 1)
+        localStorage.setItem(ns_util.navLocalStorageName, JSON.stringify(serverResponse));
+        router.push("/dashboard")
+    }
+    else {
+        $('.spanErrMsg').show().text(serverResponse.response_msg);
+        alertmsg.msg("Error", serverResponse.response_msg, "E");
+    }
+    }
+    const emptyPwdStrength=()=>{
+        $('.password_strength').empty()
+    }
 
     return (
         <>
@@ -14,123 +69,129 @@ const LogIn = () =>{
     <div className="container">
         <div className="row justify-content-center">  
             <div className="col-lg-6 col-xl-5 col-md-9 col-sm-10">
-                <form className="card auth_form login_area_hide">
+
+            <form onSubmit={handleSubmit(login)}  className="card auth_form login_area_hide">
                     <div className="header text-left">                       
-                        <img className="m-auto" src="images/logod.png" alt="img" style={{ height: 'auto' }} />
+                        <img className="m-auto" src="images/lgo.png" alt="" width="150px" />
                         <p className="mt-4 mb-0 col-grey"><span className="font-24 col-black">Join as a professional</span> <br/>
                             Free to get started, instant online activation
                         </p>
                     </div>
                     <div className="body pt-1">
                         <div className="group">
-                            <input type="text" id="Username" required="required"/>
-                            <label htmlFor="Username"><i className="zmdi zmdi-email-open">&nbsp;</i>Your Email</label>
+                            <input type="text" id="username" onChange={(e)=>setUsername(e.target.value)} value={username} 
+                            name="username"  {...register('username',{required:true})} autoComplete="username" />
+                            <label htmlFor="username"><i className="zmdi zmdi-email-open">&nbsp;</i>Your Email</label>
+                            {errors.username && errors.username.type=="required" && <p className="text-danger">Please enter user name</p>}
                             <div className="bar"></div>
                         </div>
                         <div className="group">
-                            <input type="password" id="passwords" required="required"/>
-                            <label htmlFor="passwords"><i className="zmdi zmdi-lock">&nbsp;</i> Password</label>
+                            <input type="password" id="password" name="password" 
+                             onChange={(e)=>setPassword(e.target.value)}
+                             onCopy={(e)=>{return false;} } onPaste={(e)=>{return false;} }
+                            value={password} {...register('password',{required:true})} autoComplete="current-password" />
+                            <label htmlFor="password"><i className="zmdi zmdi-lock">&nbsp;</i> Password</label>
                             <span toggle="#password" className="zmdi field-icon toggle-password zmdi-eye col-grey"></span>
+                            {errors.password && errors.password.type=="required" && <p className="text-danger">Please enter password</p>}
                             <div className="bar"></div>
                         </div>
                         <div className="form-group">
                             <div className="row">
-                                <div className="col-6 pr-0">
+                                <div className="col-6 pe-0">
                                     <div className="checkbox">
-                                        <input id="remember_me" type="checkbox"/>
+                                        <input id="remember_me" type="checkbox" />
                                         <label htmlFor="remember_me">Remember Me </label>
                                     </div>
                                 </div>
-                                <div className="col-6 pl-0">
-                                    <div className="float-end">
-                                        <a className="col-blue  clickmode col-blue"data-hide=".login_area_hide"data-show=".forgot_passarea" >Forgot Password</a> 
+                                <div className="col-6 ps-0">
+                                    <div className="float-right">
+                                        <a href="#" className="col-blue  clickmode col-blue"data-hide=".login_area_hide"data-show=".forgot_passarea" ><b>Forgot Password</b></a> 
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div className="mt-4 mb-3 text-center">
-                            <a href="/dashboard" className="btn btn-primary btn-lg btn-block waves-effect waves-light mt-3 mb-4">Sign in →</a>
-                            <span className="text-center col-grey d-block">Don't have an account? <a  className="col-blue ml-2 create-send-btn"> Sign Up Now  →</a></span>                                    
+                            <button type='submit' id="btnLogin" data-action="sign-in" data-action-on="account" className="btn btn-primary btn-lg btn-block waves-effect waves-light mt-3 mb-4"><span><b>Sign in</b>→</span></button>
+                            <p className="text-center col-grey">Don't have an account?
+                            <Link href="/signup" className="col-blue ms-2 create-send-btn"><><b>Sign Up Now</b> →</></Link></p>                                    
                         </div>
                     </div>
                 </form>
-                <form className="auth_form forgot_passarea ddnone">  
-                    <div className="header text-center pb-0">
+
+                <form className="card auth_form forgot_passarea ps-4 pe-4 ddnone pt-3">
+                    <div className="header text-center ps-3 pe-3 pt-3 pb-0 mt-3">
                         <h1 className="mb-0"><span className="col-black">Reset Password? </span> </h1>
-                        <p className="mt-0 mb-0 col-grey">If you have forgotten your password, enter your e-mail address and we will send you an e mail telling you how to recover it.</p> 
+                        <p className="mt-0 mb-0 col-grey">If you have forgotten your password, enter your e-mail address and we will send you an e mail telling you how to recover it.</p>
                     </div>
-                  
                     <div className="body pt-3">
                         <div className="group">
-                            
-                            <input type="text" id="email" required="required"/>
+                            <input type="text" id="txt_email" required="required" autoComplete="off" />
                             <label htmlFor="email"><i className="zmdi zmdi-email-open">&nbsp;</i> Mobile number or Email Id</label>
                             <div className="bar"></div>
                         </div>
                         <div className="group mt-4 mb-4 text-center">
-                            <button type="submit" className="btn btn-primary btn-lg btn-block clickmode" data-hide=".forgot_passarea" data-show=".resetarea"> Send A Link to Reset </button>
-                        </div>                                                             
+                            <a href="#" className="btn btn-primary btn-lg btn-block evt-user-account" data-action="forget-password" data-request-for="reset-link" data-hide=".forgot_passarea" data-show=".resetarea"> Send A Link to Reset </a>
+                        </div>
                     </div>
                 </form>
-                
-
-                <form className="auth_form resetarea ddnone"> 
-                    <div className="logo_sign text-center">  
-                        <i className="zmdi zmdi-check-circle zmdi-hc-3x text-success"></i>                                              
+                <form className="card auth_form resetarea ps-4 pe-4 ddnone pt-3">
+                    <div className="logo_sign text-center">
+                        <i className="zmdi zmdi-check-circle zmdi-hc-3x text-success"></i>
                         <h5>OTP Process </h5>
                         <p>Please enter OTP we have sent you </p>
-                    </div>                         
+                    </div>
                     <div className="body pt-3">
-                        <div className="code_group m-auto"> 
-                            <input type="text" className="form-control" placeholder="0"/>
-                            <input type="text" className="form-control" placeholder="0"/>
-                            <input type="text" className="form-control" placeholder="0"/>
-                            <input type="text" className="form-control mb-3" placeholder="0"/>
-                          </div> 
-                          <div className="row mt-4 mb-3 justify-content-between">
+                        <div className="row mt-8 mb-3">
+                            <div className="col-6">
+                                <input id="txt_otp_code" type="text" className="form-control allow-numbers-only" placeholder="Enter otp code" maxLength="6" autoComplete="off" />
+                            </div>
+                            <span id="span_otp_code"></span>
+                        </div>
+                        <div className="row mt-4 mb-3">
                             <div className="col-6"><p className=""><span className="">Trying to Auto Capture</span> </p></div>
-                            <div className="col-6 text-end"><p className=""><span className="">00:40</span></p></div>
+                            <div className="col-6 text-right"><p className=""><span className="">00:40</span></p></div>
                         </div>
                         <div className="mt-4 mb-4 text-center">
-                            <button type="submit" className="btn btn-primary btn-lg btn-block clickmode" data-hide=".resetarea" data-show=".resetareapasswordd"> Submit </button>
-                        </div>                                                             
+                            <a id="btnSbmtOtp" className="btn btn-primary btn-lg btn-block evt-user-account" data-action="forget-password" data-request-for="verify-otp" data-id="0" data-hide=".resetarea" data-show=".resetareapasswordd"> Submit </a>
+                        </div>
                     </div>
                 </form>
 
-                <form className="auth_form  ddnone  resetareapasswordd">   
-                    <div className="header text-center pb-0">
+                <form className="card auth_form resetareapasswordd ps-4 pe-4 ddnone pt-3">
+                    <div className="header text-center ps-3 pe-3 pt-3 pb-0">
                         <h1 className="mb-0"><span className="col-black">Change Password </span> </h1>
-                     </div>                  
+                    </div>
                     <div className="body pt-3">
-                        <div className="group">                                 
-                            <input type="password" id="password" required="required"/>
-                                <label htmlFor="password"><i className="zmdi zmdi-lock col-grey">&nbsp;</i>  New Password</label>
-                                <span toggle="#password" className="zmdi field-icon toggle-password zmdi-eye col-grey"></span>
-                                <div className="bar"></div>
-                        </div> 
+                        <div className="group">
+                            <input type="password" id="txt_pswd" className="check-password-strength" autoComplete="new-password" onBlur={emptyPwdStrength} onCopy={(e)=>{return false;} } onPaste={(e)=>{return false;} }/>
+                            <label><i className="zmdi zmdi-lock col-grey">&nbsp;</i>New Password</label>
+                            <span id="password_strength" className="password_strength"></span>
+                            <span toggle="#txt_pswd" className="zmdi field-icon toggle-password zmdi-eye col-grey"></span>
+                            <div className="bar"></div>
+                        </div>
                         <p>
-                            <span className="badge badge-light">8 Charactors</span> <span className="badge badge-light">1 Soecial</span> <span className="badge badge-light">1 Uppercase</span> <span className="badge badge-light">1 Numeric</span>
+                            <span className="badge badge-light">8 Charactors</span> <span className="badge badge-light">1 Special</span> <span className="badge badge-light">1 Uppercase</span> <span className="badge badge-light">1 Numeric</span>
                         </p>
                         <div className="group">
-                                <input type="password" id="passwordd" required="required"/>
-                                <label htmlFor="passwordd"><i className="zmdi zmdi-lock-open col-grey"></i> Confirm New Password</label>
-                                <span toggle="#password" className="zmdi field-icon toggle-password zmdi-eye col-grey"></span>
-                                <div className="bar"></div>
-                        </div>                          
+                            <input type="password" id="txt_confirm_pswd" autoComplete="new-password" onCopy={(e)=>{return false;} } onPaste={(e)=>{return false;} } />
+                            <label><i className="zmdi zmdi-lock-open col-grey"></i> Confirm New Password</label>
+                            <span toggle="#txt_confirm_pswd" className="zmdi field-icon toggle-password zmdi-eye col-grey"></span>
+                            <div className="bar"></div>
+                        </div>
                         <div className="mt-4 mb-4 text-center">
-                            <button type="submit" className="btn btn-primary btn-lg btn-block  clickmode" data-hide=".resetareapasswordd" data-show=".thankspasswordd"> Reset Password </button>
-                        </div>                                                             
+                            <a id="btnResetPswd" className="btn btn-primary btn-lg btn-block evt-user-account" data-id="0" data-action="forget-password" data-request-for="reset-password" data-hide=".resetareapasswordd" data-show=".thankspasswordd"> Reset Password </a>
+                        </div>
                     </div>
                 </form>
                 <div className="thankspasswordd ddnone">
-                    <div className="d-flex align-items-center justify-content-center mt-4"> 
-                        <div className="thAnKmAiN text-center mt-4">                                  
+                    <div className="d-flex align-items-center justify-content-center mt-4">
+                        <div className="thAnKmAiN text-center mt-4">
                             <i className="zmdi zmdi-check-circle zmdi-hc-3x text-success"></i>
-                            <h5>Thank You  <br/>For Change Password</h5>                                            
-                            <button type="submit" className="btn btn-primary btn-lg btn-block mt-3  clickmode" data-hide=".thankspasswordd" data-show=".login_area_hide"> Login </button>
-                        </div> 
-                    </div>                      
-                </div>               
+                            <h5>Your Password has been changed successfully</h5>
+                            <a  className="btn btn-primary btn-lg btn-block mt-3  clickmode" data-hide=".thankspasswordd" data-show=".login_area_hide"> Login </a>
+                        </div>
+                    </div>
+                </div>              
             </div>            
         </div>
     </div>

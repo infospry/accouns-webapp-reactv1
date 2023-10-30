@@ -1,17 +1,94 @@
 "use client"
 import Loading from '@/app/components/Loading';
-import React, { useState } from 'react';
+
+import { useEffect, useState } from "react";
+import { getCookie } from 'cookies-next';
+import { getData } from '../../services/apiservice';
+import ApiEndPoints from "../../utils/ApiEndPoints";
 import Account from './Account'
 import Business from './Business'
+import Users from './Users'
 import LogoAndTheme from './LogoAndTheme'
 import EmailNotifications from './EmailNotifications'
 import EmailTemplates from './EmailTemplates'
 import Security from './Security'
 
+
+
 import Image from 'next/image'
 
 function Main() {
+    
+    const [accountData, setAccount] = useState([]);
+    const [businessData, setBusiness,] = useState([]);
+    const [businessAddress, setBusinessAddress] = useState([]);
+     const [businessPreferenceData, setBusinessPreference] = useState([]);
+    useEffect(() => {        
+        getAccount();
+        getBusiness();
+        getBusinessAddress();
+        getBusinessPreference();
+    }, []);
 
+    const getAccount = async () => {
+        var offset = 0;
+        var params = {"action":"account-info","action_on":"organization","request_for":"get","route":"Settings/GeneralInformation"};
+        const lang = getCookie('signin_token');
+        const response = await getData(params, lang, ApiEndPoints.accountSettings);
+         const obj =response;
+        if (obj.response_status === "OK")
+        
+        { 
+
+            setAccount(obj.data.response[0].account_info);
+            
+        }        
+
+    }
+
+    const getBusiness = async () => {
+        var offset = 0;
+        var params = {"action":"business-info","action_on":"organization","request_for":"get","route":"Settings/GeneralInformation"};
+        const lang = getCookie('signin_token');
+        const response = await getData(params, lang, ApiEndPoints.accountSettings);
+         const obj =response;
+        if (obj.response_status === "OK")
+        
+        { 
+            setBusiness(obj.data.response[0].business_info); 
+        }        
+
+    }
+    const getBusinessAddress = async () => {
+        var offset = 0;
+        var params = {"action":"business-info","action_on":"organization","request_for":"get","route":"Settings/GeneralInformation"};
+        const lang = getCookie('signin_token');
+        const response = await getData(params, lang, ApiEndPoints.accountSettings);
+         const obj =response;
+        if (obj.response_status === "OK")
+        
+        { 
+
+            setBusinessAddress(obj.data.response[0].address_info);
+            
+        }        
+
+    }
+    const getBusinessPreference = async () => {
+            var offset = 0;
+            var params = {"action":"business-info","action_on":"organization","request_for":"get","route":"Settings/GeneralInformation"};
+            const lang = getCookie('signin_token');
+            const response = await getData(params, lang, ApiEndPoints.accountSettings);
+            const obj =response;
+            if (obj.response_status === "OK")
+            
+            { 
+
+                setBusinessPreference(obj.data.response[0].preference_info);
+                
+            }        
+
+        }
 return (
 <>
     <section className="content">
@@ -35,41 +112,52 @@ return (
                         <div className="proTitle" id="imagePreview" style={{backgroundColor:"#eee"}}>LD</div>
                     </div>
                 </div>
-               
-                <h2 className="font-weight-bold mt-3 mb-0"> Loporem Dummy </h2>                  
+                {accountData && accountData.length > 0 && accountData.map((item, i) => (
+                <h2 className="font-weight-bold mt-3 mb-0"key={i}>  {item.account_name}  </h2> 
+                ))}                 
             </div>  
                 <div className="booktab d-flex justify-content-center align-items-center bdrbtm">
                     <div className="">
                         <ul className="nav nav-tabs nav-justified p-0">
                             <li className="nav-item">
                                 <a className="nav-link padnav font-16 clickmode active" data-show=".account"
-                                    data-hide=".business,.theme,.notifications,.templates,.security" href="javascript:void(0);"><i
+                                    data-hide=".invoice,.users,.business,.theme,.notifications,.templates,.security" href="javascript:void(0);"><i
                                         className="zmdi zmdi-account"></i>
                                     <span className="d-none_small"> Account </span> </a>
                             </li>
 
                             <li className="nav-item">
-                                <a className="nav-link padnav font-16  clickmode" data-hide=".account,.theme,.notifications,.templates,.security"
+                                <a className="nav-link padnav font-16  clickmode" data-hide=".invoice,.users,.account,.theme,.notifications,.templates,.security"
                                     data-show=".business" href="javascript:void(0);"><i className="zmdi zmdi-case-check"></i>
                                     <span className="d-none_small"> Business </span> </a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link padnav font-16  clickmode" data-hide=".account,.business,.notifications,.templates,.security"
+                                <a className="nav-link padnav font-16  clickmode" data-hide=".invoice,.account,.business,.theme,.notifications,.templates,.security"
+                                    data-show=".users" href="javascript:void(0);"><i className="zmdi zmdi-account-box-mail"></i>
+                                    <span className="d-none_small"> Users </span> </a>
+                            </li>
+                            <li className="nav-item">
+                                <a className="nav-link padnav font-16  clickmode" data-hide=".users,.account,.business,.theme,.notifications,.templates,.security"
+                                    data-show=".invoice" href="javascript:void(0);"><i className="zmdi zmdi-account-box-mail"></i>
+                                    <span className="d-none_small"> Invoice </span> </a>
+                            </li>
+                            <li className="nav-item">
+                                <a className="nav-link padnav font-16  clickmode" data-hide=".invoice,.users,.account,.business,.notifications,.templates,.security"
                                     data-show=".theme" href="javascript:void(0);"><i className="zmdi zmdi-widgets"></i>
                                     <span className="d-none_small"> Logo & Theme </span> </a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link padnav font-16  clickmode" data-hide=".account,.theme,.business,.templates,.security"
+                                <a className="nav-link padnav font-16  clickmode" data-hide=".invoice,.users,.account,.theme,.business,.templates,.security"
                                     data-show=".notifications" href="javascript:void(0);"><i className="zmdi zmdi-notifications"></i>
                                     <span className="d-none_small"> Email Notifications </span> </a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link padnav font-16  clickmode" data-hide=".account,.theme,.notifications,.business,.security"
+                                <a className="nav-link padnav font-16  clickmode" data-hide=".invoice,.users,.account,.theme,.notifications,.business,.security"
                                     data-show=".templates" href="javascript:void(0);"><i className="zmdi zmdi-email"></i>
                                     <span className="d-none_small"> Email Templates </span> </a>
                             </li>  
                             <li className="nav-item">
-                                <a className="nav-link padnav font-16  clickmode" data-hide=".account,.theme,.business,.notifications,.templates"
+                                <a className="nav-link padnav font-16  clickmode" data-hide=".invoice,.users,.account,.theme,.business,.notifications,.templates"
                                     data-show=".security" href="javascript:void(0);"><i className="zmdi zmdi-shield-check"></i>
                                     <span className="d-none_small"> Security </span> </a>
                             </li>                            
@@ -80,10 +168,13 @@ return (
                     <div className="row">
                         <div className="col-12 col-lg-12 mt-3 lb">
                             <div className='account p-3'>
-                               <Account/>
+                               <Account accountData={accountData}/>
                             </div>
-                            <div className='business p-4 dd_none'>
-                               <Business/>
+                            <div className='business pe-3 pb-4 dd_none'>
+                               <Business businessPreferenceData={businessPreferenceData} businessData={businessData} businessAddress={businessAddress}/>
+                            </div>
+                            <div className='users p-0 dd_none'>
+                                <Users/>
                             </div>
                             <div className='theme p-0 dd_none'>
                                 <LogoAndTheme/>
