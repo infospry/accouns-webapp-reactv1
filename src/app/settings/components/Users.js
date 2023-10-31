@@ -74,9 +74,10 @@ function Users() {
       };
     
     const [usersData, setUsers] = useState([]);
-
+    const [roleData, setRole] = useState([]);
     useEffect(() => {
         getUsers();
+        getRole();
     }, []);
 
       
@@ -93,6 +94,19 @@ function Users() {
         }        
 
     }
+    const getRole = async () => {
+      var offset = 0;
+      var params = {"action":"role","action_on":"dropdowns"};
+      const lang = getCookie('signin_token');
+      const response = await getData(params, lang, ApiEndPoints.dropdownApi);
+       const obj =response;
+      if (obj.response_status === "OK")
+      
+      { 
+          setRole(obj.data.response.role_list); 
+      }        
+
+  }
 return (
 <>
     <div class="booktab d-flex justify-content-between align-items-center bdrb p-2" style={{borderTop:"0px",borderLeft:"0px",borderRight:"0px",}}>
@@ -136,13 +150,13 @@ return (
                 <tr class="" key={i}>
                     <td class=""> {item.row_num} </td>
                     <td class="capitalize"><span id="spanUserName[object Object]">{item.user_name}</span></td>
-                    <td class="textAlignCenter"><span>User</span></td>
-                    <td class="textAlignCenter"><span id="spanUserRole-[object Object]" class="col-blue">Admin</span><span
-                            id="spanRoleId-[object Object]" >1</span></td>
-                    <td><span id="spanUserEmail-[object Object]">2@gmail.com</span></td>
-                    <td><span id="spanUserMobile-[object Object]">98798709987</span></td>
+                    <td class="textAlignCenter"><span>{item.user_type}</span></td>
+                    <td class="textAlignCenter"><span id="spanUserRole-[object Object]" class="col-blue">{item.role_id}</span><span
+                            id="spanRoleId-[object Object]" >{item.role_name}</span></td>
+                    <td><span id="spanUserEmail-[object Object]">{item.user_email}</span></td>
+                    <td><span id="spanUserMobile-[object Object]">{item.user_mobile}</span></td>
                     <td class="text-center"><span 
-                            class="evt-org-settings badge badge-danger">Inactive</span></td>
+                            class="evt-org-settings badge badge-danger">{item.user_status}</span></td>
                     <td>
                         <div class="dropdown"><button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1"
                             data-bs-toggle="dropdown" aria-expanded="false"><img src="../images/menu-dots-vertical.svg"alt="user"/></button>
@@ -159,10 +173,10 @@ return (
         </table>
     </div>
     <div className="modal right-quater md-one" id="addUserAccount" tabIndex="-1" role="dialog" aria-labelledby="shortModal">
-        <div className="modal-dialog ui-draggable ui-draggable-handle" role="document">
+        <div className="modal-dialog" role="document">
             <div className="modal-content" style={{ height: "auto!important" }}>
                 <div className="modal-header bg-blu-lite fixed-top">
-                    <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" className="close" data-bs-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                     <h4 className="modal-title" id="myModalLabel2">
@@ -276,7 +290,9 @@ return (
         </div>
       </div>
       <div className="col-12 col-sm-12">
-        <div className="group_lead">
+      {roleData && roleData.length > 0 && roleData.map((item, i) => (
+        <div className="group_lead"key={i}>
+       
           <select
             id="ddl_user_role"
             className="form-select select_f"
@@ -288,12 +304,11 @@ return (
             onChange={(e) => setFormData({ ...formData, user_role: e.target.value })}
           >
             <option value="0">Select User Role</option>
-            <option value="1">Admin</option>
-            <option value="2">User</option>
-            <option value="5">Manager</option>
-            <option value="6">Super Admin</option>
+            <option key={item.role_id} value={item.role_id}>{item.role_name} </option>
+           
           </select>
-        </div>
+         
+        </div> ))}
       </div>
       <div id="users_placeholder" className="col-12 col-sm-12 row"></div>
       <div className="col-12 col-sm-12 checkbox">
@@ -314,7 +329,7 @@ return (
                 <div className="model-footer">
                     <div className="text-center">
                         <button type="button" onClick={handleButtonClick} id="btnSbmtUserDetails" className="btn btn-primary me-1">Save </button>
-                        <button type="button" className="btn btn-danger evt-org-settings" data-dismiss="modal"><i className="zmdi zmdi-rotate-left">&nbsp;</i>Cancel</button>
+                        <button type="button" className="btn btn-danger evt-org-settings" data-bs-dismiss="modal"><i className="zmdi zmdi-rotate-left">&nbsp;</i>Cancel</button>
                     </div>
                 </div>
             </div>

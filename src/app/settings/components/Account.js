@@ -1,9 +1,43 @@
 "use client"
-import React from 'react'
+import React, { useState } from 'react';
 
 function Account({accountData}) {
-    //  alert( JSON.stringify(accountData));
-    //     console.log(accountData );
+    const [formData, setFormData] = useState({
+        accountName: 'Jitenter',
+        email: 'info@infospry.com',
+        mobileNumber: '02588999699',
+      });
+      
+      const [validationErrors, setValidationErrors] = useState({});
+    
+      const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({ ...formData, [name]: value });
+      };
+    
+      const handleSave = () => {
+        // Basic validation, you can add more complex validation as needed
+        const errors = {};
+        if (!formData.accountName.trim()) {
+          errors.accountName = 'Account Name is required.';
+        }
+        if (!formData.email.trim()) {
+          errors.email = 'Email is required.';
+        }
+        if (!formData.mobileNumber.trim()) {
+          errors.mobileNumber = 'Mobile Number is required.';
+        }
+    
+        if (Object.keys(errors).length > 0) {
+          setValidationErrors(errors);
+        } else {
+          // Your code to save data, e.g., send a request to your server
+          console.log('Data saved:', formData);
+          // Clear the form
+          setFormData({ accountName: '', email: '', mobileNumber: '' });
+          setValidationErrors({});
+        }
+      };
 return (
 <>
 
@@ -64,82 +98,67 @@ return (
                 </div>
                 <hr/>
                 <div className="row">
-                            
                     <div className="col-6">
                         <div className="mb-3">
-                            <label className="form-label">Account Name<span>*</span></label>
-                            <input type="text" className="form-control" placeholder="Enter account name" />
-                        </div>
-                    </div>                    
-                    <div className="col-12 col-md-6">
-                        <div className="mb-3">                                                
-                            <label for="exampleFormControlInput1" className="form-label">Email address<span>*</span></label>
-                            <input type="email" className="form-control mb-3" id="exampleFormControlInput1" placeholder="name@example.com"/>
-                            
+                        <label className="form-label">Account Name<span>*</span></label>
+                        <input
+                            type="text"
+                            className="form-control"
+                            placeholder="Enter account name"
+                            name="accountName"
+                            value={formData.accountName}
+                            onChange={handleInputChange}
+                        />
+                        {validationErrors.accountName && (
+                            <p className="text-danger">{validationErrors.accountName}</p>
+                        )}
                         </div>
                     </div>
                     <div className="col-12 col-md-6">
                         <div className="mb-3">
-                            <label className="form-label">Mobile Number <span>*</span></label>
-                            <input type="text" className="form-control" placeholder="Enter 10 digit mobile Number" />
+                        <label className="form-label">Email address<span>*</span></label>
+                        <input
+                            type="email"
+                            className="form-control mb-3"
+                            placeholder="name@example.com"
+                            name="email"
+                            value={formData.email}
+                            onChange={handleInputChange}
+                        />
+                        {validationErrors.email && (
+                            <p className="text-danger">{validationErrors.email}</p>
+                        )}
+                        </div>
+                    </div>
+                    <div className="col-12 col-md-6">
+                        <div className="mb-3">
+                        <label className="form-label">Mobile Number <span>*</span></label>
+                        <input
+                            type="text"
+                            className="form-control"
+                            placeholder="Enter 10-digit mobile number"
+                            name="mobileNumber"
+                            value={formData.mobileNumber}
+                            onChange={handleInputChange}
+                        />
+                        {validationErrors.mobileNumber && (
+                            <p className="text-danger">{validationErrors.mobileNumber}</p>
+                        )}
                         </div>
                     </div>
                     <div className="text-center col-12">
-                        <hr/>
-                        <button className="btn btn-primary clickmode me-1" data-show=".basic_btn, .basicDetails" data-hide=".editBasic"> <i className="zmdi zmdi-upload"></i> Save </button>
-                        <button className="btn btn-danger" type="button"><i className="zmdi zmdi-rotate-left"></i> Cancel</button>
+                        <hr />
+                        <button
+                        className="btn btn-primary clickmode me-1"
+                        onClick={handleSave}
+                        >
+                        <i className="zmdi zmdi-upload"></i> Save
+                        </button>
+                        <button className="btn btn-danger" type="button">
+                        <i className="zmdi zmdi-rotate-left"></i> Cancel
+                        </button>
                     </div>
-                    
-                </div>
-                {/* <div className="d-flex justify-content-between align-items-center mt-4">
-                    <h2 className="m-0 p-0 font-18"> <i className="zmdi zmdi-city me-1 col-grey "></i> <b> Address </b></h2>
-                </div>
-                <hr/>
-                <div className="row">
-                    <div className="col-12 col-md-6">
-                        <div className="mb-3">
-                            <label className="form-label">Address Line 1</label>
-                            <input type="text" className="form-control mb-3" placeholder="Address Line 1" />
-                            
-                        </div>
-                    </div>
-                    <div className="col-12 col-md-6">
-                        <div className="mb-3">
-                            <label className="form-label">Address Line 2</label>
-                            <input type="text" className="form-control mb-3" placeholder="Address Line 2" />
-                            
-                        </div>
-                    </div>
-                    <div className="col-12 col-md-6">
-                        <div className="mb-3">
-                            <label className="form-label">State</label>
-                            <input type="text" className="form-control mb-3" placeholder="Post Town" />
-                            
-                        </div>
-                    </div>
-                    <div className="col-12 col-md-6">
-                        <div className="mb-3">
-                            <label className="form-label">Post Town</label>
-                            <input type="text" className="form-control mb-3" placeholder="Post Town" />
-                            
-                        </div>
-                    </div>
-                    <div className="col-12 col-md-6">
-                        <div className="mb-3">
-                            <label className="form-label">Postcode</label>
-                            <input type="text" className="form-control mb-3" placeholder="Postcode" />
-                            
-                        </div>
-                    </div>
-                    <div className="col-12 col-md-6">
-                        <div className="mb-3">
-                            <label className="form-label">Country</label>
-                            <input type="text" className="form-control mb-3" placeholder="United Kingdom" />
-                            
-                        </div>
-                    </div>
-                    
-                </div>  */}
+                </div>                
             </div>
         </div> 
     </div>
