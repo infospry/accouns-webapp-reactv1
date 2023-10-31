@@ -8,6 +8,7 @@ import ApiEndPoints from "../../utils/ApiEndPoints";
 import Account from './Account'
 import Business from './Business'
 import Users from './Users'
+import Invoice from './Invoice'
 import LogoAndTheme from './LogoAndTheme'
 import EmailNotifications from './EmailNotifications'
 import EmailTemplates from './EmailTemplates'
@@ -122,6 +123,9 @@ return (
                             </div>
                             <div className='business pe-3 pb-4 dd_none'>
                                <Business />
+                            </div>
+                            <div className='invoice pe-3 pb-4 dd_none'>
+                               <Invoice/>
                             </div>
                             <div className='users p-0 dd_none'>
                                 <Users/>
