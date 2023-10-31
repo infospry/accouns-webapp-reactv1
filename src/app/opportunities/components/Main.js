@@ -41,7 +41,7 @@ import Messages from "./Messages";
     const getUsersList = async () => {
         const resp = await getUserList();
         if (resp.response_status === "OK") {
-            alert(resp.data.response.users);
+            // alert(resp.data.response.users);
             console.log(resp.data.response.users);
             setUser_list(resp.data.response.users)
         }
