@@ -1,12 +1,36 @@
 "use client"
 import React from 'react'
+import { useEffect, useState } from "react";
+import { getCookie } from 'cookies-next';
+import { getData } from '../../services/apiservice';
+import ApiEndPoints from "../../utils/ApiEndPoints";
+function Business() {
+    const [businessInfo, setBusinessInfo,] = useState({});
+    const [businessPref, setBusinessPref,] = useState({});
+    const [businessAddr, setBusinessAddr,] = useState({});
+    
+    useEffect(() => {        
+        getBusiness();       
+    }, []); 
 
-
-function Business({ businessData }) {
-    // alert( JSON.stringify(businessData));
-    // console.log(businessData);
-    const businessAddress=[];
-    const  businessPreferenceData=[];
+    const getBusiness = async () => {
+        var offset = 0;
+        var params = {"action":"business-info","action_on":"organization","request_for":"get","route":"Settings/GeneralInformation"};
+        const lang = getCookie('signin_token');
+        const response = await getData(params, lang, ApiEndPoints.organizationApi);
+        const obj =response;
+        if (obj.response_status === "OK")        
+        {            
+            // console.log(obj.data.response[0].business_info);
+            // console.log(obj.data.response[1].business_preference);
+            //   console.log(obj.data.response[2].address_info);
+    
+            setBusinessInfo(obj.data.response[0].business_info); 
+            setBusinessPref(obj.data.response[1].business_preference); 
+            setBusinessAddr(obj.data.response[2].address_info); 
+        }        
+    }
+   
   
   return (
     <>
@@ -575,7 +599,7 @@ function Business({ businessData }) {
                         <div className="saddow_box mb-3"style={{backgroundColor:"#fff"}}>
                             <h2 className="font-bold  font-18"> Business Information</h2>
                             <hr/>
-                            {businessData && businessData.length > 0 && businessData.map((item, index) => (
+                            {businessInfo && businessInfo.length > 0 && businessInfo.map((item, index) => (
                             <div className="row font-h4 p-3"key={index}>
                                 <div className="col-lg-6">
                                     <h4 className="col-grey m-0 p-0">Organization Name</h4>
@@ -621,7 +645,7 @@ function Business({ businessData }) {
                             
                             <h2 className="font-bold  font-18"> Address Information </h2>
                             <hr/>
-                            {businessAddress && businessAddress.length > 0 && businessAddress.map((item, index) => (
+                            {businessAddr && businessAddr.length > 0 && businessAddr.map((item, index) => (
                             <div className="row font-h4 p-3"key={index}>
                                 <div className="col-lg-6">
                                     <h4 className="col-grey m-0 p-0">Address</h4>
@@ -642,7 +666,7 @@ function Business({ businessData }) {
                                 </div>  
                                 <div className="col-lg-6">
                                     <h4 className="col-grey m-0 p-0"> Country</h4>
-                                    <p className="mb-3"> <span className="col-black"key={country_id}><b> {item.country_name} </b> </span> </p>
+                                    <p className="mb-3"> <span className="col-black" ><b> {item.country_name} </b> </span> </p>
                                 </div>  
                                 <div className="col-lg-6">
                                     <h4 className="col-grey m-0 p-0"> Postcode</h4>
@@ -656,7 +680,7 @@ function Business({ businessData }) {
                         <div className="">
                             <h2 className="font-bold font-18"> Preferences</h2>
                             <hr/>
-                            {businessPreferenceData && businessPreferenceData.length > 0 && businessPreferenceData.map((item, index) => (
+                            {businessPref && businessPref.length > 0 && businessPref.map((item, index) => (
 
                             <div className="row font-h4 p-3"key={index}>
                                 <div className="col-lg-6">
