@@ -17,15 +17,10 @@ import Security from './Security'
 
 import Image from 'next/image'
 
-function Main() {
-    
-    const [accountData, setAccount] = useState([]);
-    const [businessData, setBusiness,] = useState([]);
-    
+function Main() {    
+    const [accountData, setAccount] = useState([]);    
     useEffect(() => {        
-        getAccount();
-        getBusiness();
-       
+        getAccount();   
     }, []);
 
     const getAccount = async () => {
@@ -42,22 +37,7 @@ function Main() {
             
         }        
 
-    }
-
-    const getBusiness = async () => {
-        var offset = 0;
-        var params = {"action":"business-info","action_on":"organization","request_for":"get","route":"Settings/GeneralInformation"};
-        const lang = getCookie('signin_token');
-        const response = await getData(params, lang, ApiEndPoints.organizationApi);
-         const obj =response;
-        if (obj.response_status === "OK")
-        
-        { 
-            setBusiness(obj.data.response[0].business_info); 
-        }        
-
-    }
-   
+    }   
     
 return (
 <>
@@ -138,10 +118,10 @@ return (
                     <div className="row">
                         <div className="col-12 col-lg-12 mt-3 lb">
                             <div className='account p-3'>
-                               <Account accountData={accountData}/>
+                               <Account accountData={accountData} />
                             </div>
                             <div className='business pe-3 pb-4 dd_none'>
-                               <Business  businessData={businessData}/>
+                               <Business />
                             </div>
                             <div className='users p-0 dd_none'>
                                 <Users/>

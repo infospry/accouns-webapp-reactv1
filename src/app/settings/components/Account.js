@@ -2,8 +2,6 @@
 import React from 'react'
 
 function Account({accountData}) {
-    //  alert( JSON.stringify(accountData));
-    //     console.log(accountData );
 return (
 <>
 
