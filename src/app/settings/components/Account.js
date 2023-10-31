@@ -1,43 +1,71 @@
 "use client"
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
+import { post } from '@/app/services/api_axios_services';
+import ApiEndPoints from '@/app/utils/ApiEndPoints';
 
-function Account({accountData}) {
+function Account({ accountData }) {
+    
     const [formData, setFormData] = useState({
-        account_name: 'Jitenter',
-        account_email: 'info@infospry.com',
-        account_mobile: '02588999699',
-      });
-      
-      const [validationErrors, setValidationErrors] = useState({});
+        name:'',
+        user_email: '',
+        user_mobile: '',
+    }); 
+     
+    const [validationErrors, setValidationErrors] = useState({});      
+    
+    const editAccount = (e) => {          
+       var JsonData= e.target.getAttribute("data-name")
+       var objData= JSON.parse(JsonData);      
+        setFormData({ name: objData[0].account_name, user_email:objData[0].account_email, user_mobile: objData[0].account_mobile});
+    };
     
       const handleInputChange = (e) => {
         const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
+          setFormData({ ...formData, [name]: value });      
       };
     
       const handleSave = () => {
         // Basic validation, you can add more complex validation as needed
         const errors = {};
-        if (!formData.account_name.trim()) {
-          errors.account_name = 'Account Name is required.';
+        if (!formData.name.trim()) {
+          errors.name = 'Account Name is required.';
         }
-        if (!formData.account_email.trim()) {
-          errors.account_email = 'Email is required.';
+        if (!formData.user_email.trim()) {
+          errors.user_email = 'Email is required.';
         }
-        if (!formData.account_mobile.trim()) {
-          errors.account_mobile = 'Mobile Number is required.';
+        if (!formData.user_mobile.trim()) {
+          errors.user_mobile = 'Mobile Number is required.';
         }
     
         if (Object.keys(errors).length > 0) {
           setValidationErrors(errors);
         } else {
-          // Your code to save data, e.g., send a request to your server
-          alert('Data saved:' + JSON.stringify(formData));
+                UpdateAccount();
+        //   alert('Data saved:' + JSON.stringify(formData));
           // Clear the form
-          setFormData({ account_name: '', account_email: '', account_mobile: '' });
+            //setFormData({ account_name: '', account_email: '', account_mobile: '' });
+            
           setValidationErrors({});
-        }
+          }
       };
+    
+    const UpdateAccount = async (e) => {           
+        let strJsonString = {
+            "account_info": formData,
+            "action": 'account-info',
+            "action_on": "organization",
+            "request_for": 'update'
+        };
+        if (confirm("Are you sure you want to update account?")) {
+            const resp = await post(strJsonString, ApiEndPoints.organizationApi);          
+            if (resp.response_status === "OK") {
+                alert(resp.response_msg);           
+            }
+            else { 
+                alert(resp);
+            }        
+        }
+    }
 return (
 <>
 
@@ -84,12 +112,16 @@ return (
                         <h4 className="col-grey m-0 p-0"> Last Login</h4>
                         <p className="mb-3"> <span className="col-black"><b>{item.last_login[0].login_datetime}  </b> </span><a href="/" class="ms-2 col-blue">View more...</a> </p>
                     </div>
-                </div>                
+                    </div>                 
+                        
                 ))}
-                <div className="text-center col-12">
-                    <hr/>
-                    <button className="btn btn-primary basic_btn clickmode" data-hide=".basicDetails" data-show=".editBasic"> <i className="zmdi zmdi-edit"></i> Edit </button>
-                </div>
+              <div className="text-center col-12">
+                            <hr />
+                            
+                                   <button data-name={JSON.stringify(accountData)} onClick={editAccount} className="btn btn-primary basic_btn clickmode" data-hide=".basicDetails" data-show=".editBasic"> <i className="zmdi zmdi-edit"></i> Edit </button>
+                                   
+                                        
+                </div>    
 
             </div>
             <div className="editBasic dd_none">
@@ -105,12 +137,12 @@ return (
                             type="text"
                             className="form-control"
                             placeholder="Enter account name"
-                            name="account_name"
-                            value={formData.account_name}
+                            name="name"
+                            value={formData.name}
                             onChange={handleInputChange}
                         />
-                        {validationErrors.account_name && (
-                            <p className="text-danger">{validationErrors.account_name}</p>
+                        {validationErrors.name && (
+                            <p className="text-danger">{validationErrors.name}</p>
                         )}
                         </div>
                     </div>
@@ -120,13 +152,15 @@ return (
                         <input
                             type="email"
                             className="form-control mb-3"
-                            placeholder="name@example.com"
-                            name="account_email"
-                            value={formData.account_email}
-                            onChange={handleInputChange}
+                            placeholder="Enter account email Id"
+                            name="user_email"
+                            value={formData.user_email}
+                                        onChange={handleInputChange}
+                                        disabled='disabled'
+                                        style={{backgroundColor:'#b7b5ae5e', border:'1px solid #ccc'}}
                         />
-                        {validationErrors.account_email && (
-                            <p className="text-danger">{validationErrors.account_email}</p>
+                        {validationErrors.user_email && (
+                            <p className="text-danger">{validationErrors.user_email}</p>
                         )}
                         </div>
                     </div>
@@ -136,13 +170,14 @@ return (
                         <input
                             type="text"
                             className="form-control"
-                            placeholder="Enter 10-digit mobile number"
-                            name="account_mobile"
-                            value={formData.account_mobile}
+                                        placeholder="Enter 10-digit mobile number"
+                                        maxLength={11}
+                            name="user_mobile"
+                            value={formData.user_mobile}
                             onChange={handleInputChange}
                         />
-                        {validationErrors.account_mobile && (
-                            <p className="text-danger">{validationErrors.account_mobile}</p>
+                        {validationErrors.user_mobile && (
+                            <p className="text-danger">{validationErrors.user_mobile}</p>
                         )}
                         </div>
                     </div>
