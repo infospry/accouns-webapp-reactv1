@@ -21,13 +21,12 @@ function Main() {
     
     const [accountData, setAccount] = useState([]);
     const [businessData, setBusiness,] = useState([]);
-    const [businessAddress, setBusinessAddress] = useState([]);
-     const [businessPreferenceData, setBusinessPreference] = useState([]);
+    
     useEffect(() => {        
         getAccount();
         getBusiness();
-        
-    }, []); 
+       
+    }, []);
 
     const getAccount = async () => {
         var offset = 0;
@@ -54,11 +53,11 @@ function Main() {
         if (obj.response_status === "OK")
         
         { 
-            setBusiness(obj.data.response); 
+            setBusiness(obj.data.response[0].business_info); 
         }        
 
     }
-    
+   
     
 return (
 <>
@@ -142,7 +141,7 @@ return (
                                <Account accountData={accountData}/>
                             </div>
                             <div className='business pe-3 pb-4 dd_none'>
-                               <Business  businessData={businessData} />
+                               <Business  businessData={businessData}/>
                             </div>
                             <div className='users p-0 dd_none'>
                                 <Users/>

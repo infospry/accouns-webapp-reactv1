@@ -2,11 +2,12 @@
 import React from 'react'
 
 
-function Business({ businessData=[] }) {
+function Business({ businessData }) {
+    alert( JSON.stringify(businessData));
     console.log(businessData);
     const businessAddress=[];
     const  businessPreferenceData=[];
-//  alert( JSON.stringify(businessData));
+  
   return (
     <>
         <div className="bussinessDetails dd_none"> 

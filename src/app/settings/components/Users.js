@@ -135,7 +135,7 @@ return (
 
                 <tr class="" key={i}>
                     <td class=""> {item.row_num} </td>
-                    <td class="capitalize"><span id="spanUserName[object Object]">tejj</span></td>
+                    <td class="capitalize"><span id="spanUserName[object Object]">{item.user_name}</span></td>
                     <td class="textAlignCenter"><span>User</span></td>
                     <td class="textAlignCenter"><span id="spanUserRole-[object Object]" class="col-blue">Admin</span><span
                             id="spanRoleId-[object Object]" >1</span></td>
