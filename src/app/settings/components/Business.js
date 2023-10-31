@@ -3,8 +3,8 @@ import React from 'react'
 
 
 function Business({ businessData }) {
-    alert( JSON.stringify(businessData));
-    console.log(businessData);
+    // alert( JSON.stringify(businessData));
+    // console.log(businessData);
     const businessAddress=[];
     const  businessPreferenceData=[];
   
