@@ -39,7 +39,7 @@ function Business() {
             <div className='row justify-content-start'>
                 <div className="col-lg-6">
                     <div className="saddow_box mb-3">
-                        <h2 className="font-bold  font-18"> Business Information</h2>
+                        <h2 className="font-bold  font-18"> Business Main Information</h2>
                         <hr/>
                         <div className="row">                    
                         <div className="col-12 col-md-6">
