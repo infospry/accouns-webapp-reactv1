@@ -27,7 +27,7 @@ function Main() {
         getAccount();
         getBusiness();
         
-    }, []);
+    }, []); 
 
     const getAccount = async () => {
         var offset = 0;
