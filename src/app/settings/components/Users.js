@@ -84,12 +84,12 @@ function Users() {
         var offset = 0;
         var params = {"add_user":{"str_search":""},"action":"add-user","action_on":"organization","request_for":"get"};
         const lang = getCookie('signin_token');
-        const response = await getData(params, lang, ApiEndPoints.accountSettings);
+        const response = await getData(params, lang, ApiEndPoints.organizationApi);
          const obj =response;
         if (obj.response_status === "OK")
         
         { 
-            setUsers(obj.data.response[0].user_info); 
+            setUsers(obj.data.response.user_info); 
         }        
 
     }

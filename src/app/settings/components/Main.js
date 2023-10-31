@@ -26,15 +26,14 @@ function Main() {
     useEffect(() => {        
         getAccount();
         getBusiness();
-        getBusinessAddress();
-        getBusinessPreference();
+        
     }, []);
 
     const getAccount = async () => {
         var offset = 0;
         var params = {"action":"account-info","action_on":"organization","request_for":"get","route":"Settings/GeneralInformation"};
         const lang = getCookie('signin_token');
-        const response = await getData(params, lang, ApiEndPoints.accountSettings);
+        const response = await getData(params, lang, ApiEndPoints.organizationApi);
          const obj =response;
         if (obj.response_status === "OK")
         
@@ -50,45 +49,17 @@ function Main() {
         var offset = 0;
         var params = {"action":"business-info","action_on":"organization","request_for":"get","route":"Settings/GeneralInformation"};
         const lang = getCookie('signin_token');
-        const response = await getData(params, lang, ApiEndPoints.accountSettings);
+        const response = await getData(params, lang, ApiEndPoints.organizationApi);
          const obj =response;
         if (obj.response_status === "OK")
         
         { 
-            setBusiness(obj.data.response[0].business_info); 
+            setBusiness(obj.data.response); 
         }        
 
     }
-    const getBusinessAddress = async () => {
-        var offset = 0;
-        var params = {"action":"business-info","action_on":"organization","request_for":"get","route":"Settings/GeneralInformation"};
-        const lang = getCookie('signin_token');
-        const response = await getData(params, lang, ApiEndPoints.accountSettings);
-         const obj =response;
-        if (obj.response_status === "OK")
-        
-        { 
-
-            setBusinessAddress(obj.data.response[0].address_info);
-            
-        }        
-
-    }
-    const getBusinessPreference = async () => {
-            var offset = 0;
-            var params = {"action":"business-info","action_on":"organization","request_for":"get","route":"Settings/GeneralInformation"};
-            const lang = getCookie('signin_token');
-            const response = await getData(params, lang, ApiEndPoints.accountSettings);
-            const obj =response;
-            if (obj.response_status === "OK")
-            
-            { 
-
-                setBusinessPreference(obj.data.response[0].preference_info);
-                
-            }        
-
-        }
+    
+    
 return (
 <>
     <section className="content">
@@ -171,7 +142,7 @@ return (
                                <Account accountData={accountData}/>
                             </div>
                             <div className='business pe-3 pb-4 dd_none'>
-                               <Business businessPreferenceData={businessPreferenceData} businessData={businessData} businessAddress={businessAddress}/>
+                               <Business  businessData={businessData} />
                             </div>
                             <div className='users p-0 dd_none'>
                                 <Users/>
