@@ -2,9 +2,10 @@
 import React from 'react'
 
 
-function Business({ businessData }) {
-    const businessAddress;
-    const  businessPreferenceData;
+function Business({ businessData=[] }) {
+    console.log(businessData);
+    const businessAddress=[];
+    const  businessPreferenceData=[];
 //  alert( JSON.stringify(businessData));
   return (
     <>
