@@ -290,8 +290,8 @@ return (
         </div>
       </div>
       <div className="col-12 col-sm-12">
-      {roleData && roleData.length > 0 && roleData.map((item, i) => (
-        <div className="group_lead"key={i}>
+      
+        <div className="group_lead">
        
           <select
             id="ddl_user_role"
@@ -304,11 +304,12 @@ return (
             onChange={(e) => setFormData({ ...formData, user_role: e.target.value })}
           >
             <option value="0">Select User Role</option>
-            <option key={item.role_id} value={item.role_id}>{item.role_name} </option>
-           
+            {roleData && roleData.length > 0 && roleData.map((item, i) => (
+            <option key={i} value={item.role_id}>{item.role_name} </option>
+            ))}
           </select>
          
-        </div> ))}
+        </div>
       </div>
       <div id="users_placeholder" className="col-12 col-sm-12 row"></div>
       <div className="col-12 col-sm-12 checkbox">

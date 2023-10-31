@@ -3,9 +3,9 @@ import React, { useState } from 'react';
 
 function Account({accountData}) {
     const [formData, setFormData] = useState({
-        accountName: 'Jitenter',
-        email: 'info@infospry.com',
-        mobileNumber: '02588999699',
+        account_name: 'Jitenter',
+        account_email: 'info@infospry.com',
+        account_mobile: '02588999699',
       });
       
       const [validationErrors, setValidationErrors] = useState({});
@@ -18,23 +18,23 @@ function Account({accountData}) {
       const handleSave = () => {
         // Basic validation, you can add more complex validation as needed
         const errors = {};
-        if (!formData.accountName.trim()) {
-          errors.accountName = 'Account Name is required.';
+        if (!formData.account_name.trim()) {
+          errors.account_name = 'Account Name is required.';
         }
-        if (!formData.email.trim()) {
-          errors.email = 'Email is required.';
+        if (!formData.account_email.trim()) {
+          errors.account_email = 'Email is required.';
         }
-        if (!formData.mobileNumber.trim()) {
-          errors.mobileNumber = 'Mobile Number is required.';
+        if (!formData.account_mobile.trim()) {
+          errors.account_mobile = 'Mobile Number is required.';
         }
     
         if (Object.keys(errors).length > 0) {
           setValidationErrors(errors);
         } else {
           // Your code to save data, e.g., send a request to your server
-          console.log('Data saved:', formData);
+          alert('Data saved:' + JSON.stringify(formData));
           // Clear the form
-          setFormData({ accountName: '', email: '', mobileNumber: '' });
+          setFormData({ account_name: '', account_email: '', account_mobile: '' });
           setValidationErrors({});
         }
       };
@@ -88,7 +88,7 @@ return (
                 ))}
                 <div className="text-center col-12">
                     <hr/>
-                    <button className="btn btn-primary clickmode basic_btn clickmode" data-hide=".basic_btn, .basicDetails" data-show=".editBasic"> <i className="zmdi zmdi-edit"></i> Edit </button>
+                    <button className="btn btn-primary basic_btn clickmode" data-hide=".basicDetails" data-show=".editBasic"> <i className="zmdi zmdi-edit"></i> Edit </button>
                 </div>
 
             </div>
@@ -105,12 +105,12 @@ return (
                             type="text"
                             className="form-control"
                             placeholder="Enter account name"
-                            name="accountName"
-                            value={formData.accountName}
+                            name="account_name"
+                            value={formData.account_name}
                             onChange={handleInputChange}
                         />
-                        {validationErrors.accountName && (
-                            <p className="text-danger">{validationErrors.accountName}</p>
+                        {validationErrors.account_name && (
+                            <p className="text-danger">{validationErrors.account_name}</p>
                         )}
                         </div>
                     </div>
@@ -121,12 +121,12 @@ return (
                             type="email"
                             className="form-control mb-3"
                             placeholder="name@example.com"
-                            name="email"
-                            value={formData.email}
+                            name="account_email"
+                            value={formData.account_email}
                             onChange={handleInputChange}
                         />
-                        {validationErrors.email && (
-                            <p className="text-danger">{validationErrors.email}</p>
+                        {validationErrors.account_email && (
+                            <p className="text-danger">{validationErrors.account_email}</p>
                         )}
                         </div>
                     </div>
@@ -137,12 +137,12 @@ return (
                             type="text"
                             className="form-control"
                             placeholder="Enter 10-digit mobile number"
-                            name="mobileNumber"
-                            value={formData.mobileNumber}
+                            name="account_mobile"
+                            value={formData.account_mobile}
                             onChange={handleInputChange}
                         />
-                        {validationErrors.mobileNumber && (
-                            <p className="text-danger">{validationErrors.mobileNumber}</p>
+                        {validationErrors.account_mobile && (
+                            <p className="text-danger">{validationErrors.account_mobile}</p>
                         )}
                         </div>
                     </div>
@@ -154,7 +154,7 @@ return (
                         >
                         <i className="zmdi zmdi-upload"></i> Save
                         </button>
-                        <button className="btn btn-danger" type="button">
+                        <button className="btn btn-danger clickmode" type="button"data-show=".basicDetails"data-hide=".editBasic">
                         <i className="zmdi zmdi-rotate-left"></i> Cancel
                         </button>
                     </div>
