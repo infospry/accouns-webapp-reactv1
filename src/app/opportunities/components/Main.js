@@ -57,8 +57,7 @@ import Messages from "./Messages";
         if (obj.response_status === "OK") {          
             setLeads(obj.data.response.leads_list);
         }        
-    }
-    
+    }    
 
     const loadMore = async (e) => {
         e.preventDefault();
@@ -737,6 +736,7 @@ import Messages from "./Messages";
     </>
     )
 }
+
 export const getServerSideProps = async ({ req, res }) => {
     try {
         //opportunity data
