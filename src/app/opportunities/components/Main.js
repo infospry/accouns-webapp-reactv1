@@ -296,7 +296,7 @@ const [formData, setFormData] = useState({
         daterange();
     }
     const searchLead = async (e) => {
-        console.log(e.target)
+       
         var strJsonString = "", next = 1, previous = 0;
         var action = $(e.target).attr("data-action"), action_on = "leads_main", RequestFor = $(e.target).attr("data-request_for");
         var fromDate = "", toDate = "";
@@ -860,77 +860,8 @@ const [formData, setFormData] = useState({
                         <b>Add Lead</b>
                     </h4>
                 </div>
-                <div class="modal-body">
-                    {/* <div class="row">
-                        <div class="col-md-6 pt-3">
-                            <div class="">
-                                <div class="group_lead">
-                                    <input class="input_text" id="ppreson" name="ppreson" required="required" type="text"/> 
-                                    <label class="lablefilled"><i class="zmdi zmdi-account"></i> Contact person</label>
-                                </div>
-                                <div class="group_lead">
-                                    <input class="input_text" id="ppreson" name="ppreson" required="required" type="text"/> 
-                                    <label class="lablefilled"><i class="zmdi zmdi-city"></i>  Organization</label>
-                                </div>
-                                <div class="group_lead">
-                                    <input class="input_text" id="ppreson" name="ppreson" required="required" type="text"/> 
-                                    <label class="lablefilled">  Title</label>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-6">
-                                        <div class="group_lead">
-                                            <input class="input_text" name="value" required="required" type="text"/> 
-                                            <label class="lablefilled"> Value</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-6 ps-0">
-                                        <div class="group_lead"><select class="custom-select select_f" id="Currency"><option>  Choose Currency</option><option name="Inr" value="Inr">Indian Rupee (INR)</option></select></div>
-                                    </div>
-                                </div>
-
-                                <div class="group_lead"><select class="custom-select select_f" id="Labels"><option>  Owner</option><option name="Stokes" value="Stokes">Rikwik Stokes</option></select></div>
-                                <div class="group_lead">
-                                    <input class="input_text" name="date" required="required" type="date"/> 
-                                    <label class="lablefilled"> Expected close date </label>
-                                </div>
-                                <div class="group_lead"><select class="custom-select select_f" id="Labels"><option>  Visible to</option><option name="Owner" value="Owner">Item Owner</option><option name="visibility" value="visibility">Item owner’s visibility group</option></select></div>
-
-                            </div>
-                        </div>
-                        
-                        <div class="col-md-6 pt-3" style={{borderLeft:"1px solid #eee"}}> 
-                            <div class=""> 
-                                <h4 class="mb-0"><b>Person</b></h4>    
-                                <hr/> 
-                                <div class="row">
-                                    <div class="col-6 col-lg-7">
-                                        <div class="group_lead mb-2">
-                                            <input class="input_text" id="ppreson" name="ppreson" required="required" type="text"/> 
-                                            <label class="lablefilled"><i class="zmdi zmdi-phone"></i> Phone</label>
-                                        </div> 
-                                    </div>
-                                    <div class="col-6 col-lg-5  ps-0">
-                                        <div class="group_lead mb-2"><select class="custom-select select_f" id=""><option>  Work </option><option name="home" value="Inr">Home</option><option name="Other" value="Inr">Other</option></select></div>
-                                    </div>
-                                </div> 
-                                <a href="#">+ Add phone</a>
-                                <div class="row mt-3">
-                                    <div class="col-6 col-lg-7">
-                                        <div class="group_lead mb-2">
-                                            <input class="input_text" id="ppreson" name="ppreson" required="required" type="text"/> 
-                                            <label class="lablefilled"><i class="zmdi zmdi-email"></i> Email</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-6 col-lg-5  ps-0">
-                                        <div class="group_lead mb-2"><select class="custom-select select_f" id=""><option>  Work </option><option name="home" value="Inr">Home</option><option name="Other" value="Inr">Other</option></select></div>
-                                    </div>
-                                </div>                                           
-                                <a href="#">+ Add mobile</a>
-                            </div>    
-                        </div>
-                    </div>  */}
-                                            
+                        <div class="modal-body">                           
+                         
                     <div class="tab-content p-0">
                         <div role="tabpanel" class=" tab-pane in active">
                             <div className="row m-0 justify-content-center mt-3">

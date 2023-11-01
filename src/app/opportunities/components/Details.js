@@ -121,8 +121,7 @@ function Details({res,contact}) {
             <a className="css-es7v8c clickmode" href="javascript:void(0);"  data-show=".History">
                 <div className="css-ra8ckx">
                     <div className="css-1waj6v4">
-                        <h3 className="css-tixvpt"> Lead Status History</h3>
-                        <span className="css-jcj5hu">Highlight Lead Status History</span>
+                        <h3 className="css-tixvpt"> Lead Activities</h3>                        
                     </div>
                     <svg xmlns="http://www.w3.org/2000/svg" focusable="false" role="img" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true" className="css-169u4i0">
                         <path
