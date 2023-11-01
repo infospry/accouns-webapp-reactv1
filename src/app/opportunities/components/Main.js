@@ -13,7 +13,7 @@ import Document from './Document';
 import Note from './Note';
 import Activity from './Activity';
 import Messages from "./Messages";
-import { get, post } from "../../services/api_axios_services"
+import { get, post } from "../../services/api_axios_services";
     
 
 
