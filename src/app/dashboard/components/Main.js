@@ -112,7 +112,7 @@ function Main() {
                                             </div>
                                             <div className="body pt-1 pb-2">
                                                 <div className="icon-small">
-                                                    <div className="w_icon cyan">1</div><h4>Response</h4>
+                                                    <div className="w_icon cyan">0</div><h4>Response</h4>
 
                                                 </div>
                                                 <div className="state_w1 mb-1 mt-1 ml-3">
