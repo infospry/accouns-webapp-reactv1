@@ -6,7 +6,6 @@ import { getUserList } from "../../services/dropdownServices";
 import ApiEndPoints from "../../utils/ApiEndPoints";
 import { getCookie } from 'cookies-next';
 import { getData } from '../../services/apiservice';
-
 import Loading from '@/app/components/Loading'
 import Image from 'next/image';
 import Details from './Details';
@@ -14,6 +13,8 @@ import Document from './Document';
 import Note from './Note';
 import Activity from './Activity';
 import Messages from "./Messages";
+import { get, post } from "../../services/api_axios_services"
+    
 
 
     const Main = ({ data = [], pageData = [], leadTypeList = [], CategoryList = [], CountryList = [] }) => {
@@ -23,7 +24,6 @@ import Messages from "./Messages";
     const [loader, setLoader] = useState(false);
     const [user_list, setUser_list] = useState([]);
     // const [leads, setLeads] = useState([]);
-
 
     // const [loader, setLoader] = useState(false);
     const [res, setRes] = useState([]);
@@ -75,6 +75,7 @@ import Messages from "./Messages";
         setLead_uid(uid);
         setLoading(true);
         var params = { "leads": { "u_id": uid }, "action": "leads", "action_on": "leads_main", "request_for": "select", "previous": 0, "next": 1 }
+      
         const resp = await get(params, ApiEndPoints.opportunity);
         if (resp.response_status === "OK") {
             ns_util.remove_css_class_from_class(".nav-link", "active")
@@ -100,7 +101,8 @@ import Messages from "./Messages";
             setLoading(false);
         }
 
-    }
+        }
+        
     useEffect(() => {
         setTimeout(() => {
             if (ref.current.length > 0) {
@@ -130,6 +132,7 @@ import Messages from "./Messages";
         }
 
     }, [leads]);
+        
     const load_activity = async () => {
         var params = { "leads": { "u_id": lead_uid }, "action": "lead-activity", "action_on": "leads_main", "request_for": "select", "previous": 0, "next": 10 }
         const resp = await get(params, ApiEndPoints.opportunity);
@@ -414,6 +417,7 @@ import Messages from "./Messages";
                                                                     }
                                                                 </div>
                                                             </div>
+                                                                
                                                         </span>
                                                     </h5>
                                                 </> : <></>}
@@ -444,7 +448,7 @@ import Messages from "./Messages";
                                                     : <></>}
 
                                             </>}
-                                        <div class="row">
+                                        {/* <div class="row">
                                             <div class="col-md-6 mb-2">
                                                 <div class="d-flex justify-content-start align-items-center">    
                                                     <div class="css-3sr5s988 me-2"><span class="css-19k1nij">GR</span></div>
@@ -514,7 +518,7 @@ import Messages from "./Messages";
                                                         data-bs-target="#convert"title="Convert"><i className="zmdi zmdi-swap"></i> </a>
                                                 </div>
                                             </div>
-                                        </div>                                       
+                                        </div>                                        */}
                                         
                                         <div className="mb-1 d-lg-none">
                                             <a href="#" className="btn btn btn-primary" data-bs-toggle="modal" data-bs-target="#emailsend"><i
