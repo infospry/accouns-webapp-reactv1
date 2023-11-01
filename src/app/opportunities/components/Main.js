@@ -225,7 +225,7 @@ const submitLead = async (e) => {
         daterange();
     }
     const searchLead = async (e) => {
-        console.log(e.target)
+       
         var strJsonString = "", next = 1, previous = 0;
         var action = $(e.target).attr("data-action"), action_on = "leads_main", RequestFor = $(e.target).attr("data-request_for");
         var fromDate = "", toDate = "";
