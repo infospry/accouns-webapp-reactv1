@@ -137,11 +137,12 @@ function Details({res,contact}) {
                     <div class="css-ra8ckx d-flex justify-content-center align-items-top" style={{alignItems:" flex-start"}}>
                         <div class="css-1waj6v4 eu4oa1w0">
                             <div className="dd-content">
-                                <ul className="timeline">
-                                    <li>
+                                      <ul className="timeline">                                          
+                                    {contact.lead_status_list && contact.lead_status_list.map((status, i) => (
+                                    <li key={i}>
                                         <div className="timeline-time">
-                                            <span className="date">Today</span>
-                                            <span className="time">04:20</span>
+                                            <span className="date">{status.create_date}</span>
+                                            <span className="time">{status.create_time}</span>
                                         </div>
                                         <div className="timeline-icon">
                                             <a href="javascript:;">&nbsp;</a>
@@ -151,11 +152,10 @@ function Details({res,contact}) {
                                                 <span className="userimage"><img
                                                         src="images/download.jpg" /></span>
                                                 <span className="username"><a
-                                                        href="javascript:;">John Smith</a>
+                                                        href="javascript:;">{status.user_name}</a>
                                                     <small></small></span>
                                                 <span
-                                                    className="text-right float-right text-muted">New
-                                                    Lead</span>
+                                                    className="text-right float-right text-muted">{status.status_name}</span>
                                             </div>
                                             <div className="timeline-content">
                                                 <p className="lead">Traning Magager Software
@@ -168,44 +168,7 @@ function Details({res,contact}) {
                                             </div>
                                         </div>
                                     </li>
-                                    <li>
-                                        <div className="timeline-time">
-                                            <span className="date">16/2-2021</span>
-                                            <span className="time">09:20</span>
-                                        </div>
-                                        <div className="timeline-icon">
-                                            <a href="javascript:;">&nbsp;</a>
-                                        </div>
-                                        <div className="timeline-body">
-                                            <div className="timeline-header">
-                                                <span className="userimage"><img
-                                                        src="images/download.jpg" /></span>
-                                                <span className="username"><a
-                                                        href="javascript:;">John Smith</a>
-                                                    <small></small></span>
-                                                <span
-                                                    className="text-right float-right text-muted">New
-                                                    Lead</span>
-                                            </div>
-                                            <div className="timeline-content">
-                                                <p className="lead">Traning Magager Software
-                                                    Engneering</p>
-                                                <p>
-                                                    A Leads Status in a campaign can be
-                                                    Updated from the Lead Profile in a
-                                                    Campaign.
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div className="timeline-icon">
-                                            <a href="javascript:;">&nbsp;</a>
-                                        </div>
-                                        <div className="timeline-body">
-                                            Loading...
-                                        </div>
-                                    </li>
+                                   ))}
                                 </ul>
                             </div>    
                         </div>                        
