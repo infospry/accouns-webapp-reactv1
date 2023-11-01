@@ -6,7 +6,6 @@ import { getUserList } from "../../services/dropdownServices";
 import ApiEndPoints from "../../utils/ApiEndPoints";
 import { getCookie } from 'cookies-next';
 import { getData } from '../../services/apiservice';
-
 import Loading from '@/app/components/Loading'
 import Image from 'next/image';
 import Details from './Details';
@@ -14,6 +13,8 @@ import Document from './Document';
 import Note from './Note';
 import Activity from './Activity';
 import Messages from "./Messages";
+import { get, post } from "../../services/api_axios_services"
+    
 
 
     const Main = ({ data = [], pageData = [], leadTypeList = [], CategoryList = [], CountryList = [] }) => {
@@ -121,7 +122,6 @@ const [formData, setFormData] = useState({
     const [user_list, setUser_list] = useState([]);
     // const [leads, setLeads] = useState([]);
 
-
     // const [loader, setLoader] = useState(false);
     const [res, setRes] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -172,6 +172,7 @@ const [formData, setFormData] = useState({
         setLead_uid(uid);
         setLoading(true);
         var params = { "leads": { "u_id": uid }, "action": "leads", "action_on": "leads_main", "request_for": "select", "previous": 0, "next": 1 }
+      
         const resp = await get(params, ApiEndPoints.opportunity);
         if (resp.response_status === "OK") {
             ns_util.remove_css_class_from_class(".nav-link", "active")
@@ -197,7 +198,8 @@ const [formData, setFormData] = useState({
             setLoading(false);
         }
 
-    }
+        }
+        
     useEffect(() => {
         setTimeout(() => {
             if (ref.current.length > 0) {
@@ -227,6 +229,7 @@ const [formData, setFormData] = useState({
         }
 
     }, [leads]);
+        
     const load_activity = async () => {
         var params = { "leads": { "u_id": lead_uid }, "action": "lead-activity", "action_on": "leads_main", "request_for": "select", "previous": 0, "next": 10 }
         const resp = await get(params, ApiEndPoints.opportunity);
@@ -467,6 +470,7 @@ const [formData, setFormData] = useState({
                                 </div>
                             </div>
                         </div>
+
                         <div className="col-12 col-sm-8 col-md-8 col-lg-9 p-0 bg-white">
                             <div className="hgtt88 contbody one add_remove">
                                 <div className="media bder11 p-4 mb-0"style={{borderLeft:"0px",borderRight:"0px"}}>
@@ -1397,7 +1401,7 @@ const [formData, setFormData] = useState({
                         <div class="col-md-12">
                             <div class="text-center">                               
                                 <button type="submit" id="btn_submit_lead"onClick={handleButtonClick} className="btn btn-primary" ><i className="zmdi zmdi-upload">&nbsp;</i>Save </button>
-                                    <a id="btn_copytoClip" className="btn btn-primary s-1 me-1"><i className="zmdi zmdi-copy">&nbsp;</i>Copy to clipboard</a>
+                                    <a id="btn_copytoClip" className="btn btn-primary ms-1 me-1"><i className="zmdi zmdi-copy">&nbsp;</i>Copy to clipboard</a>
                                     <a className="btn btn-danger btn-lg" data-bs-dismiss="modal"><i className="zmdi zmdi-rotate-left">&nbsp;</i>Cancel</a>
                             </div>
                         </div>
