@@ -19,89 +19,7 @@ import { get, post } from "../../services/api_axios_services"
 
     const Main = ({ data = [], pageData = [], leadTypeList = [], CategoryList = [], CountryList = [] }) => {
     const ref = useRef([]);
-//#region form add
 
-const [formData, setFormData] = useState({
-    lead_type_name:'',
-    lead_name: '',
-    lead_dob:'',
-    lead_company_name:'',
-    user_mobile: '67576876868',
-    user_email: 'test3@gmail.co',
-    user_password: '',
-    confirm_password: '',
-    user_role: '1',
-    email_verify_required: false,
-  });
-
-  const [formErrors, setFormErrors] = useState({});
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
-  const handleButtonClick = () => {
-    // Implement form validation here
-    const errors = {};
-    if (formData.user_role === '0') {
-        errors.user_role = 'Please select a User Role';
-      }
-    if (!formData.lead_name) {
-      errors.lead_name = 'Lead Name is required';
-    }
-    if (!formData.lead_dob) {
-        errors.lead_dob = 'Date of Birth is required';
-      }
-    if (formData.lead_type_name === '0') {
-        errors.lead_type_name = 'Please select Lead Type';
-      }
-    if (!formData.user_mobile) {
-      errors.user_mobile = 'Mobile Number is required';
-    } else if (formData.user_mobile.length !== 11) {
-      errors.user_mobile = 'Mobile Number must be 11 digits long';
-    }
-
-    if (!formData.user_email) {
-      errors.user_email = 'Email is required';
-    } else if (!isValidEmail(formData.user_email)) {
-      errors.user_email = 'Invalid email format';
-    }
-
-    if (!formData.user_password) {
-      errors.user_password = 'Password is required';
-    }
-
-    if (formData.user_password !== formData.confirm_password) {
-      errors.confirm_password = 'Passwords do not match';
-    }
-
-    if (formData.user_role === '0') {
-      errors.user_role = 'Please select a User Role';
-    }
-
-    if (Object.keys(errors).length === 0) {
-      // Form is valid, you can save data here
-      saveFormData(formData);
-    } else {
-      setFormErrors(errors);
-    }
-  };
-
-  const saveFormData = (data) => {
-    // Implement data-saving logic here
-    console.log('Data saved:', data);
-    // You can send the data to your server or perform other actions
-  };
-
-  const isValidEmail = (email) => {
-    // Implement a valid email address check here
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-  };
-
-
-
-//#endregion
     const [leads, setLeads] = useState(pageData && pageData);
     const [loader, setLoader] = useState(false);
     const [user_list, setUser_list] = useState([]);
@@ -114,6 +32,10 @@ const [formData, setFormData] = useState({
     const [lead_uid, setLead_uid] = useState();
     const [lead_activity, setLead_activity] = useState([]);
     const [lead_settings, setLead_settings] = useState([]);
+
+        
+        console.log(JSON.stringify(data));
+      
 
     useEffect(() => {
         getUsersList();
@@ -134,10 +56,9 @@ const [formData, setFormData] = useState({
         var params = { "leads": { "title": "0", "lead_type": "0", "lead_note": "", "status_id": "0", "from_date": "", "to_date": "", "delete_status": "0", "archieve_status": "0" }, "action": "leads", "action_on": "leads_main", "request_for": "load-more", "previous": offset, "next": 10 };
         const lang = getCookie('signin_token');
         const response = await getData(params, lang, ApiEndPoints.opportunity);
-        const obj =response;// JSON.parse(response);
-        console.log(obj.data.response.leads_list);
+        const obj =response;// JSON.parse(response);    
         if (obj.response_status === "OK") {          
-            setLeads(obj.data.response.leads_list);
+            setLeads(obj.data.response.leads_list);             
         }        
     }    
 
@@ -319,9 +240,8 @@ const [formData, setFormData] = useState({
             }
         }
     }
-    const refreshLeads = async (e) => {
-        console.log(e.target)
-        var strJsonString = "", next = 1, previous = 0;
+    const refreshLeads = async (e) => {    
+        var strJsonString = "", next = 10, previous = 0;
         var action = $(e.target).attr("data-action"), action_on = "leads_main", RequestFor = $(e.target).attr("data-request_for");
         $('.head_btn').hide();
         $('#txt_search,#txt_daterange,#ddl_searchCallStatus').val('');
@@ -392,16 +312,24 @@ const [formData, setFormData] = useState({
                             </div>
                             <a href="#" className="btn btn-success me-1" data-bs-toggle="modal" data-bs-target="#addNewOpper"><i
                                 className="zmdi zmdi-plus-circle-o-duplicate"></i> Create New</a> 
-                        {/* <a href="#" className="btn btn-success" data-bs-toggle="modal" data-bs-target="#leadmainAdd"><i
-                                className="zmdi zmdi-plus-circle-o-duplicate"></i> Create New</a> */}
+                         <a className="btn btn-outline-primary" onClick={refreshLeads} data-action="leads" data-request_for="refresh"><i
+                                className="zmdi zmdi-refresh"></i> Refresh</a>
                         <div className="btn-group ms-1">
                             <button className="btn btn-outline-primary  dropdown-toggle font-w" type="button"
                                 data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">More</button>
-                            <div className="dropdown-menu">
+                                    <div className="dropdown-menu">
+                                        
                             <a className="dropdown-item evt-leads-main" data-toggle="modal" data-target="#modalimport" data-action="leads-main" data-request_for="import-popup"> <i className="zmdi zmdi-download">&nbsp;</i>Import</a>
-                                        <a className="dropdown-item"><i className="zmdi zmdi-archive">&nbsp;</i>Archieve</a>
-                                        <a className="dropdown-item"><i className="zmdi zmdi-delete">&nbsp;</i>Trash</a>
-                                <a className="dropdown-item" data-action="leads" data-request_for="refresh" type="button"> <i data-action="leads" data-request_for="refresh" className="zmdi zmdi-rotate-left"></i><span data-action="leads" data-request_for="refresh"> Refresh</span></a>
+                                        <a className="dropdown-item" onClick={getArchieveLeades}><i className="zmdi zmdi-archive">&nbsp;</i>Archieve</a>
+                                        <a className="dropdown-item" onClick={getBin}><i className="zmdi zmdi-delete">&nbsp;</i>Trash</a>
+                              
+                                        {/* <a className="dropdown-item" data-action="leads" data-request_for="refresh" type="button"> <i data-action="leads" data-request_for="refresh" className="zmdi zmdi-rotate-left"></i><span data-action="leads" data-request_for="refresh"> Refresh</span></a> */}
+                                        
+                                        {/* <a className="dropdown-item evt-leads-main" data-toggle="modal" data-target="#modalimport" data-action="leads-main" data-request_for="import-popup"> <i className="zmdi zmdi-download">&nbsp;</i>Import</a>
+                                        
+                                        <a className="dropdown-item " onClick={getArchieveLeades} ><i className="zmdi zmdi-archive">&nbsp;</i>Archieve</a>
+
+                                        <a className="dropdown-item" onClick={getBin} ><i className="zmdi zmdi-delete">&nbsp;</i>Trash</a> */}
                                
                             </div>
                         </div>
@@ -457,9 +385,9 @@ const [formData, setFormData] = useState({
                         <div className="col-12 col-sm-8 col-md-8 col-lg-9 p-0 bg-white">
                             <div className="hgtt88 contbody one add_remove">
                                 <div className="media bder11 p-4 mb-0"style={{borderLeft:"0px",borderRight:"0px"}}>
-                                    <div className="media-body ptag">
+                                    <div className="media-body ptag"  style={{minHeight:'140px'}}>
                                         <a href="#" className="btn cross_remove">x</a>
-                                        {loading ? <span>Loading...</span> : <>
+                                        {loading ? <span>Loading...<img src='/spin.gif' alt='.' /> </span> : <>
                                                 {res && res.length > 0 ? <>
                                                     <h5>
                                                         {res && res.length > 0 && res[0].leads[0].lead_company_name}
@@ -513,7 +441,9 @@ const [formData, setFormData] = useState({
                                                     }
                                                 </p>
                                                 <p className="mb-1">
-                                                    {res && res.length > 0 ? <><i className="zmdi zmdi-whatsapp"></i></> : <></>}
+                                                        {res && res.length > 0 ? 
+                                                        <><i className="zmdi zmdi-whatsapp col-green" style={{marginRight:'5px'}}></i>
+                                                        </> : <> Not Available</>}
                                                     {res && res.length > 0 && res[0].leads[0].lead_mobile}   </p>
                                                 <p className="mb-1">
                                                     {res && res.length > 0 ? <><i className="zmdi zmdi-phone"></i></> : <></>}
@@ -525,7 +455,8 @@ const [formData, setFormData] = useState({
                                                         : <></>}
                                                 </p>
                                                 {res && res.length > 0 ? <>
-                                                    <p className="mb-1"><i className="zmdi zmdi-email-open"></i> <span id="">{res && res.length > 0 && res[0].leads[0].lead_email}</span> <small className={res && res.length > 0 && res[0].leads[0].email_status === 1 ? "col-green" : "col-red"}>  {res && res.length > 0 && res[0].leads[0].email_status === 1 ? " Verified" : " Unverified"}</small> <span className="float-right col-grey"> Respond 1yr ago</span></p>
+                                                        <p className="mb-1"><i className="zmdi zmdi-email-open"></i> <span id="">{res && res.length > 0 && res[0].leads[0].lead_email}</span> <small className={res && res.length > 0 && res[0].leads[0].email_status === 1 ? "col-green" : "col-red"}>  {res && res.length > 0 && res[0].leads[0].email_status === 1 ? " Verified" : " Unverified"}</small>
+                                                        <span className="float-right col-grey"> Respond 1yr ago</span></p>
                                                 </>
                                                     : <></>}
 
@@ -678,7 +609,7 @@ const [formData, setFormData] = useState({
                                 <div className="tab-content pt-2 pb-2 ps-2 pe-2">
                                 
                                     <div role="tabpanel" className=" tab-pane pb-5 in active" id="leaddetails">
-                                        <Details/>
+                                        <Details res={res && res} contact={contact && contact} />
                                     </div>
                                     <div role="tabpanel" className=" tab-pane" id="mydoc">
                                         <Document/> 
@@ -698,7 +629,7 @@ const [formData, setFormData] = useState({
                             
                             <div className="hgtt88 contbody ddnone fone">
                                 <div className="media bder11 p-4 mb-0" style={{borderLeft:"0px",borderRight:"0px"}}>
-                                    <div className="media-body ptag">
+                                    <div className="media-body ptag" style={{minHeight:'125px'}}>
                                         <div class="row">
                                             <div class="col-md-6 mb-2">
                                                 <div class="d-flex justify-content-start align-items-center">    
@@ -794,21 +725,21 @@ const [formData, setFormData] = useState({
             </select>
             <select id="ddl_searchLeadType" className="custom-select form-select mb-2">
                 <option value="0">All Lead Type</option>
-                {data && data.data && data.data.response[1].lead_types.map((type, i) => (
+                {/* {data && data.data && data.data.response[1].lead_types.map((type, i) => (
                     <option key={i} value={type.id}>{type.lead_type_name}</option>
-                ))}
+                ))} */}
             </select>
             <select id="ddl_searchCallStatus" className="custom-select form-select mb-2">
                 <option value="">All Call</option>
-                {data && data.data && data.data.response[2].call_status.map((status, i) => (
+                {/* {data && data.data && data.data.response[2].call_status.map((status, i) => (
                     <option key={i} >{status.message}</option>
-                ))}
+                ))} */}
             </select>
             <select id="ddl_searchLeadStatus" className="custom-select form-select mb-2">
                 <option value="">All Lead Status</option>
-                {data && data.data && data.data.response[3].lead_statuses.map((lstatus, i) => (
+                {/* {data && data.data && data.data.response[3].lead_statuses.map((lstatus, i) => (
                     <option key={i} style={{ color: lstatus.color_code }} value={lstatus.status_id}>{lstatus.status_name}</option>
-                ))}
+                ))} */}
             </select>
             <input type="text" id="txt_search" className="form-control mb-2" placeholder="Search by contact details" autoComplete="off" />
             <input id="txt_daterange" type="text" className="form-control daterange" onFocus={selectdateRange} placeholder="Search by date range" />
@@ -821,9 +752,9 @@ const [formData, setFormData] = useState({
     
     {/* Add New Oppertunities */}
     <div class="modal right-half md-one" id="addNewOpper" tabindex="1" role="dialog" aria-labelledby="shortModal">
-        <div class="modal-dialog" role="document" style={{maxWidth:"840px"}}>
+        <div class="modal-dialog" role="document" style={{maxWidth:"768px"}}>
             <div class="modal-content">
-                <div class="modal-header bg-blu-lite fixed-top">
+                <div class="modal-header bg-blu-lite">
                     <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
@@ -900,1047 +831,15 @@ const [formData, setFormData] = useState({
                                 <a href="#">+ Add mobile</a>
                             </div>    
                         </div>
-                    </div> 
-                                            
-                    <div class="tab-content p-0">
-                        <div role="tabpanel" class=" tab-pane in active">
-                            <div className="row m-0 justify-content-center mt-3">
-                                <div className="col-md-4 col-lg-4">
-                                    <div className="card bdr5 mt-0">
-                                        <div className="header  pt-1 pl-2">
-                                            <h2><i className="zmdi zmdi-view-dashboard">&nbsp;</i>Lead Type<span className="col-red">*</span></h2>
-                                        </div>
-                                        <div className="body p-2 mb-2">
-                                            <div className="group_lead mb-0">
-                                               
-                                                <select
-            id="ddl_lead_types"
-            className="form-select select_f lead-input"
-            name="lead_type_name"
-            data-val="0"
-            data-uid=""
-            required
-            value={formData.lead_type_name}
-            onChange={(e) => setFormData({ ...formData, lead_type_name: e.target.value })}
-          >
-                                                    <option value="0">Choose Lead Type</option>
-                                                    {leadTypeList.map((lead, i) => (
-                                                        <option key={i} value={lead.id}>{lead.lead_type_name}</option>
-                                                    ))}
-                                                </select>
-                                                {formErrors.lead_type_name && (
-                  <p className="error-message">{formErrors.lead_type_name}</p>
-                )}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col-md-4 col-lg-4">
-                                    <div className="card bdr5 mt-0">
-                                        <div className="header  pt-1 pl-2">
-                                            <h2><i className="zmdi zmdi-view-dashboard">&nbsp;</i>Categories</h2>
-                                        </div>
-                                        <div className="body p-2 mb-2">
-                                            <div className="group_lead mb-0">
-                                            <select
-            id="ddl_parent_cat"
-            className="form-select select_f lead-input"
-            name="cat_name"
-            data-val="0"
-            data-uid=""
-            required
-            value={formData.cat_name}
-            onChange={(e) => setFormData({ ...formData, cat_name: e.target.value })}
-          >
-                                                    <option value="0">Choose Category</option>
-                                                    {CategoryList.map((cat, i) => (
-                                                                    <option key={i} value={cat.cat_id}>{cat.cat_name}</option>
-                                                                ))} 
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col-md-4 col-lg-4">
-                                    <div className="card bdr5 mt-0">
-                                        <div className="header pt-1 pl-2">
-                                            <h2><i className="zmdi zmdi-view-dashboard">&nbsp;</i>Channel </h2>
-                                        </div>
-                                        <div className="body p-2 mb-2">
-                                            <div className="group_lead mb-0">
-                                                <select className="custom-select select_f" defaultValue={"0"} id="ddl_lead_channel">
-                                                    <option value="0" >Choose Lead Channel</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col-md-12 col-lg-12">
-                                    <div className="card bdr5 mt-0">
-                                        <div className="header pt-2 pl-2">
-                                            <h2><i className="zmdi zmdi-account-box-mail">&nbsp;</i>Basic Details</h2>
-                                        </div>
-                                        <div className="body p-2">
-                                            <div className="row">
-                                                <div className="col-md-6 disableform">
-                                                    <div className="group_lead">
-                                                        <div className="group_lead mb-0">
-                                                            <select className="custom-select select_f" id="ddl_title" onChange={setFormData} >
-                                                                <option value="0">Select</option>
-                                                                <option value="Mr">Mr</option>
-                                                                <option value="Mrs">Mrs</option>
-                                                                <option value="Ms">Ms</option>
-                                                                <option value="Miss">Miss</option>
-                                                            </select>
-                                                            <label className="lablefilled">Title<span>*</span></label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div className="col-md-6">
-                                                    <div className="group_lead">
-                                                    <input
-            type="text"
-            id="txt_lead_name"
-            name="lead_name"
-            className="input_text"
-            required
-            autoComplete="off"
-            value={formData.lead_name}
-            onChange={(e) => setFormData({ ...formData, lead_name: e.target.value })}
-          />
-            <label className="lablefilled"><i className="zmdi zmdi-account">&nbsp;</i>Name<span>*</span></label>
-            {formErrors.lead_name && (
-                  <p className="error-message">{formErrors.lead_name}</p>
-                )}
-                                                    </div>
-                                                </div>
-                                                <div className="col-md-6">
-                                                    <div className="group_lead">
-                                                        <div className="group_lead mb-0">
-                                                            <select className="custom-select select_f" name="lead_gender" onChange={setFormData} id="ddl_gender">
-                                                                <option value="0">Gender</option>
-                                                                <option value="Male">Male</option>
-                                                                <option value="Female">Female</option>
-                                                                <option value="Other">Other</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div className="col-md-6">
-                                                    <div className="group_lead">
-                                                    <input
-            type="text"
-            id="txt_dob"
-            name="lead_dob"
-            className="input_text"
-            required
-            autoComplete="off"
-            maxLength="10"
-            value={formData.lead_dob}
-            onChange={(e) => setFormData({ ...formData, lead_dob: e.target.value })}
-          />
-                                                        <label className="lablefilled"><i className="zmdi zmdi-account">&nbsp;</i>Date of Birth<span>*</span></label>
-                                                        {formErrors.lead_dob && (
-                  <p className="error-message">{formErrors.lead_dob}</p>
-                )}
-                                                    </div>
-                                                </div>
-                                                <div className="col-md-6">
-                                                    <div className="group_lead">
-                                                        
-            const resp = await get(strJsonString, ApiEndPoints.opportunity);
-            if (resp.response_status === "OK") {
-                if (resp.data.response.leads_list !== '')
-                    setLeads(resp.data.response.leads_list)
-                else {
-                    setLeads([])
-                    setLeads([])
-                    setContact({})
-                    setRes([])
-                    setLead_activity([])
-                }
-            }
-        }
-    }
-    const refreshLeads = async (e) => {
-        console.log(e.target)
-        var strJsonString = "", next = 1, previous = 0;
-        var action = $(e.target).attr("data-action"), action_on = "leads_main", RequestFor = $(e.target).attr("data-request_for");
-        $('.head_btn').hide();
-        $('#txt_search,#txt_daterange,#ddl_searchCallStatus').val('');
-        $('#ddl_tag_placeholder,#ddl_searchLeadType,#ddl_searchLeadStatus').val('0');
-        $('#btnSearchLead').attr({ 'data-delete-status': '0', 'data-archieve-status': '0' });
-        strJsonString = { "request_for": "select-all", "action": action, "action_on": action_on, "previous": previous, "next": next };
-        const resp = await get(strJsonString, ApiEndPoints.opportunity);
-        if (resp.response_status === "OK") {
-            if (resp.data.response.leads_list !== '')
-                setLeads(resp.data.response.leads_list)
-        }
-    }
-    const getArchieveLeades=async(e)=>{
-        e.preventDefault();
-        var strJsonString = "", next = 1, previous = 0;
-        $('#btnSearchLead').attr({ 'data-delete-status': '0', 'data-archieve-status': '1' });
-        strJsonString = {"leads":{"archieve_status":1},"action":"leads","action_on":"leads_main","request_for":"select-all","previous":previous,"next":next}
-        const resp = await get(strJsonString, ApiEndPoints.opportunity);
-        if (resp.response_status === "OK") {
-            if (resp.data.response.leads_list !== '')
-                setLeads(resp.data.response.leads_list)
-        }
-    }
-    const getBin=async(e)=>{
-        e.preventDefault();
-        var strJsonString = "", next = 1, previous = 0;
-        $('#btnSearchLead').attr({ 'data-delete-status': '1', 'data-archieve-status': '0' });
-        strJsonString = { "leads": { "delete_status": 1 }, "action":"leads","action_on":"leads_main","request_for":"select-all", "previous": previous, "next": next }
-        const resp = await get(strJsonString, ApiEndPoints.opportunity);
-        if (resp.response_status === "OK") {
-            if (resp.data.response.leads_list !== '')
-                setLeads(resp.data.response.leads_list)
-        }
-    }
-    return (
-    <>
-
-    <section className="content">
-        <div className="body_scroll">
-            <div className="scrolfx">
-                <div className="booktab d-flex justify-content-between align-items-center bdrbtm">
-                    <div className="p-2">
-                        <h2 className="font-bold mb-0">Opporrunites </h2>
-                    </div>
-                    <div className="pe-2">
-                        <button className="btn  btn-outline-primary me-1" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
-                            <i className="ti ti-filter"></i>
-                        </button>
-                            <div className="btn-group head_btn me-1" style={{ display: "none" }}>
-                                <div className="dropdown me-1">
-                                    <a className="dropdown-toggle btn btn-outline-primary btn-menu clmnbtn" data-toggle="dropdown" role="button">
-                                        <i className="zmdi zmdi-label"></i><span>Tag as</span>
-                                    </a>
-                                    <ul className="dropdown-menu clmn">
-                                        <li className="header lststl">
-                                            <div className="input-group">
-                                                <input type="text" className="form-control" id="txt_label" placeholder="Create..." autoComplete="off" />
-                                            </div>
-                                        </li>
-                                        <div id="tag_placeholder"></div>
-                                        <li className="list-group-item">
-                                            <a id="btn_createtag" className="btn btn-primary btn-sm w-48 evt-tag" data-action="tag" data-request_for="create"><i className="zmdi zmdi-label-alt">&nbsp;</i><span>Create</span></a>
-                                            <a id="btn_applytag" className="btn btn-primary btn-sm w-48 evt-tag" data-id="0" data-action="tag" data-request_for="lead-tag-create"><i className="zmdi zmdi-label-alt">&nbsp;</i><span>Apply</span></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <a id="btn_archieve" className="btn btn-outline-primary evt-leads-action" data-id="0" data-action="leads" data-request_for="add-to-archieve"> <i className="zmdi zmdi-archive"></i><span>Archive</span></a>
-                            </div>
-                            <a href="#" className="btn btn-success me-1" data-bs-toggle="modal" data-bs-target="#addNewOpper"><i
-                                className="zmdi zmdi-plus-circle-o-duplicate"></i> Create New</a> 
-                        {/* <a href="#" className="btn btn-success" data-bs-toggle="modal" data-bs-target="#leadmainAdd"><i
-                                className="zmdi zmdi-plus-circle-o-duplicate"></i> Create New</a> */}
-                        <div className="btn-group ms-1">
-                            <button className="btn btn-outline-primary  dropdown-toggle font-w" type="button"
-                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">More</button>
-                            <div className="dropdown-menu">
-                            <a className="dropdown-item evt-leads-main" data-toggle="modal" data-target="#modalimport" data-action="leads-main" data-request_for="import-popup"> <i className="zmdi zmdi-download">&nbsp;</i>Import</a>
-                                        <a className="dropdown-item"><i className="zmdi zmdi-archive">&nbsp;</i>Archieve</a>
-                                        <a className="dropdown-item"><i className="zmdi zmdi-delete">&nbsp;</i>Trash</a>
-                                <a className="dropdown-item" data-action="leads" data-request_for="refresh" type="button"> <i data-action="leads" data-request_for="refresh" className="zmdi zmdi-rotate-left"></i><span data-action="leads" data-request_for="refresh"> Refresh</span></a>
-                               
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            {/* <div className='Lodingbox'>
-                <Loading />
-            </div> */}
-
-            <div className="contactlist">
-                <div className="container-fluid">
-                    <div className="row">
-
-                        <div className="col-12 col-sm-4 col-md-4 col-lg-3 p-0 bg-white bdrrgtt">
-                            <div className="hgt80 formobile">
-                            {leads && leads.length > 0 && leads.map((item , index) => (
-                                        <div key={index} id={"div_" + item.u_id} className="position-relative">
-                                            <div className="checkbox chk_absult">
-                                                <input className="all_slct evt-leads-action" id={"chk_" + item.u_id} type="checkbox" data-action="tag" data-request_for="show-tag" />
-                                                <label htmlFor={"chk_" + item.u_id} className="pl-0">&nbsp;</label>
-                                            </div>
-                                            <a onClick={(e) => { trigger_click(index, item.u_id) }} ref={element => {
-                                                ref.current[index] = element;
-                                            }} id={"lead_" + item.u_id} className={item.ROWNUMBER === 1 ? item.ROWNUMBER + " active1strow media d-flex border p-3 mb-0 nav__link mb-0 bdrlftcol clickmode" : item.ROWNUMBER + "  media d-flex border p-3 mb-0 nav__link bdrlftcol clickmode"} data-hide=".fone" data-show=".one" >
-                                                <div className="media-body  d-block text-start ms-3">
-                                                    <h5>{item.lead_company_name}
-                                                        <span className={item.is_favourite == 1 ? "zmdi zmdi-favorite col-blue float-right" : "zmdi zmdi-favorite-outline col-blue float-right"} title={item.is_favourite == 1 ? "Set as favourite lead" : "Remove from favourite lead"} ></span></h5>
-                                                    <p className="mb-2">{item.lead_type_name}</p>
-                                                    <p id={"clstatus_" + item.u_id} className="lable_show">
-                                                        {item.call_status && item.call_status.map((call, index) => (
-                                                            <span key={index} className="badge badge-primary">{call.lead_note}</span>
-                                                        ))}
-                                                    </p>
-                                                    <p className="mb-2"><i className="zmdi zmdi-city-alt"></i> {item.lead_city},{item.lead_postcode} <span className="float-right col-grey"> {item.lead_day_diff}</span></p>
-
-                                                    <p className="lable_show">
-                                                        {item.lead_tags && item.lead_tags.map((tag, index) => (
-                                                            <span key={index} className="badge badge-primary">{tag.title}</span>
-                                                        ))}
-                                                    </p>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    ))}
-                                                            
-                                <div className="text-center">
-                                <button  onClick={loadMore} id="btnLoadMore" style={{ display: "none" }}  className="btn btn-outline-primary mt-3 mb-4"><b className="col-blue">Load More</b> →</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-12 col-sm-8 col-md-8 col-lg-9 p-0 bg-white">
-                            <div className="hgtt88 contbody one add_remove">
-                                <div className="media bder11 p-4 mb-0"style={{borderLeft:"0px",borderRight:"0px"}}>
-                                    <div className="media-body ptag">
-                                        <a href="#" className="btn cross_remove">x</a>
-                                        {loading ? <span>Loading...</span> : <>
-                                                {res && res.length > 0 ? <>
-                                                    <h5>
-                                                        {res && res.length > 0 && res[0].leads[0].lead_company_name}
-                                                        <span className="float-right  d-none d-lg-block ">
-                                                            <a className="btn btn btn-primary evt-leads-action  ml-1" style={{ backgroundColor: "#0B8054" }} data-toggle="modal" data-target="#contact" data-mobile={res && res.length > 0 && res[0].leads[0].lead_mobile} data-phone={res && res.length > 0 && res[0].leads[0].lead_phone} data-action="notes" data-request_for="answers-list"><i className="zmdi zmdi-phone"></i> Call</a>
-                                                            <a className="btn btn btn-primary evt-leads-action  ml-1" style={{ backgroundColor: "#0893A2" }} data-email={res && res.length > 0 && res[0].leads[0].lead_email} data-mobile={res && res.length > 0 && res[0].leads[0].lead_mobile} data-action="message" data-request_for="open" data-toggle="modal" data-target="#emailsend"><i className="zmdi zmdi-email-open">&nbsp;</i>Send Mail</a>
-                                                            <div className="btn-group ml,mmm.klmlk,,,,,,,-1">/
-                                                                <a id="btn_lead_statuses" className="btn btn-primary dropdown-toggle" data-u_id={res && res.length > 0 && res[0].leads[0].u_id} data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><i className="zmdi zmdi-alert-polygon">&nbsp;</i>
-                                                                    <span className="d-none_small">{res && res.length > 0 && res[0].leads[0].lead_status_update !== "" ? res[0].leads[0].lead_status_update : "Status"}</span></a>
-                                                                <div id="ddl_lead_statuses" className="dropdown-menu">
-                                                                    {res && res.length > 0 && res[0].leads[0].status_master_list.map((stats, i) => (
-                                                                        stats.status_type === "button" ?
-                                                                            <a key={i} id={"ddlMenu-" + stats.status_id} style={{ color: stats.color_code }} className="dropdown-item evt-leads-action" data-type={stats.status_type} data-id={stats.status_id} data-action="leads" data-request_for="action-type" data-action-type="lead">{stats.status_name}</a>
-                                                                            :
-                                                                            <a key={i} id={"ddlMenu-" + stats.status_id} style={{ color: stats.color_code }} className="dropdown-item evt-leads-action" data-toggle="modal" data-target="#lead_statuses" data-type={stats.status_type} data-id={stats.status_id} data-action="leads" data-request_for="action-type">{stats.status_name}</a>
-                                                                    ))}
-                                                                </div>
-                                                            </div>
-                                                            <a className="btn btn btn-primary evt-leads-action ml-1" data-email={res && res.length > 0 && res[0].leads[0].lead_email} data-phone={res && res.length > 0 && res[0].leads[0].lead_phone} data-lead-name={res && res.length > 0 && res[0].leads[0].lead_name} data-action="schedule" data-request_for="open" data-toggle="modal" data-target="#schedule"><i className="zmdi zmdi-alarm-check">&nbsp;</i>Schedule</a>
-                                                            {res && res.length > 0 && res[0].leads[0].org_user_type === 'A' ?
-                                                                <a href="#" className="btn btn btn-outline-primary evt-leads-action ml-1" onClick={getUsersList} data-toggle="modal" data-target="#convert"><i className="zmdi zmdi-swap"></i> <span className="d-none_small"><b>Convert</b> </span></a> : <></>
-                                                            }
-
-                                                            <div className="btn-group">
-                                                                <button className="btn btn-outline-primary dropdown-toggle ml-1" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                                                    Action
-                                                                </button>
-                                                                <div className="dropdown-menu">
-                                                                    {res && res.length > 0 && res[0].leads[0].delete_status === 0 ?
-                                                                        <>
-                                                                            <a className="dropdown-item evt-leads-action" data-u_id={res && res.length > 0 && res[0].leads[0].u_id} data-lead-type={res && res.length > 0 && res[0].leads[0].lead_type} onClick={(e) => showLead(e)} data-toggle="modal" data-target="#leadmain" ><i className="zmdi zmdi-edit">&nbsp;</i>Edit</a>
-                                                                            <a className="dropdown-item " onClick={(e) => deleteLead(e, res && res.length > 0 && res[0].leads[0])} data-u_id={res && res.length > 0 && res[0].leads[0].u_id} data-delete-status={res && res.length > 0 && res[0].leads[0].delete_status} data-archieve-status={res && res.length > 0 && res[0].leads[0].archieve_status} data-action="leads" data-request_for="delete" data-toggle="tooltip" title="Move to bin"><i className="zmdi zmdi-delete">&nbsp;</i>Delete</a>
-                                                                        </>
-                                                                        : res && res.length > 0 && res[0].leads[0].org_user_type === 'A' ?
-                                                                            <a className="dropdown-item " onClick={deleteLead} data-u_id={res && res.length > 0 && res[0].leads[0].u_id} data-lead-status={res && res.length > 0 && res[0].leads[0].lead_status} data-delete-status={res && res.length > 0 && res[0].leads[0].delete_status} data-archieve-status={res && res.length > 0 && res[0].leads[0].archieve_status} data-action="leads" data-request_for="delete" data-toggle="tooltip" title="Permanent delete this record"><i className="zmdi zmdi-close">&nbsp;</i>Delete</a>
-                                                                            : <></>
-                                                                    }
-                                                                </div>
-                                                            </div>
-                                                        </span>
-                                                    </h5>
-                                                </> : <></>}
-
-                                                
-                                                <p className="mb-1">{res && res.length > 0 && res[0].leads[0].lead_type_name} {res && res.length > 0 ? <>| </> : <></>}
-                                                    <span className="col-black">{res && res.length > 0 && res[0].leads[0].cat_name}</span>
-                                                </p>
-                                                <p className="mb-1">
-                                                    {res && res.length > 0 ? <><i className="zmdi zmdi-city-alt"></i></> : <></>} {res && res.length > 0 && res[0].leads[0].lead_city} {res && res.length > 0 && "," + res[0].leads[0].lead_postcode
-                                                    }
-                                                </p>
-                                                <p className="mb-1">
-                                                    {res && res.length > 0 ? <><i className="zmdi zmdi-whatsapp"></i></> : <></>}
-                                                    {res && res.length > 0 && res[0].leads[0].lead_mobile}   </p>
-                                                <p className="mb-1">
-                                                    {res && res.length > 0 ? <><i className="zmdi zmdi-phone"></i></> : <></>}
-                                                    {res && res.length > 0 && res[0].leads[0].lead_phone}
-                                                    {/* <small className="col-green">  Verified</small>   */}
-                                                    {res && res.length > 0 ? <>
-                                                        <small className={res && res.length > 0 && res[0].leads[0].mobile_status === 1 ? "col-green" : "col-red"}>{res && res.length > 0 && res[0].leads[0].mobile_status === 1 ? " Verified" : " Unverified"}</small>
-                                                    </>
-                                                        : <></>}
-                                                </p>
-                                                {res && res.length > 0 ? <>
-                                                    <p className="mb-1"><i className="zmdi zmdi-email-open"></i> <span id="">{res && res.length > 0 && res[0].leads[0].lead_email}</span> <small className={res && res.length > 0 && res[0].leads[0].email_status === 1 ? "col-green" : "col-red"}>  {res && res.length > 0 && res[0].leads[0].email_status === 1 ? " Verified" : " Unverified"}</small> <span className="float-right col-grey"> Respond 1yr ago</span></p>
-                                                </>
-                                                    : <></>}
-
-                                            </>}
-                                        <div class="row">
-                                            <div class="col-md-6 mb-2">
-                                                <div class="d-flex justify-content-start align-items-center">    
-                                                    <div class="css-3sr5s988 me-2"><span class="css-19k1nij">GR</span></div>
-                                                    <div>
-                                                        <h5>Graham Ridwik</h5>
-                                                        <p class="mt-0 mb-0">Web Design | E-commerce</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p className="mb-1">
-                                                    <span className="float-right col-grey"> Respond 1yr ago</span></p>
-                                            </div>
-                                            <div class="col-md-6 col-lg-4">                                               
-                                                <p className="mb-1"><a href="#"><i className="zmdi zmdi-phone"></i> 9973373851 </a><small className="col-green">
-                                                Verified</small> </p>
-                                                <p className="mb-1"><a href="#"><i className="zmdi zmdi-email-open"></i> <span id="">
-                                                solutions.topicccano@gmail.com</span></a> <small className="col-green"> Verified</small>
-                                                </p>
-
-                                            </div>
-                                            <div class="col-md-6 col-lg-4">                                                
-                                                <p className="mb-1"><i className="zmdi zmdi-city-alt"></i> Lisburn, BT27 </p>
-                                                <p className="mb-0">
-                                                    <a href="#" className="btn btn-outline-primary btn-sm"><i className="zmdi zmdi-facebook"></i></a>
-                                                    <a href="#" className="btn btn-outline-primary btn-sm me-1 ms-1"><i className="zmdi zmdi-twitter"></i></a>
-                                                    <a href="#" className="btn btn-outline-primary btn-sm"><i className="zmdi zmdi-linkedin"></i></a>
-                                                    <a href="#" className="btn btn-outline-primary btn-sm ms-1"><i className="zmdi zmdi-whatsapp"></i></a> 
-                                                </p>
-                                            </div>
-                                            
-                                            <div class="col-md-12 col-lg-4  mt-1"> 
-                                                <div className="d-none d-lg-block float-right">
-                                                    <a href="#" className="btn btn btn-primary" data-bs-toggle="modal"
-                                                        data-bs-target="#emailsend" title="Send Email"><i className="zmdi zmdi-email-open"></i></a>
-                                                    <a href="#" className="btn btn btn-primary ms-1 me-1" data-bs-toggle="modal"
-                                                        data-bs-target="#Schedule"title="Schedule"><i className="zmdi zmdi-alarm-check"></i> <span
-                                                            className="d-none_small"> Schedule</span></a>
-                                                
-                                                    <div className="btn-group">
-                                                        <button className="btn btn-outline-primary  dropdown-toggle" type="button"
-                                                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><i
-                                                                className="zmdi zmdi-alert-polygon"></i> <span className="d-none_small">
-                                                                Status</span></button>
-                                                        <div className="dropdown-menu">
-                                                            <a className="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal"
-                                                                data-bs-target="#fristattempt">1st attempt</a>
-                                                            <a className="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal"
-                                                                data-bs-target="#fristattempt"> 2nd attempt</a>
-                                                            <a className="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal"
-                                                                data-bs-target="#fristattempt">3rd attempt</a>
-                                                            <a className="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal"
-                                                                data-bs-target="#fristattempt">4th attempt</a>
-                                                            <a className="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal"
-                                                                data-bs-target="#fristattempt">Interested</a>
-                                                            <a className="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal"
-                                                                data-bs-target="#fristattempt">Very Interested</a>
-                                                            <a className="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal"
-                                                                data-bs-target="#fristattempt">Call Later</a>
-                                                            <a className="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal"
-                                                                data-bs-target="#fristattempt">Not Interested</a>
-                                                            <a className="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal"
-                                                                data-bs-target="#fristattempt">Fake Lead</a>
-                                                        </div>
-                                                    </div>
-                                                    <a href="#" className="btn btn btn-outline-primary ms-1" data-bs-toggle="modal"
-                                                        data-bs-target="#convert"title="Convert"><i className="zmdi zmdi-swap"></i> </a>
-                                                </div>
-                                            </div>
-                                        </div>                                       
-                                        
-                                        <div className="mb-1 d-lg-none">
-                                            <a href="#" className="btn btn btn-primary" data-bs-toggle="modal" data-bs-target="#emailsend"><i
-                                                    className="zmdi zmdi-email-open"></i> <span className="d-none_small">Send
-                                                    Email</span></a>
-                                            <a href="#" className="btn btn btn-primary" data-bs-toggle="modal" data-bs-target="#Schedule"><i
-                                                    className="zmdi zmdi-alarm-check"></i> <span className="d-none_small">
-                                                    Schedule</span></a>
-                                            <a href="#" className="btn btn btn-primary"><i className="zmdi zmdi-favorite-outline"></i> <span
-                                                    className="d-none_small">Save</span></a>
-                                            <div className="btn-group">
-                                                <button className="btn btn-primary  dropdown-toggle" type="button"
-                                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><i
-                                                        className="zmdi zmdi-alert-polygon"></i> <span className="d-none_small">
-                                                        Status</span></button>
-                                                <div className="dropdown-menu">
-                                                    <a className="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal"
-                                                        data-bs-target="#fristattempt">1st attempt</a>
-                                                    <a className="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal"
-                                                        data-bs-target="#fristattempt"> 2nd attempt</a>
-                                                    <a className="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal"
-                                                        data-bs-target="#fristattempt">3rd attempt</a>
-                                                    <a className="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal"
-                                                        data-bs-target="#fristattempt">4th attempt</a>
-                                                    <a className="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal"
-                                                        data-bs-target="#fristattempt">Interested</a>
-                                                    <a className="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal"
-                                                        data-bs-target="#fristattempt">Very Interested</a>
-                                                    <a className="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal"
-                                                        data-bs-target="#fristattempt">Call Later</a>
-                                                    <a className="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal"
-                                                        data-bs-target="#fristattempt">Not Interested</a>
-                                                    <a className="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal"
-                                                        data-bs-target="#fristattempt">Fake Lead</a>
-                                                </div>
-                                            </div>
-                                            <a href="#" className="btn btn btn-outline-primary" data-bs-toggle="modal"
-                                                data-bs-target="#convert"><i className="zmdi zmdi-swap"></i> <span
-                                                    className="d-none_small"><b>Convert</b> </span></a>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div className="bgblulgt bfix">
-                                    <ul className="nav nav-tabs nav-justified p-0">
-                                        <li className="nav-item">
-                                            <a className="nav-link active" data-bs-toggle="tab" href="#leaddetails"><i
-                                                    className="zmdi zmdi-info"></i> <span className="d-none_small"> Lead Details</span> </a>
-                                        </li>
-                                        
-                                        <li className="nav-item">
-                                            <a className="nav-link" data-bs-toggle="tab" href="#mydoc"> <i className="zmdi zmdi-file-text"></i>
-                                                <span className="d-none_small"> My Doc </span> </a>
-                                        </li>
-                                        
-
-                                        <li className="nav-item">
-                                            <a className="nav-link" data-bs-toggle="tab" href="#Messages"><i
-                                                    className="zmdi zmdi-email-open"></i> <span className="d-none_small"> Messages</span>
-                                            </a>
-                                        </li>
-                                        <li className="nav-item">
-                                            <a className="nav-link" data-bs-toggle="tab" href="#mynote"><i
-                                                    className="zmdi zmdi-comment-edit"></i> <span className="d-none_small">Note </span> </a>
-                                        </li>
-                                        <li className="nav-item">
-                                            <a className="nav-link " data-bs-toggle="tab" href="#Activity"><i
-                                                    className="zmdi zmdi-calendar-note"></i> <span className="d-none_small"> Activity
-                                                </span></a>
-                                        </li>
-
-                                    </ul>
-                                </div>
-                                <div className="tab-content pt-2 pb-2 ps-2 pe-2">
-                                
-                                    <div role="tabpanel" className=" tab-pane pb-5 in active" id="leaddetails">
-                                        <Details/>
-                                    </div>
-                                    <div role="tabpanel" className=" tab-pane" id="mydoc">
-                                        <Document/> 
-                                    </div>
-                                    <div role="tabpanel" className="tab-pane comntsection" id="mynote">
-                                        <Note/> 
-                                    </div>
-                                    <div role="tabpanel" class=" tab-pane" id="Activity">  
-                                        <Activity/>
-                                    </div>
-                                    <div role="tabpanel" class=" tab-pane" id="Messages">  
-                                        <Messages/>
-                                    </div>
-                                </div>
-                                
-                            </div>
-                            
-                            <div className="hgtt88 contbody ddnone fone">
-                                <div className="media bder11 p-4 mb-0" style={{borderLeft:"0px",borderRight:"0px"}}>
-                                    <div className="media-body ptag">
-                                        <div class="row">
-                                            <div class="col-md-6 mb-2">
-                                                <div class="d-flex justify-content-start align-items-center">    
-                                                    <div class="css-3sr5s988 me-2"><span class="css-19k1nij">GR</span></div>
-                                                    <div>
-                                                        <h5>Graham Ridwik</h5>
-                                                        <p class="mt-0 mb-0">Web Design | E-commerce</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p className="mb-1">
-                                                    <span className="float-right col-grey"> Respond 1yr ago</span></p>
-                                            </div>
-                                            <div class="col-md-6 col-lg-4">                                               
-                                                <p className="mb-1"><a href="#"><i className="zmdi zmdi-phone"></i> 9973373851 </a><small className="col-green">
-                                                Verified</small> </p>
-                                                <p className="mb-1"><a href="#"><i className="zmdi zmdi-email-open"></i> <span id="">
-                                                solutions.topicccano@gmail.com</span></a> <small className="col-green"> Verified</small>
-                                                </p>
-
-                                            </div>
-                                            <div class="col-md-6 col-lg-4">                                                
-                                                <p className="mb-1"><i className="zmdi zmdi-city-alt"></i> Lisburn, BT27 </p>
-                                                <p className="mb-0">
-                                                    <a href="#" className="btn btn-outline-primary btn-sm"><i className="zmdi zmdi-facebook"></i></a>
-                                                    <a href="#" className="btn btn-outline-primary btn-sm me-1 ms-1"><i className="zmdi zmdi-twitter"></i></a>
-                                                    <a href="#" className="btn btn-outline-primary btn-sm"><i className="zmdi zmdi-linkedin"></i></a>
-                                                    <a href="#" className="btn btn-outline-primary btn-sm ms-1"><i className="zmdi zmdi-whatsapp"></i></a> 
-                                                </p>
-                                            </div>
-                                            <div class="col-md-12 col-lg-4"> 
-                                                <div className="d-none d-lg-block float-right">
-                                                    <a href="#" className="btn btn btn-primary" data-bs-toggle="modal"
-                                                        data-bs-target="#contact"><i className="zmdi zmdi-phone"></i> Contact</a>
-                                                    <a href="#" className="btn btn btn-primary ms-1 me-1" data-bs-toggle="modal"
-                                                        data-bs-target="#emailsend"title=" Send Email"><i className="zmdi zmdi-email-open"></i></a>
-                                                    <a href="#" className="btn btn btn-primary" data-bs-toggle="modal"
-                                                        data-bs-target="#smssend"title=" Send Sms"><i className="zmdi zmdi-comment-text"></i></a>
-                                                    <a href="#" className="btn btn btn-outline-danger ms-1"><i
-                                                            className="zmdi zmdi-notifications-off"></i> Not Interested</a>
-                                                            
-                                                    
-                                                </div>
-                                            </div>    
-                                        </div>
-                                 
-                                       
-                                    </div>
-                                </div>
-                                <div className="">
-                                    <div className="p-3">
-                                        <h4 className="mb-0 mt-0">Details</h4>
-                                        <hr />
-                                        <p className="col-blue"><b>1. What type of organisation is this for? Do you already have a logo?
-                                                No I do not have a logo</b></p>
-                                        <p className="mb-3 ms-3"><b>Bussiness</b></p>
-
-                                        <p className="col-blue"><b>2. Do you already have a logo?</b></p>
-                                        <p className="mb-3 ms-3"><b> No I do not have a logo</b></p>
-
-                                        <p className="col-blue"><b>3. How many logo design are you looking for?</b></p>
-                                        <p className="mb-3 ms-3"><b>2 Designs</b></p>
-
-                                        <p className="col-blue"><b>4. How soon would you like the project to begin?</b></p>
-                                        <p className="mb-3 ms-3"><b> Less than two weeks</b></p>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-
-        </div>
-    </section>
-    <div className="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
-        <div className="offcanvas-header">
-        <h5 className="offcanvas-title" id="offcanvasExampleLabel">Filter</h5>
-        <button type="button" className="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
-        <hr className="m-0"/>
-        <div className="offcanvas-body">
-            <select id="ddl_tag_placeholder" className="custom-select form-select mb-2">
-                <option value="0">All Tags</option>
-                {/* {data && data.data.response[0].lead_tags !== '' && data.data.response[0].lead_tags.map((tag, i) => (
-                    <option key={i} value={tag.tag_id}>{tag.title}</option>
-                ))} */}
-            </select>
-            <select id="ddl_searchLeadType" className="custom-select form-select mb-2">
-                <option value="0">All Lead Type</option>
-                {data && data.data && data.data.response[1].lead_types.map((type, i) => (
-                    <option key={i} value={type.id}>{type.lead_type_name}</option>
-                ))}
-            </select>
-            <select id="ddl_searchCallStatus" className="custom-select form-select mb-2">
-                <option value="">All Call</option>
-                {data && data.data && data.data.response[2].call_status.map((status, i) => (
-                    <option key={i} >{status.message}</option>
-                ))}
-            </select>
-            <select id="ddl_searchLeadStatus" className="custom-select form-select mb-2">
-                <option value="">All Lead Status</option>
-                {data && data.data && data.data.response[3].lead_statuses.map((lstatus, i) => (
-                    <option key={i} style={{ color: lstatus.color_code }} value={lstatus.status_id}>{lstatus.status_name}</option>
-                ))}
-            </select>
-            <input type="text" id="txt_search" className="form-control mb-2" placeholder="Search by contact details" autoComplete="off" />
-            <input id="txt_daterange" type="text" className="form-control daterange" onFocus={selectdateRange} placeholder="Search by date range" />
-            <div className="">
-                <hr/>
-                <a id="btnSearchLead" className="btn btn-primary" onClick={searchLead} data-action="leads" data-request_for="filter" data-delete-status="0" data-archieve-status="0">Apply</a>
-            </div>                   
-        </div>
-    </div>    
-    
-    {/* Add New Oppertunities */}
-    <div class="modal right-half md-one" id="addNewOpper" tabindex="1" role="dialog" aria-labelledby="shortModal">
-        <div class="modal-dialog" role="document" style={{maxWidth:"840px"}}>
-            <div class="modal-content">
-                <div class="modal-header bg-blu-lite fixed-top">
-                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                    <h4 class="modal-title" id="myModalLabel2">
-                        <b>Add Lead</b>
-                    </h4>
-                </div>
-                <div class="modal-body">
-                    {/* <div class="row">
-                        <div class="col-md-6 pt-3">
-                            <div class="">
-                                <div class="group_lead">
-                                    <input class="input_text" id="ppreson" name="ppreson" required="required" type="text"/> 
-                                    <label class="lablefilled"><i class="zmdi zmdi-account"></i> Contact person</label>
-                                </div>
-                                <div class="group_lead">
-                                    <input class="input_text" id="ppreson" name="ppreson" required="required" type="text"/> 
-                                    <label class="lablefilled"><i class="zmdi zmdi-city"></i>  Organization</label>
-                                </div>
-                                <div class="group_lead">
-                                    <input class="input_text" id="ppreson" name="ppreson" required="required" type="text"/> 
-                                    <label class="lablefilled">  Title</label>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-6">
-                                        <div class="group_lead">
-                                            <input class="input_text" name="value" required="required" type="text"/> 
-                                            <label class="lablefilled"> Value</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-6 ps-0">
-                                        <div class="group_lead"><select class="custom-select select_f" id="Currency"><option>  Choose Currency</option><option name="Inr" value="Inr">Indian Rupee (INR)</option></select></div>
-                                    </div>
-                                </div>
-
-                                <div class="group_lead"><select class="custom-select select_f" id="Labels"><option>  Owner</option><option name="Stokes" value="Stokes">Rikwik Stokes</option></select></div>
-                                <div class="group_lead">
-                                    <input class="input_text" name="date" required="required" type="date"/> 
-                                    <label class="lablefilled"> Expected close date </label>
-                                </div>
-                                <div class="group_lead"><select class="custom-select select_f" id="Labels"><option>  Visible to</option><option name="Owner" value="Owner">Item Owner</option><option name="visibility" value="visibility">Item owner’s visibility group</option></select></div>
-
-                            </div>
-                        </div>
-                        
-                        <div class="col-md-6 pt-3" style={{borderLeft:"1px solid #eee"}}> 
-                            <div class=""> 
-                                <h4 class="mb-0"><b>Person</b></h4>    
-                                <hr/> 
-                                <div class="row">
-                                    <div class="col-6 col-lg-7">
-                                        <div class="group_lead mb-2">
-                                            <input class="input_text" id="ppreson" name="ppreson" required="required" type="text"/> 
-                                            <label class="lablefilled"><i class="zmdi zmdi-phone"></i> Phone</label>
-                                        </div> 
-                                    </div>
-                                    <div class="col-6 col-lg-5  ps-0">
-                                        <div class="group_lead mb-2"><select class="custom-select select_f" id=""><option>  Work </option><option name="home" value="Inr">Home</option><option name="Other" value="Inr">Other</option></select></div>
-                                    </div>
-                                </div> 
-                                <a href="#">+ Add phone</a>
-                                <div class="row mt-3">
-                                    <div class="col-6 col-lg-7">
-                                        <div class="group_lead mb-2">
-                                            <input class="input_text" id="ppreson" name="ppreson" required="required" type="text"/> 
-                                            <label class="lablefilled"><i class="zmdi zmdi-email"></i> Email</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-6 col-lg-5  ps-0">
-                                        <div class="group_lead mb-2"><select class="custom-select select_f" id=""><option>  Work </option><option name="home" value="Inr">Home</option><option name="Other" value="Inr">Other</option></select></div>
-                                    </div>
-                                </div>                                           
-                                <a href="#">+ Add mobile</a>
-                            </div>    
-                        </div>
-                    </div> 
-                                            */}
-                    <div class="tab-content p-0">
-                        <div role="tabpanel" class=" tab-pane in active">
-                            <div className="row m-0 justify-content-center mt-3">
-                                <div className="col-md-4 col-lg-4">
-                                    <div className="card bdr5 mt-0">
-                                        <div className="header  pt-1 pl-2">
-                                            <h2><i className="zmdi zmdi-view-dashboard">&nbsp;</i>Lead Type<span className="col-red">*</span></h2>
-                                        </div>
-                                        <div className="body p-2 mb-2">
-                                            <div className="group_lead mb-0">
-                                               
-                                                <select
-            id="ddl_lead_types"
-            className="form-select select_f lead-input"
-            name="lead_type_name"
-            data-val="0"
-            data-uid=""
-            required
-            value={formData.lead_type_name}
-            onChange={(e) => setFormData({ ...formData, lead_type_name: e.target.value })}
-          >
-                                                    <option value="0">Choose Lead Type</option>
-                                                    {leadTypeList.map((lead, i) => (
-                                                        <option key={i} value={lead.id}>{lead.lead_type_name}</option>
-                                                    ))}
-                                                </select>
-                                                {formErrors.lead_type_name && (
-                  <p className="error-message">{formErrors.lead_type_name}</p>
-                )}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col-md-4 col-lg-4">
-                                    <div className="card bdr5 mt-0">
-                                        <div className="header  pt-1 pl-2">
-                                            <h2><i className="zmdi zmdi-view-dashboard">&nbsp;</i>Categories</h2>
-                                        </div>
-                                        <div className="body p-2 mb-2">
-                                            <div className="group_lead mb-0">
-                                            <select
-            id="ddl_parent_cat"
-            className="form-select select_f lead-input"
-            name="cat_name"
-            data-val="0"
-            data-uid=""
-            required
-            value={formData.cat_name}
-            onChange={(e) => setFormData({ ...formData, cat_name: e.target.value })}
-          >
-                                                    <option value="0">Choose Category</option>
-                                                    {CategoryList.map((cat, i) => (
-                                                                    <option key={i} value={cat.cat_id}>{cat.cat_name}</option>
-                                                                ))} 
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col-md-4 col-lg-4">
-                                    <div className="card bdr5 mt-0">
-                                        <div className="header pt-1 pl-2">
-                                            <h2><i className="zmdi zmdi-view-dashboard">&nbsp;</i>Channel </h2>
-                                        </div>
-                                        <div className="body p-2 mb-2">
-                                            <div className="group_lead mb-0">
-                                                <select className="custom-select select_f" defaultValue={"0"} id="ddl_lead_channel">
-                                                    <option value="0" >Choose Lead Channel</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col-md-12 col-lg-12">
-                                    <div className="card bdr5 mt-0">
-                                        <div className="header pt-2 pl-2">
-                                            <h2><i className="zmdi zmdi-account-box-mail">&nbsp;</i>Basic Details</h2>
-                                        </div>
-                                        <div className="body p-2">
-                                            <div className="row">
-                                                <div className="col-md-6 disableform">
-                                                    <div className="group_lead">
-                                                        <div className="group_lead mb-0">
-                                                            <select className="custom-select select_f" id="ddl_title" onChange={setFormData} >
-                                                                <option value="0">Select</option>
-                                                                <option value="Mr">Mr</option>
-                                                                <option value="Mrs">Mrs</option>
-                                                                <option value="Ms">Ms</option>
-                                                                <option value="Miss">Miss</option>
-                                                            </select>
-                                                            <label className="lablefilled">Title<span>*</span></label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div className="col-md-6">
-                                                    <div className="group_lead">
-                                                    <input
-            type="text"
-            id="txt_company_name"
-            name="lead_company_name"
-            className="input_text"
-            required
-            autoComplete="off"
-            value={formData.lead_company_name}
-            onChange={(e) => setFormData({ ...formData, lead_company_name: e.target.value })}
-          />
-                                                        <label className="lablefilled"><i className="zmdi zmdi-city">&nbsp;</i>Company Name<span>*</span></label>
-            {formErrors.lead_name && (
-                  <p className="error-message">{formErrors.lead_company_name}</p>
-                )}
-                                                    </div>
-                                                </div>
-                                                <div className="col-md-6">
-                                                    <div className="group_lead">
-                                                        
-                                                        <input className="input_text allow-email-only" id="txt_lead_email"  required="required" type="text" autoComplete="off" />
-                                                        <label className="lablefilled"><i className="zmdi zmdi-email">&nbsp;</i>Email<span>*</span></label>
-                                                    </div>
-                                                </div>
-                                                <div className="col-md-6">
-                                                    <div className="group_lead">
-                                                        <input className="input_text allow-numbers-only" id="txt_lead_mobile"  required="required" type="text" maxLength="11" autoComplete="off" />
-                                                        <label className="lablefilled"><i className="zmdi zmdi-smartphone-android">&nbsp;</i>Mobile</label>
-                                                    </div>
-                                                </div>
-                                                <div className="col-md-6">
-                                                    <div className="group_lead">
-                                                        <input className="input_text allow-numbers-only" id="txt_lead_phone"  required="required" type="text" maxLength="15" autoComplete="off" />
-                                                        <label className="lablefilled"><i className="zmdi zmdi-phone">&nbsp;</i>Telephone</label>
-                                                    </div>
-                                                </div>
-                                                <div className="col-md-12">
-                                                    <div className="group_lead">
-                                                        <input className="input_text" id="txt_lead_website" required="required"  type="text" autoComplete="off" />
-                                                        <label className="lablefilled"><i className="zmdi zmdi-pin">&nbsp;</i>Website</label>
-                                                    </div>
-                                                </div>
-                                                <div className="col-md-12">
-                                                    <div className="group_lead">
-                                                        <input className="input_text" id="txt_lead_note"  required="required" type="text" autoComplete="off" />
-                                                        <label className="lablefilled"><i className="zmdi zmdi-comment-edit">&nbsp;</i>Note</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col-md-12 col-lg-12">
-                                    <div className="card bdr5 mt-0">
-                                        <div className="header pt-1 pl-2">
-                                            <h2><i className="zmdi zmdi-pin"></i> Address Details </h2>
-                                        </div>
-                                        <div className="body p-2">
-                                            <div className="row">
-                                                <div className="col-md-12">
-                                                    <div className="group_lead">
-                                                        <input className="input_text" id="txt_lead_address"  required="required" type="text" autoComplete="off" />
-                                                        <label className="lablefilled"><i className="zmdi zmdi-pin">&nbsp;</i>Address line</label>
-                                                    </div>
-                                                </div>
-                                                <div className="col-md-6">
-                                                    <div className="group_lead">
-                                                        <input className="input_text" id="txt_lead_city"  required="required" type="text" autoComplete="off" />
-                                                        <label className="lablefilled"><i className="zmdi zmdi-city">&nbsp;</i>City<span>*</span></label>
-                                                    </div>
-                                                </div>
-                                                <div className="col-md-6">
-                                                    <div className="group_lead">
-                                                        <input className="input_text" id="txt_lead_county"  required="required" type="text" autoComplete="off" />
-                                                        <label className="lablefilled"><i className="zmdi zmdi-city-alt">&nbsp;</i>State/County</label>
-                                                    </div>
-                                                </div>
-                                                <div className="col-md-6">
-                                                    <div className="group_lead">
-                                                        <input className="input_text" id="txt_lead_pincode"  required="required" type="text" autoComplete="off" />
-                                                        <label className="lablefilled"><i className="zmdi zmdi-map">&nbsp;</i>Postcode<span>*</span></label>
-                                                    </div>
-                                                </div>
-                                                <div className="col-md-6 disableform">
-                                                    <div className="group_lead">
-                                                        <select className="custom-select select_f" id="ddl_lead_country"  required="required" >
-                                                            <option value="0">Choose Country</option>
-                                                            
-                                                        </select>
-                                                        <label htmlFor="" className="lablefilled">Country<span>*</span></label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col-md-12 col-lg-12">
-                                    <div className="card bdr5 mt-0">
-                                        <div className="header pt-1 pl-2">
-                                            <h2><i className="zmdi zmdi-pin">&nbsp;</i>Social Media Details</h2>
-                                        </div>
-                                        <div className="body p-2">
-                                            <div className="row">
-                                                <div className="col-md-6">
-                                                    <div className="group_lead">
-                                                        <input className="input_text" id="txt_facebook" required="required" type="text" autoComplete="off" />
-                                                        <label className="lablefilled"><i className="zmdi zmdi-facebook">&nbsp;</i>Facebook</label>
-                                                    </div>
-                                                </div>
-                                                <div className="col-md-6">
-                                                    <div className="group_lead">
-                                                        <input className="input_text" id="txt_twitter" required="required" type="text" autoComplete="off" />
-                                                        <label className="lablefilled"><i className="zmdi zmdi-instagram">&nbsp;</i>Twitter</label>
-                                                    </div>
-                                                </div>
-                                                <div className="col-md-6">
-                                                    <div className="group_lead">
-                                                        <input className="input_text" id="txt_instagram" required="required" type="text" autoComplete="off" />
-                                                        <label className="lablefilled"><i className="zmdi zmdi-instagram">&nbsp;</i>Instagram</label>
-                                                    </div>
-                                                </div>
-                                                <div className="col-md-6">
-                                                    <div className="group_lead">
-                                                        <input className="input_text" id="txt_youtube" required="required" type="text" autoComplete="off" />
-                                                        <label className="lablefilled"><i className="zmdi zmdi-youtube">&nbsp;</i>Youtube</label>
-                                                    </div>
-                                                </div>
-                                                <div className="col-md-6">
-                                                    <div className="group_lead">
-                                                        <input className="input_text" id="txt_linkdin" required="required" type="text" autoComplete="off" />
-                                                        <label className="lablefilled"><i className="zmdi zmdi-linkedin">&nbsp;</i>Linkedin</label>
-                                                    </div>
-                                                </div>
-                                                <div className="col-md-6">
-                                                    <div className="group_lead">
-                                                        <input className="input_text" id="txt_pinterest" required="required" type="text" autoComplete="off" />
-                                                        <label className="lablefilled"><i className="zmdi zmdi-pinterest">&nbsp;</i>Pinterest</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col-md-12 col-lg-12">
-                                    <div className="card bdr5 mt-0">
-                                        <div className="header pt-1 pl-2">
-                                            <h2><i className="zmdi zmdi-labels"></i> Custom Fields </h2>
-                                        </div>
-                                        <div className="body p-2">
-                                            <div id="table" className="table-editable">
-                                                <table id="tblCustomFields" className="table">
-                                                    <tbody>
-                                                        <tr className="trCustomFields" data-counter="0">
-                                                            <td>
-                                                                <div className="group_lead">
-                                                                    <input className="input_text" id="txt_field0" name="" required="required" type="text" autoComplete="off" />
-                                                                    <label className="lablefilled"> Custom Fields</label>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <div className="group_lead">
-                                                                    <input className="input_text" id="txt_label0" name="" required="required" type="text" autoComplete="off" />
-                                                                    <label className="lablefilled"> Label</label>
-                                                                </div>
-                                                            </td>
-                                                            <td><span id="addmorefield" className="table-add btn btn-primary mb-4 evt-leads-action" data-action="leads" data-request_for="add-custom-fields" data-cntr="0" data-toggle="tooltip" title="Add more">Add more+</span></td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col-md-12 col-lg-12">
-                                    <div className="card bdr5 mt-0">
-                                        <div className="header pt-1 pl-2">
-                                            <h2><i className="zmdi zmdi-labels"></i> Tags / Keywords</h2>
-                                        </div>
-                                        <div className="body p-2">
-                                            <div className="group_lead">
-                                                <input className="input_text" id="" name="Services" required="required" type="text" autoComplete="off" />
-                                                <label className="lablefilled" style={{ top: "-10px", fontSize: "12px" }}><i className="zmdi zmdi-label-alt"></i> Keywords</label>
-                                            </div>
-                                            <div id="master_keywords_placeholder"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <a id="btn_submit_leadform" className="btn btn-primary" style={{ display: "none" }}>Submit</a>
-                            
-                                
-                            
-                            </div>  
-                        </div>
-                    </div>                    
+                    </div>                        
+                                           
                 </div>
                 <div class="model-footer">
                     <div class="row m-0">
                         <div class="col-md-12">
                             <div class="text-center">                               
-                                <a id="btn_submit_lead"onClick={handleButtonClick} className="btn btn-primary" ><i className="zmdi zmdi-upload">&nbsp;</i>Save </a>
-                                    <a id="btn_copytoClip" className="btn btn-primary s-1 me-1"><i className="zmdi zmdi-copy">&nbsp;</i>Copy to clipboard</a>
-                                    <a className="btn btn-danger btn-lg" data-bs-dismiss="modal"><i className="zmdi zmdi-rotate-left">&nbsp;</i>Cancel</a>
+                                <button class="btn btn-primary me-1 clickmode" data-show=".contactlist, .showthing, .nxtprv" data-hide=".md-one, .hdbox, .modal-backdrop" type="button"> <i class="zmdi zmdi-upload"></i> Save </button>                        
+                                <button class="btn btn-danger" type="button"><i class="zmdi zmdi-rotate-left"></i> Cancel</button>
                             </div>
                         </div>
                     </div>   
