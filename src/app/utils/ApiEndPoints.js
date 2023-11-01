@@ -1,5 +1,6 @@
 module.exports = {
     login: '/AccountApi',
+    dashboard:'/OrganizationApi',
     organizationApi:'/OrganizationApi',
     opportunity:'/LeadApi',
     dropdownApi: '/DropdownApi',

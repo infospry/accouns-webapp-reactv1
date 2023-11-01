@@ -123,6 +123,7 @@ const [formData, setFormData] = useState({
     const getUsersList = async () => {
         const resp = await getUserList();
         if (resp.response_status === "OK") {
+            // alert(resp.data.response.users);
             console.log(resp.data.response.users);
             setUser_list(resp.data.response.users)
         }
@@ -138,8 +139,7 @@ const [formData, setFormData] = useState({
         if (obj.response_status === "OK") {          
             setLeads(obj.data.response.leads_list);
         }        
-    }
-    
+    }    
 
     const loadMore = async (e) => {
         e.preventDefault();
@@ -2566,6 +2566,7 @@ const [formData, setFormData] = useState({
     </>
     )
 }
+
 export const getServerSideProps = async ({ req, res }) => {
     try {
         //opportunity data
