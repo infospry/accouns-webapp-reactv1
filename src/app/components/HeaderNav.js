@@ -34,7 +34,7 @@ const HeaderNav = () => {
                   setMenus(localStorageData.response[1].modules);
                   setSign_inInfo(localStorageData.response[0].signin_info[0]);
               }
-              console.log(JSON.stringify(localStorageData))
+            //   console.log(JSON.stringify(localStorageData))
           }
       }
   })
