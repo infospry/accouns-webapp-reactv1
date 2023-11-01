@@ -390,7 +390,7 @@ const [formData, setFormData] = useState({
                         </button>
                             <div className="btn-group head_btn me-1" style={{ display: "none" }}>
                                 <div className="dropdown me-1">
-                                    <a className="dropdown-toggle btn btn-outline-primary btn-menu clmnbtn" data-toggle="dropdown" role="button">
+                                    <a className="dropdown-toggle btn btn-outline-primary btn-menu clmnbtn" data-bs-toggle="dropdown" role="button">
                                         <i className="zmdi zmdi-label"></i><span>Tag as</span>
                                     </a>
                                     <ul className="dropdown-menu clmn">
@@ -417,13 +417,13 @@ const [formData, setFormData] = useState({
                                 data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">More</button>
                                     <div className="dropdown-menu">
                                         
-                            <a className="dropdown-item evt-leads-main" data-toggle="modal" data-target="#modalimport" data-action="leads-main" data-request_for="import-popup"> <i className="zmdi zmdi-download">&nbsp;</i>Import</a>
+                            <a className="dropdown-item evt-leads-main" data-bs-toggle="modal"  data-bs-target="#modalimport" data-action="leads-main" data-request_for="import-popup"> <i className="zmdi zmdi-download">&nbsp;</i>Import</a>
                                         <a className="dropdown-item" onClick={getArchieveLeades}><i className="zmdi zmdi-archive">&nbsp;</i>Archieve</a>
                                         <a className="dropdown-item" onClick={getBin}><i className="zmdi zmdi-delete">&nbsp;</i>Trash</a>
                               
                                         {/* <a className="dropdown-item" data-action="leads" data-request_for="refresh" type="button"> <i data-action="leads" data-request_for="refresh" className="zmdi zmdi-rotate-left"></i><span data-action="leads" data-request_for="refresh"> Refresh</span></a> */}
                                         
-                                        {/* <a className="dropdown-item evt-leads-main" data-toggle="modal" data-target="#modalimport" data-action="leads-main" data-request_for="import-popup"> <i className="zmdi zmdi-download">&nbsp;</i>Import</a>
+                                        {/* <a className="dropdown-item evt-leads-main" data-bs-toggle="modal"  data-bs-target="#modalimport" data-action="leads-main" data-request_for="import-popup"> <i className="zmdi zmdi-download">&nbsp;</i>Import</a>
                                         
                                         <a className="dropdown-item " onClick={getArchieveLeades} ><i className="zmdi zmdi-archive">&nbsp;</i>Archieve</a>
 
@@ -490,37 +490,37 @@ const [formData, setFormData] = useState({
                                                     <h5>
                                                         {res && res.length > 0 && res[0].leads[0].lead_company_name}
                                                         <span className="float-right  d-none d-lg-block ">
-                                                            <a className="btn btn btn-primary evt-leads-action  ml-1" style={{ backgroundColor: "#0B8054" }} data-toggle="modal" data-target="#contact" data-mobile={res && res.length > 0 && res[0].leads[0].lead_mobile} data-phone={res && res.length > 0 && res[0].leads[0].lead_phone} data-action="notes" data-request_for="answers-list"><i className="zmdi zmdi-phone"></i> Call</a>
-                                                            <a className="btn btn btn-primary evt-leads-action  ml-1" style={{ backgroundColor: "#0893A2" }} data-email={res && res.length > 0 && res[0].leads[0].lead_email} data-mobile={res && res.length > 0 && res[0].leads[0].lead_mobile} data-action="message" data-request_for="open" data-toggle="modal" data-target="#emailsend"><i className="zmdi zmdi-email-open">&nbsp;</i>Send Mail</a>
-                                                            <div className="btn-group ml,mmm.klmlk,,,,,,,-1">/
-                                                                <a id="btn_lead_statuses" className="btn btn-primary dropdown-toggle" data-u_id={res && res.length > 0 && res[0].leads[0].u_id} data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><i className="zmdi zmdi-alert-polygon">&nbsp;</i>
+                                                            <a className="btn btn btn-primary evt-leads-action  ms-1" style={{ backgroundColor: "#0B8054" }} data-bs-toggle="modal" data-bs-target="#contact" data-mobile={res && res.length > 0 && res[0].leads[0].lead_mobile} data-phone={res && res.length > 0 && res[0].leads[0].lead_phone} data-action="notes" data-request_for="answers-list"><i className="zmdi zmdi-phone"></i> Call</a>
+                                                            <a className="btn btn btn-primary evt-leads-action  ms-1" style={{ backgroundColor: "#0893A2" }} data-email={res && res.length > 0 && res[0].leads[0].lead_email} data-mobile={res && res.length > 0 && res[0].leads[0].lead_mobile} data-action="message" data-request_for="open" data-bs-toggle="modal"  data-bs-target="#emailsend"><i className="zmdi zmdi-email-open">&nbsp;</i>Send Mail</a>
+                                                            <div className="btn-group ms-1">
+                                                                <a id="btn_lead_statuses" className="btn btn-primary dropdown-toggle" data-u_id={res && res.length > 0 && res[0].leads[0].u_id} data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><i className="zmdi zmdi-alert-polygon">&nbsp;</i>
                                                                     <span className="d-none_small">{res && res.length > 0 && res[0].leads[0].lead_status_update !== "" ? res[0].leads[0].lead_status_update : "Status"}</span></a>
                                                                 <div id="ddl_lead_statuses" className="dropdown-menu">
                                                                     {res && res.length > 0 && res[0].leads[0].status_master_list.map((stats, i) => (
                                                                         stats.status_type === "button" ?
                                                                             <a key={i} id={"ddlMenu-" + stats.status_id} style={{ color: stats.color_code }} className="dropdown-item evt-leads-action" data-type={stats.status_type} data-id={stats.status_id} data-action="leads" data-request_for="action-type" data-action-type="lead">{stats.status_name}</a>
                                                                             :
-                                                                            <a key={i} id={"ddlMenu-" + stats.status_id} style={{ color: stats.color_code }} className="dropdown-item evt-leads-action" data-toggle="modal" data-target="#lead_statuses" data-type={stats.status_type} data-id={stats.status_id} data-action="leads" data-request_for="action-type">{stats.status_name}</a>
+                                                                            <a key={i} id={"ddlMenu-" + stats.status_id} style={{ color: stats.color_code }} className="dropdown-item evt-leads-action" data-bs-toggle="modal" data-bs-target="#lead_statuses" data-type={stats.status_type} data-id={stats.status_id} data-action="leads" data-request_for="action-type">{stats.status_name}</a>
                                                                     ))}
                                                                 </div>
                                                             </div>
-                                                            <a className="btn btn btn-primary evt-leads-action ml-1" data-email={res && res.length > 0 && res[0].leads[0].lead_email} data-phone={res && res.length > 0 && res[0].leads[0].lead_phone} data-lead-name={res && res.length > 0 && res[0].leads[0].lead_name} data-action="schedule" data-request_for="open" data-toggle="modal" data-target="#schedule"><i className="zmdi zmdi-alarm-check">&nbsp;</i>Schedule</a>
+                                                            <a className="btn btn btn-primary evt-leads-action ms-1" data-email={res && res.length > 0 && res[0].leads[0].lead_email} data-phone={res && res.length > 0 && res[0].leads[0].lead_phone} data-lead-name={res && res.length > 0 && res[0].leads[0].lead_name} data-action="schedule" data-request_for="open" data-bs-toggle="modal"  data-bs-target="#schedule"><i className="zmdi zmdi-alarm-check">&nbsp;</i>Schedule</a>
                                                             {res && res.length > 0 && res[0].leads[0].org_user_type === 'A' ?
-                                                                <a href="#" className="btn btn btn-outline-primary evt-leads-action ml-1" onClick={getUsersList} data-toggle="modal" data-target="#convert"><i className="zmdi zmdi-swap"></i> <span className="d-none_small"><b>Convert</b> </span></a> : <></>
+                                                                <a href="#" className="btn btn btn-outline-primary evt-leads-action ms-1" onClick={getUsersList} data-bs-toggle="modal"  data-bs-target="#convert"><i className="zmdi zmdi-swap"></i> <span className="d-none_small"><b>Convert</b> </span></a> : <></>
                                                             }
 
                                                             <div className="btn-group">
-                                                                <button className="btn btn-outline-primary dropdown-toggle ml-1" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                                                <button className="btn btn-outline-primary dropdown-toggle ms-1" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                                                     Action
                                                                 </button>
                                                                 <div className="dropdown-menu">
                                                                     {res && res.length > 0 && res[0].leads[0].delete_status === 0 ?
                                                                         <>
-                                                                            <a className="dropdown-item evt-leads-action" data-u_id={res && res.length > 0 && res[0].leads[0].u_id} data-lead-type={res && res.length > 0 && res[0].leads[0].lead_type} onClick={(e) => showLead(e)} data-toggle="modal" data-target="#leadmain" ><i className="zmdi zmdi-edit">&nbsp;</i>Edit</a>
-                                                                            <a className="dropdown-item " onClick={(e) => deleteLead(e, res && res.length > 0 && res[0].leads[0])} data-u_id={res && res.length > 0 && res[0].leads[0].u_id} data-delete-status={res && res.length > 0 && res[0].leads[0].delete_status} data-archieve-status={res && res.length > 0 && res[0].leads[0].archieve_status} data-action="leads" data-request_for="delete" data-toggle="tooltip" title="Move to bin"><i className="zmdi zmdi-delete">&nbsp;</i>Delete</a>
+                                                                            <a className="dropdown-item evt-leads-action" data-u_id={res && res.length > 0 && res[0].leads[0].u_id} data-lead-type={res && res.length > 0 && res[0].leads[0].lead_type} onClick={(e) => showLead(e)} data-bs-toggle="modal"  data-bs-target="#leadmain" ><i className="zmdi zmdi-edit">&nbsp;</i>Edit</a>
+                                                                            <a className="dropdown-item " onClick={(e) => deleteLead(e, res && res.length > 0 && res[0].leads[0])} data-u_id={res && res.length > 0 && res[0].leads[0].u_id} data-delete-status={res && res.length > 0 && res[0].leads[0].delete_status} data-archieve-status={res && res.length > 0 && res[0].leads[0].archieve_status} data-action="leads" data-request_for="delete" data-bs-toggle="tooltip" title="Move to bin"><i className="zmdi zmdi-delete">&nbsp;</i>Delete</a>
                                                                         </>
                                                                         : res && res.length > 0 && res[0].leads[0].org_user_type === 'A' ?
-                                                                            <a className="dropdown-item " onClick={deleteLead} data-u_id={res && res.length > 0 && res[0].leads[0].u_id} data-lead-status={res && res.length > 0 && res[0].leads[0].lead_status} data-delete-status={res && res.length > 0 && res[0].leads[0].delete_status} data-archieve-status={res && res.length > 0 && res[0].leads[0].archieve_status} data-action="leads" data-request_for="delete" data-toggle="tooltip" title="Permanent delete this record"><i className="zmdi zmdi-close">&nbsp;</i>Delete</a>
+                                                                            <a className="dropdown-item " onClick={deleteLead} data-u_id={res && res.length > 0 && res[0].leads[0].u_id} data-lead-status={res && res.length > 0 && res[0].leads[0].lead_status} data-delete-status={res && res.length > 0 && res[0].leads[0].delete_status} data-archieve-status={res && res.length > 0 && res[0].leads[0].archieve_status} data-action="leads" data-request_for="delete" data-bs-toggle="tooltip" title="Permanent delete this record"><i className="zmdi zmdi-close">&nbsp;</i>Delete</a>
                                                                             : <></>
                                                                     }
                                                                 </div>
@@ -1379,7 +1379,7 @@ const [formData, setFormData] = useState({
                                                                     <label className="lablefilled"> Label</label>
                                                                 </div>
                                                             </td>
-                                                            <td><span id="addmorefield" className="table-add btn btn-primary mb-4 evt-leads-action" data-action="leads" data-request_for="add-custom-fields" data-cntr="0" data-toggle="tooltip" title="Add more">Add more+</span></td>
+                                                            <td><span id="addmorefield" className="table-add btn btn-primary mb-4 evt-leads-action" data-action="leads" data-request_for="add-custom-fields" data-cntr="0" data-bs-toggle="tooltip" title="Add more">Add more+</span></td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
