@@ -19,7 +19,105 @@ import { get, post } from "../../services/api_axios_services"
 
     const Main = ({ data = [], pageData = [], leadTypeList = [], CategoryList = [], CountryList = [] }) => {
     const ref = useRef([]);
+//#region form add
 
+const [formData, setFormData] = useState({
+
+    lead_type:'',
+    lead_category_id: "",
+    lead_channel_id:'',
+    title:'',
+    gender: "",
+    lead_name: '',
+    lead_dob:'',
+    lead_company_name:'',
+    lead_email: '',
+    lead_mobile: '',
+    lead_phone: '',
+    lead_website: "",
+    lead_note: '',
+    lead_address: '',
+    lead_city:'',
+    lead_county: '',
+    lead_postcode: '',
+    lead_country: '',
+    facebook: "",
+    twitter: "",
+    instagram: "",
+    youtube: "",
+    linkedin: "",
+    pinterest: "",
+  });
+
+  const [formErrors, setFormErrors] = useState({});
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleButtonClick = () => {
+    // Implement form validation here
+    const errors = {};
+    if (formData.lead_type === '0') {
+        errors.lead_type = 'Please select a Lead Type';
+      }
+      if (formData.title === '0') {
+      errors.title = 'Title is required';
+    }
+    if (!formData.lead_name) {
+      errors.lead_name = 'Lead Name is required';
+    }
+    if (!formData.lead_dob) {
+        errors.lead_dob = 'Date of Birth is required';
+      }
+      if (!formData.lead_email) {
+        errors.lead_company_name = 'Company name is required';
+      }
+    if (!formData.lead_email) {
+      errors.lead_email = 'Mobile Number is required';
+    } else if (formData.lead_email.length !== 11) {
+      errors.lead_email = 'Mobile Number must be 11 digits long';
+    }
+
+    if (!formData.lead_email) {
+      errors.lead_email = 'Email is required';
+    } else if (!isValidEmail(formData.lead_email)) {
+      errors.lead_email = 'Invalid email format';
+    }
+
+    if (!formData.lead_city) {
+      errors.lead_city = 'City is required';
+    }
+    
+      if (!formData.lead_postcode) {
+        errors.lead_postcode = 'Postcode is required';
+      }
+    if (formData.lead_country === '0') {
+      errors.lead_country = 'Please select Country';
+    }
+
+    if (Object.keys(errors).length === 0) {
+      // Form is valid, you can save data here
+      saveFormData(formData);
+    } else {
+      setFormErrors(errors);
+    }
+  };
+
+  const saveFormData = (data) => {
+    // Implement data-saving logic here
+    // console.log('Data saved:', data);
+    alert('Data saved:' + JSON.stringify(data));
+    // You can send the data to your server or perform other actions
+  };
+
+  
+
+
+
+//#endregion
+ 
     const [leads, setLeads] = useState(pageData && pageData);
     const [loader, setLoader] = useState(false);
     const [user_list, setUser_list] = useState([]);
@@ -752,9 +850,9 @@ import { get, post } from "../../services/api_axios_services"
     
     {/* Add New Oppertunities */}
     <div class="modal right-half md-one" id="addNewOpper" tabindex="1" role="dialog" aria-labelledby="shortModal">
-        <div class="modal-dialog" role="document" style={{maxWidth:"768px"}}>
+        <div class="modal-dialog" role="document" style={{maxWidth:"840px"}}>
             <div class="modal-content">
-                <div class="modal-header bg-blu-lite">
+                <div class="modal-header bg-blu-lite fixed-top">
                     <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
@@ -763,7 +861,7 @@ import { get, post } from "../../services/api_axios_services"
                     </h4>
                 </div>
                 <div class="modal-body">
-                    <div class="row">
+                    {/* <div class="row">
                         <div class="col-md-6 pt-3">
                             <div class="">
                                 <div class="group_lead">
@@ -831,15 +929,493 @@ import { get, post } from "../../services/api_axios_services"
                                 <a href="#">+ Add mobile</a>
                             </div>    
                         </div>
-                    </div>                        
-                                           
+                    </div>  */}
+                                            
+                    <div class="tab-content p-0">
+                        <div role="tabpanel" class=" tab-pane in active">
+                            <div className="row m-0 justify-content-center mt-3">
+                                <div className="col-md-4 col-lg-4">
+                                    <div className="card bdr5 mt-0">
+                                        <div className="header  pt-1 pl-2">
+                                            <h2><i className="zmdi zmdi-view-dashboard">&nbsp;</i>Lead Type<span className="col-red">*</span></h2>
+                                        </div>
+                                        <div className="body p-2 mb-2">
+                                            <div className="group_lead mb-0">
+                                               
+                                                <select
+                                                    id="ddl_lead_types"
+                                                    className="form-select select_f lead-input"
+                                                    name="lead_type"
+                                                    data-val="0"
+                                                    data-uid=""
+                                                    required
+                                                    value={formData.lead_type}
+                                                    onChange={(e) => setFormData({ ...formData, lead_type: e.target.value })}
+                                                >
+                                                    <option value="0">Choose Lead Type</option>
+                                                    {leadTypeList.map((lead, i) => (
+                                                        <option key={i} value={lead.id}>{lead.lead_type_name}</option>
+                                                    ))}
+                                                </select>
+                                                {formErrors.lead_type_name && (
+                                                <p className="error-message">{formErrors.lead_type_name}</p>
+                                                )}                                  
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="col-md-4 col-lg-4">
+                                    <div className="card bdr5 mt-0">
+                                        <div className="header  pt-1 pl-2">
+                                            <h2><i className="zmdi zmdi-view-dashboard">&nbsp;</i>Categories</h2>
+                                        </div>
+                                        <div className="body p-2 mb-2">
+                                            <div className="group_lead mb-0">
+                                                <select
+                                                    id="ddl_parent_cat"
+                                                    className="form-select select_f lead-input"
+                                                    name="cat_name"
+                                                    data-val="0"
+                                                    data-uid=""
+                                                    required
+                                                    value={formData.cat_name}
+                                                    onChange={(e) => setFormData({ ...formData, cat_name: e.target.value })}
+                                                >
+                                                    <option value="0">Choose Category</option>
+                                                    {CategoryList.map((cat, i) => (
+                                                                    <option key={i} value={cat.cat_id}>{cat.cat_name}</option>
+                                                                ))} 
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="col-md-4 col-lg-4">
+                                    <div className="card bdr5 mt-0">
+                                        <div className="header pt-1 pl-2">
+                                            <h2><i className="zmdi zmdi-view-dashboard">&nbsp;</i>Channel </h2>
+                                        </div>
+                                        <div className="body p-2 mb-2">
+                                            <div className="group_lead mb-0">
+                                                <select className="custom-select select_f" defaultValue={"0"} id="ddl_lead_channel">
+                                                    <option value="0" >Choose Lead Channel</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="col-md-12 col-lg-12">
+                                    <div className="card bdr5 mt-0">
+                                        <div className="header pt-2 pl-2">
+                                            <h2><i className="zmdi zmdi-account-box-mail">&nbsp;</i>Basic Details</h2>
+                                        </div>
+                                        <div className="body p-2">
+                                            <div className="row">
+                                            <div className="col-md-6 disableform">
+                                                    <div className="group_lead">
+                                                        <div className="group_lead mb-0">
+                                                            <select className="custom-select select_f" id="ddl_title" 
+                                                            name="title" 
+                                                           
+                                                            data-val="0"
+                                                            data-uid=""
+                                                            required
+                                                            value={formData.title}
+                                                            onChange={(e) => setFormData({ ...formData, title: e.target.value })}>
+                                                                <option value="0">Select</option>
+                                                                <option value="Mr">Mr</option>
+                                                                <option value="Mrs">Mrs</option>
+                                                                <option value="Ms">Ms</option>
+                                                                <option value="Miss">Miss</option>
+                                                            </select>
+                                                            <label className="lablefilled">Title<span>*</span></label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <div className="group_lead">
+                                                    <input
+                                                        type="text"
+                                                        id="txt_lead_name"
+                                                        name="lead_name"
+                                                        className="input_text"
+                                                        required
+                                                        autoComplete="off"
+                                                        value={formData.lead_name}
+                                                        onChange={(e) => setFormData({ ...formData, lead_name: e.target.value })}
+                                                        />
+                                                        <label className="lablefilled"><i className="zmdi zmdi-account">&nbsp;</i>Name<span>*</span></label>
+                                                        {formErrors.lead_name && (
+                                                            <p className="error-message">{formErrors.lead_name}</p>
+                                                            )}
+                                                    </div>
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <div className="group_lead">
+                                                        <div className="group_lead mb-0">
+                                                            <select className="custom-select select_f" 
+                                                            name="gender" id="ddl_gender"
+                                                           
+                                                        data-val="0"
+                                                        data-uid=""
+                                                        required
+                                                        value={formData.gender}
+                                                        onChange={(e) => setFormData({ ...formData, gender: e.target.value })}
+                                                            >
+                                                                <option value="0">Gender</option>
+                                                                <option value="Male">Male</option>
+                                                                <option value="Female">Female</option>
+                                                                <option value="Other">Other</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <div className="group_lead">
+                                                    <input
+                                                        type="text"
+                                                        id="txt_dob"
+                                                        name="lead_dob"
+                                                        className="input_text"
+                                                        required
+                                                        autoComplete="off"
+                                                        maxLength="10"
+                                                        value={formData.lead_dob}
+                                                        onChange={(e) => setFormData({ ...formData, lead_dob: e.target.value })}
+                                                    />
+                                                        <label className="lablefilled"><i className="zmdi zmdi-calendar">&nbsp;</i>Date of Birth<span>*</span></label>
+                                                        {formErrors.lead_dob && (
+                                                        <p className="error-message">{formErrors.lead_dob}</p>
+                                                        )}                                                                                                                                      
+                                                    </div>
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <div className="group_lead">
+                                                    <input
+                                                        type="text"
+                                                        id="txt_company_name"
+                                                        name="lead_company_name"
+                                                        className="input_text"
+                                                        required
+                                                        autoComplete="off"
+                                                        value={formData.lead_company_name}
+                                                        onChange={(e) => setFormData({ ...formData, lead_company_name: e.target.value })}
+                                                    />
+                                                        <label className="lablefilled"><i className="zmdi zmdi-city">&nbsp;</i>Company Name<span>*</span></label>
+                                                        {formErrors.lead_company_name && (
+                                                            <p className="error-message">{formErrors.lead_company_name}</p>
+                                                            )}
+                                                    </div>
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <div className="group_lead">
+                                                    <input
+                                                        type="text"
+                                                        id="txt_lead_email"
+                                                        name="lead_email"
+                                                        className="input_text allow-email-only"
+                                                        required
+                                                        autoComplete="off"
+                                                        value={formData.lead_email}
+                                                        onChange={(e) => setFormData({ ...formData, lead_email: e.target.value })}
+                                                    />
+                                                        <label className="lablefilled"><i className="zmdi zmdi-email">&nbsp;</i>Email<span>*</span></label>
+                                                        {formErrors.lead_email && (
+                                                            <p className="error-message">{formErrors.lead_email}</p>
+                                                            )}
+                                                    </div>
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <div className="group_lead">
+                                                    <input
+                                                        type="text"
+                                                        id="txt_lead_mobile"
+                                                        name="lead_mobile"
+                                                        className="input_text allow-numbers-only"
+                                                        required
+                                                        autoComplete="off"
+                                                        maxLength="11"
+                                                        value={formData.lead_mobile}
+                                                        onChange={(e) => setFormData({ ...formData, lead_mobile: e.target.value })}
+                                                    />
+                                                        <label className="lablefilled"><i className="zmdi zmdi-smartphone-android">&nbsp;</i>Mobile</label>
+                                                        {formErrors.lead_mobile && (
+                                                            <p className="error-message">{formErrors.lead_mobile}</p>
+                                                            )}
+                                                    </div>
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <div className="group_lead">
+                                                    <input
+                                                        type="text"
+                                                        id="txt_lead_phone"
+                                                        name="lead_phone"
+                                                        className="input_text allow-numbers-only"
+                                                        required
+                                                        autoComplete="off"
+                                                        maxLength="15"
+                                                        value={formData.lead_phone}
+                                                        onChange={(e) => setFormData({ ...formData, lead_phone: e.target.value })}
+                                                    />
+                                                        <label className="lablefilled"><i className="zmdi zmdi-phone">&nbsp;</i>Telephone</label>
+                                                    </div>
+                                                </div>
+                                                <div className="col-md-12">
+                                                    <div className="group_lead">
+                                                    <input
+                                                        type="text"
+                                                        id="txt_lead_website"
+                                                        name="lead_website"
+                                                        className="input_text"
+                                                        required
+                                                        autoComplete="off"
+                                                        value={formData.lead_website}
+                                                        onChange={(e) => setFormData({ ...formData, lead_website: e.target.value })}
+                                                    />
+                                                        <label className="lablefilled"><i className="zmdi zmdi-pin">&nbsp;</i>Website</label>
+                                                    </div>
+                                                </div>
+                                                <div className="col-md-12">
+                                                    <div className="group_lead">
+                                                    <input
+                                                        type="text"
+                                                        id="txt_lead_note"
+                                                        name="lead_note"
+                                                        className="input_text"
+                                                        required
+                                                        autoComplete="off"
+                                                        value={formData.lead_note}
+                                                        onChange={(e) => setFormData({ ...formData, lead_note: e.target.value })}
+                                                    />
+                                                        <label className="lablefilled"><i className="zmdi zmdi-comment-edit">&nbsp;</i>Note</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="col-md-12 col-lg-12">
+                                    <div className="card bdr5 mt-0">
+                                        <div className="header pt-1 pl-2">
+                                            <h2><i className="zmdi zmdi-pin"></i> Address Details </h2>
+                                        </div>
+                                        <div className="body p-2">
+                                            <div className="row">
+                                                <div className="col-md-12">
+                                                    <div className="group_lead">
+                                                    <input
+                                                        type="text"
+                                                        id="txt_lead_address"
+                                                        name="lead_address"
+                                                        className="input_text"
+                                                        required
+                                                        autoComplete="off"
+                                                        value={formData.lead_address}
+                                                        onChange={(e) => setFormData({ ...formData, lead_address: e.target.value })}
+                                                    />
+                                                        <label className="lablefilled"><i className="zmdi zmdi-pin">&nbsp;</i>Address line</label>
+                                                    </div>
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <div className="group_lead">
+                                                    <input
+                                                        type="text"
+                                                        id="txt_lead_city"
+                                                        name="lead_city"
+                                                        className="input_text"
+                                                        required
+                                                        autoComplete="off"
+                                                        value={formData.lead_city}
+                                                        onChange={(e) => setFormData({ ...formData, lead_city: e.target.value })}
+                                                    />
+                                                        <label className="lablefilled"><i className="zmdi zmdi-city">&nbsp;</i>City<span>*</span></label>
+                                                        {formErrors.lead_city && (
+                                                            <p className="error-message">{formErrors.lead_city}</p>
+                                                            )}
+                                                    </div>
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <div className="group_lead">
+                                                    <input
+                                                        type="text"
+                                                        id="txt_lead_county"
+                                                        name="lead_county"
+                                                        className="input_text"
+                                                        required
+                                                        autoComplete="off"
+                                                        value={formData.lead_county}
+                                                        onChange={(e) => setFormData({ ...formData, lead_county: e.target.value })}
+                                                    />
+                                                        <label className="lablefilled"><i className="zmdi zmdi-city-alt">&nbsp;</i>State/County</label>
+                                                    </div>
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <div className="group_lead">
+                                                    <input
+                                                        type="text"
+                                                        id="txt_lead_postcode"
+                                                        name="lead_postcode"
+                                                        className="input_text"
+                                                        required
+                                                        autoComplete="off"
+                                                        value={formData.lead_postcode}
+                                                        onChange={(e) => setFormData({ ...formData, lead_postcode: e.target.value })}
+                                                    />
+                                                        <label className="lablefilled"><i className="zmdi zmdi-map">&nbsp;</i>Postcode<span>*</span></label>
+                                                        {formErrors.lead_postcode && (
+                                                            <p className="error-message">{formErrors.lead_postcode}</p>
+                                                            )}
+                                                    </div>
+                                                </div>
+                                                <div className="col-md-6 disableform">
+                                                    <div className="group_lead">
+                                                        <select className="custom-select select_f" id="ddl_lead_country"  required="required" 
+                                                       
+                                                        name="lead_country"
+                                                        data-val="0"
+                                                        data-uid=""
+                                                        
+                                                        value={formData.lead_country}
+                                                        onChange={(e) => setFormData({ ...formData, lead_country: e.target.value })}
+                                                        >
+                                                            <option value="0">Choose Country</option>
+                                                            {CountryList.map((cntry, i) => (
+                                                                            <option key={i} value={cntry.country_id}>{cntry.country_name}</option>
+                                                                        ))}
+                                                        </select>
+                                                        <label htmlFor="" className="lablefilled">Country<span>*</span></label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="col-md-12 col-lg-12">
+                                    <div className="card bdr5 mt-0">
+                                        <div className="header pt-1 pl-2">
+                                            <h2><i className="zmdi zmdi-pin">&nbsp;</i>Social Media Details</h2>
+                                        </div>
+                                        <div className="body p-2">
+                                            <div className="row">
+                                                <div className="col-md-6">
+                                                    <div className="group_lead">
+                                                        <input className="input_text" id="txt_facebook" required="required" type="text" autoComplete="off"
+                                                         name="facebook"
+                                                         value={formData.facebook}
+                                                         onChange={(e) => setFormData({ ...formData, facebook: e.target.value })}                                                     
+                                                        />
+                                                        <label className="lablefilled"><i className="zmdi zmdi-facebook">&nbsp;</i>Facebook</label>
+                                                    </div>
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <div className="group_lead">
+                                                        <input className="input_text" id="txt_twitter" required="required" type="text" autoComplete="off"
+                                                         name="twitter"
+                                                         value={formData.twitter}
+                                                         onChange={(e) => setFormData({ ...formData, twitter: e.target.value })}/>
+                                                        <label className="lablefilled"><i className="zmdi zmdi-twitter">&nbsp;</i>Twitter</label>
+                                                    </div>
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <div className="group_lead">
+                                                        <input className="input_text" id="txt_instagram" required="required" type="text" autoComplete="off" 
+                                                        name="instagram"
+                                                        value={formData.instagram}
+                                                        onChange={(e) => setFormData({ ...formData, instagram: e.target.value })}
+                                                        />
+                                                        <label className="lablefilled"><i className="zmdi zmdi-instagram">&nbsp;</i>Instagram</label>
+                                                    </div>
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <div className="group_lead">
+                                                        <input className="input_text" id="txt_youtube" required="required" type="text" autoComplete="off" 
+                                                        name="youtube"
+                                                        value={formData.youtube}
+                                                        onChange={(e) => setFormData({ ...formData, youtube: e.target.value })}/>
+                                                        <label className="lablefilled"><i className="zmdi zmdi-youtube">&nbsp;</i>Youtube</label>
+                                                    </div>
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <div className="group_lead">
+                                                        <input className="input_text" id="txt_linkdin" required="required" type="text" autoComplete="off" 
+                                                        name="linkdin"
+                                                        value={formData.linkdin}
+                                                        onChange={(e) => setFormData({ ...formData, linkdin: e.target.value })}/>
+                                                        <label className="lablefilled"><i className="zmdi zmdi-linkedin">&nbsp;</i>Linkedin</label>
+                                                    </div>
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <div className="group_lead">
+                                                        <input className="input_text" id="txt_pinterest" required="required" type="text" autoComplete="off"
+                                                        name="pinterest"
+                                                        value={formData.pinterest}
+                                                        onChange={(e) => setFormData({ ...formData, pinterest: e.target.value })} />
+                                                        <label className="lablefilled"><i className="zmdi zmdi-pinterest">&nbsp;</i>Pinterest</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="col-md-12 col-lg-12">
+                                    <div className="card bdr5 mt-0">
+                                        <div className="header pt-1 pl-2">
+                                            <h2><i className="zmdi zmdi-labels"></i> Custom Fields </h2>
+                                        </div>
+                                        <div className="body p-2">
+                                            <div id="table" className="table-editable">
+                                                <table id="tblCustomFields" className="table">
+                                                    <tbody>
+                                                        <tr className="trCustomFields" data-counter="0">
+                                                            <td>
+                                                                <div className="group_lead">
+                                                                    <input className="input_text" id="txt_field0" name="" required="required" type="text" autoComplete="off" />
+                                                                    <label className="lablefilled"> Custom Fields</label>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div className="group_lead">
+                                                                    <input className="input_text" id="txt_label0" name="" required="required" type="text" autoComplete="off" />
+                                                                    <label className="lablefilled"> Label</label>
+                                                                </div>
+                                                            </td>
+                                                            <td><span id="addmorefield" className="table-add btn btn-primary mb-4 evt-leads-action" data-action="leads" data-request_for="add-custom-fields" data-cntr="0" data-toggle="tooltip" title="Add more">Add more+</span></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="col-md-12 col-lg-12">
+                                    <div className="card bdr5 mt-0">
+                                        <div className="header pt-1 pl-2">
+                                            <h2><i className="zmdi zmdi-labels"></i> Tags / Keywords</h2>
+                                        </div>
+                                        <div className="body p-2">
+                                            <div className="group_lead">
+                                                <input className="input_text" id="" name="Services" required="required" type="text" autoComplete="off" />
+                                                <label className="lablefilled" style={{ top: "-10px", fontSize: "12px" }}><i className="zmdi zmdi-label-alt"></i> Keywords</label>
+                                            </div>
+                                            <div id="master_keywords_placeholder"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a id="btn_submit_leadform" className="btn btn-primary" style={{ display: "none" }}>Submit</a>
+                            
+                                
+                            
+                            </div>  
+                        </div>
+                    </div>                    
                 </div>
                 <div class="model-footer">
                     <div class="row m-0">
                         <div class="col-md-12">
                             <div class="text-center">                               
-                                <button class="btn btn-primary me-1 clickmode" data-show=".contactlist, .showthing, .nxtprv" data-hide=".md-one, .hdbox, .modal-backdrop" type="button"> <i class="zmdi zmdi-upload"></i> Save </button>                        
-                                <button class="btn btn-danger" type="button"><i class="zmdi zmdi-rotate-left"></i> Cancel</button>
+                                <button type="submit" id="btn_submit_lead"onClick={handleButtonClick} className="btn btn-primary" ><i className="zmdi zmdi-upload">&nbsp;</i>Save </button>
+                                    <a id="btn_copytoClip" className="btn btn-primary s-1 me-1"><i className="zmdi zmdi-copy">&nbsp;</i>Copy to clipboard</a>
+                                    <a className="btn btn-danger btn-lg" data-bs-dismiss="modal"><i className="zmdi zmdi-rotate-left">&nbsp;</i>Cancel</a>
                             </div>
                         </div>
                     </div>   
