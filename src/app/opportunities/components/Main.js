@@ -17,7 +17,8 @@ import { get, post } from "../../services/api_axios_services";
     
 
 
-    const Main = ({ data = [], pageData = [], leadTypeList = [], CategoryList = [], CountryList = [] }) => {
+const Main = ({ data = [], pageData = [] }) => {
+        //, leadTypeList = [], CategoryList = [], CountryList = [] 
     const ref = useRef([]);
 
 //#region form add
@@ -32,7 +33,8 @@ const [formData, setFormData] = useReducer(formReducer, {})
 const IsUrlValid = (e) => {
     ns_util.IsUrlValid(e.target)
 }
-const submitLead = async (e) => {
+    const submitLead = async (e) => {
+        alert(e.target);
     var strJsonString = ns_validations.leadsMain(e.target);
     console.log(strJsonString)
     let name = `${formData.lead_name}`
@@ -45,7 +47,12 @@ const submitLead = async (e) => {
     }
 }
 
-//#endregion
+        //#endregion
+        
+        const [leadTypeList, setLeadTypeList] = useState([]);
+        const [categoryList, setCategoryList] = useState([]);
+        const [countryList, setCountryList] = useState([]);
+        const [chanelList, setChanelList] = useState([]);
  
     const [leads, setLeads] = useState(pageData && pageData);
     const [loader, setLoader] = useState(false);
@@ -61,11 +68,12 @@ const submitLead = async (e) => {
     const [lead_settings, setLead_settings] = useState([]);
 
         
-        console.log(JSON.stringify(data));
+        console.log("leadTypeList:  "+JSON.stringify(leadTypeList));
       
 
     useEffect(() => {
         getUsersList();
+        getDropdownData();
         getLeads();
     }, []);
 
@@ -87,7 +95,40 @@ const submitLead = async (e) => {
         if (obj.response_status === "OK") {          
             setLeads(obj.data.response.leads_list);             
         }        
-    }    
+        }
+        
+    const getDropdownData = async () => {
+        const lang = getCookie('signin_token');
+        //get lead tpe list
+        var paramsleadType = { "action": "lead-types" };
+        const respLeadType = await getData(paramsleadType, lang, ApiEndPoints.dropdownApi);
+        setLeadTypeList(respLeadType.data.response.lead_types);
+           
+        //get categories list
+        var paramsCategory = { "action": "category", "request_for": "parent" };
+        const respCategory = await getData(paramsCategory, lang, ApiEndPoints.dropdownApi);
+        setCategoryList(respCategory.data.response.category_info);
+
+          
+        //get channel list
+        var paramsCountry = { "action": "location", "request_for": "country-list" };
+        const respCountry = await getData(paramsCountry, lang, ApiEndPoints.dropdownApi);
+        setCountryList(respCountry.data.response.country_list);
+
+        //get channel list
+        var paramsChannel = { "action": "lead-channel" };
+        const respChannel = await getData(paramsChannel, lang, ApiEndPoints.dropdownApi);
+       
+        if (respChannel.response_status === "OK"){          
+          setChanelList(respChannel.data.response.category_info);        
+        } 
+              
+        }
+
+
+
+
+
 
     const loadMore = async (e) => {
         e.preventDefault();
@@ -669,7 +710,7 @@ const submitLead = async (e) => {
                                                         <div className="group_lead mb-0">
                                                             <select className="custom-select select_f lead-input" onChange={setFormData} id="ddl_parent_cat">
                                                                 <option value="0">Choose Category</option>
-                                                                {CategoryList.map((cat, i) => (
+                                                                {categoryList.map((cat, i) => (
                                                                     <option key={i} value={cat.cat_id}>{cat.cat_name}</option>
                                                                 ))}
                                                             </select>
@@ -811,7 +852,7 @@ const submitLead = async (e) => {
                                                                 <div className="group_lead">
                                                                     <select className="custom-select select_f" id="ddl_lead_country" onChange={setFormData} required="required" >
                                                                         <option value="0">Choose Country</option>
-                                                                        {CountryList.map((cntry, i) => (
+                                                                        {countryList.map((cntry, i) => (
                                                                             <option key={i} value={cntry.country_id}>{cntry.country_name}</option>
                                                                         ))}
                                                                     </select>
@@ -1645,55 +1686,56 @@ const submitLead = async (e) => {
     )
 }
 
-export const getServerSideProps = async ({ req, res }) => {
-    try {
-        //opportunity data
-        var params = { "action": "leads", "action_on": "leads_main", "request_for": "select-all", "route": "opportunities", "previous": "0", "next": "10" };
-        const lang = req.cookies['signin_token']
-        if ((lang === "''") || (lang === undefined)) {
-            res.writeHead(302, { Location: "/login" })
-            res.end()
-        }
-        const response = await getData(params, lang, ApiEndPoints.opportunity)
-        const stringifiedData = JSON.stringify(response);
-        const oppData = JSON.parse(stringifiedData);
-        //get ddl
-        var params1 = { "action": "filter-ddl", "action_on": "leads_main", "request_for": "" };
-        const response1 = await getData(params1, lang, ApiEndPoints.opportunity)
-        const stringifiedData1 = JSON.stringify(response1);
-        const ddlData = JSON.parse(stringifiedData1);
-        //get lead tpe list
-        var paramsleadType = { "action": "lead-types" };
-        const respLeadType = await getData(paramsleadType, lang, ApiEndPoints.dropdownApi)
-        //get categories list
-        var paramsCategory = { "action": "category", "request_for": "parent" };
-        const respCategory = await getData(paramsCategory, lang, ApiEndPoints.dropdownApi)
-        //get channel list
-        var paramsChannel = { "action": "lead-channel" };
-        const respChannel = await getData(paramsChannel, lang, ApiEndPoints.dropdownApi)
-        //get channel list
-        var paramsCountry = { "action": "location", "request_for": "country-list" };
-        const respCountry = await getData(paramsCountry, lang, ApiEndPoints.dropdownApi)
+// export const getServerSideProps = async ({ req, res }) => {
+//     try {
+//         //opportunity data
+//         var params = { "action": "leads", "action_on": "leads_main", "request_for": "select-all", "route": "opportunities", "previous": "0", "next": "10" };
+//         const lang = req.cookies['signin_token']
+//         if ((lang === "''") || (lang === undefined)) {
+//             res.writeHead(302, { Location: "/login" })
+//             res.end()
+//         }
+//         const response = await getData(params, lang, ApiEndPoints.opportunity)
+//         const stringifiedData = JSON.stringify(response);
+//         const oppData = JSON.parse(stringifiedData);
+//         //get ddl
+//         var params1 = { "action": "filter-ddl", "action_on": "leads_main", "request_for": "" };
+//         const response1 = await getData(params1, lang, ApiEndPoints.opportunity)
+//         const stringifiedData1 = JSON.stringify(response1);
+//         const ddlData = JSON.parse(stringifiedData1);
+//         //get lead tpe list
+//         var paramsleadType = { "action": "lead-types" };
+//         const respLeadType = await getData(paramsleadType, lang, ApiEndPoints.dropdownApi)
+//         //get categories list
+//         var paramsCategory = { "action": "category", "request_for": "parent" };
+//         const respCategory = await getData(paramsCategory, lang, ApiEndPoints.dropdownApi)
+//         //get channel list
+//         var paramsChannel = { "action": "lead-channel" };
+//         const respChannel = await getData(paramsChannel, lang, ApiEndPoints.dropdownApi)
+//         //get channel list
+//         var paramsCountry = { "action": "location", "request_for": "country-list" };
+//         const respCountry = await getData(paramsCountry, lang, ApiEndPoints.dropdownApi)
+     
 
-        return {
-            props: {
-                pageData: JSON.parse(oppData).response_status === "OK" ? JSON.parse(oppData).data.response.leads_list : [],
-                data: JSON.parse(ddlData),
-                leadTypeList: JSON.parse(respLeadType).data.response.lead_types,
-                CategoryList: JSON.parse(respCategory).data.response.category_info,
-                CountryList: JSON.parse(respCountry).data.response.country_list,
-                // ChannelList: JSON.parse(respChannel).data.response.category_info,
-            },
-        }
-    } catch (err) {
-        // Handle error
-        return {
-            props: null
-            // redirect: {
-            //     destination: '/login',
-            //     statusCode: 307
-            // }
-        }
-    }
-}
+//         return {
+//             props: {
+//                 pageData: JSON.parse(oppData).response_status === "OK" ? JSON.parse(oppData).data.response.leads_list : [],
+//                 data: JSON.parse(ddlData),
+//                 leadTypeList: JSON.parse(respLeadType).data.response.lead_types,
+//                 CategoryList: JSON.parse(respCategory).data.response.category_info,
+//                 CountryList: JSON.parse(respCountry).data.response.country_list,
+//                 // ChannelList: JSON.parse(respChannel).data.response.category_info,
+//             },
+//         }
+//     } catch (err) {
+//         // Handle error
+//         return {
+//             props: null
+//             // redirect: {
+//             //     destination: '/login',
+//             //     statusCode: 307
+//             // }
+//         }
+//     }
+// }
 export default Main
