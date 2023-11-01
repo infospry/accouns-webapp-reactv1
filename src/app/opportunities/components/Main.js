@@ -117,6 +117,7 @@ const [formData, setFormData] = useState({
 
 
 //#endregion
+ 
     const [leads, setLeads] = useState(pageData && pageData);
     const [loader, setLoader] = useState(false);
     const [user_list, setUser_list] = useState([]);
@@ -129,6 +130,10 @@ const [formData, setFormData] = useState({
     const [lead_uid, setLead_uid] = useState();
     const [lead_activity, setLead_activity] = useState([]);
     const [lead_settings, setLead_settings] = useState([]);
+
+        
+        console.log(JSON.stringify(data));
+      
 
     useEffect(() => {
         getUsersList();
@@ -149,10 +154,9 @@ const [formData, setFormData] = useState({
         var params = { "leads": { "title": "0", "lead_type": "0", "lead_note": "", "status_id": "0", "from_date": "", "to_date": "", "delete_status": "0", "archieve_status": "0" }, "action": "leads", "action_on": "leads_main", "request_for": "load-more", "previous": offset, "next": 10 };
         const lang = getCookie('signin_token');
         const response = await getData(params, lang, ApiEndPoints.opportunity);
-        const obj =response;// JSON.parse(response);
-        console.log(obj.data.response.leads_list);
+        const obj =response;// JSON.parse(response);    
         if (obj.response_status === "OK") {          
-            setLeads(obj.data.response.leads_list);
+            setLeads(obj.data.response.leads_list);             
         }        
     }    
 
@@ -334,9 +338,8 @@ const [formData, setFormData] = useState({
             }
         }
     }
-    const refreshLeads = async (e) => {
-        console.log(e.target)
-        var strJsonString = "", next = 1, previous = 0;
+    const refreshLeads = async (e) => {    
+        var strJsonString = "", next = 10, previous = 0;
         var action = $(e.target).attr("data-action"), action_on = "leads_main", RequestFor = $(e.target).attr("data-request_for");
         $('.head_btn').hide();
         $('#txt_search,#txt_daterange,#ddl_searchCallStatus').val('');
@@ -374,7 +377,6 @@ const [formData, setFormData] = useState({
     return (
     <>
 
-    
     <section className="content">
         <div className="body_scroll">
             <div className="scrolfx">
@@ -408,16 +410,24 @@ const [formData, setFormData] = useState({
                             </div>
                             <a href="#" className="btn btn-success me-1" data-bs-toggle="modal" data-bs-target="#addNewOpper"><i
                                 className="zmdi zmdi-plus-circle-o-duplicate"></i> Create New</a> 
-                        {/* <a href="#" className="btn btn-success" data-bs-toggle="modal" data-bs-target="#leadmainAdd"><i
-                                className="zmdi zmdi-plus-circle-o-duplicate"></i> Create New</a> */}
+                         <a className="btn btn-outline-primary" onClick={refreshLeads} data-action="leads" data-request_for="refresh"><i
+                                className="zmdi zmdi-refresh"></i> Refresh</a>
                         <div className="btn-group ms-1">
                             <button className="btn btn-outline-primary  dropdown-toggle font-w" type="button"
                                 data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">More</button>
-                            <div className="dropdown-menu">
+                                    <div className="dropdown-menu">
+                                        
                             <a className="dropdown-item evt-leads-main" data-toggle="modal" data-target="#modalimport" data-action="leads-main" data-request_for="import-popup"> <i className="zmdi zmdi-download">&nbsp;</i>Import</a>
-                                        <a className="dropdown-item"><i className="zmdi zmdi-archive">&nbsp;</i>Archieve</a>
-                                        <a className="dropdown-item"><i className="zmdi zmdi-delete">&nbsp;</i>Trash</a>
-                                <a className="dropdown-item" data-action="leads" data-request_for="refresh" type="button"> <i data-action="leads" data-request_for="refresh" className="zmdi zmdi-rotate-left"></i><span data-action="leads" data-request_for="refresh"> Refresh</span></a>
+                                        <a className="dropdown-item" onClick={getArchieveLeades}><i className="zmdi zmdi-archive">&nbsp;</i>Archieve</a>
+                                        <a className="dropdown-item" onClick={getBin}><i className="zmdi zmdi-delete">&nbsp;</i>Trash</a>
+                              
+                                        {/* <a className="dropdown-item" data-action="leads" data-request_for="refresh" type="button"> <i data-action="leads" data-request_for="refresh" className="zmdi zmdi-rotate-left"></i><span data-action="leads" data-request_for="refresh"> Refresh</span></a> */}
+                                        
+                                        {/* <a className="dropdown-item evt-leads-main" data-toggle="modal" data-target="#modalimport" data-action="leads-main" data-request_for="import-popup"> <i className="zmdi zmdi-download">&nbsp;</i>Import</a>
+                                        
+                                        <a className="dropdown-item " onClick={getArchieveLeades} ><i className="zmdi zmdi-archive">&nbsp;</i>Archieve</a>
+
+                                        <a className="dropdown-item" onClick={getBin} ><i className="zmdi zmdi-delete">&nbsp;</i>Trash</a> */}
                                
                             </div>
                         </div>
@@ -470,13 +480,12 @@ const [formData, setFormData] = useState({
                                 </div>
                             </div>
                         </div>
-
                         <div className="col-12 col-sm-8 col-md-8 col-lg-9 p-0 bg-white">
                             <div className="hgtt88 contbody one add_remove">
                                 <div className="media bder11 p-4 mb-0"style={{borderLeft:"0px",borderRight:"0px"}}>
-                                    <div className="media-body ptag">
+                                    <div className="media-body ptag"  style={{minHeight:'140px'}}>
                                         <a href="#" className="btn cross_remove">x</a>
-                                        {loading ? <span>Loading...</span> : <>
+                                        {loading ? <span>Loading...<img src='/spin.gif' alt='.' /> </span> : <>
                                                 {res && res.length > 0 ? <>
                                                     <h5>
                                                         {res && res.length > 0 && res[0].leads[0].lead_company_name}
@@ -516,6 +525,7 @@ const [formData, setFormData] = useState({
                                                                     }
                                                                 </div>
                                                             </div>
+                                                                
                                                         </span>
                                                     </h5>
                                                 </> : <></>}
@@ -529,7 +539,9 @@ const [formData, setFormData] = useState({
                                                     }
                                                 </p>
                                                 <p className="mb-1">
-                                                    {res && res.length > 0 ? <><i className="zmdi zmdi-whatsapp"></i></> : <></>}
+                                                        {res && res.length > 0 ? 
+                                                        <><i className="zmdi zmdi-whatsapp col-green" style={{marginRight:'5px'}}></i>
+                                                        </> : <> Not Available</>}
                                                     {res && res.length > 0 && res[0].leads[0].lead_mobile}   </p>
                                                 <p className="mb-1">
                                                     {res && res.length > 0 ? <><i className="zmdi zmdi-phone"></i></> : <></>}
@@ -541,12 +553,13 @@ const [formData, setFormData] = useState({
                                                         : <></>}
                                                 </p>
                                                 {res && res.length > 0 ? <>
-                                                    <p className="mb-1"><i className="zmdi zmdi-email-open"></i> <span id="">{res && res.length > 0 && res[0].leads[0].lead_email}</span> <small className={res && res.length > 0 && res[0].leads[0].email_status === 1 ? "col-green" : "col-red"}>  {res && res.length > 0 && res[0].leads[0].email_status === 1 ? " Verified" : " Unverified"}</small> <span className="float-right col-grey"> Respond 1yr ago</span></p>
+                                                        <p className="mb-1"><i className="zmdi zmdi-email-open"></i> <span id="">{res && res.length > 0 && res[0].leads[0].lead_email}</span> <small className={res && res.length > 0 && res[0].leads[0].email_status === 1 ? "col-green" : "col-red"}>  {res && res.length > 0 && res[0].leads[0].email_status === 1 ? " Verified" : " Unverified"}</small>
+                                                        <span className="float-right col-grey"> Respond 1yr ago</span></p>
                                                 </>
                                                     : <></>}
 
                                             </>}
-                                        <div class="row">
+                                        {/* <div class="row">
                                             <div class="col-md-6 mb-2">
                                                 <div class="d-flex justify-content-start align-items-center">    
                                                     <div class="css-3sr5s988 me-2"><span class="css-19k1nij">GR</span></div>
@@ -616,7 +629,7 @@ const [formData, setFormData] = useState({
                                                         data-bs-target="#convert"title="Convert"><i className="zmdi zmdi-swap"></i> </a>
                                                 </div>
                                             </div>
-                                        </div>                                       
+                                        </div>                                        */}
                                         
                                         <div className="mb-1 d-lg-none">
                                             <a href="#" className="btn btn btn-primary" data-bs-toggle="modal" data-bs-target="#emailsend"><i
@@ -694,7 +707,7 @@ const [formData, setFormData] = useState({
                                 <div className="tab-content pt-2 pb-2 ps-2 pe-2">
                                 
                                     <div role="tabpanel" className=" tab-pane pb-5 in active" id="leaddetails">
-                                        <Details/>
+                                        <Details res={res && res} contact={contact && contact} />
                                     </div>
                                     <div role="tabpanel" className=" tab-pane" id="mydoc">
                                         <Document/> 
@@ -714,7 +727,7 @@ const [formData, setFormData] = useState({
                             
                             <div className="hgtt88 contbody ddnone fone">
                                 <div className="media bder11 p-4 mb-0" style={{borderLeft:"0px",borderRight:"0px"}}>
-                                    <div className="media-body ptag">
+                                    <div className="media-body ptag" style={{minHeight:'125px'}}>
                                         <div class="row">
                                             <div class="col-md-6 mb-2">
                                                 <div class="d-flex justify-content-start align-items-center">    
@@ -810,21 +823,21 @@ const [formData, setFormData] = useState({
             </select>
             <select id="ddl_searchLeadType" className="custom-select form-select mb-2">
                 <option value="0">All Lead Type</option>
-                {data && data.data && data.data.response[1].lead_types.map((type, i) => (
+                {/* {data && data.data && data.data.response[1].lead_types.map((type, i) => (
                     <option key={i} value={type.id}>{type.lead_type_name}</option>
-                ))}
+                ))} */}
             </select>
             <select id="ddl_searchCallStatus" className="custom-select form-select mb-2">
                 <option value="">All Call</option>
-                {data && data.data && data.data.response[2].call_status.map((status, i) => (
+                {/* {data && data.data && data.data.response[2].call_status.map((status, i) => (
                     <option key={i} >{status.message}</option>
-                ))}
+                ))} */}
             </select>
             <select id="ddl_searchLeadStatus" className="custom-select form-select mb-2">
                 <option value="">All Lead Status</option>
-                {data && data.data && data.data.response[3].lead_statuses.map((lstatus, i) => (
+                {/* {data && data.data && data.data.response[3].lead_statuses.map((lstatus, i) => (
                     <option key={i} style={{ color: lstatus.color_code }} value={lstatus.status_id}>{lstatus.status_name}</option>
-                ))}
+                ))} */}
             </select>
             <input type="text" id="txt_search" className="form-control mb-2" placeholder="Search by contact details" autoComplete="off" />
             <input id="txt_daterange" type="text" className="form-control daterange" onFocus={selectdateRange} placeholder="Search by date range" />
@@ -1401,7 +1414,7 @@ const [formData, setFormData] = useState({
                         <div class="col-md-12">
                             <div class="text-center">                               
                                 <button type="submit" id="btn_submit_lead"onClick={handleButtonClick} className="btn btn-primary" ><i className="zmdi zmdi-upload">&nbsp;</i>Save </button>
-                                    <a id="btn_copytoClip" className="btn btn-primary ms-1 me-1"><i className="zmdi zmdi-copy">&nbsp;</i>Copy to clipboard</a>
+                                    <a id="btn_copytoClip" className="btn btn-primary s-1 me-1"><i className="zmdi zmdi-copy">&nbsp;</i>Copy to clipboard</a>
                                     <a className="btn btn-danger btn-lg" data-bs-dismiss="modal"><i className="zmdi zmdi-rotate-left">&nbsp;</i>Cancel</a>
                             </div>
                         </div>

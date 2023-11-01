@@ -1,17 +1,17 @@
 "use client"
 import React from 'react'
-
-
-
-function Details() {
+function Details({res,contact}) {
   return (
     <>
     <div className="row justify-content-center">
         <div className="col-lg-9 font-h4">
             <div class="d-flex justify-content-start align-items-center mt-4">    
-                <div class="css-3sr5s9 me-2"><span class="css-19k1nij">CR</span></div>
+                      <div class="css-3sr5s9 me-2">
+                          <span class="css-19k1nij">
+                             <img src="../images/no-image.jpg" alt="avatar" class="img-fluid rounded-circle img"></img>
+                          </span></div>
                 <div>
-                <h2 class="mb-0">Carom Recruitment Limited</h2>
+                <h2 class="mb-0">  {contact.lead_company_name !==''?<>{ contact.lead_company_name} &nbsp;</> :''}</h2>
                 <p>Let employers know that you are available to start working as soon as possible.</p>
                 </div>
             </div>
