@@ -9,7 +9,7 @@ const formReducer = (state, event) => {
     }
 }
 
-const MdlLeadMainEdit = ({ leadTypeList = [], CategoryList = [], CountryList = [], lead_detail, lead_settings }) => {
+const MdlLeadMainEdit = ({ leadTypeList = [], CategoryList = [],chanelList=[], CountryList = [], lead_detail, lead_settings }) => {
     const [formData, setFormData] = useReducer(formReducer, {})
     let { lead_type, lead_category_id, lead_channel_id
         , lead_name, lead_dob, lead_gender } = lead_detail;
@@ -81,7 +81,7 @@ console.log( lead_detail);
                 <div className="modal-dialog ui-draggable ui-draggable-handle" role="document">
                     <div className="modal-content" style={{ height: "auto!important" }}>
                         <div className="modal-header bg-blu-lite fixed-top">
-                            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                            <button type="button" className="close" data-bs-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">×</span>
                             </button>
                             <h4 className="modal-title" id="myModalLabel2">
@@ -139,6 +139,9 @@ console.log( lead_detail);
                                                             <div className="group_lead mb-0">
                                                                 <select className="custom-select select_f"  id="ddl_lead_channelEdit" key={lead_detail !== false ? lead_detail.u_id : "0"} onChange={setFormData} defaultValue={lead_detail && lead_detail.lead_channel_id}>
                                                                     <option value="0">Choose Lead Channel</option>
+                                                                       {chanelList.map((chanel, i) => (
+                                                                    <option key={i} value={chanel.channel_id}>{chanel.channel_name}</option>
+                                                                ))}
                                                                 </select>
                                                             </div>
                                                         </div>

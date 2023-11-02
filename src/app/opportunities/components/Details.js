@@ -12,7 +12,11 @@ function Details({res,contact}) {
                         </span></div>
                 <div>
                 <h2 class="mb-0">  {contact.lead_company_name !==''?<>{ contact.lead_company_name} &nbsp;</> :''}</h2>
-                <p>Let employers know that you are available to start working as soon as possible.</p>
+                         
+                               <p className="mb-1">{res && res.length > 0 && res[0].leads[0].lead_type_name} {res && res.length > 0 ? <>| </> : <></>}
+                                                    <span className="col-black">{res && res.length > 0 && res[0].leads[0].cat_name}</span>
+                                                </p>
+              
                 </div>
             </div>
 
