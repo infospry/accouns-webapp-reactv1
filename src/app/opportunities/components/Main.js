@@ -1993,7 +1993,7 @@ const Main = ({ data = [], pageData = [] }) => {
                                         <div className="row">
                                             <div className="col pr-0">
                                                 <div className="group_lead  mb-1">
-                                                    <input type="text" id="cb_start_date" className="input_text datepicker " required="required" autoComplete="off" maxLength="10" />
+                                                    <input type="text" id="cb_start_date" className="input_text datepicker" required="required" autoComplete="off" maxLength="10" />
                                                     <label className="lablefilled"><i className="zmdi zmdi-calendar">&nbsp;</i>Date<span>*</span></label>
                                                 </div>
                                             </div>

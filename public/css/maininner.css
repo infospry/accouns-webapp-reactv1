@@ -12477,4 +12477,12 @@ b, strong{font-weight:500!important;}
 .account__details .accordion-body {
     padding:1rem 1.05rem;border: 1px solid #ddd;border-top:0px solid #ddd;
 }
-.account__details .accordion-item{margin-bottom:5px;}
+.account__details .accordion-item{margin-bottom:5px;}#clsection p{margin-bottom:5px;}
+
+  .my-timepicker-div{width:120px!important}
+  .my-timepicker-div select.form-control {
+    min-width: 40px;
+    background-image: none !important;
+    width: 55px;
+    margin-left: 3px;
+  }
