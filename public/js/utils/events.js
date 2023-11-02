@@ -1,6 +1,7 @@
 $(document).ready(function () {
     //lead event
     $(document).on("click", ".evt-leads-action", function () {
+        
         ns_leads.actions(this);
     });
     $(document).on("click", ".evt-org-settings", function () {
@@ -37,6 +38,7 @@ $(document).ready(function () {
 });
 ns_leads = {
     get: function (params) {
+      
         var action = params.action, requestFor = params.request_for;
         Params = { json_data: JSON.stringify(params) };
         ns_ajax.get(
@@ -365,8 +367,9 @@ ns_leads = {
         //data-action="mail-template" data-request_for="summernote
         var strJsonString = "", next = 1, previous = 0;
         var action = $(event).attr("data-action"), action_on = "leads_main", RequestFor = $(event).attr("data-request_for");
-        var requestFrom = $(event).attr("data-request_from");
+        var requestFrom = $(event).attr("data-request_from");       
         if (action == 'leads') {
+          
             if (RequestFor == "add-new") {
                 $('#btn_copytoClip').html('Copy to clipboard').css({
                     "cursor": "",
@@ -422,6 +425,7 @@ ns_leads = {
                 }
             }
             else if (RequestFor == "edit") {
+                
                 $('#addmorefield').attr('data-cntr', '0');
                 $('#lead_header').html('<i class="zmdi zmdi-edit">&nbsp;</i>Edit Lead');
                 $('#fields_binder_placeholder, .leadcfdtr').empty();

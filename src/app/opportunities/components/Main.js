@@ -14,6 +14,7 @@ import Note from './Note';
 import Activity from './Activity';
 import Messages from "./Messages";
 import { get, post } from "../../services/api_axios_services";
+import MdlLeadMainEdit from '../model/MdlLeadMain';
     
 
 
@@ -59,8 +60,9 @@ const Main = ({ data = [], pageData = [], CategoryList = [] }) => {
      const [lead_detail, setlead_detail] = useState([]);
     let { lead_type, lead_category_id, lead_channel_id, lead_name, lead_dob, lead_gender } = lead_detail;
     
-     useEffect(() => {
-        setTimeout(() => {           
+    useEffect(() => {        
+       
+        setTimeout(() => {              
             //fill custom fields
             lead_detail && lead_detail.lead_custom_fields_json !== '' && lead_detail.lead_custom_fields_json.map((field, i) => {
                 if (i === 0) {
@@ -430,14 +432,15 @@ const Main = ({ data = [], pageData = [], CategoryList = [] }) => {
                                     </ul>
                                 </div>
                                 <a id="btn_archieve" className="btn btn-outline-primary evt-leads-action" data-id="0" data-action="leads" data-request_for="add-to-archieve"> <i className="zmdi zmdi-archive"></i><span>Archive</span></a>
-                            </div>
+                                </div>
+                                 <a className="btn btn-outline-primary" onClick={refreshLeads} data-action="leads" data-request_for="refresh"><i
+                                className="zmdi zmdi-refresh"></i> Refresh</a>
                             <a className="btn btn-outline-primary me-1" onClick={getArchieveLeades}><i className="zmdi zmdi-archive">&nbsp;</i>Show Archieve</a>
                                         <a className="btn btn-outline-primary me-1" onClick={getBin}><i className="zmdi zmdi-delete">&nbsp;</i>Show Trash</a>
                               
                             <a href="#" className="btn btn-success me-1" data-bs-toggle="modal" data-bs-target="#addNewOpper"><i
                                 className="zmdi zmdi-plus-circle-o-duplicate"></i> Create Lead</a> 
-                         <a className="btn btn-outline-primary" onClick={refreshLeads} data-action="leads" data-request_for="refresh"><i
-                                className="zmdi zmdi-refresh"></i> Refresh</a>
+                        
                         <a className="btn btn-outline-primary evt-leads-main ms-1" data-bs-toggle="modal"  data-bs-target="#modalimport" data-action="leads-main" data-request_for="import-popup"> <i className="zmdi zmdi-download">&nbsp;</i>Import</a>
      
                       
@@ -1038,8 +1041,9 @@ const Main = ({ data = [], pageData = [], CategoryList = [] }) => {
     </div>
 
    {/* Edit Existing Lead */}   
-
-               <div className="modal right-half md-one" id="leadmain" tabIndex="1" role="dialog" aria-labelledby="shortModal" data-backdrop="static">
+            <MdlLeadMainEdit leadTypeList={leadTypeList} CategoryList={categoryList} CountryList={countryList} lead_detail={res && res.length > 0 && res[0].leads[0]} lead_settings={lead_settings && lead_settings} />
+            
+               {/* <div className="modal right-half md-one" id="leadmain" tabIndex="1" role="dialog" aria-labelledby="shortModal" data-backdrop="static">
                 <div className="modal-dialog ui-draggable ui-draggable-handle" role="document">
                     <div className="modal-content" style={{ height: "auto!important" }}>
                         <div className="modal-header bg-blu-lite fixed-top">
@@ -1133,7 +1137,12 @@ const Main = ({ data = [], pageData = [], CategoryList = [] }) => {
                                                                 </div>
                                                                 <div className="col-md-6">
                                                                     <div className="group_lead">
-                                                                        <input className="input_text" name="lead_name" id="txt_lead_nameEdit" onChange={setFormData} defaultValue={lead_name} key={lead_detail !== false ? lead_detail.u_id : "0"} required="required" type="text" autoComplete="off" />
+                                                                        <input className="input_text" name="lead_name" id="txt_lead_nameEdit"
+                                                                            onChange={setFormData}
+                                                                            defaultValue={lead_name}
+                                                                            key={lead_detail !== false ? lead_detail.u_id : "0"} required="required"
+                                                                            type="text"
+                                                                            autoComplete="off" />
                                                                         <label className="lablefilled"><i className="zmdi zmdi-account">&nbsp;</i>Name<span>*</span></label>
                                                                     </div>
                                                                 </div>
@@ -1314,7 +1323,7 @@ const Main = ({ data = [], pageData = [], CategoryList = [] }) => {
                                                                                                         <label className="lablefilled"><i className={field.cssClass ? field.cssClass : ""}>&nbsp;</i>{field.field_label}</label>
                                                                                                     </>
                                                                                                 }
-                                                                                                {/* {datePicker()} */}
+                                                                                                {datePicker()}
                                                                                             </div>
                                                                                         </> : <></>}
                                                                                     </div>
@@ -1392,7 +1401,7 @@ const Main = ({ data = [], pageData = [], CategoryList = [] }) => {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> */}
 
 
 
