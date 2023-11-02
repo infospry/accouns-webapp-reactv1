@@ -25,7 +25,7 @@ export default function RootLayout({ children }) {
       {children}
       <script src="js/jquery-3.7.1.min.js"></script>
       <script src="js/time.js"></script>  
-        
+      <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script src="js/timepicker.js"></script>
         <script src="js/jquery.toast.js"></script>
         <script src="js/moment.min.js"></script>
