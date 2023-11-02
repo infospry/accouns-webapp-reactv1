@@ -331,9 +331,9 @@ var alertmsg = {
             heading: heading, // Optional heading to be shown on the toast
             text: text, // Text that is to be shown in the toast            
             icon: icon, // Type of toast icon
-            showHideTransition: 'fade', // fade, slide or plain
+            showHideTransition: 'slide', // fade, slide or plain
             allowToastClose: true, // Boolean value true or false
-            hideAfter: 3000, // false to make it sticky or number representing the miliseconds as time after which toast needs to be hidden
+            hideAfter: 5000, // false to make it sticky or number representing the miliseconds as time after which toast needs to be hidden
             stack: 5, // false if there should be only one toast at a time or a number representing the maximum number of toasts to be shown at a time
             position: 'top-right', // bottom-left or bottom-right or bottom-center or top-left or top-right or top-center or mid-center or an object representing the left, right, top, bottom values
         });
@@ -556,6 +556,7 @@ ns_validations = {
     /****************Add lead***************/
     leadsMain: function (event) {
         var action = $(event).attr('data-action').toLowerCase(), actionOn = "leads_main", requestFor = $(event).attr('data-request_for').toLowerCase();
+      
         var flag = 0, statusId = 0;
         var u_id = $(event).attr('data-u_id');
         var leadType = $('#ddl_lead_types').val();
@@ -577,72 +578,75 @@ ns_validations = {
         var city = $("#txt_lead_city").val().trim();
         var county = $("#txt_lead_county").val().trim();
         var postCode = $("#txt_lead_pincode").val().trim();
-        var country = $("#ddl_lead_country").val();
+        var country = $("#ddl_lead_country").val();          
         if (leadType == 0) {
-            $("#ddl_lead_types").focus();
-            alertmsg.msg("Message", "Please choose a lead type", "w");
+            $("#ddl_lead_types").focus();            
+            alertmsg.msg("Required", "Please choose a lead type", "e");      
+             
             return false;
         }
         else if (title == 0) {
             $("#ddl_title").focus();
-            alertmsg.msg("Message", "Please choose a title", "w");
+            alertmsg.msg("Message Field", "Please choose a title", "e");
             return false;
         }
         else if (name.length == 0) {
             $("#txt_lead_name").focus();
-            alertmsg.msg("Message", "Please enter name", "w");
+            alertmsg.msg("Message", "Please enter name", "e");
             return false;
         }
         else if (dob.length == 0) {
             $("#txt_dob").focus();
-            alertmsg.msg("Message", "Please provide the date of birth", "w");
+            alertmsg.msg("Message", "Please provide the date of birth", "e");
             return false;
         }
         else if (companyName.length == 0) {
             $("#txt_company_name").focus();
-            alertmsg.msg("Message", "Please enter company's name", "w");
+            alertmsg.msg("Message", "Please enter company's name", "e");
             return false;
         }
         else if (email.length == 0) {
             $("#txt_lead_email").focus();
-            alertmsg.msg("Message", "Please enter email id", "w");
+            alertmsg.msg("Message", "Please enter email id", "e");
             return false;
         }
         else if (!ns_util.IsEmailValid("#txt_lead_email")) {
             $("#txt_lead_email").focus();
-            alertmsg.msg("Message", "Please enter valid email id", "w");
+            alertmsg.msg("Message", "Please enter valid email id", "e");
             return false;
         }
         else if (mobile.length > 0 && !IsMobile(mobile)) {
             $("#txt_lead_mobile").focus();
-            alertmsg.msg("Message", "Please enter a valid mobile no", "w");
+            alertmsg.msg("Message", "Please enter a valid mobile no", "e");
             return false;
         }
         else if (phone.length > 0 && phone.length < 10) {
             $("#txt_lead_phone").focus();
-            alertmsg.msg("Message", "Please enter a valid phone no", "w");
+            alertmsg.msg("Message", "Please enter a valid phone no", "e");
             return false;
         }
         else if (website.length > 0 && !ns_util.IsUrlValid('#txt_lead_website')) {
             $("#txt_lead_website").focus();
-            alertmsg.msg("Message", "Please enter a valid URL", "W");
+            alertmsg.msg("Message", "Please enter a valid URL", "e");
             return false;
         }
         else if (city.length == 0) {
             $("#txt_lead_city").focus();
-            alertmsg.msg("Message", "Please enter city", "w");
+            alertmsg.msg("Message", "Please enter city", "e");
             return false;
         }
         else if (postCode.length == 0) {
             $("#txt_lead_pincode").focus();
-            alertmsg.msg("Message", "lease enter postcode", "w");
+            alertmsg.msg("Message", "lease enter postcode", "e");
             return false;
         }
         else if (country == '0') {
             $("#ddl_lead_country").focus();
-            alertmsg.msg("Message", "Please choose a country", "w");
+            alertmsg.msg("Message", "Please choose a country", "e");
             return false;
         }
+
+       
         //Lead Details
         var leadDetailsJson = [];
         if(requestFor !='create'){

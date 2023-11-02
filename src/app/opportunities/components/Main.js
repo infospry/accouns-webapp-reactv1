@@ -13,11 +13,12 @@ import Document from './Document';
 import Note from './Note';
 import Activity from './Activity';
 import Messages from "./Messages";
-import { get, post } from "../../services/api_axios_services"
+import { get, post } from "../../services/api_axios_services";
     
 
 
-    const Main = ({ data = [], pageData = [], leadTypeList = [], CategoryList = [], CountryList = [] }) => {
+const Main = ({ data = [], pageData = [] }) => {
+        //, leadTypeList = [], CategoryList = [], CountryList = [] 
     const ref = useRef([]);
 
 //#region form add
@@ -28,24 +29,39 @@ const formReducer = (state, event) => {
         [event.target.name]: event.target.value
     }
 }
-const [formData, setFormData] = useReducer(formReducer, {})
+    const [formData, setFormData] = useReducer(formReducer, {})
+    
 const IsUrlValid = (e) => {
     ns_util.IsUrlValid(e.target)
 }
-const submitLead = async (e) => {
-    var strJsonString = ns_validations.leadsMain(e.target);
-    console.log(strJsonString)
-    let name = `${formData.lead_name}`
-    if (strJsonString !== false) {
-        const resp = await post(strJsonString, ApiEndPoints.opportunity);
-        if (resp.response_status === "OK") {
-            ModalHide('#leadmainAdd');
-            alertmsg.msg("Message", resp.response_msg, "S");
+    const submitLead = async (e) => {      
+        var params = ns_validations.leadsMain(e.target);
+        // console.log(strJsonString)        
+        // let name = `${formData.lead_name}`
+        if (params !== false) {
+            const resp = await post(params, ApiEndPoints.opportunity);
+            if (resp.response_status === "OK") {
+               
+                ModalHide('#addNewOpper');
+                alertmsg.msg("Message", resp.response_msg, "S");
+                getLeads();
+            }
+            else { 
+               alertmsg.msg("Message", resp.response_msg, "e");
+            }
         }
     }
-}
 
-//#endregion
+        //#endregion
+        
+        const [leadTypeList, setLeadTypeList] = useState([]);
+        const [categoryList, setCategoryList] = useState([]);
+        const [countryList, setCountryList] = useState([]);
+    const [chanelList, setChanelList] = useState([]);
+    
+    const [lead_tags, setLead_tags] = useState([]);
+    const [call_status, setCall_status] = useState([]);
+    
  
     const [leads, setLeads] = useState(pageData && pageData);
     const [loader, setLoader] = useState(false);
@@ -59,13 +75,11 @@ const submitLead = async (e) => {
     const [lead_uid, setLead_uid] = useState();
     const [lead_activity, setLead_activity] = useState([]);
     const [lead_settings, setLead_settings] = useState([]);
-
-        
-        console.log(JSON.stringify(data));
-      
+     
 
     useEffect(() => {
         getUsersList();
+        getDropdownData();
         getLeads();
     }, []);
 
@@ -87,7 +101,49 @@ const submitLead = async (e) => {
         if (obj.response_status === "OK") {          
             setLeads(obj.data.response.leads_list);             
         }        
-    }    
+        }
+        
+    const getDropdownData = async () => {
+        const lang = getCookie('signin_token');
+        //get lead tpe list
+        var paramsleadType = { "action": "lead-types" };
+        const respLeadType = await getData(paramsleadType, lang, ApiEndPoints.dropdownApi);
+        setLeadTypeList(respLeadType.data.response.lead_types);
+           
+        //get categories list
+        var paramsCategory = { "action": "category", "request_for": "parent" };
+        const respCategory = await getData(paramsCategory, lang, ApiEndPoints.dropdownApi);
+        setCategoryList(respCategory.data.response.category_info);
+
+          
+        //get channel list
+        var paramsCountry = { "action": "location", "request_for": "country-list" };
+        const respCountry = await getData(paramsCountry, lang, ApiEndPoints.dropdownApi);
+        setCountryList(respCountry.data.response.country_list);
+
+        //get channel list
+        var paramsChannel = { "action": "lead-channel" };
+        const respChannel = await getData(paramsChannel, lang, ApiEndPoints.dropdownApi);
+       
+        if (respChannel.response_status === "OK") {
+            setChanelList(respChannel.data.response.lead_channel);
+        }        
+        
+        
+        //get lead_tags and call_status
+        var paramsFIllDropdown = { "action": "filter-ddl", "action_on": "leads_main", "request_for": "" };      
+        const respDdl = await getData(paramsFIllDropdown, lang, ApiEndPoints.opportunity);  
+        if (respDdl.response_status === "OK") {         
+            setLead_tags(respDdl.data.response[0].lead_tags);
+            setCall_status(respDdl.data.response[2].call_status);   
+            setAnswerList(respDdl.data.response[2].call_status);   
+        }
+    }
+
+
+
+
+
 
     const loadMore = async (e) => {
         e.preventDefault();
@@ -470,7 +526,8 @@ const submitLead = async (e) => {
                                                 </p>
                                                 {res && res.length > 0 ? <>
                                                         <p className="mb-1"><i className="zmdi zmdi-email-open"></i> <span id="">{res && res.length > 0 && res[0].leads[0].lead_email}</span> <small className={res && res.length > 0 && res[0].leads[0].email_status === 1 ? "col-green" : "col-red"}>  {res && res.length > 0 && res[0].leads[0].email_status === 1 ? " Verified" : " Unverified"}</small>
-                                                        <span className="float-right col-grey"> Respond 1yr ago</span></p>
+                                                        <span className="float-right col-grey">{res && res.length > 0 && "," + res[0].leads[0].lead_day_diff
+                                                    }</span></p>
                                                 </>
                                                     : <></>}
 
@@ -591,33 +648,40 @@ const submitLead = async (e) => {
         <div className="offcanvas-body">
             <select id="ddl_tag_placeholder" className="custom-select form-select mb-2">
                 <option value="0">All Tags</option>
-                {/* {data && data.data.response[0].lead_tags !== '' && data.data.response[0].lead_tags.map((tag, i) => (
+                {lead_tags && lead_tags !== '' && lead_tags.map((tag, i) => (
                     <option key={i} value={tag.tag_id}>{tag.title}</option>
-                ))} */}
+                ))}
             </select>
             <select id="ddl_searchLeadType" className="custom-select form-select mb-2">
-                <option value="0">All Lead Type</option>
-                {/* {data && data.data && data.data.response[1].lead_types.map((type, i) => (
-                    <option key={i} value={type.id}>{type.lead_type_name}</option>
-                ))} */}
+                        <option value="0">All Lead Type</option>
+                        {leadTypeList.map((lead, i) => (
+                            <option key={i} value={lead.id}>{lead.lead_type_name}</option>
+                        ))}
             </select>
             <select id="ddl_searchCallStatus" className="custom-select form-select mb-2">
                 <option value="">All Call</option>
-                {/* {data && data.data && data.data.response[2].call_status.map((status, i) => (
+                {call_status && call_status.length > 0 && call_status.map((status, i) => (
                     <option key={i} >{status.message}</option>
-                ))} */}
+                ))}
             </select>
             <select id="ddl_searchLeadStatus" className="custom-select form-select mb-2">
                 <option value="">All Lead Status</option>
-                {/* {data && data.data && data.data.response[3].lead_statuses.map((lstatus, i) => (
+        {res && res.length > 0 && res[0].leads[0].status_master_list.map((lstatus, i) => (
                     <option key={i} style={{ color: lstatus.color_code }} value={lstatus.status_id}>{lstatus.status_name}</option>
-                ))} */}
+                ))}
             </select>
             <input type="text" id="txt_search" className="form-control mb-2" placeholder="Search by contact details" autoComplete="off" />
             <input id="txt_daterange" type="text" className="form-control daterange" onFocus={selectdateRange} placeholder="Search by date range" />
             <div className="">
-                <hr/>
-                <a id="btnSearchLead" className="btn btn-primary" onClick={searchLead} data-action="leads" data-request_for="filter" data-delete-status="0" data-archieve-status="0">Apply</a>
+                        <hr />
+                        <div className='row'>
+                            <div className='col-6'>
+                        <a id="btnSearchLead" className="btn btn-primary d-block" onClick={searchLead} data-action="leads" data-request_for="filter" data-delete-status="0" data-archieve-status="0"><i className='zmdi zmdi-search me-1'></i> Search</a>
+                            </div>
+                            <div  className='col-6'>
+                            <a id="btnSearchLead" className="btn btn-outline-danger d-block" onClick={searchLead} data-action="leads" data-request_for="filter" data-delete-status="0" data-archieve-status="0" data-bs-dismiss="offcanvas"><i className='zmdi zmdi-close me-2'></i>Cancel</a>
+                            </div>
+                            </div>
             </div>                   
         </div>
     </div>    
@@ -669,7 +733,7 @@ const submitLead = async (e) => {
                                                         <div className="group_lead mb-0">
                                                             <select className="custom-select select_f lead-input" onChange={setFormData} id="ddl_parent_cat">
                                                                 <option value="0">Choose Category</option>
-                                                                {CategoryList.map((cat, i) => (
+                                                                {categoryList.map((cat, i) => (
                                                                     <option key={i} value={cat.cat_id}>{cat.cat_name}</option>
                                                                 ))}
                                                             </select>
@@ -685,7 +749,10 @@ const submitLead = async (e) => {
                                                     <div className="body p-2 mb-2">
                                                         <div className="group_lead mb-0">
                                                             <select className="custom-select select_f" defaultValue={"0"} id="ddl_lead_channel" onChange={setFormData} >
-                                                                <option value="0" >Choose Lead Channel</option>
+                                                                    <option value="0" >Choose Lead Channel</option>
+                                                                       {chanelList.map((chanel, i) => (
+                                                                    <option key={i} value={chanel.channel_id}>{chanel.channel_name}</option>
+                                                                ))}
                                                             </select>
                                                         </div>
                                                     </div>
@@ -730,9 +797,9 @@ const submitLead = async (e) => {
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div className="col-md-6">
+                                                           <div className="col-md-6">
                                                                 <div className="group_lead">
-                                                                    <input className="input_text datepicker" name="lead_dob" onChange={setFormData} id="txt_dob" required="required" type="text" maxLength="10" autoComplete="off" />
+                                                                    <input className="input_text datepicker date start" name="lead_dob" onChange={setFormData} id="txt_dob" required="required" type="text" maxLength="10" autoComplete="off"  />
                                                                     <label className="lablefilled"><i className="zmdi zmdi-account">&nbsp;</i>Date of Birth<span>*</span></label>
                                                                 </div>
                                                             </div>
@@ -811,7 +878,7 @@ const submitLead = async (e) => {
                                                                 <div className="group_lead">
                                                                     <select className="custom-select select_f" id="ddl_lead_country" onChange={setFormData} required="required" >
                                                                         <option value="0">Choose Country</option>
-                                                                        {CountryList.map((cntry, i) => (
+                                                                        {countryList.map((cntry, i) => (
                                                                             <option key={i} value={cntry.country_id}>{cntry.country_name}</option>
                                                                         ))}
                                                                     </select>
@@ -924,9 +991,10 @@ const submitLead = async (e) => {
                         <div className="row m-0">
                             <div className="col-md-12">
                                 <div className="text-center">
-                                    <a id="btn_submit_lead" className="btn btn-primary btn-lg " onClick={submitLead} data-u_id={"0"} data-action="leads-main" data-request_for="create" data-action-type="lead"><i className="zmdi zmdi-upload">&nbsp;</i>Save </a>
-                                    <a id="btn_copytoClip" className="btn btn-primary btn-lg"><i className="zmdi zmdi-copy">&nbsp;</i>Copy to clipboard</a>
-                                    <a className="btn btn-danger btn-lg" data-dismiss="modal"><i className="zmdi zmdi-rotate-left">&nbsp;</i>Cancel</a>
+                                        <a id="btn_submit_lead" className="btn btn-primary btn-lg me-1" onClick={submitLead} data-u_id={"0"} data-action="leads-main" data-request_for="create" data-action-type="lead"><i className="zmdi zmdi-floppy">&nbsp;</i>Save </a>
+                                        
+                                    <a id="btn_copytoClip" className="btn btn-primary btn-lg me-1"><i className="zmdi zmdi-copy" style={{margin:'0 15px'}}>&nbsp;</i>Copy to clipboard</a>
+                                    <a className="btn btn-outline-danger btn-lg" data-bs-dismiss="modal"><i className="zmdi zmdi-close">&nbsp;</i>Close</a>
                                 </div>
                             </div>
                         </div>
@@ -1645,55 +1713,56 @@ const submitLead = async (e) => {
     )
 }
 
-export const getServerSideProps = async ({ req, res }) => {
-    try {
-        //opportunity data
-        var params = { "action": "leads", "action_on": "leads_main", "request_for": "select-all", "route": "opportunities", "previous": "0", "next": "10" };
-        const lang = req.cookies['signin_token']
-        if ((lang === "''") || (lang === undefined)) {
-            res.writeHead(302, { Location: "/login" })
-            res.end()
-        }
-        const response = await getData(params, lang, ApiEndPoints.opportunity)
-        const stringifiedData = JSON.stringify(response);
-        const oppData = JSON.parse(stringifiedData);
-        //get ddl
-        var params1 = { "action": "filter-ddl", "action_on": "leads_main", "request_for": "" };
-        const response1 = await getData(params1, lang, ApiEndPoints.opportunity)
-        const stringifiedData1 = JSON.stringify(response1);
-        const ddlData = JSON.parse(stringifiedData1);
-        //get lead tpe list
-        var paramsleadType = { "action": "lead-types" };
-        const respLeadType = await getData(paramsleadType, lang, ApiEndPoints.dropdownApi)
-        //get categories list
-        var paramsCategory = { "action": "category", "request_for": "parent" };
-        const respCategory = await getData(paramsCategory, lang, ApiEndPoints.dropdownApi)
-        //get channel list
-        var paramsChannel = { "action": "lead-channel" };
-        const respChannel = await getData(paramsChannel, lang, ApiEndPoints.dropdownApi)
-        //get channel list
-        var paramsCountry = { "action": "location", "request_for": "country-list" };
-        const respCountry = await getData(paramsCountry, lang, ApiEndPoints.dropdownApi)
+// export const getServerSideProps = async ({ req, res }) => {
+//     try {
+//         //opportunity data
+//         var params = { "action": "leads", "action_on": "leads_main", "request_for": "select-all", "route": "opportunities", "previous": "0", "next": "10" };
+//         const lang = req.cookies['signin_token']
+//         if ((lang === "''") || (lang === undefined)) {
+//             res.writeHead(302, { Location: "/login" })
+//             res.end()
+//         }
+//         const response = await getData(params, lang, ApiEndPoints.opportunity)
+//         const stringifiedData = JSON.stringify(response);
+//         const oppData = JSON.parse(stringifiedData);
+//         //get ddl
+//         var params1 = { "action": "filter-ddl", "action_on": "leads_main", "request_for": "" };
+//         const response1 = await getData(params1, lang, ApiEndPoints.opportunity)
+//         const stringifiedData1 = JSON.stringify(response1);
+//         const ddlData = JSON.parse(stringifiedData1);
+//         //get lead tpe list
+//         var paramsleadType = { "action": "lead-types" };
+//         const respLeadType = await getData(paramsleadType, lang, ApiEndPoints.dropdownApi)
+//         //get categories list
+//         var paramsCategory = { "action": "category", "request_for": "parent" };
+//         const respCategory = await getData(paramsCategory, lang, ApiEndPoints.dropdownApi)
+//         //get channel list
+//         var paramsChannel = { "action": "lead-channel" };
+//         const respChannel = await getData(paramsChannel, lang, ApiEndPoints.dropdownApi)
+//         //get channel list
+//         var paramsCountry = { "action": "location", "request_for": "country-list" };
+//         const respCountry = await getData(paramsCountry, lang, ApiEndPoints.dropdownApi)
+     
 
-        return {
-            props: {
-                pageData: JSON.parse(oppData).response_status === "OK" ? JSON.parse(oppData).data.response.leads_list : [],
-                data: JSON.parse(ddlData),
-                leadTypeList: JSON.parse(respLeadType).data.response.lead_types,
-                CategoryList: JSON.parse(respCategory).data.response.category_info,
-                CountryList: JSON.parse(respCountry).data.response.country_list,
-                // ChannelList: JSON.parse(respChannel).data.response.category_info,
-            },
-        }
-    } catch (err) {
-        // Handle error
-        return {
-            props: null
-            // redirect: {
-            //     destination: '/login',
-            //     statusCode: 307
-            // }
-        }
-    }
-}
+//         return {
+//             props: {
+//                 pageData: JSON.parse(oppData).response_status === "OK" ? JSON.parse(oppData).data.response.leads_list : [],
+//                 data: JSON.parse(ddlData),
+//                 leadTypeList: JSON.parse(respLeadType).data.response.lead_types,
+//                 CategoryList: JSON.parse(respCategory).data.response.category_info,
+//                 CountryList: JSON.parse(respCountry).data.response.country_list,
+//                 // ChannelList: JSON.parse(respChannel).data.response.category_info,
+//             },
+//         }
+//     } catch (err) {
+//         // Handle error
+//         return {
+//             props: null
+//             // redirect: {
+//             //     destination: '/login',
+//             //     statusCode: 307
+//             // }
+//         }
+//     }
+// }
 export default Main

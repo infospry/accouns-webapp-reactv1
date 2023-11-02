@@ -2,7 +2,8 @@ module.exports = {
     login: '/AccountApi',
     dashboard:'/OrganizationApi',
     organizationApi:'/OrganizationApi',
-    opportunity:'/LeadApi',
+    opportunity: '/LeadApi',
+
     dropdownApi: '/DropdownApi',
     contactApi: "/Contacts/quickadd",
     ReportsApi: "ReportsApi",
