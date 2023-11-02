@@ -491,7 +491,7 @@ const Main = ({ data = [], pageData = [] }) => {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-12 col-sm-8 col-md-8 col-lg-9 p-0 bg-white">
+                        <div className="col-12 col-sm-8 col-md-8 col-lg-9 p-0 bg-white ">
                             <div className="hgtt88 contbody one add_remove">
                                 <div className="media bder11 p-4 mb-0"style={{borderLeft:"0px",borderRight:"0px"}}>
                                     <div className="media-body ptag"  style={{minHeight:'140px'}}>
