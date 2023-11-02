@@ -14,9 +14,6 @@ const MdlLeadMainEdit = ({ leadTypeList = [], CategoryList = [],chanelList=[], C
     let { lead_type, lead_category_id, lead_channel_id
         , lead_name, lead_dob, lead_gender } = lead_detail;
    
- console.log(lead_name);
-console.log( lead_detail);
-    
     
     const handleTitleChange = (e) => {
         setTitle(e.target.value);
@@ -32,11 +29,11 @@ console.log( lead_detail);
             if (resp.response_status === "OK") {
                 ModalHide('#leadmain');
                 alertmsg.msg("Message", resp.response_msg, "S");
+                 
             }
         }
     }
-    useEffect(() => {
-       
+    useEffect(() => {       
         setTimeout(() => {          
             //fill custom fields
             lead_detail && lead_detail.lead_custom_fields_json !== '' && lead_detail.lead_custom_fields_json.map((field, i) => {
