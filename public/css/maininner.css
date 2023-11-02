@@ -7051,16 +7051,16 @@ section.content {
   margin-bottom: 0px;
 }
 
-.booktab .btn-outline-primary:hover {
-  color: #5d7396 !important;
-  background-color: transparent!important;
-  border-color: transparent!important;
-}
 
+.btn-outline-primary:hover {
+  color: #fff !important;
+  background-color: var(--secondary) !important;
+  border-color: var(--secondary) !important;
+}
 .booktab .btn-outline-primary:focus {
-  color: #5d7396!important;
-  background-color: transparent!important;
-  border-color: transparent!important;
+  color: #fff !important;
+  background-color: var(--secondary) !important;
+  border-color: var(--secondary) !important;
 }
 
 .booktab .btn:hover, .booktab .navbar .navbar-nav>a.btn:hover {
@@ -9292,7 +9292,6 @@ tr:nth-child(even) th {
   margin: 0;
   padding: 0;
   position: relative;
-  float: left; 
   width: 100%;
 }
 
@@ -12445,3 +12444,37 @@ b, strong{font-weight:500!important;}
 .form-select {
   font-size: 14px!important;}
   .error-message{color:red}
+
+  .account__details .accordion-collapse {
+    border: 0;
+}
+.account__details .accordion-button {
+    padding:0.75rem 1.05rem;
+    
+    border: 1px solid #ddd; 
+
+
+    margin-block: 0px 0.5rem;
+  margin-inline: 0px;
+  color: #444;
+  font-weight: 700;
+  font-size: 1.05rem;
+  line-height: 1.5;
+  margin-bottom:0px;
+}
+.account__details .accordion-button:focus {
+    box-shadow: none;
+}
+.account__details .accordion-button:not(.collapsed) {
+    background: none;
+    color: #1b6ce5;
+}
+.account__details .accordion-button:not(.collapsed) {
+  color:var(--secondary);
+  background-color: #e7f1ff;
+  box-shadow: inset 0 -1px 0 rgba(0,0,0,.000);
+}
+.account__details .accordion-body {
+    padding:1rem 1.05rem;border: 1px solid #ddd;border-top:0px solid #ddd;
+}
+.account__details .accordion-item{margin-bottom:5px;}

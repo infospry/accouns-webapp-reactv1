@@ -337,8 +337,8 @@ const submitLead = async (e) => {
                                 </div>
                                 <a id="btn_archieve" className="btn btn-outline-primary evt-leads-action" data-id="0" data-action="leads" data-request_for="add-to-archieve"> <i className="zmdi zmdi-archive"></i><span>Archive</span></a>
                             </div>
-                            <a className="btn btn-outline-primary me-1" onClick={getArchieveLeades}><i className="zmdi zmdi-archive">&nbsp;</i>Archieve</a>
-                                        <a className="btn btn-outline-primary me-1" onClick={getBin}><i className="zmdi zmdi-delete">&nbsp;</i>Trash</a>
+                            <a className="btn btn-outline-primary me-1" onClick={getArchieveLeades}><i className="zmdi zmdi-archive">&nbsp;</i>Show Archieve</a>
+                                        <a className="btn btn-outline-primary me-1" onClick={getBin}><i className="zmdi zmdi-delete">&nbsp;</i>Show Trash</a>
                               
                             <a href="#" className="btn btn-success me-1" data-bs-toggle="modal" data-bs-target="#addNewOpper"><i
                                 className="zmdi zmdi-plus-circle-o-duplicate"></i> Create Lead</a> 
@@ -561,7 +561,7 @@ const submitLead = async (e) => {
                                         <Note/> 
                                     </div>
                                     <div role="tabpanel" class=" tab-pane" id="Activity">  
-                                        <Activity/>
+                                        <Activity res={res && res} contact={contact && contact}/>
                                     </div>
                                     <div role="tabpanel" class=" tab-pane" id="Messages">  
                                         <Messages/>
