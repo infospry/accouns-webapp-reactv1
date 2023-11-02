@@ -452,7 +452,10 @@ const Main = ({ data = [], pageData = [] }) => {
                     <div className="row">
 
                         <div className="col-12 col-sm-4 col-md-4 col-lg-3 p-0 bg-white bdrrgtt">
-                            <div className="hgt80 formobile">
+                                    <div className="hgt80 formobile">
+                                        <span id="span_leaduid" style={{ display: "none" }}>
+                                        {res && res.length > 0 && res[0].leads[0].u_id}</span>
+
                             {leads && leads.length > 0 && leads.map((item , index) => (
                                         <div key={index} id={"div_" + item.u_id} className="position-relative">
                                             <div className="checkbox chk_absult">
