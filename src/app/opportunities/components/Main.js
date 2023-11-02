@@ -662,8 +662,8 @@ const Main = ({ data = [], pageData = [], CategoryList = [] }) => {
                                         <Note/> 
                                     </div>
                                     <div role="tabpanel" class=" tab-pane" id="Activity">  
-                                                <Activity res={res && res} contact={contact && contact} />
-                                                
+                                                {/* <Activity res={res && res} contact={contact && contact} />
+                                                 */}
                                                 {lead_activity ?
                                             <OppActivity lead_activity={lead_activity && lead_activity} setLead_activity={setLead_activity} lead_uid={lead_uid} />
                                             : <></>}

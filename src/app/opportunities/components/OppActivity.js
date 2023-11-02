@@ -36,57 +36,97 @@ const OppActivity = ({ lead_activity,setLead_activity,lead_uid}) => {
             setLoader(false);
         }
     })
-    return (
-        <>
-            <div role="tabpanel" className=" tab-pane opp-tab" id="Activity">
-                <ul className="cbp_tmtimeline ml-4 mt-4 p-4">
-                    {lead_activity && lead_activity !== undefined && lead_activity.map((act, i) => (
-                        <li key={i}>
-                            <div className="cbp_tmicon"><img src="images/download.jpg" /></div>
-                            <div className="cbp_tmlabel">
-                                <div className="cbp_tmtime">
-                                    <span>{act.action_date}</span> <span></span>
+
+
+  return (
+    <>
+        <div className="dd-content p-4">
+                                <ul className="timeline">                                          
+                           {lead_activity && lead_activity !== undefined && lead_activity.map((act, i) => (
+                            <li key={i}>
+                                <div className="timeline-time">
+                                    <span className="date">{act.action_date}</span>
+                                    <span className="time">{act.action_date.split(' ')[3]}</span>
                                 </div>
-                                <h5><a href="#">{act.user_name}</a> <span></span></h5>
-                                <a className="evt-leads-action" data-u_id={act.lead_uid} data-action="lead-activity" data-request_for="filter">
-                                    <p>{act.entity_type} | {act.entity_section}</p>
-                                    <p>
+                                <div className="timeline-icon">
+                                    <a href="javascript:;">&nbsp;</a>
+                                </div>
+                                <div className="timeline-body">
+                                    <div className="timeline-header">
+                                        <span className="userimage"><img
+                                                src="images/download.jpg" /></span>
+                                        <span className="username"><a
+                                                href="javascript:;">{act.user_name}</a>
+                                            <small></small></span>
+                                        <span
+                                            className="text-right float-right text-muted">{status.status_name}</span>
+                                    </div>
+                                    <div className="timeline-content">
+                                        <p className="lead"><p>{act.entity_type} | {act.entity_section}</p></p>
+                                        <p>
                                         <span className="col-grey">{act.entity_type === 'LEAD' ? "#Lead no" : "#Org no"} {act.entity_id}</span>
                                         <span className="bold">- </span>{act.action_desc !== '' ? act.action_desc : act.msg_desc}
                                     </p>
-                                </a>
+                                    </div>
+                                </div>
+                            </li>
+                            ))}
+                        </ul>
                             </div>
+    </>
+  )
 
-                            {/* <div className="sub-chat">
-                                <div className="cbptmicon"> AJ </div>
-                                <div className="cbp_tmlabel mrgn-lft-145">
-                                    <div className="cbp_tmtime">
-                                        <span>2019-11-04 03:45AM</span> <span>Today</span>
-                                    </div>
-                                    <h5><a href="#">Job Meeting</a></h5>
-                                    <a className="trash"><i className="zmdi zmdi-delete"></i></a>
-                                    <p>You have a meeting at <strong>Laborator Office</strong> Today.  Greatly who affixed suppose but enquire compact prepare all put. Added forth chief trees but rooms think may.</p>
-                                </div>
-                            </div> */}
-                            <a className="mrg_l80" data-toggle="collapse" data-target={"#divcollapse-" + act.id}>Add Comment</a>
-                            <div className="comment-area collapse" id={"divcollapse-" + act.id}>
-                                <div className="form-group">
-                                    <div className="form-line">
-                                        <textarea rows="4" id={"txt_comment-" + act.id} className="form-control no-resize" placeholder="Enter comment here..."></textarea>
-                                    </div>
-                                </div>
-                                <hr />
-                                <a className="btn btn-primary waves-effect waves-light evt-leads-action" data-activity-id={act.id} data-action="comments" data-request_for="create">Submit</a>
-                                <a className="btn btn-outline-danger waves-effect waves-light evt-leads-action" data-activity-id={act.id} data-action="comments" data-request_for="cancel">Cancel</a>
-                            </div>
-                        </li>
-                    ))}
-                </ul>
-                <div className="p-4" style={{ marginLeft: "69px" }}>
-                    <a id="btnLoadMoreActivity" className="btn btn-outline-primary mt-3 mb-4 " style={{display:"none"}} onClick={loadMoreActivity} ><b className="col-blue">Load More</b> →</a>
-                </div>
-            </div>
-        </>
-    )
+    // return (
+    //     <>
+    //         <div role="tabpanel" className=" tab-pane opp-tab" id="Activity">
+    //             <ul className="cbp_tmtimeline ml-4 mt-4 p-4">
+    //                 {lead_activity && lead_activity !== undefined && lead_activity.map((act, i) => (
+    //                     <li key={i}>
+    //                         <div className="cbp_tmicon"><img src="images/download.jpg" /></div>
+    //                         <div className="cbp_tmlabel">
+    //                             <div className="cbp_tmtime">
+    //                                 <span>{act.action_date}</span> <span></span>
+    //                             </div>
+    //                             <h5><a href="#">{act.user_name}</a> <span></span></h5>
+    //                             <a className="evt-leads-action" data-u_id={act.lead_uid} data-action="lead-activity" data-request_for="filter">
+    //                                 <p>{act.entity_type} | {act.entity_section}</p>
+    //                                 <p>
+    //                                     <span className="col-grey">{act.entity_type === 'LEAD' ? "#Lead no" : "#Org no"} {act.entity_id}</span>
+    //                                     <span className="bold">- </span>{act.action_desc !== '' ? act.action_desc : act.msg_desc}
+    //                                 </p>
+    //                             </a>
+    //                         </div>
+
+    //                         {/* <div className="sub-chat">
+    //                             <div className="cbptmicon"> AJ </div>
+    //                             <div className="cbp_tmlabel mrgn-lft-145">
+    //                                 <div className="cbp_tmtime">
+    //                                     <span>2019-11-04 03:45AM</span> <span>Today</span>
+    //                                 </div>
+    //                                 <h5><a href="#">Job Meeting</a></h5>
+    //                                 <a className="trash"><i className="zmdi zmdi-delete"></i></a>
+    //                                 <p>You have a meeting at <strong>Laborator Office</strong> Today.  Greatly who affixed suppose but enquire compact prepare all put. Added forth chief trees but rooms think may.</p>
+    //                             </div>
+    //                         </div> */}
+    //                         <a className="mrg_l80" data-toggle="collapse" data-target={"#divcollapse-" + act.id}>Add Comment</a>
+    //                         <div className="comment-area collapse" id={"divcollapse-" + act.id}>
+    //                             <div className="form-group">
+    //                                 <div className="form-line">
+    //                                     <textarea rows="4" id={"txt_comment-" + act.id} className="form-control no-resize" placeholder="Enter comment here..."></textarea>
+    //                                 </div>
+    //                             </div>
+    //                             <hr />
+    //                             <a className="btn btn-primary waves-effect waves-light evt-leads-action" data-activity-id={act.id} data-action="comments" data-request_for="create">Submit</a>
+    //                             <a className="btn btn-outline-danger waves-effect waves-light evt-leads-action" data-activity-id={act.id} data-action="comments" data-request_for="cancel">Cancel</a>
+    //                         </div>
+    //                     </li>
+    //                 ))}
+    //             </ul>
+    //             <div className="p-4" style={{ marginLeft: "69px" }}>
+    //                 <a id="btnLoadMoreActivity" className="btn btn-outline-primary mt-3 mb-4 " style={{display:"none"}} onClick={loadMoreActivity} ><b className="col-blue">Load More</b> →</a>
+    //             </div>
+    //         </div>
+    //     </>
+    // )
 }
 export default OppActivity;
