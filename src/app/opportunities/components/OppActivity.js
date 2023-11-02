@@ -2,7 +2,7 @@ import { useEffect,useState } from "react";
 import { get } from "../../services/api_axios_services";
 import ApiEndPoints from "../../utils/ApiEndPoints";
 
-const OppActivity = ({ lead_activity,setLead_activity,lead_uid }) => {
+const OppActivity = ({ lead_activity,setLead_activity,lead_uid}) => {
     const [loader, setLoader] = useState(false);
     const loadMoreActivity = async(e) => {
         e.preventDefault();
