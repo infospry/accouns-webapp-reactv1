@@ -30,7 +30,7 @@ export default function RootLayout({ children }) {
         <script src="js/jquery.toast.js"></script>
         <script src="js/moment.min.js"></script>
         <script src="js/daterangepicker.js"></script>
-
+        <script src="js/summernote.js"></script>
 
       <Script src="js/bootstrap.bundle.min.js"></Script>
       <Script src="js/custom.js"strategy='lazyOnload'></Script>   

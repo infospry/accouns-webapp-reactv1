@@ -17,11 +17,12 @@ import { get, post } from "../../services/api_axios_services";
     
 
 
-const Main = ({ data = [], pageData = [] }) => {
+const Main = ({ data = [], pageData = [], CategoryList = [] }) => {
         //, leadTypeList = [], CategoryList = [], CountryList = [] 
     const ref = useRef([]);
 
 //#region Create New Lead
+
     const [answer_list, setAnswerList] = useState([]);
     const formReducer = (state, event) => {
         return {
@@ -315,6 +316,7 @@ const Main = ({ data = [], pageData = [] }) => {
     }
     const selectdateRange = () => {
         daterange();
+        timeZone();
     }
     const searchLead = async (e) => {
        
@@ -460,7 +462,7 @@ const Main = ({ data = [], pageData = [] }) => {
                                         <div key={index} id={"div_" + item.u_id} className="position-relative">
                                             <div className="checkbox chk_absult">
                                                 <input className="all_slct evt-leads-action" id={"chk_" + item.u_id} type="checkbox" data-action="tag" data-request_for="show-tag" />
-                                                <label htmlFor={"chk_" + item.u_id} className="pl-0">&nbsp;</label>
+                                                <label htmlFor={"chk_" + item.u_id} className="ps-0">&nbsp;</label>
                                             </div>
                                             <a onClick={(e) => { trigger_click(index, item.u_id) }} ref={element => {
                                                 ref.current[index] = element;
@@ -496,7 +498,7 @@ const Main = ({ data = [], pageData = [] }) => {
                                 <div className="media bder11 p-4 mb-0"style={{borderLeft:"0px",borderRight:"0px"}}>
                                     <div className="media-body ptag"  style={{minHeight:'140px'}}>
                                         <a href="#" className="btn cross_remove">x</a>
-                                        {loading ? <span>Loading...<img src='/spin.gif' alt='.' /> </span> : <>
+                                            {loading ? <span>Loading...<img src='/spin.gif' alt='.' /> </span> : <>
                                                 {res && res.length > 0 ? <>
                                                     <h5>
                                                         {res && res.length > 0 && res[0].leads[0].lead_company_name}
@@ -731,17 +733,17 @@ const Main = ({ data = [], pageData = [] }) => {
                             <b id="lead_header">Add Lead</b>
                         </h4>
                     </div>
-                    <div id="leadCreate" className="modal-body pr-0 pl-0 pb-0">
+                    <div id="leadCreate" className="modal-body pe-0 ps-0 pb-0">
                         <span id="span_Orguid" style={{ display: "none" }}></span>
                         <div className="row  m-0">
-                            <div className="col-md-12 pl-0 pr-0">
+                            <div className="col-md-12 ps-0 pe-0">
                                 <div className="loader"></div>
                                 <div className="tab-content p-0">
                                     <div role="tabpanel" className=" tab-pane in active" style={{ height: "91vh" }}>
                                         <div className="row m-0 justify-content-center mt-3">
                                             <div className="col-md-4 col-lg-4">
                                                 <div className="card bdr5 mt-0">
-                                                    <div className="header  pt-1 pl-2">
+                                                    <div className="header  pt-1 ps-2">
                                                         <h2><i className="zmdi zmdi-view-dashboard">&nbsp;</i>Lead Type<span className="col-red">*</span></h2>
                                                     </div>
                                                     <div className="body p-2 mb-2">
@@ -758,7 +760,7 @@ const Main = ({ data = [], pageData = [] }) => {
                                             </div>
                                             <div className="col-md-4 col-lg-4">
                                                 <div className="card bdr5 mt-0">
-                                                    <div className="header  pt-1 pl-2">
+                                                    <div className="header  pt-1 ps-2">
                                                         <h2><i className="zmdi zmdi-view-dashboard">&nbsp;</i>Categories</h2>
                                                     </div>
                                                     <div className="body p-2 mb-2">
@@ -775,7 +777,7 @@ const Main = ({ data = [], pageData = [] }) => {
                                             </div>
                                             <div className="col-md-4 col-lg-4">
                                                 <div className="card bdr5 mt-0">
-                                                    <div className="header pt-1 pl-2">
+                                                    <div className="header pt-1 ps-2">
                                                         <h2><i className="zmdi zmdi-view-dashboard">&nbsp;</i>Channel </h2>
                                                     </div>
                                                     <div className="body p-2 mb-2">
@@ -792,7 +794,7 @@ const Main = ({ data = [], pageData = [] }) => {
                                             </div>
                                             <div className="col-md-12 col-lg-12">
                                                 <div className="card bdr5 mt-0">
-                                                    <div className="header pt-2 pl-2">
+                                                    <div className="header pt-2 ps-2">
                                                         <h2><i className="zmdi zmdi-account-box-mail">&nbsp;</i>Basic Details</h2>
                                                     </div>
                                                     <div className="body p-2">
@@ -877,7 +879,7 @@ const Main = ({ data = [], pageData = [] }) => {
                                             </div>
                                             <div className="col-md-12 col-lg-12">
                                                 <div className="card bdr5 mt-0">
-                                                    <div className="header pt-1 pl-2">
+                                                    <div className="header pt-1 ps-2">
                                                         <h2><i className="zmdi zmdi-pin"></i> Address Details </h2>
                                                     </div>
                                                     <div className="body p-2">
@@ -923,7 +925,7 @@ const Main = ({ data = [], pageData = [] }) => {
                                             </div>
                                             <div className="col-md-12 col-lg-12">
                                                 <div className="card bdr5 mt-0">
-                                                    <div className="header pt-1 pl-2">
+                                                    <div className="header pt-1 ps-2">
                                                         <h2><i className="zmdi zmdi-pin">&nbsp;</i>Social Media Details</h2>
                                                     </div>
                                                     <div className="body p-2">
@@ -970,7 +972,7 @@ const Main = ({ data = [], pageData = [] }) => {
                                             </div>
                                             <div className="col-md-12 col-lg-12">
                                                 <div className="card bdr5 mt-0">
-                                                    <div className="header pt-1 pl-2">
+                                                    <div className="header pt-1 ps-2">
                                                         <h2><i className="zmdi zmdi-labels"></i> Custom Fields </h2>
                                                     </div>
                                                     <div className="body p-2">
@@ -1000,7 +1002,7 @@ const Main = ({ data = [], pageData = [] }) => {
                                             </div>
                                             <div className="col-md-12 col-lg-12">
                                                 <div className="card bdr5 mt-0">
-                                                    <div className="header pt-1 pl-2">
+                                                    <div className="header pt-1 ps-2">
                                                         <h2><i className="zmdi zmdi-labels"></i> Tags / Keywords</h2>
                                                     </div>
                                                     <div className="body p-2">
@@ -1048,17 +1050,17 @@ const Main = ({ data = [], pageData = [] }) => {
                                 <b id="lead_header">Edit Lead</b>
                             </h4>
                         </div>
-                        <div id="leadCreate" className="modal-body pr-0 pl-0 pb-0">
+                        <div id="leadCreate" className="modal-body pe-0 ps-0 pb-0">
                             <span id="span_Orguid" style={{ display: "none" }}></span>
                             <div className="row  m-0">
-                                <div className="col-md-12 pl-0 pr-0">
+                                <div className="col-md-12 ps-0 pe-0">
                                     <div className="loader"></div>
                                     <div className="tab-content p-0">
                                         <div role="tabpanel" className=" tab-pane in active" style={{ height: "91vh" }}>
                                             <div className="row m-0 justify-content-center mt-3">
                                                 <div className="col-md-4 col-lg-4">
                                                     <div className="card bdr5 mt-0">
-                                                        <div className="header  pt-1 pl-2">
+                                                        <div className="header  pt-1 ps-2">
                                                             <h2><i className="zmdi zmdi-view-dashboard">&nbsp;</i>Lead Type<span className="col-red">*</span></h2>
                                                         </div>
                                                         <div className="body p-2 mb-2">
@@ -1076,7 +1078,7 @@ const Main = ({ data = [], pageData = [] }) => {
                                                 </div>
                                                 <div className="col-md-4 col-lg-4">
                                                     <div className="card bdr5 mt-0">
-                                                        <div className="header  pt-1 pl-2">
+                                                        <div className="header  pt-1 ps-2">
                                                             <h2><i className="zmdi zmdi-view-dashboard">&nbsp;</i>Categories</h2>
                                                         </div>
                                                         <div className="body p-2 mb-2">
@@ -1093,7 +1095,7 @@ const Main = ({ data = [], pageData = [] }) => {
                                                 </div>
                                                 <div className="col-md-4 col-lg-4">
                                                     <div className="card bdr5 mt-0">
-                                                        <div className="header pt-1 pl-2">
+                                                        <div className="header pt-1 ps-2">
                                                             <h2><i className="zmdi zmdi-view-dashboard">&nbsp;</i>Channel </h2>
                                                         </div>
                                                         <div className="body p-2 mb-2">
@@ -1110,7 +1112,7 @@ const Main = ({ data = [], pageData = [] }) => {
                                                 </div>
                                                 <div className="col-md-12 col-lg-12">
                                                     <div className="card bdr5 mt-0">
-                                                        <div className="header pt-2 pl-2">
+                                                        <div className="header pt-2 ps-2">
                                                             <h2><i className="zmdi zmdi-account-box-mail">&nbsp;</i>Basic Details</h2>
                                                         </div>
                                                         <div className="body p-2">
@@ -1195,7 +1197,7 @@ const Main = ({ data = [], pageData = [] }) => {
                                                 </div>
                                                 <div className="col-md-12 col-lg-12">
                                                     <div className="card bdr5 mt-0">
-                                                        <div className="header pt-1 pl-2">
+                                                        <div className="header pt-1 ps-2">
                                                             <h2><i className="zmdi zmdi-pin"></i> Address Details </h2>
                                                         </div>
                                                         <div className="body p-2">
@@ -1241,7 +1243,7 @@ const Main = ({ data = [], pageData = [] }) => {
                                                 </div>
                                                 <div className="col-md-12 col-lg-12">
                                                     <div className="card bdr5 mt-0">
-                                                        <div className="header pt-1 pl-2">
+                                                        <div className="header pt-1 ps-2">
                                                             <h2><i className="zmdi zmdi-pin">&nbsp;</i>Social Media Details</h2>
                                                         </div>
                                                         <div className="body p-2">
@@ -1292,7 +1294,7 @@ const Main = ({ data = [], pageData = [] }) => {
                                                             {lead_settings.length >= 0 && lead_settings.map((setting, i) => (
                                                                 <div key={i} className="card bdr5 mt-0">
                                                                     {setting.status === "true" ? <>
-                                                                        <div className="header pt-1 pl-2">
+                                                                        <div className="header pt-1 ps-2">
                                                                             <h2><i className={setting.cssClass ? setting.cssClass : ""}>&nbsp;</i>{setting.section}</h2>
                                                                         </div>
                                                                         <div className="body p-2">
@@ -1328,7 +1330,7 @@ const Main = ({ data = [], pageData = [] }) => {
                                                 </div>
                                                 <div className="col-md-12 col-lg-12">
                                                     <div className="card bdr5 mt-0">
-                                                        <div className="header pt-1 pl-2">
+                                                        <div className="header pt-1 ps-2">
                                                             <h2><i className="zmdi zmdi-labels"></i> Custom Fields </h2>
                                                         </div>
                                                         <div className="body p-2">
@@ -1358,7 +1360,7 @@ const Main = ({ data = [], pageData = [] }) => {
                                                 </div>
                                                 <div className="col-md-12 col-lg-12">
                                                     <div className="card bdr5 mt-0">
-                                                        <div className="header pt-1 pl-2">
+                                                        <div className="header pt-1 ps-2">
                                                             <h2><i className="zmdi zmdi-labels"></i> Tags / Keywords</h2>
                                                         </div>
                                                         <div className="body p-2">
@@ -1682,169 +1684,209 @@ const Main = ({ data = [], pageData = [] }) => {
         </div>
     </div>
 {/* scheduled */}
-    <div class="modal right-half md-one" id="Schedule" tabindex="-1" role="dialog" aria-labelledby="shortModal">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header bg-blu-lite">
-                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                    <h4 class="modal-title" id="myModalLabel2">
-                        <b> <i class="zmdi zmdi-alarm-check"></i> Schedule</b>
-                    </h4>
-                </div>
-                <div class="modal-body pe-0 ps-0 contbody">
-                    <div class="row  m-0">
-                        <div class="col-md-12 ps-0 pe-0">
-                            <div class="tab-content p-0">
-                                <div role="tabpanel" class=" tab-pane in active">
-                                    <div class="media border p-4 mb-0">                                                                         
-                                        <div class="media-body ptag">             
-                                            <h5>Graham  Anderson</h5>
-                                            <p class="mb-1">Administrative / <span class="col-black">Marketing</span> </p>
-                                            <p class="mb-1"><span id=""> solutions.topicccano@gmail.com</span> <small class="col-green">  Verified</small> </p>                                       
-                                            <p class="mb-1"> Applied to Freelance Sales Consultant - Birmingham, West Midlands   </p> 
-                                        </div>                                        
-                                    </div>
-                                    
-                                    
-                                    <div class="pt-3 pb-2 ps-4 pe-4">
-                                        <h4 class="mb-0">Application</h4>  
-                                        <hr/>   
-                                        <p class="col-grey">(GMT + 01:00) British Summer Time (United Kingdom) <a class="float-right col-blue" href="#"> <i class="zmdi zmdi-edit"></i> </a></p>
-                                        <div class="row">
-                                            <div class="col-md-7 col-sm-12">
-                                                <div class="form-group">
-                                                    <label for=""><strong>Date</strong></label>
-                                                    <input type="text" class="form-control" id="" aria-describedby="" placeholder="DD/MM/YYYY"/>                                                   
-                                                  </div>
-                                            </div>
-                                            <div class="col-md-2 col-sm-5 pe-0">
-                                                <div class="form-group">
-                                                    <label for=""><strong>Start Time</strong></label>
-                                                    <select class="form-control" id="">
-                                                        <option>1</option>
-                                                        <option>2</option>
-                                                        <option>3</option>
-                                                        <option>4</option>
-                                                        <option>5</option>
-                                                      </select>                                                 
-                                                  </div>
-                                            </div>
-                                            <div class="col-md-1 col-1 col-sm-1 ps-0 pe-0 pt-4 mt-1 text-center"> <strong>to</strong> </div>
-                                            <div class="col-md-2 col-sm-6 ps-0">                                              
-                                                <div class="form-group">
-                                                    <label for=""><strong>End Time</strong></label>
-                                                    <select class="form-control" id="">
-                                                        <option>1</option>
-                                                        <option>2</option>
-                                                        <option>3</option>
-                                                        <option>4</option>
-                                                        <option>5</option>
-                                                      </select>
-                                                  </div>
-                                            </div>
-                                        </div> 
-                                       
-                                        <p><a class="btn btn-primary btn-sm mt-3"><i class="zmdi zmdi-plus-circle-o-duplicate"></i> Suggest multiple times</a></p>         
-                                    
-                                        <h5 class="mb-2 mt-4"><b>Schedule Type</b></h5>
-                                        <a class="btn btn-outline-primary me-1 clickmode typbtn sel" data-hide=".phone-missed, .Inperson" data-show=".comment-video" href="#"><i class="zmdi zmdi-comment-video"></i> Video</a>
-                                        <a class="btn btn-outline-primary me-1 clickmode typbtn" data-hide=".comment-video, .Inperson" data-show=".phone-missed" href="#"><i class="zmdi zmdi-phone-missed"></i> Phone</a>
-                                        <a class="btn btn-outline-primary me-1 clickmode typbtn" data-hide=".phone-missed, .comment-video" data-show=".Inperson" href="#"><i class="zmdi zmdi-account"></i> In-person</a>
+<div className="modal right-half md-one" id="schedule" tabIndex="-1" role="dialog" aria-labelledby="shortModal">
+    <div className="modal-dialog ui-draggable ui-draggable-handle" role="document">
+        <div className="modal-content" style={{height:"auto!important"}}>
+            <div className="modal-header bg-blu-lite fixed-top">
+                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 className="modal-title" id="myModalLabel2">
+                    <b> <i className="zmdi zmdi-alarm-check"></i> Schedule</b>
+                </h4>
+            </div>
+            <div className="modal-body pe-0 ps-0 contbody">
+                <div className="row  m-0">
+                    <div className="col-md-12 ps-0 pe-0">
+                        <div className="tab-content p-0">
+                            <div role="tabpanel" className="tab-pane in active">
+                                {/* <div id="lead-details" className="media border p-4 mb-0"></div> */}
+                                <div id="lead-details" className="media border p-4 mb-0">
+                                    <div className="media-body ptag">
+                                        {res && res.length > 0 ? <>
+                                            <h5>{res && res.length > 0 && res[0].leads[0].lead_company_name}</h5>
+                                        </> : <></>}
+                                        <p className="mb-1">{res && res.length > 0 && res[0].leads[0].lead_type_name}
+                                            {res && res.length > 0 ? <>| </> : <></>}
+                                            <span className="col-black">{res && res.length > 0 &&
+                                                res[0].leads[0].cat_name}</span>
+                                        </p>
+                                        {res && res.length > 0 ? <>
+                                            <p className="mb-1"><i className="zmdi zmdi-email-open"></i> <span
+                                                    id="">{res && res.length > 0 && res[0].leads[0].lead_email}</span>
+                                                <small className={res && res.length> 0 && res[0].leads[0].email_status
+                                                    === 1 ? "col-green" : "col-red"}> {res && res.length > 0 &&
+                                                    res[0].leads[0].email_status === 1 ? " Verified" : "Unverified"}</small>
+                                            </p>
+                                        </>
+                                        : <></>}
 
-                                        <div class="comment-video">
-                                            <h5 class="mb-2 mt-3"><b>Video conference link</b></h5>
-                                            
-                                                <div class="form-check mb-3">
-                                                    <input type="radio" class="form-check-input" id="noneed" name="conference" value="customEx"/>
-                                                    <label class="form-check-label" for="noneed"><strong>Use Indeed video conferencing</strong><span class="bbl-light ms-1 col-green">Recommended</span> <br/>
-                                                        <span class="col-grey">No need to download software or import your own links,
-                                                            <strong>We will send a video conference link</strong> to you and your candidate when your interview is confirmed.
-                                                        </span>
-                                                    </label>
-                                                </div>
-                                                <div class="form-check mb-3">
-                                                    <input type="radio" class="form-check-input" id="thirt_partyvio" name="conference" value="customEx"/>
-                                                    <label class="form-check-label" for="thirt_partyvio"><strong>Use third-party video conferencing service</strong> <br/> <span class="col-grey">Paste your third-party video conferencing links.</span></label>
-                                                </div>
-                                               
-                                                <div class="thirt_party">
-                                                    <div class="group_lead">
-                                                        <input class="input_text" id="" name="" required="required" type="text"/> 
-                                                        <label class="lablefilled">Type Lable</label>
-                                                    </div>
-                                                </div>
-                                                <div class="group_lead">
-                                                    <textarea required="required" id="Message"></textarea>
-                                                    <label for="Message" class="lablefilled">Message to Lable</label>                                          
-                                                </div>
-                                                <div class="thirt_party">
-                                                    <div class="group_lead">
-                                                        <input class="input_text" id="addadditional" name="addadditional" required="required" type="text"/> 
-                                                        <label class="lablefilled">Add additional employers</label>
-                                                    </div>
-                                                </div>
-                                            
-                                        </div>
-                                        <div class="phone-missed ddnone">                                            
-                                            <div class="group_lead mt-4">
-                                                <input class="input_text" id="" name="" required="required" type="text"/> 
-                                                <label class="lablefilled">Phone number <i class="zmdi zmdi-info col-blue"></i></label>
-                                            </div>
-                                            <div class="group_lead">
-                                                <textarea required="required" id="Message"></textarea>
-                                                <label for="Message" class="lablefilled">Message to Lable</label>                                          
-                                            </div>                                            
-                                            <div class="group_lead">
-                                                <input class="input_text" id="addadditional" name="addadditional" required="required" type="text"/> 
-                                                <label class="lablefilled">Add additional employers</label>
-                                            </div>                                        
-                                        </div>
-                                        <div class="Inperson ddnone">
-                                            <div class="group_lead mt-4">
-                                                <input class="input_text" id="" name="" required="required" type="text"/> 
-                                                <label class="lablefilled">Address</label>
-                                            </div>
-                                            <div class="group_lead">
-                                                <textarea required="required" id="Message"></textarea>
-                                                <label for="Message" class="lablefilled">Message to Lable</label>                                          
-                                            </div>                                            
-                                            <div class="group_lead">
-                                                <input class="input_text" id="addadditional" name="addadditional" required="required" type="text"/> 
-                                                <label class="lablefilled">Add additional employers</label>
-                                            </div> 
-                                        </div>
-                                    
+                                        <p className="mb-1">
+                                            {res && res.length > 0 ? <><i className="zmdi zmdi-city-alt"></i></> : <></>
+                                            } {res && res.length > 0 && res[0].leads[0].lead_city} {res && res.length >
+                                            0 && "," + res[0].leads[0].lead_postcode
+                                            }
+                                        </p>
                                     </div>
+                                </div>
+                                <div className="pt-3 pb-2 ps-4 pe-4">
+                                    <h4 className="mb-0">Application</h4>
+                                    <hr />
+                                    <div className="row mb-2">
+                                        <div className="col-md-6 col-sm-12">
+                                            <div className="form-group">
+                                                <label htmlFor=""><strong>Time zone</strong></label>
+                                                <select id="ddlTimeZone" name="ddlTimeZone" onFocus={selectdateRange}
+                                                    className="form-control timezone">
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div className="col-md-6 col-sm-12">
+                                            <div className="form-group">
+                                                <label htmlFor=""><strong>Meeting with Person</strong></label>
+                                                <input type="text" className="form-control" id="txt_MeetingWithPerson"
+                                                    autoComplete="off" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="row msrow mb-2" data-counter="0">
+                                        <div className="col-md-6 col-sm-12">
+                                            <div className="form-group">
+                                                <label htmlFor=""><strong>Date</strong></label>
+                                                <input type="text" className="form-control datepicker" id="txt_date0"
+                                                    autoComplete="off" placeholder="dd/mm/yyyy" maxLength="10" />
+                                            </div>
+                                        </div>
+                                        <div className="col-md-2 col-sm-5 pe-0">
+                                            <div className="form-group">
+                                                <label htmlFor=""><strong>Start Time</strong></label>
+                                                <input type="text" id="txt_starttime0"
+                                                    className="form-control timepicker" autoComplete="off"
+                                                    placeholder="hh:mm" maxLength="5" />
+                                            </div>
+                                        </div>
+                                        <div className="col-md-1 col-1 col-sm-1 ps-0 pe-0 pt-4 mt-1 text-center">
+                                            <strong>to</strong> </div>
+                                        <div className="col-md-2 col-sm-5 ps-0">
+                                            <div className="form-group">
+                                                <label htmlFor=""><strong>End Time</strong></label>
+                                                <input type="text" id="txt_endtime0"
+                                                    className="form-control timepicker end-time" data-counter="0"
+                                                    autoComplete="off" placeholder="hh:mm" maxLength="5" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="addmore_placeholder"></div>
+                                    <p><a id="btn_lsAddmore"
+                                            className="btn btn-primary bgtn-sm evt-leads-action mt-3 mb-2"
+                                            data-action="schedule" data-request_for="add-more" data-counter="0"><i
+                                                className="zmdi zmdi-plus-circle-o-duplicate"></i> Suggest multiple
+                                            times</a></p>
+                                    <h5 className="mb-2 mt-4"><b>Schedule Type</b></h5>
+                                    <div className="d-flex ps-3">
 
+                                        <div className="form-check btn btn-outline-primary">
+                                            <input type="radio" className="form-check-input evt-leads-action" id="video"
+                                                name="meeting-type" defaultValue="Video" data-action="schedule"
+                                                data-request_for="show-hide" />
+                                            <label className="form-check-label"
+                                                htmlFor="video"><strong>Video</strong></label>
+                                        </div>
+
+                                        <div className="form-check btn btn-outline-primary ms-4 me-4">
+                                            <input type="radio" className="form-check-input evt-leads-action" id="phone"
+                                                name="meeting-type" defaultValue="Phone" data-action="schedule"
+                                                data-request_for="show-hide" />
+                                            <label className="form-check-label"
+                                                htmlFor="phone"><strong>Phone</strong></label>
+                                        </div>
+
+                                        <div className="form-check btn btn-outline-primary">
+                                            <input type="radio" className="form-check-input evt-leads-action"
+                                                id="in-person" name="meeting-type" defaultValue="In-person"
+                                                data-action="schedule" data-request_for="show-hide" />
+                                            <label className="form-check-label"
+                                                htmlFor="in-person"><strong>In-person</strong></label>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <h5 className="mb-2 mt-3"><b>Video conference link</b></h5>
+                                        <div className="form-check mb-3 video-section">
+                                            <input type="radio" className="form-check-input evt-leads-action"
+                                                defaultChecked="checked" id="link_internal" name="link-type"
+                                                defaultValue="Internal" data-action="schedule"
+                                                data-request_for="link-type" />
+                                            <label className="form-check-label" htmlFor="link_internal">
+                                                <strong>Use Indeed video conferencing</strong><span
+                                                    className="bbl-light ms-1 col-green">Recommended</span> <br />
+                                                <span className="col-grey">
+                                                    No need to download software or import your own links,
+                                                    <strong>We will send a video conference link</strong> to you and
+                                                    your candidate when your interview is confirmed.
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div className="form-check mb-3 video-section">
+                                            <input type="radio" className="form-check-input evt-leads-action"
+                                                id="link_external" name="link-type" defaultValue="External"
+                                                data-action="schedule" data-request_for="link-type" />
+                                            <label className="form-check-label" htmlFor="link_external"><strong>Use
+                                                    third-party video conferencing service</strong> <br /> <span
+                                                    className="col-grey">Paste your third-party video conferencing
+                                                    links.</span></label>
+                                        </div>
+                                        <div id="external-link" className="ddnone">
+                                            <div className="group_lead">
+                                                <input className="input_text" id="txt_ExternalLink" required="required"
+                                                    type="text" autoComplete="off" />
+                                                <label className="lablefilled">External Link</label>
+                                            </div>
+                                        </div>
+                                        <div className="group_lead mt-4 phone-section ddnone">
+                                            <input className="input_text allow-numbers-only" id="txt_Phone"
+                                                required="required" type="text" maxLength="15" autoComplete="off" />
+                                            <label className="lablefilled">Phone number <i
+                                                    className="zmdi zmdi-info col-blue"></i></label>
+                                        </div>
+                                        <div className="group_lead mt-4 inperson-section ddnone">
+                                            <input className="input_text" id="txt_Address" required="required"
+                                                type="text" autoComplete="off" />
+                                            <label className="lablefilled">Address</label>
+                                        </div>
+                                        <div className="group_lead">
+                                            <label htmlFor="Message">Message</label>
+                                            <textarea required="required" id="msgBody"
+                                                className="summernote-editor"></textarea>
+                                            <span id="spanSubject" style={{display:"none"}}></span>
+                                        </div>
+                                        <div className="group_lead" id="additional">
+                                            <input className="input_text" id="txt_Email" required="required"
+                                                autoComplete="off" type="text" />
+                                            <label className="lablefilled">Add additional emails</label>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                      
                     </div>
                 </div>
-                <div class="model-footer">
-                    <div class="row m-0">
-                        <div class="col-md-12">
-                            <div class="text-center comment-video">
-                                <button class="btn btn-primary me-1 clickmode" data-show="." data-hide=".md-one, .modal-backdrop" type="button">  Send  video invitation</button>
-                                <button class="btn btn-danger" type="button"><i class="zmdi zmdi-rotate-left"></i> Cancel</button>
-                            </div>
-                            <div class="text-center phone-missed ddnone">
-                                <button class="btn btn-primary me-1 clickmode" data-show="." data-hide=".md-one, .modal-backdrop" type="button">  Send phone invitation</button>
-                                <button class="btn btn-danger" type="button"><i class="zmdi zmdi-rotate-left"></i> Cancel</button>
-                            </div>
-                            <div class="text-center Inperson ddnone">
-                                <button class="btn btn-primary me-1 clickmode" data-show="." data-hide=".md-one, .modal-backdrop" type="button">  Send In-person invitation</button>
-                                <button class="btn btn-danger" type="button"><i class="zmdi zmdi-rotate-left"></i> Cancel</button>
-                            </div>
+            </div>
+            <div className="model-footer">
+                <div className="row m-0">
+                    <div className="col-md-12">
+                        <div className="text-center comment-video">
+                            <a id="btnSendInvitation" className="btn btn-primary  evt-leads-action"
+                                data-action="schedule" data-request_for="create">Send video invitation</a>
+                            <button className="btn btn-danger ms-1" type="button" data-dismiss="modal"><i
+                                    className="zmdi zmdi-rotate-left">&nbsp;</i>Cancel</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
+    
     <div class="modal right-quater md-one" id="smssend" tabindex="-1" role="dialog" aria-labelledby="addpage">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -1881,77 +1923,79 @@ const Main = ({ data = [], pageData = [] }) => {
             </div>
         </div>           
     </div>
-    {/* <div class="modal right-half md-one" id="contact" tabindex="-1" role="dialog" aria-labelledby="shortModal">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header bg-blu-lite">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                    <h4 class="modal-title" id="myModalLabel2">
-                        <b> <i class="zmdi zmdi-account-list"></i> Contact</b>
-                    </h4>
-                </div>
-                <div class="modal-body pe-0 ps-0 contbody">
-                    <div class="row  m-0">
-                        <div class="col-md-12">
-                            <p class="font-bold col-blue font-18 m-0 mt-3"><i class="zmdi zmdi-info col-blue"></i> Great! Now contact Us </p>
-                            <p class="m-0">
-                                Our most successful professionals contact customers straight away and we recommend completing
-                                    the steps below.
-                            </p>
-                            <hr/>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div>
-                                    <p class="font-bold col-black m-0"><i class="zmdi zmdi-email-open"></i> Send an email  </p>
-                                    <p class="m-0 col-grey"> Send an email to introduce your business </p>
-                                </div>
-                                <div class="text-right"> <button class="btn btn-primary">Send an email</button></div>
-                            </div>
-                            <hr/>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div>
-                                    <p class="font-bold col-black m-0"><i class="zmdi zmdi-phone"></i> Give them a call  </p>
-                                    <p class="m-0 col-grey"> Connect with the customer now to discuss their project directly </p>
-                                </div>
-                                <div class="text-right"> <button class="btn btn-primary">Call now</button></div>
-                            </div>
-                            <hr/>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div>
-                                    <p class="font-bold col-black m-0"><i class="zmdi zmdi-comment-text"></i> Send an SMS  </p>
-                                    <p class="m-0 col-grey">If you have called and can't get through, follow up with an sms </p>
-                                </div>
-                                <div class="text-right"> <button class="btn btn-primary">Send SMS</button></div>
-                            </div>
-                            <hr/>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div>
-                                    <p class="font-bold col-black m-0"><i class="zmdi zmdi-tag"></i> Send an estimate  </p>
-                                    <p class="m-0 col-grey">Enter a guid price and some notes to explain your costs </p>
-                                </div>
-                                <div class="text-right"> <button class="btn btn-primary">Send Estimate</button></div>
-                            </div>
-                            <hr/>
-
-                        </div>
-                        
+    {/* Import */}
+   <div className="modal right-half md-one" id="modalimport" tabIndex="1" role="dialog" aria-labelledby="shortModal" data-backdrop="static">
+            <div className="modal-dialog ui-draggable ui-draggable-handle" role="document">
+                <div className="modal-content" style={{ height: "auto!important" }}>
+                    <div className="modal-header bg-blu-lite fixed-top">
+                        <button type="button" className="close" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        <h4 className="modal-title"><b>Import CSV File</b></h4>
                     </div>
-                </div>
-                <div class="model-footer">
-                    <div class="row m-0">
-                        <div class="col-md-12">
-                            <div class="text-center">
-                                <button class="btn btn-primary clickmode me-1" data-show="." data-hide="" type="button"> <i class="zmdi zmdi-upload"></i> Save </button>
-                                <button class="btn btn-danger" type="button"><i class="zmdi zmdi-rotate-left"></i> Cancel</button>
+                    <div className="modal-body pe-0 ps-0 pb-0">
+                        <div className="row  m-0">
+                            <div className="col-md-12 ps-0 pe-0">
+                                <div className="loader"></div>
+                                <div className="tab-content p-0">
+                                    <div role="tabpanel" className=" tab-pane in active" id="" style={{ height: "91vh" }}>
+                                        <div className="row m-0 justify-content-center">
+                                            <div className="col-md-6 mt-3 divupload">
+                                                <input type="file" id="csvfile" className="form-control" multiple="" />
+                                            </div>
+                                            <div className="col-md-2 mt-3 divupload">
+                                                <a className="btn btn-primary evt-leads-main" data-action="leads-main" data-request_for="import-csv"><i className="zmdi zmdi-upload">&nbsp;</i>Upload</a>
+                                            </div>
+                                            <div className="col-md-4 mt-3 divupload">
+                                                <small className="col-blue" id="spnCsvRowCount"></small>
+                                            </div>
+                                            <div className="col-md-6 mt-3 csvddl disableform" style={{ display: "none" }}>
+                                                <div className="group_lead">
+                                                    <select className="custom-select select_f" defaultValue={"0"} id="ddl_leadtype_csv">
+                                                        <option value="0" >Choose Lead Type</option>
+                                                        {leadTypeList.map((lead, i) => (
+                                                            <option key={i} value={lead.id}>{lead.lead_type_name}</option>
+                                                        ))}
+                                                    </select>
+                                                    <label className="lablefilled">Lead Type<span>*</span></label>
+                                                </div>
+                                            </div>
+                                            <div className="col-md-6 mt-3 csvddl disableform" style={{ display: "none" }}>
+                                                <div className="group_lead">
+                                                    <select className="custom-select select_f" defaultValue={"0"} id="ddl_category_csv">
+                                                        <option value="0" >Choose Category</option>
+                                                        {CategoryList.map((cat, i) => (
+                                                            <option key={i} value={cat.cat_id}>{cat.cat_name}</option>
+                                                        ))}
+                                                    </select>
+                                                    <label className="lablefilled">Category</label>
+                                                </div>
+                                            </div>
+                                            <div className="col-md-12 csvddl" style={{ display: "none" }}>
+                                                <div className="group_lead form-check custom-checkbox">
+                                                    <input type="checkbox" id="chk_override" className="form-check-input" />
+                                                    <label className="form-check-label font-18" htmlFor="chk_override"> <b> Override the existing record </b></label>
+                                                </div>
+                                            </div>
+                                            <div id="csv_ddl_placeholder" className="col-md-6"></div>
+                                            <div id="dbfields_placeholder" className="col-md-6"></div>
+                                            <div id="csv_tbl_placeholder" className="col-md-12 mt-2"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="model-footer">
+                            <div className="text-center">
+                                <a id="btnvwsbmt" className="btn btn-primary evt-leads-main" data-action="leads-main" data-request_for="view-csv">View</a>
+                                <a id="btncnclcsv" className="btn btn-danger ms-1 me-1" data-bs-dismiss="modal"><i className="zmdi zmdi-rotate-left">&nbsp;</i>Close</a>
+                                <a id="btnbckcsv" className="btn btn-primary evt-leads-main" data-action="leads-main" data-request_for="back"><i className="zmdi zmdi-arrow-left">&nbsp;</i>Back</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div> */}
-
     <div className="modal fade mdds" id="contact" role="dialog" aria-labelledby="ModalCenterTitle" tabIndex="-1" aria-hidden="true" data-backdrop="static">
                 <div className="modal-dialog ui-draggable ui-draggable-handle modal-dialog-centered" role="document">
                     <div className="modal-content">
@@ -1988,16 +2032,16 @@ const Main = ({ data = [], pageData = [] }) => {
                                     <label className="lablefilled"><i className="zmdi zmdi-account">&nbsp;</i>Person Name<span>*</span></label>
                                 </div>
                                 <div className="row">
-                                    <div className="col-6 pr-0">
+                                    <div className="col-6 pe-0">
                                         <p>From</p>
                                         <div className="row">
-                                            <div className="col pr-0">
+                                            <div className="col pe-0">
                                                 <div className="group_lead  mb-1">
                                                     <input type="text" id="cb_start_date" className="input_text datepicker" required="required" autoComplete="off" maxLength="10" />
                                                     <label className="lablefilled"><i className="zmdi zmdi-calendar">&nbsp;</i>Date<span>*</span></label>
                                                 </div>
                                             </div>
-                                            <div className="col pl-1">
+                                            <div className="col ps-1">
                                                 <div className="group_lead  mb-1">
                                                     <input type="text" id="cb_start_time" className="input_text timepicker " required="required" autoComplete="off" maxLength="5" />
                                                     <label className="lablefilled"><i className="zmdi zmdi-time">&nbsp;</i>Time<span>*</span></label>
@@ -2005,16 +2049,16 @@ const Main = ({ data = [], pageData = [] }) => {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="col-6 pl-1">
+                                    <div className="col-6 ps-1">
                                         <p>To</p>
                                         <div className="row">
-                                            <div className="col pr-0">
+                                            <div className="col pe-0">
                                                 <div className="group_lead mb-1">
                                                     <input type="text" id="cb_end_date" className="input_text datepicker " required="required" autoComplete="off" maxLength="10" />
                                                     <label className="lablefilled"><i className="zmdi zmdi-calendar">&nbsp;</i>Date<span>*</span></label>
                                                 </div>
                                             </div>
-                                            <div className="col pl-1">
+                                            <div className="col ps-1">
                                                 <div className="group_lead  mb-1">
                                                     <input type="text" id="cb_end_time" className="input_text timepicker" required="required" autoComplete="off" maxLength="5" />
                                                     <label className="lablefilled"><i className="zmdi zmdi-time">&nbsp;</i>Time<span>*</span></label>
@@ -2105,56 +2149,5 @@ const Main = ({ data = [], pageData = [] }) => {
     )
 }
 
-// export const getServerSideProps = async ({ req, res }) => {
-//     try {
-//         //opportunity data
-//         var params = { "action": "leads", "action_on": "leads_main", "request_for": "select-all", "route": "opportunities", "previous": "0", "next": "10" };
-//         const lang = req.cookies['signin_token']
-//         if ((lang === "''") || (lang === undefined)) {
-//             res.writeHead(302, { Location: "/login" })
-//             res.end()
-//         }
-//         const response = await getData(params, lang, ApiEndPoints.opportunity)
-//         const stringifiedData = JSON.stringify(response);
-//         const oppData = JSON.parse(stringifiedData);
-//         //get ddl
-//         var params1 = { "action": "filter-ddl", "action_on": "leads_main", "request_for": "" };
-//         const response1 = await getData(params1, lang, ApiEndPoints.opportunity)
-//         const stringifiedData1 = JSON.stringify(response1);
-//         const ddlData = JSON.parse(stringifiedData1);
-//         //get lead tpe list
-//         var paramsleadType = { "action": "lead-types" };
-//         const respLeadType = await getData(paramsleadType, lang, ApiEndPoints.dropdownApi)
-//         //get categories list
-//         var paramsCategory = { "action": "category", "request_for": "parent" };
-//         const respCategory = await getData(paramsCategory, lang, ApiEndPoints.dropdownApi)
-//         //get channel list
-//         var paramsChannel = { "action": "lead-channel" };
-//         const respChannel = await getData(paramsChannel, lang, ApiEndPoints.dropdownApi)
-//         //get channel list
-//         var paramsCountry = { "action": "location", "request_for": "country-list" };
-//         const respCountry = await getData(paramsCountry, lang, ApiEndPoints.dropdownApi)
-     
 
-//         return {
-//             props: {
-//                 pageData: JSON.parse(oppData).response_status === "OK" ? JSON.parse(oppData).data.response.leads_list : [],
-//                 data: JSON.parse(ddlData),
-//                 leadTypeList: JSON.parse(respLeadType).data.response.lead_types,
-//                 CategoryList: JSON.parse(respCategory).data.response.category_info,
-//                 CountryList: JSON.parse(respCountry).data.response.country_list,
-//                 // ChannelList: JSON.parse(respChannel).data.response.category_info,
-//             },
-//         }
-//     } catch (err) {
-//         // Handle error
-//         return {
-//             props: null
-//             // redirect: {
-//             //     destination: '/login',
-//             //     statusCode: 307
-//             // }
-//         }
-//     }
-// }
 export default Main
