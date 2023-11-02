@@ -16,6 +16,7 @@ import Messages from "./Messages";
 import { get, post } from "../../services/api_axios_services";
 import MdlLeadMainEdit from '../model/MdlLeadMain';
 import OppActivity from './OppActivity';
+import menuImage from "../../images/menu-dots-vertical.svg";
 
 
 const Main = ({ data = [], pageData = [], CategoryList = [] }) => {
@@ -405,45 +406,59 @@ const Main = ({ data = [], pageData = [], CategoryList = [] }) => {
     <section className="content">
         <div className="body_scroll">
             <div className="scrolfx">
-                <div className="booktab d-flex justify-content-between align-items-center bdrbtm">
-                    <div className="p-2">
-                        <h2 className="font-bold mb-0">Opporrunites </h2>
-                    </div>
-                    <div className="pe-2">
-                        <button className="btn  btn-outline-primary me-1" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
-                            <i className="ti ti-filter"></i>
-                        </button>
-                            <div className="btn-group head_btn me-1" style={{ display: "none" }}>
-                                <div className="dropdown me-1">
-                                    <a className="dropdown-toggle btn btn-outline-primary btn-menu clmnbtn" data-bs-toggle="dropdown" role="button">
-                                        <i className="zmdi zmdi-label"></i><span>Tag as</span>
-                                    </a>
-                                    <ul className="dropdown-menu clmn">
-                                        <li className="header lststl">
-                                            <div className="input-group">
-                                                <input type="text" className="form-control" id="txt_label" placeholder="Create..." autoComplete="off" />
-                                            </div>
-                                        </li>
-                                        <div id="tag_placeholder"></div>
-                                        <li className="list-group-item">
-                                            <a id="btn_createtag" className="btn btn-primary btn-sm w-48 evt-tag" data-action="tag" data-request_for="create"><i className="zmdi zmdi-label-alt">&nbsp;</i><span>Create</span></a>
-                                            <a id="btn_applytag" className="btn btn-primary btn-sm w-48 evt-tag" data-id="0" data-action="tag" data-request_for="lead-tag-create"><i className="zmdi zmdi-label-alt">&nbsp;</i><span>Apply</span></a>
-                                        </li>
+                <div className="booktab bdrbtm">
+                    <div className="row justify-content-between align-items-center">
+                        <div className="col-12 col-sm-4 col-md-4 col-lg-3 pt-2 pb-2">
+                            <div className="ps-2 d-flex justify-content-between align-items-center">
+                                <h2 className="font-bold mb-0">Opporrunites </h2>
+                                <div className="dropdown">
+                                    <button className="btn dropdown-toggle pe-0"style={{boder:"0px"}} type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <Image src={menuImage} alt="user" width={"5"} height={"21"} />
+                                    </button>
+                                    <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                        <li><a className="dropdown-item" onClick={getArchieveLeades}><i className="zmdi zmdi-archive">&nbsp;</i>Show Archieve</a></li>
+                                        <li><a className="dropdown-item" onClick={getBin}><i className="zmdi zmdi-delete">&nbsp;</i>Show Trash</a></li>
+                                        <li><a className="dropdown-item evt-leads-main"data-bs-toggle="modal"  data-bs-target="#modalimport" data-action="leads-main" data-request_for="import-popup"> <i className="zmdi zmdi-download">&nbsp;</i>Import</a></li>
                                     </ul>
                                 </div>
-                                <a id="btn_archieve" className="btn btn-outline-primary evt-leads-action" data-id="0" data-action="leads" data-request_for="add-to-archieve"> <i className="zmdi zmdi-archive"></i><span>Archive</span></a>
-                                </div>
-                                 <a className="btn btn-outline-primary me-1" onClick={refreshLeads} data-action="leads" data-request_for="refresh"><i
-                                className="zmdi zmdi-refresh"></i> Refresh</a>
-                            <a className="btn btn-outline-primary me-1" onClick={getArchieveLeades}><i className="zmdi zmdi-archive">&nbsp;</i>Show Archieve</a>
-                                        <a className="btn btn-outline-primary me-1" onClick={getBin}><i className="zmdi zmdi-delete">&nbsp;</i>Show Trash</a>
-                              
-                            <a href="#" className="btn btn-success me-1" data-bs-toggle="modal" data-bs-target="#addNewOpper"><i
-                                className="zmdi zmdi-plus-circle-o-duplicate"></i> Create Lead</a> 
+                            </div>
+                        </div>
+                        <div className="col-12 col-sm-8 col-md-8 col-lg-9 text-end">
+                           <div className="pe-2">
+                           <button className="btn  btn-outline-primary me-1" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+                                <i className="ti ti-filter"></i>
+                            </button>
+                                <div className="btn-group head_btn me-1" style={{ display: "none" }}>
+                                    <div className="dropdown me-1">
+                                        <a className="dropdown-toggle btn btn-outline-primary btn-menu clmnbtn" data-bs-toggle="dropdown" role="button">
+                                            <i className="zmdi zmdi-label"></i><span>Tag as</span>
+                                        </a>
+                                        <ul className="dropdown-menu clmn">
+                                            <li className="header lststl">
+                                                <div className="input-group">
+                                                    <input type="text" className="form-control" id="txt_label" placeholder="Create..." autoComplete="off" />
+                                                </div>
+                                            </li>
+                                            <div id="tag_placeholder"></div>
+                                            <li className="list-group-item">
+                                                <a id="btn_createtag" className="btn btn-primary btn-sm w-48 evt-tag" data-action="tag" data-request_for="create"><i className="zmdi zmdi-label-alt">&nbsp;</i><span>Create</span></a>
+                                                <a id="btn_applytag" className="btn btn-primary btn-sm w-48 evt-tag" data-id="0" data-action="tag" data-request_for="lead-tag-create"><i className="zmdi zmdi-label-alt">&nbsp;</i><span>Apply</span></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <a id="btn_archieve" className="btn btn-outline-primary evt-leads-action" data-id="0" data-action="leads" data-request_for="add-to-archieve"> <i className="zmdi zmdi-archive"></i><span>Archive</span></a>
+                                    </div>
+                                    <a className="btn btn-outline-primary me-1" onClick={refreshLeads} data-action="leads" data-request_for="refresh"><i
+                                    className="zmdi zmdi-refresh"></i> Refresh</a>
+                                
+                                
+                                <a href="#" className="btn btn-success me-1" data-bs-toggle="modal" data-bs-target="#addNewOpper"><i
+                                    className="zmdi zmdi-plus-circle-o-duplicate"></i> Create Lead</a> 
+                            
+        
+                           </div>
                         
-                        <a className="btn btn-outline-primary evt-leads-main ms-1" data-bs-toggle="modal"  data-bs-target="#modalimport" data-action="leads-main" data-request_for="import-popup"> <i className="zmdi zmdi-download">&nbsp;</i>Import</a>
-     
-                      
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1582,164 +1597,165 @@ const Main = ({ data = [], pageData = [], CategoryList = [] }) => {
         </div>           
     </div>
     {/* Import */}
-   <div className="modal right-half md-one" id="modalimport" tabIndex="1" role="dialog" aria-labelledby="shortModal" data-backdrop="static">
-            <div className="modal-dialog ui-draggable ui-draggable-handle" role="document">
-                <div className="modal-content" style={{ height: "auto!important" }}>
-                    <div className="modal-header bg-blu-lite fixed-top">
-                        <button type="button" className="close" data-bs-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button>
-                        <h4 className="modal-title"><b>Import CSV File</b></h4>
-                    </div>
-                    <div className="modal-body pe-0 ps-0 pb-0">
-                        <div className="row  m-0">
-                            <div className="col-md-12 ps-0 pe-0">
-                                <div className="loader"></div>
-                                <div className="tab-content p-0">
-                                    <div role="tabpanel" className=" tab-pane in active" id="" style={{ height: "91vh" }}>
-                                        <div className="row m-0 justify-content-center">
-                                            <div className="col-md-6 mt-3 divupload">
-                                                <input type="file" id="csvfile" className="form-control" multiple="" />
-                                            </div>
-                                            <div className="col-md-2 mt-3 divupload">
-                                                <a className="btn btn-primary evt-leads-main" data-action="leads-main" data-request_for="import-csv"><i className="zmdi zmdi-upload">&nbsp;</i>Upload</a>
-                                            </div>
-                                            <div className="col-md-4 mt-3 divupload">
-                                                <small className="col-blue" id="spnCsvRowCount"></small>
-                                            </div>
-                                            <div className="col-md-6 mt-3 csvddl disableform" style={{ display: "none" }}>
-                                                <div className="group_lead">
-                                                    <select className="custom-select select_f" defaultValue={"0"} id="ddl_leadtype_csv">
-                                                        <option value="0" >Choose Lead Type</option>
-                                                        {leadTypeList.map((lead, i) => (
-                                                            <option key={i} value={lead.id}>{lead.lead_type_name}</option>
-                                                        ))}
-                                                    </select>
-                                                    <label className="lablefilled">Lead Type<span>*</span></label>
-                                                </div>
-                                            </div>
-                                            <div className="col-md-6 mt-3 csvddl disableform" style={{ display: "none" }}>
-                                                <div className="group_lead">
-                                                    <select className="custom-select select_f" defaultValue={"0"} id="ddl_category_csv">
-                                                        <option value="0" >Choose Category</option>
-                                                        {CategoryList.map((cat, i) => (
-                                                            <option key={i} value={cat.cat_id}>{cat.cat_name}</option>
-                                                        ))}
-                                                    </select>
-                                                    <label className="lablefilled">Category</label>
-                                                </div>
-                                            </div>
-                                            <div className="col-md-12 csvddl" style={{ display: "none" }}>
-                                                <div className="group_lead form-check custom-checkbox">
-                                                    <input type="checkbox" id="chk_override" className="form-check-input" />
-                                                    <label className="form-check-label font-18" htmlFor="chk_override"> <b> Override the existing record </b></label>
-                                                </div>
-                                            </div>
-                                            <div id="csv_ddl_placeholder" className="col-md-6"></div>
-                                            <div id="dbfields_placeholder" className="col-md-6"></div>
-                                            <div id="csv_tbl_placeholder" className="col-md-12 mt-2"></div>
+    <div className="modal right-half md-one" id="modalimport" tabIndex="1" role="dialog" aria-labelledby="shortModal" data-backdrop="static">
+        <div className="modal-dialog ui-draggable ui-draggable-handle" role="document">
+            <div className="modal-content" style={{ height: "auto!important" }}>
+                <div className="modal-header bg-blu-lite fixed-top">
+                    <button type="button" className="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 className="modal-title"><b>Import CSV File</b></h4>
+                </div>
+                <div className="modal-body pe-0 ps-0 pb-0">
+                    <div className="row  m-0">
+                        <div className="col-md-12 ps-0 pe-0">
+                            <div className="loader"></div>
+                            <div className="tab-content p-0">
+                                <div role="tabpanel" className=" tab-pane in active" id="" style={{ height: "91vh" }}>
+                                    <div className="row m-0 justify-content-center">
+                                        <div className="col-md-6 mt-3 divupload">
+                                            <input type="file" id="csvfile" className="form-control" multiple="" />
                                         </div>
+                                        <div className="col-md-2 mt-3 divupload">
+                                            <a className="btn btn-primary evt-leads-main" data-action="leads-main" data-request_for="import-csv"><i className="zmdi zmdi-upload">&nbsp;</i>Upload</a>
+                                        </div>
+                                        <div className="col-md-4 mt-3 divupload">
+                                            <small className="col-blue" id="spnCsvRowCount"></small>
+                                        </div>
+                                        <div className="col-md-6 mt-3 csvddl disableform" style={{ display: "none" }}>
+                                            <div className="group_lead">
+                                                <select className="custom-select select_f" defaultValue={"0"} id="ddl_leadtype_csv">
+                                                    <option value="0" >Choose Lead Type</option>
+                                                    {leadTypeList.map((lead, i) => (
+                                                        <option key={i} value={lead.id}>{lead.lead_type_name}</option>
+                                                    ))}
+                                                </select>
+                                                <label className="lablefilled">Lead Type<span>*</span></label>
+                                            </div>
+                                        </div>
+                                        <div className="col-md-6 mt-3 csvddl disableform" style={{ display: "none" }}>
+                                            <div className="group_lead">
+                                                <select className="custom-select select_f" defaultValue={"0"} id="ddl_category_csv">
+                                                    <option value="0" >Choose Category</option>
+                                                    {CategoryList.map((cat, i) => (
+                                                        <option key={i} value={cat.cat_id}>{cat.cat_name}</option>
+                                                    ))}
+                                                </select>
+                                                <label className="lablefilled">Category</label>
+                                            </div>
+                                        </div>
+                                        <div className="col-md-12 csvddl" style={{ display: "none" }}>
+                                            <div className="group_lead form-check custom-checkbox">
+                                                <input type="checkbox" id="chk_override" className="form-check-input" />
+                                                <label className="form-check-label font-18" htmlFor="chk_override"> <b> Override the existing record </b></label>
+                                            </div>
+                                        </div>
+                                        <div id="csv_ddl_placeholder" className="col-md-6"></div>
+                                        <div id="dbfields_placeholder" className="col-md-6"></div>
+                                        <div id="csv_tbl_placeholder" className="col-md-12 mt-2"></div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div className="model-footer">
-                            <div className="text-center">
-                                <a id="btnvwsbmt" className="btn btn-primary evt-leads-main" data-action="leads-main" data-request_for="view-csv">View</a>
-                                <a id="btncnclcsv" className="btn btn-danger ms-1 me-1" data-bs-dismiss="modal"><i className="zmdi zmdi-rotate-left">&nbsp;</i>Close</a>
-                                <a id="btnbckcsv" className="btn btn-primary evt-leads-main" data-action="leads-main" data-request_for="back"><i className="zmdi zmdi-arrow-left">&nbsp;</i>Back</a>
-                            </div>
-                        </div>
+                    </div>
+                    
+                </div>
+                <div className="model-footer">
+                    <div className="text-center">
+                        <a id="btnvwsbmt" className="btn btn-primary evt-leads-main" data-action="leads-main" data-request_for="view-csv">View</a>
+                        <a id="btncnclcsv" className="btn btn-danger ms-1 me-1" data-bs-dismiss="modal"><i className="zmdi zmdi-rotate-left">&nbsp;</i>Close</a>
+                        <a id="btnbckcsv" className="btn btn-primary evt-leads-main" data-action="leads-main" data-request_for="back"><i className="zmdi zmdi-arrow-left">&nbsp;</i>Back</a>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     <div className="modal fade mdds" id="contact" role="dialog" aria-labelledby="ModalCenterTitle" tabIndex="-1" aria-hidden="true" data-backdrop="static">
-                <div className="modal-dialog ui-draggable ui-draggable-handle modal-dialog-centered" role="document">
-                    <div className="modal-content">
-                        <div className="modal-header">
-                            <h4 className="modal-title text-center" id="exampleModalLongTitle"><b>Contact</b></h4>
-                            <button type="button" className="close" data-bs-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
+        <div className="modal-dialog ui-draggable ui-draggable-handle modal-dialog-centered" role="document">
+            <div className="modal-content">
+                <div className="modal-header">
+                    <h4 className="modal-title text-center" id="exampleModalLongTitle"><b>Contact</b></h4>
+                    <button type="button" className="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div className="modal-body pt-1">
+                    <div id="clsection" className="dd-content text-center p-3">
+                        <p id="telMobNo_placeholder"></p>
+                        <div>
+                            <b>
+                                Did they answer?
+                            </b>
+                            <p>We'll save your answer as a note and notify the candidate</p>
                         </div>
-                        <div className="modal-body pt-1">
-                            <div id="clsection" className="dd-content text-center p-3">
-                                <p id="telMobNo_placeholder"></p>
-                                <div>
-                                    <b>
-                                        Did they answer?
-                                    </b>
-                                    <p>We'll save your answer as a note and notify the candidate</p>
-                                </div>
-                                <span id="spanLeadEmail" style={{ display: "none" }}></span>
-                                <p><a className="btn btn-outline-primary btn-lg evt-leads-action" data-action="notes" data-request_for="call-back" style={{ width: "300px" }} data-message="Call Back">Call Back</a></p>
-                                <div id="answers_placeholder">
-                                    {answer_list.map((ans, i) => (
-                                        <p key={i}><a className="btn btn-outline-primary btn-lg evt-leads-action" data-action="notes" data-request_for="create" data-type="ncallback" style={{ width: "300px", cursor: "pointer" }} data-message={ans.message}>{ans.message}</a></p>
-                                    ))}
-                                </div>
-                            </div>
-                            <div id="cfsection" className="disableform" style={{ display: "none" }}>
-                                <div className="group_lead mt-3">
-                                    <input type="text" id="call_label" className="input_text" required="required" autoComplete="off" value="Call Back" disabled="disabled" />
-                                    <label className="lablefilled"><i className="zmdi zmdi-account">&nbsp;</i>Label</label>
-                                </div>
-                                <div className="group_lead">
-                                    <input type="text" id="person_name" className="input_text" required="required" autoComplete="off" />
-                                    <label className="lablefilled"><i className="zmdi zmdi-account">&nbsp;</i>Person Name<span>*</span></label>
-                                </div>
+                        <span id="spanLeadEmail" style={{ display: "none" }}></span>
+                        <p><a className="btn btn-outline-primary btn-lg evt-leads-action" data-action="notes" data-request_for="call-back" style={{ width: "300px" }} data-message="Call Back">Call Back</a></p>
+                        <div id="answers_placeholder">
+                            {answer_list.map((ans, i) => (
+                                <p key={i}><a className="btn btn-outline-primary btn-lg evt-leads-action" data-action="notes" data-request_for="create" data-type="ncallback" style={{ width: "300px", cursor: "pointer" }} data-message={ans.message}>{ans.message}</a></p>
+                            ))}
+                        </div>
+                    </div>
+                    <div id="cfsection" className="disableform" style={{ display: "none" }}>
+                        <div className="group_lead mt-3">
+                            <input type="text" id="call_label" className="input_text" required="required" autoComplete="off" value="Call Back" disabled="disabled" />
+                            <label className="lablefilled"><i className="zmdi zmdi-account">&nbsp;</i>Label</label>
+                        </div>
+                        <div className="group_lead">
+                            <input type="text" id="person_name" className="input_text" required="required" autoComplete="off" />
+                            <label className="lablefilled"><i className="zmdi zmdi-account">&nbsp;</i>Person Name<span>*</span></label>
+                        </div>
+                        <div className="row">
+                            <div className="col-6 pe-0">
+                                <p>From</p>
                                 <div className="row">
-                                    <div className="col-6 pe-0">
-                                        <p>From</p>
-                                        <div className="row">
-                                            <div className="col pe-0">
-                                                <div className="group_lead  mb-1">
-                                                    <input type="text" id="cb_start_date" className="input_text datepicker" required="required" autoComplete="off" maxLength="10" />
-                                                    <label className="lablefilled"><i className="zmdi zmdi-calendar">&nbsp;</i>Date<span>*</span></label>
-                                                </div>
-                                            </div>
-                                            <div className="col ps-1">
-                                                <div className="group_lead  mb-1">
-                                                    <input type="text" id="cb_start_time" className="input_text timepicker " required="required" autoComplete="off" maxLength="5" />
-                                                    <label className="lablefilled"><i className="zmdi zmdi-time">&nbsp;</i>Time<span>*</span></label>
-                                                </div>
-                                            </div>
+                                    <div className="col pe-0">
+                                        <div className="group_lead  mb-1">
+                                            <input type="text" id="cb_start_date" className="input_text datepicker" required="required" autoComplete="off" maxLength="10" />
+                                            <label className="lablefilled"><i className="zmdi zmdi-calendar">&nbsp;</i>Date<span>*</span></label>
                                         </div>
                                     </div>
-                                    <div className="col-6 ps-1">
-                                        <p>To</p>
-                                        <div className="row">
-                                            <div className="col pe-0">
-                                                <div className="group_lead mb-1">
-                                                    <input type="text" id="cb_end_date" className="input_text datepicker " required="required" autoComplete="off" maxLength="10" />
-                                                    <label className="lablefilled"><i className="zmdi zmdi-calendar">&nbsp;</i>Date<span>*</span></label>
-                                                </div>
-                                            </div>
-                                            <div className="col ps-1">
-                                                <div className="group_lead  mb-1">
-                                                    <input type="text" id="cb_end_time" className="input_text timepicker" required="required" autoComplete="off" maxLength="5" />
-                                                    <label className="lablefilled"><i className="zmdi zmdi-time">&nbsp;</i>Time<span>*</span></label>
-                                                </div>
-                                            </div>
+                                    <div className="col ps-1">
+                                        <div className="group_lead  mb-1">
+                                            <input type="text" id="cb_start_time" className="input_text timepicker " required="required" autoComplete="off" maxLength="5" />
+                                            <label className="lablefilled"><i className="zmdi zmdi-time">&nbsp;</i>Time<span>*</span></label>
                                         </div>
                                     </div>
-                                    <div className="col-12 mb-3"><small>Eg:- Date(dd/mm/yyyy), Time(hh:mm)</small></div>
-                                </div>
-                                <div className="text-center pt-0">
-                                    <a className="btn btn-primary btn-sm evt-leads-action me-1" data-action="notes" data-request_for="create" data-type="callback"><i className="zmdi zmdi-upload">&nbsp;</i>Submit</a>
-                                    <a className="btn btn-danger btn-sm evt-leads-action" data-action="notes" data-request_for="cancel-call"><i className="zmdi zmdi-rotate-left">&nbsp;</i>Cancel</a>
                                 </div>
                             </div>
+                            <div className="col-6 ps-1">
+                                <p>To</p>
+                                <div className="row">
+                                    <div className="col pe-0">
+                                        <div className="group_lead mb-1">
+                                            <input type="text" id="cb_end_date" className="input_text datepicker " required="required" autoComplete="off" maxLength="10" />
+                                            <label className="lablefilled"><i className="zmdi zmdi-calendar">&nbsp;</i>Date<span>*</span></label>
+                                        </div>
+                                    </div>
+                                    <div className="col ps-1">
+                                        <div className="group_lead  mb-1">
+                                            <input type="text" id="cb_end_time" className="input_text timepicker" required="required" autoComplete="off" maxLength="5" />
+                                            <label className="lablefilled"><i className="zmdi zmdi-time">&nbsp;</i>Time<span>*</span></label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-12 mb-3"><small>Eg:- Date(dd/mm/yyyy), Time(hh:mm)</small></div>
                         </div>
-                        <div className="modal-footer mt-2">
-                            <div className="text-center">
-                                <button className="btn btn-danger" data-bs-dismiss="modal" type="button"><i className="zmdi zmdi-rotate-left"></i> Close</button>
-                            </div>
+                        <div className="text-center pt-0">
+                            <a className="btn btn-primary btn-sm evt-leads-action me-1" data-action="notes" data-request_for="create" data-type="callback"><i className="zmdi zmdi-upload">&nbsp;</i>Submit</a>
+                            <a className="btn btn-danger btn-sm evt-leads-action" data-action="notes" data-request_for="cancel-call"><i className="zmdi zmdi-rotate-left">&nbsp;</i>Cancel</a>
                         </div>
                     </div>
                 </div>
+                <div className="modal-footer mt-2">
+                    <div className="text-center">
+                        <button className="btn btn-danger" data-bs-dismiss="modal" type="button"><i className="zmdi zmdi-rotate-left"></i> Close</button>
+                    </div>
+                </div>
             </div>
+        </div>
+    </div>
 
     <div class="modal right-quater md-one" id="addmydoc" tabindex="-1" aria-labelledby="shortModal" aria-hidden="true">
         <div class="modal-dialog" role="document">

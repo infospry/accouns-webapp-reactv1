@@ -12486,3 +12486,13 @@ b, strong{font-weight:500!important;}
     width: 55px;
     margin-left: 3px;
   }
+  .btn-check:focus + .btn, .btn:focus {
+    outline: 0;
+    box-shadow: 0 0 0 .25rem rgba(13,110,253,.00)!important;
+  }
+  .max-hght-280{height: 280px;overflow:auto;}
+  .bg__Color {
+    border: 1px solid #ddd !important;
+    background: #F7F9FB;
+    border-radius:6px;
+  }.bdr__none{border-radius:0px!important;border: 0px solid #ddd !important;border-bottom: 1px solid #ddd !important;}
