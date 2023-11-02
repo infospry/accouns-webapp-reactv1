@@ -62,39 +62,23 @@ function Details({res,contact}) {
                     </h2>
                     <div id="faq-content-4" class="accordion-collapse collapse" data-bs-parent="#faqlist1">
                     <div className="accordion-body">
-                            <div className="row justify-content-center align-items-top">
-                                <div className="col-lg-6">                                                    
-                                    <h4 className="col-grey m-0 p-0"> Reference Id</h4>
-                                        <p className="mb-2"> <span className="col-black"><b>
-                                            {contact.lead_name !== '' ? <>{contact.lead_title}&nbsp;&nbsp;{contact.lead_name} &nbsp;</> : 'NA'}</b> [<b className="col-green font-13 ms-1">Active</b>] </span> </p>
-                             
-                                    <h4 className="col-grey m-0 p-0"><i className="zmdi zmdi-calendar">&nbsp;</i>Title</h4>
-                                    <p className="mb-2"> <span className="col-black">{contact.lead_dob !==''?<>{ contact.lead_dob}</> :'NA'}</span> </p>
-                                    <h4 className="col-grey m-0 p-0"><i className="zmdi zmdi-phone me-1"></i> Estimated Value From </h4>
-                                    <p className="mb-2"> <span className="col-black">{contact.lead_phone !== '' ? <>{contact.lead_phone} &nbsp;</> : 'NA'}  <small className="col-green"> <i className="zmdi zmdi-check-all"> </i> Verified</small></span> </p>
-                                    <h4 className="col-grey m-0 p-0"><i className="zmdi zmdi-email me-1"></i> Deadline Date</h4>
-                                    <p className="mb-2"> <span className="col-black">  {contact.lead_email !== '' ? <>{contact.lead_email} &nbsp;</> : 'NA'} <small className="col-red"> <i className="zmdi zmdi-alert-triangle"> </i> Unerified</small></span> </p> 
-                                    <h4 className="col-grey m-0 p-0"><i className="zmdi zmdi-phone me-1"></i> Description </h4>
-                                    <p className="mb-2"> <span className="col-black">{contact.lead_phone !== '' ? <>{contact.lead_phone} &nbsp;</> : 'NA'}  <small className="col-green"> <i className="zmdi zmdi-check-all"> </i> Verified</small></span> </p>
 
+                    {res && res.length > 0 && res[0].leads[0].lead_details !== '' && res[0].leads[0].lead_settings.map((setting,j)=>(
+                                
+                               
+
+                            <div className="row justify-content-start align-items-top"key={j} >
+                                {setting.fields.map((field, i) => (
+                                <div className="col-lg-6"key={i}>  
+                                    {setting.status==="true" ?<>
+                                        <h4 key={i} className="col-grey m-0 p-0">{field.field_label}</h4>
+                                        <p className="mb-2"> <span className="col-black"><b id={field.field_id}>NA</b></span></p>
+                                        </>:<></>
+                                    }  
                                 </div>
-                                <div className="col-lg-6">
-                                           
-                                <h4 className="col-grey m-0 p-0"><i className="zmdi zmdi-accounts me-1"></i> Opportunity Id </h4>
-                                    <p className="mb-2"> <span className="col-black"> {contact.lead_gender !==''?<>{ contact.lead_gender}</> :'NA'} </span> </p>
-
-                                    <h4 className="col-grey m-0 p-0"> <i className="zmdi zmdi-smartphone-android me-1"></i> Region of suppply</h4>
-                                    <p className="mb-2"> <span className="col-black">  {contact.lead_mobile !== '' ? <>{contact.lead_mobile} &nbsp;</> : 'NA'}  <small className="col-green"> <i className="zmdi zmdi-check-all"> </i> Verified</small></span> </p>
-                                    
-                                    
-                                    <h4 className="col-grey m-0 p-0"><i className="zmdi zmdi-email me-1"></i> Estimated Value To</h4>
-                                    <p className="mb-2"> <span className="col-black">  {contact.lead_email !== '' ? <>{contact.lead_email} &nbsp;</> : 'NA'} <small className="col-red"> <i className="zmdi zmdi-alert-triangle"> </i> Unerified</small></span> </p>
-
-                                    <h4 className="col-grey m-0 p-0"> <i className="zmdi zmdi-smartphone-android me-1"></i> Lead Suitable For</h4>
-                                    <p className="mb-2"> <span className="col-black">  {contact.lead_mobile !== '' ? <>{contact.lead_mobile} &nbsp;</> : 'NA'}  <small className="col-green"> <i className="zmdi zmdi-check-all"> </i> Verified</small></span> </p>
-                                    
-                                </div>
+                                ))}
                             </div>
+                             ))}
                         </div>
                     </div>
                 </div>
