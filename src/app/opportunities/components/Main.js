@@ -15,7 +15,7 @@ import Activity from './Activity';
 import Messages from "./Messages";
 import { get, post } from "../../services/api_axios_services";
 import MdlLeadMainEdit from '../model/MdlLeadMain';
-    
+import OppActivity from './OppActivity';
 
 
 const Main = ({ data = [], pageData = [], CategoryList = [] }) => {
@@ -643,7 +643,7 @@ const Main = ({ data = [], pageData = [], CategoryList = [] }) => {
                                                     className="zmdi zmdi-comment-edit"></i> <span className="d-none_small">Note </span> </a>
                                         </li>
                                         <li className="nav-item">
-                                            <a className="nav-link " data-bs-toggle="tab" href="#Activity"><i
+                                            <a className="nav-link " data-bs-toggle="tab" onClick={load_activity}  href="#Activity"><i
                                                     className="zmdi zmdi-calendar-note"></i> <span className="d-none_small"> Activity
                                                 </span></a>
                                         </li>
@@ -662,7 +662,11 @@ const Main = ({ data = [], pageData = [], CategoryList = [] }) => {
                                         <Note/> 
                                     </div>
                                     <div role="tabpanel" class=" tab-pane" id="Activity">  
-                                        <Activity res={res && res} contact={contact && contact}/>
+                                                <Activity res={res && res} contact={contact && contact} />
+                                                
+                                                {lead_activity ?
+                                            <OppActivity lead_activity={lead_activity && lead_activity} setLead_activity={setLead_activity} lead_uid={lead_uid} />
+                                            : <></>}
                                     </div>
                                     <div role="tabpanel" class=" tab-pane" id="Messages">  
                                         <Messages/>
@@ -1042,15 +1046,12 @@ const Main = ({ data = [], pageData = [], CategoryList = [] }) => {
 
    {/* Edit Existing Lead */}   
             <MdlLeadMainEdit leadTypeList={leadTypeList} CategoryList={categoryList} chanelList={chanelList} CountryList={countryList} lead_detail={res && res.length > 0 && res[0].leads[0]} lead_settings={lead_settings && lead_settings} />
-<<<<<<< HEAD
         
-=======
             
             
 
 
 
->>>>>>> 3e8f14ce5bdd6e94303862c6d5b26e8a08d241c5
  {/* convert Lead */}   
             
     <div class="modal fade mdds" id="convert" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle" aria-hidden="true">
