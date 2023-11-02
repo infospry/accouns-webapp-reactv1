@@ -27,7 +27,7 @@ function Details({res,contact}) {
                             Basic Details
                         </button>
                     </h2>
-                    <div id="faq-content-1" className="accordion-collapse collapse" data-bs-parent="#faqlist1">
+                    <div id="faq-content-1" className="accordion-collapse collapse show" data-bs-parent="#faqlist1">
                         <div className="accordion-body">
                             <div className="row justify-content-center align-items-top">
                                 <div className="col-lg-6">                                                    

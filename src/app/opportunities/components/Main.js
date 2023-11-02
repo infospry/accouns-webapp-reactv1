@@ -433,7 +433,7 @@ const Main = ({ data = [], pageData = [], CategoryList = [] }) => {
                                 </div>
                                 <a id="btn_archieve" className="btn btn-outline-primary evt-leads-action" data-id="0" data-action="leads" data-request_for="add-to-archieve"> <i className="zmdi zmdi-archive"></i><span>Archive</span></a>
                                 </div>
-                                 <a className="btn btn-outline-primary" onClick={refreshLeads} data-action="leads" data-request_for="refresh"><i
+                                 <a className="btn btn-outline-primary me-1" onClick={refreshLeads} data-action="leads" data-request_for="refresh"><i
                                 className="zmdi zmdi-refresh"></i> Refresh</a>
                             <a className="btn btn-outline-primary me-1" onClick={getArchieveLeades}><i className="zmdi zmdi-archive">&nbsp;</i>Show Archieve</a>
                                         <a className="btn btn-outline-primary me-1" onClick={getBin}><i className="zmdi zmdi-delete">&nbsp;</i>Show Trash</a>
@@ -1042,7 +1042,15 @@ const Main = ({ data = [], pageData = [], CategoryList = [] }) => {
 
    {/* Edit Existing Lead */}   
             <MdlLeadMainEdit leadTypeList={leadTypeList} CategoryList={categoryList} chanelList={chanelList} CountryList={countryList} lead_detail={res && res.length > 0 && res[0].leads[0]} lead_settings={lead_settings && lead_settings} />
+<<<<<<< HEAD
         
+=======
+            
+            
+
+
+
+>>>>>>> 3e8f14ce5bdd6e94303862c6d5b26e8a08d241c5
  {/* convert Lead */}   
             
     <div class="modal fade mdds" id="convert" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle" aria-hidden="true">
