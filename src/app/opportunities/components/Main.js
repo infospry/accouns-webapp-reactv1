@@ -1346,7 +1346,7 @@ const Main = ({ data = [], pageData = [], CategoryList = [] }) => {
     <div className="modal-dialog ui-draggable ui-draggable-handle" role="document">
         <div className="modal-content" style={{height:"auto!important"}}>
             <div className="modal-header bg-blu-lite fixed-top">
-                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" className="close" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
                 <h4 className="modal-title" id="myModalLabel2">
@@ -1411,7 +1411,7 @@ const Main = ({ data = [], pageData = [], CategoryList = [] }) => {
                                         <div className="col-md-6 col-sm-12">
                                             <div className="form-group">
                                                 <label htmlFor=""><strong>Date</strong></label>
-                                                <input type="text" className="form-control datepicker" id="txt_date0"
+                                                <input type="text" className=" form-control datepicker hasDatepicker" id="txt_date0"
                                                     autoComplete="off" placeholder="dd/mm/yyyy" maxLength="10" />
                                             </div>
                                         </div>
@@ -1535,7 +1535,7 @@ const Main = ({ data = [], pageData = [], CategoryList = [] }) => {
                         <div className="text-center comment-video">
                             <a id="btnSendInvitation" className="btn btn-primary  evt-leads-action"
                                 data-action="schedule" data-request_for="create">Send video invitation</a>
-                            <button className="btn btn-danger ms-1" type="button" data-dismiss="modal"><i
+                            <button className="btn btn-danger ms-1" type="button" data-bs-dismiss="modal"><i
                                     className="zmdi zmdi-rotate-left">&nbsp;</i>Cancel</button>
                         </div>
                     </div>
