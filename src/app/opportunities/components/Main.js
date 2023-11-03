@@ -424,7 +424,7 @@ const Main = ({ data = [], pageData = [], CategoryList = [] }) => {
                             <div className="ps-2 d-flex justify-content-between align-items-center">
                                         <h2 className="font-bold mb-0"><i class="zmdi zmdi-widgets me-1"></i>Opportunities </h2>
                                         <span>
-<a className="" onClick={getCallSheduledLeads}><i className="zmdi zmdi-phone">&nbsp;</i><br/>Call Sheduled</a>
+<a className="" onClick={getCallSheduledLeads}><i className="zmdi zmdi-phone">&nbsp;</i><br/>Sheduled</a>
                                             
                                         </span>
                                 <div className="dropdown btn-group">
