@@ -111,6 +111,9 @@ const Main = ({ data = [], pageData = [], CategoryList = [] }) => {
     const [user_list, setUser_list] = useState([]);
     // const [leads, setLeads] = useState([]);
     // const [loader, setLoader] = useState(false);
+
+    
+    const [total_callback, setTotal_callback] = useState(0);
     const [res, setRes] = useState([]);
     const [loading, setLoading] = useState(true);
     const [contact, setContact] = useState({});
@@ -123,6 +126,7 @@ const Main = ({ data = [], pageData = [], CategoryList = [] }) => {
         getUsersList();
         getDropdownData();
         getLeads();
+        
     }, []);
 
     const getUsersList = async () => {
@@ -141,7 +145,23 @@ const Main = ({ data = [], pageData = [], CategoryList = [] }) => {
         const response = await getData(params, lang, ApiEndPoints.opportunity);
         const obj =response;// JSON.parse(response);    
         if (obj.response_status === "OK") {          
-            setLeads(obj.data.response.leads_list);             
+            setLeads(obj.data.response.leads_list);  
+
+              let total = 0;
+            {
+                obj.data.response.leads_list.map(callback => {                  
+                    let qty = callback.call_status.length;
+                    if (qty > 0) {
+                        if (callback.call_status[0].lead_note == 'Call Back') {
+                            total = total + 1;
+                        }
+                    }                       
+                    setTotal_callback(total);
+                });
+            }
+
+           
+            
         }        
         }
         
@@ -228,7 +248,8 @@ const Main = ({ data = [], pageData = [], CategoryList = [] }) => {
                         ns_util.replace_html_in_element("#" + field.field_id, 'NA')
                 })
             }, 1000);
-            setLoading(false);
+            setLoading(false);          
+            
         }
 
         }
@@ -412,7 +433,7 @@ const Main = ({ data = [], pageData = [], CategoryList = [] }) => {
         e.preventDefault();
         var strJsonString = "", next = 10, previous = 0;
         $('#btnSearchLead').attr({ 'data-delete-status': '0', 'data-archieve-status': '0' });
-        strJsonString = { "leads": { "call_shedule_status": 1 }, "action":"leads","action_on":"leads_main","request_for":"select-all", "previous": previous, "next": next }
+        strJsonString = { "leads": { "lead_note": 'Call Back' }, "action":"leads","action_on":"leads_main","request_for":"select-all", "previous": previous, "next": next }
         const resp = await get(strJsonString, ApiEndPoints.opportunity);
         if (resp.response_status === "OK") {
             if (resp.data.response.leads_list !== '')
@@ -432,7 +453,7 @@ const Main = ({ data = [], pageData = [], CategoryList = [] }) => {
                                         <h2 className="font-bold mb-0"><i class="zmdi zmdi-widgets me-1"></i>Opportunities </h2>
                                         
 
-<a className="btn__centr position-relative text-center ms-3" onClick={getCallSheduledLeads}><i className="zmdi zmdi-phone"></i>Call Back <div className = "badgeNumber">0</div> </a>
+                                        <a className="btn__centr position-relative text-center ms-3" onClick={getCallSheduledLeads}><i className="zmdi zmdi-phone"></i>Call Back <div className="badgeNumber">{total_callback}</div> </a>
                     
                                 <div className="dropdown btn-group">
                                     <a className="btn__centr text-center    dropdown-toggle"style={{boder:"0px"}} id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -710,11 +731,10 @@ const Main = ({ data = [], pageData = [], CategoryList = [] }) => {
                                             : <></>}
                                     </div>
                                     <div role="tabpanel" class=" tab-pane" id="Messages">  
-                                        <Messages/>
+                                        <Messages res={res && res}/>
                                     </div>
                                 </div>                                
-                            </div>                 
-                  
+                            </div>                        
                         </div>
                     </div>
                 </div>
