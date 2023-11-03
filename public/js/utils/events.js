@@ -1107,9 +1107,21 @@ ns_leads = {
                         if (obj.leads.lead_note_type == 'call')
                             $('#clstatus_' + uid).html('<span class="badge badge-primary">' + obj.leads.lead_note + '</span>&nbsp;');
 
-
-                        console.log(serverResponse.data.response.note_info[0]);
-                        // ns_util.callTmplBinderNotEmpty(serverResponse.data, ns_html_templates.leads, '#lead_note_template', '#lead_note_placeholder');
+                        var objNotes = serverResponse.data.response.note_info[0];
+                       var strNotes= '<div><div class="d-flex flex-row p-3">' +
+                            '<img src="images/download.jpg" width="40" height="40" class="rounded-circle mr-3" />' +
+                            '<div class="w-100">' +
+                            '<div class="d-flex justify-content-between align-items-center">' +
+                            '<div class="d-flex flex-row align-items-center"><span class="mr-2 font-18 col-head">' + objNotes.user_name + '</span></div>' +
+                            '<small><i class="zmdi zmdi-calendar mr-1"></i> ' + objNotes.create_date + ' ' + objNotes.create_time + '</small>' +
+                            '</div>' +
+                            '<p class="text-justify">' + objNotes.lead_note + '</p>' +
+                            '</div>' +
+                            '</div>' +
+                            '<hr />' +
+                            '</div>';                      
+                        $('#divNotesPalaceholder').prepend(strNotes);
+                      
                     }
                     else if (action == 'files') {
                         if (RequestFor == 'delete') {
