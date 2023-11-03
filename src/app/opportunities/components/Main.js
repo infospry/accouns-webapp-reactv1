@@ -422,7 +422,7 @@ const Main = ({ data = [], pageData = [], CategoryList = [] }) => {
                     <div className="row justify-content-between align-items-center">
                         <div className="col-12 col-sm-4 col-md-4 col-lg-3 pt-2 pb-2">
                             <div className="ps-2 d-flex justify-content-between align-items-center">
-                                        <h2 className="font-bold mb-0">Opporrunites </h2>
+                                        <h2 className="font-bold mb-0"><i class="zmdi zmdi-widgets me-1"></i>Opportunities </h2>
                                         <span>
 <a className="" onClick={getCallSheduledLeads}><i className="zmdi zmdi-phone">&nbsp;</i><br/>Call Sheduled</a>
                                             
