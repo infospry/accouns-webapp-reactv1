@@ -89,8 +89,7 @@ function Details({res,contact}) {
                 <div className="accordion-item">
                     <h2 className="accordion-header">
                         <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-2">
-                            Contact Address <span className="ms-2 css-jcj5hu">{
-                                contact.lead_address !== '' ? <>{contact.lead_address}</> : 'NA'}
+                            Contact Address <span className="ms-2 css-jcj5hu">
                             </span>
                         </button>
                     </h2>
@@ -132,7 +131,7 @@ function Details({res,contact}) {
                     <div id="faq-content-5" className="accordion-collapse collapse" data-bs-parent="#faqlist1">
                         <div className="accordion-body">
                             <div className="row justify-content-center align-items-top">
-                                <div className="col-lg-6">                                                    
+                                {/* <div className="col-lg-6">                                                    
                                     <h4 className="col-grey m-0 p-0"> <i className="zmdi zmdi-pin me-1"></i>Address Line</h4>
                                     <p className="mb-2"> <span className="col-black"><b>{contact.lead_address !==''?<>{ contact.lead_address}</> :'NA'}</b> </span> </p>
                                     
@@ -153,12 +152,12 @@ function Details({res,contact}) {
                                     <h4 className="col-grey m-0 p-0"><i className="zmdi zmdi-pin me-1"></i> Postcode</h4>
                                     <p className="mb-2"> <span className="col-black">{contact.lead_postcode !==''?<>{ contact.lead_postcode}</> :'NA'}</span> </p>
 
-                                </div>
+                                </div> */}
                             </div>
                         </div>
                     </div>
                 </div>
-                <div className="accordion-item">
+                {/* <div className="accordion-item">
                     <h2 className="accordion-header">
                         <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-3">
                             Lead Activities
@@ -203,7 +202,7 @@ function Details({res,contact}) {
                             </div> 
                         </div>
                     </div>
-                </div>
+                </div> */}
             </div>          
 
 

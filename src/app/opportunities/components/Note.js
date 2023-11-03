@@ -7,7 +7,7 @@ function Note({ res = [] }) {
         <div className="col-md-12 col-xl-10 mt-3">
             <div className="p-3 bg__Color">
                 <div className="form-group">                    
-                    <textarea required="required" className="form-control" style={{ height: "90px" }} id="txt_note"placeholder="Write a private note"></textarea>
+                    <textarea required="required" className="form-control" style={{ height: "60px" }} id="txt_note"placeholder="Write here..."></textarea>
                 </div>
                 <div className="text-right mt-3">
                     <a className="btn btn-primary evt-leads-action" data-action="notes" data-request_for="create" data-type="note"><i className="zmdi zmdi-upload">&nbsp;</i>Create</a>
@@ -20,7 +20,7 @@ function Note({ res = [] }) {
                       <h4 className="font-20 mb-0"><i className="zmdi zmdi-comment-alt-text me-2"></i>Comments</h4>                    
                 </div>
 
-                <div className="mb-4  max-hght-280">
+                <div id="divNotesPalaceholder" className="mb-4  max-hght-280">
                     {res && res.length > 0 && res[2].note_info != "" ? res && res.length > 0 && res[2].note_info.map((note, i) => (
                             <div key={i}>
                                 <div className="d-flex flex-row p-3"> <img src="images/download.jpg" width="40" height="40" className="rounded-circle mr-3" />
