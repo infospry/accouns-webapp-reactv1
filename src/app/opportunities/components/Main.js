@@ -420,18 +420,18 @@ const Main = ({ data = [], pageData = [], CategoryList = [] }) => {
             <div className="scrolfx">
                 <div className="booktab bdrbtm">
                     <div className="row justify-content-between align-items-center">
-                        <div className="col-12 col-sm-4 col-md-4 col-lg-3 pt-2 pb-2">
-                            <div className="ps-2 d-flex justify-content-between align-items-center">
+                        <div className="col-12 col-sm-5 col-md-5 col-lg-4 pt-2 pb-2">
+                            <div className="ps-2 d-flex justify-content-start align-items-center">
                                         <h2 className="font-bold mb-0"><i class="zmdi zmdi-widgets me-1"></i>Opportunities </h2>
-                                        <span>
-                                  <a className="" onClick={getCallSheduledLeads}><i className="zmdi zmdi-phone">&nbsp;</i><br/>Sheduled</a>
-                                            
-                                        </span>
+                                        
+
+<a className="btn__centr position-relative text-center ms-3" onClick={getCallSheduledLeads}><i className="zmdi zmdi-phone"></i>Sheduled <div className = "badgeNumber">92</div> </a>
+                    
                                 <div className="dropdown btn-group">
-                                    <button className="btn  dropdown-toggle pe-1"style={{boder:"0px"}} type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                                <Image src={menuImage} alt="user" width={"5"} height={"21"} />
+                                    <a className="btn__centr text-center    dropdown-toggle"style={{boder:"0px"}} id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="zmdi zmdi-more-vert"></i>
                                                 More
-                                    </button>
+                                    </a>
                                     <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                         <li><a className="dropdown-item" onClick={getArchieveLeades}><i className="zmdi zmdi-archive">&nbsp;</i>Show Archieve</a></li>
                                         <li><a className="dropdown-item" onClick={getBin}><i className="zmdi zmdi-delete">&nbsp;</i>Show Trash</a></li>
@@ -440,7 +440,7 @@ const Main = ({ data = [], pageData = [], CategoryList = [] }) => {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-12 col-sm-8 col-md-8 col-lg-9 text-end">
+                        <div className="col-12 col-sm-7 col-md-7 col-lg-8 text-end">
                            <div className="pe-2">
                            <button className="btn  btn-outline-primary me-1" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
                                 <i className="ti ti-filter"></i>
