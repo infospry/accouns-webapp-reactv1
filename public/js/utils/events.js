@@ -535,8 +535,7 @@ ns_leads = {
                 };
                 ns_leads.post(JSON.stringify(strJsonString), event);
             }
-            else if (RequestFor == 'favourite') {
-                alert('Make favourite');
+            else if (RequestFor == 'favourite') {              
                 isFav = $(event).attr('data-is-favourite') == 0 ? 1 : 0;
                 strJsonString = {
                     "leads": { "u_id": $(event).attr('data-u_id'), "is_fav": isFav },
@@ -988,6 +987,7 @@ ns_leads = {
                     return false;
                 if (serverResponse.response_status == "OK") {
                     alertmsg.msg("Message", serverResponse.response_msg, "S");
+
                     $('.spanNoDataFound').hide();
                     if (action == 'leads') {
                         if (RequestFor == 'create' || RequestFor == 'update') {
@@ -1096,16 +1096,20 @@ ns_leads = {
                             $(event).html('<i class="zmdi zmdi-email-open"></i>');
                         }
                     }
-                    else if (action == 'notes') {
+                    else if (action == 'notes') {                      
                         if (RequestFor == 'create') {
                             $('#divAddNotes').hide();
                             $('#btnAddNote').show();
                             ModalHide('#contact');
                         }
                         var uid = $('#span_leaduid').text();
+                     
                         if (obj.leads.lead_note_type == 'call')
                             $('#clstatus_' + uid).html('<span class="badge badge-primary">' + obj.leads.lead_note + '</span>&nbsp;');
-                        //ns_util.callTmplBinderNotEmpty(serverResponse.data, ns_html_templates.leads, '#lead_note_template', '#lead_note_placeholder');
+
+
+                        console.log(serverResponse.data.response.note_info[0]);
+                        // ns_util.callTmplBinderNotEmpty(serverResponse.data, ns_html_templates.leads, '#lead_note_template', '#lead_note_placeholder');
                     }
                     else if (action == 'files') {
                         if (RequestFor == 'delete') {
