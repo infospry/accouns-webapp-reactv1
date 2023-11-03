@@ -15,6 +15,7 @@ import Activity from './Activity';
 import Messages from "./Messages";
 import { get, post } from "../../services/api_axios_services";
 import MdlLeadMainEdit from '../model/MdlLeadMain';
+import MdlImport from '../model/MdlImport';
 import OppActivity from './OppActivity';
 import menuImage from "../../images/menu-dots-vertical.svg";
 
@@ -353,13 +354,19 @@ const Main = ({ data = [], pageData = [], CategoryList = [] }) => {
             const resp = await get(strJsonString, ApiEndPoints.opportunity);
             if (resp.response_status === "OK") {
                 if (resp.data.response.leads_list !== '')
-                    setLeads(resp.data.response.leads_list)
+                {
+                      //ModalHide('#offcanvasExample');
+                    setLeads(resp.data.response.leads_list);
+                   
+                }
                 else {
                     setLeads([])
                     setLeads([])
                     setContact({})
                     setRes([])
                     setLead_activity([])
+                  
+                  
                 }
             }
         }
@@ -425,7 +432,7 @@ const Main = ({ data = [], pageData = [], CategoryList = [] }) => {
                                         <h2 className="font-bold mb-0"><i class="zmdi zmdi-widgets me-1"></i>Opportunities </h2>
                                         
 
-<a className="btn__centr position-relative text-center ms-3" onClick={getCallSheduledLeads}><i className="zmdi zmdi-phone"></i>Sheduled <div className = "badgeNumber">92</div> </a>
+<a className="btn__centr position-relative text-center ms-3" onClick={getCallSheduledLeads}><i className="zmdi zmdi-phone"></i>Call Back <div className = "badgeNumber">0</div> </a>
                     
                                 <div className="dropdown btn-group">
                                     <a className="btn__centr text-center    dropdown-toggle"style={{boder:"0px"}} id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -435,7 +442,7 @@ const Main = ({ data = [], pageData = [], CategoryList = [] }) => {
                                     <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                         <li><a className="dropdown-item" onClick={getArchieveLeades}><i className="zmdi zmdi-archive">&nbsp;</i>Show Archieve</a></li>
                                         <li><a className="dropdown-item" onClick={getBin}><i className="zmdi zmdi-delete">&nbsp;</i>Show Trash</a></li>
-                                        <li><a className="dropdown-item evt-leads-main"data-bs-toggle="modal"  data-bs-target="#modalimport" data-action="leads-main" data-request_for="import-popup"> <i className="zmdi zmdi-download">&nbsp;</i>Import</a></li>
+                                        <li><a className="dropdown-item evt-leads-main"data-bs-toggle="modal"  data-bs-target="#modalimport" data-action="leads-main" data-request_for="import-popup"> <i className="zmdi zmdi-download">&nbsp;</i>Import Lead(s)</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -507,7 +514,7 @@ const Main = ({ data = [], pageData = [], CategoryList = [] }) => {
                                                 <span
                                                     data-is-favourite={item.is_favourite} data-u_id={ item.u_id} data-action="leads" data-request_for="favourite"
                                                     className={item.is_favourite == 1 ? "zmdi zmdi-favorite col-blue float-right evt-leads-action" : "zmdi zmdi-favorite-outline col-blue float-right evt-leads-action"} title={item.is_favourite == 1 ? "Remove favourite" : "Make Favourite"} ></span></h5>
-                                                    <p className="mb-2">{item.lead_type_name}</p>
+                                                    {/* <p className="mb-2">{item.lead_type_name}</p> */}
                                                     <p id={"clstatus_" + item.u_id} className="lable_show">
                                                         {item.call_status && item.call_status.map((call, index) => (
                                                             <span key={index} className="badge badge-primary">{call.lead_note}</span>
@@ -714,7 +721,7 @@ const Main = ({ data = [], pageData = [], CategoryList = [] }) => {
             </div>
         </div>
     </section>
-    <div className="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+    <div className="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
         <div className="offcanvas-header">
         <h5 className="offcanvas-title" id="offcanvasExampleLabel">Filter</h5>
         <button type="button" className="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -1081,9 +1088,9 @@ const Main = ({ data = [], pageData = [], CategoryList = [] }) => {
    {/* Edit Existing Lead */}   
             <MdlLeadMainEdit leadTypeList={leadTypeList} CategoryList={categoryList} chanelList={chanelList} CountryList={countryList} lead_detail={res && res.length > 0 && res[0].leads[0]} lead_settings={lead_settings && lead_settings} />
         
+         {/* Import Lead */}        
             
-            
-
+    <MdlImport leadTypeList={leadTypeList} CategoryList={categoryList}  />
 
 
  {/* convert Lead */}   
@@ -1614,81 +1621,10 @@ const Main = ({ data = [], pageData = [], CategoryList = [] }) => {
                 </div>     
             </div>
         </div>           
-    </div>
-    {/* Import */}
-    <div className="modal right-half md-one" id="modalimport" tabIndex="1" role="dialog" aria-labelledby="shortModal" data-backdrop="static">
-        <div className="modal-dialog ui-draggable ui-draggable-handle" role="document">
-            <div className="modal-content" style={{ height: "auto!important" }}>
-                <div className="modal-header bg-blu-lite fixed-top">
-                    <button type="button" className="close" data-bs-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                    <h4 className="modal-title"><b>Import CSV File</b></h4>
-                </div>
-                <div className="modal-body pe-0 ps-0 pb-0">
-                    <div className="row  m-0">
-                        <div className="col-md-12 ps-0 pe-0">
-                            <div className="loader"></div>
-                            <div className="tab-content p-0">
-                                <div role="tabpanel" className=" tab-pane in active" id="" style={{ height: "91vh" }}>
-                                    <div className="row m-0 justify-content-center">
-                                        <div className="col-md-6 mt-3 divupload">
-                                            <input type="file" id="csvfile" className="form-control" multiple="" />
-                                        </div>
-                                        <div className="col-md-2 mt-3 divupload">
-                                            <a className="btn btn-primary evt-leads-main" data-action="leads-main" data-request_for="import-csv"><i className="zmdi zmdi-upload">&nbsp;</i>Upload</a>
-                                        </div>
-                                        <div className="col-md-4 mt-3 divupload">
-                                            <small className="col-blue" id="spnCsvRowCount"></small>
-                                        </div>
-                                        <div className="col-md-6 mt-3 csvddl disableform" style={{ display: "none" }}>
-                                            <div className="group_lead">
-                                                <select className="custom-select select_f" defaultValue={"0"} id="ddl_leadtype_csv">
-                                                    <option value="0" >Choose Lead Type</option>
-                                                    {leadTypeList.map((lead, i) => (
-                                                        <option key={i} value={lead.id}>{lead.lead_type_name}</option>
-                                                    ))}
-                                                </select>
-                                                <label className="lablefilled">Lead Type<span>*</span></label>
-                                            </div>
-                                        </div>
-                                        <div className="col-md-6 mt-3 csvddl disableform" style={{ display: "none" }}>
-                                            <div className="group_lead">
-                                                <select className="custom-select select_f" defaultValue={"0"} id="ddl_category_csv">
-                                                    <option value="0" >Choose Category</option>
-                                                    {CategoryList.map((cat, i) => (
-                                                        <option key={i} value={cat.cat_id}>{cat.cat_name}</option>
-                                                    ))}
-                                                </select>
-                                                <label className="lablefilled">Category</label>
-                                            </div>
-                                        </div>
-                                        <div className="col-md-12 csvddl" style={{ display: "none" }}>
-                                            <div className="group_lead form-check custom-checkbox">
-                                                <input type="checkbox" id="chk_override" className="form-check-input" />
-                                                <label className="form-check-label font-18" htmlFor="chk_override"> <b> Override the existing record </b></label>
-                                            </div>
-                                        </div>
-                                        <div id="csv_ddl_placeholder" className="col-md-6"></div>
-                                        <div id="dbfields_placeholder" className="col-md-6"></div>
-                                        <div id="csv_tbl_placeholder" className="col-md-12 mt-2"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                </div>
-                <div className="model-footer">
-                    <div className="text-center">
-                        <a id="btnvwsbmt" className="btn btn-primary evt-leads-main" data-action="leads-main" data-request_for="view-csv">View</a>
-                        <a id="btncnclcsv" className="btn btn-danger ms-1 me-1" data-bs-dismiss="modal"><i className="zmdi zmdi-rotate-left">&nbsp;</i>Close</a>
-                        <a id="btnbckcsv" className="btn btn-primary evt-leads-main" data-action="leads-main" data-request_for="back"><i className="zmdi zmdi-arrow-left">&nbsp;</i>Back</a>
-                    </div>
-                </div>
             </div>
-        </div>
-    </div>
+            
+  
+            
     <div className="modal fade mdds" id="contact" role="dialog" aria-labelledby="ModalCenterTitle" tabIndex="-1" aria-hidden="true" data-backdrop="static">
         <div className="modal-dialog ui-draggable ui-draggable-handle modal-dialog-centered" role="document">
             <div className="modal-content">

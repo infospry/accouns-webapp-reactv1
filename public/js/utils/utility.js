@@ -1,5 +1,7 @@
 
-var uri = "https://api-leadsv2.azurewebsites.net/", pageUri = "http://localhost:44353/", MasterURL = "http://localhost:3000/";
+var uri = "https://api-leadsv2.azurewebsites.net/";//"http://localhost:58673/"; //
+ var pageUri = "http://localhost:44353/";
+  var  MasterURL = "http://localhost:3000/";
     //pageUri = "https://pagesapi.infospry.in/", MasterURL = "https://leads-appv2.azurewebsites.net/";
 var moduleRoute = window.location.pathname.replace('/', '');
 var Token = "", RequestChecksum = "", Source = "", MasterServerURL = "/app";

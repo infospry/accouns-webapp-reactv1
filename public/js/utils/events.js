@@ -1106,7 +1106,7 @@ ns_leads = {
                      
                         if (obj.leads.lead_note_type == 'call')
                             $('#clstatus_' + uid).html('<span class="badge badge-primary">' + obj.leads.lead_note + '</span>&nbsp;');
-
+                        $('#txt_note').val('');
                         var objNotes = serverResponse.data.response.note_info[0];
                        var strNotes= '<div><div class="d-flex flex-row p-3">' +
                             '<img src="images/download.jpg" width="40" height="40" class="rounded-circle mr-3" />' +
@@ -1231,6 +1231,8 @@ ns_leadsMain = {
                                     }
                                 }
                             }
+
+                          
                             reader.readAsText(csvFile);
                             $('#btnvwsbmt,.csvddl').show();
                         }
@@ -1287,7 +1289,7 @@ ns_leadsMain = {
                         ModalHide('#leadmain');
                     }
                     else {
-                     //   ns_leads.get({ "action": "leads", "action_on": "leads_main", "request_for": "select-all", "previous": "0", "next": "10" });
+                       ns_leads.get({ "action": "leads", "action_on": "leads_main", "request_for": "select-all", "previous": "0", "next": "10" });
                         ModalHide('#modalimport');
                     }
                     if (serverResponse.response_msg.length > 0)
