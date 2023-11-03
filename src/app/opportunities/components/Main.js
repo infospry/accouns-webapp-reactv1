@@ -714,7 +714,7 @@ const Main = ({ data = [], pageData = [], CategoryList = [] }) => {
             </div>
         </div>
     </section>
-    <div className="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+    <div className="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
         <div className="offcanvas-header">
         <h5 className="offcanvas-title" id="offcanvasExampleLabel">Filter</h5>
         <button type="button" className="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
