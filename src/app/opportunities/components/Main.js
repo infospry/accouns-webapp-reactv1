@@ -425,10 +425,14 @@ const Main = ({ data = [], pageData = [], CategoryList = [] }) => {
                                         <h2 className="font-bold mb-0"><i class="zmdi zmdi-widgets me-1"></i>Opportunities </h2>
                                         
 
-<a className="btn__centr position-relative text-center ms-3" onClick={getCallSheduledLeads}><i className="zmdi zmdi-phone"></i>Call Sheduled <div className = "badgeNumber">92</div> </a>
+<a className="btn__centr position-relative text-center ms-3" onClick={getCallSheduledLeads}><i className="zmdi zmdi-phone"></i>Sheduled <div className = "badgeNumber">92</div> </a>
 
                                     
                                        
+                                        <span>
+                                  <a className="" onClick={getCallSheduledLeads}><i className="zmdi zmdi-phone">&nbsp;</i><br/>Sheduled</a>
+                                            
+                                        </span>
                                 <div className="dropdown btn-group">
                                     <a className="btn__centr text-center    dropdown-toggle"style={{boder:"0px"}} id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                                     <i class="zmdi zmdi-more-vert"></i>
@@ -506,7 +510,9 @@ const Main = ({ data = [], pageData = [], CategoryList = [] }) => {
                                             }} id={"lead_" + item.u_id} className={item.ROWNUMBER === 1 ? item.ROWNUMBER + " active1strow media d-flex border p-3 mb-0 nav__link mb-0 bdrlftcol clickmode" : item.ROWNUMBER + "  media d-flex border p-3 mb-0 nav__link bdrlftcol clickmode"} data-hide=".fone" data-show=".one" >
                                                 <div className="media-body  d-block text-start ms-3">
                                                     <h5>{item.lead_company_name}
-                                                        <span className={item.is_favourite == 1 ? "zmdi zmdi-favorite col-blue float-right" : "zmdi zmdi-favorite-outline col-blue float-right"} title={item.is_favourite == 1 ? "Set as favourite lead" : "Remove from favourite lead"} ></span></h5>
+                                                <span
+                                                    data-is-favourite={item.is_favourite} data-u_id={ item.u_id} data-action="leads" data-request_for="favourite"
+                                                    className={item.is_favourite == 1 ? "zmdi zmdi-favorite col-blue float-right evt-leads-action" : "zmdi zmdi-favorite-outline col-blue float-right evt-leads-action"} title={item.is_favourite == 1 ? "Remove favourite" : "Make Favourite"} ></span></h5>
                                                     <p className="mb-2">{item.lead_type_name}</p>
                                                     <p id={"clstatus_" + item.u_id} className="lable_show">
                                                         {item.call_status && item.call_status.map((call, index) => (
