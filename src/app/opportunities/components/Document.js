@@ -7,7 +7,7 @@ function Document() {
     <>
     <div className="booktab d-flex justify-content-between align-items-center bdrbtm">
         <div className="p-2">
-            <h2 className="font-bold mb-0 font-20">My Document </h2>
+            <h2 className="font-bold mb-0 font-20"> Files</h2>
         </div>
         <div className="pe-2">
             

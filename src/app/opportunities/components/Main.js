@@ -158,9 +158,7 @@ const Main = ({ data = [], pageData = [], CategoryList = [] }) => {
                     }                       
                     setTotal_callback(total);
                 });
-            }
-
-           
+            } 
             
         }        
         }
@@ -248,7 +246,9 @@ const Main = ({ data = [], pageData = [], CategoryList = [] }) => {
                         ns_util.replace_html_in_element("#" + field.field_id, 'NA')
                 })
             }, 1000);
-            setLoading(false);          
+            setLoading(false);  
+            
+            
             
         }
 
@@ -289,6 +289,19 @@ const Main = ({ data = [], pageData = [], CategoryList = [] }) => {
         const resp = await get(params, ApiEndPoints.opportunity);
         if (resp.response_status === "OK") {
             setLead_activity(resp.data.response.activity_info)
+
+              let total = 0;
+            {
+                obj.data.response.leads_list.map(callback => {                  
+                    let qty = callback.call_status.length;
+                    if (qty > 0) {
+                        if (callback.call_status[0].lead_note == 'Call Back') {
+                            total = total + 1;
+                        }
+                    }                       
+                    setTotal_callback(total);
+                });
+            } 
         }
     }
    
@@ -691,7 +704,7 @@ const Main = ({ data = [], pageData = [], CategoryList = [] }) => {
                                         
                                         <li className="nav-item">
                                             <a className="nav-link" data-bs-toggle="tab" href="#mydoc"> <i className="zmdi zmdi-file-text"></i>
-                                                <span className="d-none_small"> My Doc </span> </a>
+                                                <span className="d-none_small"> Files</span> </a>
                                         </li>
                                         
 
