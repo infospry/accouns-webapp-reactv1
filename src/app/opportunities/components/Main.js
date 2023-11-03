@@ -426,13 +426,7 @@ const Main = ({ data = [], pageData = [], CategoryList = [] }) => {
                                         
 
 <a className="btn__centr position-relative text-center ms-3" onClick={getCallSheduledLeads}><i className="zmdi zmdi-phone"></i>Sheduled <div className = "badgeNumber">92</div> </a>
-
-                                    
-                                       
-                                        <span>
-                                  <a className="" onClick={getCallSheduledLeads}><i className="zmdi zmdi-phone">&nbsp;</i><br/>Sheduled</a>
-                                            
-                                        </span>
+                    
                                 <div className="dropdown btn-group">
                                     <a className="btn__centr text-center    dropdown-toggle"style={{boder:"0px"}} id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                                     <i class="zmdi zmdi-more-vert"></i>

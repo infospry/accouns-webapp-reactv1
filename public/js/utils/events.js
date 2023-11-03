@@ -536,6 +536,7 @@ ns_leads = {
                 ns_leads.post(JSON.stringify(strJsonString), event);
             }
             else if (RequestFor == 'favourite') {
+                alert('Make favourite');
                 isFav = $(event).attr('data-is-favourite') == 0 ? 1 : 0;
                 strJsonString = {
                     "leads": { "u_id": $(event).attr('data-u_id'), "is_fav": isFav },
