@@ -45,8 +45,8 @@ const OppActivity = ({ lead_activity,setLead_activity,lead_uid}) => {
                            {lead_activity && lead_activity !== undefined && lead_activity.map((act, i) => (
                             <li key={i}>
                                 <div className="timeline-time">
-                                    <span className="date">{act.action_date}</span>
-                                    <span className="time">{act.action_date.split(' ')[3]}</span>
+                                    <span className="date time">{act.action_date}</span>
+                                    {/* <span className="time">{act.action_date.split(' ')[3]}</span> */}
                                 </div>
                                 <div className="timeline-icon">
                                     <a href="javascript:;">&nbsp;</a>

@@ -43,8 +43,7 @@ const Main = ({ data = [], pageData = [], CategoryList = [] }) => {
         // let name = `${formData.lead_name}`
         if (params !== false) {
             const resp = await post(params, ApiEndPoints.opportunity);
-            if (resp.response_status === "OK") {
-               
+            if (resp.response_status === "OK") {              
                 ModalHide('#addNewOpper');
                 alertmsg.msg("Message", resp.response_msg, "S");
                 getLeads();
@@ -210,6 +209,7 @@ const Main = ({ data = [], pageData = [], CategoryList = [] }) => {
             ns_util.add_css_class("#a_general", "active")
             ns_util.remove_css_class_from_class(".opp-tab", "in active show")
             ns_util.add_css_class("#general", "in active show")
+          
             setRes(resp.data.response);
             setlead_detail(resp.data.response);
             setContact(resp.data.response[0].leads[0]);
@@ -400,6 +400,18 @@ const Main = ({ data = [], pageData = [], CategoryList = [] }) => {
                 setLeads(resp.data.response.leads_list)
         }
     }
+
+      const getCallSheduledLeads=async(e)=>{
+        e.preventDefault();
+        var strJsonString = "", next = 10, previous = 0;
+        $('#btnSearchLead').attr({ 'data-delete-status': '0', 'data-archieve-status': '0' });
+        strJsonString = { "leads": { "call_shedule_status": 1 }, "action":"leads","action_on":"leads_main","request_for":"select-all", "previous": previous, "next": next }
+        const resp = await get(strJsonString, ApiEndPoints.opportunity);
+        if (resp.response_status === "OK") {
+            if (resp.data.response.leads_list !== '')
+                setLeads(resp.data.response.leads_list)
+        }
+    }
     return (
     <>
 
@@ -410,10 +422,15 @@ const Main = ({ data = [], pageData = [], CategoryList = [] }) => {
                     <div className="row justify-content-between align-items-center">
                         <div className="col-12 col-sm-4 col-md-4 col-lg-3 pt-2 pb-2">
                             <div className="ps-2 d-flex justify-content-between align-items-center">
-                                <h2 className="font-bold mb-0">Opporrunites </h2>
-                                <div className="dropdown">
-                                    <button className="btn dropdown-toggle pe-0"style={{boder:"0px"}} type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <Image src={menuImage} alt="user" width={"5"} height={"21"} />
+                                        <h2 className="font-bold mb-0">Opporrunites </h2>
+                                        <span>
+<a className="" onClick={getCallSheduledLeads}><i className="zmdi zmdi-phone">&nbsp;</i><br/>Call Sheduled</a>
+                                            
+                                        </span>
+                                <div className="dropdown btn-group">
+                                    <button className="btn  dropdown-toggle pe-1"style={{boder:"0px"}} type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <Image src={menuImage} alt="user" width={"5"} height={"21"} />
+                                                More
                                     </button>
                                     <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                         <li><a className="dropdown-item" onClick={getArchieveLeades}><i className="zmdi zmdi-archive">&nbsp;</i>Show Archieve</a></li>
@@ -674,7 +691,7 @@ const Main = ({ data = [], pageData = [], CategoryList = [] }) => {
                                         <Document/> 
                                     </div>
                                     <div role="tabpanel" className="tab-pane comntsection" id="mynote">
-                                        <Note/> 
+                                        <Note res={res && res} /> 
                                     </div>
                                     <div role="tabpanel" class=" tab-pane" id="Activity">  
                                                 {/* <Activity res={res && res} contact={contact && contact} />

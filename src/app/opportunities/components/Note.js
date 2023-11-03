@@ -4,7 +4,7 @@ import React from 'react'
 function Note({ res = [] }) {
   return (
     <div className="row justify-content-center mb-5">
-        <div className="col-md-12 col-xl-8 mt-3">
+        <div className="col-md-12 col-xl-10 mt-3">
             <div className="p-3 bg__Color">
                 <div className="form-group">                    
                     <textarea required="required" className="form-control" style={{ height: "90px" }} id="txt_note"placeholder="Write a private note"></textarea>
@@ -17,7 +17,7 @@ function Note({ res = [] }) {
             
             <div className="card mt-3">
                 <div className="p-3 bg__Color bdr__none">
-                    <h4 className="font-20 mb-0"><i className="zmdi zmdi-comment-alt-text me-2"></i>Comments</h4>                    
+                      <h4 className="font-20 mb-0"><i className="zmdi zmdi-comment-alt-text me-2"></i>Comments</h4>                    
                 </div>
 
                 <div className="mb-4  max-hght-280">
@@ -38,8 +38,8 @@ function Note({ res = [] }) {
                                         </>
                                         :<></>
                                     }
-                                        <div className="d-flex flex-row user-feed"> 
-                                        <span className="wish"><i className="zmdi zmdi-thumb-up mr-2"></i>0</span> </div>
+                                        {/* <div className="d-flex flex-row user-feed"> 
+                                        <span className="wish"><i className="zmdi zmdi-thumb-up mr-2"></i>0</span> </div> */}
                                     </div>
                                 </div><hr /></div>
                         ))

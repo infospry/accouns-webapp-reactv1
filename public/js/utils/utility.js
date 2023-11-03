@@ -962,6 +962,7 @@ ns_validations = {
         return JSON.stringify(comments);
     },
     note: function (event) {
+       
         var action = $(event).attr('data-action'), actionOn = "leads_main", requestFor = $(event).attr('data-request_for');
         var type = $(event).attr('data-type');
         var leadNote = null, leadNoteType = 'call', personName = null, startDatetime = null, endDatetime = null, callBackJson = null;
@@ -1048,7 +1049,8 @@ ns_validations = {
                 "action_on": actionOn,
                 "request_for": requestFor,
             };
-           // ns_leads.post(JSON.stringify(note));
+            // ns_leads.post(JSON.stringify(note));
+         
            return JSON.stringify(note);
         }
         else
