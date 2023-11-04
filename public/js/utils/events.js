@@ -593,6 +593,7 @@ ns_leads = {
                 ns_leads.get(strJsonString);
             }
             else if (RequestFor == "delete") {
+               
                 if (confirm("Are you sure you want to delete this?")) {
                     strJsonString = {
                         "leads": { "status_id": $(event).attr("data-status-id") },
@@ -1043,6 +1044,7 @@ ns_leads = {
                         }
                     }
                     else if (action == 'sales-pipeline') {
+                   
                         if (RequestFor == 'action-status') {
                             var oldStatus = obj.leads.dragged_status;
                             var newStatus = obj.leads.status_id;
@@ -1104,8 +1106,22 @@ ns_leads = {
                         }
                         var uid = $('#span_leaduid').text();
                      
-                        if (obj.leads.lead_note_type == 'call')
-                            $('#clstatus_' + uid).html('<span class="badge badge-primary">' + obj.leads.lead_note + '</span>&nbsp;');
+                        if (obj.leads.lead_note_type == 'call') {
+                          
+                            var strcallback = '';
+                            if (obj.leads.lead_note == "Call Back") {
+                                strcallback = '<div>' +
+                                    '<span class="badge bg-primary">' + obj.leads.lead_note + '</span>' +
+                                    '<span class="badge col-black">To :' + obj.leads.callback.person_name + '</span>' +
+                                    '<div class="font-9" style="margin-top: -12px;">Time : ' + obj.leads.callback.start_datetime.split(' ')[0] + ' [<b>' + obj.leads.callback.start_datetime.split(' ')[1]+ '-' + obj.leads.callback.end_datetime.split(' ')[1] + '</b>]</div>' +
+                                    '</div>';
+                            }
+                            else {
+                                strcallback = '<span class="badge bg-primary">' + obj.leads.lead_note + '</span>';
+                            }
+
+                            $('#clstatus_' + uid).html(strcallback);
+                        }
                         $('#txt_note').val('');
                         var objNotes = serverResponse.data.response.note_info[0];
                        var strNotes= '<div><div class="d-flex flex-row p-3">' +
@@ -1691,6 +1707,8 @@ ns_organization = {
                     ns_organization.post(strJsonString); //calling post api here
             }
             else if (requestFor == 'delete') {
+                alert('Delete-1');
+             
                 var checkstr = confirm('are you sure you want to delete this?');
                 if (checkstr == true) {
                     service_info = {

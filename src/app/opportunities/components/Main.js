@@ -18,6 +18,8 @@ import MdlLeadMainEdit from '../model/MdlLeadMain';
 import MdlImport from '../model/MdlImport';
 import OppActivity from './OppActivity';
 import menuImage from "../../images/menu-dots-vertical.svg";
+import { getFromContactApi } from "@/app/services/api_axios_services";
+    
 
 
 const Main = ({ data = [], pageData = [], CategoryList = [] }) => {
@@ -108,7 +110,7 @@ const Main = ({ data = [], pageData = [], CategoryList = [] }) => {
     const [call_status, setCall_status] = useState([]);
     const [leads, setLeads] = useState(pageData && pageData);
     const [loader, setLoader] = useState(false);
-    const [user_list, setUser_list] = useState([]);
+    const [users, setUser_list] = useState([]);
     // const [leads, setLeads] = useState([]);
     // const [loader, setLoader] = useState(false);
 
@@ -201,10 +203,6 @@ const Main = ({ data = [], pageData = [], CategoryList = [] }) => {
     }
 
 
-
-
-
-
     const loadMore = async (e) => {
         e.preventDefault();
         ns_util.replace_html_in_element("#btnLoadMore", 'Loading...<i className="fa fa-spinner fa-pulse"></i>')
@@ -229,6 +227,7 @@ const Main = ({ data = [], pageData = [], CategoryList = [] }) => {
             ns_util.remove_css_class_from_class(".opp-tab", "in active show")
             ns_util.add_css_class("#general", "in active show")
           
+ 
             setRes(resp.data.response);
             setlead_detail(resp.data.response);
             setContact(resp.data.response[0].leads[0]);
@@ -453,6 +452,33 @@ const Main = ({ data = [], pageData = [], CategoryList = [] }) => {
                 setLeads(resp.data.response.leads_list)
         }
     }
+
+
+ const ConvertLead=async()=>{
+        let params = {
+            "salutation": $('#spnSalutation').text(),
+            "fname": $('#spnName').text(),
+            "lname": "",
+            "comp_name": $('#spnCompanyName').text(),
+            "display_name": lead_detail !==false && lead_detail.lead_name,
+            "contact_email": lead_detail !==false && lead_detail.lead_email,
+            "website": lead_detail !==false && lead_detail.lead_website,
+            "Phone_Work": lead_detail !==false && lead_detail.lead_phone,
+            "mobile": lead_detail !==false && lead_detail.lead_mobile,
+            "contact_type": "C",
+        };
+     console.log(JSON.stringify(params))     
+            const resp = await post(params, ApiEndPoints.contactApi);
+            if (resp.response_status === "OK") {              
+                ModalHide('#convert');
+                alertmsg.msg("Message", resp.response_msg, "S");
+                getLeads();
+            }
+            else {
+                alertmsg.msg("Message", resp.response_msg, "e");
+            }      
+    }
+
     return (
     <>
 
@@ -548,14 +574,30 @@ const Main = ({ data = [], pageData = [], CategoryList = [] }) => {
                                                 <span
                                                     data-is-favourite={item.is_favourite} data-u_id={ item.u_id} data-action="leads" data-request_for="favourite"
                                                     className={item.is_favourite == 1 ? "zmdi zmdi-favorite col-blue float-right evt-leads-action" : "zmdi zmdi-favorite-outline col-blue float-right evt-leads-action"} title={item.is_favourite == 1 ? "Remove favourite" : "Make Favourite"} ></span></h5>
-                                                    {/* <p className="mb-2">{item.lead_type_name}</p> */}
+                                            {/* <p className="mb-2">{item.lead_type_name}</p> */}
+                                              <p className="mb-2"><i className="zmdi zmdi-pin me-1"></i>{item.lead_city} - {item.lead_postcode} <span className="float-right col-grey"> {item.lead_day_diff}</span></p>
+
                                                     <p id={"clstatus_" + item.u_id} className="lable_show">
-                                                        {item.call_status && item.call_status.map((call, index) => (
-                                                            <span key={index} className="badge badge-primary">{call.lead_note}</span>
+                                                {item.call_status && item.call_status.map((call, index) => (
+                                                            <div key={index}>
+                                                        <span className={(call.lead_note==="Call Back" && call.callback_status==='Expired')?"badge bg-danger":"badge bg-primary"}                                                        
+                                                        >{call.lead_note}</span>
+
+                                                        {call.lead_note === "Call Back" ?
+                                                           <span className='badge col-black'>To : {call.callback_person_name}                                     
+                                                            </span>                                                      
+                                                            : <></>}
+                                                        
+                                                           {call.lead_note === "Call Back" ?                                           
+
+                                                            <div className='font-9' style={{marginTop:'-12px'}}>Time : { call.callback_start.split(' ')[0]} [<b>{ call.callback_start.split(' ')[1]}-{call.callback_end.split(' ')[1]}</b>]
+                                                            </div>
+                                                        :<></>}
+                                                           
+                                                        </div>
                                                         ))}
                                                     </p>
-                                                    <p className="mb-2"><i className="zmdi zmdi-city-alt"></i> {item.lead_city},{item.lead_postcode} <span className="float-right col-grey"> {item.lead_day_diff}</span></p>
-
+                                                  
                                                     <p className="lable_show">
                                                         {item.lead_tags && item.lead_tags.map((tag, index) => (
                                                             <span key={index} className="badge badge-primary">{tag.title}</span>
@@ -1128,49 +1170,75 @@ const Main = ({ data = [], pageData = [], CategoryList = [] }) => {
 
  {/* convert Lead */}   
             
-    <div class="modal fade mdds" id="convert" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title text-center" id="exampleModalLongTitle"><b>Convert Lead</b></h4>
-              <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
+        <div className="modal fade mdds" id="convert" tabIndex="-1" role="dialog" aria-labelledby="ModalCenterTitle" aria-hidden="true" data-backdrop="static">
+    <div className="modal-dialog ui-draggable ui-draggable-handle modal-dialog-centered" role="document">
+        <div className="modal-content">
+            <div className="modal-header">
+                <h4 className="modal-title text-center" id="exampleModalLongTitle"><b>Convert Lead</b></h4>
+                <button type="button" className="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
-            <div class="modal-body p-4">
-                <p class="mb-1"> 
-                    <span class="wd-12px"> Create New Account</span>
+            <div className="modal-body p-4">
+                <p className="mb-1">
+                    <span className="wd-12px"> Salutation</span>
                     <span>:</span>
-                    <span id="">Ross and River Inc   </span>
+                    <span id="spnSalutation">{contact.lead_title !== '' ? <>{contact.lead_title}</> : 'NA'}</span>
                 </p>
-                <p class="mb-1"> 
-                    <span class="wd-12px"> Create New Contact</span>
+                <p className="mb-1">
+                    <span className="wd-12px"> Name</span>
                     <span>:</span>
-                    <span id="">Judi Murdock  </span>
+                    <span id="spnName">{contact.lead_name !== '' ? <>{contact.lead_name} &nbsp;</> : 'NA'}</span>
                 </p>
-                
-                <div class="form-check mt-3 mb-3">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
-                    <label class="form-check-label" for="flexCheckDefault">
-                        Create a new Deal for this Account.
-                    </label>
-                </div>
+                <p className="mb-1">
+                    <span className="wd-12px"> Company Name</span>
+                    <span>:</span>
+                    <span id="spnCompanyName">{contact.lead_company_name!== '' ? <>{contact.lead_company_name}</> : 'NA'}</span>
+                </p>
+                <p className="mb-1">
+                    <span className="wd-12px">Display Name</span>
+                    <span>:</span>
+                    <span>{contact.lead_name!== '' ? <>{contact.lead_name}</> : 'NA'}</span>
+                </p>
+                <p className="mb-1">
+                    <span className="wd-12px"> Contact Email</span>
+                    <span>:</span>
+                    <span>{contact.lead_email!== '' ? <>{contact.lead_email}</> : 'NA'}</span>
+                </p>
+                <p className="mb-1">
+                    <span className="wd-12px"> Website</span>
+                    <span>:</span>
+                    <span>{contact.lead_website!== '' ? <>{contact.lead_website}</> : 'NA'}</span>
+                </p>
+                <p className="mb-1">
+                    <span className="wd-12px"> Phone</span>
+                    <span>:</span>
+                    <span>{contact.lead_phone!== '' ? <>{contact.lead_phone}</> : 'NA'}</span>
+                </p>
+                <p className="mb-1">
+                    <span className="wd-12px"> Mobile</span>
+                    <span>:</span>
+                    <span>{contact.lead_mobile!== '' ? <>{contact.lead_mobile}</> : 'NA'}</span>
+                </p>
                 <p><b>Owner of the records: </b></p>
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="" id="records" name="name"/>
-                    <span class="input-group-text"><i class="zmdi zmdi-search"></i></span>
-                </div>
-               
-            </div>
-            <div class="modal-footer">             
-                <div class="text-center">
-                    <button class="btn btn-primary me-1" data-bs-dismiss="modal" type="button"> <i class="zmdi zmdi-swap"></i> Convert </button>
-                    <button class="btn btn-danger" data-bs-dismiss="modal" type="button"><i class="zmdi zmdi-rotate-left"></i> Cancel</button>
+                <div className="group_lead mb-0">
+                    <select className="custom-select select_f userId" id="ddl_owner">
+                        <option value="0">Choose User</option>
+                        {users && users.map((user,i)=>(
+                            <option key={i} value={user.user_id}>{user.user_name}</option>
+                        ))}
+                    </select>
                 </div>
             </div>
-          </div>
+            <div className="modal-footer">
+                <div className="text-center">
+                    <button onClick={ConvertLead} className="btn btn-primary" > <i className="zmdi zmdi-swap"></i> Convert </button>
+                    <button className="btn btn-danger" data-bs-dismiss="modal" type="button"><i className="zmdi zmdi-rotate-left"></i> Cancel</button>
+                </div>
+            </div>
         </div>
     </div>
+</div>
     {/* <!-- :::::::2-16-2020;;;;;;; add model status section              -->      */}
     <div class="modal fade mdds" id="fristattempt" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
