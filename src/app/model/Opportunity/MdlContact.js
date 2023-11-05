@@ -17,7 +17,7 @@ const MdlContact = ({ answer_list }) => {
                                     <b>
                                         Did they answer?
                                     </b>
-                                    <p>We'll save your answer as a note and notify the candidate</p>
+                                    <p>We will save your answer as a note and notify the candidate</p>
                                 </div>
                                 <span id="spanLeadEmail" style={{ display: "none" }}></span>
                                 <p><a className="btn btn-outline-primary btn-lg evt-leads-action" data-action="notes" data-request_for="call-back" style={{ width: "300px" }} data-message="Call Back">Call Back</a></p>

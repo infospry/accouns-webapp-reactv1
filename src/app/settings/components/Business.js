@@ -276,7 +276,7 @@ function Business() {
                                         <option value="OM" label="Oman">Oman</option>
                                         <option value="PK" label="Pakistan">Pakistan</option>
                                         <option value="PS" label="Palestinian Territories">Palestinian Territories</option>
-                                        <option value="YD" label="People's Democratic Republic of Yemen">People's Democratic Republic of Yemen</option>
+                                        <option value="YD" label="People's Democratic Republic of Yemen">Peoples Democratic Republic of Yemen</option>
                                         <option value="PH" label="Philippines">Philippines</option>
                                         <option value="QA" label="Qatar">Qatar</option>
                                         <option value="SA" label="Saudi Arabia">Saudi Arabia</option>
@@ -502,7 +502,7 @@ function Business() {
                                     <option value="Asia/Magadan">(GMT+11:00) Magadan, Solomon Is., New Caledonia</option>
                                     <option value="Pacific/Auckland">(GMT+12:00) Auckland, Wellington</option>
                                     <option value="Pacific/Fiji">(GMT+12:00) Fiji, Kamchatka, Marshall Is.</option>
-                                    <option value="Pacific/Tongatapu">(GMT+13:00) Nuku'alofa</option>
+                                    <option value="Pacific/Tongatapu">(GMT+13:00) Nuku alofa</option>
                                     </select>
                                 </div>
                             </div>

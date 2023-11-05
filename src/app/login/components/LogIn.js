@@ -112,7 +112,7 @@ const LogIn = () =>{
                         </div>
                         <div className="mt-4 mb-3 text-center">
                             <button type='submit' id="btnLogin" data-action="sign-in" data-action-on="account" className="btn btn-primary btn-lg btn-block waves-effect waves-light mt-3 mb-4"><span><b>Sign in</b>→</span></button>
-                            <p className="text-center col-grey">Don't have an account?
+                            <p className="text-center col-grey">Do not have an account?
                             <Link href="/signup" className="col-blue ms-2 create-send-btn"><><b>Sign Up Now</b> →</></Link></p>                                    
                         </div>
                     </div>

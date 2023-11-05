@@ -10,7 +10,7 @@ import { useState ,useEffect } from 'react';
 
 import Link from "next/link";
 
-const salespipeline = ({ salesList = [] }) => {
+const Salespipeline = ({ salesList = [] }) => {
     const [statusList, setStatusList] = useState(salesList);
     const [lead_info, setLead_info] = useState([]);
     const [loader, setLoader] = useState(false);
@@ -44,19 +44,17 @@ const salespipeline = ({ salesList = [] }) => {
             setStatusList(resp.data.response.lead_status)
         }
     }
-
- const GetLeadsData = async () => {
+    useEffect(() => {
+        getLeadsData();
+    }, []);
+    
+ const getLeadsData = async () => {
       var params = { "action": "sales-pipeline", "action_on": "leads_main", "request_for": "select", "route": "SalesPipeline", "previous": "0", "next": "5" };
         const resp = await get(params, ApiEndPoints.opportunity);
         if (resp.response_status === "OK") {
             setStatusList(resp.data.response.lead_status)
         }
     }
-
- useEffect(() => {
-        GetLeadsData();
-        
- }, []);
     
 const addStatus=async(e)=>{
         let  strJsonString = ns_validatios.masters(e.target);
@@ -262,4 +260,4 @@ const addStatus=async(e)=>{
 //         }
 //     }
 // }
-export default salespipeline
+export default Salespipeline

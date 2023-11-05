@@ -694,7 +694,7 @@ const Main = ({ data = [], pageData = [], CategoryList = [] }) => {
                                                         : <></>}
 
                                                     {res && res.length > 0 && res[0].leads.map((item, index) => (
-                                                        <span id={"clstatus_" + item.u_id} className="lable_show float-right" style={{marginTop:'-30px'}}>
+                                                        <span key={index} id={"clstatus_" + item.u_id} className="lable_show float-right" style={{marginTop:'-30px'}}>
                                                             {item.call_status && item.call_status.map((call, index) => (
                                                                 <div key={index}>
                                                                     <span className={(call.lead_note === "Call Back" && call.callback_status === 'Expired') ? "badge bg-danger" : "badge bg-primary"}
@@ -1368,7 +1368,7 @@ const Main = ({ data = [], pageData = [], CategoryList = [] }) => {
                                 <hr/>                                        
                                 <h6>Hello,</h6>
                                 <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                                <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type.</p>                                        
+                                <p>Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type.</p>                                        
                             </div>                              
                         </div>            
                     </div>                   
@@ -1645,7 +1645,7 @@ const Main = ({ data = [], pageData = [], CategoryList = [] }) => {
                             <b>
                                 Did they answer?
                             </b>
-                            <p>We'll save your answer as a note and notify the candidate</p>
+                            <p>We will save your answer as a note and notify the candidate</p>
                         </div>
                         <span id="spanLeadEmail" style={{ display: "none" }}></span>
                         <p><a className="btn btn-outline-primary btn-lg evt-leads-action" data-action="notes" data-request_for="call-back" style={{ width: "300px" }} data-message="Call Back">Call Back</a></p>
@@ -1745,8 +1745,10 @@ const Main = ({ data = [], pageData = [], CategoryList = [] }) => {
                                 <img className="showicon" style={{display:"none"}} />
                                 <div className="group_lead mt-2">
                                     <input type="text" id="txt_doc_name" className="input_text" required="required" autoComplete="off" />
-                                    <label htmlFor="=" className="lablefilled">Document Label</label>
-                                </div>
+                                    <label htmlFor="=" className="lablefilled">Document name</label>
+                                            </div>
+                                            
+                                            
                                 <div className="group_lead">
                                     <textarea id="txt_description" required="required" className="input_text" ></textarea>
                                     <label htmlFor="txt_description" className="lablefilled">Description</label>

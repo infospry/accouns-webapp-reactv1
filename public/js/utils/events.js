@@ -1098,7 +1098,7 @@ ns_leads = {
                             $(event).html('<i class="zmdi zmdi-email-open"></i>');
                         }
                     }
-                    else if (action == 'notes') {                      
+                    else if (action == 'notes') {
                         if (RequestFor == 'create') {
                             $('#divAddNotes').hide();
                             $('#btnAddNote').show();
@@ -1113,7 +1113,7 @@ ns_leads = {
                                 strcallback = '<div>' +
                                     '<span class="badge bg-primary">' + obj.leads.lead_note + '</span>' +
                                     '<span class="badge col-black">To :' + obj.leads.callback.person_name + '</span>' +
-                                    '<div class="font-9" style="margin-top: -12px;">Time : ' + obj.leads.callback.start_datetime.split(' ')[0] + ' [<b>' + obj.leads.callback.start_datetime.split(' ')[1]+ '-' + obj.leads.callback.end_datetime.split(' ')[1] + '</b>]</div>' +
+                                    '<div class="font-9" style="margin-top: -12px;">Time : ' + obj.leads.callback.start_datetime.split(' ')[0] + ' [<b>' + obj.leads.callback.start_datetime.split(' ')[1] + '-' + obj.leads.callback.end_datetime.split(' ')[1] + '</b>]</div>' +
                                     '</div>';
                             }
                             else {
@@ -1124,7 +1124,7 @@ ns_leads = {
                         }
                         $('#txt_note').val('');
                         var objNotes = serverResponse.data.response.note_info[0];
-                       var strNotes= '<div><div class="d-flex flex-row p-3">' +
+                        var strNotes = '<div><div class="d-flex flex-row p-3">' +
                             '<img src="images/download.jpg" width="40" height="40" class="rounded-circle mr-3" />' +
                             '<div class="w-100">' +
                             '<div class="d-flex justify-content-between align-items-center">' +
@@ -1135,11 +1135,15 @@ ns_leads = {
                             '</div>' +
                             '</div>' +
                             '<hr />' +
-                            '</div>';                      
+                            '</div>';
                         $('#divNotesPalaceholder').prepend(strNotes);
                       
                     }
                     else if (action == 'files') {
+                        if (RequestFor == 'upload') {
+                            console.log(serverResponse);
+                        }
+                     
                         if (RequestFor == 'delete') {
                             $('#tr_' + obj.u_id).remove();
                         }

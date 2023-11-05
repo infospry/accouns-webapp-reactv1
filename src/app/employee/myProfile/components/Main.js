@@ -47,7 +47,7 @@ function Main() {
             <div class="css-3sr5s9 me-2"><span class="css-19k1nij">NP</span></div>
             <div>
             <h2 class="mb-0">Nicole Pearson</h2>
-            <p>Let employers know that you're available to start working as soon as possible.</p>
+            <p>Let employers know that you are available to start working as soon as possible.</p>
             </div>
         </div>
         <a class="css-es7v8c css-z4q3yd pro clickmode" data-hide=".pro" data-show=".show_pro" href="javascript:void(0);">

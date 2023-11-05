@@ -57,7 +57,7 @@ function Document({ res=[] }) {
                       <tbody>
                           
    {res && res.length > 0 && res[3].files_info != "" ? res && res.length > 0 && res[3].files_info.map((fl, i) => (
-                                    <tr key={i} className="">
+       <tr id={'tr_'+ fl.u_id} key={i} className="">
                                         <td className="">
                                             {fl.ROWNUMBER}
                                           <span className="dnnone">
@@ -104,7 +104,7 @@ function Document({ res=[] }) {
                                             }
                                             <span class="float-left">
                                            <span class="float-left nowrap-w220"><b>{fl.file_title}</b></span><br />
-                                          <small>File Size :- 5mb</small>
+                                          <small>File Size :- {fl.file_size}</small>
                                           </span>
                                         </td>
                                          <td>{"org" + fl.org_uid}</td>
