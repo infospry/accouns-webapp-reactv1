@@ -1,4 +1,4 @@
-import MdlMailTemplate from "../MdlMailTemplate";
+import MdlMailTemplate from '@/app/opportunities/model/MdlEmailTemplate'
 
 const MdlEmail = () => {
     function handleKeyPress(e) {
@@ -21,7 +21,7 @@ const MdlEmail = () => {
             <div className="modal-dialog ui-draggable ui-draggable-handle" role="document">
                 <div className="modal-content" style={{ height: "auto!important" }}>
                     <div className="modal-header bg-blu-lite fixed-top">
-                        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                        <button type="button" className="close" data-bs-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">×</span>
                         </button>
                         <h4 className="modal-title" id="myModalLabel2">
@@ -49,7 +49,7 @@ const MdlEmail = () => {
                                 <div className="col-md-12">
                                     <div className="text-center">
                                         <a id="btnReSendEmail" className="btn btn-primary btn-lg evt-leads-action" data-email="" data-subject="" data-action="message" data-request_for="resend-email" data-toggle="modal" data-target="#emailsend"><i className="zmdi zmdi-upload">&nbsp;</i>Resend</a>
-                                        <a className="btn btn-danger btn-lg" data-dismiss="modal"><i className="zmdi zmdi-rotate-left">&nbsp;</i>Close</a>
+                                        <a className="btn btn-danger btn-lg" data-bs-dismiss="modal"><i className="zmdi zmdi-rotate-left">&nbsp;</i>Close</a>
                                     </div>
                                 </div>
                             </div>
@@ -64,8 +64,8 @@ const MdlEmail = () => {
             <div className="modal-dialog ui-draggable ui-draggable-handle" role="document">
                 <div className="modal-content" style={{ height: "auto!important" }}>
                     <div className="modal-header bg-blu-lite fixed-top">
-                        <button type="button" className="close" data-toggle="modal" data-target="#delete">
-                            <span aria-hidden="true" data-toggle="modal" data-target="#discardmail">×</span>
+                        <button type="button" className="close" data-toggle="modal" data-bs-dismiss="modal" data-target="#delete">
+                            <span aria-hidden="true" data-toggle="modal"  data-target="#discardmail">×</span>
                         </button>
                         <h4 className="modal-title" id="myModalLabel2">
                             <b> <i className="zmdi zmdi-email-open"></i>Send Email</b>
@@ -147,7 +147,7 @@ const MdlEmail = () => {
                             <div className="col-md-12">
                                 <div className="text-center">
                                     <a id="btn_send_msg" className="btn btn-primary btn-lg evt-leads-action" data-action="message" data-request_for="create"><i className="zmdi zmdi-upload">&nbsp;</i>Send </a>
-                                    <button className="btn btn-danger btn-lg" type="button" data-toggle="modal" data-target="#discardmail"><i className="zmdi zmdi-rotate-left"></i> Cancel</button>
+                                    <button className="btn btn-danger btn-lg" type="button" data-bs-dismiss="modal" data-toggle="modal" data-target="#discardmail"><i className="zmdi zmdi-rotate-left"></i> Cancel</button>
                                 </div>
                             </div>
                         </div>
@@ -165,7 +165,7 @@ const MdlEmail = () => {
         <div className="modal-content">
             <div className="modal-header">
                 <h5 className="modal-title" id="exampleModalLabel">Delete Message ?</h5>
-                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" className="close" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -176,8 +176,8 @@ const MdlEmail = () => {
                         Your message will not be saved.
                     </p>
                     <div className="text-center">
-                        <a className="btn btn-primary btn-sm evt-leads-action" data-dismiss="modal" data-action="message" data-request_for="discard-email">  Discard </a>
-                        <a className="btn btn-danger btn-sm" data-dismiss="modal"><i className="zmdi zmdi-rotate-left"></i> Cancel</a>
+                        <a className="btn btn-primary btn-sm evt-leads-action" data-bs-dismiss="modal" data-action="message" data-request_for="discard-email">  Discard </a>
+                        <a className="btn btn-danger btn-sm" data-bs-dismiss="modal"><i className="zmdi zmdi-rotate-left"></i> Cancel</a>
                     </div>
                 </div>
             </div>

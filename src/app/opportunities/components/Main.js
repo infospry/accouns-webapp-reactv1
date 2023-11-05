@@ -16,6 +16,7 @@ import Messages from "./Messages";
 import { get, post } from "../../services/api_axios_services";
 import MdlLeadMainEdit from '../model/MdlLeadMain';
 import MdlImport from '../model/MdlImport';
+import MdlEmail from '../model/MdlViewEmail';
 import OppActivity from './OppActivity';
 import menuImage from "../../images/menu-dots-vertical.svg";
 import { getFromContactApi } from "@/app/services/api_axios_services";
@@ -1304,128 +1305,7 @@ const Main = ({ data = [], pageData = [], CategoryList = [] }) => {
 
 
 {/* send Email */}
-
-    <div class="modal right-half md-one" id="emailsend" tabindex="-1" role="dialog" aria-labelledby="shortModal">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header bg-blu-lite">
-                    <button type="button" class="close" data-bs-toggle="modal" data-bs-target="#delete">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                    <h4 class="modal-title" id="myModalLabel2">
-                        <b> <i class="zmdi zmdi-email-open"></i>Send Email</b>
-                    </h4>
-                </div>
-                <div class="modal-body pe-0 ps-0 contbody">
-                    <div class="row  m-0">
-                        <div id="side_lft" class="span0">
-                            <div class="pt-2">
-                                <h4 class="mt-1">Create Template <a  href="#" class="btn btn-danger btn-sm float-right text-righ trig-cross" type="button"> <i class="zmdi zmdi-close"></i></a></h4>
-                                <hr/>
-                                <div class="sidelft">
-                                <a class="btn btn-outline-primary btn-block mt-2 font-16 bold clickmode" data-show=".alert"> Apply on company site</a>
-                                <a class="btn btn-outline-primary btn-block mt-2 font-16 bold clickmode" data-show=".alert">Commute </a>
-                                <a class="btn btn-outline-primary btn-block mt-2 font-16 bold clickmode" data-show=".alert">Initial message</a>
-                                <a class="btn btn-outline-primary btn-block mt-2 font-16 bold clickmode" data-show=".alert"> Rejection note </a>
-                                <a class="btn btn-outline-primary btn-block mt-2 font-16 bold clickmode" data-show=".alert"> Remote interview  </a>
-                                <a class="btn btn-outline-primary btn-block mt-2 font-16 bold clickmode" data-show=".alert">Request more info </a>
-                                <a class="btn btn-outline-primary btn-block mt-2 font-16 bold clickmode" data-show=".alert">Still interested?</a>
-                                <a class="btn btn-outline-primary btn-block mt-2 font-16 bold clickmode" data-show=".alert">Temporary remote job</a>
-                                <a class="btn btn-outline-primary btn-block mt-2 font-16 bold clickmode" data-show=".alert"> Apply on company site</a>
-                                <a class="btn btn-outline-primary btn-block mt-2 font-16 bold clickmode" data-show=".alert">Commute </a>
-                                <a class="btn btn-outline-primary btn-block mt-2 font-16 bold clickmode" data-show=".alert">Initial message</a>
-                                <a class="btn btn-outline-primary btn-block mt-2 font-16 bold clickmode" data-show=".alert"> Rejection note </a>
-                                <a class="btn btn-outline-primary btn-block mt-2 font-16 bold clickmode" data-show=".alert"> Remote interview  </a>
-                                <a class="btn btn-outline-primary btn-block mt-2 font-16 bold clickmode" data-show=".alert">Request more info </a>
-                                <a class="btn btn-outline-primary btn-block mt-2 font-16 bold clickmode" data-show=".alert">Still interested?</a>
-                                <a class="btn btn-outline-primary btn-block mt-2 font-16 bold clickmode" data-show=".alert">Temporary remote job</a>
-                                <a class="btn btn-outline-primary btn-block mt-2 font-16 bold clickmode" data-show=".alert"> Apply on company site</a>
-                                <a class="btn btn-outline-primary btn-block mt-2 font-16 bold clickmode" data-show=".alert">Commute </a>
-                                <a class="btn btn-outline-primary btn-block mt-2 font-16 bold clickmode" data-show=".alert">Initial message</a>
-                                <a class="btn btn-outline-primary btn-block mt-2 font-16 bold clickmode" data-show=".alert"> Rejection note </a>
-                                <a class="btn btn-outline-primary btn-block mt-2 font-16 bold clickmode" data-show=".alert"> Remote interview  </a>
-                                <a class="btn btn-outline-primary btn-block mt-2 font-16 bold clickmode" data-show=".alert">Request more info </a>
-                                <a class="btn btn-outline-primary btn-block mt-2 font-16 bold clickmode" data-show=".alert">Still interested?</a>
-                                <a class="btn btn-outline-primary btn-block mt-2 font-16 bold clickmode" data-show=".alert">Temporary remote job</a>
-                                <a class="btn btn-outline-primary btn-block mt-2 font-16 bold clickmode" data-show=".alert"> Apply on company site</a>
-                                <a class="btn btn-outline-primary btn-block mt-2 font-16 bold clickmode" data-show=".alert">Commute </a>
-                                <a class="btn btn-outline-primary btn-block mt-2 font-16 bold clickmode" data-show=".alert">Initial message</a>
-                                <a class="btn btn-outline-primary btn-block mt-2 font-16 bold clickmode" data-show=".alert"> Rejection note </a>
-                                <a class="btn btn-outline-primary btn-block mt-2 font-16 bold clickmode" data-show=".alert"> Remote interview  </a>
-                                <a class="btn btn-outline-primary btn-block mt-2 font-16 bold clickmode" data-show=".alert">Request more info </a>
-                                <a class="btn btn-outline-primary btn-block mt-2 font-16 bold clickmode" data-show=".alert">Still interested?</a>
-                                <a class="btn btn-outline-primary btn-block mt-2 font-16 bold clickmode" data-show=".alert">Temporary remote job</a>
-                            </div>
-                            </div> 
-                        </div>
-                        <div id="side_rgt" class="col-md-12 ps-0 pe-0 f8f8f8bg">
-                            <div class="tab-content p-0">
-                                <div role="tabpanel" class=" tab-pane in active">
-                                    <div class="row m-0">
-                                        <div class="col-md-12 p-0">
-                                            <div class="f8f8f8bg">
-                                                <div class="card mb-0 p-2 f8f8f8bg">
-                                                    <div class="body mb-2">
-                                                        <div class="group_lead">
-                                                            <input type="text" class="input_text" id="" required="required"/>
-                                                            <label for="" class="lablefilled">To</label>                                           
-                                                        </div> 
-                                                        <div class="group_lead mb-0">
-                                                            <input type="text" class="input_text" id="" required="required"/>
-                                                            <label for="" class="lablefilled">Subject</label>                                           
-                                                        </div>  
-                                                    </div>
-                                                    <div class="body mb-2">
-                                                        <a class="btn btn-primary trig-add"href="#"><i class="zmdi zmdi-file"></i> <strong>Templates</strong></a>   
-                                                        <a class="btn btn-primary ms-1" type="button"data-bs-toggle="modal" data-bs-target="#savetemp" href="#"><i class="zmdi zmdi-save"></i> <strong>Save as Template</strong></a>                                                        
-                                                        <a  href="#" class="btn btn-primary ms-1" data-bs-toggle="modal" data-bs-target="#Schedule"><i class="zmdi zmdi-alarm-check"></i> <strong>Schedule</strong></a>
-                                                        <a  href="#" class="btn btn-danger ms-2 float-right" type="button"data-bs-toggle="modal" data-bs-target="#delete"> <i class="zmdi zmdi-close"></i></a>                                                       
-                                                    </div>
-                                                    <div class="body">
-                                                        <div class="summernote">
-                                                            Hello there,
-                                                            <br/>
-                                                            <p>The toolbar can be customized and it also supports various callbacks such
-                                                                as
-                                                                <code>oninit</code>,
-                                                                <code>onfocus</code>,
-                                                                <code>onpaste</code> and many more.</p>
-                                                            <p>Please try
-                                                                <b>paste some texts</b> here</p>
-
-                                                                <div class="alert alert-secondary ddnone" role="alert">
-                                                                    <b class="col-blue bold">Apply on company site</b>
-                                                                    This is a secondary alert—check it out!
-                                                                  </div>
-                                                        </div>
-                                                       
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                       
-                       
-                    </div>
-                </div>
-                <div class="model-footer">
-                    <div class="row m-0">
-                        <div class="col-md-12">
-                            <div class="text-center">
-                                <button class="btn btn-primary clickmode me-1" data-show="." data-hide="" type="button">  Send </button>
-                                <button class="btn btn-danger" type="button"data-bs-toggle="modal" data-bs-target="#delete"><i class="zmdi zmdi-rotate-left"></i> Cancel</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+ <MdlEmail/>
 
     <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
