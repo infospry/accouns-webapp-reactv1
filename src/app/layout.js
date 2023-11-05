@@ -13,12 +13,12 @@ export default function RootLayout({ children }) {
      <head>
      {/* <link rel="stylesheet" href="/css/bootstrap.min.css" />
      <link rel="stylesheet" href="/css/style.min.css" /> */}
-        <link  href="/css/maininner.css" />
-        <link  href="/css/jquery.toast.css" /> 
-        <link  href="/css/summernote.css"/>
-        <link  href="/css/timepicker.css"/>
-        <link  href="/css/jquery-ui.min.css"/>
-        <link  href="/css/daterangepicker.css"/>
+        <link  rel="stylesheet"  href="/css/maininner.css"  />
+        <link  rel="stylesheet"  href="/css/jquery.toast.css" /> 
+        <link  rel="stylesheet"  href="/css/summernote.css"/>
+        <link  rel="stylesheet"  href="/css/timepicker.css"/>
+        <link  rel="stylesheet"  href="/css/jquery-ui.min.css"/>
+        <link  rel="stylesheet"  href="/css/daterangepicker.css"/>
         <title>Leads</title>                                           
     </head>      
     <body className="theme-blue"id="box">

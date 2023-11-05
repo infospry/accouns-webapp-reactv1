@@ -180,6 +180,7 @@ ns_leads = {
                     }
                     else if (action == 'files') {
                         if (requestFor == 'view') {
+                            alert(serverResponse.response);
                             var result = $.parseJSON(serverResponse.response);
                             $("#iFrame").attr("src", result.Response);
                         }
