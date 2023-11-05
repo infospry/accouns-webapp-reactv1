@@ -45,7 +45,7 @@ ns_leads = {
             urls.leadsApi,
             Params,
             function (response) {
-                //console.log(response);
+                console.log(response);
                 var serverResponse = $.parseJSON(response);
                 if (serverResponse.response_status == "OK") {
                     if (action == 'leads') {
@@ -571,9 +571,11 @@ ns_leads = {
            
         }
         else if (action == 'sales-pipeline') {
+          
             if (RequestFor == "add-new-status") {
                 $('#ddl_type,#txt_name').val('');
-                $('#chk_gstatus').prop('checked', false);
+                $('#chk_gstatus').prop('checked', false);         
+                $('#addstatus').modal();
             }
             else if (RequestFor == "view-lead") {
                 ns_leads.get({
@@ -596,10 +598,13 @@ ns_leads = {
             else if (RequestFor == "delete") {
                
                 if (confirm("Are you sure you want to delete this?")) {
+                   
                     strJsonString = {
                         "leads": { "status_id": $(event).attr("data-status-id") },
                         "action": action, "action_on": action_on, "request_for": RequestFor
                     };
+
+                   
                     ns_leads.post(JSON.stringify(strJsonString), event);
                 }
             }
@@ -980,10 +985,12 @@ ns_leads = {
     },
     post: function (params, event) {
         var obj = JSON.parse(params), action = obj.action, RequestFor = obj.request_for;
+      
         ns_ajax.post(
             urls.leadsApi,
             params,
             function (response) {
+              
                 var serverResponse = JSON.parse(response);
                 if (RequestFor == 'read_status')
                     return false;

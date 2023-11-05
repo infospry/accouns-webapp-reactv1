@@ -24,7 +24,7 @@ const MdlViewDetail = ({ lead_info = [] }) => {
                 <div className="modal-dialog ui-draggable ui-draggable-handle" role="document">
                     <div className="modal-content" style={{ height: "auto!important" }}>
                         <div className="modal-header bg-blu-lite fixed-top">
-                            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                            <button type="button" className="close" data-bs-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">×</span>
                             </button>
                             <h4 className="modal-title" id="myModalLabel2">
@@ -309,7 +309,7 @@ const MdlViewDetail = ({ lead_info = [] }) => {
                             <div className="row m-0">
                                 <div className="col-md-12">
                                     <div className="text-center">
-                                        <button className="btn btn-danger btn-lg" type="button" data-dismiss="modal"><i className="zmdi zmdi-rotate-left">&nbsp;</i>Close</button>
+                                        <button className="btn btn-danger btn-lg" type="button" data-bs-dismiss="modal"><i className="zmdi zmdi-rotate-left">&nbsp;</i>Close</button>
                                     </div>
                                 </div>
                             </div>
