@@ -687,10 +687,33 @@ const Main = ({ data = [], pageData = [], CategoryList = [] }) => {
                                                 </p>
                                                 {res && res.length > 0 ? <>
                                                         <p className="mb-1"><i className="zmdi zmdi-email-open"></i> <span id="">{res && res.length > 0 && res[0].leads[0].lead_email}</span> <small className={res && res.length > 0 && res[0].leads[0].email_status === 1 ? "col-green" : "col-red"}>  {res && res.length > 0 && res[0].leads[0].email_status === 1 ? " Verified" : " Unverified"}</small>
-                                                        <span className="float-right col-grey">{res && res.length > 0 && "," + res[0].leads[0].lead_day_diff
-                                                    }</span></p>
+                                                            <span className="float-right col-grey" style={{marginTop:'-36px'}}>
+                                                <b>Publish on:</b> {res && res.length > 0 &&  res[0].leads[0].lead_day_diff}</span></p>
                                                 </>
-                                                    : <></>}
+                                                        : <></>}
+
+                                                    {res && res.length > 0 && res[0].leads.map((item, index) => (
+                                                        <span id={"clstatus_" + item.u_id} className="lable_show float-right" style={{marginTop:'-30px'}}>
+                                                            {item.call_status && item.call_status.map((call, index) => (
+                                                                <div key={index}>
+                                                                    <span className={(call.lead_note === "Call Back" && call.callback_status === 'Expired') ? "badge bg-danger" : "badge bg-primary"}
+                                                                    >{call.lead_note}</span>
+
+                                                                    {call.lead_note === "Call Back" ?
+                                                                        <span className='badge col-black'>To : {call.callback_person_name}
+                                                                        </span>
+                                                                        : <></>}
+                                                        
+                                                                    {call.lead_note === "Call Back" ?
+
+                                                                        <div className='font-9' style={{ marginTop: '-12px' }}>Time : {call.callback_start.split(' ')[0]} [<b>{call.callback_start.split(' ')[1]}-{call.callback_end.split(' ')[1]}</b>]
+                                                                        </div>
+                                                                        : <></>}
+                                                           
+                                                                </div>
+                                                            ))}
+                                                        </span>
+                                                    ))}
 
                                             </>}
                                        
