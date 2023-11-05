@@ -2,7 +2,11 @@
 import React from 'react'
 import Image from 'next/image';
 import menuImage from "../../images/menu-dots-vertical.svg";
-function Document() {
+function Document({ res=[] }) {
+
+   
+
+    let ext = '';
   return (
     <>
     <div className="booktab d-flex justify-content-between align-items-center bdrbtm">
@@ -13,7 +17,7 @@ function Document() {
             
             <a href="#" className="btn btn-success" data-bs-toggle="modal" data-bs-target="#addmydoc"><i
                     className="zmdi zmdi-plus-circle-o-duplicate"></i> Add New</a>
-            <div className="btn-group ms-1">
+            {/* <div className="btn-group ms-1">
                 <button className="btn btn-outline-primary  dropdown-toggle font-w" type="button"
                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">More</button>
                 <div className="dropdown-menu">
@@ -30,464 +34,112 @@ function Document() {
                     <a className="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal"
                         data-bs-target="#"><i className="zmdi zmdi-notifications-active"></i> Delete</a>
                 </div>
-            </div>
+            </div> */}
         </div>
     </div>
-    <div className="dnnone doclist">
+    <div className="doclist">
         <div className="table-responsive mb-4">
-            <table className="table btdr_none mb-3">
-                <thead className="font_b dnone-mob">
-                    <tr className="font_btd">
-                        <th style={{width:"30px"}}>
-                            #
-                        </th>
-                        <th> File Name </th>
-                        <th>Folder</th>
-                        <th> Modified on </th>
-                        <th>File Type</th>
-                        <th style={{width:"20px"}}> - </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr className="">
-                        <td className="">
-                            1
-                        </td>
-                        <td className="pt-3 pb-3">
-                            <span className="u_image float-left mr-2"><img src="images/pdf.png"
-                                    alt="user" className="rounded" width="36" /></span>
-                            <span className="float-left">
-                                <span className="float-left nowrap-w220"><b>Yonger than Yestarday
-                                    </b> - Delhi Metro Rail Corporation</span><br />
-                                <small>File Size :- 5mb</small>
-                            </span>
-                        </td>
-                        <td>Policies</td>
-                        <td className="col-grey"> 03/06/2021</td>
-                        <td>PDF</td>
-                        <td>
-                            <div className="dropdown">
-                                <button className="btn dropdown-toggle"style={{boder:"0px"}} type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                <Image src={menuImage} alt="user" width={"5"} height={"21"} />
-                                </button>
-                                <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                    <li><a className="dropdown-item col-green" href="javascript:void(0);" data-bs-toggle="modal"><i className="zmdi zmdi-download me-1"></i>Download</a></li>
-                                    <li><a className="dropdown-item col-blue" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#addmydoc"><i className="zmdi zmdi-edit me-1"></i>Edit</a></li>
-                                    <li><a className="dropdown-item text-danger" href="#"><i className="zmdi zmdi-delete me-1"></i>Delete</a></li>
-                                </ul>
-                            </div>
-                           
-                        </td>
-                    </tr>
-                    <tr className="">
-                        <td className="">
-                            2
-                        </td>
-                        <td className="pt-3 pb-3">
-                            <span className="u_image float-left mr-2"><img src="images/word.png"
-                                    alt="user" className="rounded" width="36" /></span>
-                            <span className="float-left">
-                                <span className="float-left nowrap-w220"><b>Delhi Metro Rail
-                                        Corporation </b> - </span><br />
-                                <small>File Size :- 5mb</small>
-                            </span>
-                        </td>
-                        <td>Policies</td>
-                        <td className="col-grey"> 03/06/2021</td>
-                        <td>world</td>
-                        <td>
-                           <div className="dropdown">
-                                <button className="btn dropdown-toggle"style={{boder:"0px"}} type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                <Image src={menuImage} alt="user" width={"5"} height={"21"} />
-                                </button>
-                                <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                    <li><a className="dropdown-item col-green" href="javascript:void(0);" data-bs-toggle="modal"><i className="zmdi zmdi-download me-1"></i>Download</a></li>
-                                    <li><a className="dropdown-item col-blue" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#addmydoc"><i className="zmdi zmdi-edit me-1"></i>Edit</a></li>
-                                    <li><a className="dropdown-item text-danger" href="#"><i className="zmdi zmdi-delete me-1"></i>Delete</a></li>
-                                </ul>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr className="">
-                        <td className="">
-                            3
-                        </td>
-                        <td className="pt-3 pb-3">
-                            <span className="u_image float-left mr-2"><img src="images/exel.png"
-                                    alt="user" className="rounded" width="36" /></span>
-                            <span className="float-left">
-                                <span className="float-left nowrap-w220"><b> Metro Rail Corporation
-                                    </b> - </span><br />
-                                <small>File Size :- 120kb</small>
-                            </span>
-                        </td>
-                        <td>Policies</td>
-                        <td className="col-grey"> 03/06/2021</td>
-                        <td>Exel</td>
-                        <td>
-                           <div className="dropdown">
-                                <button className="btn dropdown-toggle"style={{boder:"0px"}} type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                <Image src={menuImage} alt="user" width={"5"} height={"21"} />
-                                </button>
-                                <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                    <li><a className="dropdown-item col-green" href="javascript:void(0);" data-bs-toggle="modal"><i className="zmdi zmdi-download me-1"></i>Download</a></li>
-                                    <li><a className="dropdown-item col-blue" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#addmydoc"><i className="zmdi zmdi-edit me-1"></i>Edit</a></li>
-                                    <li><a className="dropdown-item text-danger" href="#"><i className="zmdi zmdi-delete me-1"></i>Delete</a></li>
-                                </ul>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr className="">
-                        <td className="">
-                            4
-                        </td>
-                        <td className="pt-3 pb-3">
-                            <span className="u_image float-left mr-2"><img src="images/jpg.png"
-                                    alt="user" className="rounded" width="36" /></span>
-                            <span className="float-left">
-                                <span className="float-left nowrap-w220"><b> Rail Corporation Delhi
-                                        Metro</b> - </span><br />
-                                <small>File Size :-105kb</small>
-                            </span>
-                        </td>
-                        <td>Policies</td>
-                        <td className="col-grey"> 13/06/2021</td>
-                        <td>JPEG</td>
-                        <td>
-                           <div className="dropdown">
-                                <button className="btn dropdown-toggle"style={{boder:"0px"}} type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                <Image src={menuImage} alt="user" width={"5"} height={"21"} />
-                                </button>
-                                <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                    <li><a className="dropdown-item col-green" href="javascript:void(0);" data-bs-toggle="modal"><i className="zmdi zmdi-download me-1"></i>Download</a></li>
-                                    <li><a className="dropdown-item col-blue" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#addmydoc"><i className="zmdi zmdi-edit me-1"></i>Edit</a></li>
-                                    <li><a className="dropdown-item text-danger" href="#"><i className="zmdi zmdi-delete me-1"></i>Delete</a></li>
-                                </ul>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr className="">
-                        <td className="">
-                            5
-                        </td>
-                        <td className="pt-3 pb-3">
-                            <span className="u_image float-left mr-2"><img src="images/png.png"
-                                    alt="user" className="rounded" width="36" /></span>
-                            <span className="float-left">
-                                <span className="float-left nowrap-w220"><b> Metro Rail Corporation
-                                    </b> - </span><br />
-                                <small>File Size :- 12mb</small>
-                            </span>
-                        </td>
-                        <td>Policies</td>
-                        <td className="col-grey"> 03/06/2021</td>
-                        <td>PNG</td>
-                        <td>
-                           <div className="dropdown">
-                                <button className="btn dropdown-toggle"style={{boder:"0px"}} type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                <Image src={menuImage} alt="user" width={"5"} height={"21"} />
-                                </button>
-                                <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                    <li><a className="dropdown-item col-green" href="javascript:void(0);" data-bs-toggle="modal"><i className="zmdi zmdi-download me-1"></i>Download</a></li>
-                                    <li><a className="dropdown-item col-blue" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#addmydoc"><i className="zmdi zmdi-edit me-1"></i>Edit</a></li>
-                                    <li><a className="dropdown-item text-danger" href="#"><i className="zmdi zmdi-delete me-1"></i>Delete</a></li>
-                                </ul>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr className="">
-                        <td className="">
-                            1
-                        </td>
-                        <td className="pt-3 pb-3">
-                            <span className="u_image float-left mr-2"><img src="images/pdf.png"
-                                    alt="user" className="rounded" width="36" /></span>
-                            <span className="float-left">
-                                <span className="float-left nowrap-w220"><b>Yonger than Yestarday
-                                    </b> - Delhi Metro Rail Corporation</span><br />
-                                <small>File Size :- 5mb</small>
-                            </span>
-                        </td>
-                        <td>Policies</td>
-                        <td className="col-grey"> 03/06/2021</td>
-                        <td>PDF</td>
-                        <td>
-                           <div className="dropdown">
-                                <button className="btn dropdown-toggle"style={{boder:"0px"}} type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                <Image src={menuImage} alt="user" width={"5"} height={"21"} />
-                                </button>
-                                <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                    <li><a className="dropdown-item col-green" href="javascript:void(0);" data-bs-toggle="modal"><i className="zmdi zmdi-download me-1"></i>Download</a></li>
-                                    <li><a className="dropdown-item col-blue" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#addmydoc"><i className="zmdi zmdi-edit me-1"></i>Edit</a></li>
-                                    <li><a className="dropdown-item text-danger" href="#"><i className="zmdi zmdi-delete me-1"></i>Delete</a></li>
-                                </ul>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr className="">
-                        <td className="">
-                            2
-                        </td>
-                        <td className="pt-3 pb-3">
-                            <span className="u_image float-left mr-2"><img src="images/word.png"
-                                    alt="user" className="rounded" width="36" /></span>
-                            <span className="float-left">
-                                <span className="float-left nowrap-w220"><b>Delhi Metro Rail
-                                        Corporation </b> - </span><br />
-                                <small>File Size :- 5mb</small>
-                            </span>
-                        </td>
-                        <td>Policies</td>
-                        <td className="col-grey"> 03/06/2021</td>
-                        <td>world</td>
-                        <td>
-                           <div className="dropdown">
-                                <button className="btn dropdown-toggle"style={{boder:"0px"}} type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                <Image src={menuImage} alt="user" width={"5"} height={"21"} />
-                                </button>
-                                <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                    <li><a className="dropdown-item col-green" href="javascript:void(0);" data-bs-toggle="modal"><i className="zmdi zmdi-download me-1"></i>Download</a></li>
-                                    <li><a className="dropdown-item col-blue" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#addmydoc"><i className="zmdi zmdi-edit me-1"></i>Edit</a></li>
-                                    <li><a className="dropdown-item text-danger" href="#"><i className="zmdi zmdi-delete me-1"></i>Delete</a></li>
-                                </ul>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr className="">
-                        <td className="">
-                            3
-                        </td>
-                        <td className="pt-3 pb-3">
-                            <span className="u_image float-left mr-2"><img src="images/exel.png"
-                                    alt="user" className="rounded" width="36" /></span>
-                            <span className="float-left">
-                                <span className="float-left nowrap-w220"><b> Metro Rail Corporation
-                                    </b> - </span><br />
-                                <small>File Size :- 120kb</small>
-                            </span>
-                        </td>
-                        <td>Policies</td>
-                        <td className="col-grey"> 03/06/2021</td>
-                        <td>Exel</td>
-                        <td>
-                           <div className="dropdown">
-                                <button className="btn dropdown-toggle"style={{boder:"0px"}} type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                <Image src={menuImage} alt="user" width={"5"} height={"21"} />
-                                </button>
-                                <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                    <li><a className="dropdown-item col-green" href="javascript:void(0);" data-bs-toggle="modal"><i className="zmdi zmdi-download me-1"></i>Download</a></li>
-                                    <li><a className="dropdown-item col-blue" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#addmydoc"><i className="zmdi zmdi-edit me-1"></i>Edit</a></li>
-                                    <li><a className="dropdown-item text-danger" href="#"><i className="zmdi zmdi-delete me-1"></i>Delete</a></li>
-                                </ul>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr className="">
-                        <td className="">
-                            4
-                        </td>
-                        <td className="pt-3 pb-3">
-                            <span className="u_image float-left mr-2"><img src="images/jpg.png"
-                                    alt="user" className="rounded" width="36" /></span>
-                            <span className="float-left">
-                                <span className="float-left nowrap-w220"><b> Rail Corporation Delhi
-                                        Metro</b> - </span><br />
-                                <small>File Size :-105kb</small>
-                            </span>
-                        </td>
-                        <td>Policies</td>
-                        <td className="col-grey"> 13/06/2021</td>
-                        <td>JPEG</td>
-                        <td>
-                           <div className="dropdown">
-                                <button className="btn dropdown-toggle"style={{boder:"0px"}} type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                <Image src={menuImage} alt="user" width={"5"} height={"21"} />
-                                </button>
-                                <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                    <li><a className="dropdown-item col-green" href="javascript:void(0);" data-bs-toggle="modal"><i className="zmdi zmdi-download me-1"></i>Download</a></li>
-                                    <li><a className="dropdown-item col-blue" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#addmydoc"><i className="zmdi zmdi-edit me-1"></i>Edit</a></li>
-                                    <li><a className="dropdown-item text-danger" href="#"><i className="zmdi zmdi-delete me-1"></i>Delete</a></li>
-                                </ul>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr className="">
-                        <td className="">
-                            5
-                        </td>
-                        <td className="pt-3 pb-3">
-                            <span className="u_image float-left mr-2"><img src="images/png.png"
-                                    alt="user" className="rounded" width="36" /></span>
-                            <span className="float-left">
-                                <span className="float-left nowrap-w220"><b> Metro Rail Corporation
-                                    </b> - </span><br />
-                                <small>File Size :- 12mb</small>
-                            </span>
-                        </td>
-                        <td>Policies</td>
-                        <td className="col-grey"> 03/06/2021</td>
-                        <td>PNG</td>
-                        <td>
-                           <div className="dropdown">
-                                <button className="btn dropdown-toggle"style={{boder:"0px"}} type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                <Image src={menuImage} alt="user" width={"5"} height={"21"} />
-                                </button>
-                                <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                    <li><a className="dropdown-item col-green" href="javascript:void(0);" data-bs-toggle="modal"><i className="zmdi zmdi-download me-1"></i>Download</a></li>
-                                    <li><a className="dropdown-item col-blue" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#addmydoc"><i className="zmdi zmdi-edit me-1"></i>Edit</a></li>
-                                    <li><a className="dropdown-item text-danger" href="#"><i className="zmdi zmdi-delete me-1"></i>Delete</a></li>
-                                </ul>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr className="">
-                        <td className="">
-                            1
-                        </td>
-                        <td className="pt-3 pb-3">
-                            <span className="u_image float-left mr-2"><img src="images/pdf.png"
-                                    alt="user" className="rounded" width="36" /></span>
-                            <span className="float-left">
-                                <span className="float-left nowrap-w220"><b>Yonger than Yestarday
-                                    </b> - Delhi Metro Rail Corporation</span><br />
-                                <small>File Size :- 5mb</small>
-                            </span>
-                        </td>
-                        <td>Policies</td>
-                        <td className="col-grey"> 03/06/2021</td>
-                        <td>PDF</td>
-                        <td>
-                           <div className="dropdown">
-                                <button className="btn dropdown-toggle"style={{boder:"0px"}} type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                <Image src={menuImage} alt="user" width={"5"} height={"21"} />
-                                </button>
-                                <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                    <li><a className="dropdown-item col-green" href="javascript:void(0);" data-bs-toggle="modal"><i className="zmdi zmdi-download me-1"></i>Download</a></li>
-                                    <li><a className="dropdown-item col-blue" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#addmydoc"><i className="zmdi zmdi-edit me-1"></i>Edit</a></li>
-                                    <li><a className="dropdown-item text-danger" href="#"><i className="zmdi zmdi-delete me-1"></i>Delete</a></li>
-                                </ul>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr className="">
-                        <td className="">
-                            2
-                        </td>
-                        <td className="pt-3 pb-3">
-                            <span className="u_image float-left mr-2"><img src="images/word.png"
-                                    alt="user" className="rounded" width="36" /></span>
-                            <span className="float-left">
-                                <span className="float-left nowrap-w220"><b>Delhi Metro Rail
-                                        Corporation </b> - </span><br />
-                                <small>File Size :- 5mb</small>
-                            </span>
-                        </td>
-                        <td>Policies</td>
-                        <td className="col-grey"> 03/06/2021</td>
-                        <td>world</td>
-                        <td>
-                           <div className="dropdown">
-                                <button className="btn dropdown-toggle"style={{boder:"0px"}} type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                <Image src={menuImage} alt="user" width={"5"} height={"21"} />
-                                </button>
-                                <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                    <li><a className="dropdown-item col-green" href="javascript:void(0);" data-bs-toggle="modal"><i className="zmdi zmdi-download me-1"></i>Download</a></li>
-                                    <li><a className="dropdown-item col-blue" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#addmydoc"><i className="zmdi zmdi-edit me-1"></i>Edit</a></li>
-                                    <li><a className="dropdown-item text-danger" href="#"><i className="zmdi zmdi-delete me-1"></i>Delete</a></li>
-                                </ul>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr className="">
-                        <td className="">
-                            3
-                        </td>
-                        <td className="pt-3 pb-3">
-                            <span className="u_image float-left mr-2"><img src="images/exel.png"
-                                    alt="user" className="rounded" width="36" /></span>
-                            <span className="float-left">
-                                <span className="float-left nowrap-w220"><b> Metro Rail Corporation
-                                    </b> - </span><br />
-                                <small>File Size :- 120kb</small>
-                            </span>
-                        </td>
-                        <td>Policies</td>
-                        <td className="col-grey"> 03/06/2021</td>
-                        <td>Exel</td>
-                        <td>
-                           <div className="dropdown">
-                                <button className="btn dropdown-toggle"style={{boder:"0px"}} type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                <Image src={menuImage} alt="user" width={"5"} height={"21"} />
-                                </button>
-                                <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                    <li><a className="dropdown-item col-green" href="javascript:void(0);" data-bs-toggle="modal"><i className="zmdi zmdi-download me-1"></i>Download</a></li>
-                                    <li><a className="dropdown-item col-blue" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#addmydoc"><i className="zmdi zmdi-edit me-1"></i>Edit</a></li>
-                                    <li><a className="dropdown-item text-danger" href="#"><i className="zmdi zmdi-delete me-1"></i>Delete</a></li>
-                                </ul>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr className="">
-                        <td className="">
-                            4
-                        </td>
-                        <td className="pt-3 pb-3">
-                            <span className="u_image float-left mr-2"><img src="images/jpg.png"
-                                    alt="user" className="rounded" width="36" /></span>
-                            <span className="float-left">
-                                <span className="float-left nowrap-w220"><b> Rail Corporation Delhi
-                                        Metro</b> - </span><br />
-                                <small>File Size :-105kb</small>
-                            </span>
-                        </td>
-                        <td>Policies</td>
-                        <td className="col-grey"> 13/06/2021</td>
-                        <td>JPEG</td>
-                        <td>
-                           <div className="dropdown">
-                                <button className="btn dropdown-toggle"style={{boder:"0px"}} type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                <Image src={menuImage} alt="user" width={"5"} height={"21"} />
-                                </button>
-                                <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                    <li><a className="dropdown-item col-green" href="javascript:void(0);" data-bs-toggle="modal"><i className="zmdi zmdi-download me-1"></i>Download</a></li>
-                                    <li><a className="dropdown-item col-blue" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#addmydoc"><i className="zmdi zmdi-edit me-1"></i>Edit</a></li>
-                                    <li><a className="dropdown-item text-danger" href="#"><i className="zmdi zmdi-delete me-1"></i>Delete</a></li>
-                                </ul>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr className="">
-                        <td className="">
-                            5
-                        </td>
-                        <td className="pt-3 pb-3">
-                            <span className="u_image float-left mr-2"><img src="images/png.png"
-                                    alt="user" className="rounded" width="36" /></span>
-                            <span className="float-left">
-                                <span className="float-left nowrap-w220"><b> Metro Rail Corporation
-                                    </b> - </span><br />
-                                <small>File Size :- 12mb</small>
-                            </span>
-                        </td>
-                        <td>Policies</td>
-                        <td className="col-grey"> 03/06/2021</td>
-                        <td>PNG</td>
-                        <td>
-                           <div className="dropdown">
-                                <button className="btn dropdown-toggle"style={{boder:"0px"}} type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                <Image src={menuImage} alt="user" width={"5"} height={"21"} />
-                                </button>
-                                <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                    <li><a className="dropdown-item col-green" href="javascript:void(0);" data-bs-toggle="modal"><i className="zmdi zmdi-download me-1"></i>Download</a></li>
-                                    <li><a className="dropdown-item col-blue" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#addmydoc"><i className="zmdi zmdi-edit me-1"></i>Edit</a></li>
-                                    <li><a className="dropdown-item text-danger" href="#"><i className="zmdi zmdi-delete me-1"></i>Delete</a></li>
-                                </ul>
-                            </div>
-                        </td>
-                    </tr>
-
-                </tbody>
-            </table>
+            <table className="table table-bordered overflow-y rwd-table btdr_none mb-3" id="sortable">
+                        <thead className="font_b dnone-mob">
+                            <tr className="font_btd">
+                                <th style={{ width: "30px" }}>
+                                   Sr.No.
+                                </th>
+                                <th> File Name </th>
+                                <th>Folder</th>
+                                <th> Upload Date</th>
+                                <th>File Type</th>
+                                <th style={{width:'50px'}}>Action</th>
+                            </tr>
+                        </thead>
+                      <tbody>
+                          
+   {res && res.length > 0 && res[3].files_info != "" ? res && res.length > 0 && res[3].files_info.map((fl, i) => (
+                                    <tr key={i} className="">
+                                        <td className="">
+                                            {fl.ROWNUMBER}
+                                        
+                                        </td>
+                                        <td className="pt-3 pb-3">
+                                            
+                                            {ext === 'jpg' || ext === 'jpeg' ? <>
+                                                <span className="u_image float-left mr-2">
+                                                    <img src="images/jpg.png" alt="user" className="rounded" width="36" />
+                                                </span>
+                                            </>
+                                                :
+                                                ext === 'pdf' ? <>
+                                                    <span className="u_image float-left mr-2">
+                                                        <img src="images/pdf.png" alt="user" className="rounded" width="36" />
+                                                    </span>
+                                                </>
+                                                    :
+                                                    ext === 'png' ? <>
+                                                        <span className="u_image float-left mr-2">
+                                                            <img src="images/png.png" alt="user" className="rounded" width="36" />
+                                                        </span>
+                                                    </>
+                                                        :
+                                                        ext === 'doc' || ext === 'docx' ? <>
+                                                            <span className="u_image float-left mr-2">
+                                                                <img src="../images/word.png" alt="user" className="rounded" width="36" />
+                                                            </span>
+                                                        </>
+                                                            :
+                                                            ext === 'xls' || ext === 'xlsx' ? <>
+                                                                <span className="u_image float-left mr-2">
+                                                                    <img src="../images/exel.png" alt="user" className="rounded" width="36" />
+                                                                </span>
+                                                            </>
+                                                                : <></>
+                                            }<span className="float-left">
+                                                <span className="float-left col-blue"><b>{fl.file_title}</b></span><br />
+                                            </span>
+                                        </td>
+                                        <td>{"org"+fl.org_uid}</td>
+                                        <td className="col-grey"> {fl.upload_date}</td>
+                                        <td>{ext === 'jpg' || ext === 'jpeg' ? <>
+                                        JPG File
+                                            </>
+                                             :
+                                             ext === 'pdf' ? <>
+                                                PDF Document
+                                             </>
+                                             :
+                                             ext === 'png' ? <>
+                                                PNG File
+                                             </>
+                                              :
+                                              ext === 'doc'|| ext==="docx" ? <>
+                                                 Word document
+                                              </>
+                                               :
+                                               ext === 'xls'|| ext==="xlsx" ? <>
+                                                  Excel Worksheet
+                                               </>
+                                               :<>Some file</>
+                                        }
+                                            </td>
+                                        <td style={{textAlign:'center'}}>
+                                            <div className="btn-group">
+                                                <button type="button" className="btn btn-primary btn-sm dropdown-toggle dr-breakout-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Action <span className="caret"></span></button>
+                   <ul className="dropdown-menu dr-breakout" style={{textAlign:'center'}}>
+                                                    <li className="btn btn-outline-primary btn-sm evt-leads-action" data-action="files" data-request_for="view" data-title={fl.file_title} data-file-name={fl.file_url} data-toggle="tooltip" title="View" > <i className="zmdi zmdi-eye"></i> View</li>
+                                                    &nbsp;<li className="btn btn-danger btn-sm evt-leads-action" data-u_id={fl.u_id} data-file-name={fl.file_url} data-action="files" data-request_for="delete" data-toggle="tooltip" title="Delete" type="button"> <i className="zmdi zmdi-delete"></i> Delete</li>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                )) : <><tr><td colSpan="6">
+                                    <div className="box has-advanced-upload m-1 shadow addmydocbtn">
+                                        <img src="images/setting.png" className="mb-1" />
+                                        <br />
+                                        <h4 className="mb-0"> Add File</h4>
+                                        <button className="btn btn-primary mt-2 mb-3 clickmode" data-target="#addmydoc" data-toggle="modal" ><i className="zmdi zmdi-plus-circle-o-duplicate"></i> Add File</button>
+                                    </div>
+                                </td></tr></>}
+                        </tbody>
+                    </table>
         </div>
     </div>
     </>
