@@ -4295,7 +4295,7 @@ tr:hover .tbl-hde {
 .pd-l-8 {
   padding-left: 8px!important;
 }
-
+td{position: relative;}
 span.tbl-row-btn {
   display: none;
   width: auto;
@@ -4305,7 +4305,7 @@ span.tbl-row-btn {
   margin-top: -8px;
   background: rgba(255, 255, 255, 0.96);
   margin-right: 0px;
-  padding: 5px 5px;
+  padding: 2px 5px;
   z-index: 999;
 }
 
@@ -12519,3 +12519,13 @@ b, strong{font-weight:500!important;}
   letter-spacing: 0.5px;
   text-align: center;
   }
+  .ellipsis {
+    white-space: nowrap;
+    height: 18px;
+    width: 530px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-block;
+  }
+  
+  
