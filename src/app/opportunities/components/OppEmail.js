@@ -25,13 +25,15 @@ const OppEmail = ({ res }) => {
                                                 {msg.message_to}
                                             </span>
                                         </td>
-                                        <td>
-                                            <span className="trgt mr-1 float-left">
-                                                <a className="badge badge-info">Label</a>
-                                            </span>
-                                            <span className="wid_head_scond fnt_bld cursor">
-                                                <span className="ellipsisss">{msg.subject}-<span className="ellipsis" style={{ fontWeight: "normal" }}><DynamicHTMLComponent msg={msg.message} /></span></span>
-                                            </span>
+                                        <td>                                          
+                                            <div className="wid_head_scond fnt_bld cursor">
+                                                <div className="ellipsisss">                                                 
+                                                    <p className="ellipsis" style={{ fontWeight: "normal" }}>
+                                                         {msg.subject}-
+                                                        <DynamicHTMLComponent msg={msg.message} />
+                                                    </p>
+                                                </div>
+                                            </div>
                                         </td>
                                         <td>
                                             <small> Read Status:
@@ -44,9 +46,9 @@ const OppEmail = ({ res }) => {
                                             <b className="col-grey float-right">
                                                 <i className="zmdi zmdi-calendar"> </i> {msg.create_date}</b>
                                             <span className="tbl-row-btn">
-                                                <a className="btn btn-sm btn-outline-primary me-1" data-bs-toggle="modal" data-u_id={msg.u_id} data-target="#sms_edit">
+                                                {/* <a className="btn btn-sm btn-outline-primary me-1" data-bs-toggle="modal" data-u_id={msg.u_id} data-target="#sms_edit">
                                                     <i className="zmdi zmdi-archive"></i>
-                                                </a>
+                                                </a> */}
                                                 <a className="btn btn-outline-primary btn-sm open-hover  evt-leads-action" data-action="message" data-request_for="read_status" data-u_id={msg.u_id}>
                                                     {msg.read_status == 1 ? <i className="zmdi zmdi-email-open"></i> : <i className="zmdi zmdi-email"></i>}
                                                 </a>
@@ -54,9 +56,9 @@ const OppEmail = ({ res }) => {
                                             </span>
                                         </td>
                                     </tr>
-                                    : <tr key={i}><td colSpan="5"><center className="fnt_bld">No email found !</center></td></tr>
+                                    : <></>
                             ))
-                            : <tr><td colSpan="5"><center className="fnt_bld">No email found !</center></td></tr>
+                            :<></>
                         }
 
                     </tbody>
