@@ -3,9 +3,7 @@ import React from 'react';
 import Link from "next/link";
 import Image from 'next/image';
 import logo from '../images/logo.png';
-
 import { useState, useEffect } from 'react'
-// import { useRouter } from 'next/router'
 import { useRouter } from 'next/navigation';
 import { getCookie } from 'cookies-next';
 import MdlPasswordSetting from '../model/MdlPasswordSetting';
@@ -20,21 +18,20 @@ const HeaderNav = () => {
       if (initial === 1) {
           setinitial(2);
           var checkCookies = ns_util.checkCookie(ns_util.loginCookieName);
-          // if (checkCookies === undefined || checkCookies === "''")
-          //     router.push("/");
+        
           if((getCookie('signin_token') ==="") ||(getCookie('signin_token') ===undefined)) {
               router.push("/")
             }
-          else {
-           var localJsonData = '{"response_status":"OK","response_msg":"aYdVtXuypWiwfGjI+giZdQ==","error_code":"","token_info":"sHxoyPoImXU=","response":[{"signin_info":[{"user_name":"Jits","user_email":"info@infospry.com","org_user_type":"A","org_id":2,"org_uid":"50002110U212112470"}]},{"modules":[{"module_name":"Dashboard","parent_id":0,"controller_name":"Dashboard","action":"Index","module_route":"Dashboard","icon":"","sub_modules":""},{"module_name":"Opportunities","parent_id":0,"controller_name":"Opportunities","action":"Index","module_route":"Opportunities","icon":"","sub_modules":""},{"module_name":"Sales Pipeline","parent_id":0,"controller_name":"SalesPipeline","action":"Index","module_route":"SalesPipeline","icon":"","sub_modules":""},{"module_name":"Settings","parent_id":0,"controller_name":"Settings","action":"Index","module_route":"Settings","icon":"","sub_modules":""},{"module_name":"Reports","parent_id":0,"controller_name":"Reports","action":"Index","module_route":"Reports","icon":"","sub_modules":[{"module_name":"Login Sessions","parent_id":20,"controller_name":"Reports","action":"LoginSessions","module_route":"Reports/LoginSessions","icon":"zmdi zmdi-account"},{"module_name":"Scheduled Leads","parent_id":20,"controller_name":"Reports","action":"ScheduledLeads","module_route":"Reports/ScheduledLeads","icon":"zmdi zmdi-alarm-check"},{"module_name":"Leads By Status","parent_id":20,"controller_name":"Reports","action":"LeadsByStatus","module_route":"Reports/LeadsByStatus","icon":"zmdi zmdi-info"},{"module_name":"Communication","parent_id":20,"controller_name":"Reports","action":"Communication","module_route":"Reports/Communication","icon":"zmdi zmdi-comment-text"}]},{"module_name":"Calendar","parent_id":0,"controller_name":"EventsCalendar","action":"Index","module_route":"EventsCalendar","icon":"","sub_modules":""},{"module_name":"Sales","parent_id":0,"controller_name":"Sales","action":"Index","module_route":"Sales","icon":"","sub_modules":[{"module_name":"Contacts","parent_id":26,"controller_name":"Sales","action":"Contacts","module_route":"Sales/Contacts","icon":""},{"module_name":"Estimate","parent_id":26,"controller_name":"Sales","action":"Estimate","module_route":"Sales/Estimate","icon":""},{"module_name":"Invoice","parent_id":26,"controller_name":"Sales","action":"Invoice","module_route":"Sales/Invoice","icon":""},{"module_name":"Items","parent_id":26,"controller_name":"Sales","action":"Items","module_route":"Sales/Items","icon":""},{"module_name":"Units","parent_id":26,"controller_name":"Sales","action":"Units","module_route":"Sales/Units","icon":""},{"module_name":"Taxes","parent_id":26,"controller_name":"Sales","action":"Taxes","module_route":"Sales/Taxes","icon":""},{"module_name":"Categories","parent_id":26,"controller_name":"Sales","action":"Categories","module_route":"Sales/Categories","icon":""}]},{"module_name":"Activites","parent_id":0,"controller_name":"Activites","action":"Index","module_route":"Activites","icon":"","sub_modules":""}]},{"events":""}],"data":null}'
-                  var localStorageData = JSON.parse(localJsonData);
-
-           //   var localStorageData = JSON.parse(localStorage.getItem(ns_util.navLocalStorageName));
+          else {                
+                var localStorageData = JSON.parse(localStorage.getItem(ns_util.navLocalStorageName));
+                if (localStorageData !== undefined) {
+                    setMenus(localStorageData.response[1].modules);
+                    setSign_inInfo(localStorageData.response[0].signin_info[0]);
+                }
               if (localStorageData !== undefined) {
                   setMenus(localStorageData.response[1].modules);
                   setSign_inInfo(localStorageData.response[0].signin_info[0]);
-              }
-            //   console.log(JSON.stringify(localStorageData))
+              }           
           }
       }
   })
@@ -67,12 +64,12 @@ const HeaderNav = () => {
                      
               <div className="user-body bg-secondary p-1 text-center">
                   <div>
-                      <a className="btn btn-light btn-sm" data-bs-toggle="modal" data-target="#password">Change Password</a>
+                      <a className="btn btn-light btn-sm" data-bs-toggle="modal" data-bs-target="#password">Change Password</a>
                   </div>
               </div>
               <div className="user-footer text-center p-1 pb-2 pt-1 d-flex justify-content-center">
-                  <div>
-                      <Link href={"/user-profile"}className="btn btn-primary mr-2 btn-sm">Profile
+                  <div  className="me-2">
+                      <Link href={"/settings"}className="btn btn-primary me-2 btn-sm">Profile
                       </Link>
                   </div>
                   <div>
@@ -124,19 +121,20 @@ const HeaderNav = () => {
                                   <img className="img-thumbnail rounded-circle profileImgBig" alt="User Image"
                                       src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ20gNp9VRFxCE1eMrvYwwIxQp_0zOdxL8BSxC5-igPkuZd0iSbxA&s" />
 
-                                  <p id="header_spanProfilename2" className="profileName">{sign_inInfo.user_name}</p>
+                                      <p id="header_spanProfilename2" className="profileName">{sign_inInfo.user_name}</p>
+                              
                                   <small>
                                       <p id="header_spanType">{sign_inInfo.org_user_type==="SA"?'Super Admin':sign_inInfo.org_user_type==="A"?'Admin':'User'}</p>
                                   </small>
                               </div>
                               <div className="user-body bg-secondary p-1 text-center">
                                   <div>
-                                      <a className="btn btn-light btn-sm" data-bs-toggle="modal" data-target="#password">Change Password</a>
+                                      <a className="btn btn-light btn-sm" data-bs-toggle="modal" data-bs-target="#password">Change Password</a>
                                   </div>
                               </div>
                               <div className="user-footer text-center p-1 pb-2 pt-1 d-flex justify-content-center">
                                   <div>
-                                      <Link href={"/user-profile"}className="btn btn-primary mr-2 btn-sm">Profile
+                                      <Link href={"/settings"}className="btn btn-primary me-2 btn-sm">Profile
                                       </Link>
                                   </div>
                                   <div>
