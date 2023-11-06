@@ -61,7 +61,7 @@ const HeaderNav = () => {
                 <img className="img-thumbnail rounded-circle profileImgBig" alt="User Image"src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ20gNp9VRFxCE1eMrvYwwIxQp_0zOdxL8BSxC5-igPkuZd0iSbxA&s" />
                 <p id="header_spanProfilename2" className="profileName">{sign_inInfo.user_name}</p>
                 <small>
-                    <p id="header_spanType">{sign_inInfo.org_user_type==="SA"?'Super Admin':sign_inInfo.org_user_type==="A"?'Admin':'User'}</p>
+                    <p id="header_spanType">{sign_inInfo.org_user_type==="SA"?'Super Admin':sign_inInfo.org_user_type==="A"?'Admin':'User'} </p>
                 </small>
               </div>
                      
