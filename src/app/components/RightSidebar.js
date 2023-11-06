@@ -12,7 +12,7 @@ const RightSidebar = () =>{
                 </Link>
             </li>
             <li className="nav-item">
-                <Link className="nav-link" data-toggle="tab" href="/">
+                <Link className="nav-link" data-toggle="tab" href="#">
                     <i className="zmdi zmdi-comments"></i>
                 </Link>
             </li>

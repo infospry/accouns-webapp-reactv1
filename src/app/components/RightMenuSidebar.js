@@ -1,7 +1,15 @@
 
 import React from 'react';
 import Link from "next/link";
-const RightMenuSidebar = () =>{
+const RightMenuSidebar = () => {    
+
+     const signout=()=>{
+      ns_util.expireCookie(ns_util.loginCookieName);
+     // setCookie(ns_util.loginCookieName, nCookie, 1)
+      deleteCookie(ns_util.loginCookieName);
+      router.push("/login");
+    }
+    
     return (
 
         <>
@@ -16,7 +24,7 @@ const RightMenuSidebar = () =>{
                     <li className="body">
                         <ul className="menu list-unstyled">
                             <li>
-                                <Link href="/">
+                                <Link href="#">
                                     <div className="icon-circle bg-blue">
                                         <i className="zmdi zmdi-account"></i>
                                     </div>
@@ -29,7 +37,7 @@ const RightMenuSidebar = () =>{
                             </li>
                             
                             <li>
-                                <Link href="/">
+                                <Link href="#">
                                     <div className="icon-circle bg-red">
                                         <i className="zmdi zmdi-delete"></i>
                                     </div>
@@ -42,7 +50,7 @@ const RightMenuSidebar = () =>{
                                 </Link>
                             </li>
                             <li>
-                                <Link href="/">
+                                <Link href="#">
                                     <div className="icon-circle bg-green">
                                         <i className="zmdi zmdi-edit"></i>
                                     </div>
@@ -55,7 +63,7 @@ const RightMenuSidebar = () =>{
                                 </Link>
                             </li>
                             <li>
-                                <Link href="/">
+                                <Link href="#">
                                     <div className="icon-circle bg-grey">
                                         <i className="zmdi zmdi-comment-text"></i>
                                     </div>
@@ -68,7 +76,7 @@ const RightMenuSidebar = () =>{
                                 </Link>
                             </li>
                             <li>
-                                <Link href="/">
+                                <Link href="#">
                                     <div className="icon-circle bg-purple">
                                         <i className="zmdi zmdi-refresh"></i>
                                     </div>
@@ -81,7 +89,7 @@ const RightMenuSidebar = () =>{
                                 </Link>
                             </li>
                             <li>
-                                <Link href="/">
+                                <Link href="#">
                                     <div className="icon-circle bg-light-blue">
                                         <i className="zmdi zmdi-settings"></i>
                                     </div>
@@ -95,7 +103,7 @@ const RightMenuSidebar = () =>{
                         </ul>
                     </li>
                     <li className="footer">
-                        <Link href="/">View All Notifications</Link>
+                        <Link href="#">View All Notifications</Link>
                     </li>
                 </ul>
             </li>
@@ -105,15 +113,16 @@ const RightMenuSidebar = () =>{
                 </Link>
             </li>
             <li className="nav-item">
-                <Link className="mega-menu"href="/">
+                <Link className="mega-menu"href="#">
                     <i className="zmdi zmdi-email-open"></i>
                 </Link>
             </li>      
             
             <li>
-                <Link href="/sign-in" className="mega-menu" title="Sign Out">
+                {/* <Link href="#" onClick={signout} className="mega-menu" title="Sign Out">
                     <i className="zmdi zmdi-power"></i>
-                </Link>
+                        </Link> */}
+                        <button onClick={signout} className="mega-menu" title="Sign Out">  <i className="zmdi zmdi-power"></i></button>
             </li>
         </ul>
     </div>

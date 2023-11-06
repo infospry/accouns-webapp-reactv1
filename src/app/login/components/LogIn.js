@@ -40,9 +40,11 @@ const LogIn = () =>{
             "log_history": {
                 "browser_name": "", "ip_address": "",
             },
-            "action": "sign-in",
+            "action": "sign-in-v2",
             "action_on": "account"
         }
+     
+
        var serverResponse= await loginUser(signin);
        if (serverResponse.response_status == "OK") {
         $('.spanErrMsg').hide().text('');

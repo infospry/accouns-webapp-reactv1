@@ -40,7 +40,7 @@ const HeaderNav = () => {
       ns_util.expireCookie(ns_util.loginCookieName);
      // setCookie(ns_util.loginCookieName, nCookie, 1)
       deleteCookie(ns_util.loginCookieName);
-      router.push("/");
+      router.push("/login");
   }
   return (
 
@@ -163,7 +163,7 @@ const HeaderNav = () => {
                     <li className="body">
                         <ul className="menu list-unstyled">
                             <li>
-                                <Link href="/">
+                                <Link href="#">
                                     <div className="icon-circle bg-blue">
                                         <i className="zmdi zmdi-account"></i>
                                     </div>
@@ -176,7 +176,7 @@ const HeaderNav = () => {
                             </li>
                             
                             <li>
-                                <Link href="/">
+                                <Link href="#">
                                     <div className="icon-circle bg-red">
                                         <i className="zmdi zmdi-delete"></i>
                                     </div>
@@ -189,7 +189,7 @@ const HeaderNav = () => {
                                 </Link>
                             </li>
                             <li>
-                                <Link href="/">
+                                <Link href="#">
                                     <div className="icon-circle bg-green">
                                         <i className="zmdi zmdi-edit"></i>
                                     </div>
@@ -202,7 +202,7 @@ const HeaderNav = () => {
                                 </Link>
                             </li>
                             <li>
-                                <Link href="/">
+                                <Link href="#">
                                     <div className="icon-circle bg-grey">
                                         <i className="zmdi zmdi-comment-text"></i>
                                     </div>
@@ -215,7 +215,7 @@ const HeaderNav = () => {
                                 </Link>
                             </li>
                             <li>
-                                <Link href="/">
+                                <Link href="#">
                                     <div className="icon-circle bg-purple">
                                         <i className="zmdi zmdi-refresh"></i>
                                     </div>
@@ -241,15 +241,16 @@ const HeaderNav = () => {
                 </Link>
             </li>
             <li className="nav-item">
-                <Link className="mega-menu"href="/">
+                <Link className="mega-menu"href="#">
                     <i className="zmdi zmdi-email-open"></i>
                 </Link>
             </li>      
             
             <li>
-                <Link href="/sign-in" className="mega-menu" title="Sign Out">
+                {/* <Link href="/login" onClick={signout} className="mega-menu" title="Sign Out">
                     <i className="zmdi zmdi-power"></i>
-                </Link>
+                      </Link> */}
+                       <button onClick={signout} className="mega-menu" title="Sign Out">  <i className="zmdi zmdi-power"></i></button>
             </li>
         </ul>
     </div>
