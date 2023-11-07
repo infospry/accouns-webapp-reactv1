@@ -309,7 +309,7 @@ const MdlViewDetail = ({ lead_info = [] }) => {
                             <div className="row m-0">
                                 <div className="col-md-12">
                                     <div className="text-center">
-                                        <button className="btn btn-danger btn-lg" type="button" data-bs-dismiss="modal"><i className="zmdi zmdi-rotate-left">&nbsp;</i>Close</button>
+                                        <button className="btn btn-danger " type="button" data-bs-dismiss="modal"><i className="zmdi zmdi-rotate-left">&nbsp;</i>Close</button>
                                     </div>
                                 </div>
                             </div>

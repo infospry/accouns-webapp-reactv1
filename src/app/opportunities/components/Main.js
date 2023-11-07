@@ -639,9 +639,9 @@ const Main = ({ data = [], pageData = [], CategoryList = [] }) => {
                                                                 </div>
                                                             </div>
                                                             <a className="btn btn btn-primary evt-leads-action ms-1" data-email={res && res.length > 0 && res[0].leads[0].lead_email} data-phone={res && res.length > 0 && res[0].leads[0].lead_phone} data-lead-name={res && res.length > 0 && res[0].leads[0].lead_name} data-action="schedule" data-request_for="open" data-bs-toggle="modal"  data-bs-target="#schedule"><i className="zmdi zmdi-alarm-check">&nbsp;</i>Schedule</a>
-                                                            {res && res.length > 0 && res[0].leads[0].org_user_type === 'A' ?
+                                                            {/* {res && res.length > 0 && res[0].leads[0].org_user_type === 'A' ?
                                                                 <a href="#" className="btn btn btn-outline-primary evt-leads-action ms-1" onClick={getUsersList} data-bs-toggle="modal"  data-bs-target="#convert"><i className="zmdi zmdi-swap"></i> <span className="d-none_small"><b>Convert</b> </span></a> : <></>
-                                                            }
+                                                            } */}
 
                                                             <div className="btn-group">
                                                                 <button className="btn btn-outline-primary dropdown-toggle ms-1" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -753,9 +753,9 @@ const Main = ({ data = [], pageData = [], CategoryList = [] }) => {
                                                         data-bs-target="#fristattempt">Fake Lead</a>
                                                 </div>
                                             </div>
-                                            <a href="#" className="btn btn btn-outline-primary" data-bs-toggle="modal"
+                                            {/* <a href="#" className="btn btn btn-outline-primary" data-bs-toggle="modal"
                                                 data-bs-target="#convert"><i className="zmdi zmdi-swap"></i> <span
-                                                    className="d-none_small"><b>Convert</b> </span></a>
+                                                    className="d-none_small"><b>Convert</b> </span></a> */}
 
                                         </div>
                                     </div>
@@ -1174,7 +1174,7 @@ const Main = ({ data = [], pageData = [], CategoryList = [] }) => {
                                 <div className="text-center">
                                         <a id="btn_submit_lead" className="btn btn-primary btn-lg me-1" onClick={submitLead} data-u_id={"0"} data-action="leads-main" data-request_for="create" data-action-type="lead"><i className="zmdi zmdi-floppy">&nbsp;</i>Save </a>
                                         
-                                    <a id="btn_copytoClip" className="btn btn-primary btn-lg me-1"><i className="zmdi zmdi-copy" style={{margin:'0 15px'}}>&nbsp;</i>Copy to clipboard</a>
+                                    {/* <a id="btn_copytoClip" className="btn btn-primary btn-lg me-1"><i className="zmdi zmdi-copy" style={{margin:'0 15px'}}>&nbsp;</i>Copy to clipboard</a> */}
                                     <a className="btn btn-outline-danger btn-lg" data-bs-dismiss="modal"><i className="zmdi zmdi-close">&nbsp;</i>Close</a>
                                 </div>
                             </div>
@@ -1195,74 +1195,74 @@ const Main = ({ data = [], pageData = [], CategoryList = [] }) => {
  {/* convert Lead */}   
             
         <div className="modal fade mdds" id="convert" tabIndex="-1" role="dialog" aria-labelledby="ModalCenterTitle" aria-hidden="true" data-backdrop="static">
-    <div className="modal-dialog ui-draggable ui-draggable-handle modal-dialog-centered" role="document">
-        <div className="modal-content">
-            <div className="modal-header">
-                <h4 className="modal-title text-center" id="exampleModalLongTitle"><b>Convert Lead</b></h4>
-                <button type="button" className="close" data-bs-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div className="modal-body p-4">
-                <p className="mb-1">
-                    <span className="wd-12px"> Salutation</span>
-                    <span>:</span>
-                    <span id="spnSalutation">{contact.lead_title !== '' ? <>{contact.lead_title}</> : 'NA'}</span>
-                </p>
-                <p className="mb-1">
-                    <span className="wd-12px"> Name</span>
-                    <span>:</span>
-                    <span id="spnName">{contact.lead_name !== '' ? <>{contact.lead_name} &nbsp;</> : 'NA'}</span>
-                </p>
-                <p className="mb-1">
-                    <span className="wd-12px"> Company Name</span>
-                    <span>:</span>
-                    <span id="spnCompanyName">{contact.lead_company_name!== '' ? <>{contact.lead_company_name}</> : 'NA'}</span>
-                </p>
-                <p className="mb-1">
-                    <span className="wd-12px">Display Name</span>
-                    <span>:</span>
-                    <span>{contact.lead_name!== '' ? <>{contact.lead_name}</> : 'NA'}</span>
-                </p>
-                <p className="mb-1">
-                    <span className="wd-12px"> Contact Email</span>
-                    <span>:</span>
-                    <span>{contact.lead_email!== '' ? <>{contact.lead_email}</> : 'NA'}</span>
-                </p>
-                <p className="mb-1">
-                    <span className="wd-12px"> Website</span>
-                    <span>:</span>
-                    <span>{contact.lead_website!== '' ? <>{contact.lead_website}</> : 'NA'}</span>
-                </p>
-                <p className="mb-1">
-                    <span className="wd-12px"> Phone</span>
-                    <span>:</span>
-                    <span>{contact.lead_phone!== '' ? <>{contact.lead_phone}</> : 'NA'}</span>
-                </p>
-                <p className="mb-1">
-                    <span className="wd-12px"> Mobile</span>
-                    <span>:</span>
-                    <span>{contact.lead_mobile!== '' ? <>{contact.lead_mobile}</> : 'NA'}</span>
-                </p>
-                <p><b>Owner of the records: </b></p>
-                <div className="group_lead mb-0">
-                    <select className="custom-select select_f userId" id="ddl_owner">
-                        <option value="0">Choose User</option>
-                        {users && users.map((user,i)=>(
-                            <option key={i} value={user.user_id}>{user.user_name}</option>
-                        ))}
-                    </select>
-                </div>
-            </div>
-            <div className="modal-footer">
-                <div className="text-center">
-                    <button onClick={ConvertLead} className="btn btn-primary" > <i className="zmdi zmdi-swap"></i> Convert </button>
-                    <button className="btn btn-danger" data-bs-dismiss="modal" type="button"><i className="zmdi zmdi-rotate-left"></i> Cancel</button>
+            <div className="modal-dialog ui-draggable ui-draggable-handle modal-dialog-centered" role="document">
+                <div className="modal-content">
+                    <div className="modal-header">
+                        <h4 className="modal-title text-center" id="exampleModalLongTitle"><b>Convert Lead</b></h4>
+                        <button type="button" className="close" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div className="modal-body p-4">
+                        <p className="mb-1">
+                            <span className="wd-12px"> Salutation</span>
+                            <span>:</span>
+                            <span id="spnSalutation">{contact.lead_title !== '' ? <>{contact.lead_title}</> : 'NA'}</span>
+                        </p>
+                        <p className="mb-1">
+                            <span className="wd-12px"> Name</span>
+                            <span>:</span>
+                            <span id="spnName">{contact.lead_name !== '' ? <>{contact.lead_name} &nbsp;</> : 'NA'}</span>
+                        </p>
+                        <p className="mb-1">
+                            <span className="wd-12px"> Company Name</span>
+                            <span>:</span>
+                            <span id="spnCompanyName">{contact.lead_company_name!== '' ? <>{contact.lead_company_name}</> : 'NA'}</span>
+                        </p>
+                        <p className="mb-1">
+                            <span className="wd-12px">Display Name</span>
+                            <span>:</span>
+                            <span>{contact.lead_name!== '' ? <>{contact.lead_name}</> : 'NA'}</span>
+                        </p>
+                        <p className="mb-1">
+                            <span className="wd-12px"> Contact Email</span>
+                            <span>:</span>
+                            <span>{contact.lead_email!== '' ? <>{contact.lead_email}</> : 'NA'}</span>
+                        </p>
+                        <p className="mb-1">
+                            <span className="wd-12px"> Website</span>
+                            <span>:</span>
+                            <span>{contact.lead_website!== '' ? <>{contact.lead_website}</> : 'NA'}</span>
+                        </p>
+                        <p className="mb-1">
+                            <span className="wd-12px"> Phone</span>
+                            <span>:</span>
+                            <span>{contact.lead_phone!== '' ? <>{contact.lead_phone}</> : 'NA'}</span>
+                        </p>
+                        <p className="mb-1">
+                            <span className="wd-12px"> Mobile</span>
+                            <span>:</span>
+                            <span>{contact.lead_mobile!== '' ? <>{contact.lead_mobile}</> : 'NA'}</span>
+                        </p>
+                        <p><b>Owner of the records: </b></p>
+                        <div className="group_lead mb-0">
+                            <select className="custom-select select_f userId" id="ddl_owner">
+                                <option value="0">Choose User</option>
+                                {users && users.map((user,i)=>(
+                                    <option key={i} value={user.user_id}>{user.user_name}</option>
+                                ))}
+                            </select>
+                        </div>
+                    </div>
+                    <div className="modal-footer">
+                        <div className="text-center">
+                            <button onClick={ConvertLead} className="btn btn-primary" > <i className="zmdi zmdi-swap"></i> Convert </button>
+                            <button className="btn btn-danger" data-bs-dismiss="modal" type="button"><i className="zmdi zmdi-rotate-left"></i> Cancel</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
     {/* <!-- :::::::2-16-2020;;;;;;; add model status section              -->      */}
     <div class="modal fade mdds" id="fristattempt" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -1774,6 +1774,23 @@ const Main = ({ data = [], pageData = [], CategoryList = [] }) => {
     </div>
 </div>
 
+<div className="modal right-half md-one" id="ImgFrame" tabIndex="-1" role="dialog" aria-labelledby="shortModal">
+    <div className="modal-dialog ui-draggable ui-draggable-handle" role="document">
+        <div className="modal-content" style={{height:"auto!important"}}>
+            <div className="modal-header bg-blu-lite fixed-top">
+                <button type="button" className="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 className="modal-title" id="myModalLabel2">
+                    <b>  View File</b>
+                </h4>
+            </div>
+            <div className="modal-body">
+                <iframe id="iFrame" src="" style={{ width: "100%", height: "600px" }}></iframe>
+            </div>
+        </div>
+    </div>
+</div>
     {/* <div class="modal right-quater md-one" id="addmydoc" tabindex="-1" aria-labelledby="shortModal" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
