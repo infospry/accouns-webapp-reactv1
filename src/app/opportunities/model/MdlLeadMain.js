@@ -353,7 +353,7 @@ const MdlLeadMainEdit = ({ leadTypeList = [], CategoryList = [],chanelList=[], C
                                                                                                         <label className="lablefilled"><i className={field.cssClass ? field.cssClass : ""}>&nbsp;</i>{field.field_label}</label>
                                                                                                     </>
                                                                                                 }
-                                                                                                {datePicker()}
+                                                                                                {/* {datePicker()} */}
                                                                                             </div>
                                                                                         </> : <></>}
                                                                                     </div>
