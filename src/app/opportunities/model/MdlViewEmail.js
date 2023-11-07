@@ -65,7 +65,7 @@ const MdlEmail = () => {
                 <div className="modal-content" style={{ height: "auto!important" }}>
                     <div className="modal-header bg-blu-lite fixed-top">
                         <button type="button" className="close" data-toggle="modal" data-bs-dismiss="modal" data-target="#delete">
-                            <span aria-hidden="true" data-toggle="modal"  data-target="#discardmail">×</span>
+                            <span aria-hidden="true" data-bs-toggle="modal"  data-bs-target="#discardmail">×</span>
                         </button>
                         <h4 className="modal-title" id="myModalLabel2">
                             <b> <i className="zmdi zmdi-email-open"></i>Send Email</b>
@@ -74,15 +74,15 @@ const MdlEmail = () => {
                     <div className="modal-body pr-0 pl-0 contbody">
                         <div className="row m-0 justify-content-center">
                             <div className="col-md-4 mt-2 mb-1 pt-2 pl-3 pr-3 pb-2">
-                                <div className="custom-control custom-checkbox">
-                                    <input type="checkbox" className="custom-control-input evt-leads-action" data-action="message" data-request_for="email" id="leademail" name="chkleadmsg" value="EMAIL" defaultChecked="checked" />
-                                    <label className="custom-control-label font-18" htmlFor="leademail"> <b>  Email </b></label>
+                                <div className="form-check d-flex align-items-center">
+                                    <input type="checkbox" className="form-check-input evt-leads-action" data-action="message" data-request_for="email" id="leademail" name="chkleadmsg" value="EMAIL" defaultChecked="checked" />
+                                    <label className="form-check-label font-18 ms-2" htmlFor="leademail"> <b>  Email </b></label>
                                 </div>
                             </div>
                             <div className="col-md-4 mt-2 mb-1 pt-2 pl-3 pr-3 pb-2">
-                                <div className="custom-control custom-checkbox">
-                                    <input type="checkbox" className="custom-control-input evt-leads-action" id="leadsms" data-action="message" data-request_for="sms" name="chkleadmsg" value="SMS" />
-                                    <label className="custom-control-label font-18" htmlFor="leadsms"> <b>  SMS</b> </label>
+                                <div className="form-check d-flex align-items-center">
+                                    <input type="checkbox" className="form-check-input evt-leads-action" id="leadsms" data-action="message" data-request_for="sms" name="chkleadmsg" value="SMS" />
+                                    <label className="form-check-label font-18 ms-2" htmlFor="leadsms"> <b>  SMS</b> </label>
                                 </div>
                             </div>
                         </div>
@@ -113,9 +113,9 @@ const MdlEmail = () => {
                                                                 </div>
                                                             </div>
                                                             <div className="body mb-2">
-                                                                <a className="btn btn-primary trig-add" href="#"><i className="zmdi zmdi-file"></i> <strong>Templates</strong></a>
-                                                                <a className="btn btn-primary ml-1 evt-leads-actionn" onClick={showMailTemplate}  type="button" data-toggle="modal" data-target="#modalMailTemplate" href="#"><i className="zmdi zmdi-save"></i> <strong>Save as Template</strong></a>
-                                                                <a href="#" className="btn btn-danger ml-2 float-right" type="button" data-toggle="modal" data-target="#delete"> <i className="zmdi zmdi-close"></i></a>
+                                                                <a className="btn btn-primary trig-add me-1" href="#"><i className="zmdi zmdi-file"></i> <strong>Templates</strong></a>
+                                                                <a className="btn btn-primary ml-1 evt-leads-actionn" onClick={showMailTemplate}  type="button" data-bs-toggle="modal" data-bs-target="#modalMailTemplate" href="#"><i className="zmdi zmdi-save"></i> <strong>Save as Template</strong></a>
+                                                                <a href="#" className="btn btn-danger ml-2 float-right" type="button" data-bs-toggle="modal" data-bs-target="#delete"> <i className="zmdi zmdi-close"></i></a>
                                                             </div>
                                                             <div className="body">
                                                                 <div id="txt_msg" className="summernote-editor">  </div>
@@ -146,8 +146,8 @@ const MdlEmail = () => {
                         <div className="row m-0">
                             <div className="col-md-12">
                                 <div className="text-center">
-                                    <a id="btn_send_msg" className="btn btn-primary btn-lg evt-leads-action" data-action="message" data-request_for="create"><i className="zmdi zmdi-upload">&nbsp;</i>Send </a>
-                                    <button className="btn btn-danger btn-lg" type="button" data-bs-dismiss="modal" data-toggle="modal" data-target="#discardmail"><i className="zmdi zmdi-rotate-left"></i> Cancel</button>
+                                    <a id="btn_send_msg" className="btn btn-primary me-1 evt-leads-action" data-action="message" data-request_for="create"><i className="zmdi zmdi-upload">&nbsp;</i>Send </a>
+                                    <button className="btn btn-danger" type="button" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#discardmail"><i className="zmdi zmdi-rotate-left"></i> Cancel</button>
                                 </div>
                             </div>
                         </div>

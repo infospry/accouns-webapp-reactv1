@@ -77,8 +77,8 @@ const MdlAddStatus = ({ statusList, setStatusList }) => {
                 <div className="row m-0">
                     <div className="col-md-12">
                         <div className="text-center">
-                            <button id="btnSbmtStatus" onClick={addStatus} className="btn btn-primary evt-masters-actionn btn-lg" data-id="0" data-action="lead-status" data-request_for="create" data-type="pipeline"><i className="zmdi zmdi-upload">&nbsp;</i>Save</button>
-                            <a className="btn btn-danger btn-lg" data-bs-dismiss="modal"><i className="zmdi zmdi-rotate-left">&nbsp;</i>Cancel</a>
+                            <button id="btnSbmtStatus" onClick={addStatus} className="btn btn-primary evt-masters-actionn me-1" data-id="0" data-action="lead-status" data-request_for="create" data-type="pipeline"><i className="zmdi zmdi-upload">&nbsp;</i>Save</button>
+                            <a className="btn btn-danger" data-bs-dismiss="modal"><i className="zmdi zmdi-rotate-left">&nbsp;</i>Cancel</a>
                         </div>
                     </div>
                 </div>

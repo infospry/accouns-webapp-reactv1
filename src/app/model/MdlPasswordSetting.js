@@ -59,7 +59,7 @@ const MdlPasswordSetting = () => {
                         <div className="row m-0">
                             <div className="col-md-12">
                                 <div className="text-center">
-                                    <button className="btn btn-primary clickmode" onClick={updatePassword} data-action="change-password" data-request-for="update" type="button"> <i className="zmdi zmdi-upload"></i> Save </button>
+                                    <button className="btn btn-primary clickmode me-1" onClick={updatePassword} data-action="change-password" data-request-for="update" type="button"> <i className="zmdi zmdi-upload"></i> Save </button>
                                     <button className="btn btn-danger"data-bs-dismiss="modal" type="button"><i className="zmdi zmdi-rotate-left"></i> Cancel</button>
                                 </div>
                             </div>

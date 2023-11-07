@@ -12501,9 +12501,7 @@ b, strong{font-weight:500!important;}
     font-size: 18px; 
     margin-bottom: 0px;
   }.btn__centr{padding-left:15px;padding-right:15px;}
-  .formobile a:hover .col-blue, .formobile .btn:hover .col-blue {
-    color:var(--secondary) !important;opacity:0.7;
-  }
+  .formobile a:hover .col-blue, .formobile .btn:hover .col-blue {color:var(--secondary) !important;opacity:0.7;}
   .badgeNumber {
     height: 20px;
   width: 21px;
@@ -12527,5 +12525,128 @@ b, strong{font-weight:500!important;}
     text-overflow: ellipsis;
     display: inline-block;
   }
-  
-  
+  .theme-blue .navbar-right .navbar-nav > li >button:hover {background: var(--primary);}
+  .navbar-right .navbar-nav>li>button {
+    transition:all 0.5s;
+    border-radius:5px;
+    color:#272880;
+    line-height:50px;
+    text-align:center;background:transparent;
+    width:50px;border:0px;
+   } 
+   .navbar-right .navbar-nav>li>button:hover {color:#fff !important}
+   .navbar-right .navbar-nav>li>button i {font-size:20px;vertical-align:middle}
+   /* sales pipeline css */
+.verti_scroll .c_review {
+  max-height: 71.5vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  width: 100%;
+}
+
+.verti_scroll .c_name {
+  line-height: 14px;
+}
+
+.verti_scroll {
+  width: 328px;
+}
+
+  .verti_scroll .c_review li {
+      border: 1px solid #eee;
+      padding: 10px 12px;
+      border-left: 3px solid #aaa;
+      margin-bottom: 1.5px;
+      margin-top: 1.5px;
+      position: relative;
+  }
+
+      .verti_scroll .c_review li:last-child {
+          border-bottom: 1px solid #eee !important;
+      }
+
+.c_review .comment-action {
+  width: 100%
+}
+
+  .c_review .comment-action .c_name {
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+  }
+
+.bdrgreen {
+  border-left: 3px solid green !important
+}
+
+.bdrred {
+  border-left: 3px solid rgb(231, 2, 2) !important
+}
+
+.bdrblue {
+  border-left: 3px solid rgb(6, 70, 245) !important
+}
+
+.bdrgrey {
+  border-left: 3px solid rgb(100, 100, 100) !important
+}
+
+.bdrorange {
+  border-left: 3px solid rgb(231, 125, 3) !important
+}
+
+.verti_scroll .c_review li:before {
+  font-family: Material-Design-Iconic-Font;
+  padding-top: 14px;
+  font-size: 18px;
+  opacity: 0.65;
+  content: '\f2f5';
+  color: #999;
+  float: right;
+  position: absolute;
+  right: 10px;
+}
+
+.verti_scroll .c_review li:hover:before {
+  opacity: 1.00;
+}
+
+.bdrgreen:before {
+  color: green !important;
+}
+
+.bdrred:before {
+  color: rgb(219, 28, 28) !important;
+  content: '\f2f3' !important
+}
+
+.flwid {
+  text-align: center;
+  float: left;
+  width: 100%;
+  visibility: hidden;
+}
+
+.flwid_72 {
+  text-align: center;
+  display: none
+}
+
+td:hover .flwid {
+  visibility: visible;
+}
+
+.verti_scroll:hover .flwid_72 {
+  display: inline
+}
+#template_placeholder a{margin:2px}
+.pipelien td {
+  padding: 8px 5px;
+  vertical-align: top;
+}
+
+.btnview {
+  width: 100%;
+  float: left;
+}

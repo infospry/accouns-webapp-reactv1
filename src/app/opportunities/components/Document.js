@@ -137,11 +137,11 @@ function Document({ res=[] }) {
                                                 <button type="button" className="btn btn-primary btn-sm dropdown-toggle dr-breakout-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Action <span className="caret"></span></button>
                    <ul className="dropdown-menu dr-breakout" style={{ textAlign: 'center' }}>
                        
-                       <li className="btn btn-outline-primary btn-sm evt-leads-action" data-action="files" data-request_for="view" data-title={fl.file_title} data-file-name={fl.file_url} title="View"    data-toggle="modal" data-target="#ImgFrame" > <i className="zmdi zmdi-eye"></i> View</li>
+                       <li className="btn btn-outline-primary btn-sm evt-leads-action" data-action="files" data-request_for="view" data-title={fl.file_title} data-file-name={fl.file_url} title="View"    data-bs-toggle="modal" data-bs-target="#ImgFrame" > <i className="zmdi zmdi-eye"></i> View</li>
                         &nbsp;
-                       <li className="btn btn-outline-primary btn-sm evt-leads-action" data-action="files" data-request_for="view" data-title={fl.file_title} data-file-name={fl.file_url} data-toggle="tooltip" title="View"><i className="zmdi zmdi-download me-1"></i>Download</li>
+                       <li className="btn btn-outline-primary btn-sm evt-leads-action" data-action="files" data-request_for="view" data-title={fl.file_title} data-file-name={fl.file_url} data-bs-toggle="tooltip" title="View"><i className="zmdi zmdi-download me-1"></i>Download</li>
                        
-                                                    &nbsp;<li className="btn btn-danger btn-sm evt-leads-action" data-u_id={fl.u_id} data-file-name={fl.file_url} data-action="files" data-request_for="delete" data-toggle="tooltip" title="Delete" type="button"> <i className="zmdi zmdi-delete"></i></li>
+                                                    &nbsp;<li className="btn btn-danger btn-sm evt-leads-action" data-u_id={fl.u_id} data-file-name={fl.file_url} data-action="files" data-request_for="delete" data-bs-toggle="tooltip" title="Delete" type="button"> <i className="zmdi zmdi-delete"></i></li>
                                                 </ul>
                                             </div>
                                         </td>

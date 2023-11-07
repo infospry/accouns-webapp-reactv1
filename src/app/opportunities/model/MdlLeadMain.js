@@ -85,7 +85,7 @@ const MdlLeadMainEdit = ({ leadTypeList = [], CategoryList = [],chanelList=[], C
                                 <b id="lead_header">Edit Lead</b>
                             </h4>
                         </div>
-                        <div id="leadCreate" className="modal-body pr-0 pl-0 pb-0">
+                        <div id="leadCreate" className="modal-body pe-0 ps-0 pb-0">
                             <span id="span_Orguid" style={{ display: "none" }}></span>
                             <div className="row  m-0">
                                 <div className="col-md-12 pl-0 pr-0">
@@ -95,7 +95,7 @@ const MdlLeadMainEdit = ({ leadTypeList = [], CategoryList = [],chanelList=[], C
                                             <div className="row m-0 justify-content-center mt-3">
                                                 <div className="col-md-4 col-lg-4">
                                                     <div className="card bdr5 mt-0">
-                                                        <div className="header  pt-1 pl-2">
+                                                        <div className="header  pt-1 ps-2">
                                                             <h2><i className="zmdi zmdi-view-dashboard">&nbsp;</i>Lead Type<span className="col-red">*</span></h2>
                                                         </div>
                                                         <div className="body p-2 mb-2">
@@ -112,7 +112,7 @@ const MdlLeadMainEdit = ({ leadTypeList = [], CategoryList = [],chanelList=[], C
                                                 </div>
                                                 <div className="col-md-4 col-lg-4">
                                                     <div className="card bdr5 mt-0">
-                                                        <div className="header  pt-1 pl-2">
+                                                        <div className="header  pt-1 ps-2">
                                                             <h2><i className="zmdi zmdi-view-dashboard">&nbsp;</i>Categories</h2>
                                                         </div>
                                                         <div className="body p-2 mb-2">
@@ -129,7 +129,7 @@ const MdlLeadMainEdit = ({ leadTypeList = [], CategoryList = [],chanelList=[], C
                                                 </div>
                                                 <div className="col-md-4 col-lg-4">
                                                     <div className="card bdr5 mt-0">
-                                                        <div className="header pt-1 pl-2">
+                                                        <div className="header pt-1 ps-2">
                                                             <h2><i className="zmdi zmdi-view-dashboard">&nbsp;</i>Channel </h2>
                                                         </div>
                                                         <div className="body p-2 mb-2">
@@ -146,7 +146,7 @@ const MdlLeadMainEdit = ({ leadTypeList = [], CategoryList = [],chanelList=[], C
                                                 </div>
                                                 <div className="col-md-12 col-lg-12">
                                                     <div className="card bdr5 mt-0">
-                                                        <div className="header pt-2 pl-2">
+                                                        <div className="header pt-2 ps-2">
                                                             <h2><i className="zmdi zmdi-account-box-mail">&nbsp;</i>Basic Details</h2>
                                                         </div>
                                                         <div className="body p-2">
