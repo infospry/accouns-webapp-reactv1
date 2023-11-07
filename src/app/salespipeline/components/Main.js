@@ -4,7 +4,10 @@ import MdlViewDetail from "../model/MdlViewDetail";
 import MdlAddStatus from "../model/MdlAddStatus";
 import { getUserList } from "../../services/dropdownServices";
 import { get, post } from "../../services/api_axios_services";
-import { useState ,useEffect, useRef, useReducer  } from 'react';
+import { useState, useEffect, useRef, useReducer } from 'react';
+import { getCookie } from 'cookies-next';
+import { getData } from '../../services/apiservice';
+
 const Salespipeline = ({ salesList = [] }) => {
     const [statusList, setStatusList] = useState(salesList);
     const [lead_info, setLead_info] = useState([]);
@@ -84,6 +87,7 @@ const submitLead = async (e) => {
     }
     useEffect(() => {
         getLeadsData();
+          getDropdownData();
     }, []);
     
  const getLeadsData = async () => {
@@ -116,6 +120,43 @@ const addStatus=async(e)=>{
                     alertmsg.msg("Message", resp.response_msg, "E");
                 }
                 
+    }
+
+       const getDropdownData = async () => {
+        const lang = getCookie('signin_token');
+        //get lead tpe list
+        var paramsleadType = { "action": "lead-types" };
+        const respLeadType = await getData(paramsleadType, lang, ApiEndPoints.dropdownApi);
+        setLeadTypeList(respLeadType.data.response.lead_types);
+           
+        //get categories list
+        var paramsCategory = { "action": "category", "request_for": "parent" };
+        const respCategory = await getData(paramsCategory, lang, ApiEndPoints.dropdownApi);
+        setCategoryList(respCategory.data.response.category_info);
+
+          
+        //get channel list
+        var paramsCountry = { "action": "location", "request_for": "country-list" };
+        const respCountry = await getData(paramsCountry, lang, ApiEndPoints.dropdownApi);
+        setCountryList(respCountry.data.response.country_list);
+
+        //get channel list
+        var paramsChannel = { "action": "lead-channel" };
+        const respChannel = await getData(paramsChannel, lang, ApiEndPoints.dropdownApi);
+       
+        if (respChannel.response_status === "OK") {
+            setChanelList(respChannel.data.response.lead_channel);
+        }        
+        
+        
+        //get lead_tags and call_status
+        var paramsFIllDropdown = { "action": "filter-ddl", "action_on": "leads_main", "request_for": "" };      
+        const respDdl = await getData(paramsFIllDropdown, lang, ApiEndPoints.opportunity);  
+        if (respDdl.response_status === "OK") {         
+            setLead_tags(respDdl.data.response[0].lead_tags);
+            setCall_status(respDdl.data.response[2].call_status);   
+            setAnswerList(respDdl.data.response[2].call_status);   
+        }
     }
 
 
@@ -168,6 +209,8 @@ const addStatus=async(e)=>{
                                                                             </div>
                                                                             <div className="flwid_72 float-right text-right">
                                                                                 <button
+                                                                                    class="evt-leads-action"
+                                                                                    data-action="leads" data-request_for="add-new" data-action-type="pipeline"
                                                                                     data-status-id={status.status_id}
                                                                                     style={{ cursor: "pointer" }} title="Add new status"data-bs-toggle="modal" data-bs-target="#addNewOpper">
                                                                                     <i className="zmdi zmdi-plus-circle-o-duplicate"></i>

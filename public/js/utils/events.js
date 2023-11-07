@@ -1213,7 +1213,7 @@ ns_leads = {
 }
 /*Name: Org Leads Details Insertion & Settings*/
 ns_leadsMain = {
-    get: function (params) {
+    get: function (params) {     
         var action = params.action;
         params = { json_data: JSON.stringify(params) };
         ns_ajax.get(

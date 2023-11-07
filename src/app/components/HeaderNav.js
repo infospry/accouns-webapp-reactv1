@@ -247,7 +247,7 @@ const HeaderNav = () => {
             </li>      
             
             <li>
-                {/* <Link href="/login" onClick={signout} className="mega-menu" title="Sign Out">
+                {/*  <Link href="/login" onClick={signout} className="mega-menu" title="Sign Out">
                     <i className="zmdi zmdi-power"></i>
                       </Link> */}
                        <button onClick={signout} className="mega-menu" title="Sign Out">  <i className="zmdi zmdi-power"></i></button>

@@ -537,7 +537,9 @@ const Main = ({ data = [], pageData = [], CategoryList = [] }) => {
                                     className="zmdi zmdi-refresh"></i> Refresh</a>
                                 
                                 
-                                <a href="#" className="btn btn-success me-1" data-bs-toggle="modal" data-bs-target="#addNewOpper"><i
+                                        <a href="#" className="btn btn-success me-1 evt-leads-action"
+                                               data-action="leads" data-request_for="add-new" 
+                                            data-bs-toggle="modal" data-bs-target="#addNewOpper"><i
                                     className="zmdi zmdi-plus-circle-o-duplicate"></i> Create Lead</a> 
                             
         
