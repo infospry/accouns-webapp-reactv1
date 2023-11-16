@@ -40,8 +40,8 @@ function Main() {
         <section className="content">
             <div className="body_scroll">
                 <div className="scrolfx">
-                    <div style={{ paddingTop: "12px", paddingLeft:'20px' }} className="booktab d-flex justify-content-between align-items-center bdrb">
-                        <div className="pt-3 pl-3 pb-3 ml-2">
+                    <div className="booktab d-flex justify-content-between align-items-center bdrb p-2">
+                        <div className="">
                             <h2 className="font-bold"><i className="zmdi zmdi-view-dashboard mr-1"></i>Dashboard </h2>
                         </div>
                     

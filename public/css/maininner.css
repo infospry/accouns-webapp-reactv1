@@ -11622,7 +11622,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f5f8f9', end
 .btn-check:focus + .btn-outline-primary, .btn-outline-primary:focus {
   box-shadow: 0 0 0 .25rem rgba(13,110,253,.0)!important;
 }
-.full-width-wrapper { height:100vh}
+.full-width-wrapper { height:100vh;overflow: auto;}
 .full-width-wrapper .group { width: 100%; overflow: hidden; position: relative;}
 .full-width-wrapper .group label {position: absolute; top:18px;color:#313131; font: 400 18px ; cursor: text;transition: .25s ease;}
 .full-width-wrapper .group label i{color:#666;}

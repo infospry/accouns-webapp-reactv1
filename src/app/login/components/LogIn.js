@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { useEffect } from 'react'
 import { useState } from 'react';
 import Head from 'next/head';
+import logo from '../../images/logog.png';
 import { useForm } from 'react-hook-form';
 import { loginUser } from '../../services/auth';
 // import { useRouter } from 'next/router';
@@ -73,8 +74,8 @@ const LogIn = () =>{
             <div className="col-lg-6 col-xl-5 col-md-9 col-sm-10">
 
             <form onSubmit={handleSubmit(login)}  className="card auth_form login_area_hide">
-                    <div className="header text-left">                       
-                        <img className="m-auto" src="images/lgo.png" alt="" width="150px" />
+                    <div className="header text-left"> 
+                    <Image className="m-auto" src={logo} alt="logo" style={{height:"39px",width:"101px"}} />                      
                         <p className="mt-4 mb-0 col-grey"><span className="font-24 col-black">Join as a professional</span> <br/>
                             Free to get started, instant online activation
                         </p>
