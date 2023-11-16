@@ -618,85 +618,31 @@ const Main = ({ data = [], pageData = [], CategoryList = [] }) => {
                         </div>
                         <div className="col-12 col-sm-8 col-md-8 col-lg-9 p-0 bg-white ">
                             <div className="hgtt88 contbody one add_remove">
+                            
                                 <div className="media bder11 p-4 mb-0"style={{borderLeft:"0px",borderRight:"0px"}}>
-                                    <div className="media-body ptag"  style={{minHeight:'140px'}}>
+                                    <div className="media-body ptag"  style={{minHeight:'90px'}}>
                                         <a href="#" className="btn cross_remove">x</a>
                                             {loading ? <span>Loading...<img src='/spin.gif' alt='.' /> </span> : <>
                                                 {res && res.length > 0 ? <>
-                                                    <h5>
-                                                        {res && res.length > 0 && res[0].leads[0].lead_company_name}
-                                                        <span className="float-right  d-none d-lg-block ">
-                                                            <a className="btn btn btn-primary evt-leads-action  ms-1" style={{ backgroundColor: "#0B8054" }} data-bs-toggle="modal" data-bs-target="#contact" data-mobile={res && res.length > 0 && res[0].leads[0].lead_mobile} data-phone={res && res.length > 0 && res[0].leads[0].lead_phone} data-action="notes" data-request_for="answers-list"><i className="zmdi zmdi-phone"></i> Call</a>
-                                                            <a className="btn btn btn-primary evt-leads-action  ms-1" style={{ backgroundColor: "#0893A2" }} data-email={res && res.length > 0 && res[0].leads[0].lead_email} data-mobile={res && res.length > 0 && res[0].leads[0].lead_mobile} data-action="message" data-request_for="open" data-bs-toggle="modal"  data-bs-target="#emailsend"><i className="zmdi zmdi-email-open">&nbsp;</i>Send Mail</a>
-                                                            <div className="btn-group ms-1">
-                                                                <a id="btn_lead_statuses" className="btn btn-primary dropdown-toggle" data-u_id={res && res.length > 0 && res[0].leads[0].u_id} data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><i className="zmdi zmdi-alert-polygon">&nbsp;</i>
-                                                                    <span className="d-none_small">{res && res.length > 0 && res[0].leads[0].lead_status_update !== "" ? res[0].leads[0].lead_status_update : "Status"}</span></a>
-                                                                <div id="ddl_lead_statuses" className="dropdown-menu">
-                                                                    {res && res.length > 0 && res[0].leads[0].status_master_list.map((stats, i) => (
-                                                                        stats.status_type === "button" ?
-                                                                            <a key={i} id={"ddlMenu-" + stats.status_id} style={{ color: stats.color_code }} className="dropdown-item evt-leads-action" data-type={stats.status_type} data-id={stats.status_id} data-action="leads" data-request_for="action-type" data-action-type="lead">{stats.status_name}</a>
-                                                                            :
-                                                                            <a key={i} id={"ddlMenu-" + stats.status_id} style={{ color: stats.color_code }} className="dropdown-item evt-leads-action" data-bs-toggle="modal" data-bs-target="#lead_statuses" data-type={stats.status_type} data-id={stats.status_id} data-action="leads" data-request_for="action-type">{stats.status_name}</a>
-                                                                    ))}
-                                                                </div>
-                                                            </div>
-                                                            <a className="btn btn btn-primary evt-leads-action ms-1" data-email={res && res.length > 0 && res[0].leads[0].lead_email} data-phone={res && res.length > 0 && res[0].leads[0].lead_phone} data-lead-name={res && res.length > 0 && res[0].leads[0].lead_name} data-action="schedule" data-request_for="open" data-bs-toggle="modal"  data-bs-target="#schedule"><i className="zmdi zmdi-alarm-check">&nbsp;</i>Schedule</a>
-                                                            {/* {res && res.length > 0 && res[0].leads[0].org_user_type === 'A' ?
-                                                                <a href="#" className="btn btn btn-outline-primary evt-leads-action ms-1" onClick={getUsersList} data-bs-toggle="modal"  data-bs-target="#convert"><i className="zmdi zmdi-swap"></i> <span className="d-none_small"><b>Convert</b> </span></a> : <></>
-                                                            } */}
-
-                                                            <div className="btn-group">
-                                                                <button className="btn btn-outline-primary dropdown-toggle ms-1" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                                                    Action
-                                                                </button>
-                                                                <div className="dropdown-menu">
-                                                                    {res && res.length > 0 && res[0].leads[0].delete_status === 0 ?
-                                                                        <>
-                                                                            <a className="dropdown-item evt-leads-action" data-u_id={res && res.length > 0 && res[0].leads[0].u_id} data-lead-type={res && res.length > 0 && res[0].leads[0].lead_type} onClick={(e) => showLead(e)} data-bs-toggle="modal"  data-bs-target="#leadmain" ><i className="zmdi zmdi-edit">&nbsp;</i>Edit</a>
-                                                                            <a className="dropdown-item " onClick={(e) => deleteLead(e, res && res.length > 0 && res[0].leads[0])} data-u_id={res && res.length > 0 && res[0].leads[0].u_id} data-delete-status={res && res.length > 0 && res[0].leads[0].delete_status} data-archieve-status={res && res.length > 0 && res[0].leads[0].archieve_status} data-action="leads" data-request_for="delete" data-bs-toggle="tooltip" title="Move to bin"><i className="zmdi zmdi-delete">&nbsp;</i>Delete</a>
-                                                                        </>
-                                                                        : res && res.length > 0 && res[0].leads[0].org_user_type === 'A' ?
-                                                                            <a className="dropdown-item " onClick={deleteLead} data-u_id={res && res.length > 0 && res[0].leads[0].u_id} data-lead-status={res && res.length > 0 && res[0].leads[0].lead_status} data-delete-status={res && res.length > 0 && res[0].leads[0].delete_status} data-archieve-status={res && res.length > 0 && res[0].leads[0].archieve_status} data-action="leads" data-request_for="delete" data-bs-toggle="tooltip" title="Permanent delete this record"><i className="zmdi zmdi-close">&nbsp;</i>Delete</a>
-                                                                            : <></>
-                                                                    }
-                                                                </div>
-                                                            </div>
-                                                                
-                                                        </span>
-                                                    </h5>
-                                                </> : <></>}
-
-                                                
-                                                <p className="mb-1">{res && res.length > 0 && res[0].leads[0].lead_type_name} {res && res.length > 0 ? <>| </> : <></>}
-                                                    <span className="col-black">{res && res.length > 0 && res[0].leads[0].cat_name}</span>
-                                                </p>
-                                                <p className="mb-1">
-                                                    {res && res.length > 0 ? <><i className="zmdi zmdi-city-alt"></i></> : <></>} {res && res.length > 0 && res[0].leads[0].lead_city} {res && res.length > 0 && "," + res[0].leads[0].lead_postcode
-                                                    }
-                                                </p>
-                                                <p className="mb-1">
-                                                        {res && res.length > 0 ? 
-                                                        <><i className="zmdi zmdi-whatsapp col-green" style={{marginRight:'5px'}}></i>
-                                                        </> : <> Not Available</>}
-                                                    {res && res.length > 0 && res[0].leads[0].lead_mobile}   </p>
-                                                <p className="mb-1">
-                                                    {res && res.length > 0 ? <><i className="zmdi zmdi-phone"></i></> : <></>}
-                                                    {res && res.length > 0 && res[0].leads[0].lead_phone}
-                                                    {/* <small className="col-green">  Verified</small>   */}
-                                                    {res && res.length > 0 ? <>
-                                                        <small className={res && res.length > 0 && res[0].leads[0].mobile_status === 1 ? "col-green" : "col-red"}>{res && res.length > 0 && res[0].leads[0].mobile_status === 1 ? " Verified" : " Unverified"}</small>
-                                                    </>
-                                                        : <></>}
-                                                </p>
-                                                {res && res.length > 0 ? <>
-                                                        <p className="mb-1"><i className="zmdi zmdi-email-open"></i> <span id="">{res && res.length > 0 && res[0].leads[0].lead_email}</span> <small className={res && res.length > 0 && res[0].leads[0].email_status === 1 ? "col-green" : "col-red"}>  {res && res.length > 0 && res[0].leads[0].email_status === 1 ? " Verified" : " Unverified"}</small>
-                                                            <span className="float-right col-grey" style={{marginTop:'-36px'}}>
+                                                    <div class="row">
+                                            <div class="col-md-6 mb-2">
+                                                <div class="d-flex justify-content-start align-items-center">    
+                                                    <div class="css-3sr5s988 me-2"><span class="css-19k1nij cs19k1nij"> {res && res.length > 0 && res[0].leads[0].lead_company_name}</span></div>
+                                                    <div>
+                                                        <h5> {res && res.length > 0 && res[0].leads[0].lead_company_name}</h5>
+                                                        <p class="mt-0 mb-0">{res && res.length > 0 && res[0].leads[0].lead_type_name} {res && res.length > 0 ? <>| </> : <></>}
+                                                    <span className="col-black">{res && res.length > 0 && res[0].leads[0].cat_name}</span></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                            {res && res.length > 0 ? <>
+                                                        <p className="mb-0 text-end"><span className="col-grey">
                                                 <b>Publish on:</b> {res && res.length > 0 &&  res[0].leads[0].lead_day_diff}</span></p>
                                                 </>
                                                         : <></>}
-
-                                                    {res && res.length > 0 && res[0].leads.map((item, index) => (
-                                                        <span key={index} id={"clstatus_" + item.u_id} className="lable_show float-right" style={{marginTop:'-30px'}}>
+                                                        {res && res.length > 0 && res[0].leads.map((item, index) => (
+                                                        <p key={index} id={"clstatus_" + item.u_id} className="lable_show  text-end">
                                                             {item.call_status && item.call_status.map((call, index) => (
                                                                 <div key={index}>
                                                                     <span className={(call.lead_note === "Call Back" && call.callback_status === 'Expired') ? "badge bg-danger" : "badge bg-primary"}
@@ -715,8 +661,89 @@ const Main = ({ data = [], pageData = [], CategoryList = [] }) => {
                                                            
                                                                 </div>
                                                             ))}
-                                                        </span>
+                                                        </p>
                                                     ))}
+                                                
+                                            </div>
+                                            <div class="col-md-6 col-lg-4">                                               
+                                                <p className="mb-1">{res && res.length > 0 ? <><i className="zmdi zmdi-phone me-1"></i></> : <></>}
+                                                    {res && res.length > 0 && res[0].leads[0].lead_phone}
+                                                    {/* <small className="col-green">  Verified</small>   */}
+                                                    {res && res.length > 0 ? <>
+                                                        <small className={res && res.length > 0 && res[0].leads[0].mobile_status === 1 ? "col-green" : "col-red"}>{res && res.length > 0 && res[0].leads[0].mobile_status === 1 ? " Verified" : " Unverified"}</small>
+                                                    </>
+                                                        : <></>}</p>
+                                                 {res && res.length > 0 ? <>
+                                                        <p className="mb-1"><i className="zmdi zmdi-email-open me-1"></i> <span id="">{res && res.length > 0 && res[0].leads[0].lead_email}</span> <small className={res && res.length > 0 && res[0].leads[0].email_status === 1 ? "col-green" : "col-red"}>  {res && res.length > 0 && res[0].leads[0].email_status === 1 ? " Verified" : " Unverified"}</small>
+                                                           </p>
+                                                </>
+                                                        : <></>}
+
+                                            </div>
+                                            <div class="col-md-6 col-lg-4">                                                
+                                                <p className="mb-1">
+                                                {res && res.length > 0 ? <><i className="zmdi zmdi-city-alt me-1"></i></> : <></>} {res && res.length > 0 && res[0].leads[0].lead_city} {res && res.length > 0 && "," + res[0].leads[0].lead_postcode
+                                                    }
+                                                 </p>
+                                                <p className="mb-0">
+                                                    <a href="#" className="btn btn-outline-primary btn-sm"><i className="zmdi zmdi-facebook"></i></a>
+                                                    <a href="#" className="btn btn-outline-primary btn-sm me-1 ms-1"><i className="zmdi zmdi-twitter"></i></a>
+                                                    <a href="#" className="btn btn-outline-primary btn-sm"><i className="zmdi zmdi-linkedin"></i></a>
+                                                    {res && res.length > 0 ? 
+                                                        <><a href="#" className="btn btn-outline-primary btn-sm ms-1"><i className="zmdi zmdi-whatsapp"></i></a> 
+
+                                                        </> : <> </>}
+                                                    {/* {res && res.length > 0 && res[0].leads[0].lead_mobile} */}
+                                                
+                                                </p>
+                                            </div>
+                                            
+                                            <div class="col-md-12 col-lg-4  mt-1"> 
+                                            <span className="float-right text-end  d-none d-lg-block ">
+                                                            <a className="btn btn-sm mb-1 btn-primary evt-leads-action  ms-1" style={{ backgroundColor: "#0B8054" }} data-bs-toggle="modal" data-bs-target="#contact" data-mobile={res && res.length > 0 && res[0].leads[0].lead_mobile} data-phone={res && res.length > 0 && res[0].leads[0].lead_phone} data-action="notes" data-request_for="answers-list"><i className="zmdi zmdi-phone"></i> Call</a>
+                                                            <a className="btn btn-sm mb-1 btn-primary evt-leads-action  ms-1" style={{ backgroundColor: "#0893A2" }} data-email={res && res.length > 0 && res[0].leads[0].lead_email} data-mobile={res && res.length > 0 && res[0].leads[0].lead_mobile} data-action="message" data-request_for="open" data-bs-toggle="modal"  data-bs-target="#emailsend"><i className="zmdi zmdi-email-open">&nbsp;</i>Send Mail</a>
+                                                            <div className="btn-group mb-1 ms-1">
+                                                                <a id="btn_lead_statuses" className="btn btn-sm btn-primary dropdown-toggle" data-u_id={res && res.length > 0 && res[0].leads[0].u_id} data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><i className="zmdi zmdi-alert-polygon">&nbsp;</i>
+                                                                    <span className="d-none_small">{res && res.length > 0 && res[0].leads[0].lead_status_update !== "" ? res[0].leads[0].lead_status_update : "Status"}</span></a>
+                                                                <div id="ddl_lead_statuses" className="dropdown-menu">
+                                                                    {res && res.length > 0 && res[0].leads[0].status_master_list.map((stats, i) => (
+                                                                        stats.status_type === "button" ?
+                                                                            <a key={i} id={"ddlMenu-" + stats.status_id} style={{ color: stats.color_code }} className="dropdown-item evt-leads-action" data-type={stats.status_type} data-id={stats.status_id} data-action="leads" data-request_for="action-type" data-action-type="lead">{stats.status_name}</a>
+                                                                            :
+                                                                            <a key={i} id={"ddlMenu-" + stats.status_id} style={{ color: stats.color_code }} className="dropdown-item evt-leads-action" data-bs-toggle="modal" data-bs-target="#lead_statuses" data-type={stats.status_type} data-id={stats.status_id} data-action="leads" data-request_for="action-type">{stats.status_name}</a>
+                                                                    ))}
+                                                                </div>
+                                                            </div>
+                                                            <a className="btn btn-sm btn-primary evt-leads-action ms-1" data-email={res && res.length > 0 && res[0].leads[0].lead_email} data-phone={res && res.length > 0 && res[0].leads[0].lead_phone} data-lead-name={res && res.length > 0 && res[0].leads[0].lead_name} data-action="schedule" data-request_for="open" data-bs-toggle="modal"  data-bs-target="#schedule"><i className="zmdi zmdi-alarm-check">&nbsp;</i>Schedule</a>
+                                                            {/* {res && res.length > 0 && res[0].leads[0].org_user_type === 'A' ?
+                                                                <a href="#" className="btn btn btn-outline-primary evt-leads-action ms-1" onClick={getUsersList} data-bs-toggle="modal"  data-bs-target="#convert"><i className="zmdi zmdi-swap"></i> <span className="d-none_small"><b>Convert</b> </span></a> : <></>
+                                                            } */}
+
+                                                            <div className="btn-group ">
+                                                                <button className="btn btn-sm btn-outline-primary dropdown-toggle ms-1" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                                                    Action
+                                                                </button>
+                                                                <div className="dropdown-menu">
+                                                                    {res && res.length > 0 && res[0].leads[0].delete_status === 0 ?
+                                                                        <>
+                                                                            <a className="dropdown-item evt-leads-action" data-u_id={res && res.length > 0 && res[0].leads[0].u_id} data-lead-type={res && res.length > 0 && res[0].leads[0].lead_type} onClick={(e) => showLead(e)} data-bs-toggle="modal"  data-bs-target="#leadmain" ><i className="zmdi zmdi-edit">&nbsp;</i>Edit</a>
+                                                                            <a className="dropdown-item " onClick={(e) => deleteLead(e, res && res.length > 0 && res[0].leads[0])} data-u_id={res && res.length > 0 && res[0].leads[0].u_id} data-delete-status={res && res.length > 0 && res[0].leads[0].delete_status} data-archieve-status={res && res.length > 0 && res[0].leads[0].archieve_status} data-action="leads" data-request_for="delete" data-bs-toggle="tooltip" title="Move to bin"><i className="zmdi zmdi-delete">&nbsp;</i>Delete</a>
+                                                                        </>
+                                                                        : res && res.length > 0 && res[0].leads[0].org_user_type === 'A' ?
+                                                                            <a className="dropdown-item " onClick={deleteLead} data-u_id={res && res.length > 0 && res[0].leads[0].u_id} data-lead-status={res && res.length > 0 && res[0].leads[0].lead_status} data-delete-status={res && res.length > 0 && res[0].leads[0].delete_status} data-archieve-status={res && res.length > 0 && res[0].leads[0].archieve_status} data-action="leads" data-request_for="delete" data-bs-toggle="tooltip" title="Permanent delete this record"><i className="zmdi zmdi-close">&nbsp;</i>Delete</a>
+                                                                            : <></>
+                                                                    }
+                                                                </div>
+                                                            </div>
+                                                                
+                                                        </span>
+                                            </div>
+                                        </div>  
+                                                   
+                                                </> : <></>}
+
+                                                
+                                               
 
                                             </>}
                                        
