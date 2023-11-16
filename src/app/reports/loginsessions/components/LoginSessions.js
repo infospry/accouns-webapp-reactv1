@@ -5,90 +5,90 @@ import ApiEndPoints from "../../../utils/ApiEndPoints";
 import { get } from "../../../services/api_axios_services";
 import { getData } from "../../../services/apiservice";
 
-// const selectdateRange = (e) => {
-//     daterange();
-// }
+const selectdateRange = (e) => {
+    daterange();
+}
 const LoginSessions = ({ login_sessions = [] }) => {
-    // const [sessionList, setSessionList] = useState(login_sessions);
-    // const [loader, setLoader] = useState(false);
-    // const[searchInput,setSearchInput]=useState();
-    // const loadMoreSessions = async (e) => {
-    //     setLoader(true)
-    //     e.preventDefault();
-    //     var dateRange1 = $('#txt_daterange').val();
-    //     console.log(searchInput)
-    //     console.log(dateRange1.split('-')[0].trim())
-    //     let frmDt="";
-    //     let toDt="";
-    //     if (dateRange1 !==""){
-    //         frmDt=dateRange1.split('-')[0].trim()
-    //         toDt=dateRange1.split('-')[1].trim()
-    //     }
-    //     ns_util.replace_html_in_element("#btnloadMoreLoginSessions", 'Loading...<i class="fa fa-spinner fa-pulse"></i>')
-    //     let offset = sessionList[sessionList.length - 1].ROWNUMBER;
-    //     let total_count = sessionList[sessionList.length - 1].total_count;
-    //     if (offset < total_count) {
-    //         var params = {"str_search": searchInput, "from_date": frmDt, "to_date": toDt, "action": "login-sessions", "request_for": "select", "route": "Reports/LoginSessions", "previous": offset, "next": "10" };
-    //         const response = await get(params, ApiEndPoints.ReportsApi)
-    //         setSessionList([...sessionList, ...response.data.response.report]);
-    //         setLoader(false)
-    //     }
-    // }
-    // const refreshList=async(e)=>{
-    //     setLoader(true)
-    //     setSearchInput("");
-    //     $('#txt_daterange').val('');
-    //     e.preventDefault();
-    //     var params = { "action": "login-sessions", "request_for": "select", "route": "Reports/LoginSessions", "previous": "0", "next": "10" };
-    //     const resp = await get(params, ApiEndPoints.ReportsApi);
-    //     if (resp.response_status === "OK") {
-    //         setSessionList(resp.data.response.report)
-    //         setLoader(false)
-    //     }
-    // }
-    // const searchSession=async(e)=>{
-    //     setLoader(true)
-    //     e.preventDefault();
-    //     var dateRange1 = $('#txt_daterange').val();
-    //     let frmDt="";
-    //     let toDt="";
-    //     if (dateRange1 !== "") {
-    //         frmDt=dateRange1.split('-')[0].trim()
-    //         toDt=dateRange1.split('-')[1].trim()
-    //     }
+    const [sessionList, setSessionList] = useState(login_sessions);
+    const [loader, setLoader] = useState(false);
+    const[searchInput,setSearchInput]=useState();
+    const loadMoreSessions = async (e) => {
+        setLoader(true)
+        e.preventDefault();
+        var dateRange1 = $('#txt_daterange').val();
+        console.log(searchInput)
+        console.log(dateRange1.split('-')[0].trim())
+        let frmDt="";
+        let toDt="";
+        if (dateRange1 !==""){
+            frmDt=dateRange1.split('-')[0].trim()
+            toDt=dateRange1.split('-')[1].trim()
+        }
+        ns_util.replace_html_in_element("#btnloadMoreLoginSessions", 'Loading...<i class="fa fa-spinner fa-pulse"></i>')
+        let offset = sessionList[sessionList.length - 1].ROWNUMBER;
+        let total_count = sessionList[sessionList.length - 1].total_count;
+        if (offset < total_count) {
+            var params = {"str_search": searchInput, "from_date": frmDt, "to_date": toDt, "action": "login-sessions", "request_for": "select", "route": "Reports/LoginSessions", "previous": offset, "next": "10" };
+            const response = await get(params, ApiEndPoints.ReportsApi)
+            setSessionList([...sessionList, ...response.data.response.report]);
+            setLoader(false)
+        }
+    }
+    const refreshList=async(e)=>{
+        setLoader(true)
+        setSearchInput("");
+        $('#txt_daterange').val('');
+        e.preventDefault();
+        var params = { "action": "login-sessions", "request_for": "select", "route": "Reports/LoginSessions", "previous": "0", "next": "10" };
+        const resp = await get(params, ApiEndPoints.ReportsApi);
+        if (resp.response_status === "OK") {
+            setSessionList(resp.data.response.report)
+            setLoader(false)
+        }
+    }
+    const searchSession=async(e)=>{
+        setLoader(true)
+        e.preventDefault();
+        var dateRange1 = $('#txt_daterange').val();
+        let frmDt="";
+        let toDt="";
+        if (dateRange1 !== "") {
+            frmDt=dateRange1.split('-')[0].trim()
+            toDt=dateRange1.split('-')[1].trim()
+        }
         
-    //     var params = {"str_search": searchInput, "from_date": frmDt, "to_date": toDt, "action": "login-sessions", "request_for": "select", "route": "Reports/LoginSessions", "previous": "0", "next": "10" };
-    //         const response = await get(params, ApiEndPoints.ReportsApi)
-    //         if(response.data.response.report !=='')
-    //         setSessionList(response.data.response.report);
-    //         else{
-    //             setSessionList([])
-    //         }
-    //         setLoader(false)
-    // }
-    // useEffect(() => {
-    //     if (sessionList !== undefined) {
-    //         if (sessionList.length > 0) {
-    //             // ns_util.trigger_click("#lead_"+leads[0].u_id)
-    //             let offset = sessionList[sessionList.length - 1].ROWNUMBER;
-    //             let total_count = sessionList[sessionList.length - 1].total_count;
+        var params = {"str_search": searchInput, "from_date": frmDt, "to_date": toDt, "action": "login-sessions", "request_for": "select", "route": "Reports/LoginSessions", "previous": "0", "next": "10" };
+            const response = await get(params, ApiEndPoints.ReportsApi)
+            if(response.data.response.report !=='')
+            setSessionList(response.data.response.report);
+            else{
+                setSessionList([])
+            }
+            setLoader(false)
+    }
+    useEffect(() => {
+        if (sessionList !== undefined) {
+            if (sessionList.length > 0) {
+                // ns_util.trigger_click("#lead_"+leads[0].u_id)
+                let offset = sessionList[sessionList.length - 1].ROWNUMBER;
+                let total_count = sessionList[sessionList.length - 1].total_count;
                 
-    //             if (offset < total_count) {
-    //                 ns_util.replace_html_in_element("#btnloadMoreLoginSessions", "Load more")
-    //                 ns_util.show_element("#btnloadMoreLoginSessions");
-    //             }
-    //             else {
-    //                 ns_util.hide_element("#btnloadMoreLoginSessions");
-    //             }
-    //         }
-    //         else {
-    //             ns_util.hide_element("#btnloadMoreLoginSessions");
-    //         }
-    //     }
-    //     else {
-    //         setLoader(false);
-    //     }
-    // })
+                if (offset < total_count) {
+                    ns_util.replace_html_in_element("#btnloadMoreLoginSessions", "Load more")
+                    ns_util.show_element("#btnloadMoreLoginSessions");
+                }
+                else {
+                    ns_util.hide_element("#btnloadMoreLoginSessions");
+                }
+            }
+            else {
+                ns_util.hide_element("#btnloadMoreLoginSessions");
+            }
+        }
+        else {
+            setLoader(false);
+        }
+    })
 
     return (
         <>
@@ -113,7 +113,7 @@ const LoginSessions = ({ login_sessions = [] }) => {
                                 </div>
                                 <ReportsMenu />
                                 <div className="inbox right mt-0">
-                                    {/*<div className="i_action d-flex justify-content-between align-items-center bdrt0 mt-1 p-0">
+                                    <div className="i_action d-flex justify-content-between align-items-center bdrt0 mt-1 p-0">
                                          <div className="bdbdtn">
                                             <div className="btn-group mt-9px ms-2 ps-3 mt-0 bdrl hidden-xs">
                                                 <div className="input-group">
@@ -134,24 +134,24 @@ const LoginSessions = ({ login_sessions = [] }) => {
                                             </div>
                                             {loader && <span>Loading...</span>}
                                         </div> 
-                                    </div>*/}
+                                    </div>
                                     <div class="bdrb d-flex justify-content-between align-items-center p-2" style={{borderTop:"0px"}}>
-    <div class="bdbdtn">
-        <div class="btn-group mt-0 bdrl hidden-xs">
-            <div class="input-group"><input type="text" id="txt_userinput" class="form-control"
-                    placeholder="Search by user" autocomplete="off" value="" />&nbsp;<input id="txt_daterange"
-                    type="text" class="form-control daterange" placeholder="Search by date range" />
-                    <div class="input-group-append"><a id="btnSearch" class="input-group-text btn-outline-secondary "
-                        data-action="login-sessions" data-request-for="filter">Search</a></div>
-            </div>
-        </div>
-        
-    </div>
-    <div class="bdbdtn">
-        <div class="btn-group"><button class="btn btn-outline-primary "><i
-                    class="zmdi zmdi-rotate-left">&nbsp;</i>Refresh</button></div>
-    </div>
-</div>
+                                        <div class="bdbdtn">
+                                            <div class="btn-group mt-0 bdrl hidden-xs">
+                                                <div class="input-group"><input type="text" id="txt_userinput" class="form-control"
+                                                        placeholder="Search by user" autocomplete="off" value="" />&nbsp;<input id="txt_daterange"
+                                                        type="text" class="form-control daterange" placeholder="Search by date range" />
+                                                        <div class="input-group-append"><a id="btnSearch" class="input-group-text btn-outline-secondary "
+                                                            data-action="login-sessions" data-request-for="filter">Search</a></div>
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="bdbdtn">
+                                            <div class="btn-group"><button class="btn btn-outline-primary "><i
+                                                        class="zmdi zmdi-rotate-left">&nbsp;</i>Refresh</button></div>
+                                        </div>
+                                    </div>
                                     <div className="p-2">
                                         <div className="card bdr5 p-1">
                                             {/* <div className="table-responsive">
