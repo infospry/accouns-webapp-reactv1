@@ -106,6 +106,7 @@ const HeaderNav = () => {
                                 </>}
                         </li>
                     ))}
+                    <li class="dropdown"><a class="nav-link" href="/projects">Projects</a></li>
                 </ul>
                 <ul className="nav navbar-nav floatmargint lg_none">
                     {sign_inInfo !== undefined?<>

@@ -134,7 +134,7 @@ function Document({ res=[] }) {
              <td className="col-grey"> {fl.upload_date}</td>
                                         <td style={{textAlign:'center'}}>
                                             <div className="btn-group">
-                                                <button type="button" className="btn btn-primary btn-sm dropdown-toggle dr-breakout-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Action <span className="caret"></span></button>
+                                                <button type="button" className="btn btn-primary btn-sm dropdown-toggle dr-breakout-btn" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Action <span className="caret"></span></button>
                    <ul className="dropdown-menu dr-breakout" style={{ textAlign: 'center' }}>
                        
                        <li className="btn btn-outline-primary btn-sm evt-leads-action" data-action="files" data-request_for="view" data-title={fl.file_title} data-file-name={fl.file_url} title="View"    data-bs-toggle="modal" data-bs-target="#ImgFrame" > <i className="zmdi zmdi-eye"></i> View</li>
@@ -151,7 +151,7 @@ function Document({ res=[] }) {
                                         <img src="images/setting.png" className="mb-1" />
                                         <br />
                                         <h4 className="mb-0"> Add File</h4>
-                                        <button className="btn btn-primary mt-2 mb-3 clickmode" data-bs-target="#addmydoc" data-toggle="modal" ><i className="zmdi zmdi-plus-circle-o-duplicate"></i> Add File</button>
+                                        <button className="btn btn-primary mt-2 mb-3 clickmode" data-bs-target="#addmydoc" data-bs-toggle="modal" ><i className="zmdi zmdi-plus-circle-o-duplicate"></i> Add File</button>
                                     </div>
                                 </td></tr></>}
                         </tbody>

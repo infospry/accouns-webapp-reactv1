@@ -89,7 +89,7 @@ const Main = ({ data = [], pageData = [], CategoryList = [] }) => {
                         "  </div>" +
                         "</td>" +
                         "<td>" +
-                        "<span class='table-remove btn btn-danger evt-leads-action' data-action='leads' data-request_for='delete-custom-fields' data-toggle='tooltip' title='Delete this row'><i class='zmdi zmdi-delete'></i></span>" +
+                        "<span class='table-remove btn btn-danger evt-leads-action' data-action='leads' data-request_for='delete-custom-fields' data-bs-toggle='tooltip' title='Delete this row'><i class='zmdi zmdi-delete'></i></span>" +
                         "</td></tr>";
                     $("#tblCustomFields").append(newRow);
                     $('#addmorefield').attr('data-cntr', cntr);
@@ -639,8 +639,7 @@ const Main = ({ data = [], pageData = [], CategoryList = [] }) => {
                                             {res && res.length > 0 ? <>
                                                         <p className="mb-0 text-end"><span className="col-grey">
                                                 <b>Publish on:</b> {res && res.length > 0 &&  res[0].leads[0].lead_day_diff}</span></p>
-                                                </>
-                                                        : <></>}
+                                                </>: <></>}
                                                         {res && res.length > 0 && res[0].leads.map((item, index) => (
                                                         <p key={index} id={"clstatus_" + item.u_id} className="lable_show  text-end">
                                                             {item.call_status && item.call_status.map((call, index) => (
@@ -1168,7 +1167,7 @@ const Main = ({ data = [], pageData = [], CategoryList = [] }) => {
                                                                                 <label className="lablefilled"> Label</label>
                                                                             </div>
                                                                         </td>
-                                                                        <td><span id="addmorefield" className="table-add btn btn-primary mb-4 evt-leads-action" data-action="leads" data-request_for="add-custom-fields" data-cntr="0" data-toggle="tooltip" title="Add more">Add more+</span></td>
+                                                                        <td><span id="addmorefield" className="table-add btn btn-primary mb-4 evt-leads-action" data-action="leads" data-request_for="add-custom-fields" data-cntr="0" data-bs-toggle="tooltip" title="Add more">Add more+</span></td>
                                                                     </tr>
                                                                 </tbody>
                                                             </table>
@@ -1794,7 +1793,7 @@ const Main = ({ data = [], pageData = [], CategoryList = [] }) => {
                             <a className="btn btn-primary btn-lg evt-leads-action fileupload" style={{display:"none"}} data-action="files" data-request_for="upload" data-u_id="0">
                                 <i className="zmdi zmdi-upload">&nbsp;</i>Save
                             </a>
-                            <button className="btn btn-danger btn-lg" type="button" data-toggle="modal" data-bs-dismiss="modal"><i className="zmdi zmdi-rotate-left"></i> Cancel</button>
+                            <button className="btn btn-danger btn-lg" type="button" data-bs-toggle="modal" data-bs-dismiss="modal"><i className="zmdi zmdi-rotate-left"></i> Cancel</button>
                         </div>
                     </div>
                 </div>
