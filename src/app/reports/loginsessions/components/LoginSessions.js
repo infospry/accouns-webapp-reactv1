@@ -113,7 +113,7 @@ const LoginSessions = ({ login_sessions = [] }) => {
                                 </div>
                                 <ReportsMenu />
                                 <div className="inbox right mt-0">
-                                    <div className="i_action d-flex justify-content-between align-items-center bdrt0 mt-1 p-0">
+                                    {/* <div className="i_action d-flex justify-content-between align-items-center bdrt0 mt-1 p-0">
                                          <div className="bdbdtn">
                                             <div className="btn-group mt-9px ms-2 ps-3 mt-0 bdrl hidden-xs">
                                                 <div className="input-group">
@@ -134,27 +134,27 @@ const LoginSessions = ({ login_sessions = [] }) => {
                                             </div>
                                             {loader && <span>Loading...</span>}
                                         </div> 
-                                    </div>
+                                    </div> */}
                                     <div class="bdrb d-flex justify-content-between align-items-center p-2" style={{borderTop:"0px"}}>
                                         <div class="bdbdtn">
                                             <div class="btn-group mt-0 bdrl hidden-xs">
-                                                <div class="input-group"><input type="text" id="txt_userinput" class="form-control"
-                                                        placeholder="Search by user" autocomplete="off" value="" />&nbsp;<input id="txt_daterange"
-                                                        type="text" class="form-control daterange" placeholder="Search by date range" />
-                                                        <div class="input-group-append"><a id="btnSearch" class="input-group-text btn-outline-secondary "
-                                                            data-action="login-sessions" data-request-for="filter">Search</a></div>
+                                                <div class="input-group"><input type="text" id="txt_userinput"
+                                                     onChange={(e)=>setSearchInput(e.target.value)} value={searchInput}
+                                                       className="form-control" placeholder="Search by user" autoComplete="off" />&nbsp;<input id="txt_daterange" type="text" className="form-control daterange" 
+                                                        onFocus={selectdateRange} placeholder="Search by date range" />
+                                                        <div class="input-group-append"><a id="btnSearch" class="input-group-text btn-outline-secondary " onClick={searchSession} data-action="login-sessions" data-request-for="filter">Search</a></div>
                                                 </div>
                                             </div>
                                             
                                         </div>
                                         <div class="bdbdtn">
-                                            <div class="btn-group"><button class="btn btn-outline-primary "><i
-                                                        class="zmdi zmdi-rotate-left">&nbsp;</i>Refresh</button></div>
+                                            <div class="btn-group"><button class="btn btn-outline-primary "onClick={refreshList} data-action="login-sessions"  type="button"> <i className="zmdi zmdi-rotate-left"></i><span>Refresh</span></button></div>
                                         </div>
                                     </div>
+                                    {loader && <span>Loading...</span>}
                                     <div className="p-2">
                                         <div className="card bdr5 p-1">
-                                            {/* <div className="table-responsive">
+                                        <div className="table-responsive">
                                                 <table className="table table-hover rwd-table btdr_none mb-0" id="sortable">
                                                     <thead className="dnone-mob">
                                                         <tr className="font_btd">
@@ -190,13 +190,12 @@ const LoginSessions = ({ login_sessions = [] }) => {
                                                 </div>
                                             </div>
                                             {sessionList.length < 1 &&
-                                                <div className="text-center pt-2 pb-4 ps-4 mt-5">
+                                                <div className="text-center pt-2 pb-4 pl-4 mt-5">
                                                     <h5><span style={{ color: "red" }}>Sorry! no record found!</span></h5>
                                                 </div>
-                                            } */}
+                                            }
 
 
-                                            <div class="table-responsive"><table class="table table-hover rwd-table btdr_none mb-0" id="sortable"><thead class="dnone-mob"><tr class="font_btd"><th>#</th><th class="pt-3 pb-3">Session Type</th><th>Session Date</th><th>Session Time</th><th>User Name</th><th>Browser Name</th></tr></thead><tbody><tr><td>1</td><td class="pt-3 pb-3 bold">Login</td><td class="col-grey">08/11/2023</td><td class="col-grey">07:58</td><td>Jitender Singh</td><td>Microsoft Windows NT 10.0.14393.0 | Firefox | Firefox119 | Version: 119.0</td></tr><tr><td>2</td><td class="pt-3 pb-3 bold">Login</td><td class="col-grey">08/11/2023</td><td class="col-grey">05:08</td><td>Jitender Singh</td><td>Microsoft Windows NT 10.0.14393.0 | Firefox | Firefox119 | Version: 119.0</td></tr><tr><td>3</td><td class="pt-3 pb-3 bold">Login</td><td class="col-grey">07/11/2023</td><td class="col-grey">10:27</td><td>Jitender Singh</td><td>Microsoft Windows NT 10.0.14393.0 | Firefox | Firefox119 | Version: 119.0</td></tr><tr><td>4</td><td class="pt-3 pb-3 bold">Login</td><td class="col-grey">07/11/2023</td><td class="col-grey">10:15</td><td>Jitender Singh</td><td>Microsoft Windows NT 10.0.14393.0 | Firefox | Firefox119 | Version: 119.0</td></tr><tr><td>5</td><td class="pt-3 pb-3 bold">Login</td><td class="col-grey">07/11/2023</td><td class="col-grey">10:15</td><td>Jitender Singh</td><td>Microsoft Windows NT 10.0.14393.0 | Chrome | Chrome116 | Version: 116.0</td></tr><tr><td>6</td><td class="pt-3 pb-3 bold">Login</td><td class="col-grey">07/11/2023</td><td class="col-grey">09:11</td><td>Jitender Singh</td><td>Microsoft Windows NT 10.0.14393.0 | Firefox | Firefox119 | Version: 119.0</td></tr><tr><td>7</td><td class="pt-3 pb-3 bold">Login</td><td class="col-grey">07/11/2023</td><td class="col-grey">08:31</td><td>Jitender Singh</td><td>Microsoft Windows NT 10.0.14393.0 | Chrome | Chrome116 | Version: 116.0</td></tr><tr><td>8</td><td class="pt-3 pb-3 bold">Login</td><td class="col-grey">07/11/2023</td><td class="col-grey">08:28</td><td>Jitender Singh</td><td>Microsoft Windows NT 10.0.14393.0 | Chrome | Chrome116 | Version: 116.0</td></tr><tr><td>9</td><td class="pt-3 pb-3 bold">Login</td><td class="col-grey">07/11/2023</td><td class="col-grey">05:33</td><td>Jitender Singh</td><td>Microsoft Windows NT 10.0.14393.0 | Firefox | Firefox119 | Version: 119.0</td></tr><tr><td>10</td><td class="pt-3 pb-3 bold">Login</td><td class="col-grey">07/11/2023</td><td class="col-grey">04:39</td><td>Jitender Singh</td><td>Microsoft Windows NT 10.0.14393.0 | Firefox | Firefox119 | Version: 119.0</td></tr></tbody></table><div class="text-center"><a id="btnloadMoreLoginSessions" class="btn btn-outline-primary mt-3 mb-4 evt-reports-actionnn"  data-action="login-sessions" data-request-for="load-more" data-cnt="${count}" data-previous="${previous}">Load more</a></div></div>
                                         </div>
                                     </div>
                                 </div>

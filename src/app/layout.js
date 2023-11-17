@@ -35,7 +35,7 @@ export default function RootLayout({ children }) {
       <Script async src="js/bootstrap.bundle.min.js"></Script>
       <Script async src="js/custom.js"strategy='lazyOnload'></Script>   
       <script async src="js/utils/newCustom.js" strategy='lazyOnload'></script>
-      <script async src="js/utils/utility.js" strategy='lazyOnload'></script>
+      <script async src="js/utils/utility.js" strategy=''></script>
       <script async src="js/utils/events.js" strategy='lazyOnload'></script>
       <script async src="js/utils/account.js" strategy='lazyOnload'></script>
       <ToastContainer />

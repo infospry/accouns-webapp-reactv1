@@ -14,6 +14,52 @@ import { useRouter } from 'next/navigation'
 import { setCookie } from 'cookies-next';
 
 const LogIn = () =>{
+//#region 
+
+const [forgotPassVisible, setForgotPassVisible] = useState(false);
+
+const handleForgotPasswordClick = () => {
+  setForgotPassVisible(true);
+
+  // Hide the login_area_hide element
+  const loginArea = document.querySelector('.login_area_hide');
+  if (loginArea) {
+    loginArea.style.display = 'none';
+  }
+};
+
+
+const [resetAreaVisible, setResetAreaVisible] = useState(false);
+
+const handleResetLinkClick = () => {
+  setResetAreaVisible(true);
+
+  // Hide the forgot_passarea element
+  const forgotPassArea = document.querySelector('.forgot_passarea');
+  if (forgotPassArea) {
+    forgotPassArea.style.display = 'none';
+  }
+};
+const [resetAreaPasswordVisible, setResetAreaPasswordVisible] = useState(false);
+
+const handleVerifyOTPClick = () => {
+  setResetAreaPasswordVisible(true);
+
+  // Hide the resetarea element
+  const resetArea = document.querySelector('.resetarea');
+  if (resetArea) {
+    resetArea.style.display = 'none';
+  }
+};
+const [thanksPasswordVisible, setThanksPasswordVisible] = useState(false);
+
+const handleResetPasswordClick = () => {
+  setThanksPasswordVisible(true);
+  setResetAreaPasswordVisible(false);
+};
+
+ //#endregion
+    
     const router=useRouter();
     const {register,handleSubmit,formState:{errors}}=useForm();
     // const [username,setUsername]=useState("neetuisin@gmail.com");
@@ -73,7 +119,7 @@ const LogIn = () =>{
         <div className="row justify-content-center">  
             <div className="col-lg-6 col-xl-5 col-md-9 col-sm-10">
 
-            <form onSubmit={handleSubmit(login)}  className="card auth_form login_area_hide">
+                 <form onSubmit={handleSubmit(login)}  className="card auth_form login_area_hide">
                     <div className="header text-left"> 
                     <Image className="m-auto" src={logo} alt="logo" style={{height:"39px",width:"101px"}} />                      
                         <p className="mt-4 mb-0 col-grey"><span className="font-24 col-black">Join as a professional</span> <br/>
@@ -108,7 +154,7 @@ const LogIn = () =>{
                                 </div>
                                 <div className="col-6 ps-0">
                                     <div className="float-right">
-                                        <a href="#" className="col-blue  clickmode col-blue"data-hide=".login_area_hide"data-show=".forgot_passarea" ><b>Forgot Password</b></a> 
+                                        <a href="#" className="col-blue"onClick={handleForgotPasswordClick} ><b>Forgot Password</b></a> 
                                     </div>
                                 </div>
                             </div>
@@ -121,7 +167,7 @@ const LogIn = () =>{
                     </div>
                 </form>
 
-                <form className="card auth_form forgot_passarea ps-4 pe-4 ddnone pt-3">
+                <form className={`card auth_form ${forgotPassVisible ? 'forgot_passarea' : 'ddnone'} ps-4 pe-4 pt-3`}>
                     <div className="header text-center ps-3 pe-3 pt-3 pb-0 mt-3">
                         <h1 className="mb-0"><span className="col-black">Reset Password? </span> </h1>
                         <p className="mt-0 mb-0 col-grey">If you have forgotten your password, enter your e-mail address and we will send you an e mail telling you how to recover it.</p>
@@ -133,34 +179,34 @@ const LogIn = () =>{
                             <div className="bar"></div>
                         </div>
                         <div className="group mt-4 mb-4 text-center">
-                            <a href="#" className="btn btn-primary btn-lg btn-block evt-user-account" data-action="forget-password" data-request-for="reset-link" data-hide=".forgot_passarea" data-show=".resetarea"> Send A Link to Reset </a>
+                            <a href="#" className="btn btn-primary btn-lg btn-block evt-user-account" data-action="forget-password" data-request-for="reset-link"onClick={handleResetLinkClick}> Send A Link to Reset </a>
                         </div>
                     </div>
                 </form>
-                <form className="card auth_form resetarea ps-4 pe-4 ddnone pt-3">
+                <form className={`card auth_form ${resetAreaVisible ? 'resetarea' : 'ddnone'} ps-4 pe-4 pt-3`}>
                     <div className="logo_sign text-center">
                         <i className="zmdi zmdi-check-circle zmdi-hc-3x text-success"></i>
                         <h5>OTP Process </h5>
                         <p>Please enter OTP we have sent you </p>
                     </div>
                     <div className="body pt-3">
-                        <div className="row mt-8 mb-3">
+                        <div className="row mt-8 mb-3 justify-content-center">
                             <div className="col-6">
                                 <input id="txt_otp_code" type="text" className="form-control allow-numbers-only" placeholder="Enter otp code" maxLength="6" autoComplete="off" />
                             </div>
                             <span id="span_otp_code"></span>
                         </div>
-                        <div className="row mt-4 mb-3">
-                            <div className="col-6"><p className=""><span className="">Trying to Auto Capture</span> </p></div>
-                            <div className="col-6 text-right"><p className=""><span className="">00:40</span></p></div>
+                        <div className="row mt-4 mb-3  justify-content-center">
+                            <div className="col-6 col-lg-5"><p className=""><span className="">Trying to Auto Capture</span> </p></div>
+                            <div className="col-6 text-end col-lg-6"><p className=""><span className="">00:40</span></p></div>
                         </div>
                         <div className="mt-4 mb-4 text-center">
-                            <a id="btnSbmtOtp" className="btn btn-primary btn-lg btn-block evt-user-account" data-action="forget-password" data-request-for="verify-otp" data-id="0" data-hide=".resetarea" data-show=".resetareapasswordd"> Submit </a>
+                            <a id="btnSbmtOtp" className="btn btn-primary btn-lg btn-block evt-user-account" data-action="forget-password" data-request-for="verify-otp" data-id="0" onClick={handleVerifyOTPClick}> Submit </a>
                         </div>
                     </div>
                 </form>
 
-                <form className="card auth_form resetareapasswordd ps-4 pe-4 ddnone pt-3">
+                <form className={`card auth_form ${resetAreaPasswordVisible ? 'resetareapasswordd' : 'ddnone'} ps-4 pe-4 pt-3`}>
                     <div className="header text-center ps-3 pe-3 pt-3 pb-0">
                         <h1 className="mb-0"><span className="col-black">Change Password </span> </h1>
                     </div>
@@ -182,16 +228,16 @@ const LogIn = () =>{
                             <div className="bar"></div>
                         </div>
                         <div className="mt-4 mb-4 text-center">
-                            <a id="btnResetPswd" className="btn btn-primary btn-lg btn-block evt-user-account" data-id="0" data-action="forget-password" data-request-for="reset-password" data-hide=".resetareapasswordd" data-show=".thankspasswordd"> Reset Password </a>
+                            <a id="btnResetPswd" className="btn btn-primary btn-lg btn-block evt-user-account" data-id="0" data-action="forget-password" data-request-for="reset-password" onClick={handleResetPasswordClick}> Reset Password </a>
                         </div>
                     </div>
                 </form>
-                <div className="thankspasswordd ddnone">
+                <div className={`card pb-5 thankspasswordd ${thanksPasswordVisible ? '' : 'ddnone'}`}>
                     <div className="d-flex align-items-center justify-content-center mt-4">
                         <div className="thAnKmAiN text-center mt-4">
                             <i className="zmdi zmdi-check-circle zmdi-hc-3x text-success"></i>
                             <h5>Your Password has been changed successfully</h5>
-                            <a  className="btn btn-primary btn-lg btn-block mt-3  clickmode" data-hide=".thankspasswordd" data-show=".login_area_hide"> Login </a>
+                            <button  className="btn btn-primary btn-lg btn-block mt-3"> Login </button>
                         </div>
                     </div>
                 </div>              

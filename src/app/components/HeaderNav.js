@@ -18,6 +18,7 @@ const HeaderNav = () => {
   useEffect(() => {
       if (initial === 1) {
           setinitial(2);
+          
           var checkCookies = ns_util.checkCookie(ns_util.loginCookieName);
         
           if((getCookie('signin_token') ==="") ||(getCookie('signin_token') ===undefined)) {
