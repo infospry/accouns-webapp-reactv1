@@ -1,7 +1,7 @@
 "use client"
 import React from 'react';
 import Header from '../../components/Header';
-import LoginSessions from './components/LoginSessions'
+import Communication from './components/Communication'
 import { Suspense } from 'react'
 import Loading from '../../loading';
 export default function Home() {
@@ -9,7 +9,7 @@ export default function Home() {
    <>
     <Suspense fallback={<Loading />}>
    <Header></Header>
-   <LoginSessions/></Suspense>
+   <Communication/></Suspense>
    </>
   )
 }

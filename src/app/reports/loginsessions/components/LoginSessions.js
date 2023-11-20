@@ -113,28 +113,7 @@ const LoginSessions = ({ login_sessions = [] }) => {
                                 </div>
                                 <ReportsMenu />
                                 <div className="inbox right mt-0">
-                                    {/* <div className="i_action d-flex justify-content-between align-items-center bdrt0 mt-1 p-0">
-                                         <div className="bdbdtn">
-                                            <div className="btn-group mt-9px ms-2 ps-3 mt-0 bdrl hidden-xs">
-                                                <div className="input-group">
-                                                    <input type="text" id="txt_userinput"
-                                                     onChange={(e)=>setSearchInput(e.target.value)} value={searchInput}
-                                                       className="form-control" placeholder="Search by user" autoComplete="off" />&nbsp;
-                                                    <input id="txt_daterange" type="text" className="form-control daterange" 
-                                                    onFocus={selectdateRange} placeholder="Search by date range" />&nbsp;
-                                                    <div className="input-group-append">
-                                                        <a id="btnSearch" className="input-group-text btn-outline-info " onClick={searchSession} data-action="login-sessions" data-request-for="filter">Search</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="btn-group n-lg">
-                                                <ul className="dropdown-menu dr-breakout">
-                                                    <li className="btn btn-outline-primary " onClick={refreshList} data-action="login-sessions"  type="button"> <i className="zmdi zmdi-rotate-left"></i><span>Refresh</span></li>
-                                                </ul>
-                                            </div>
-                                            {loader && <span>Loading...</span>}
-                                        </div> 
-                                    </div> */}
+                                    
                                     <div class="bdrb d-flex justify-content-between align-items-center p-2" style={{borderTop:"0px"}}>
                                         <div class="bdbdtn">
                                             <div class="btn-group mt-0 bdrl hidden-xs">
